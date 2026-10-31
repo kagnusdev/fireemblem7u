@@ -39,27 +39,27 @@ struct GameCtrlProc
 // GC_InitFastStartCheck
 // GC_FastStartCheck
 // EndProcIfNotMarkedB
-void sub_8012D60(ProcPtr);
+void func_080126E4(ProcPtr); /* FE7J: sub_8012D60 */
 // GC_RestoreMainBGM
-// sub_8012DB4
+// func_08012738
 // GC_PostIntro
-// sub_8012E40
+// func_080127C4
 // GC_PostMainMenu
-// sub_8012F2C
-// sub_8012F44
-// sub_8012F50
-// sub_8012F6C
+// func_080128B0
+// func_080128C8
+// func_080128D4
+// func_080128F0
 // GC_StartExtraMap
 // sub_8012FCC
-// sub_8012FEC
+// func_08012934
 // GC_CheckForGameEnded
 // GC_PostLoadSuspend
 // GC_InitNextChapter
 // GC_CallPostChapterSaveMenu
 // GC_SetEliwoodMode
 // GC_DarkenScreen
-// sub_8013128
-// sub_8013160
+// func_08012A70
+// func_08012AA8
 // GC_RememberChapterId
 // GC_RestoreChapterId
 // StartGame
@@ -67,8 +67,13 @@ void sub_8012D60(ProcPtr);
 void SetNextGameAction(int action);
 void SetNextChapterId(int chapter_id);
 // HasNextChapter
-// sub_8013240
-// sub_8013264
-// sub_8013288
+// func_08012B88
+// func_08012BAC
+// func_08012BD0
 void ForceEnableSounds(void);
-// sub_80132C8
+// func_08012C10
+
+extern void func_08002C74(void);
+extern void func_08002C8C(void);
+
+extern u8 func_08002CA4();

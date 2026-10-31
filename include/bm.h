@@ -94,7 +94,7 @@ struct PlayStatus
 };
 
 extern struct BmStatus gBmStatus;
-extern struct PlayStatus gPlayStatus;
+extern struct PlayStatus gPlaySt;
 
 extern struct Vec2i gLastCoordMapCursorDrawn;
 extern u32 gLastTimeMapCursorDrawn;

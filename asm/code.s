@@ -1,1007 +1,7 @@
     .include "asm_prelude.inc"
 
-    thumb_func_start func_0801252C
-func_0801252C: @ 0x0801252C
-    push {r4, r5, r6, lr}
-    sub sp, #0x48
-    bl func_080A03A8
-    lsls r1, r0, #4
-    adds r1, r1, r0
-    lsls r1, r1, #2
-    subs r4, r1, r0
-    movs r5, #0
-    mov r6, sp
-.L08012540:
-    adds r0, r5, #0
-    bl func_080A09A0
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L0801256E
-    adds r0, r5, #0
-    mov r1, sp
-    bl func_080A09B4
-    movs r2, #0xe
-    ldrsb r2, [r6, r2]
-    ldrh r0, [r6, #0x2e]
-    lsls r1, r0, #0x14
-    lsrs r1, r1, #0x1b
-    lsls r0, r1, #4
-    adds r0, r0, r1
-    lsls r0, r0, #2
-    subs r0, r0, r1
-    adds r2, r2, r0
-    cmp r4, r2
-    bge .L0801256E
-    adds r4, r2, #0
-.L0801256E:
-    adds r5, #1
-    cmp r5, #2
-    ble .L08012540
-    cmp r4, #4
-    bgt .L0801257C
-    movs r0, #0
-    b .L080125C6
-.L0801257C:
-    cmp r4, #0xa
-    bgt .L08012584
-    movs r0, #1
-    b .L080125C6
-.L08012584:
-    cmp r4, #0x12
-    bgt .L0801258C
-    movs r0, #2
-    b .L080125C6
-.L0801258C:
-    cmp r4, #0x1a
-    bgt .L08012594
-    movs r0, #3
-    b .L080125C6
-.L08012594:
-    cmp r4, #0x42
-    bgt .L0801259C
-    movs r0, #4
-    b .L080125C6
-.L0801259C:
-    cmp r4, #0x47
-    bgt .L080125A4
-    movs r0, #5
-    b .L080125C6
-.L080125A4:
-    cmp r4, #0x4d
-    bgt .L080125AC
-    movs r0, #6
-    b .L080125C6
-.L080125AC:
-    cmp r4, #0x55
-    bgt .L080125B4
-    movs r0, #7
-    b .L080125C6
-.L080125B4:
-    cmp r4, #0x5d
-    bgt .L080125BC
-    movs r0, #8
-    b .L080125C6
-.L080125BC:
-    cmp r4, #0x85
-    ble .L080125C4
-    movs r0, #0xa
-    b .L080125C6
-.L080125C4:
-    movs r0, #9
-.L080125C6:
-    add sp, #0x48
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    func_end func_0801252C
-
-    thumb_func_start func_080125D0
-func_080125D0: @ 0x080125D0
-    push {r4, lr}
-    adds r4, r0, #0
-    bl func_0801252C
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x18
-    adds r1, r4, #0
-    bl func_080AEEE4
-    movs r0, #0
-    pop {r4}
-    pop {r1}
-    bx r1
-    func_end func_080125D0
-
-    thumb_func_start func_080125EC
-func_080125EC: @ 0x080125EC
-    push {lr}
-    adds r2, r0, #0
-    ldr r0, .L0801260C @ =gKeys
-    ldr r1, [r0]
-    movs r0, #0x85
-    lsls r0, r0, #2
-    ldrh r1, [r1, #4]
-    cmp r1, r0
-    bne .L08012606
-    adds r0, r2, #0
-    movs r1, #0xf
-    bl Proc_Goto
-.L08012606:
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0801260C: .4byte gKeys
-    func_end func_080125EC
-
-    thumb_func_start func_08012610
-func_08012610: @ 0x08012610
-    push {lr}
-    movs r0, #0
-    bl InitBgs
-    bl ApplySystemGraphics
-    ldr r2, .L08012640 @ =gPlayStatus
-    adds r2, #0x40
-    movs r0, #0x61
-    rsbs r0, r0, #0
-    ldrb r1, [r2]
-    ands r0, r1
-    movs r1, #0x20
-    orrs r0, r1
-    strb r0, [r2]
-    movs r2, #1
-    rsbs r2, r2, #0
-    movs r0, #3
-    movs r1, #0
-    bl func_0807F8D4
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012640: .4byte gPlayStatus
-    func_end func_08012610
-
-    thumb_func_start func_08012644
-func_08012644: @ 0x08012644
-    movs r1, #0x14
-    strh r1, [r0, #0x2e]
-    bx lr
-    func_end func_08012644
-
-    thumb_func_start func_0801264C
-func_0801264C: @ 0x0801264C
-    push {lr}
-    bl func_08002C74
-    bl func_08002C8C
-    pop {r0}
-    bx r0
-    func_end func_0801264C
-
-    thumb_func_start func_0801265C
-func_0801265C: @ 0x0801265C
-    push {r4, lr}
-    adds r4, r0, #0
-    bl func_08002CA4
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L08012678
-    ldr r0, .L08012680 @ =gKeys
-    ldr r1, [r0]
-    movs r0, #8
-    ldrh r1, [r1, #4]
-    ands r0, r1
-    cmp r0, #0
-    bne .L08012684
-.L08012678:
-    adds r0, r4, #0
-    bl Proc_Break
-    b .L080126C8
-    .align 2, 0
-.L08012680: .4byte gKeys
-.L08012684:
-    ldrh r0, [r4, #0x2e]
-    subs r0, #1
-    strh r0, [r4, #0x2e]
-    lsls r0, r0, #0x10
-    cmp r0, #0
-    bge .L080126C8
-    movs r0, #3
-    bl func_080A1384
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L080126AC
-    movs r0, #3
-    bl func_080A1258
-    adds r0, r4, #0
-    movs r1, #6
-    bl Proc_Goto
-    b .L080126C8
-.L080126AC:
-    movs r0, #0x5a
-    movs r1, #0
-    bl StartBgmCore
-    movs r0, #0
-    movs r1, #0xc0
-    movs r2, #0x3c
-    movs r3, #0
-    bl StartBgmVolumeChange
-    adds r0, r4, #0
-    movs r1, #4
-    bl Proc_Goto
-.L080126C8:
-    pop {r4}
-    pop {r0}
-    bx r0
-    func_end func_0801265C
-
-    thumb_func_start func_080126D0
-func_080126D0: @ 0x080126D0
-    push {lr}
-    adds r1, r0, #0
-    adds r1, #0x26
-    ldrb r1, [r1]
-    cmp r1, #0xb
-    beq .L080126E0
-    bl Proc_End
-.L080126E0:
-    pop {r0}
-    bx r0
-    func_end func_080126D0
-
-    thumb_func_start func_080126E4
-func_080126E4: @ 0x080126E4
-    push {lr}
-    sub sp, #4
-    movs r0, #0
-    str r0, [sp]
-    ldr r1, .L0801270C @ =gPal
-    ldr r2, .L08012710 @ =0x01000100
-    mov r0, sp
-    bl CpuFastSet
-    bl EnablePalSync
-    ldr r0, .L08012714 @ =func_080126D0
-    bl func_0800476C
-    ldr r0, .L08012718 @ =func_0801529C
-    bl func_080019B8
-    add sp, #4
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0801270C: .4byte gPal
-.L08012710: .4byte 0x01000100
-.L08012714: .4byte func_080126D0
-.L08012718: .4byte func_0801529C
-    func_end func_080126E4
-
-    thumb_func_start func_0801271C
-func_0801271C: @ 0x0801271C
-    push {lr}
-    movs r0, #0x5a
-    movs r1, #0
-    bl StartBgmCore
-    movs r0, #0
-    movs r1, #0xc0
-    movs r2, #0x3c
-    movs r3, #0
-    bl StartBgmVolumeChange
-    pop {r0}
-    bx r0
-    func_end func_0801271C
-
-    thumb_func_start func_08012738
-func_08012738: @ 0x08012738
-    push {lr}
-    movs r0, #0x80
-    lsls r0, r0, #1
-    movs r1, #0xc0
-    movs r2, #0x20
-    movs r3, #0
-    bl StartBgmVolumeChange
-    pop {r0}
-    bx r0
-    func_end func_08012738
-
-    thumb_func_start func_0801274C
-func_0801274C: @ 0x0801274C
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r0, #0x29
-    ldrb r1, [r0]
-    cmp r1, #1
-    beq .L08012786
-    cmp r1, #1
-    bgt .L08012762
-    cmp r1, #0
-    beq .L08012776
-    b .L080127BC
-.L08012762:
-    cmp r1, #2
-    beq .L0801276C
-    cmp r1, #3
-    beq .L080127B4
-    b .L080127BC
-.L0801276C:
-    adds r0, r4, #0
-    movs r1, #3
-    bl Proc_Goto
-    b .L080127BC
-.L08012776:
-    adds r0, r4, #0
-    movs r1, #4
-    bl Proc_Goto
-    adds r0, r4, #0
-    bl func_08012738
-    b .L080127BC
-.L08012786:
-    adds r0, r4, #0
-    adds r0, #0x2b
-    ldrb r2, [r0]
-    ands r1, r2
-    adds r5, r0, #0
-    cmp r1, #0
-    beq .L0801279A
-    cmp r1, #1
-    beq .L080127A4
-    b .L080127AC
-.L0801279A:
-    adds r0, r4, #0
-    movs r1, #1
-    bl Proc_Goto
-    b .L080127AC
-.L080127A4:
-    adds r0, r4, #0
-    movs r1, #0
-    bl Proc_Goto
-.L080127AC:
-    ldrb r0, [r5]
-    adds r0, #1
-    strb r0, [r5]
-    b .L080127BC
-.L080127B4:
-    adds r0, r4, #0
-    movs r1, #0x15
-    bl Proc_Goto
-.L080127BC:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    func_end func_0801274C
-
-    thumb_func_start func_080127C4
-func_080127C4: @ 0x080127C4
-    push {lr}
-    adds r1, r0, #0
-    adds r1, #0x29
-    ldrb r1, [r1]
-    cmp r1, #0
-    beq .L080127D6
-    cmp r1, #1
-    beq .L080127DE
-    b .L080127E4
-.L080127D6:
-    movs r1, #3
-    bl Proc_Goto
-    b .L080127E4
-.L080127DE:
-    movs r1, #0
-    bl Proc_Goto
-.L080127E4:
-    pop {r0}
-    bx r0
-    func_end func_080127C4
-
-    thumb_func_start func_080127E8
-func_080127E8: @ 0x080127E8
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r0, #0x29
-    ldrb r0, [r0]
-    cmp r0, #8
-    bhi .L080128A8
-    lsls r0, r0, #2
-    ldr r1, .L08012800 @ =.L08012804
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.L08012800: .4byte .L08012804
-.L08012804: @ jump table
-    .4byte .L08012828 @ case 0
-    .4byte .L08012828 @ case 1
-    .4byte .L08012828 @ case 2
-    .4byte .L08012828 @ case 3
-    .4byte .L08012878 @ case 4
-    .4byte .L08012882 @ case 5
-    .4byte .L0801288C @ case 6
-    .4byte .L08012896 @ case 7
-    .4byte .L080128A0 @ case 8
-.L08012828:
-    bl func_0809FBB4
-    cmp r0, #0xb
-    bne .L0801283A
-    adds r0, r4, #0
-    movs r1, #0x14
-    bl Proc_Goto
-    b .L080128A8
-.L0801283A:
-    bl func_0802E6E4
-    ldrb r0, [r0]
-    cmp r0, #0
-    bne .L0801286A
-    ldr r1, .L0801285C @ =gPlayStatus
-    adds r1, #0x2b
-    movs r0, #1
-    ldrb r1, [r1]
-    ands r0, r1
-    cmp r0, #0
-    beq .L08012860
-    adds r0, r4, #0
-    movs r1, #0x12
-    bl Proc_Goto
-    b .L080128A8
-    .align 2, 0
-.L0801285C: .4byte gPlayStatus
-.L08012860:
-    ldr r0, .L08012874 @ =0x0000055B
-    bl GetMsg
-    bl func_0802E6EC
-.L0801286A:
-    adds r0, r4, #0
-    movs r1, #5
-    bl Proc_Goto
-    b .L080128A8
-    .align 2, 0
-.L08012874: .4byte 0x0000055B
-.L08012878:
-    adds r0, r4, #0
-    movs r1, #6
-    bl Proc_Goto
-    b .L080128A8
-.L08012882:
-    adds r0, r4, #0
-    movs r1, #0x16
-    bl Proc_Goto
-    b .L080128A8
-.L0801288C:
-    adds r0, r4, #0
-    movs r1, #0xa
-    bl Proc_Goto
-    b .L080128A8
-.L08012896:
-    adds r0, r4, #0
-    movs r1, #0xb
-    bl Proc_Goto
-    b .L080128A8
-.L080128A0:
-    adds r0, r4, #0
-    movs r1, #0xc
-    bl Proc_Goto
-.L080128A8:
-    pop {r4}
-    pop {r0}
-    bx r0
-    func_end func_080127E8
-
-    thumb_func_start func_080128B0
-func_080128B0: @ 0x080128B0
-    push {lr}
-    adds r1, r0, #0
-    adds r1, #0x29
-    ldrb r1, [r1]
-    cmp r1, #5
-    bne .L080128C2
-    movs r1, #3
-    bl Proc_Goto
-.L080128C2:
-    pop {r0}
-    bx r0
-    func_end func_080128B0
-
-    thumb_func_start func_080128C8
-func_080128C8: @ 0x080128C8
-    push {lr}
-    movs r1, #3
-    bl Proc_Goto
-    pop {r0}
-    bx r0
-    func_end func_080128C8
-
-    thumb_func_start func_080128D4
-func_080128D4: @ 0x080128D4
-    push {lr}
-    adds r1, r0, #0
-    adds r1, #0x29
-    ldrb r1, [r1]
-    cmp r1, #0
-    beq .L080128EA
-    cmp r1, #1
-    bne .L080128EA
-    movs r1, #0x10
-    bl Proc_Goto
-.L080128EA:
-    pop {r0}
-    bx r0
-    func_end func_080128D4
-
-    thumb_func_start func_080128F0
-func_080128F0: @ 0x080128F0
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    adds r0, #0x29
-    ldrb r0, [r0]
-    cmp r0, #5
-    bne .L08012906
-    adds r0, r5, #0
-    movs r1, #4
-    bl Proc_Goto
-    b .L0801292A
-.L08012906:
-    movs r0, #0
-    bl InitPlayConfig
-    ldr r4, .L08012930 @ =gPlayStatus
-    movs r0, #8
-    ldrb r1, [r4, #0x14]
-    orrs r0, r1
-    strb r0, [r4, #0x14]
-    bl ClearPermanentFlags
-    bl ClearChapterFlags
-    bl func_080174D8
-    adds r0, r5, #0
-    adds r0, #0x2a
-    ldrb r0, [r0]
-    strb r0, [r4, #0xe]
-.L0801292A:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012930: .4byte gPlayStatus
-    func_end func_080128F0
-
-    thumb_func_start func_08012934
-func_08012934: @ 0x08012934
-    push {r4, lr}
-    adds r4, r0, #0
-    bl EndAllMus
-    adds r0, r4, #0
-    adds r0, #0x29
-    ldrb r0, [r0]
-    cmp r0, #5
-    bhi .L08012992
-    lsls r0, r0, #2
-    ldr r1, .L08012950 @ =.L08012954
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.L08012950: .4byte .L08012954
-.L08012954: @ jump table
-    .4byte .L0801296C @ case 0
-    .4byte .L08012992 @ case 1
-    .4byte .L08012976 @ case 2
-    .4byte .L08012980 @ case 3
-    .4byte .L0801298A @ case 4
-    .4byte .L0801298A @ case 5
-.L0801296C:
-    adds r0, r4, #0
-    movs r1, #3
-    bl Proc_Goto
-    b .L08012992
-.L08012976:
-    adds r0, r4, #0
-    movs r1, #0xd
-    bl Proc_Goto
-    b .L08012992
-.L08012980:
-    adds r0, r4, #0
-    movs r1, #0x13
-    bl Proc_Goto
-    b .L08012992
-.L0801298A:
-    adds r0, r4, #0
-    movs r1, #0xd
-    bl Proc_Goto
-.L08012992:
-    pop {r4}
-    pop {r0}
-    bx r0
-    func_end func_08012934
-
-    thumb_func_start func_08012998
-func_08012998: @ 0x08012998
-    push {lr}
-    adds r2, r0, #0
-    ldr r1, .L080129B4 @ =gPlayStatus
-    movs r0, #0x20
-    ldrb r1, [r1, #0x14]
-    ands r0, r1
-    cmp r0, #0
-    beq .L080129B0
-    adds r0, r2, #0
-    movs r1, #0xe
-    bl Proc_Goto
-.L080129B0:
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L080129B4: .4byte gPlayStatus
-    func_end func_08012998
-
-    thumb_func_start func_080129B8
-func_080129B8: @ 0x080129B8
-    push {lr}
-    adds r2, r0, #0
-    ldr r1, .L080129D4 @ =gPlayStatus
-    movs r0, #0x80
-    ldrb r1, [r1, #0x14]
-    ands r0, r1
-    cmp r0, #0
-    beq .L080129D8
-    adds r0, r2, #0
-    movs r1, #8
-    bl Proc_Goto
-    b .L080129E0
-    .align 2, 0
-.L080129D4: .4byte gPlayStatus
-.L080129D8:
-    adds r0, r2, #0
-    movs r1, #7
-    bl Proc_Goto
-.L080129E0:
-    pop {r0}
-    bx r0
-    func_end func_080129B8
-
-    thumb_func_start func_080129E4
-func_080129E4: @ 0x080129E4
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    ldr r5, .L08012A04 @ =gPlayStatus
-    adds r0, r5, #0
-    bl func_0809FBD4
-    bl func_080B6A74
-    adds r4, #0x2a
-    ldrb r0, [r4]
-    strb r0, [r5, #0xe]
-    bl func_0802E3D4
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012A04: .4byte gPlayStatus
-    func_end func_080129E4
-
-    thumb_func_start func_08012A08
-func_08012A08: @ 0x08012A08
-    push {lr}
-    adds r1, r0, #0
-    ldr r0, .L08012A20 @ =gPlayStatus
-    ldrb r0, [r0, #0xe]
-    cmp r0, #0x2f
-    beq .L08012A1A
-    adds r0, r1, #0
-    bl func_080A4E0C
-.L08012A1A:
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012A20: .4byte gPlayStatus
-    func_end func_08012A08
-
-    thumb_func_start func_08012A24
-func_08012A24: @ 0x08012A24
-    ldr r1, .L08012A2C @ =gPlayStatus
-    movs r0, #2
-    strb r0, [r1, #0x1b]
-    bx lr
-    .align 2, 0
-.L08012A2C: .4byte gPlayStatus
-    func_end func_08012A24
-
-    thumb_func_start func_08012A30
-func_08012A30: @ 0x08012A30
-    ldr r3, .L08012A68 @ =gDispIo
-    adds r2, r3, #0
-    adds r2, #0x3c
-    movs r0, #0xc0
-    ldrb r1, [r2]
-    orrs r0, r1
-    strb r0, [r2]
-    adds r0, r3, #0
-    adds r0, #0x44
-    movs r1, #0
-    strb r1, [r0]
-    adds r0, #1
-    strb r1, [r0]
-    adds r1, r3, #0
-    adds r1, #0x46
-    movs r0, #0x10
-    strb r0, [r1]
-    ldr r0, .L08012A6C @ =0x0000FFE0
-    ldrh r1, [r3, #0x3c]
-    ands r0, r1
-    movs r1, #0x1f
-    orrs r0, r1
-    strh r0, [r3, #0x3c]
-    movs r0, #0x20
-    ldrb r1, [r2]
-    orrs r0, r1
-    strb r0, [r2]
-    bx lr
-    .align 2, 0
-.L08012A68: .4byte gDispIo
-.L08012A6C: .4byte 0x0000FFE0
-    func_end func_08012A30
-
-    thumb_func_start func_08012A70
-func_08012A70: @ 0x08012A70
-    push {lr}
-    movs r0, #0
-    bl InitBgs
-    ldr r0, .L08012A88 @ =gPlayStatus
-    ldrb r0, [r0, #0x1b]
-    cmp r0, #2
-    beq .L08012A8C
-    cmp r0, #3
-    beq .L08012A98
-    b .L08012A9E
-    .align 2, 0
-.L08012A88: .4byte gPlayStatus
-.L08012A8C:
-    ldr r0, .L08012A94 @ =0x08CC1B1C
-    bl func_0800AF5C
-    b .L08012A9E
-    .align 2, 0
-.L08012A94: .4byte 0x08CC1B1C
-.L08012A98:
-    ldr r0, .L08012AA4 @ =0x08CC1B50
-    bl func_0800AF5C
-.L08012A9E:
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012AA4: .4byte 0x08CC1B50
-    func_end func_08012A70
-
-    thumb_func_start func_08012AA8
-func_08012AA8: @ 0x08012AA8
-    push {lr}
-    movs r0, #0
-    bl InitBgs
-    ldr r0, .L08012AC0 @ =gPlayStatus
-    ldrb r0, [r0, #0x1b]
-    cmp r0, #2
-    beq .L08012AC4
-    cmp r0, #3
-    beq .L08012AD0
-    b .L08012AD6
-    .align 2, 0
-.L08012AC0: .4byte gPlayStatus
-.L08012AC4:
-    ldr r0, .L08012ACC @ =0x08CC1B84
-    bl func_0800AF5C
-    b .L08012AD6
-    .align 2, 0
-.L08012ACC: .4byte 0x08CC1B84
-.L08012AD0:
-    ldr r0, .L08012ADC @ =0x08CC1BF0
-    bl func_0800AF5C
-.L08012AD6:
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012ADC: .4byte 0x08CC1BF0
-    func_end func_08012AA8
-
-    thumb_func_start func_08012AE0
-func_08012AE0: @ 0x08012AE0
-    ldr r1, .L08012AEC @ =gPlayStatus
-    ldrb r1, [r1, #0xe]
-    adds r0, #0x30
-    strb r1, [r0]
-    bx lr
-    .align 2, 0
-.L08012AEC: .4byte gPlayStatus
-    func_end func_08012AE0
-
-    thumb_func_start func_08012AF0
-func_08012AF0: @ 0x08012AF0
-    ldr r1, .L08012AFC @ =gPlayStatus
-    adds r0, #0x30
-    ldrb r0, [r0]
-    strb r0, [r1, #0xe]
-    bx lr
-    .align 2, 0
-.L08012AFC: .4byte gPlayStatus
-    func_end func_08012AF0
-
-    thumb_func_start StartGame
-StartGame: @ 0x08012B00
-    push {lr}
-    ldr r0, .L08012B2C @ =func_0801529C
-    bl func_080019B8
-    ldr r0, .L08012B30 @ =OnVBlank
-    bl SetOnVBlank
-    ldr r0, .L08012B34 @ =0x08B924BC
-    movs r1, #3
-    bl Proc_Start
-    adds r2, r0, #0
-    adds r2, #0x29
-    movs r1, #0
-    strb r1, [r2]
-    adds r2, #1
-    strb r1, [r2]
-    adds r0, #0x2b
-    strb r1, [r0]
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012B2C: .4byte func_0801529C
-.L08012B30: .4byte OnVBlank
-.L08012B34: .4byte 0x08B924BC
-    func_end StartGame
-
-    thumb_func_start GetGameControlProc
-GetGameControlProc: @ 0x08012B38
-    push {lr}
-    ldr r0, .L08012B44 @ =0x08B924BC
-    bl Proc_Find
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08012B44: .4byte 0x08B924BC
-    func_end GetGameControlProc
-
-    thumb_func_start SetNextGameAction
-SetNextGameAction: @ 0x08012B48
-    push {r4, lr}
-    adds r4, r0, #0
-    bl GetGameControlProc
-    adds r0, #0x29
-    strb r4, [r0]
-    pop {r4}
-    pop {r0}
-    bx r0
-    func_end SetNextGameAction
-
-    thumb_func_start SetNextChapter
-SetNextChapter: @ 0x08012B5C
-    push {r4, lr}
-    adds r4, r0, #0
-    bl GetGameControlProc
-    adds r0, #0x2a
-    strb r4, [r0]
-    pop {r4}
-    pop {r0}
-    bx r0
-    func_end SetNextChapter
-
-    thumb_func_start func_08012B70
-func_08012B70: @ 0x08012B70
-    push {lr}
-    bl GetGameControlProc
-    adds r1, r0, #0
-    adds r1, #0x2a
-    ldrb r2, [r1]
-    rsbs r0, r2, #0
-    orrs r0, r2
-    lsrs r0, r0, #0x1f
-    pop {r1}
-    bx r1
-    func_end func_08012B70
-
-    thumb_func_start func_08012B88
-func_08012B88: @ 0x08012B88
-    push {r4, lr}
-    ldr r4, .L08012BA8 @ =0x08B924BC
-    adds r0, r4, #0
-    bl Proc_EndEach
-    adds r0, r4, #0
-    movs r1, #3
-    bl Proc_Start
-    movs r1, #5
-    bl Proc_Goto
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012BA8: .4byte 0x08B924BC
-    func_end func_08012B88
-
-    thumb_func_start func_08012BAC
-func_08012BAC: @ 0x08012BAC
-    push {r4, lr}
-    ldr r4, .L08012BCC @ =0x08B924BC
-    adds r0, r4, #0
-    bl Proc_EndEach
-    adds r0, r4, #0
-    movs r1, #3
-    bl Proc_Start
-    movs r1, #6
-    bl Proc_Goto
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012BCC: .4byte 0x08B924BC
-    func_end func_08012BAC
-
-    thumb_func_start func_08012BD0
-func_08012BD0: @ 0x08012BD0
-    push {r4, lr}
-    ldr r4, .L08012BF0 @ =0x08B924BC
-    adds r0, r4, #0
-    bl Proc_EndEach
-    adds r0, r4, #0
-    movs r1, #3
-    bl Proc_Start
-    movs r1, #0xf
-    bl Proc_Goto
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012BF0: .4byte 0x08B924BC
-    func_end func_08012BD0
-
-    thumb_func_start func_08012BF4
-func_08012BF4: @ 0x08012BF4
-    ldr r0, .L08012C0C @ =gPlayStatus
-    adds r0, #0x41
-    movs r1, #2
-    rsbs r1, r1, #0
-    ldrb r2, [r0]
-    ands r1, r2
-    movs r2, #3
-    rsbs r2, r2, #0
-    ands r1, r2
-    strb r1, [r0]
-    bx lr
-    .align 2, 0
-.L08012C0C: .4byte gPlayStatus
-    func_end func_08012BF4
-
-    thumb_func_start func_08012C10
-func_08012C10: @ 0x08012C10
-    push {r4, r5, lr}
-    ldr r1, .L08012C5C @ =gPlayStatus
-    adds r2, r1, #0
-    adds r2, #0x42
-    movs r0, #7
-    rsbs r0, r0, #0
-    ldrb r3, [r2]
-    ands r0, r3
-    strb r0, [r2]
-    adds r5, r1, #0
-    adds r5, #0x40
-    movs r2, #0x61
-    rsbs r2, r2, #0
-    ldrb r0, [r5]
-    ands r2, r0
-    movs r0, #0x20
-    orrs r2, r0
-    movs r0, #0x7f
-    ands r2, r0
-    adds r3, r1, #0
-    adds r3, #0x41
-    movs r4, #2
-    rsbs r4, r4, #0
-    adds r0, r4, #0
-    ldrb r1, [r3]
-    ands r0, r1
-    movs r1, #2
-    orrs r0, r1
-    movs r1, #0xd
-    rsbs r1, r1, #0
-    ands r0, r1
-    strb r0, [r3]
-    ands r2, r4
-    strb r2, [r5]
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012C5C: .4byte gPlayStatus
-    func_end func_08012C10
-
-    thumb_func_start GetMsg
-GetMsg: @ 0x08012C60
+    thumb_func_start DecodeMsg
+DecodeMsg: @ 0x08012C60
     push {r4, r5, r6, lr}
     adds r5, r0, #0
     ldr r6, .L08012C84 @ =gLoadedMsg
@@ -1030,7 +30,7 @@ GetMsg: @ 0x08012C60
     bx r1
     .align 2, 0
 .L08012C98: .4byte gMsgBuf
-    func_end GetMsg
+    func_end DecodeMsg
 
     thumb_func_start GetMsgTo
 GetMsgTo: @ 0x08012C9C
@@ -1120,7 +120,7 @@ MsgExpand: @ 0x08012CBC
     movs r1, #3
     b .L08012D8C
 .L08012D5C:
-    bl func_0802E6E4
+    bl GetTacticianName
     b .L08012D6C
 .L08012D62:
     ldr r0, .L08012D78 @ =0x0203A85C
@@ -1145,13 +145,13 @@ MsgExpand: @ 0x08012CBC
     adds r4, #1
     b .L08012DB8
 .L08012D8C:
-    ldr r0, .L08012DCC @ =gPlayStatus
+    ldr r0, .L08012DCC @ =gPlaySt
     adds r0, #0x1c
     adds r0, r1, r0
     ldrb r0, [r0]
     bl func_08018D38
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_080130DC
@@ -1178,7 +178,7 @@ MsgExpand: @ 0x08012CBC
     pop {r1}
     bx r1
     .align 2, 0
-.L08012DCC: .4byte gPlayStatus
+.L08012DCC: .4byte gPlaySt
 .L08012DD0: .4byte 0x0202ADB4
     func_end MsgExpand
 
@@ -1356,7 +356,7 @@ func_08012F14: @ 0x08012F14
     adds r4, #1
     b .L08012F9A
 .L08012F7C:
-    bl func_0802E6E4
+    bl GetTacticianName
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_080130DC
@@ -2938,7 +1938,7 @@ func_08013A48: @ 0x08013A48
     push {r4, r5, lr}
     adds r3, r0, #0
     movs r4, #0
-    ldr r5, .L08013AAC @ =gKeys
+    ldr r5, .L08013AAC @ =gpKeySt
     ldr r1, [r5]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -2989,7 +1989,7 @@ func_08013A48: @ 0x08013A48
     pop {r0}
     bx r0
     .align 2, 0
-.L08013AAC: .4byte gKeys
+.L08013AAC: .4byte gpKeySt
     func_end func_08013A48
 
     thumb_func_start func_08013AB0
@@ -5721,7 +4721,7 @@ func_08014D80: @ 0x08014D80
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     adds r6, r1, #0
-    ldr r0, .L08014DD0 @ =gPlayStatus
+    ldr r0, .L08014DD0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -5756,7 +4756,7 @@ func_08014D80: @ 0x08014D80
     pop {r0}
     bx r0
     .align 2, 0
-.L08014DD0: .4byte gPlayStatus
+.L08014DD0: .4byte gPlaySt
 .L08014DD4: .4byte 0x0869D668
 .L08014DD8: .4byte 0x0869D6E0
 .L08014DDC: .4byte 0x0000FFFF
@@ -5780,7 +4780,7 @@ func_08014DE0: @ 0x08014DE0
 func_08014DF8: @ 0x08014DF8
     push {lr}
     adds r1, r0, #0
-    ldr r0, .L08014E14 @ =gPlayStatus
+    ldr r0, .L08014E14 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -5793,7 +4793,7 @@ func_08014DF8: @ 0x08014DF8
     pop {r0}
     bx r0
     .align 2, 0
-.L08014E14: .4byte gPlayStatus
+.L08014E14: .4byte gPlaySt
     func_end func_08014DF8
 
     thumb_func_start func_08014E18
@@ -6423,10 +5423,10 @@ OnVBlank: @ 0x0801524C
 .L08015298: .4byte gBmStatus
     func_end OnVBlank
 
-    thumb_func_start func_0801529C
-func_0801529C: @ 0x0801529C
+    thumb_func_start OnMain
+OnMain: @ 0x0801529C
     push {r4, lr}
-    ldr r0, .L080152F8 @ =gKeys
+    ldr r0, .L080152F8 @ =gpKeySt
     ldr r0, [r0]
     bl RefreshKeySt
     bl func_080069B0
@@ -6461,11 +5461,11 @@ func_0801529C: @ 0x0801529C
     pop {r0}
     bx r0
     .align 2, 0
-.L080152F8: .4byte gKeys
+.L080152F8: .4byte gpKeySt
 .L080152FC: .4byte gProcTreeRoots
 .L08015300: .4byte gBmStatus
 .L08015304: .4byte 0x04000006
-    func_end func_0801529C
+    func_end OnMain
 
     thumb_func_start LockGame
 LockGame: @ 0x08015308
@@ -6501,7 +5501,7 @@ GetGameLock: @ 0x08015328
     thumb_func_start func_08015334
 func_08015334: @ 0x08015334
     push {lr}
-    ldr r2, .L08015348 @ =gPlayStatus
+    ldr r2, .L08015348 @ =gPlaySt
     ldrb r0, [r2, #0xf]
     cmp r0, #0x40
     beq .L0801535E
@@ -6511,7 +5511,7 @@ func_08015334: @ 0x08015334
     beq .L08015352
     b .L08015372
     .align 2, 0
-.L08015348: .4byte gPlayStatus
+.L08015348: .4byte gPlaySt
 .L0801534C:
     cmp r0, #0x80
     beq .L08015358
@@ -6545,18 +5545,18 @@ func_08015334: @ 0x08015334
     thumb_func_start func_0801537C
 func_0801537C: @ 0x0801537C
     push {lr}
-    ldr r0, .L08015398 @ =gPlayStatus
+    ldr r0, .L08015398 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     bl func_080315BC
     ldr r0, [r0, #0x38]
-    bl func_0800AF5C
+    bl StartEvent
     movs r0, #0
     pop {r1}
     bx r1
     .align 2, 0
-.L08015398: .4byte gPlayStatus
+.L08015398: .4byte gPlaySt
     func_end func_0801537C
 
     thumb_func_start func_0801539C
@@ -6602,7 +5602,7 @@ func_080153C4: @ 0x080153C4
 func_080153E0: @ 0x080153E0
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L080153F8 @ =gPlayStatus
+    ldr r0, .L080153F8 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0x40
     beq .L0801541C
@@ -6612,7 +5612,7 @@ func_080153E0: @ 0x080153E0
     beq .L08015402
     b .L08015424
     .align 2, 0
-.L080153F8: .4byte gPlayStatus
+.L080153F8: .4byte gPlaySt
 .L080153FC:
     cmp r0, #0x80
     beq .L0801540C
@@ -6666,7 +5666,7 @@ func_08015434: @ 0x08015434
 func_08015458: @ 0x08015458
     push {lr}
     adds r1, r0, #0
-    ldr r0, .L08015474 @ =gPlayStatus
+    ldr r0, .L08015474 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0x40
     bne .L0801547C
@@ -6676,7 +5676,7 @@ func_08015458: @ 0x08015458
     movs r0, #0
     b .L0801547E
     .align 2, 0
-.L08015474: .4byte gPlayStatus
+.L08015474: .4byte gPlaySt
 .L08015478: .4byte 0x08B94578
 .L0801547C:
     movs r0, #1
@@ -6703,7 +5703,7 @@ func_08015484: @ 0x08015484
 func_0801549C: @ 0x0801549C
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L080154C0 @ =gPlayStatus
+    ldr r0, .L080154C0 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -6719,14 +5719,14 @@ func_0801549C: @ 0x0801549C
     pop {r0}
     bx r0
     .align 2, 0
-.L080154C0: .4byte gPlayStatus
+.L080154C0: .4byte gPlaySt
     func_end func_0801549C
 
     thumb_func_start func_080154C4
 func_080154C4: @ 0x080154C4
     push {lr}
     adds r1, r0, #0
-    ldr r0, .L080154F4 @ =gPlayStatus
+    ldr r0, .L080154F4 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     cmp r0, #0x2f
     bne .L080154FC
@@ -6749,7 +5749,7 @@ func_080154C4: @ 0x080154C4
     strb r0, [r1]
     b .L08015502
     .align 2, 0
-.L080154F4: .4byte gPlayStatus
+.L080154F4: .4byte gPlaySt
 .L080154F8: .4byte gDispIo
 .L080154FC:
     ldr r0, .L08015508 @ =0x08B93934
@@ -6773,7 +5773,7 @@ func_0801550C: @ 0x0801550C
 
     thumb_func_start func_0801551C
 func_0801551C: @ 0x0801551C
-    ldr r0, .L08015554 @ =gPlayStatus
+    ldr r0, .L08015554 @ =gPlaySt
     ldrb r0, [r0, #0x15]
     cmp r0, #7
     bne .L0801555C
@@ -6802,7 +5802,7 @@ func_0801551C: @ 0x0801551C
     strb r2, [r3, #0x18]
     b .L08015588
     .align 2, 0
-.L08015554: .4byte gPlayStatus
+.L08015554: .4byte gPlaySt
 .L08015558: .4byte gDispIo
 .L0801555C:
     ldr r3, .L0801558C @ =gDispIo
@@ -6931,7 +5931,7 @@ func_080155EC: @ 0x080155EC
     cmp r0, #0x77
     bls .L0801566A
     movs r0, #0xf0
-    ldr r1, .L080156F8 @ =gKeys
+    ldr r1, .L080156F8 @ =gpKeySt
     ldr r2, [r1]
     mov r1, ip
     ands r1, r0
@@ -6994,7 +5994,7 @@ func_080155EC: @ 0x080155EC
     ldr r0, [r5, #0x18]
     cmp r1, r0
     beq .L0801570E
-    ldr r0, .L08015700 @ =gPlayStatus
+    ldr r0, .L08015700 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -7011,9 +6011,9 @@ func_080155EC: @ 0x080155EC
 .L080156EC: .4byte gBmStatus
 .L080156F0: .4byte 0x08B92D28
 .L080156F4: .4byte gMapMovement
-.L080156F8: .4byte gKeys
+.L080156F8: .4byte gpKeySt
 .L080156FC: .4byte gMapSize
-.L08015700: .4byte gPlayStatus
+.L08015700: .4byte gPlaySt
 .L08015704: .4byte 0x00000385
 .L08015708:
     movs r0, #0xfb
@@ -8078,7 +7078,7 @@ func_08015E64: @ 0x08015E64
     thumb_func_start GetMapBgmSong
 GetMapBgmSong: @ 0x08015E9C
     push {r4, r5, r6, r7, lr}
-    ldr r0, .L08015ED0 @ =gPlayStatus
+    ldr r0, .L08015ED0 @ =gPlaySt
     movs r1, #0
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
@@ -8103,7 +7103,7 @@ GetMapBgmSong: @ 0x08015E9C
     adds r1, r4, #1
     b .L08015ED6
     .align 2, 0
-.L08015ED0: .4byte gPlayStatus
+.L08015ED0: .4byte gPlaySt
 .L08015ED4:
     movs r1, #7
 .L08015ED6:
@@ -8118,7 +7118,7 @@ GetMapBgmSong: @ 0x08015E9C
 .L08015EE8:
     movs r4, #6
 .L08015EEA:
-    ldr r5, .L08015EFC @ =gPlayStatus
+    ldr r5, .L08015EFC @ =gPlaySt
     ldrb r0, [r5, #0xf]
     cmp r0, #0x40
     beq .L08015F16
@@ -8128,7 +7128,7 @@ GetMapBgmSong: @ 0x08015E9C
     beq .L08015F28
     b .L08015F78
     .align 2, 0
-.L08015EFC: .4byte gPlayStatus
+.L08015EFC: .4byte gPlaySt
 .L08015F00:
     cmp r0, #0x80
     bne .L08015F78
@@ -8177,7 +7177,7 @@ GetMapBgmSong: @ 0x08015E9C
     .align 2, 0
 .L08015F60: .4byte 0x0001000C
 .L08015F64:
-    ldr r0, .L08015F80 @ =gPlayStatus
+    ldr r0, .L08015F80 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -8191,7 +7191,7 @@ GetMapBgmSong: @ 0x08015E9C
     pop {r1}
     bx r1
     .align 2, 0
-.L08015F80: .4byte gPlayStatus
+.L08015F80: .4byte gPlaySt
     func_end GetMapBgmSong
 
     thumb_func_start StartMapSongBgm
@@ -8938,7 +7938,7 @@ func_08016470: @ 0x08016470
     ldr r0, .L080164F0 @ =0x08BE222C
     adds r4, r1, r0
     ldrh r0, [r4]
-    bl GetMsg
+    bl DecodeMsg
     movs r0, #0
     movs r1, #0
     movs r2, #0
@@ -9017,7 +8017,7 @@ func_0801650C: @ 0x0801650C
     ldr r0, .L080165C0 @ =0x08BE222C
     adds r5, r1, r0
     ldrh r0, [r5]
-    bl GetMsg
+    bl DecodeMsg
     movs r0, #0
     movs r1, #0
     movs r2, #0
@@ -9112,7 +8112,7 @@ func_080165DC: @ 0x080165DC
     ldr r0, .L0801664C @ =0x08BE222C
     adds r5, r1, r0
     ldrh r0, [r5]
-    bl GetMsg
+    bl DecodeMsg
     movs r0, #0
     movs r1, #0
     movs r2, #0
@@ -9185,7 +8185,7 @@ func_08016668: @ 0x08016668
     ldr r0, .L08016714 @ =0x08BE222C
     adds r5, r1, r0
     ldrh r0, [r5]
-    bl GetMsg
+    bl DecodeMsg
     movs r0, #0
     movs r1, #0
     movs r2, #0
@@ -9576,7 +8576,7 @@ GetItemRangeString: @ 0x080168AC
 .L0801693A:
     ldr r0, [sp, #0x24]
 .L0801693C:
-    bl GetMsg
+    bl DecodeMsg
     add sp, #0x28
     pop {r4, r5}
     pop {r1}
@@ -9663,7 +8663,7 @@ GetWeaponLevelStringFromExp: @ 0x0801697C
     lsls r0, r4, #2
     add r0, sp
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     add sp, #0x20
     pop {r4, r5}
     pop {r1}
@@ -9708,7 +8708,7 @@ GetItemKindString: @ 0x08016A08
     lsls r0, r0, #2
     add r0, sp
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     add sp, #0x2c
     pop {r4, r5}
     pop {r1}
@@ -10611,14 +9611,14 @@ BreakItemSealForPid: @ 0x08017148
     adds r1, r1, r0
     ldrb r1, [r1, #7]
 .L08017166:
-    ldr r0, .L08017174 @ =gPlayStatus
+    ldr r0, .L08017174 @ =gPlaySt
     adds r0, #0x1c
     adds r0, r1, r0
     strb r3, [r0]
     bx lr
     .align 2, 0
 .L08017170: .4byte 0x08BE222C
-.L08017174: .4byte gPlayStatus
+.L08017174: .4byte gPlaySt
     func_end BreakItemSealForPid
 
     thumb_func_start func_08017178
@@ -10638,7 +9638,7 @@ func_08017178: @ 0x08017178
     adds r1, r1, r0
     ldrb r1, [r1, #7]
 .L08017192:
-    ldr r0, .L080171B0 @ =gPlayStatus
+    ldr r0, .L080171B0 @ =gPlaySt
     adds r0, #0x1c
     adds r0, r1, r0
     movs r2, #0
@@ -10653,7 +9653,7 @@ func_08017178: @ 0x08017178
     bx lr
     .align 2, 0
 .L080171AC: .4byte 0x08BE222C
-.L080171B0: .4byte gPlayStatus
+.L080171B0: .4byte gPlaySt
     func_end func_08017178
 
     thumb_func_start GetItemIid
@@ -10675,7 +9675,7 @@ GetItemName: @ 0x080171BC
     ldr r0, .L080171E0 @ =0x08BE222C
     adds r1, r1, r0
     ldrh r0, [r1]
-    bl GetMsg
+    bl DecodeMsg
     movs r0, #0
     movs r1, #0
     movs r2, #0
@@ -10700,7 +9700,7 @@ GetItemNameWithArticle: @ 0x080171E4
     ldr r1, .L08017228 @ =0x08BE222C
     adds r0, r0, r1
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r0, r4, #0
     bl GetItemAttributes
     movs r1, #0x10
@@ -11156,8 +10156,8 @@ func_080174C0: @ 0x080174C0
 .L080174D4: .4byte 0x08BE222C
     func_end func_080174C0
 
-    thumb_func_start func_080174D8
-func_080174D8: @ 0x080174D8
+    thumb_func_start InitUnits
+InitUnits: @ 0x080174D8
     push {r4, r5, r6, r7, lr}
     movs r5, #0
     ldr r7, .L08017504 @ =0x08B92EB0
@@ -11182,7 +10182,7 @@ func_080174D8: @ 0x080174D8
     bx r0
     .align 2, 0
 .L08017504: .4byte 0x08B92EB0
-    func_end func_080174D8
+    func_end InitUnits
 
     thumb_func_start ClearUnit
 ClearUnit: @ 0x08017508
@@ -11293,7 +10293,7 @@ func_08017584: @ 0x08017584
     thumb_func_start GetUnitVision
 GetUnitVision: @ 0x080175BC
     adds r2, r0, #0
-    ldr r0, .L080175E4 @ =gPlayStatus
+    ldr r0, .L080175E4 @ =gPlaySt
     ldrb r3, [r0, #0xd]
     ldr r0, [r2]
     ldr r1, [r2, #4]
@@ -11314,7 +10314,7 @@ GetUnitVision: @ 0x080175BC
     adds r0, r3, r0
     bx lr
     .align 2, 0
-.L080175E4: .4byte gPlayStatus
+.L080175E4: .4byte gPlaySt
     func_end GetUnitVision
 
     thumb_func_start SetUnitStatus
@@ -12507,7 +11507,7 @@ UnitDropRescue: @ 0x08017E08
     movs r0, #0xc0
     ldrb r1, [r2, #0xb]
     ands r0, r1
-    ldr r1, .L08017E58 @ =gPlayStatus
+    ldr r1, .L08017E58 @ =gPlaySt
     ldrb r1, [r1, #0xf]
     cmp r0, r1
     bne .L08017E44
@@ -12525,7 +11525,7 @@ UnitDropRescue: @ 0x08017E08
     bx r0
     .align 2, 0
 .L08017E54: .4byte 0x08B92EB0
-.L08017E58: .4byte gPlayStatus
+.L08017E58: .4byte gPlaySt
     func_end UnitDropRescue
 
     thumb_func_start UnitGiveRescue
@@ -13056,7 +12056,7 @@ func_080181D0: @ 0x080181D0
     thumb_func_start func_08018268
 func_08018268: @ 0x08018268
     push {r4, r5, r6, lr}
-    ldr r0, .L080182F0 @ =gPlayStatus
+    ldr r0, .L080182F0 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0
     bne .L080182B2
@@ -13094,7 +12094,7 @@ func_08018268: @ 0x08018268
     cmp r4, #0x3f
     ble .L08018276
 .L080182B2:
-    ldr r1, .L080182F0 @ =gPlayStatus
+    ldr r1, .L080182F0 @ =gPlaySt
     ldrb r0, [r1, #0xf]
     adds r2, r0, #1
     adds r0, #0x40
@@ -13129,7 +12129,7 @@ func_08018268: @ 0x08018268
     pop {r0}
     bx r0
     .align 2, 0
-.L080182F0: .4byte gPlayStatus
+.L080182F0: .4byte gPlaySt
 .L080182F4: .4byte 0x08B92EB0
 .L080182F8: .4byte 0x0001000E
 .L080182FC: .4byte 0xFFFFFBBD
@@ -13144,12 +12144,12 @@ func_08018300: @ 0x08018300
     mov r8, r0
     movs r1, #0
     bl BeginTargetList
-    ldr r0, .L08018318 @ =gPlayStatus
+    ldr r0, .L08018318 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     adds r5, r0, #1
     b .L080183BC
     .align 2, 0
-.L08018318: .4byte gPlayStatus
+.L08018318: .4byte gPlaySt
 .L0801831C:
     ldr r1, .L080183E8 @ =0x08B92EB0
     movs r0, #0xff
@@ -13231,7 +12231,7 @@ func_08018300: @ 0x08018300
     bl EnlistTarget
 .L080183B6:
     adds r5, #1
-    ldr r0, .L080183F0 @ =gPlayStatus
+    ldr r0, .L080183F0 @ =gPlaySt
     ldrb r0, [r0, #0xf]
 .L080183BC:
     adds r0, #0x40
@@ -13255,7 +12255,7 @@ func_08018300: @ 0x08018300
     .align 2, 0
 .L080183E8: .4byte 0x08B92EB0
 .L080183EC: .4byte 0x0001002C
-.L080183F0: .4byte gPlayStatus
+.L080183F0: .4byte gPlaySt
     func_end func_08018300
 
     thumb_func_start func_080183F4
@@ -13826,7 +12826,7 @@ GetUnitMovementCost: @ 0x080187D4
     .align 2, 0
 .L080187E8: .4byte 0x08BE3C98
 .L080187EC:
-    ldr r0, .L08018804 @ =gPlayStatus
+    ldr r0, .L08018804 @ =gPlaySt
     ldrb r0, [r0, #0x15]
     cmp r0, #1
     blt .L0801880E
@@ -13838,7 +12838,7 @@ GetUnitMovementCost: @ 0x080187D4
     ldr r0, [r0, #0x3c]
     b .L08018812
     .align 2, 0
-.L08018804: .4byte gPlayStatus
+.L08018804: .4byte gPlaySt
 .L08018808:
     ldr r0, [r2, #4]
     ldr r0, [r0, #0x40]
@@ -13965,7 +12965,7 @@ func_08018888: @ 0x08018888
 func_080188D4: @ 0x080188D4
     push {r4, r5, lr}
     movs r3, #1
-    ldr r5, .L08018904 @ =gPlayStatus
+    ldr r5, .L08018904 @ =gPlaySt
     ldr r4, .L08018908 @ =0x08B92EB0
 .L080188DC:
     movs r0, #0xff
@@ -13988,7 +12988,7 @@ func_080188D4: @ 0x080188D4
     orrs r1, r0
     b .L08018910
     .align 2, 0
-.L08018904: .4byte gPlayStatus
+.L08018904: .4byte gPlaySt
 .L08018908: .4byte 0x08B92EB0
 .L0801890C:
     ldr r0, .L08018928 @ =0xFFDFFFFF
@@ -14121,7 +13121,7 @@ func_08018980: @ 0x08018980
     adds r4, #1
     cmp r4, #0x3f
     ble .L0801898A
-    ldr r1, .L08018A68 @ =gPlayStatus
+    ldr r1, .L08018A68 @ =gPlaySt
     movs r0, #0x10
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -14179,7 +13179,7 @@ func_08018980: @ 0x08018980
     bx r0
     .align 2, 0
 .L08018A64: .4byte 0xFFFEFFFF
-.L08018A68: .4byte gPlayStatus
+.L08018A68: .4byte gPlaySt
 .L08018A6C: .4byte 0x08B92EB0
     func_end func_08018980
 
@@ -14532,7 +13532,7 @@ func_08018CC0: @ 0x08018CC0
     ldr r0, .L08018CEC @ =0x08B92E88
     ldr r0, [r0]
 .L08018CE4:
-    bl GetMsg
+    bl DecodeMsg
     pop {r1}
     bx r1
     .align 2, 0
@@ -14549,7 +13549,7 @@ func_08018CF0: @ 0x08018CF0
     lsrs r0, r0, #0x1a
     adds r0, r0, r1
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     pop {r1}
     bx r1
     .align 2, 0
@@ -14709,7 +13709,7 @@ InitMapForChapter: @ 0x08018D88
     bl InitMetatilesMap
     bl ApplyEnabledMapChanges
     bl RefreshTerrainMap
-    ldr r0, .L08018E80 @ =gPlayStatus
+    ldr r0, .L08018E80 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     cmp r0, #0x26
     bne .L08018E38
@@ -14735,7 +13735,7 @@ InitMapForChapter: @ 0x08018D88
 .L08018E74: .4byte gMapHidden
 .L08018E78: .4byte gMapOtherBuf
 .L08018E7C: .4byte gMapOther
-.L08018E80: .4byte gPlayStatus
+.L08018E80: .4byte gPlaySt
     func_end InitMapForChapter
 
     thumb_func_start InitChapterPreviewMap
@@ -14978,7 +13978,7 @@ ApplyAutoWaterShadows: @ 0x08018EEC
 RefreshAutoWaterShadows: @ 0x08019040
     push {lr}
     ldr r0, .L08019064 @ =0x02001000
-    ldr r1, .L08019068 @ =gPlayStatus
+    ldr r1, .L08019068 @ =gPlaySt
     ldrb r1, [r1, #0xe]
     lsls r1, r1, #0x18
     asrs r1, r1, #0x18
@@ -14991,7 +13991,7 @@ RefreshAutoWaterShadows: @ 0x08019040
     bx r0
     .align 2, 0
 .L08019064: .4byte 0x02001000
-.L08019068: .4byte gPlayStatus
+.L08019068: .4byte gPlaySt
     func_end RefreshAutoWaterShadows
 
     thumb_func_start MapInit
@@ -15237,7 +14237,7 @@ ApplyChapterMapGraphics: @ 0x080191D4
 ApplyChapterMapPalettes: @ 0x0801923C
     push {r4, lr}
     ldr r4, .L08019264 @ =0x08C9C9C8
-    ldr r0, .L08019268 @ =gPlayStatus
+    ldr r0, .L08019268 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -15255,7 +14255,7 @@ ApplyChapterMapPalettes: @ 0x0801923C
     bx r0
     .align 2, 0
 .L08019264: .4byte 0x08C9C9C8
-.L08019268: .4byte gPlayStatus
+.L08019268: .4byte gPlaySt
     func_end ApplyChapterMapPalettes
 
     thumb_func_start InitMetatilesMap
@@ -16079,7 +15079,7 @@ RefreshUnitsOnMaps: @ 0x08019868
     ldr r0, [r1]
     adds r0, r0, r2
     strb r7, [r0]
-    ldr r0, .L08019954 @ =gPlayStatus
+    ldr r0, .L08019954 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     beq .L080198C0
@@ -16098,7 +15098,7 @@ RefreshUnitsOnMaps: @ 0x08019868
     adds r7, #1
     cmp r7, #0x7f
     ble .L0801986C
-    ldr r0, .L08019954 @ =gPlayStatus
+    ldr r0, .L08019954 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0x80
     beq .L08019998
@@ -16135,7 +15135,7 @@ RefreshUnitsOnMaps: @ 0x08019868
     rsbs r3, r3, #0
     bl MapAddInRange
 .L08019910:
-    ldr r0, .L08019954 @ =gPlayStatus
+    ldr r0, .L08019954 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     movs r2, #0x11
     ldrsb r2, [r6, r2]
@@ -16169,7 +15169,7 @@ RefreshUnitsOnMaps: @ 0x08019868
     b .L08019986
     .align 2, 0
 .L08019950: .4byte gMapUnit
-.L08019954: .4byte gPlayStatus
+.L08019954: .4byte gPlaySt
 .L08019958: .4byte gMapFog
 .L0801995C: .4byte gMapHidden
 .L08019960:
@@ -16234,7 +15234,7 @@ RefreshUnitsOnMaps: @ 0x08019868
     rsbs r3, r3, #0
     bl MapAddInRange
 .L080199DA:
-    ldr r0, .L08019A08 @ =gPlayStatus
+    ldr r0, .L08019A08 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     movs r2, #0x11
     ldrsb r2, [r6, r2]
@@ -16257,7 +15257,7 @@ RefreshUnitsOnMaps: @ 0x08019868
     orrs r0, r1
     b .L08019A16
     .align 2, 0
-.L08019A08: .4byte gPlayStatus
+.L08019A08: .4byte gPlaySt
 .L08019A0C: .4byte gMapFog
 .L08019A10:
     ldr r0, [r6, #0xc]
@@ -16374,7 +15374,7 @@ RefreshEntityMaps: @ 0x08019ABC
     ldr r0, .L08019B00 @ =gMapFog
     ldr r2, [r0]
     movs r1, #0
-    ldr r0, .L08019B04 @ =gPlayStatus
+    ldr r0, .L08019B04 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     bne .L08019AE2
@@ -16391,7 +15391,7 @@ RefreshEntityMaps: @ 0x08019ABC
 .L08019AF8: .4byte gMapUnit
 .L08019AFC: .4byte gMapHidden
 .L08019B00: .4byte gMapFog
-.L08019B04: .4byte gPlayStatus
+.L08019B04: .4byte gPlaySt
     func_end RefreshEntityMaps
 
     thumb_func_start GetTerrainName
@@ -16401,7 +15401,7 @@ GetTerrainName: @ 0x08019B08
     lsls r0, r0, #1
     adds r0, r0, r1
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     pop {r1}
     bx r1
     .align 2, 0
@@ -19189,7 +18189,7 @@ func_0801B008: @ 0x0801B008
     cmp r0, #0
     beq .L0801B128
 .L0801B064:
-    ldr r0, .L0801B0F4 @ =gPlayStatus
+    ldr r0, .L0801B0F4 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     beq .L0801B086
@@ -19260,7 +18260,7 @@ func_0801B008: @ 0x0801B008
     bl BuildUnitCompleteStaffRange
     b .L0801B112
     .align 2, 0
-.L0801B0F4: .4byte gPlayStatus
+.L0801B0F4: .4byte gPlaySt
 .L0801B0F8: .4byte gMapFog
 .L0801B0FC: .4byte gMapUnit
 .L0801B100: .4byte gMapOther
@@ -19464,7 +18464,7 @@ func_0801B24C: @ 0x0801B24C
 func_0801B250: @ 0x0801B250
     push {lr}
     adds r2, r0, #0
-    ldr r0, .L0801B26C @ =gKeys
+    ldr r0, .L0801B26C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #4
     ldrh r1, [r1, #8]
@@ -19477,7 +18477,7 @@ func_0801B250: @ 0x0801B250
     pop {r0}
     bx r0
     .align 2, 0
-.L0801B26C: .4byte gKeys
+.L0801B26C: .4byte gpKeySt
     func_end func_0801B250
 
     thumb_func_start func_0801B270
@@ -19591,7 +18591,7 @@ func_0801B314: @ 0x0801B314
 func_0801B338: @ 0x0801B338
     push {r4, r5, lr}
     adds r2, r1, #0
-    ldr r3, .L0801B3B8 @ =gKeys
+    ldr r3, .L0801B3B8 @ =gpKeySt
     ldr r1, [r3]
     movs r0, #0x10
     ldrh r1, [r1, #6]
@@ -19655,7 +18655,7 @@ func_0801B338: @ 0x0801B338
     pop {r1}
     bx r1
     .align 2, 0
-.L0801B3B8: .4byte gKeys
+.L0801B3B8: .4byte gpKeySt
 .L0801B3BC: .4byte 0x02022D2E
 .L0801B3C0: .4byte 0x081C3B74
     func_end func_0801B338
@@ -19665,18 +18665,18 @@ func_0801B3C4: @ 0x0801B3C4
     push {r4, lr}
     adds r4, r1, #0
     bl func_0802E3B0
-    ldr r1, .L0801B3E4 @ =gPlayStatus
+    ldr r1, .L0801B3E4 @ =gPlaySt
     adds r4, #0x3c
     ldrb r0, [r4]
     strb r0, [r1, #0xe]
-    bl func_0802E3D4
+    bl CleanupUnitsBeforeChapter
     bl func_08012B88
     movs r0, #0x17
     pop {r4}
     pop {r1}
     bx r1
     .align 2, 0
-.L0801B3E4: .4byte gPlayStatus
+.L0801B3E4: .4byte gPlaySt
     func_end func_0801B3C4
 
     thumb_func_start func_0801B3E8
@@ -19721,7 +18721,7 @@ func_0801B3E8: @ 0x0801B3E8
     adds r1, #0xc
     adds r0, r0, r1
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -19750,7 +18750,7 @@ func_0801B3E8: @ 0x0801B3E8
 func_0801B470: @ 0x0801B470
     push {r4, r5, r6, r7, lr}
     adds r6, r1, #0
-    ldr r2, .L0801B51C @ =gKeys
+    ldr r2, .L0801B51C @ =gpKeySt
     ldr r1, [r2]
     movs r0, #0x10
     ldrh r1, [r1, #6]
@@ -19812,7 +18812,7 @@ func_0801B470: @ 0x0801B470
     adds r1, #0xc
     adds r0, r0, r1
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -19835,7 +18835,7 @@ func_0801B470: @ 0x0801B470
     pop {r1}
     bx r1
     .align 2, 0
-.L0801B51C: .4byte gKeys
+.L0801B51C: .4byte gpKeySt
 .L0801B520: .4byte 0x08CE4D28
 .L0801B524: .4byte gBg0Tm
     func_end func_0801B470
@@ -19847,7 +18847,7 @@ func_0801B528: @ 0x0801B528
     ldr r0, .L0801B558 @ =0x08CE5378
     cmp r2, r0
     bne .L0801B560
-    ldr r0, .L0801B55C @ =gPlayStatus
+    ldr r0, .L0801B55C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -19866,7 +18866,7 @@ func_0801B528: @ 0x0801B528
     .align 2, 0
 .L0801B554: .4byte 0x08CE4D28
 .L0801B558: .4byte 0x08CE5378
-.L0801B55C: .4byte gPlayStatus
+.L0801B55C: .4byte gPlaySt
 .L0801B560:
     adds r0, r1, #0
     adds r0, #0x3c
@@ -19915,7 +18915,7 @@ func_0801B598: @ 0x0801B598
     adds r0, r5, #0
     bl ClearText
     ldr r0, .L0801B614 @ =0x00001247
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #8
@@ -19927,7 +18927,7 @@ func_0801B598: @ 0x0801B598
     lsls r0, r0, #2
     add r0, sp
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #0x40
@@ -19964,7 +18964,7 @@ func_0801B61C: @ 0x0801B61C
     ldr r0, .L0801B660 @ =0x08B9333C
     bl Proc_Find
     adds r2, r0, #0
-    ldr r0, .L0801B664 @ =gKeys
+    ldr r0, .L0801B664 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x31
     ldrh r1, [r1, #8]
@@ -19991,7 +18991,7 @@ func_0801B61C: @ 0x0801B61C
     bx r1
     .align 2, 0
 .L0801B660: .4byte 0x08B9333C
-.L0801B664: .4byte gKeys
+.L0801B664: .4byte gpKeySt
     func_end func_0801B61C
 
     thumb_func_start func_0801B668
@@ -20021,7 +19021,7 @@ func_0801B66C: @ 0x0801B66C
     adds r0, r4, #0
     bl ClearText
     ldr r0, .L0801B6F0 @ =0x0000124F
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #8
@@ -20033,7 +19033,7 @@ func_0801B66C: @ 0x0801B66C
     lsls r0, r0, #2
     add r0, sp
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x40
@@ -20067,7 +19067,7 @@ func_0801B6F8: @ 0x0801B6F8
     push {r4, r5, r6, lr}
     adds r5, r0, #0
     adds r6, r1, #0
-    ldr r0, .L0801B738 @ =gKeys
+    ldr r0, .L0801B738 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x31
     ldrh r1, [r1, #8]
@@ -20094,7 +19094,7 @@ func_0801B6F8: @ 0x0801B6F8
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.L0801B738: .4byte gKeys
+.L0801B738: .4byte gpKeySt
 .L0801B73C: .4byte 0x08B9333C
 .L0801B740: .4byte .L0801B744
 .L0801B744: @ jump table
@@ -20154,20 +19154,20 @@ func_0801B7A4: @ 0x0801B7A4
     adds r0, r4, #0
     bl ClearText
     ldr r0, .L0801B808 @ =0x00001250
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #8
     movs r2, #0
     bl Text_InsertDrawString
     ldr r0, .L0801B80C @ =0x00001251
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x48
     movs r2, #2
     bl Text_InsertDrawString
-    bl func_080A03A8
+    bl GetGlobalCompletionCount
     adds r3, r0, #0
     adds r3, #1
     adds r0, r4, #0
@@ -20201,14 +19201,14 @@ func_0801B814: @ 0x0801B814
     sub sp, #0x64
     adds r6, r0, #0
     adds r7, r1, #0
-    ldr r4, .L0801B890 @ =gKeys
+    ldr r4, .L0801B890 @ =gpKeySt
     ldr r1, [r4]
     movs r0, #0x30
     ldrh r1, [r1, #6]
     ands r0, r1
     cmp r0, #0
     beq .L0801B8AC
-    bl func_080A03A8
+    bl GetGlobalCompletionCount
     adds r5, r0, #0
     ldr r1, [r4]
     movs r0, #0x20
@@ -20220,7 +19220,7 @@ func_0801B814: @ 0x0801B814
     blt .L0801B842
     subs r5, #1
 .L0801B842:
-    ldr r0, .L0801B890 @ =gKeys
+    ldr r0, .L0801B890 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x10
     ldrh r1, [r1, #6]
@@ -20262,7 +19262,7 @@ func_0801B814: @ 0x0801B814
     ands r0, r2
     b .L0801B89C
     .align 2, 0
-.L0801B890: .4byte gKeys
+.L0801B890: .4byte gpKeySt
 .L0801B894:
     mov r1, sp
     movs r0, #1
@@ -20306,12 +19306,12 @@ func_0801B8BC: @ 0x0801B8BC
 func_0801B8D4: @ 0x0801B8D4
     push {lr}
     bl func_080A049C
-    ldr r0, .L0801B8FC @ =gPlayStatus
+    ldr r0, .L0801B8FC @ =gPlaySt
     movs r1, #0xef
     ldrb r2, [r0, #0x14]
     ands r1, r2
     strb r1, [r0, #0x14]
-    bl func_0802E3D4
+    bl CleanupUnitsBeforeChapter
     bl func_080A05F4
     bl func_080A0810
     movs r0, #0xff
@@ -20319,7 +19319,7 @@ func_0801B8D4: @ 0x0801B8D4
     pop {r1}
     bx r1
     .align 2, 0
-.L0801B8FC: .4byte gPlayStatus
+.L0801B8FC: .4byte gPlaySt
     func_end func_0801B8D4
 
     thumb_func_start func_0801B900
@@ -20343,8 +19343,8 @@ func_0801B900: @ 0x0801B900
     thumb_func_start func_0801B924
 func_0801B924: @ 0x0801B924
     push {r4, lr}
-    ldr r0, .L0801B974 @ =func_0801529C
-    bl func_080019B8
+    ldr r0, .L0801B974 @ =OnMain
+    bl SetMainFunc
     ldr r0, .L0801B978 @ =OnVBlank
     bl SetOnVBlank
     bl func_0802E368
@@ -20363,7 +19363,7 @@ func_0801B924: @ 0x0801B924
     ldr r1, .L0801B988 @ =0x0600B000
     movs r2, #1
     rsbs r2, r2, #0
-    bl func_0807F8D4
+    bl StartMuralBackgroundAlt
     movs r0, #0xbf
     ldrb r1, [r4, #4]
     ands r0, r1
@@ -20374,7 +19374,7 @@ func_0801B924: @ 0x0801B924
     pop {r0}
     bx r0
     .align 2, 0
-.L0801B974: .4byte func_0801529C
+.L0801B974: .4byte OnMain
 .L0801B978: .4byte OnVBlank
 .L0801B97C: .4byte 0x081C3BA4
 .L0801B980: .4byte 0x08B95890
@@ -20498,7 +19498,7 @@ func_0801BA54: @ 0x0801BA54
     asrs r0, r0, #0x18
     adds r7, r0, #0
     adds r7, #0xa
-    ldr r1, .L0801BA98 @ =gKeys
+    ldr r1, .L0801BA98 @ =gpKeySt
     ldr r3, [r1]
     movs r5, #0x10
     adds r0, r5, #0
@@ -20517,7 +19517,7 @@ func_0801BA54: @ 0x0801BA54
     adds r0, r2, #1
     b .L0801BAA8
     .align 2, 0
-.L0801BA98: .4byte gKeys
+.L0801BA98: .4byte gpKeySt
 .L0801BA9C:
     adds r0, r5, #0
     ldrh r3, [r3, #8]
@@ -20584,7 +19584,7 @@ func_0801BA54: @ 0x0801BA54
     ands r0, r1
     cmp r0, #0
     beq .L0801BB40
-    ldr r1, .L0801BB38 @ =gPlayStatus
+    ldr r1, .L0801BB38 @ =gPlaySt
     movs r0, #3
     strb r0, [r1, #0x1b]
     ldr r0, .L0801BB3C @ =0x0841E2D8
@@ -20596,10 +19596,10 @@ func_0801BA54: @ 0x0801BA54
     .align 2, 0
 .L0801BB30: .4byte gBg0Tm
 .L0801BB34: .4byte 0x081C3B74
-.L0801BB38: .4byte gPlayStatus
+.L0801BB38: .4byte gPlaySt
 .L0801BB3C: .4byte 0x0841E2D8
 .L0801BB40:
-    ldr r1, .L0801BB6C @ =gPlayStatus
+    ldr r1, .L0801BB6C @ =gPlaySt
     movs r0, #2
     strb r0, [r1, #0x1b]
     ldr r0, .L0801BB70 @ =0x081C8184
@@ -20612,7 +19612,7 @@ func_0801BA54: @ 0x0801BA54
     ldrsb r0, [r5, r0]
     cmp r0, #0xb
     bgt .L0801BB60
-    ldr r1, .L0801BB6C @ =gPlayStatus
+    ldr r1, .L0801BB6C @ =gPlaySt
     movs r0, #1
     strb r0, [r1, #0x1b]
 .L0801BB60:
@@ -20622,7 +19622,7 @@ func_0801BA54: @ 0x0801BA54
     pop {r1}
     bx r1
     .align 2, 0
-.L0801BB6C: .4byte gPlayStatus
+.L0801BB6C: .4byte gPlaySt
 .L0801BB70: .4byte 0x081C8184
     func_end func_0801BA54
 
@@ -20632,8 +19632,8 @@ func_0801BB74: @ 0x0801BB74
     adds r4, r1, #0
     bl GetGameTime
     bl RandInit
-    bl func_080174D8
-    ldr r0, .L0801BBA0 @ =gKeys
+    bl InitUnits
+    ldr r0, .L0801BBA0 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x80
     lsls r0, r0, #2
@@ -20647,7 +19647,7 @@ func_0801BB74: @ 0x0801BB74
     bl SaveNewGame
     b .L0801BBAE
     .align 2, 0
-.L0801BBA0: .4byte gKeys
+.L0801BBA0: .4byte gpKeySt
 .L0801BBA4:
     movs r0, #0
     movs r1, #0
@@ -20655,16 +19655,16 @@ func_0801BB74: @ 0x0801BB74
     bl SaveNewGame
 .L0801BBAE:
     ldr r0, .L0801BBD8 @ =0x0000055B
-    bl GetMsg
-    bl func_0802E6EC
-    ldr r1, .L0801BBDC @ =gPlayStatus
+    bl DecodeMsg
+    bl SetTacticianName
+    ldr r1, .L0801BBDC @ =gPlaySt
     adds r0, r4, #0
     adds r0, #0x3c
     ldrb r0, [r0]
     strb r0, [r1, #0xe]
     movs r0, #0
     bl func_080A0810
-    bl func_0802E3D4
+    bl CleanupUnitsBeforeChapter
     bl func_08012B88
     movs r0, #2
     pop {r4}
@@ -20672,7 +19672,7 @@ func_0801BB74: @ 0x0801BB74
     bx r1
     .align 2, 0
 .L0801BBD8: .4byte 0x0000055B
-.L0801BBDC: .4byte gPlayStatus
+.L0801BBDC: .4byte gPlaySt
     func_end func_0801BB74
 
     thumb_func_start func_0801BBE0
@@ -20737,7 +19737,7 @@ func_0801BC1C: @ 0x0801BC1C
 func_0801BC38: @ 0x0801BC38
     push {lr}
     movs r0, #4
-    bl func_080A1384
+    bl IsValidSuspendSave
     lsls r0, r0, #0x18
     movs r1, #2
     cmp r0, #0
@@ -20766,7 +19766,7 @@ func_0801BC50: @ 0x0801BC50
     bl func_0802E3B0
 .L0801BC6C:
     movs r0, #4
-    bl func_080A1258
+    bl ReadSuspendSave
     bl func_08012BAC
     movs r0, #0x17
 .L0801BC78:
@@ -20805,7 +19805,7 @@ func_0801BC80: @ 0x0801BC80
 func_0801BCAC: @ 0x0801BCAC
     push {lr}
     movs r0, #3
-    bl func_080A1384
+    bl IsValidSuspendSave
     lsls r0, r0, #0x18
     movs r1, #2
     cmp r0, #0
@@ -20825,7 +19825,7 @@ func_0801BCC4: @ 0x0801BCC4
     cmp r1, #1
     bne .L0801BCDC
     movs r0, #3
-    bl func_080A1258
+    bl ReadSuspendSave
     bl func_08012BAC
     movs r0, #0x17
     b .L0801BCDE
@@ -20851,13 +19851,13 @@ func_0801BCE4: @ 0x0801BCE4
     adds r0, r4, #0
     bl ClearText
     ldr r0, .L0801BD58 @ =0x00001253
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #8
     movs r2, #0
     bl Text_InsertDrawString
-    ldr r1, .L0801BD5C @ =gPlayStatus
+    ldr r1, .L0801BD5C @ =gPlaySt
     ldrb r2, [r1, #0xd]
     rsbs r0, r2, #0
     orrs r0, r2
@@ -20866,7 +19866,7 @@ func_0801BCE4: @ 0x0801BCE4
     ands r0, r1
     add r0, sp
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x40
@@ -20891,7 +19891,7 @@ func_0801BCE4: @ 0x0801BCE4
     .align 2, 0
 .L0801BD54: .4byte 0x081C3B80
 .L0801BD58: .4byte 0x00001253
-.L0801BD5C: .4byte gPlayStatus
+.L0801BD5C: .4byte gPlaySt
 .L0801BD60: .4byte gBg0Tm
     func_end func_0801BCE4
 
@@ -20904,14 +19904,14 @@ func_0801BD64: @ 0x0801BD64
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0801BDB2
-    ldr r0, .L0801BD9C @ =gKeys
+    ldr r0, .L0801BD9C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x31
     ldrh r1, [r1, #8]
     ands r0, r1
     cmp r0, #0
     beq .L0801BDB2
-    ldr r1, .L0801BDA0 @ =gPlayStatus
+    ldr r1, .L0801BDA0 @ =gPlaySt
     ldrb r0, [r1, #0xd]
     cmp r0, #0
     bne .L0801BDA4
@@ -20922,8 +19922,8 @@ func_0801BD64: @ 0x0801BD64
     bl SetVisionWithFade
     b .L0801BDAA
     .align 2, 0
-.L0801BD9C: .4byte gKeys
-.L0801BDA0: .4byte gPlayStatus
+.L0801BD9C: .4byte gpKeySt
+.L0801BDA0: .4byte gPlaySt
 .L0801BDA4:
     movs r0, #0
     bl SetVisionWithFade
@@ -20980,16 +19980,16 @@ func_0801BDDC: @ 0x0801BDDC
     asrs r0, r0, #0x18
     cmp r0, #0
     beq .L0801BE0C
-    ldr r0, .L0801BE08 @ =gPlayStatus
+    ldr r0, .L0801BE08 @ =gPlaySt
     adds r0, #0x43
     ldrb r0, [r0]
     lsls r0, r0, #0x1d
     b .L0801BE14
     .align 2, 0
 .L0801BE04: .4byte 0x081C3BB0
-.L0801BE08: .4byte gPlayStatus
+.L0801BE08: .4byte gPlaySt
 .L0801BE0C:
-    ldr r0, .L0801BE74 @ =gPlayStatus
+    ldr r0, .L0801BE74 @ =gPlaySt
     adds r0, #0x42
     ldrh r0, [r0]
     lsls r0, r0, #0x17
@@ -21016,7 +20016,7 @@ func_0801BDDC: @ 0x0801BDDC
     lsls r0, r6, #2
     add r0, sp
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x20
@@ -21039,7 +20039,7 @@ func_0801BDDC: @ 0x0801BDDC
     pop {r1}
     bx r1
     .align 2, 0
-.L0801BE74: .4byte gPlayStatus
+.L0801BE74: .4byte gPlaySt
 .L0801BE78: .4byte 0x081C3BC0
 .L0801BE7C: .4byte 0x081C3BBC
 .L0801BE80: .4byte gBg0Tm
@@ -21050,7 +20050,7 @@ func_0801BE84: @ 0x0801BE84
     push {r4, r5, r6, lr}
     adds r6, r0, #0
     adds r5, r1, #0
-    ldr r2, .L0801BEB4 @ =gKeys
+    ldr r2, .L0801BEB4 @ =gpKeySt
     ldr r1, [r2]
     movs r0, #0x31
     ldrh r1, [r1, #8]
@@ -21064,17 +20064,17 @@ func_0801BE84: @ 0x0801BE84
     adds r4, r0, #0
     cmp r1, #0
     beq .L0801BEBC
-    ldr r1, .L0801BEB8 @ =gPlayStatus
+    ldr r1, .L0801BEB8 @ =gPlaySt
     adds r0, r1, #0
     adds r0, #0x43
     ldrb r0, [r0]
     lsls r0, r0, #0x1d
     b .L0801BEC6
     .align 2, 0
-.L0801BEB4: .4byte gKeys
-.L0801BEB8: .4byte gPlayStatus
+.L0801BEB4: .4byte gpKeySt
+.L0801BEB8: .4byte gPlaySt
 .L0801BEBC:
-    ldr r1, .L0801BF0C @ =gPlayStatus
+    ldr r1, .L0801BF0C @ =gPlaySt
     adds r0, r1, #0
     adds r0, #0x42
     ldrh r0, [r0]
@@ -21120,7 +20120,7 @@ func_0801BE84: @ 0x0801BE84
     strb r0, [r2]
     b .L0801BF24
     .align 2, 0
-.L0801BF0C: .4byte gPlayStatus
+.L0801BF0C: .4byte gPlaySt
 .L0801BF10:
     adds r2, r1, #0
     adds r2, #0x42
@@ -21149,14 +20149,14 @@ func_0801BE84: @ 0x0801BE84
 func_0801BF38: @ 0x0801BF38
     push {lr}
     bl func_08012B88
-    ldr r0, .L0801BF50 @ =0x08B924BC
+    ldr r0, .L0801BF50 @ =ProcScr_GameControl
     bl Proc_Find
     movs r1, #0xf
     bl Proc_Goto
     pop {r1}
     bx r1
     .align 2, 0
-.L0801BF50: .4byte 0x08B924BC
+.L0801BF50: .4byte ProcScr_GameControl
     func_end func_0801BF38
 
     thumb_func_start func_0801BF54
@@ -21179,7 +20179,7 @@ func_0801BF54: @ 0x0801BF54
     movs r2, #1
     movs r3, #0
     bl TmFillRect_thm
-    ldr r6, .L0801C020 @ =gPlayStatus
+    ldr r6, .L0801C020 @ =gPlaySt
     adds r7, r6, #0
     adds r7, #0x2b
     movs r0, #1
@@ -21254,7 +20254,7 @@ func_0801BF54: @ 0x0801BF54
     b .L0801C05A
     .align 2, 0
 .L0801C01C: .4byte gBg0Tm
-.L0801C020: .4byte gPlayStatus
+.L0801C020: .4byte gPlaySt
 .L0801C024: .4byte 0x081C3AC0
 .L0801C028:
     adds r4, r5, #0
@@ -21262,7 +20262,7 @@ func_0801BF54: @ 0x0801BF54
     adds r0, r4, #0
     bl ClearText
     ldr r0, .L0801C06C @ =0x00001290
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #8
@@ -21295,7 +20295,7 @@ func_0801C070: @ 0x0801C070
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
     adds r6, r1, #0
-    ldr r1, .L0801C13C @ =gKeys
+    ldr r1, .L0801C13C @ =gpKeySt
     ldr r0, [r1]
     ldrh r2, [r0, #6]
     movs r0, #0xcd
@@ -21308,7 +20308,7 @@ func_0801C070: @ 0x0801C070
     ands r0, r2
     cmp r0, #0
     beq .L0801C0B4
-    ldr r3, .L0801C140 @ =gPlayStatus
+    ldr r3, .L0801C140 @ =gPlaySt
     ldrh r2, [r3, #0x2c]
     lsls r0, r2, #0x13
     lsrs r0, r0, #0x17
@@ -21334,7 +20334,7 @@ func_0801C070: @ 0x0801C070
     ands r0, r1
     cmp r0, #0
     beq .L0801C0E0
-    ldr r3, .L0801C140 @ =gPlayStatus
+    ldr r3, .L0801C140 @ =gPlaySt
     ldrh r2, [r3, #0x2c]
     lsls r0, r2, #0x13
     lsrs r0, r0, #0x17
@@ -21359,7 +20359,7 @@ func_0801C070: @ 0x0801C070
     ands r0, r1
     cmp r0, #0
     beq .L0801C0FC
-    ldr r1, .L0801C140 @ =gPlayStatus
+    ldr r1, .L0801C140 @ =gPlaySt
     adds r1, #0x2b
     movs r0, #2
     rsbs r0, r0, #0
@@ -21374,7 +20374,7 @@ func_0801C070: @ 0x0801C070
     ands r0, r3
     cmp r0, #0
     beq .L0801C116
-    ldr r1, .L0801C140 @ =gPlayStatus
+    ldr r1, .L0801C140 @ =gPlaySt
     adds r1, #0x2b
     movs r0, #1
     ldrb r7, [r1]
@@ -21386,7 +20386,7 @@ func_0801C070: @ 0x0801C070
     ands r0, r2
     cmp r0, #0
     beq .L0801C152
-    ldr r0, .L0801C140 @ =gPlayStatus
+    ldr r0, .L0801C140 @ =gPlaySt
     adds r3, r0, #0
     adds r3, #0x2b
     ldrb r2, [r3]
@@ -21400,8 +20400,8 @@ func_0801C070: @ 0x0801C070
     orrs r0, r1
     b .L0801C150
     .align 2, 0
-.L0801C13C: .4byte gKeys
-.L0801C140: .4byte gPlayStatus
+.L0801C13C: .4byte gpKeySt
+.L0801C140: .4byte gPlaySt
 .L0801C144: .4byte 0x000001FF
 .L0801C148: .4byte 0xFFFFE00F
 .L0801C14C:
@@ -21456,7 +20456,7 @@ func_0801C17C: @ 0x0801C17C
     thumb_func_start HandlePlayerMapCursor
 HandlePlayerMapCursor: @ 0x0801C194
     push {lr}
-    ldr r1, .L0801C1C8 @ =gKeys
+    ldr r1, .L0801C1C8 @ =gpKeySt
     ldr r2, [r1]
     movs r0, #2
     ldrh r3, [r2, #4]
@@ -21478,7 +20478,7 @@ HandlePlayerMapCursor: @ 0x0801C194
     bl func_08015768
     b .L0801C1E8
     .align 2, 0
-.L0801C1C8: .4byte gKeys
+.L0801C1C8: .4byte gpKeySt
 .L0801C1CC: .4byte gBmStatus
 .L0801C1D0: .4byte 0x00070007
 .L0801C1D4:
@@ -21499,7 +20499,7 @@ HandlePlayerMapCursor: @ 0x0801C194
     ands r0, r1
     cmp r0, #0
     beq .L0801C206
-    ldr r0, .L0801C210 @ =gKeys
+    ldr r0, .L0801C210 @ =gpKeySt
     ldr r1, [r0]
     ldr r0, .L0801C214 @ =0x0000FCF4
     ldrh r3, [r1, #8]
@@ -21510,7 +20510,7 @@ HandlePlayerMapCursor: @ 0x0801C194
     bx r0
     .align 2, 0
 .L0801C20C: .4byte gBmStatus
-.L0801C210: .4byte gKeys
+.L0801C210: .4byte gpKeySt
 .L0801C214: .4byte 0x0000FCF4
     func_end HandlePlayerMapCursor
 
@@ -21538,7 +20538,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     push {r4, r5, r6, lr}
     adds r6, r0, #0
     bl HandlePlayerMapCursor
-    ldr r4, .L0801C270 @ =gKeys
+    ldr r4, .L0801C270 @ =gpKeySt
     ldr r1, [r4]
     movs r0, #0x80
     lsls r0, r0, #2
@@ -21552,7 +20552,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     movs r3, #0x16
     ldrsh r1, [r1, r3]
     bl TrySwitchViewedUnit
-    ldr r0, .L0801C278 @ =gPlayStatus
+    ldr r0, .L0801C278 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -21564,9 +20564,9 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     bl m4aSongNumStart
     b .L0801C498
     .align 2, 0
-.L0801C270: .4byte gKeys
+.L0801C270: .4byte gpKeySt
 .L0801C274: .4byte gBmStatus
-.L0801C278: .4byte gPlayStatus
+.L0801C278: .4byte gPlaySt
 .L0801C27C: .4byte 0x0000038B
 .L0801C280:
     bl IsMapFadeActive
@@ -21626,7 +20626,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
 .L0801C2FC: .4byte gBmStatus
 .L0801C300: .4byte gMapUnit
 .L0801C304:
-    ldr r0, .L0801C344 @ =gKeys
+    ldr r0, .L0801C344 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -21656,14 +20656,14 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     beq .L0801C3B4
     b .L0801C3CC
     .align 2, 0
-.L0801C344: .4byte gKeys
+.L0801C344: .4byte gpKeySt
 .L0801C348: .4byte gBmStatus
 .L0801C34C: .4byte gMapUnit
 .L0801C350:
     cmp r0, #0
     blt .L0801C3CC
     bl func_08085C7C
-    ldr r0, .L0801C38C @ =gPlayStatus
+    ldr r0, .L0801C38C @ =gPlaySt
     ldrh r1, [r5, #0x14]
     strb r1, [r0, #0x12]
     ldrh r1, [r5, #0x16]
@@ -21686,7 +20686,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     bl func_080790C0
     b .L0801C486
     .align 2, 0
-.L0801C38C: .4byte gPlayStatus
+.L0801C38C: .4byte gPlaySt
 .L0801C390: .4byte 0x08B95AF4
 .L0801C394:
     adds r0, r4, #0
@@ -21713,7 +20713,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     bl Proc_Goto
     b .L0801C498
 .L0801C3CC:
-    ldr r1, .L0801C42C @ =gKeys
+    ldr r1, .L0801C42C @ =gpKeySt
     ldr r2, [r1]
     movs r0, #4
     ldrh r3, [r2, #8]
@@ -21723,7 +20723,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     ldrh r2, [r2, #4]
     cmp r2, #4
     bne .L0801C43C
-    ldr r2, .L0801C430 @ =gPlayStatus
+    ldr r2, .L0801C430 @ =gPlaySt
     ldrb r0, [r2, #0x1b]
     cmp r0, #1
     bne .L0801C43C
@@ -21757,8 +20757,8 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     bl func_08032770
     b .L0801C486
     .align 2, 0
-.L0801C42C: .4byte gKeys
-.L0801C430: .4byte gPlayStatus
+.L0801C42C: .4byte gpKeySt
+.L0801C430: .4byte gPlaySt
 .L0801C434: .4byte gBmStatus
 .L0801C438: .4byte gMapUnit
 .L0801C43C:
@@ -21925,7 +20925,7 @@ func_0801C57C: @ 0x0801C57C
     movs r0, #0xc0
     ldrb r1, [r2, #0xb]
     ands r0, r1
-    ldr r1, .L0801C60C @ =gPlayStatus
+    ldr r1, .L0801C60C @ =gPlaySt
     ldrb r1, [r1, #0xf]
     cmp r0, r1
     bne .L0801C5B8
@@ -21968,7 +20968,7 @@ func_0801C57C: @ 0x0801C57C
     bne .L0801C618
     movs r0, #0
     bl func_0802FEF4
-    ldr r0, .L0801C60C @ =gPlayStatus
+    ldr r0, .L0801C60C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -21979,7 +20979,7 @@ func_0801C57C: @ 0x0801C57C
     b .L0801C61E
     .align 2, 0
 .L0801C608: .4byte gActiveUnit
-.L0801C60C: .4byte gPlayStatus
+.L0801C60C: .4byte gPlaySt
 .L0801C610: .4byte gBmStatus
 .L0801C614: .4byte 0x00000389
 .L0801C618:
@@ -21994,7 +20994,7 @@ func_0801C57C: @ 0x0801C57C
     thumb_func_start func_0801C624
 func_0801C624: @ 0x0801C624
     push {lr}
-    ldr r0, .L0801C650 @ =gPlayStatus
+    ldr r0, .L0801C650 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -22015,7 +21015,7 @@ func_0801C624: @ 0x0801C624
     pop {r0}
     bx r0
     .align 2, 0
-.L0801C650: .4byte gPlayStatus
+.L0801C650: .4byte gPlaySt
 .L0801C654: .4byte gBmStatus
 .L0801C658: .4byte gActiveUnit
     func_end func_0801C624
@@ -22036,7 +21036,7 @@ func_0801C65C: @ 0x0801C65C
     movs r1, #1
     rsbs r1, r1, #0
     bl MapFill
-    ldr r0, .L0801C6B8 @ =gPlayStatus
+    ldr r0, .L0801C6B8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -22063,7 +21063,7 @@ func_0801C65C: @ 0x0801C65C
     .align 2, 0
 .L0801C6B0: .4byte gBmStatus
 .L0801C6B4: .4byte gMapMovement
-.L0801C6B8: .4byte gPlayStatus
+.L0801C6B8: .4byte gPlaySt
 .L0801C6BC:
     movs r0, #3
     bl func_0801D2A0
@@ -22079,7 +21079,7 @@ func_0801C6C8: @ 0x0801C6C8
     adds r5, r0, #0
     movs r4, #0xff
     bl HandlePlayerMapCursor
-    ldr r0, .L0801C6F0 @ =gKeys
+    ldr r0, .L0801C6F0 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -22093,7 +21093,7 @@ func_0801C6C8: @ 0x0801C6C8
     bl func_08018624
     b .L0801C722
     .align 2, 0
-.L0801C6F0: .4byte gKeys
+.L0801C6F0: .4byte gpKeySt
 .L0801C6F4: .4byte gActiveUnit
 .L0801C6F8:
     bl func_0807905C
@@ -22134,7 +21134,7 @@ func_0801C6C8: @ 0x0801C6C8
     beq .L0801C78E
     movs r4, #1
 .L0801C744:
-    ldr r0, .L0801C76C @ =gKeys
+    ldr r0, .L0801C76C @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #2
@@ -22153,7 +21153,7 @@ func_0801C6C8: @ 0x0801C6C8
     b .L0801C78E
     .align 2, 0
 .L0801C768: .4byte gBmStatus
-.L0801C76C: .4byte gKeys
+.L0801C76C: .4byte gpKeySt
 .L0801C770: .4byte gActiveUnit
 .L0801C774:
     movs r0, #0x80
@@ -22191,7 +21191,7 @@ func_0801C6C8: @ 0x0801C6C8
     .4byte .L0801C974 @ case 5
     .4byte .L0801C944 @ case 6
 .L0801C7C0:
-    ldr r0, .L0801C7D8 @ =gPlayStatus
+    ldr r0, .L0801C7D8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -22204,7 +21204,7 @@ func_0801C6C8: @ 0x0801C6C8
     bl m4aSongNumStart
     b .L0801C974
     .align 2, 0
-.L0801C7D8: .4byte gPlayStatus
+.L0801C7D8: .4byte gPlaySt
 .L0801C7DC:
     ldr r0, .L0801C7F8 @ =gActiveUnitMoveOrigin
     movs r2, #0
@@ -22257,7 +21257,7 @@ func_0801C6C8: @ 0x0801C6C8
     bl func_0801D2D4
     bl RefreshEntityMaps
     bl RefreshUnitSprites
-    ldr r0, .L0801C878 @ =gPlayStatus
+    ldr r0, .L0801C878 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -22274,7 +21274,7 @@ func_0801C6C8: @ 0x0801C6C8
 .L0801C86C: .4byte gActiveUnit
 .L0801C870: .4byte gActiveUnitMoveOrigin
 .L0801C874: .4byte gBmStatus
-.L0801C878: .4byte gPlayStatus
+.L0801C878: .4byte gPlaySt
 .L0801C87C: .4byte 0x0000038B
 .L0801C880:
     ldr r0, .L0801C8E8 @ =0x08B90D88
@@ -22344,7 +21344,7 @@ func_0801C6C8: @ 0x0801C6C8
     movs r2, #2
     ldrsh r1, [r4, r2]
     bl SetMapCursorPosition
-    ldr r0, .L0801C93C @ =gPlayStatus
+    ldr r0, .L0801C93C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -22356,7 +21356,7 @@ func_0801C6C8: @ 0x0801C6C8
     .align 2, 0
 .L0801C934: .4byte gActiveUnit
 .L0801C938: .4byte gActiveUnitMoveOrigin
-.L0801C93C: .4byte gPlayStatus
+.L0801C93C: .4byte gPlaySt
 .L0801C940: .4byte 0x0000038B
 .L0801C944:
     ldr r4, .L0801C968 @ =gBmStatus
@@ -22685,7 +21685,7 @@ func_0801CB98: @ 0x0801CB98
     ldr r0, [r5]
     bl StartMu
     bl SetAutoMuDefaultFacing
-    ldr r0, .L0801CC38 @ =gPlayStatus
+    ldr r0, .L0801CC38 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     beq .L0801CC3C
@@ -22695,7 +21695,7 @@ func_0801CB98: @ 0x0801CB98
     b .L0801CC44
     .align 2, 0
 .L0801CC34: .4byte gMapRange
-.L0801CC38: .4byte gPlayStatus
+.L0801CC38: .4byte gPlaySt
 .L0801CC3C:
     adds r0, r6, #0
     movs r1, #1
@@ -22753,7 +21753,7 @@ func_0801CC68: @ 0x0801CC68
 func_0801CC90: @ 0x0801CC90
     push {r4, r5, lr}
     adds r5, r0, #0
-    ldr r0, .L0801CCC0 @ =gPlayStatus
+    ldr r0, .L0801CCC0 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     beq .L0801CCC8
@@ -22769,7 +21769,7 @@ func_0801CC90: @ 0x0801CC90
     bl RefreshUnitSprites
     b .L0801CCDA
     .align 2, 0
-.L0801CCC0: .4byte gPlayStatus
+.L0801CCC0: .4byte gPlaySt
 .L0801CCC4: .4byte 0x0203A85C
 .L0801CCC8:
     ldr r1, .L0801CD0C @ =0x0203A85C
@@ -22787,7 +21787,7 @@ func_0801CC90: @ 0x0801CC90
     lsls r1, r1, #0x18
     asrs r1, r1, #0x18
     bl SetMapCursorPosition
-    ldr r2, .L0801CD14 @ =gPlayStatus
+    ldr r2, .L0801CD14 @ =gPlaySt
     ldr r1, .L0801CD18 @ =gBmStatus
     ldrh r0, [r1, #0x14]
     strb r0, [r2, #0x12]
@@ -22804,7 +21804,7 @@ func_0801CC90: @ 0x0801CC90
     .align 2, 0
 .L0801CD0C: .4byte 0x0203A85C
 .L0801CD10: .4byte gActiveUnit
-.L0801CD14: .4byte gPlayStatus
+.L0801CD14: .4byte gPlaySt
 .L0801CD18: .4byte gBmStatus
 .L0801CD1C:
     bl func_08078FAC
@@ -22831,7 +21831,7 @@ func_0801CC90: @ 0x0801CC90
     thumb_func_start func_0801CD50
 func_0801CD50: @ 0x0801CD50
     push {lr}
-    ldr r0, .L0801CD78 @ =gPlayStatus
+    ldr r0, .L0801CD78 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0
     bne .L0801CD74
@@ -22847,7 +21847,7 @@ func_0801CD50: @ 0x0801CD50
     pop {r0}
     bx r0
     .align 2, 0
-.L0801CD78: .4byte gPlayStatus
+.L0801CD78: .4byte gPlaySt
 .L0801CD7C: .4byte 0x0203A85C
     func_end func_0801CD50
 
@@ -22968,7 +21968,7 @@ func_0801CDBC: @ 0x0801CDBC
 GetPlayerSelectKind: @ 0x0801CE6C
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L0801CE98 @ =gPlayStatus
+    ldr r0, .L0801CE98 @ =gPlaySt
     ldrb r2, [r0, #0xf]
     cmp r4, #0
     beq .L0801CEA6
@@ -22987,7 +21987,7 @@ GetPlayerSelectKind: @ 0x0801CE6C
     movs r0, #4
     b .L0801CEEE
     .align 2, 0
-.L0801CE98: .4byte gPlayStatus
+.L0801CE98: .4byte gPlaySt
 .L0801CE9C: .4byte gBmStatus
 .L0801CEA0:
     movs r2, #0
@@ -23664,7 +22664,7 @@ TrySwitchViewedUnit: @ 0x0801D354
 PlayerPhase_HandleAutoEnd: @ 0x0801D3AC
     push {r4, lr}
     adds r4, r0, #0
-    ldr r1, .L0801D3D8 @ =gPlayStatus
+    ldr r1, .L0801D3D8 @ =gPlaySt
     adds r0, r1, #0
     adds r0, #0x41
     ldrb r0, [r0]
@@ -23683,7 +22683,7 @@ PlayerPhase_HandleAutoEnd: @ 0x0801D3AC
     pop {r0}
     bx r0
     .align 2, 0
-.L0801D3D8: .4byte gPlayStatus
+.L0801D3D8: .4byte gPlaySt
     func_end PlayerPhase_HandleAutoEnd
 
     thumb_func_start func_0801D3DC
@@ -24026,7 +23026,7 @@ func_0801D64C: @ 0x0801D64C
     push {r4, r5, r6, lr}
     adds r5, r0, #0
     adds r6, r1, #0
-    ldr r4, .L0801D68C @ =gPlayStatus
+    ldr r4, .L0801D68C @ =gPlaySt
     ldrh r0, [r4, #0x10]
     cmp r0, #1
     bne .L0801D66A
@@ -24054,7 +23054,7 @@ func_0801D64C: @ 0x0801D64C
     ldrsb r0, [r1, r0]
     b .L0801D696
     .align 2, 0
-.L0801D68C: .4byte gPlayStatus
+.L0801D68C: .4byte gPlaySt
 .L0801D690:
     ldrb r0, [r4, #0x12]
     str r0, [r5]
@@ -24071,12 +23071,12 @@ func_0801D6A0: @ 0x0801D6A0
     push {r4, r5, r6, lr}
     adds r6, r0, #0
     adds r5, r1, #0
-    ldr r0, .L0801D6B0 @ =gPlayStatus
+    ldr r0, .L0801D6B0 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     adds r4, r0, #1
     b .L0801D6F4
     .align 2, 0
-.L0801D6B0: .4byte gPlayStatus
+.L0801D6B0: .4byte gPlaySt
 .L0801D6B4:
     adds r0, r4, #0
     bl GetUnit
@@ -24108,7 +23108,7 @@ func_0801D6A0: @ 0x0801D6A0
     bne .L0801D6FA
 .L0801D6EE:
     adds r4, #1
-    ldr r0, .L0801D704 @ =gPlayStatus
+    ldr r0, .L0801D704 @ =gPlaySt
     ldrb r0, [r0, #0xf]
 .L0801D6F4:
     adds r0, #0x40
@@ -24120,7 +23120,7 @@ func_0801D6A0: @ 0x0801D6A0
     bx r0
     .align 2, 0
 .L0801D700: .4byte 0x00000201
-.L0801D704: .4byte gPlayStatus
+.L0801D704: .4byte gPlaySt
     func_end func_0801D6A0
 
     thumb_func_start func_0801D708
@@ -24132,7 +23132,7 @@ func_0801D708: @ 0x0801D708
     rsbs r0, r0, #0
     str r0, [sp]
     str r0, [sp, #4]
-    ldr r4, .L0801D72C @ =gPlayStatus
+    ldr r4, .L0801D72C @ =gPlaySt
     ldrb r0, [r4, #0xf]
     bl func_08023810
     cmp r0, #0
@@ -24141,7 +23141,7 @@ func_0801D708: @ 0x0801D708
     bl Proc_End
     b .L0801D772
     .align 2, 0
-.L0801D72C: .4byte gPlayStatus
+.L0801D72C: .4byte gPlaySt
 .L0801D730:
     ldrb r0, [r4, #0xf]
     cmp r0, #0x40
@@ -24388,7 +23388,7 @@ HandleGiveUnitItem: @ 0x0801D8B0
     cmp r0, #0x63
     bgt .L0801D924
     ldr r0, .L0801D920 @ =0x00000727
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r6, #0
     bl func_08032560
@@ -24400,7 +23400,7 @@ HandleGiveUnitItem: @ 0x0801D8B0
 .L0801D924:
     movs r0, #0xe5
     lsls r0, r0, #3
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r6, #0
     bl func_08032560
@@ -24648,7 +23648,7 @@ func_0801DB0C: @ 0x0801DB0C
     movs r0, #0
     b .L0801DB40
 .L0801DB1A:
-    ldr r0, .L0801DB48 @ =gKeys
+    ldr r0, .L0801DB48 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0
     strh r0, [r1, #8]
@@ -24671,7 +23671,7 @@ func_0801DB0C: @ 0x0801DB0C
     pop {r1}
     bx r1
     .align 2, 0
-.L0801DB48: .4byte gKeys
+.L0801DB48: .4byte gpKeySt
 .L0801DB4C: .4byte 0x0203A85C
 .L0801DB50: .4byte gActiveUnit
 .L0801DB54: .4byte gBmStatus
@@ -24683,7 +23683,7 @@ SetVisionWithFade: @ 0x0801DB58
     adds r4, r0, #0
     cmp r4, #0
     bge .L0801DB6E
-    ldr r0, .L0801DB90 @ =gPlayStatus
+    ldr r0, .L0801DB90 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -24691,7 +23691,7 @@ SetVisionWithFade: @ 0x0801DB58
     ldrb r4, [r0, #0xc]
 .L0801DB6E:
     bl RenderMapForFade
-    ldr r0, .L0801DB90 @ =gPlayStatus
+    ldr r0, .L0801DB90 @ =gPlaySt
     strb r4, [r0, #0xd]
     bl RefreshEntityMaps
     bl RefreshUnitSprites
@@ -24702,7 +23702,7 @@ SetVisionWithFade: @ 0x0801DB58
     pop {r0}
     bx r0
     .align 2, 0
-.L0801DB90: .4byte gPlayStatus
+.L0801DB90: .4byte gPlaySt
     func_end SetVisionWithFade
 
     thumb_func_start SetVision
@@ -24711,14 +23711,14 @@ SetVision: @ 0x0801DB94
     adds r1, r0, #0
     cmp r1, #0
     bge .L0801DBAA
-    ldr r0, .L0801DBC0 @ =gPlayStatus
+    ldr r0, .L0801DBC0 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     bl GetChapterInfo
     ldrb r1, [r0, #0xc]
 .L0801DBAA:
-    ldr r0, .L0801DBC0 @ =gPlayStatus
+    ldr r0, .L0801DBC0 @ =gPlaySt
     strb r1, [r0, #0xd]
     bl RefreshEntityMaps
     bl RefreshUnitSprites
@@ -24726,7 +23726,7 @@ SetVision: @ 0x0801DB94
     pop {r0}
     bx r0
     .align 2, 0
-.L0801DBC0: .4byte gPlayStatus
+.L0801DBC0: .4byte gPlaySt
     func_end SetVision
 
     thumb_func_start func_0801DBC4
@@ -24762,7 +23762,7 @@ func_0801DBC4: @ 0x0801DBC4
     adds r1, r5, #0
     movs r2, #1
     bl func_0801B19C
-    ldr r0, .L0801DC98 @ =gPlayStatus
+    ldr r0, .L0801DC98 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     bne .L0801DCA8
@@ -24834,7 +23834,7 @@ func_0801DBC4: @ 0x0801DBC4
     .align 2, 0
 .L0801DC90: .4byte gMapMovement
 .L0801DC94: .4byte gMapRange
-.L0801DC98: .4byte gPlayStatus
+.L0801DC98: .4byte gPlaySt
 .L0801DC9C: .4byte gMapSize
 .L0801DCA0: .4byte gMapTerrain
 .L0801DCA4: .4byte gMapUnit
@@ -25330,7 +24330,7 @@ func_0801DFC0: @ 0x0801DFC0
 .L0801E078:
     adds r0, r4, #0
     bl func_08017244
-    bl GetMsg
+    bl DecodeMsg
     adds r4, r0, #0
     movs r5, #0
     ldr r7, [sp, #4]
@@ -25454,7 +24454,7 @@ func_0801DFC0: @ 0x0801DFC0
     mov sb, r3
 .L0801E17E:
     ldr r0, .L0801E2B4 @ =0x00001101
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r6, #0
     movs r1, #0x20
@@ -25463,7 +24463,7 @@ func_0801DFC0: @ 0x0801DFC0
     adds r5, r6, #0
     adds r5, #8
     ldr r0, .L0801E2B8 @ =0x00001103
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #2
@@ -25472,21 +24472,21 @@ func_0801DFC0: @ 0x0801DFC0
     adds r4, r6, #0
     adds r4, #0x10
     ldr r0, .L0801E2BC @ =0x00001104
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #2
     movs r2, #0
     bl Text_InsertDrawString
     ldr r0, .L0801E2C0 @ =0x0000110D
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #0x2c
     movs r2, #0
     bl Text_InsertDrawString
     ldr r0, .L0801E2C4 @ =0x00001105
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x2c
@@ -25995,7 +24995,7 @@ func_0801E5C8: @ 0x0801E5C8
     movs r0, #4
     bl FadeBgmOut
 .L0801E5E0:
-    ldr r0, .L0801E600 @ =gPlayStatus
+    ldr r0, .L0801E600 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -26012,7 +25012,7 @@ func_0801E5C8: @ 0x0801E5C8
     pop {r0}
     bx r0
     .align 2, 0
-.L0801E600: .4byte gPlayStatus
+.L0801E600: .4byte gPlaySt
 .L0801E604: .4byte 0x00000393
     func_end func_0801E5C8
 
@@ -26512,7 +25512,7 @@ func_0801E928: @ 0x0801E928
 func_0801E9AC: @ 0x0801E9AC
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L0801E9C8 @ =gPlayStatus
+    ldr r0, .L0801E9C8 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     bl func_08023810
     cmp r0, #0
@@ -26524,7 +25524,7 @@ func_0801E9AC: @ 0x0801E9AC
     pop {r0}
     bx r0
     .align 2, 0
-.L0801E9C8: .4byte gPlayStatus
+.L0801E9C8: .4byte gPlaySt
     func_end func_0801E9AC
 
     thumb_func_start func_0801E9CC
@@ -26545,7 +25545,7 @@ func_0801E9CC: @ 0x0801E9CC
     movs r1, #0
     movs r2, #0
     bl SetBgOffset
-    ldr r0, .L0801EA10 @ =gPlayStatus
+    ldr r0, .L0801EA10 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0x40
     beq .L0801EA54
@@ -26557,7 +25557,7 @@ func_0801E9CC: @ 0x0801E9CC
     .align 2, 0
 .L0801EA08: .4byte 0x08195520
 .L0801EA0C: .4byte 0x06002000
-.L0801EA10: .4byte gPlayStatus
+.L0801EA10: .4byte gPlaySt
 .L0801EA14:
     cmp r0, #0x80
     beq .L0801EA34
@@ -27425,7 +26425,7 @@ func_0801F0D0: @ 0x0801F0D0
     lsls r0, r0, #0x10
     cmp r0, #0
     blt .L0801F0F2
-    ldr r0, .L0801F0FC @ =gKeys
+    ldr r0, .L0801F0FC @ =gpKeySt
     ldr r1, [r0]
     movs r0, #3
     ldrh r1, [r1, #8]
@@ -27439,7 +26439,7 @@ func_0801F0D0: @ 0x0801F0D0
     pop {r0}
     bx r0
     .align 2, 0
-.L0801F0FC: .4byte gKeys
+.L0801F0FC: .4byte gpKeySt
     func_end func_0801F0D0
 
     thumb_func_start func_0801F100
@@ -27533,7 +26533,7 @@ func_0801F190: @ 0x0801F190
     movs r1, #0
     bl Text_SetColor
     adds r0, r4, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     add r0, sp, #4
     bl Text_DrawString
@@ -27575,7 +26575,7 @@ func_0801F190: @ 0x0801F190
     cmp r5, #0
     beq .L0801F224
     adds r0, r5, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     add r0, sp, #4
     bl Text_DrawString
@@ -27690,7 +26690,7 @@ func_0801F2E0: @ 0x0801F2E0
 func_0801F2F0: @ 0x0801F2F0
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L0801F344 @ =gKeys
+    ldr r0, .L0801F344 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xb
     ldrh r1, [r1, #8]
@@ -27732,7 +26732,7 @@ func_0801F2F0: @ 0x0801F2F0
     pop {r0}
     bx r0
     .align 2, 0
-.L0801F344: .4byte gKeys
+.L0801F344: .4byte gpKeySt
     func_end func_0801F2F0
 
     thumb_func_start func_0801F348
@@ -28127,7 +27127,7 @@ func_0801F570: @ 0x0801F570
     bl func_08082410
     movs r4, #0x80
     lsls r4, r4, #1
-    ldr r0, .L0801F708 @ =gPlayStatus
+    ldr r0, .L0801F708 @ =gPlaySt
     bl func_080824A4
     adds r1, r0, #0
     adds r0, r4, #0
@@ -28192,7 +27192,7 @@ func_0801F570: @ 0x0801F570
 .L0801F6FC: .4byte gBg2Tm
 .L0801F700: .4byte gBg3Tm
 .L0801F704: .4byte gDispIo
-.L0801F708: .4byte gPlayStatus
+.L0801F708: .4byte gPlaySt
 .L0801F70C: .4byte 0x00000246
 .L0801F710: .4byte 0x083FF780
 .L0801F714: .4byte 0x0600A000
@@ -28351,7 +27351,7 @@ func_0801F804: @ 0x0801F804
     adds r1, r2, #0
     orrs r0, r1
     strh r0, [r3, #0x3c]
-    ldr r0, .L0801F864 @ =gPlayStatus
+    ldr r0, .L0801F864 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -28366,7 +27366,7 @@ func_0801F804: @ 0x0801F804
 .L0801F858: .4byte gDispIo
 .L0801F85C: .4byte 0x0000FFE0
 .L0801F860: .4byte 0x0000E0FF
-.L0801F864: .4byte gPlayStatus
+.L0801F864: .4byte gPlaySt
     func_end func_0801F804
 
     thumb_func_start func_0801F868
@@ -28477,7 +27477,7 @@ func_0801F910: @ 0x0801F910
     movs r1, #0x10
     orrs r0, r1
     strb r0, [r2, #1]
-    ldr r0, .L0801F94C @ =gPlayStatus
+    ldr r0, .L0801F94C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -28490,7 +27490,7 @@ func_0801F910: @ 0x0801F910
     bx r0
     .align 2, 0
 .L0801F948: .4byte gDispIo
-.L0801F94C: .4byte gPlayStatus
+.L0801F94C: .4byte gPlaySt
     func_end func_0801F910
 
     thumb_func_start func_0801F950
@@ -28760,7 +27760,7 @@ func_0801FB40: @ 0x0801FB40
     movs r0, #0
     bl InitBgs
     bl ApplySystemGraphics
-    ldr r0, .L0801FB64 @ =gPlayStatus
+    ldr r0, .L0801FB64 @ =gPlaySt
     ldrb r0, [r0, #0x15]
     bl AllocWeatherParticles
     bl RefreshUnitSprites
@@ -28769,7 +27769,7 @@ func_0801FB40: @ 0x0801FB40
     pop {r0}
     bx r0
     .align 2, 0
-.L0801FB64: .4byte gPlayStatus
+.L0801FB64: .4byte gPlaySt
     func_end func_0801FB40
 
     thumb_func_start func_0801FB68
@@ -28841,7 +27841,7 @@ func_0801FB78: @ 0x0801FB78
     movs r0, #4
     bl EnableBgSync
     bl func_0802DE50
-    ldr r4, .L0801FC5C @ =gPlayStatus
+    ldr r4, .L0801FC5C @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl ApplyChapterMapGraphics
@@ -28884,7 +27884,7 @@ func_0801FB78: @ 0x0801FB78
 .L0801FC50: .4byte 0x0000FFE0
 .L0801FC54: .4byte 0x0000E0FF
 .L0801FC58: .4byte gBg2Tm
-.L0801FC5C: .4byte gPlayStatus
+.L0801FC5C: .4byte gPlaySt
 .L0801FC60: .4byte gBmStatus
     func_end func_0801FB78
 
@@ -28925,7 +27925,7 @@ func_0801FC64: @ 0x0801FC64
     adds r4, #0x4c
     movs r0, #0x1e
     strh r0, [r4]
-    ldr r0, .L0801FCD8 @ =gPlayStatus
+    ldr r0, .L0801FCD8 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -28940,7 +27940,7 @@ func_0801FC64: @ 0x0801FC64
     bx r0
     .align 2, 0
 .L0801FCD4: .4byte 0x02022920
-.L0801FCD8: .4byte gPlayStatus
+.L0801FCD8: .4byte gPlaySt
     func_end func_0801FC64
 
     thumb_func_start func_0801FCDC
@@ -28955,7 +27955,7 @@ func_0801FCDC: @ 0x0801FCDC
     b .L0801FE2C
 .L0801FCEE:
     bl ColorFadeTick_thm
-    ldr r4, .L0801FD7C @ =gPlayStatus
+    ldr r4, .L0801FD7C @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl GetChapterInfo
@@ -29022,7 +28022,7 @@ func_0801FCDC: @ 0x0801FCDC
     adds r5, r3, #0
     b .L0801FDCE
     .align 2, 0
-.L0801FD7C: .4byte gPlayStatus
+.L0801FD7C: .4byte gPlaySt
 .L0801FD80: .4byte 0x0000FFFF
 .L0801FD84: .4byte gDispIo
 .L0801FD88:
@@ -29069,7 +28069,7 @@ func_0801FCDC: @ 0x0801FCDC
     asrs r0, r0, #0x10
     cmp r0, #0x18
     bne .L0801FE1A
-    ldr r4, .L0801FE38 @ =gPlayStatus
+    ldr r4, .L0801FE38 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl GetChapterInfo
@@ -29113,7 +28113,7 @@ func_0801FCDC: @ 0x0801FCDC
     bx r0
     .align 2, 0
 .L0801FE34: .4byte gDispIo
-.L0801FE38: .4byte gPlayStatus
+.L0801FE38: .4byte gPlaySt
 .L0801FE3C: .4byte 0x0000FFFF
     func_end func_0801FCDC
 
@@ -29318,7 +28318,7 @@ func_0801FF68: @ 0x0801FF68
     adds r4, #0x4c
     movs r0, #0xe
     strh r0, [r4]
-    ldr r4, .L08020008 @ =gPlayStatus
+    ldr r4, .L08020008 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl GetChapterInfo
@@ -29354,7 +28354,7 @@ func_0801FF68: @ 0x0801FF68
     bx r0
     .align 2, 0
 .L08020004: .4byte 0x02022920
-.L08020008: .4byte gPlayStatus
+.L08020008: .4byte gPlaySt
 .L0802000C: .4byte 0x0000FFFF
     func_end func_0801FF68
 
@@ -29363,7 +28363,7 @@ func_08020010: @ 0x08020010
     push {r4, r5, lr}
     adds r4, r0, #0
     bl ColorFadeTick_thm
-    ldr r5, .L08020064 @ =gPlayStatus
+    ldr r5, .L08020064 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r5, r0]
     bl GetChapterInfo
@@ -29399,7 +28399,7 @@ func_08020010: @ 0x08020010
     strb r0, [r2, #1]
     b .L08020074
     .align 2, 0
-.L08020064: .4byte gPlayStatus
+.L08020064: .4byte gPlaySt
 .L08020068: .4byte gDispIo
 .L0802006C:
     bl EnablePalSync
@@ -29480,7 +28480,7 @@ func_080200D8: @ 0x080200D8
     cmp r1, #0
     bne .L0802010C
     bl ColorFadeTick_thm
-    ldr r0, .L08020114 @ =gPlayStatus
+    ldr r0, .L08020114 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -29498,7 +28498,7 @@ func_080200D8: @ 0x080200D8
     pop {r0}
     bx r0
     .align 2, 0
-.L08020114: .4byte gPlayStatus
+.L08020114: .4byte gPlaySt
     func_end func_080200D8
 
     thumb_func_start func_08020118
@@ -29819,7 +28819,7 @@ func_08020394: @ 0x08020394
     movs r1, #0x63
     bl Proc_Goto
 .L080203B0:
-    ldr r0, .L080203CC @ =gKeys
+    ldr r0, .L080203CC @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xb
     ldrh r1, [r1, #8]
@@ -29834,7 +28834,7 @@ func_08020394: @ 0x08020394
     pop {r0}
     bx r0
     .align 2, 0
-.L080203CC: .4byte gKeys
+.L080203CC: .4byte gpKeySt
     func_end func_08020394
 
     thumb_func_start func_080203D0
@@ -29976,7 +28976,7 @@ func_0802049C: @ 0x0802049C
     bl TmFill
     movs r0, #1
     bl EnableBgSync
-    ldr r0, .L08020558 @ =gPlayStatus
+    ldr r0, .L08020558 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -30028,7 +29028,7 @@ func_0802049C: @ 0x0802049C
 .L0802054C: .4byte 0x0819B278
 .L08020550: .4byte 0x0200323C
 .L08020554: .4byte gBg0Tm
-.L08020558: .4byte gPlayStatus
+.L08020558: .4byte gPlaySt
 .L0802055C: .4byte gDispIo
 .L08020560: .4byte 0x0000FFE0
 .L08020564: .4byte 0x0000E0FF
@@ -30432,7 +29432,7 @@ WarpEffect_Init: @ 0x08020848
     bl TmFill
     movs r0, #1
     bl EnableBgSync
-    ldr r0, .L08020918 @ =gPlayStatus
+    ldr r0, .L08020918 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -30495,7 +29495,7 @@ WarpEffect_Init: @ 0x08020848
 .L0802090C: .4byte 0x0819CFB0
 .L08020910: .4byte 0x0200323C
 .L08020914: .4byte gBg0Tm
-.L08020918: .4byte gPlayStatus
+.L08020918: .4byte gPlaySt
 .L0802091C: .4byte gDispIo
 .L08020920: .4byte 0x0000FFE0
 .L08020924: .4byte 0x0000E0FF
@@ -30521,7 +29521,7 @@ WarpEffect_Lop: @ 0x08020928
     adds r2, #0x4c
     cmp r0, #0
     beq .L0802095E
-    ldr r0, .L0802098C @ =gKeys
+    ldr r0, .L0802098C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #4]
@@ -30552,7 +29552,7 @@ WarpEffect_Lop: @ 0x08020928
     .align 2, 0
 .L08020984: .4byte 0x08B93C10
 .L08020988: .4byte 0x08B93BCC
-.L0802098C: .4byte gKeys
+.L0802098C: .4byte gpKeySt
 .L08020990:
     lsls r0, r6, #0x10
     asrs r0, r0, #0x10
@@ -30583,7 +29583,7 @@ WarpEffect_Lop: @ 0x08020928
     thumb_func_start WarpEffect_Finish
 WarpEffect_Finish: @ 0x080209C4
     push {lr}
-    ldr r0, .L080209EC @ =gPlayStatus
+    ldr r0, .L080209EC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -30600,7 +29600,7 @@ WarpEffect_Finish: @ 0x080209C4
     pop {r0}
     bx r0
     .align 2, 0
-.L080209EC: .4byte gPlayStatus
+.L080209EC: .4byte gPlaySt
 .L080209F0: .4byte gBg0Tm
     func_end WarpEffect_Finish
 
@@ -31758,7 +30758,7 @@ func_08021234: @ 0x08021234
     thumb_func_start func_080212D8
 func_080212D8: @ 0x080212D8
     push {lr}
-    ldr r0, .L080212F0 @ =gPlayStatus
+    ldr r0, .L080212F0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -31770,7 +30770,7 @@ func_080212D8: @ 0x080212D8
     pop {r0}
     bx r0
     .align 2, 0
-.L080212F0: .4byte gPlayStatus
+.L080212F0: .4byte gPlaySt
 .L080212F4: .4byte 0x000002F9
     func_end func_080212D8
 
@@ -32071,7 +31071,7 @@ func_08021540: @ 0x08021540
 
     thumb_func_start func_08021544
 func_08021544: @ 0x08021544
-    ldr r1, .L08021554 @ =gPlayStatus
+    ldr r1, .L08021554 @ =gPlaySt
     movs r0, #8
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -32080,7 +31080,7 @@ func_08021544: @ 0x08021544
     movs r0, #1
     b .L0802155A
     .align 2, 0
-.L08021554: .4byte gPlayStatus
+.L08021554: .4byte gPlaySt
 .L08021558:
     movs r0, #2
 .L0802155A:
@@ -32216,7 +31216,7 @@ func_08021614: @ 0x08021614
 func_08021630: @ 0x08021630
     push {lr}
     ldr r0, .L08021640 @ =0x08B93DA4
-    bl func_0800AF5C
+    bl StartEvent
     movs r0, #0x17
     pop {r1}
     bx r1
@@ -34309,7 +33309,7 @@ func_08022624: @ 0x08022624
     adds r1, r1, r2
     ldrh r1, [r1]
     bl func_080270FC
-    ldr r0, .L080226A8 @ =gPlayStatus
+    ldr r0, .L080226A8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -34330,7 +33330,7 @@ func_08022624: @ 0x08022624
     .align 2, 0
 .L080226A0: .4byte gActiveUnit
 .L080226A4: .4byte 0x0203A85C
-.L080226A8: .4byte gPlayStatus
+.L080226A8: .4byte gPlaySt
 .L080226AC: .4byte 0x0000038A
     func_end func_08022624
 
@@ -35618,7 +34618,7 @@ func_08023000: @ 0x08023000
     adds r4, r0, #0
     bl func_08031A74
     ldr r0, .L0802301C @ =0x00000721
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -35671,7 +34671,7 @@ func_08023044: @ 0x08023044
     bl GetUnit
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     bl func_080055FC
     movs r4, #0x38
     subs r4, r4, r0
@@ -35682,7 +34682,7 @@ func_08023044: @ 0x08023044
     bl GetUnit
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     ldr r5, .L080230E4 @ =0x02022D26
     movs r1, #7
     str r1, [sp]
@@ -35960,7 +34960,7 @@ func_080232AC: @ 0x080232AC
     adds r4, r0, #0
     bl func_0803202C
     ldr r0, .L080232C8 @ =0x0000071C
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -35994,7 +34994,7 @@ func_080232F0: @ 0x080232F0
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, .L08023308 @ =0x0000071D
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -36016,7 +35016,7 @@ func_08023310: @ 0x08023310
     adds r4, r0, #0
     bl func_080321E0
     ldr r0, .L0802332C @ =0x0000071F
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -36051,7 +35051,7 @@ func_08023354: @ 0x08023354
     adds r4, r0, #0
     bl func_0803202C
     ldr r0, .L08023370 @ =0x0000071E
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -36087,7 +35087,7 @@ func_08023398: @ 0x08023398
     bl func_08031A74
     movs r0, #0xe4
     lsls r0, r0, #3
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -36121,7 +35121,7 @@ func_080233E0: @ 0x080233E0
     adds r4, r0, #0
     bl func_08031DFC
     ldr r0, .L080233FC @ =0x00000723
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -36156,7 +35156,7 @@ func_08023424: @ 0x08023424
     adds r4, r0, #0
     bl func_08031DFC
     ldr r0, .L08023440 @ =0x00000724
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -36809,7 +35809,7 @@ func_080238C4: @ 0x080238C4
 
     thumb_func_start func_080238D8
 func_080238D8: @ 0x080238D8
-    ldr r1, .L080238E8 @ =gPlayStatus
+    ldr r1, .L080238E8 @ =gPlaySt
     movs r0, #0x80
     ldrb r1, [r1, #0xf]
     ands r0, r1
@@ -36817,12 +35817,12 @@ func_080238D8: @ 0x080238D8
     lsrs r0, r0, #0x18
     bx lr
     .align 2, 0
-.L080238E8: .4byte gPlayStatus
+.L080238E8: .4byte gPlaySt
     func_end func_080238D8
 
     thumb_func_start func_080238EC
 func_080238EC: @ 0x080238EC
-    ldr r1, .L08023900 @ =gPlayStatus
+    ldr r1, .L08023900 @ =gPlaySt
     movs r2, #0x80
     movs r0, #0x80
     ldrb r1, [r1, #0xf]
@@ -36832,21 +35832,21 @@ func_080238EC: @ 0x080238EC
     lsrs r0, r0, #0x18
     bx lr
     .align 2, 0
-.L08023900: .4byte gPlayStatus
+.L08023900: .4byte gPlaySt
     func_end func_080238EC
 
     thumb_func_start GetGold
 GetGold: @ 0x08023904
-    ldr r0, .L0802390C @ =gPlayStatus
+    ldr r0, .L0802390C @ =gPlaySt
     ldr r0, [r0, #8]
     bx lr
     .align 2, 0
-.L0802390C: .4byte gPlayStatus
+.L0802390C: .4byte gPlaySt
     func_end GetGold
 
     thumb_func_start SetGold
 SetGold: @ 0x08023910
-    ldr r2, .L08023920 @ =gPlayStatus
+    ldr r2, .L08023920 @ =gPlaySt
     str r0, [r2, #8]
     ldr r1, .L08023924 @ =0x000F423F
     cmp r0, r1
@@ -36855,13 +35855,13 @@ SetGold: @ 0x08023910
 .L0802391C:
     bx lr
     .align 2, 0
-.L08023920: .4byte gPlayStatus
+.L08023920: .4byte gPlaySt
 .L08023924: .4byte 0x000F423F
     func_end SetGold
 
     thumb_func_start func_08023928
 func_08023928: @ 0x08023928
-    ldr r2, .L0802393C @ =gPlayStatus
+    ldr r2, .L0802393C @ =gPlaySt
     ldr r1, [r2, #8]
     adds r1, r1, r0
     str r1, [r2, #8]
@@ -36872,7 +35872,7 @@ func_08023928: @ 0x08023928
 .L08023938:
     bx lr
     .align 2, 0
-.L0802393C: .4byte gPlayStatus
+.L0802393C: .4byte gPlaySt
 .L08023940: .4byte 0x000F423F
     func_end func_08023928
 
@@ -39186,7 +38186,7 @@ func_08024AE0: @ 0x08024AE0
     ldrb r0, [r0]
     cmp r0, #0
     bne .L08024B48
-    ldr r0, .L08024B54 @ =gPlayStatus
+    ldr r0, .L08024B54 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     beq .L08024B10
@@ -39231,7 +38231,7 @@ func_08024AE0: @ 0x08024AE0
     bx r0
     .align 2, 0
 .L08024B50: .4byte gMapUnit
-.L08024B54: .4byte gPlayStatus
+.L08024B54: .4byte gPlaySt
 .L08024B58: .4byte gMapFog
 .L08024B5C: .4byte 0x02033E40
 .L08024B60: .4byte gMapTerrain
@@ -41228,7 +40228,7 @@ func_08025910: @ 0x08025910
     thumb_func_start func_08025A9C
 func_08025A9C: @ 0x08025A9C
     push {r4, r5, lr}
-    ldr r4, .L08025B38 @ =gPlayStatus
+    ldr r4, .L08025B38 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl GetChapterInfo
@@ -41304,7 +40304,7 @@ func_08025A9C: @ 0x08025A9C
     pop {r0}
     bx r0
     .align 2, 0
-.L08025B38: .4byte gPlayStatus
+.L08025B38: .4byte gPlaySt
 .L08025B3C: .4byte gMapFog
 .L08025B40: .4byte gMapTerrain
 .L08025B44: .4byte gBmStatus
@@ -41325,7 +40325,7 @@ func_08025B54: @ 0x08025B54
     mov r0, sp
     movs r2, #6
     bl memcpy
-    ldr r0, .L08025C30 @ =gPlayStatus
+    ldr r0, .L08025C30 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -41417,7 +40417,7 @@ func_08025B54: @ 0x08025B54
     mov pc, r0
     .align 2, 0
 .L08025C2C: .4byte 0x081C3CB8
-.L08025C30: .4byte gPlayStatus
+.L08025C30: .4byte gPlaySt
 .L08025C34: .4byte .L08025C38
 .L08025C38: @ jump table
     .4byte .L08025C58 @ case 0
@@ -42841,7 +41841,7 @@ func_080266E4: @ 0x080266E4
     mov r7, r8
     push {r7}
     adds r2, r0, #0
-    ldr r0, .L0802673C @ =gPlayStatus
+    ldr r0, .L0802673C @ =gPlaySt
     mov r8, r0
     ldrb r3, [r0, #0x1b]
     cmp r3, #1
@@ -42882,7 +41882,7 @@ func_080266E4: @ 0x080266E4
     pop {r0}
     bx r0
     .align 2, 0
-.L0802673C: .4byte gPlayStatus
+.L0802673C: .4byte gPlaySt
 .L08026740: .4byte 0x08B94184
     func_end func_080266E4
 
@@ -42895,7 +41895,7 @@ func_08026744: @ 0x08026744
     ldrb r3, [r2]
     adds r3, #1
     strb r3, [r2]
-    ldr r3, .L08026774 @ =gPlayStatus
+    ldr r3, .L08026774 @ =gPlaySt
     ldrh r2, [r3, #0x16]
     adds r2, #1
     strh r2, [r3, #0x16]
@@ -42911,7 +41911,7 @@ func_08026744: @ 0x08026744
     pop {r0}
     bx r0
     .align 2, 0
-.L08026774: .4byte gPlayStatus
+.L08026774: .4byte gPlaySt
     func_end func_08026744
 
     thumb_func_start func_08026778
@@ -42919,7 +41919,7 @@ func_08026778: @ 0x08026778
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
     adds r6, r1, #0
-    ldr r0, .L080267DC @ =gPlayStatus
+    ldr r0, .L080267DC @ =gPlaySt
     ldrb r1, [r0, #0x14]
     movs r0, #0x80
     ands r0, r1
@@ -42962,7 +41962,7 @@ func_08026778: @ 0x08026778
     movs r0, #0
     b .L080267EE
     .align 2, 0
-.L080267DC: .4byte gPlayStatus
+.L080267DC: .4byte gPlaySt
 .L080267E0: .4byte 0x08B94184
 .L080267E4:
     movs r1, #0
@@ -43079,7 +42079,7 @@ func_08026898: @ 0x08026898
     mov r7, sb
     mov r6, r8
     push {r6, r7}
-    ldr r1, .L08026938 @ =gPlayStatus
+    ldr r1, .L08026938 @ =gPlaySt
     ldrh r0, [r1, #0x10]
     cmp r0, #1
     beq .L08026984
@@ -43154,7 +42154,7 @@ func_08026898: @ 0x08026898
     adds r0, r1, r2
     b .L08026944
     .align 2, 0
-.L08026938: .4byte gPlayStatus
+.L08026938: .4byte gPlaySt
 .L0802693C: .4byte 0x0001000C
 .L08026940:
     subs r0, r0, r3
@@ -43487,7 +42487,7 @@ func_08026B74: @ 0x08026B74
     lsls r0, r0, #2
     add r0, sp
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     add sp, #0x20
     pop {r4, r5}
     pop {r1}
@@ -43882,14 +42882,14 @@ func_08026CD0: @ 0x08026CD0
     .align 2, 0
 .L08026F0C: .4byte func_08024BF0
 .L08026F10:
-    ldr r1, .L08026F1C @ =gPlayStatus
+    ldr r1, .L08026F1C @ =gPlaySt
     ldrb r2, [r1, #0xd]
     rsbs r0, r2, #0
     orrs r0, r2
     lsrs r0, r0, #0x1f
     b .L08026F46
     .align 2, 0
-.L08026F1C: .4byte gPlayStatus
+.L08026F1C: .4byte gPlaySt
 .L08026F20:
     ldr r1, .L08026F30 @ =func_08024C54
 .L08026F22:
@@ -44315,7 +43315,7 @@ func_08027308: @ 0x08027308
     thumb_func_start func_0802731C
 func_0802731C: @ 0x0802731C
     adds r1, r0, #0
-    ldr r0, .L08027338 @ =gPlayStatus
+    ldr r0, .L08027338 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     beq .L0802733C
@@ -44328,7 +43328,7 @@ func_0802731C: @ 0x0802731C
     movs r0, #1
     b .L0802733E
     .align 2, 0
-.L08027338: .4byte gPlayStatus
+.L08027338: .4byte gPlaySt
 .L0802733C:
     movs r0, #0
 .L0802733E:
@@ -44556,7 +43556,7 @@ func_08027400: @ 0x08027400
     .align 2, 0
 .L08027528: .4byte 0x08C97EFD
 .L0802752C:
-    ldr r0, .L0802753C @ =gPlayStatus
+    ldr r0, .L0802753C @ =gPlaySt
     ldr r4, .L08027540 @ =0x08C97F16
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
@@ -44564,7 +43564,7 @@ func_08027400: @ 0x08027400
     ldr r4, .L08027544 @ =0x08C97F21
     b .L08027556
     .align 2, 0
-.L0802753C: .4byte gPlayStatus
+.L0802753C: .4byte gPlaySt
 .L08027540: .4byte 0x08C97F16
 .L08027544: .4byte 0x08C97F21
 .L08027548:
@@ -44773,7 +43773,7 @@ func_08027698: @ 0x08027698
     bl func_0804AEF0
     adds r4, r0, #0
     ldr r0, .L080276D4 @ =0x0000072C
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -44802,7 +43802,7 @@ func_080276D8: @ 0x080276D8
     bl func_0804AEF0
     adds r4, r0, #0
     adds r0, r5, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -44822,7 +43822,7 @@ func_08027718: @ 0x08027718
     push {r6}
     adds r6, r0, #0
     ldr r0, .L080277B8 @ =0x00000725
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r6, #0
     bl func_08032560
@@ -44913,7 +43913,7 @@ func_080277CC: @ 0x080277CC
     orrs r0, r1
     lsrs r6, r0, #0x1f
     bl HandlePlayerMapCursor
-    ldr r0, .L0802784C @ =gKeys
+    ldr r0, .L0802784C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -44937,7 +43937,7 @@ func_080277CC: @ 0x080277CC
     bl TmFill
     movs r0, #4
     bl EnableBgSync
-    ldr r0, .L0802785C @ =gPlayStatus
+    ldr r0, .L0802785C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -44949,14 +43949,14 @@ func_080277CC: @ 0x080277CC
     .align 2, 0
 .L08027844: .4byte gBmStatus
 .L08027848: .4byte gMapMovement
-.L0802784C: .4byte gKeys
+.L0802784C: .4byte gpKeySt
 .L08027850: .4byte 0x0203A85C
 .L08027854: .4byte gActiveUnit
 .L08027858: .4byte gBg2Tm
-.L0802785C: .4byte gPlayStatus
+.L0802785C: .4byte gPlaySt
 .L08027860: .4byte 0x0000038A
 .L08027864:
-    ldr r0, .L080278F8 @ =gPlayStatus
+    ldr r0, .L080278F8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -44966,7 +43966,7 @@ func_080277CC: @ 0x080277CC
     lsls r0, r0, #2
     bl m4aSongNumStart
 .L08027878:
-    ldr r0, .L080278FC @ =gKeys
+    ldr r0, .L080278FC @ =gpKeySt
     ldr r1, [r0]
     movs r0, #2
     ldrh r1, [r1, #8]
@@ -44981,7 +43981,7 @@ func_080277CC: @ 0x080277CC
     bl TmFill
     movs r0, #4
     bl EnableBgSync
-    ldr r0, .L080278F8 @ =gPlayStatus
+    ldr r0, .L080278F8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -45028,8 +44028,8 @@ func_080277CC: @ 0x080277CC
     pop {r0}
     bx r0
     .align 2, 0
-.L080278F8: .4byte gPlayStatus
-.L080278FC: .4byte gKeys
+.L080278F8: .4byte gPlaySt
+.L080278FC: .4byte gpKeySt
 .L08027900: .4byte gBg2Tm
 .L08027904: .4byte 0x0000038B
 .L08027908: .4byte gBmStatus
@@ -45134,11 +44134,11 @@ func_080279B8: @ 0x080279B8
     bl func_0804AEF0
     adds r4, r0, #0
     ldr r0, .L08027A08 @ =0x0000072B
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
-    ldr r0, .L08027A0C @ =gPlayStatus
+    ldr r0, .L08027A0C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -45155,7 +44155,7 @@ func_080279B8: @ 0x080279B8
 .L08027A00: .4byte 0x08B95BD8
 .L08027A04: .4byte func_08027990
 .L08027A08: .4byte 0x0000072B
-.L08027A0C: .4byte gPlayStatus
+.L08027A0C: .4byte gPlaySt
 .L08027A10: .4byte 0x0000038A
     func_end func_080279B8
 
@@ -45191,11 +44191,11 @@ func_08027A30: @ 0x08027A30
     bl func_0804AEF0
     adds r4, r0, #0
     adds r0, r5, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
-    ldr r0, .L08027A80 @ =gPlayStatus
+    ldr r0, .L08027A80 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -45211,7 +44211,7 @@ func_08027A30: @ 0x08027A30
 .L08027A74: .4byte gMapMovement
 .L08027A78: .4byte 0x08B95BB8
 .L08027A7C: .4byte func_08027A14
-.L08027A80: .4byte gPlayStatus
+.L08027A80: .4byte gPlaySt
 .L08027A84: .4byte 0x0000038A
     func_end func_08027A30
 
@@ -45270,11 +44270,11 @@ func_08027AE8: @ 0x08027AE8
     bl StartMapSelect
     adds r4, r0, #0
     ldr r0, .L08027B30 @ =0x0000072E
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
-    ldr r0, .L08027B34 @ =gPlayStatus
+    ldr r0, .L08027B34 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -45290,7 +44290,7 @@ func_08027AE8: @ 0x08027AE8
 .L08027B28: .4byte gMapMovement
 .L08027B2C: .4byte 0x08B95C58
 .L08027B30: .4byte 0x0000072E
-.L08027B34: .4byte gPlayStatus
+.L08027B34: .4byte gPlaySt
 .L08027B38: .4byte 0x0000038A
     func_end func_08027AE8
 
@@ -45511,7 +44511,7 @@ func_08027CBC: @ 0x08027CBC
     bl StartMapSelect
     adds r4, r0, #0
     ldr r0, .L08027CF4 @ =0x0000072A
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -45537,7 +44537,7 @@ func_08027CF8: @ 0x08027CF8
     bl StartMapSelect
     adds r4, r0, #0
     ldr r0, .L08027D30 @ =0x0000072D
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -45589,7 +44589,7 @@ func_08027D64: @ 0x08027D64
     bl StartMapSelect
     adds r4, r0, #0
     ldr r0, .L08027D9C @ =0x0000072F
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -45641,7 +44641,7 @@ func_08027DD0: @ 0x08027DD0
     bl StartMapSelect
     adds r4, r0, #0
     ldr r0, .L08027E08 @ =0x00000731
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -45740,7 +44740,7 @@ func_08027E9C: @ 0x08027E9C
     bl func_0804AEF0
     adds r4, r0, #0
     ldr r0, .L08027EC4 @ =0x0000072C
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08032560
@@ -45763,7 +44763,7 @@ func_08027EC8: @ 0x08027EC8
     orrs r0, r2
     strb r0, [r1, #4]
     ldr r0, .L08027F18 @ =0x00000735
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl func_08032560
@@ -45812,7 +44812,7 @@ func_08027F20: @ 0x08027F20
     adds r0, r0, r2
     ldrb r4, [r0]
     bl HandlePlayerMapCursor
-    ldr r0, .L08027F88 @ =gKeys
+    ldr r0, .L08027F88 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -45821,7 +44821,7 @@ func_08027F20: @ 0x08027F20
     beq .L08027FB0
     cmp r4, #0
     beq .L08027F9C
-    ldr r0, .L08027F8C @ =gPlayStatus
+    ldr r0, .L08027F8C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -45844,13 +44844,13 @@ func_08027F20: @ 0x08027F20
     .align 2, 0
 .L08027F80: .4byte gBmStatus
 .L08027F84: .4byte gMapRange
-.L08027F88: .4byte gKeys
-.L08027F8C: .4byte gPlayStatus
+.L08027F88: .4byte gpKeySt
+.L08027F8C: .4byte gPlaySt
 .L08027F90: .4byte 0x0000038A
 .L08027F94: .4byte 0x0203A85C
 .L08027F98: .4byte gActiveUnit
 .L08027F9C:
-    ldr r0, .L08027FFC @ =gPlayStatus
+    ldr r0, .L08027FFC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -45860,7 +44860,7 @@ func_08027F20: @ 0x08027F20
     lsls r0, r0, #2
     bl m4aSongNumStart
 .L08027FB0:
-    ldr r0, .L08028000 @ =gKeys
+    ldr r0, .L08028000 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #2
     ldrh r1, [r1, #8]
@@ -45875,7 +44875,7 @@ func_08027F20: @ 0x08027F20
     adds r0, r6, #0
     movs r1, #0x63
     bl Proc_Goto
-    ldr r0, .L08027FFC @ =gPlayStatus
+    ldr r0, .L08027FFC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -45896,8 +44896,8 @@ func_08027F20: @ 0x08027F20
     pop {r0}
     bx r0
     .align 2, 0
-.L08027FFC: .4byte gPlayStatus
-.L08028000: .4byte gKeys
+.L08027FFC: .4byte gPlaySt
+.L08028000: .4byte gpKeySt
 .L08028004: .4byte gBg2Tm
 .L08028008: .4byte 0x0000038B
 .L0802800C: .4byte gBmStatus
@@ -45909,7 +44909,7 @@ func_08028010: @ 0x08028010
     ldr r0, .L08028030 @ =0x08B94214
     movs r1, #3
     bl Proc_Start
-    ldr r0, .L08028034 @ =gPlayStatus
+    ldr r0, .L08028034 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -45922,7 +44922,7 @@ func_08028010: @ 0x08028010
     bx r0
     .align 2, 0
 .L08028030: .4byte 0x08B94214
-.L08028034: .4byte gPlayStatus
+.L08028034: .4byte gPlaySt
 .L08028038: .4byte 0x0000038A
     func_end func_08028010
 
@@ -47154,7 +46154,7 @@ func_08028A24: @ 0x08028A24
     ands r0, r1
     cmp r0, #0
     beq .L08028A3E
-    ldr r0, .L08028A94 @ =gPlayStatus
+    ldr r0, .L08028A94 @ =gPlaySt
     ldrb r0, [r0, #0x15]
     cmp r0, #0
     beq .L08028A86
@@ -47201,7 +46201,7 @@ func_08028A24: @ 0x08028A24
     bx r0
     .align 2, 0
 .L08028A90: .4byte 0x0203A3D8
-.L08028A94: .4byte gPlayStatus
+.L08028A94: .4byte gPlaySt
     func_end func_08028A24
 
     thumb_func_start ComputeBattleUnitDefense
@@ -47375,7 +46375,7 @@ ComputeBattleUnitHitRate: @ 0x08028BA0
     adds r6, r4, #0
     adds r6, #0x60
     strh r5, [r6]
-    ldr r3, .L08028C44 @ =gPlayStatus
+    ldr r3, .L08028C44 @ =gPlaySt
     adds r0, r3, #0
     adds r0, #0x2b
     ldrb r2, [r0]
@@ -47433,7 +46433,7 @@ ComputeBattleUnitHitRate: @ 0x08028BA0
     pop {r0}
     bx r0
     .align 2, 0
-.L08028C44: .4byte gPlayStatus
+.L08028C44: .4byte gPlaySt
 .L08028C48: .4byte gBmStatus
 .L08028C4C: .4byte 0x081C3AC0
     func_end ComputeBattleUnitHitRate
@@ -47457,7 +46457,7 @@ ComputeBattleUnitAvoidRate: @ 0x08028C50
     adds r6, r4, #0
     adds r6, #0x62
     strh r5, [r6]
-    ldr r3, .L08028CF4 @ =gPlayStatus
+    ldr r3, .L08028CF4 @ =gPlaySt
     adds r0, r3, #0
     adds r0, #0x2b
     ldrb r2, [r0]
@@ -47524,7 +46524,7 @@ ComputeBattleUnitAvoidRate: @ 0x08028C50
     pop {r0}
     bx r0
     .align 2, 0
-.L08028CF4: .4byte gPlayStatus
+.L08028CF4: .4byte gPlaySt
 .L08028CF8: .4byte gBmStatus
 .L08028CFC: .4byte 0x081C3AC0
     func_end ComputeBattleUnitAvoidRate
@@ -47615,7 +46615,7 @@ func_08028D74: @ 0x08028D74
     adds r7, r4, #0
     adds r7, #0x6a
     strh r5, [r7]
-    ldr r2, .L08028DE8 @ =gPlayStatus
+    ldr r2, .L08028DE8 @ =gPlaySt
     adds r1, r2, #0
     adds r1, #0x2b
     movs r0, #1
@@ -47662,7 +46662,7 @@ func_08028D74: @ 0x08028D74
     movs r4, #0
     b .L08028DF2
     .align 2, 0
-.L08028DE8: .4byte gPlayStatus
+.L08028DE8: .4byte gPlaySt
 .L08028DEC: .4byte gBmStatus
 .L08028DF0:
     adds r4, #1
@@ -48718,7 +47718,7 @@ BattleApplyExpGains: @ 0x0802956C
     cmp r0, #0
     beq .L080295CE
 .L0802958A:
-    ldr r1, .L080295DC @ =gPlayStatus
+    ldr r1, .L080295DC @ =gPlaySt
     movs r0, #0x80
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -48755,7 +47755,7 @@ BattleApplyExpGains: @ 0x0802956C
     .align 2, 0
 .L080295D4: .4byte 0x0203A3F0
 .L080295D8: .4byte 0x0203A470
-.L080295DC: .4byte gPlayStatus
+.L080295DC: .4byte gPlaySt
     func_end BattleApplyExpGains
 
     thumb_func_start GetStatIncrease
@@ -49470,7 +48470,7 @@ GetBattleUnitUpdatedWeaponExp: @ 0x08029AFC
     ldrsb r0, [r7, r0]
     cmp r0, #0
     beq .L08029B58
-    ldr r1, .L08029B60 @ =gPlayStatus
+    ldr r1, .L08029B60 @ =gPlaySt
     movs r0, #0x80
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -49510,7 +48510,7 @@ GetBattleUnitUpdatedWeaponExp: @ 0x08029AFC
     rsbs r0, r0, #0
     b .L08029BE0
     .align 2, 0
-.L08029B60: .4byte gPlayStatus
+.L08029B60: .4byte gPlaySt
 .L08029B64: .4byte gBmStatus
 .L08029B68: .4byte 0x0203A3D8
 .L08029B6C:
@@ -49958,7 +48958,7 @@ GetUnitKillExpBonus: @ 0x08029E74
     b .L08029F0A
 .L08029E86:
     movs r6, #0x14
-    ldr r1, .L08029EB0 @ =gPlayStatus
+    ldr r1, .L08029EB0 @ =gPlaySt
     ldrb r0, [r1, #0x1b]
     cmp r0, #1
     beq .L08029E9A
@@ -49977,7 +48977,7 @@ GetUnitKillExpBonus: @ 0x08029E74
     subs r6, r6, r0
     b .L08029EEE
     .align 2, 0
-.L08029EB0: .4byte gPlayStatus
+.L08029EB0: .4byte gPlaySt
 .L08029EB4:
     adds r0, r5, #0
     bl func_08029DCC
@@ -50087,7 +49087,7 @@ GetBattleUnitExpGain: @ 0x08029F10
     thumb_func_start func_08029F7C
 func_08029F7C: @ 0x08029F7C
     push {r4, lr}
-    ldr r1, .L08029FC4 @ =gPlayStatus
+    ldr r1, .L08029FC4 @ =gPlaySt
     movs r0, #0x80
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -50122,7 +49122,7 @@ func_08029F7C: @ 0x08029F7C
     bl func_08029660
     b .L08029FF2
     .align 2, 0
-.L08029FC4: .4byte gPlayStatus
+.L08029FC4: .4byte gPlaySt
 .L08029FC8: .4byte 0x0203A3F0
 .L08029FCC:
     adds r0, r4, #0
@@ -50218,7 +49218,7 @@ func_0802A05C: @ 0x0802A05C
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802A096
-    ldr r1, .L0802A0A0 @ =gPlayStatus
+    ldr r1, .L0802A0A0 @ =gPlaySt
     movs r0, #0x80
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -50239,7 +49239,7 @@ func_0802A05C: @ 0x0802A05C
     bx r0
     .align 2, 0
 .L0802A09C: .4byte 0x0203A3F0
-.L0802A0A0: .4byte gPlayStatus
+.L0802A0A0: .4byte gPlaySt
     func_end func_0802A05C
 
     thumb_func_start BattleUnitTargetSetEquippedWeapon
@@ -50494,7 +49494,7 @@ func_0802A254: @ 0x0802A254
     movs r0, #1
     bl GetJobInfo
     str r0, [r4, #4]
-    ldr r0, .L0802A2B0 @ =gPlayStatus
+    ldr r0, .L0802A2B0 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -50527,7 +49527,7 @@ func_0802A254: @ 0x0802A254
     b .L0802A2D2
     .align 2, 0
 .L0802A2AC: .4byte 0x0203A470
-.L0802A2B0: .4byte gPlayStatus
+.L0802A2B0: .4byte gPlaySt
 .L0802A2B4: .4byte 0x0203A85C
 .L0802A2B8: .4byte gMapTerrain
 .L0802A2BC:
@@ -50622,7 +49622,7 @@ UpdateObstacleFromBattle: @ 0x0802A314
     ldrb r0, [r0]
     cmp r0, #0x33
     bne .L0802A37A
-    ldr r0, .L0802A3A8 @ =gPlayStatus
+    ldr r0, .L0802A3A8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -50648,7 +49648,7 @@ UpdateObstacleFromBattle: @ 0x0802A314
     bx r0
     .align 2, 0
 .L0802A3A4: .4byte gMapTerrain
-.L0802A3A8: .4byte gPlayStatus
+.L0802A3A8: .4byte gPlaySt
 .L0802A3AC: .4byte 0x000002D7
     func_end UpdateObstacleFromBattle
 
@@ -50719,7 +49719,7 @@ func_0802A40C: @ 0x0802A40C
     thumb_func_start GetBattleAnimKind
 GetBattleAnimKind: @ 0x0802A430
     push {lr}
-    ldr r0, .L0802A464 @ =gPlayStatus
+    ldr r0, .L0802A464 @ =gPlaySt
     adds r0, #0x42
     ldrb r0, [r0]
     lsls r0, r0, #0x1d
@@ -50744,7 +49744,7 @@ GetBattleAnimKind: @ 0x0802A430
     adds r0, r3, #0
     b .L0802A486
     .align 2, 0
-.L0802A464: .4byte gPlayStatus
+.L0802A464: .4byte gPlaySt
 .L0802A468: .4byte 0x0203A3F0
 .L0802A46C: .4byte 0x0203A470
 .L0802A470:
@@ -51783,7 +50783,7 @@ func_0802ABB4: @ 0x0802ABB4
     ldr r0, [r1, #0x2c]
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r7, r0, #0
     bl func_080055FC
     movs r4, #0x30
@@ -51802,7 +50802,7 @@ func_0802ABB4: @ 0x0802ABB4
     ldr r0, [r2, #0x30]
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r7, r0, #0
     bl func_080055FC
     subs r4, r4, r0
@@ -52133,7 +51133,7 @@ func_0802AEE0: @ 0x0802AEE0
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
     movs r7, #0
-    ldr r0, .L0802B01C @ =gKeys
+    ldr r0, .L0802B01C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x20
     ldrh r1, [r1, #6]
@@ -52159,7 +51159,7 @@ func_0802AEE0: @ 0x0802AEE0
     strb r7, [r6]
     strb r1, [r4]
     movs r7, #1
-    ldr r0, .L0802B020 @ =gPlayStatus
+    ldr r0, .L0802B020 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -52168,7 +51168,7 @@ func_0802AEE0: @ 0x0802AEE0
     ldr r0, .L0802B024 @ =0x00000387
     bl m4aSongNumStart
 .L0802AF2C:
-    ldr r0, .L0802B01C @ =gKeys
+    ldr r0, .L0802B01C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x10
     ldrh r1, [r1, #6]
@@ -52193,7 +51193,7 @@ func_0802AEE0: @ 0x0802AEE0
     strb r0, [r6]
     strb r1, [r4]
     movs r7, #1
-    ldr r0, .L0802B020 @ =gPlayStatus
+    ldr r0, .L0802B020 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -52202,7 +51202,7 @@ func_0802AEE0: @ 0x0802AEE0
     ldr r0, .L0802B024 @ =0x00000387
     bl m4aSongNumStart
 .L0802AF72:
-    ldr r0, .L0802B01C @ =gKeys
+    ldr r0, .L0802B01C @ =gpKeySt
     ldr r1, [r0]
     ldrh r2, [r1, #6]
     movs r0, #0x40
@@ -52230,7 +51230,7 @@ func_0802AEE0: @ 0x0802AEE0
     subs r0, #1
     strb r0, [r4]
     movs r7, #1
-    ldr r0, .L0802B020 @ =gPlayStatus
+    ldr r0, .L0802B020 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -52239,7 +51239,7 @@ func_0802AEE0: @ 0x0802AEE0
     ldr r0, .L0802B028 @ =0x00000386
     bl m4aSongNumStart
 .L0802AFBC:
-    ldr r0, .L0802B01C @ =gKeys
+    ldr r0, .L0802B01C @ =gpKeySt
     ldr r4, [r0]
     ldrh r1, [r4, #6]
     mov ip, r1
@@ -52275,7 +51275,7 @@ func_0802AEE0: @ 0x0802AEE0
     adds r0, #1
     strb r0, [r2]
     movs r7, #1
-    ldr r0, .L0802B020 @ =gPlayStatus
+    ldr r0, .L0802B020 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -52289,8 +51289,8 @@ func_0802AEE0: @ 0x0802AEE0
     pop {r1}
     bx r1
     .align 2, 0
-.L0802B01C: .4byte gKeys
-.L0802B020: .4byte gPlayStatus
+.L0802B01C: .4byte gpKeySt
+.L0802B020: .4byte gPlaySt
 .L0802B024: .4byte 0x00000387
 .L0802B028: .4byte 0x00000386
     func_end func_0802AEE0
@@ -52472,7 +51472,7 @@ func_0802B134: @ 0x0802B134
     ldrsh r1, [r1, r5]
     lsls r1, r1, #3
     bl func_08049F58
-    ldr r0, .L0802B1CC @ =gKeys
+    ldr r0, .L0802B1CC @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #1
@@ -52482,7 +51482,7 @@ func_0802B134: @ 0x0802B134
     adds r0, r4, #0
     movs r1, #1
     bl Proc_Goto
-    ldr r0, .L0802B1D0 @ =gPlayStatus
+    ldr r0, .L0802B1D0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -52493,8 +51493,8 @@ func_0802B134: @ 0x0802B134
     b .L0802B216
     .align 2, 0
 .L0802B1C8: .4byte 0x08B942B8
-.L0802B1CC: .4byte gKeys
-.L0802B1D0: .4byte gPlayStatus
+.L0802B1CC: .4byte gpKeySt
+.L0802B1D0: .4byte gPlaySt
 .L0802B1D4: .4byte 0x0000038A
 .L0802B1D8:
     movs r0, #2
@@ -52504,7 +51504,7 @@ func_0802B134: @ 0x0802B134
     adds r0, r4, #0
     movs r1, #2
     bl Proc_Goto
-    ldr r0, .L0802B1FC @ =gPlayStatus
+    ldr r0, .L0802B1FC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -52514,7 +51514,7 @@ func_0802B134: @ 0x0802B134
     bl m4aSongNumStart
     b .L0802B216
     .align 2, 0
-.L0802B1FC: .4byte gPlayStatus
+.L0802B1FC: .4byte gPlaySt
 .L0802B200: .4byte 0x0000038B
 .L0802B204:
     movs r0, #0x80
@@ -52676,7 +51676,7 @@ func_0802B288: @ 0x0802B288
     ldrsh r1, [r1, r3]
     lsls r1, r1, #3
     bl func_0804A004
-    ldr r0, .L0802B368 @ =gKeys
+    ldr r0, .L0802B368 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #1
@@ -52685,7 +51685,7 @@ func_0802B288: @ 0x0802B288
     beq .L0802B374
     adds r0, r5, #0
     bl func_0802B02C
-    ldr r0, .L0802B36C @ =gPlayStatus
+    ldr r0, .L0802B36C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -52695,15 +51695,15 @@ func_0802B288: @ 0x0802B288
     b .L0802B38A
     .align 2, 0
 .L0802B364: .4byte 0x08B942B8
-.L0802B368: .4byte gKeys
-.L0802B36C: .4byte gPlayStatus
+.L0802B368: .4byte gpKeySt
+.L0802B36C: .4byte gPlaySt
 .L0802B370: .4byte 0x0000038A
 .L0802B374:
     movs r0, #2
     ands r0, r1
     cmp r0, #0
     beq .L0802B3A0
-    ldr r0, .L0802B398 @ =gPlayStatus
+    ldr r0, .L0802B398 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -52717,7 +51717,7 @@ func_0802B288: @ 0x0802B288
     bl Proc_Break
     b .L0802B3B2
     .align 2, 0
-.L0802B398: .4byte gPlayStatus
+.L0802B398: .4byte gPlaySt
 .L0802B39C: .4byte 0x0000038B
 .L0802B3A0:
     movs r0, #0x80
@@ -52900,7 +51900,7 @@ func_0802B46C: @ 0x0802B46C
     lsls r1, r1, #3
     adds r2, r6, #0
     bl func_0808198C
-    ldr r0, .L0802B50C @ =gKeys
+    ldr r0, .L0802B50C @ =gpKeySt
     ldr r1, [r0]
     ldr r0, .L0802B510 @ =0x0000FEFD
     ldrh r6, [r1, #8]
@@ -52912,7 +51912,7 @@ func_0802B46C: @ 0x0802B46C
     bx r0
     .align 2, 0
 .L0802B508: .4byte 0x08B942B8
-.L0802B50C: .4byte gKeys
+.L0802B50C: .4byte gpKeySt
 .L0802B510: .4byte 0x0000FEFD
     func_end func_0802B46C
 
@@ -52958,7 +51958,7 @@ func_0802B514: @ 0x0802B514
     lsls r1, r1, #3
     bl func_0808198C
 .L0802B566:
-    ldr r0, .L0802B5E4 @ =gKeys
+    ldr r0, .L0802B5E4 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -53019,7 +52019,7 @@ func_0802B514: @ 0x0802B514
     bx r0
     .align 2, 0
 .L0802B5E0: .4byte 0x08B942B8
-.L0802B5E4: .4byte gKeys
+.L0802B5E4: .4byte gpKeySt
     func_end func_0802B514
 
     thumb_func_start func_0802B5E8
@@ -53383,7 +52383,7 @@ func_0802B854: @ 0x0802B854
     cmp r0, #0
     beq .L0802B866
     ldr r0, .L0802B86C @ =0x08B94418
-    bl StartEvent
+    bl StartEventInternal
 .L0802B866:
     pop {r0}
     bx r0
@@ -53396,7 +52396,7 @@ func_0802B870: @ 0x0802B870
     push {lr}
     adds r1, r0, #0
     ldr r0, .L0802B880 @ =0x08B9446C
-    bl StartEvent
+    bl StartEventInternal
     pop {r0}
     bx r0
     .align 2, 0
@@ -53408,7 +52408,7 @@ func_0802B884: @ 0x0802B884
     push {lr}
     adds r1, r0, #0
     ldr r0, .L0802B894 @ =0x08B944C8
-    bl StartEvent
+    bl StartEventInternal
     pop {r0}
     bx r0
     .align 2, 0
@@ -53420,7 +52420,7 @@ func_0802B898: @ 0x0802B898
     push {lr}
     adds r1, r0, #0
     ldr r0, .L0802B8A8 @ =0x08B9451C
-    bl StartEvent
+    bl StartEventInternal
     pop {r0}
     bx r0
     .align 2, 0
@@ -53435,7 +52435,7 @@ func_0802B8AC: @ 0x0802B8AC
     ldrb r0, [r0]
     cmp r0, #4
     beq .L0802B8C4
-    ldr r0, .L0802B8E0 @ =gKeys
+    ldr r0, .L0802B8E0 @ =gpKeySt
     ldr r0, [r0]
     ldrh r0, [r0, #8]
     cmp r0, #0
@@ -53457,7 +52457,7 @@ func_0802B8AC: @ 0x0802B8AC
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.L0802B8E0: .4byte gKeys
+.L0802B8E0: .4byte gpKeySt
 .L0802B8E4: .4byte 0x0203A514
 .L0802B8E8: .4byte .L0802B8EC
 .L0802B8EC: @ jump table
@@ -53469,7 +52469,7 @@ func_0802B8AC: @ 0x0802B8AC
     .4byte .L0802BA40 @ case 5
     .4byte .L0802BA00 @ case 6
 .L0802B908:
-    ldr r0, .L0802B924 @ =gKeys
+    ldr r0, .L0802B924 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x10
     ldrh r1, [r1, #8]
@@ -53482,9 +52482,9 @@ func_0802B8AC: @ 0x0802B8AC
     bl func_0802B870
     b .L0802BA40
     .align 2, 0
-.L0802B924: .4byte gKeys
+.L0802B924: .4byte gpKeySt
 .L0802B928:
-    ldr r0, .L0802B948 @ =gPlayStatus
+    ldr r0, .L0802B948 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -53500,9 +52500,9 @@ func_0802B8AC: @ 0x0802B8AC
     movs r0, #1
     b .L0802BA42
     .align 2, 0
-.L0802B948: .4byte gPlayStatus
+.L0802B948: .4byte gPlaySt
 .L0802B94C:
-    ldr r0, .L0802B998 @ =gKeys
+    ldr r0, .L0802B998 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #0x91
@@ -53538,9 +52538,9 @@ func_0802B8AC: @ 0x0802B8AC
     bl func_0802B6F8
     b .L0802BA40
     .align 2, 0
-.L0802B998: .4byte gKeys
+.L0802B998: .4byte gpKeySt
 .L0802B99C:
-    ldr r0, .L0802B9BC @ =gPlayStatus
+    ldr r0, .L0802B9BC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -53555,9 +52555,9 @@ func_0802B8AC: @ 0x0802B8AC
     movs r0, #1
     b .L0802BA42
     .align 2, 0
-.L0802B9BC: .4byte gPlayStatus
+.L0802B9BC: .4byte gPlaySt
 .L0802B9C0:
-    ldr r0, .L0802B9D8 @ =gKeys
+    ldr r0, .L0802B9D8 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -53568,9 +52568,9 @@ func_0802B8AC: @ 0x0802B8AC
     bl func_0802B898
     b .L0802BA40
     .align 2, 0
-.L0802B9D8: .4byte gKeys
+.L0802B9D8: .4byte gpKeySt
 .L0802B9DC:
-    ldr r0, .L0802B9FC @ =gPlayStatus
+    ldr r0, .L0802B9FC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -53585,9 +52585,9 @@ func_0802B8AC: @ 0x0802B8AC
     movs r0, #1
     b .L0802BA42
     .align 2, 0
-.L0802B9FC: .4byte gPlayStatus
+.L0802B9FC: .4byte gPlaySt
 .L0802BA00:
-    ldr r0, .L0802BA18 @ =gKeys
+    ldr r0, .L0802BA18 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #2
     ldrh r1, [r1, #8]
@@ -53598,9 +52598,9 @@ func_0802B8AC: @ 0x0802B8AC
     bl func_08001CD0
     b .L0802BA40
     .align 2, 0
-.L0802BA18: .4byte gKeys
+.L0802BA18: .4byte gpKeySt
 .L0802BA1C:
-    ldr r0, .L0802BA3C @ =gPlayStatus
+    ldr r0, .L0802BA3C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -53615,7 +52615,7 @@ func_0802B8AC: @ 0x0802B8AC
     movs r0, #1
     b .L0802BA42
     .align 2, 0
-.L0802BA3C: .4byte gPlayStatus
+.L0802BA3C: .4byte gPlaySt
 .L0802BA40:
     movs r0, #0
 .L0802BA42:
@@ -53892,7 +52892,7 @@ func_0802BBB8: @ 0x0802BBB8
     ldrb r0, [r0]
     cmp r0, #0x1b
     beq .L0802BC2C
-    ldr r0, .L0802BC1C @ =gPlayStatus
+    ldr r0, .L0802BC1C @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -53905,7 +52905,7 @@ func_0802BBB8: @ 0x0802BBB8
     bl func_0802BACC
     b .L0802BC2C
     .align 2, 0
-.L0802BC1C: .4byte gPlayStatus
+.L0802BC1C: .4byte gPlaySt
 .L0802BC20:
     adds r0, r4, #0
     adds r1, r5, #0
@@ -54019,7 +53019,7 @@ func_0802BCBC: @ 0x0802BCBC
 func_0802BCD0: @ 0x0802BCD0
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L0802BCE8 @ =gPlayStatus
+    ldr r0, .L0802BCE8 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -54029,7 +53029,7 @@ func_0802BCD0: @ 0x0802BCD0
     bne .L0802BCFA
     b .L0802BD02
     .align 2, 0
-.L0802BCE8: .4byte gPlayStatus
+.L0802BCE8: .4byte gPlaySt
 .L0802BCEC:
     adds r0, r1, #0
     b .L0802BD04
@@ -54059,7 +53059,7 @@ GetMapChangeIdAt: @ 0x0802BD0C
     adds r4, r1, #0
     movs r6, #1
     rsbs r6, r6, #0
-    ldr r0, .L0802BD2C @ =gPlayStatus
+    ldr r0, .L0802BD2C @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -54069,7 +53069,7 @@ GetMapChangeIdAt: @ 0x0802BD0C
     beq .L0802BD5E
     b .L0802BD56
     .align 2, 0
-.L0802BD2C: .4byte gPlayStatus
+.L0802BD2C: .4byte gPlaySt
 .L0802BD30:
     ldrb r0, [r1, #1]
     cmp r5, r0
@@ -54724,7 +53724,7 @@ func_0802C17C: @ 0x0802C17C
     thumb_func_start func_0802C1A4
 func_0802C1A4: @ 0x0802C1A4
     push {r4, r5, lr}
-    ldr r4, .L0802C1BC @ =gPlayStatus
+    ldr r4, .L0802C1BC @ =gPlaySt
     ldrb r5, [r4, #0xf]
     movs r0, #0x80
     strb r0, [r4, #0xf]
@@ -54734,7 +53734,7 @@ func_0802C1A4: @ 0x0802C1A4
     pop {r0}
     bx r0
     .align 2, 0
-.L0802C1BC: .4byte gPlayStatus
+.L0802C1BC: .4byte gPlaySt
     func_end func_0802C1A4
 
     thumb_func_start func_0802C1C0
@@ -54755,7 +53755,7 @@ func_0802C1CC: @ 0x0802C1CC
     cmp r0, #0
     beq .L0802C1E0
     ldr r0, .L0802C1E4 @ =0x08CA749C
-    bl func_0800AF5C
+    bl StartEvent
 .L0802C1E0:
     pop {r0}
     bx r0
@@ -55921,7 +54921,7 @@ func_0802CB24: @ 0x0802CB24
     adds r0, r5, #0
     adds r1, r4, #0
     bl func_08078EFC
-    ldr r0, .L0802CBA4 @ =gPlayStatus
+    ldr r0, .L0802CBA4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -55939,7 +54939,7 @@ func_0802CB24: @ 0x0802CB24
     bx r0
     .align 2, 0
 .L0802CBA0: .4byte 0x0203A85C
-.L0802CBA4: .4byte gPlayStatus
+.L0802CBA4: .4byte gPlaySt
 .L0802CBA8: .4byte 0x0203A470
     func_end func_0802CB24
 
@@ -56297,7 +55297,7 @@ DoItemStatBoostAction: @ 0x0802CE60
     ldrb r1, [r4, #0x12]
     bl ApplyItemStatBoost
     adds r5, r0, #0
-    ldr r0, .L0802CEC0 @ =gPlayStatus
+    ldr r0, .L0802CEC0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -56310,7 +55310,7 @@ DoItemStatBoostAction: @ 0x0802CE60
     bl GetItemIcon
     adds r4, r0, #0
     adds r0, r5, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     adds r0, r7, #0
     adds r1, r4, #0
@@ -56321,7 +55321,7 @@ DoItemStatBoostAction: @ 0x0802CE60
     .align 2, 0
 .L0802CEB8: .4byte 0x0203A85C
 .L0802CEBC: .4byte 0x0203A470
-.L0802CEC0: .4byte gPlayStatus
+.L0802CEC0: .4byte gPlaySt
 .L0802CEC4: .4byte 0x0000037A
     func_end DoItemStatBoostAction
 
@@ -56813,7 +55813,7 @@ func_0802D324: @ 0x0802D324
     movs r0, #0
     strh r0, [r4, #0x34]
     strh r0, [r4, #0x36]
-    ldr r5, .L0802D360 @ =gPlayStatus
+    ldr r5, .L0802D360 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r5, r0]
     bl GetChapterInfo
@@ -56837,7 +55837,7 @@ func_0802D324: @ 0x0802D324
     pop {r0}
     bx r0
     .align 2, 0
-.L0802D360: .4byte gPlayStatus
+.L0802D360: .4byte gPlaySt
 .L0802D364: .4byte 0x08C9C9C8
     func_end func_0802D324
 
@@ -56984,7 +55984,7 @@ AllocWeatherParticles: @ 0x0802D424
     thumb_func_start WeatherInit_None
 WeatherInit_None: @ 0x0802D470
     push {lr}
-    ldr r0, .L0802D484 @ =gPlayStatus
+    ldr r0, .L0802D484 @ =gPlaySt
     ldrb r0, [r0, #0x15]
     bl AllocWeatherParticles
     movs r0, #0
@@ -56992,7 +55992,7 @@ WeatherInit_None: @ 0x0802D470
     pop {r0}
     bx r0
     .align 2, 0
-.L0802D484: .4byte gPlayStatus
+.L0802D484: .4byte gPlaySt
     func_end WeatherInit_None
 
     thumb_func_start WeatherInit_Snow
@@ -57003,7 +56003,7 @@ WeatherInit_Snow: @ 0x0802D488
     ldr r0, .L0802D4F0 @ =0x081C402C
     ldm r0!, {r2, r3, r4}
     stm r1!, {r2, r3, r4}
-    ldr r0, .L0802D4F4 @ =gPlayStatus
+    ldr r0, .L0802D4F4 @ =gPlaySt
     ldrb r0, [r0, #0x15]
     bl AllocWeatherParticles
     movs r6, #0
@@ -57049,7 +56049,7 @@ WeatherInit_Snow: @ 0x0802D488
     bx r0
     .align 2, 0
 .L0802D4F0: .4byte 0x081C402C
-.L0802D4F4: .4byte gPlayStatus
+.L0802D4F4: .4byte gPlaySt
 .L0802D4F8: .4byte 0x081C3FCC
 .L0802D4FC: .4byte 0x020027DC
     func_end WeatherInit_Snow
@@ -57155,7 +56155,7 @@ func_0802D500: @ 0x0802D500
     thumb_func_start WeatherInit_Rain
 WeatherInit_Rain: @ 0x0802D5C0
     push {r4, r5, r6, r7, lr}
-    ldr r0, .L0802D618 @ =gPlayStatus
+    ldr r0, .L0802D618 @ =gPlaySt
     ldrb r0, [r0, #0x15]
     bl AllocWeatherParticles
     movs r6, #0
@@ -57196,7 +56196,7 @@ WeatherInit_Rain: @ 0x0802D5C0
     pop {r0}
     bx r0
     .align 2, 0
-.L0802D618: .4byte gPlayStatus
+.L0802D618: .4byte gPlaySt
 .L0802D61C: .4byte 0x081C3FCC
 .L0802D620: .4byte 0x020027DC
     func_end WeatherInit_Rain
@@ -57268,7 +56268,7 @@ func_0802D624: @ 0x0802D624
     thumb_func_start WeatherInit_Sandstorm
 WeatherInit_Sandstorm: @ 0x0802D6A4
     push {r4, r5, r6, lr}
-    ldr r0, .L0802D700 @ =gPlayStatus
+    ldr r0, .L0802D700 @ =gPlaySt
     ldrb r0, [r0, #0x15]
     bl AllocWeatherParticles
     ldr r0, .L0802D704 @ =0x08199458
@@ -57307,7 +56307,7 @@ WeatherInit_Sandstorm: @ 0x0802D6A4
     pop {r0}
     bx r0
     .align 2, 0
-.L0802D700: .4byte gPlayStatus
+.L0802D700: .4byte gPlaySt
 .L0802D704: .4byte 0x08199458
 .L0802D708: .4byte gBuf
 .L0802D70C: .4byte 0x06010380
@@ -57371,7 +56371,7 @@ WeatherInit_Snowstorm: @ 0x0802D770
     movs r0, #1
     strb r0, [r4, #6]
     strb r0, [r4, #7]
-    ldr r0, .L0802D7DC @ =gPlayStatus
+    ldr r0, .L0802D7DC @ =gPlaySt
     ldrb r0, [r0, #0x15]
     bl AllocWeatherParticles
     ldr r0, .L0802D7E0 @ =0x081994E0
@@ -57410,7 +56410,7 @@ WeatherInit_Snowstorm: @ 0x0802D770
     beq .L0802D80A
     b .L0802D81A
     .align 2, 0
-.L0802D7DC: .4byte gPlayStatus
+.L0802D7DC: .4byte gPlaySt
 .L0802D7E0: .4byte 0x081994E0
 .L0802D7E4: .4byte gBuf
 .L0802D7E8: .4byte 0x06010300
@@ -57774,7 +56774,7 @@ FlamesWeatherInitGradient: @ 0x0802DA04
     thumb_func_start FlamesWeatherInitParticles
 FlamesWeatherInitParticles: @ 0x0802DA94
     push {r4, r5, r6, lr}
-    ldr r0, .L0802DAE0 @ =gPlayStatus
+    ldr r0, .L0802DAE0 @ =gPlaySt
     ldrb r0, [r0, #0x15]
     bl AllocWeatherParticles
     ldr r0, .L0802DAE4 @ =0x08199578
@@ -57808,7 +56808,7 @@ FlamesWeatherInitParticles: @ 0x0802DA94
     pop {r0}
     bx r0
     .align 2, 0
-.L0802DAE0: .4byte gPlayStatus
+.L0802DAE0: .4byte gPlaySt
 .L0802DAE4: .4byte 0x08199578
 .L0802DAE8: .4byte 0x06010300
 .L0802DAEC: .4byte 0x081995B8
@@ -58143,7 +57143,7 @@ func_0802DD2C: @ 0x0802DD2C
     thumb_func_start WeatherInit
 WeatherInit: @ 0x0802DD60
     push {lr}
-    ldr r0, .L0802DD74 @ =gPlayStatus
+    ldr r0, .L0802DD74 @ =gPlaySt
     ldrb r0, [r0, #0x15]
     cmp r0, #7
     bhi .L0802DDCA
@@ -58153,7 +57153,7 @@ WeatherInit: @ 0x0802DD60
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.L0802DD74: .4byte gPlayStatus
+.L0802DD74: .4byte gPlaySt
 .L0802DD78: .4byte .L0802DD7C
 .L0802DD7C: @ jump table
     .4byte .L0802DD9C @ case 0
@@ -58195,7 +57195,7 @@ WeatherInit: @ 0x0802DD60
     thumb_func_start func_0802DDD0
 func_0802DDD0: @ 0x0802DDD0
     push {lr}
-    ldr r0, .L0802DDE8 @ =gPlayStatus
+    ldr r0, .L0802DDE8 @ =gPlaySt
     ldrb r0, [r0, #0x15]
     subs r0, #1
     cmp r0, #6
@@ -58206,7 +57206,7 @@ func_0802DDD0: @ 0x0802DDD0
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.L0802DDE8: .4byte gPlayStatus
+.L0802DDE8: .4byte gPlaySt
 .L0802DDEC: .4byte .L0802DDF0
 .L0802DDF0: @ jump table
     .4byte .L0802DE0C @ case 0
@@ -58244,7 +57244,7 @@ func_0802DDD0: @ 0x0802DDD0
     thumb_func_start func_0802DE38
 func_0802DE38: @ 0x0802DE38
     push {lr}
-    ldr r0, .L0802DE4C @ =gPlayStatus
+    ldr r0, .L0802DE4C @ =gPlaySt
     ldrb r0, [r0, #0x15]
     cmp r0, #7
     bne .L0802DE46
@@ -58253,7 +57253,7 @@ func_0802DE38: @ 0x0802DE38
     pop {r0}
     bx r0
     .align 2, 0
-.L0802DE4C: .4byte gPlayStatus
+.L0802DE4C: .4byte gPlaySt
     func_end func_0802DE38
 
     thumb_func_start func_0802DE50
@@ -58281,7 +57281,7 @@ func_0802DE6C: @ 0x0802DE6C
     adds r4, r0, #0
     cmp r4, #0
     beq .L0802DE94
-    ldr r0, .L0802DEA0 @ =gPlayStatus
+    ldr r0, .L0802DEA0 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -58299,21 +57299,21 @@ func_0802DE6C: @ 0x0802DE6C
     bx r0
     .align 2, 0
 .L0802DE9C: .4byte 0x08B96158
-.L0802DEA0: .4byte gPlayStatus
+.L0802DEA0: .4byte gPlaySt
 .L0802DEA4: .4byte 0x08C9C9C8
     func_end func_0802DE6C
 
     thumb_func_start SetWeather
 SetWeather: @ 0x0802DEA8
     push {lr}
-    ldr r1, .L0802DEBC @ =gPlayStatus
+    ldr r1, .L0802DEBC @ =gPlaySt
     strb r0, [r1, #0x15]
     bl AllocWeatherParticles
     bl WeatherInit
     pop {r0}
     bx r0
     .align 2, 0
-.L0802DEBC: .4byte gPlayStatus
+.L0802DEBC: .4byte gPlaySt
     func_end SetWeather
 
     thumb_func_start GetTextPrintDelay
@@ -58324,7 +57324,7 @@ GetTextPrintDelay: @ 0x0802DEC0
     mov r0, sp
     movs r2, #4
     bl memcpy
-    ldr r0, .L0802DEE8 @ =gPlayStatus
+    ldr r0, .L0802DEE8 @ =gPlaySt
     adds r0, #0x40
     ldrb r0, [r0]
     lsls r0, r0, #0x19
@@ -58336,7 +57336,7 @@ GetTextPrintDelay: @ 0x0802DEC0
     bx r1
     .align 2, 0
 .L0802DEE4: .4byte 0x081C4038
-.L0802DEE8: .4byte gPlayStatus
+.L0802DEE8: .4byte gPlaySt
     func_end GetTextPrintDelay
 
     thumb_func_start IsFirstPlaythrough
@@ -58349,7 +57349,7 @@ IsFirstPlaythrough: @ 0x0802DEEC
     movs r0, #1
     b .L0802DF1A
 .L0802DEFC:
-    ldr r1, .L0802DF14 @ =gPlayStatus
+    ldr r1, .L0802DF14 @ =gPlaySt
     movs r0, #0x80
     ldrb r2, [r1, #0x14]
     ands r0, r2
@@ -58362,7 +57362,7 @@ IsFirstPlaythrough: @ 0x0802DEEC
     lsrs r0, r0, #0x1f
     b .L0802DF1A
     .align 2, 0
-.L0802DF14: .4byte gPlayStatus
+.L0802DF14: .4byte gPlaySt
 .L0802DF18:
     movs r0, #0
 .L0802DF1A:
@@ -58382,7 +57382,7 @@ InitPlayConfig: @ 0x0802DF20
     mov r0, sp
     movs r4, #0
     strh r4, [r0]
-    ldr r7, .L0802DFEC @ =gPlayStatus
+    ldr r7, .L0802DFEC @ =gPlaySt
     ldr r2, .L0802DFF0 @ =0x01000024
     adds r1, r7, #0
     bl CpuSet
@@ -58474,7 +57474,7 @@ InitPlayConfig: @ 0x0802DF20
     pop {r0}
     bx r0
     .align 2, 0
-.L0802DFEC: .4byte gPlayStatus
+.L0802DFEC: .4byte gPlaySt
 .L0802DFF0: .4byte 0x01000024
 .L0802DFF4: .4byte 0x0202BC38
 .L0802DFF8: .4byte 0xFFFFFE7F
@@ -58504,25 +57504,25 @@ func_0802DFFC: @ 0x0802DFFC
 .L0802E024: .4byte 0x01000020
     func_end func_0802DFFC
 
-    thumb_func_start func_0802E028
-func_0802E028: @ 0x0802E028
+    thumb_func_start StartBattleMap
+StartBattleMap: @ 0x0802E028
     push {r4, r5, r6, lr}
     mov r6, r8
     push {r6}
     mov r8, r0
     movs r0, #0
     bl InitBgs
-    ldr r0, .L0802E0DC @ =func_0801529C
-    bl func_080019B8
+    ldr r0, .L0802E0DC @ =OnMain
+    bl SetMainFunc
     ldr r0, .L0802E0E0 @ =OnVBlank
     bl SetOnVBlank
     bl func_0802DFFC
     bl ApplySystemGraphics
     bl ApplyUnitSpritePalettes
-    bl ClearChapterFlags
+    bl ResetChapterFlags
     bl ResetUnitSprites
     bl InitTraps
-    ldr r4, .L0802E0E4 @ =gPlayStatus
+    ldr r4, .L0802E0E4 @ =gPlaySt
     movs r5, #0
     movs r0, #0x40
     strb r0, [r4, #0xf]
@@ -58577,28 +57577,28 @@ func_0802E028: @ 0x0802E028
     pop {r0}
     bx r0
     .align 2, 0
-.L0802E0DC: .4byte func_0801529C
+.L0802E0DC: .4byte OnMain
 .L0802E0E0: .4byte OnVBlank
-.L0802E0E4: .4byte gPlayStatus
+.L0802E0E4: .4byte gPlaySt
 .L0802E0E8: .4byte gPal
 .L0802E0EC: .4byte 0x030028AC
 .L0802E0F0: .4byte 0x0000FFE0
-    func_end func_0802E028
+    func_end StartBattleMap
 
     thumb_func_start func_0802E0F4
 func_0802E0F4: @ 0x0802E0F4
     push {r4, r5, lr}
     movs r0, #0
     bl InitBgs
-    ldr r0, .L0802E178 @ =func_0801529C
-    bl func_080019B8
+    ldr r0, .L0802E178 @ =OnMain
+    bl SetMainFunc
     ldr r0, .L0802E17C @ =OnVBlank
     bl SetOnVBlank
     bl ApplySystemGraphics
     bl ApplyUnitSpritePalettes
     bl ResetUnitSprites
     bl InitTraps
-    ldr r4, .L0802E180 @ =gPlayStatus
+    ldr r4, .L0802E180 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl GetChapterInfo
@@ -58637,26 +57637,26 @@ func_0802E0F4: @ 0x0802E0F4
     pop {r0}
     bx r0
     .align 2, 0
-.L0802E178: .4byte func_0801529C
+.L0802E178: .4byte OnMain
 .L0802E17C: .4byte OnVBlank
-.L0802E180: .4byte gPlayStatus
+.L0802E180: .4byte gPlaySt
 .L0802E184: .4byte 0x08B961A8
 .L0802E188: .4byte gPal
 .L0802E18C: .4byte gDispIo
     func_end func_0802E0F4
 
-    thumb_func_start func_0802E190
-func_0802E190: @ 0x0802E190
+    thumb_func_start ResumeChapterFromSuspend
+ResumeChapterFromSuspend: @ 0x0802E190
     push {r4, r5, lr}
     adds r5, r0, #0
     movs r0, #0
     bl InitBgs
-    ldr r0, .L0802E204 @ =func_0801529C
-    bl func_080019B8
+    ldr r0, .L0802E204 @ =OnMain
+    bl SetMainFunc
     ldr r0, .L0802E208 @ =OnVBlank
     bl SetOnVBlank
     bl func_0802DFFC
-    ldr r4, .L0802E20C @ =gPlayStatus
+    ldr r4, .L0802E20C @ =gPlaySt
     ldrb r0, [r4, #0x12]
     ldrb r1, [r4, #0x13]
     bl SetMapCursorPosition
@@ -58694,9 +57694,9 @@ func_0802E190: @ 0x0802E190
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.L0802E204: .4byte func_0801529C
+.L0802E204: .4byte OnMain
 .L0802E208: .4byte OnVBlank
-.L0802E20C: .4byte gPlayStatus
+.L0802E20C: .4byte gPlaySt
 .L0802E210: .4byte gBmStatus
 .L0802E214: .4byte 0x0203A85C
 .L0802E218: .4byte .L0802E21C
@@ -58755,13 +57755,13 @@ func_0802E190: @ 0x0802E190
     .align 2, 0
 .L0802E294: .4byte 0x030028AC
 .L0802E298: .4byte 0x0000FFE0
-    func_end func_0802E190
+    func_end ResumeChapterFromSuspend
 
     thumb_func_start func_0802E29C
 func_0802E29C: @ 0x0802E29C
     push {lr}
-    ldr r0, .L0802E304 @ =func_0801529C
-    bl func_080019B8
+    ldr r0, .L0802E304 @ =OnMain
+    bl SetMainFunc
     ldr r0, .L0802E308 @ =OnVBlank
     bl SetOnVBlank
     bl ApplySystemGraphics
@@ -58803,7 +57803,7 @@ func_0802E29C: @ 0x0802E29C
     pop {r0}
     bx r0
     .align 2, 0
-.L0802E304: .4byte func_0801529C
+.L0802E304: .4byte OnMain
 .L0802E308: .4byte OnVBlank
 .L0802E30C: .4byte gDispIo
 .L0802E310: .4byte gBg2Tm
@@ -58829,7 +57829,7 @@ func_0802E314: @ 0x0802E314
     thumb_func_start func_0802E338
 func_0802E338: @ 0x0802E338
     push {r4, lr}
-    ldr r4, .L0802E364 @ =gPlayStatus
+    ldr r4, .L0802E364 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl ApplyChapterMapGraphics
@@ -58844,7 +57844,7 @@ func_0802E338: @ 0x0802E338
     pop {r0}
     bx r0
     .align 2, 0
-.L0802E364: .4byte gPlayStatus
+.L0802E364: .4byte gPlaySt
     func_end func_0802E338
 
     thumb_func_start func_0802E368
@@ -58903,8 +57903,8 @@ func_0802E3B0: @ 0x0802E3B0
 .L0802E3D0: .4byte 0x08B92AF8
     func_end func_0802E3B0
 
-    thumb_func_start func_0802E3D4
-func_0802E3D4: @ 0x0802E3D4
+    thumb_func_start CleanupUnitsBeforeChapter
+CleanupUnitsBeforeChapter: @ 0x0802E3D4
     push {r4, r5, r6, r7, lr}
     movs r4, #0x41
 .L0802E3D8:
@@ -58922,7 +57922,7 @@ func_0802E3D4: @ 0x0802E3D4
     adds r4, #1
     cmp r4, #0xbf
     ble .L0802E3D8
-    ldr r0, .L0802E46C @ =gPlayStatus
+    ldr r0, .L0802E46C @ =gPlaySt
     ldrb r0, [r0, #0xe]
     cmp r0, #0x2f
     beq .L0802E474
@@ -58981,7 +57981,7 @@ func_0802E3D4: @ 0x0802E3D4
     ble .L0802E400
     b .L0802E4E6
     .align 2, 0
-.L0802E46C: .4byte gPlayStatus
+.L0802E46C: .4byte gPlaySt
 .L0802E470: .4byte 0x0631E004
 .L0802E474:
     movs r6, #1
@@ -59041,7 +58041,7 @@ func_0802E3D4: @ 0x0802E3D4
     cmp r6, #0x3f
     ble .L0802E476
 .L0802E4E6:
-    ldr r1, .L0802E4FC @ =gPlayStatus
+    ldr r1, .L0802E4FC @ =gPlaySt
     movs r0, #0xef
     ldrb r2, [r1, #0x14]
     ands r0, r2
@@ -59051,8 +58051,8 @@ func_0802E3D4: @ 0x0802E3D4
     bx r0
     .align 2, 0
 .L0802E4F8: .4byte 0x0631E00C
-.L0802E4FC: .4byte gPlayStatus
-    func_end func_0802E3D4
+.L0802E4FC: .4byte gPlaySt
+    func_end CleanupUnitsBeforeChapter
 
     thumb_func_start func_0802E500
 func_0802E500: @ 0x0802E500
@@ -59261,10 +58261,10 @@ func_0802E674: @ 0x0802E674
     thumb_func_start func_0802E6B0
 func_0802E6B0: @ 0x0802E6B0
     push {r4, lr}
-    ldr r4, .L0802E6D0 @ =gPlayStatus
+    ldr r4, .L0802E6D0 @ =gPlaySt
     adds r0, r4, #0
-    bl func_0809FBD4
-    bl func_080B6A74
+    bl RegisterChapterStats
+    bl ComputeChapterRankings
     bl func_0809F618
     movs r0, #0x20
     ldrb r1, [r4, #0x14]
@@ -59274,7 +58274,7 @@ func_0802E6B0: @ 0x0802E6B0
     pop {r0}
     bx r0
     .align 2, 0
-.L0802E6D0: .4byte gPlayStatus
+.L0802E6D0: .4byte gPlaySt
     func_end func_0802E6B0
 
     thumb_func_start func_0802E6D4
@@ -59287,16 +58287,16 @@ func_0802E6D4: @ 0x0802E6D4
     bx r0
     func_end func_0802E6D4
 
-    thumb_func_start func_0802E6E4
-func_0802E6E4: @ 0x0802E6E4
+    thumb_func_start GetTacticianName
+GetTacticianName: @ 0x0802E6E4
     ldr r0, .L0802E6E8 @ =0x0202BC18
     bx lr
     .align 2, 0
 .L0802E6E8: .4byte 0x0202BC18
-    func_end func_0802E6E4
+    func_end GetTacticianName
 
-    thumb_func_start func_0802E6EC
-func_0802E6EC: @ 0x0802E6EC
+    thumb_func_start SetTacticianName
+SetTacticianName: @ 0x0802E6EC
     push {lr}
     adds r1, r0, #0
     ldr r0, .L0802E6FC @ =0x0202BC18
@@ -59305,7 +58305,7 @@ func_0802E6EC: @ 0x0802E6EC
     bx r0
     .align 2, 0
 .L0802E6FC: .4byte 0x0202BC18
-    func_end func_0802E6EC
+    func_end SetTacticianName
 
     thumb_func_start func_0802E700
 func_0802E700: @ 0x0802E700
@@ -59516,7 +58516,7 @@ func_0802E818: @ 0x0802E818
     thumb_func_start func_0802E864
 func_0802E864: @ 0x0802E864
     push {r4, lr}
-    ldr r4, .L0802E888 @ =gPlayStatus
+    ldr r4, .L0802E888 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl GetChapterInfo
@@ -59534,7 +58534,7 @@ func_0802E864: @ 0x0802E864
     movs r0, #1
     b .L0802E88E
     .align 2, 0
-.L0802E888: .4byte gPlayStatus
+.L0802E888: .4byte gPlaySt
 .L0802E88C:
     movs r0, #0
 .L0802E88E:
@@ -60130,7 +59130,7 @@ func_0802EC88: @ 0x0802EC88
     bl UnitInitStats
     movs r4, #8
     ldrsb r4, [r6, r4]
-    ldr r1, .L0802ED0C @ =gPlayStatus
+    ldr r1, .L0802ED0C @ =gPlaySt
     movs r0, #0x40
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -60143,7 +59143,7 @@ func_0802EC88: @ 0x0802EC88
     .align 2, 0
 .L0802ED04: .4byte 0x0203A814
 .L0802ED08: .4byte 0x0203A7F4
-.L0802ED0C: .4byte gPlayStatus
+.L0802ED0C: .4byte gPlaySt
 .L0802ED10:
     lsls r0, r4, #1
     adds r0, r0, r4
@@ -61524,7 +60524,7 @@ func_0802F754: @ 0x0802F754
     bl func_08017610
     bl func_08024DEC
     bl ForceSyncUnitSpriteSheet
-    ldr r0, .L0802F804 @ =gPlayStatus
+    ldr r0, .L0802F804 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -61539,7 +60539,7 @@ func_0802F754: @ 0x0802F754
     .align 2, 0
 .L0802F7FC: .4byte 0x08B96338
 .L0802F800: .4byte 0x0000FFFB
-.L0802F804: .4byte gPlayStatus
+.L0802F804: .4byte gPlaySt
     func_end func_0802F754
 
     thumb_func_start func_0802F808
@@ -63005,7 +62005,7 @@ func_0803030C: @ 0x0803030C
 
     thumb_func_start GetLeaderPid
 GetLeaderPid: @ 0x0803031C
-    ldr r0, .L08030330 @ =gPlayStatus
+    ldr r0, .L08030330 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #2
     beq .L0803033E
@@ -63015,7 +62015,7 @@ GetLeaderPid: @ 0x0803031C
     beq .L0803033A
     b .L08030346
     .align 2, 0
-.L08030330: .4byte gPlayStatus
+.L08030330: .4byte gPlaySt
 .L08030334:
     cmp r0, #3
     beq .L08030342
@@ -63160,7 +62160,7 @@ func_08030420: @ 0x08030420
     rsbs r1, r1, #0
     ands r0, r1
     str r0, [r4, #0xc]
-    ldr r5, .L0803047C @ =gPlayStatus
+    ldr r5, .L0803047C @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r5, r0]
     bl GetChapterInfo
@@ -63194,7 +62194,7 @@ func_08030420: @ 0x08030420
     pop {r0}
     bx r0
     .align 2, 0
-.L0803047C: .4byte gPlayStatus
+.L0803047C: .4byte gPlaySt
     func_end func_08030420
 
     thumb_func_start func_08030480
@@ -63248,7 +62248,7 @@ func_080304C0: @ 0x080304C0
 func_080304D0: @ 0x080304D0
     push {r4, r5, r6, lr}
     adds r6, r0, #0
-    ldr r4, .L08030514 @ =gPlayStatus
+    ldr r4, .L08030514 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl GetChapterInfo
@@ -63280,7 +62280,7 @@ func_080304D0: @ 0x080304D0
     pop {r0}
     bx r0
     .align 2, 0
-.L08030514: .4byte gPlayStatus
+.L08030514: .4byte gPlaySt
     func_end func_080304D0
 
     thumb_func_start func_08030518
@@ -63513,7 +62513,7 @@ func_0803069C: @ 0x0803069C
     movs r0, #8
     movs r2, #0
     bl func_0808FEC0
-    ldr r1, .L08030764 @ =gPlayStatus
+    ldr r1, .L08030764 @ =gPlaySt
     movs r0, #0x80
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -63556,7 +62556,7 @@ func_0803069C: @ 0x0803069C
 .L08030758: .4byte func_08030480
 .L0803075C: .4byte 0x0000114C
 .L08030760: .4byte 0x00000382
-.L08030764: .4byte gPlayStatus
+.L08030764: .4byte gPlaySt
 .L08030768: .4byte func_080304C0
 .L0803076C: .4byte 0x0000037E
 .L08030770: .4byte func_08030410
@@ -63666,7 +62666,7 @@ func_08030800: @ 0x08030800
 func_0803081C: @ 0x0803081C
     push {r4, r5, lr}
     adds r3, r0, #0
-    ldr r0, .L08030864 @ =gKeys
+    ldr r0, .L08030864 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xb
     ldrh r1, [r1, #8]
@@ -63700,7 +62700,7 @@ func_0803081C: @ 0x0803081C
     bl Proc_Goto
     b .L08030890
     .align 2, 0
-.L08030864: .4byte gKeys
+.L08030864: .4byte gpKeySt
 .L08030868:
     ldr r2, [r3, #0x34]
     adds r2, r4, r2
@@ -63733,7 +62733,7 @@ func_0803081C: @ 0x0803081C
 func_0803089C: @ 0x0803089C
     push {r4, r5, r6, lr}
     adds r4, r0, #0
-    ldr r5, .L080308B8 @ =gPlayStatus
+    ldr r5, .L080308B8 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r5, r0]
     bl GetChapterInfo
@@ -63744,7 +62744,7 @@ func_0803089C: @ 0x0803089C
     bl Proc_End
     b .L08030906
     .align 2, 0
-.L080308B8: .4byte gPlayStatus
+.L080308B8: .4byte gPlaySt
 .L080308BC:
     bl func_08018980
     movs r6, #0x10
@@ -63863,7 +62863,7 @@ func_08030994: @ 0x08030994
     beq .L080309A8
     b .L08030BF4
 .L080309A8:
-    ldr r1, .L080309E0 @ =gKeys
+    ldr r1, .L080309E0 @ =gpKeySt
     ldr r0, [r1]
     ldrh r2, [r0, #8]
     movs r0, #0x80
@@ -63878,7 +62878,7 @@ func_08030994: @ 0x08030994
     movs r3, #0x16
     ldrsh r1, [r1, r3]
     bl TrySwitchViewedUnit
-    ldr r0, .L080309E8 @ =gPlayStatus
+    ldr r0, .L080309E8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -63890,9 +62890,9 @@ func_08030994: @ 0x08030994
     bl m4aSongNumStart
     b .L08030BF4
     .align 2, 0
-.L080309E0: .4byte gKeys
+.L080309E0: .4byte gpKeySt
 .L080309E4: .4byte gBmStatus
-.L080309E8: .4byte gPlayStatus
+.L080309E8: .4byte gPlaySt
 .L080309EC: .4byte 0x0000038B
 .L080309F0:
     movs r0, #0x80
@@ -63946,7 +62946,7 @@ func_08030994: @ 0x08030994
     cmp r0, #0
     beq .L08030A88
     bl func_08085C7C
-    ldr r4, .L08030A80 @ =gPlayStatus
+    ldr r4, .L08030A80 @ =gPlaySt
     ldr r1, .L08030A84 @ =gBmStatus
     ldrh r0, [r1, #0x14]
     strb r0, [r4, #0x12]
@@ -63960,7 +62960,7 @@ func_08030994: @ 0x08030994
     lsls r0, r4, #0x1e
     b .L08030B50
     .align 2, 0
-.L08030A80: .4byte gPlayStatus
+.L08030A80: .4byte gPlaySt
 .L08030A84: .4byte gBmStatus
 .L08030A88:
     movs r0, #1
@@ -64005,7 +63005,7 @@ func_08030994: @ 0x08030994
     .4byte .L08030B8C @ case 4
 .L08030AE4:
     bl func_08085C7C
-    ldr r3, .L08030B30 @ =gPlayStatus
+    ldr r3, .L08030B30 @ =gPlaySt
     ldr r2, .L08030B34 @ =gBmStatus
     ldrh r0, [r2, #0x14]
     strb r0, [r3, #0x12]
@@ -64040,7 +63040,7 @@ func_08030994: @ 0x08030994
     bl Proc_Goto
     b .L08030C04
     .align 2, 0
-.L08030B30: .4byte gPlayStatus
+.L08030B30: .4byte gPlaySt
 .L08030B34: .4byte gBmStatus
 .L08030B38: .4byte gMapTerrain
 .L08030B3C: .4byte 0x0000038A
@@ -64048,7 +63048,7 @@ func_08030994: @ 0x08030994
     adds r0, r5, #0
     movs r1, #0
     bl Proc_Goto
-    ldr r0, .L08030B5C @ =gPlayStatus
+    ldr r0, .L08030B5C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -64059,7 +63059,7 @@ func_08030994: @ 0x08030994
     bl m4aSongNumStart
     b .L08030C04
     .align 2, 0
-.L08030B5C: .4byte gPlayStatus
+.L08030B5C: .4byte gPlaySt
 .L08030B60: .4byte 0x00000389
 .L08030B64:
     adds r0, r4, #0
@@ -64084,7 +63084,7 @@ func_08030994: @ 0x08030994
     ldr r0, [r5, #0x58]
     cmp r0, #2
     bne .L08030BAC
-    ldr r0, .L08030BA8 @ =gPlayStatus
+    ldr r0, .L08030BA8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -64095,7 +63095,7 @@ func_08030994: @ 0x08030994
     bl m4aSongNumStart
     b .L08030C04
     .align 2, 0
-.L08030BA8: .4byte gPlayStatus
+.L08030BA8: .4byte gPlaySt
 .L08030BAC:
     adds r0, r4, #0
     bl UnitBeginAction
@@ -64114,7 +63114,7 @@ func_08030994: @ 0x08030994
     .align 2, 0
 .L08030BCC: .4byte gActiveUnit
 .L08030BD0:
-    ldr r0, .L08030BF0 @ =gKeys
+    ldr r0, .L08030BF0 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #8
     ldrh r1, [r1, #8]
@@ -64128,7 +63128,7 @@ func_08030994: @ 0x08030994
     bl Proc_Goto
     b .L08030C04
     .align 2, 0
-.L08030BF0: .4byte gKeys
+.L08030BF0: .4byte gpKeySt
 .L08030BF4:
     ldr r1, .L08030C0C @ =gBmStatus
     movs r2, #0x20
@@ -64185,7 +63185,7 @@ func_08030C28: @ 0x08030C28
     ldrsh r0, [r1, r2]
     str r0, [r5, #0x40]
     ldr r0, .L08030C9C @ =0x00000726
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl func_08032560
@@ -64197,7 +63197,7 @@ func_08030C28: @ 0x08030C28
     ldrsb r2, [r0, r2]
     adds r0, r5, #0
     bl CameraMoveWatchPosition
-    ldr r0, .L08030CA4 @ =gPlayStatus
+    ldr r0, .L08030CA4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -64214,7 +63214,7 @@ func_08030C28: @ 0x08030C28
 .L08030C98: .4byte gBmStatus
 .L08030C9C: .4byte 0x00000726
 .L08030CA0: .4byte gActiveUnit
-.L08030CA4: .4byte gPlayStatus
+.L08030CA4: .4byte gPlaySt
 .L08030CA8: .4byte 0x00000389
     func_end func_08030C28
 
@@ -64276,7 +63276,7 @@ func_08030CAC: @ 0x08030CAC
     adds r1, r5, #0
     bl func_080069F4
 .L08030D20:
-    ldr r0, .L08030D54 @ =gKeys
+    ldr r0, .L08030D54 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #1
@@ -64296,9 +63296,9 @@ func_08030CAC: @ 0x08030CAC
 .L08030D48: .4byte gMapRange
 .L08030D4C: .4byte gMapUnit
 .L08030D50: .4byte 0x08B905B8
-.L08030D54: .4byte gKeys
+.L08030D54: .4byte gpKeySt
 .L08030D58:
-    ldr r0, .L08030D70 @ =gPlayStatus
+    ldr r0, .L08030D70 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -64309,7 +63309,7 @@ func_08030CAC: @ 0x08030CAC
     bl m4aSongNumStart
     b .L08030DEE
     .align 2, 0
-.L08030D70: .4byte gPlayStatus
+.L08030D70: .4byte gPlaySt
 .L08030D74:
     movs r0, #2
     ands r0, r1
@@ -64321,7 +63321,7 @@ func_08030CAC: @ 0x08030CAC
     movs r1, #4
     bl Proc_Goto
     bl func_0803279C
-    ldr r0, .L08030DA4 @ =gPlayStatus
+    ldr r0, .L08030DA4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -64331,7 +63331,7 @@ func_08030CAC: @ 0x08030CAC
     bl m4aSongNumStart
     b .L08030DEE
     .align 2, 0
-.L08030DA4: .4byte gPlayStatus
+.L08030DA4: .4byte gPlaySt
 .L08030DA8: .4byte 0x0000038B
 .L08030DAC:
     lsls r0, r7, #0x18
@@ -64452,7 +63452,7 @@ func_08030E2C: @ 0x08030E2C
     adds r1, r4, #0
     bl func_0801E480
 .L08030E94:
-    ldr r0, .L08030EAC @ =gPlayStatus
+    ldr r0, .L08030EAC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -64465,14 +63465,14 @@ func_08030E2C: @ 0x08030E2C
     pop {r0}
     bx r0
     .align 2, 0
-.L08030EAC: .4byte gPlayStatus
+.L08030EAC: .4byte gPlaySt
 .L08030EB0: .4byte 0x00000381
     func_end func_08030E2C
 
     thumb_func_start func_08030EB4
 func_08030EB4: @ 0x08030EB4
     push {lr}
-    ldr r0, .L08030EC8 @ =gPlayStatus
+    ldr r0, .L08030EC8 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     beq .L08030EC2
@@ -64481,13 +63481,13 @@ func_08030EB4: @ 0x08030EB4
     pop {r0}
     bx r0
     .align 2, 0
-.L08030EC8: .4byte gPlayStatus
+.L08030EC8: .4byte gPlaySt
     func_end func_08030EB4
 
     thumb_func_start func_08030ECC
 func_08030ECC: @ 0x08030ECC
     push {lr}
-    ldr r0, .L08030EE4 @ =gPlayStatus
+    ldr r0, .L08030EE4 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     beq .L08030EE0
@@ -64498,7 +63498,7 @@ func_08030ECC: @ 0x08030ECC
     pop {r0}
     bx r0
     .align 2, 0
-.L08030EE4: .4byte gPlayStatus
+.L08030EE4: .4byte gPlaySt
     func_end func_08030ECC
 
     thumb_func_start func_08030EE8
@@ -64517,7 +63517,7 @@ func_08030EE8: @ 0x08030EE8
 func_08030EFC: @ 0x08030EFC
     push {lr}
     sub sp, #0x1c
-    ldr r0, .L08030F34 @ =gPlayStatus
+    ldr r0, .L08030F34 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -64541,7 +63541,7 @@ func_08030EFC: @ 0x08030EFC
     beq .L08030F46
     b .L08030F4E
     .align 2, 0
-.L08030F34: .4byte gPlayStatus
+.L08030F34: .4byte gPlaySt
 .L08030F38: .4byte gBmStatus
 .L08030F3C:
     ldr r1, [sp, #4]
@@ -64563,7 +63563,7 @@ func_08030F54: @ 0x08030F54
     push {r4, r5, lr}
     adds r5, r0, #0
     bl HandlePlayerMapCursor
-    ldr r0, .L08030FB0 @ =gKeys
+    ldr r0, .L08030FB0 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #3
@@ -64586,7 +63586,7 @@ func_08030F54: @ 0x08030F54
     bl func_0801D2D4
     bl RefreshEntityMaps
     bl RefreshUnitSprites
-    ldr r0, .L08030FBC @ =gPlayStatus
+    ldr r0, .L08030FBC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -64600,10 +63600,10 @@ func_08030F54: @ 0x08030F54
     bl Proc_Goto
     b .L0803106E
     .align 2, 0
-.L08030FB0: .4byte gKeys
+.L08030FB0: .4byte gpKeySt
 .L08030FB4: .4byte gActiveUnit
 .L08030FB8: .4byte gBmStatus
-.L08030FBC: .4byte gPlayStatus
+.L08030FBC: .4byte gPlaySt
 .L08030FC0: .4byte 0x0000038B
 .L08030FC4:
     movs r0, #0x80
@@ -64645,7 +63645,7 @@ func_08030F54: @ 0x08030F54
     movs r1, #6
     bl Proc_Goto
 .L08031018:
-    ldr r0, .L08031084 @ =gKeys
+    ldr r0, .L08031084 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x80
     lsls r0, r0, #2
@@ -64669,7 +63669,7 @@ func_08030F54: @ 0x08030F54
     movs r2, #2
     ldrsh r1, [r4, r2]
     bl SetMapCursorPosition
-    ldr r0, .L08031088 @ =gPlayStatus
+    ldr r0, .L08031088 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -64694,8 +63694,8 @@ func_08030F54: @ 0x08030F54
 .L08031078: .4byte gMapUnit
 .L0803107C: .4byte gActiveUnitMoveOrigin
 .L08031080: .4byte gActiveUnit
-.L08031084: .4byte gKeys
-.L08031088: .4byte gPlayStatus
+.L08031084: .4byte gpKeySt
+.L08031088: .4byte gPlaySt
 .L0803108C: .4byte 0x0000038B
     func_end func_08030F54
 
@@ -64827,7 +63827,7 @@ func_0803115C: @ 0x0803115C
     thumb_func_start func_0803117C
 func_0803117C: @ 0x0803117C
     push {r4, lr}
-    ldr r1, .L080311D0 @ =gPlayStatus
+    ldr r1, .L080311D0 @ =gPlaySt
     movs r0, #0x80
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -64868,7 +63868,7 @@ func_0803117C: @ 0x0803117C
     pop {r0}
     bx r0
     .align 2, 0
-.L080311D0: .4byte gPlayStatus
+.L080311D0: .4byte gPlaySt
 .L080311D4: .4byte gBmStatus
 .L080311D8: .4byte gBuf
 .L080311DC: .4byte 0x0001000C
@@ -64921,7 +63921,7 @@ func_080311E0: @ 0x080311E0
     ldrb r3, [r2, #4]
     ands r0, r3
     strb r0, [r2, #4]
-    ldr r0, .L08031254 @ =gPlayStatus
+    ldr r0, .L08031254 @ =gPlaySt
     ldrb r2, [r0, #0x14]
     ands r1, r2
     strb r1, [r0, #0x14]
@@ -64931,7 +63931,7 @@ func_080311E0: @ 0x080311E0
     .align 2, 0
 .L0803124C: .4byte 0x08B96460
 .L08031250: .4byte gBmStatus
-.L08031254: .4byte gPlayStatus
+.L08031254: .4byte gPlaySt
     func_end func_080311E0
 
     thumb_func_start func_08031258
@@ -65418,14 +64418,14 @@ func_080315D8: @ 0x080315D8
     push {lr}
     bl GetChapterInfo
     adds r0, #0x74
-    bl GetMsg
+    bl DecodeMsg
     pop {r1}
     bx r1
     func_end func_080315D8
 
     thumb_func_start func_080315E8
 func_080315E8: @ 0x080315E8
-    ldr r1, .L080315FC @ =gPlayStatus
+    ldr r1, .L080315FC @ =gPlaySt
     movs r0, #0x40
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -65435,7 +64435,7 @@ func_080315E8: @ 0x080315E8
     lsrs r0, r0, #0x1f
     bx lr
     .align 2, 0
-.L080315FC: .4byte gPlayStatus
+.L080315FC: .4byte gPlaySt
     func_end func_080315E8
 
     thumb_func_start func_08031600
@@ -65536,7 +64536,7 @@ func_080316B8: @ 0x080316B8
     ldr r0, [r4, #0x2c]
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     bl func_080055FC
     cmp r0, #0x27
     bgt .L080316DE
@@ -65678,7 +64678,7 @@ func_08031700: @ 0x08031700
     ldr r1, [sp, #4]
     ldr r0, [r1]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -65743,14 +64743,14 @@ func_08031858: @ 0x08031858
     adds r5, r1, #0
     bl ClearText
     ldr r0, .L080318B0 @ =0x000010F4
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
     movs r2, #3
     bl Text_InsertDrawString
     ldr r0, .L080318B4 @ =0x000012B0
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x28
@@ -65785,7 +64785,7 @@ func_080318B8: @ 0x080318B8
     adds r4, r1, #0
     bl ClearText
     ldr r0, .L080318FC @ =0x00001107
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #0
@@ -65820,7 +64820,7 @@ func_08031900: @ 0x08031900
     adds r5, r1, #0
     bl ClearText
     ldr r0, .L08031934 @ =0x00001108
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -65874,7 +64874,7 @@ func_0803196C: @ 0x0803196C
     adds r5, r1, #0
     bl ClearText
     ldr r0, .L080319A0 @ =0x0000110A
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -65902,14 +64902,14 @@ func_080319A4: @ 0x080319A4
     adds r6, r2, #0
     bl ClearText
     ldr r0, .L08031A00 @ =0x000010FF
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
     movs r2, #3
     bl Text_InsertDrawString
     ldr r0, .L08031A04 @ =0x000012B1
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x28
@@ -65945,7 +64945,7 @@ func_08031A08: @ 0x08031A08
     adds r5, r1, #0
     bl ClearText
     ldr r0, .L08031A3C @ =0x000010FF
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -65972,7 +64972,7 @@ func_08031A40: @ 0x08031A40
     adds r5, r1, #0
     bl ClearText
     ldr r0, .L08031A70 @ =0x00001104
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -66047,7 +65047,7 @@ func_08031A98: @ 0x08031A98
     adds r0, r4, #0
     bl ClearText
     ldr r0, .L08031B08 @ =0x0000126D
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -67344,7 +66344,7 @@ func_08032560: @ 0x08032560
     push {r4, lr}
     adds r2, r0, #0
     adds r4, r1, #0
-    ldr r0, .L08032594 @ =gPlayStatus
+    ldr r0, .L08032594 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsrs r0, r0, #7
@@ -67365,7 +66365,7 @@ func_08032560: @ 0x08032560
     pop {r0}
     bx r0
     .align 2, 0
-.L08032594: .4byte gPlayStatus
+.L08032594: .4byte gPlaySt
 .L08032598: .4byte 0x08B96A14
 .L0803259C: .4byte gBmStatus
     func_end func_08032560
@@ -67391,7 +66391,7 @@ func_080325A0: @ 0x080325A0
     ldr r0, .L08032610 @ =0x08B969E4
     movs r1, #3
     bl Proc_Start
-    ldr r4, .L08032614 @ =gPlayStatus
+    ldr r4, .L08032614 @ =gPlaySt
     adds r0, r4, #0
     adds r0, #0x41
     ldrb r0, [r0]
@@ -67424,7 +66424,7 @@ func_080325A0: @ 0x080325A0
 .L08032608: .4byte 0x06015000
 .L0803260C: .4byte 0x08405670
 .L08032610: .4byte 0x08B969E4
-.L08032614: .4byte gPlayStatus
+.L08032614: .4byte gPlaySt
 .L08032618: .4byte 0x0000038A
     func_end func_080325A0
 
@@ -67436,7 +66436,7 @@ func_0803261C: @ 0x0803261C
     sub sp, #4
     adds r6, r0, #0
     movs r1, #0
-    ldr r0, .L080326C0 @ =gPlayStatus
+    ldr r0, .L080326C0 @ =gPlaySt
     adds r0, #0x42
     mov r8, r0
     ldrb r2, [r0]
@@ -67508,7 +66508,7 @@ func_0803261C: @ 0x0803261C
     bl func_080069F4
     b .L080326FE
     .align 2, 0
-.L080326C0: .4byte gPlayStatus
+.L080326C0: .4byte gPlaySt
 .L080326C4: .4byte 0x08B905F8
 .L080326C8: .4byte 0x08B905B8
 .L080326CC: .4byte 0x08B905D0
@@ -67576,7 +66576,7 @@ func_08032710: @ 0x08032710
     ldrh r1, [r1]
     cmp r1, #0x1e
     bne .L08032760
-    ldr r0, .L0803276C @ =gKeys
+    ldr r0, .L0803276C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #4
     ldrh r1, [r1, #4]
@@ -67591,7 +66591,7 @@ func_08032710: @ 0x08032710
     bx r0
     .align 2, 0
 .L08032768: .4byte 0x08B96A4C
-.L0803276C: .4byte gKeys
+.L0803276C: .4byte gpKeySt
     func_end func_08032710
 
     thumb_func_start func_08032770
@@ -67707,7 +66707,7 @@ func_08032838: @ 0x08032838
     bl GetUnitCurrentHp
     cmp r0, #0
     bne .L0803284E
-    ldr r0, .L08032854 @ =gPlayStatus
+    ldr r0, .L08032854 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     beq .L0803284E
@@ -67716,7 +66716,7 @@ func_08032838: @ 0x08032838
     pop {r0}
     bx r0
     .align 2, 0
-.L08032854: .4byte gPlayStatus
+.L08032854: .4byte gPlaySt
     func_end func_08032838
 
     thumb_func_start func_08032858
@@ -68454,7 +67454,7 @@ func_08032DD4: @ 0x08032DD4
     ldr r0, .L08032E00 @ =0x08B96B74
     adds r1, r2, #0
     bl Proc_StartBlocking
-    ldr r0, .L08032E04 @ =gPlayStatus
+    ldr r0, .L08032E04 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -68466,7 +67466,7 @@ func_08032DD4: @ 0x08032DD4
     .align 2, 0
 .L08032DFC: .4byte gActiveUnit
 .L08032E00: .4byte 0x08B96B74
-.L08032E04: .4byte gPlayStatus
+.L08032E04: .4byte gPlaySt
 .L08032E08:
     ldr r0, .L08032E14 @ =0x08B96B74
     movs r1, #3
@@ -68482,7 +67482,7 @@ func_08032DD4: @ 0x08032DD4
 func_08032E18: @ 0x08032E18
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L08032E34 @ =gPlayStatus
+    ldr r0, .L08032E34 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     bl func_080242E8
     bl CountTargets
@@ -68492,7 +67492,7 @@ func_08032E18: @ 0x08032E18
     bl Proc_End
     b .L08032E40
     .align 2, 0
-.L08032E34: .4byte gPlayStatus
+.L08032E34: .4byte gPlaySt
 .L08032E38:
     adds r1, r4, #0
     adds r1, #0x4c
@@ -68532,7 +67532,7 @@ func_08032E48: @ 0x08032E48
     .align 2, 0
 .L08032E80: .4byte 0x0203A85C
 .L08032E84:
-    ldr r0, .L08032EB0 @ =gPlayStatus
+    ldr r0, .L08032EB0 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     beq .L08032EB8
@@ -68554,7 +67554,7 @@ func_08032E48: @ 0x08032E48
     bl Proc_Goto
     b .L08032ECA
     .align 2, 0
-.L08032EB0: .4byte gPlayStatus
+.L08032EB0: .4byte gPlaySt
 .L08032EB4: .4byte gMapFog
 .L08032EB8:
     adds r0, r6, #0
@@ -68689,7 +67689,7 @@ func_08032F64: @ 0x08032F64
 func_08032FB0: @ 0x08032FB0
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L08032FD4 @ =gPlayStatus
+    ldr r0, .L08032FD4 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     bl func_080243BC
     movs r0, #4
@@ -68701,7 +67701,7 @@ func_08032FB0: @ 0x08032FB0
     bl Proc_End
     b .L08032FE0
     .align 2, 0
-.L08032FD4: .4byte gPlayStatus
+.L08032FD4: .4byte gPlaySt
 .L08032FD8:
     adds r1, r4, #0
     adds r1, #0x4c
@@ -68904,7 +67904,7 @@ func_08033120: @ 0x08033120
     ldrsb r0, [r5, r0]
     cmp r0, #0
     beq .L080331AA
-    ldr r0, .L08033190 @ =gPlayStatus
+    ldr r0, .L08033190 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     beq .L08033198
@@ -68926,7 +67926,7 @@ func_08033120: @ 0x08033120
     bl Proc_Goto
     b .L080331AA
     .align 2, 0
-.L08033190: .4byte gPlayStatus
+.L08033190: .4byte gPlaySt
 .L08033194: .4byte gMapFog
 .L08033198:
     adds r0, r6, #0
@@ -69276,13 +68276,13 @@ func_08033410: @ 0x08033410
     adds r0, r0, r1
     ldr r6, [r0]
     adds r0, r6, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     movs r0, #0x20
     bl GetStringTextCenteredPos
     adds r4, r0, #0
     adds r0, r6, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     adds r1, r4, #0
@@ -69309,7 +68309,7 @@ func_08033460: @ 0x08033460
     adds r6, r1, #0
     ldr r0, [r2]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r4, r0, #0
     movs r0, #0x30
     adds r1, r4, #0
@@ -70858,7 +69858,7 @@ func_080340E0: @ 0x080340E0
     thumb_func_start StartFightPreview
 StartFightPreview: @ 0x080340FC
     push {r4, lr}
-    ldr r0, .L08034114 @ =gPlayStatus
+    ldr r0, .L08034114 @ =gPlaySt
     adds r4, r0, #0
     adds r4, #0x42
     ldrb r1, [r4]
@@ -70869,7 +69869,7 @@ StartFightPreview: @ 0x080340FC
     bl ResetTextFont
     b .L08034158
     .align 2, 0
-.L08034114: .4byte gPlayStatus
+.L08034114: .4byte gPlaySt
 .L08034118:
     ldr r0, .L0803413C @ =0x08B96D5C
     movs r1, #3
@@ -71355,7 +70355,7 @@ func_08034434: @ 0x08034434
     ldrsb r1, [r5, r1]
     bl GetTrapAt
     bl RemoveTrap
-    ldr r0, .L080344C4 @ =gPlayStatus
+    ldr r0, .L080344C4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -71367,14 +70367,14 @@ func_08034434: @ 0x08034434
     movs r4, #1
     rsbs r4, r4, #0
     ldr r0, .L080344C8 @ =0x0000071A
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     adds r0, r6, #0
     adds r1, r4, #0
     bl func_0801F100
     b .L08034510
     .align 2, 0
-.L080344C4: .4byte gPlayStatus
+.L080344C4: .4byte gPlaySt
 .L080344C8: .4byte 0x0000071A
 .L080344CC:
     movs r0, #0x10
@@ -71383,7 +70383,7 @@ func_08034434: @ 0x08034434
     ldrsb r1, [r5, r1]
     bl GetTrapAt
     bl RemoveTrap
-    ldr r0, .L08034518 @ =gPlayStatus
+    ldr r0, .L08034518 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -71395,7 +70395,7 @@ func_08034434: @ 0x08034434
     movs r4, #1
     rsbs r4, r4, #0
     ldr r0, .L0803451C @ =0x0000071B
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     adds r0, r6, #0
     adds r1, r4, #0
@@ -71411,7 +70411,7 @@ func_08034434: @ 0x08034434
     pop {r1}
     bx r1
     .align 2, 0
-.L08034518: .4byte gPlayStatus
+.L08034518: .4byte gPlaySt
 .L0803451C: .4byte 0x0000071B
     func_end func_08034434
 
@@ -71903,7 +70903,7 @@ func_08034864: @ 0x08034864
 
     thumb_func_start func_0803486C
 func_0803486C: @ 0x0803486C
-    ldr r1, .L0803487C @ =gPlayStatus
+    ldr r1, .L0803487C @ =gPlaySt
     movs r0, #0x40
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -71912,7 +70912,7 @@ func_0803486C: @ 0x0803486C
     movs r0, #9
     b .L08034882
     .align 2, 0
-.L0803487C: .4byte gPlayStatus
+.L0803487C: .4byte gPlaySt
 .L08034880:
     movs r0, #0x13
 .L08034882:
@@ -71944,7 +70944,7 @@ IsUnitCurrentMainLord: @ 0x08034884
 .L080348A6:
     movs r2, #0
 .L080348A8:
-    ldr r0, .L080348BC @ =gPlayStatus
+    ldr r0, .L080348BC @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #2
     beq .L080348CA
@@ -71954,7 +70954,7 @@ IsUnitCurrentMainLord: @ 0x08034884
     beq .L080348C6
     b .L080348D2
     .align 2, 0
-.L080348BC: .4byte gPlayStatus
+.L080348BC: .4byte gPlaySt
 .L080348C0:
     cmp r0, #3
     beq .L080348CE
@@ -71996,7 +70996,7 @@ func_080348E0: @ 0x080348E0
     adds r0, #0x78
     strb r1, [r0]
     ldr r5, .L08034940 @ =0x081D3A60
-    ldr r4, .L08034944 @ =gPlayStatus
+    ldr r4, .L08034944 @ =gPlaySt
     movs r3, #0
     movs r1, #7
     adds r0, #0x15
@@ -72028,7 +71028,7 @@ func_080348E0: @ 0x080348E0
     .align 2, 0
 .L0803493C: .4byte 0x0203A8EC
 .L08034940: .4byte 0x081D3A60
-.L08034944: .4byte gPlayStatus
+.L08034944: .4byte gPlaySt
 .L08034948: .4byte 0x08B96ED4
     func_end func_080348E0
 
@@ -72046,7 +71046,7 @@ func_0803494C: @ 0x0803494C
     strb r1, [r2]
     adds r1, r0, #0
     ldr r5, .L080349A0 @ =0x081D3A60
-    ldr r4, .L080349A4 @ =gPlayStatus
+    ldr r4, .L080349A4 @ =gPlaySt
     movs r0, #0
     movs r3, #7
     adds r2, r1, #0
@@ -72075,7 +71075,7 @@ func_0803494C: @ 0x0803494C
     .align 2, 0
 .L0803499C: .4byte 0x0203A8EC
 .L080349A0: .4byte 0x081D3A60
-.L080349A4: .4byte gPlayStatus
+.L080349A4: .4byte gPlaySt
 .L080349A8: .4byte 0x08B96EEC
     func_end func_0803494C
 
@@ -72120,7 +71120,7 @@ func_080349E4: @ 0x080349E4
     sub sp, #0xc
     mov r8, r0
     movs r5, #0
-    ldr r0, .L08034A70 @ =gPlayStatus
+    ldr r0, .L08034A70 @ =gPlaySt
     ldrb r2, [r0, #0xf]
     mov r1, sp
     ldr r0, .L08034A74 @ =0x081D3658
@@ -72187,7 +71187,7 @@ func_080349E4: @ 0x080349E4
     pop {r0}
     bx r0
     .align 2, 0
-.L08034A70: .4byte gPlayStatus
+.L08034A70: .4byte gPlaySt
 .L08034A74: .4byte 0x081D3658
 .L08034A78: .4byte 0x00000427
 .L08034A7C: .4byte 0x0203A8EC
@@ -72390,7 +71390,7 @@ func_08034BE4: @ 0x08034BE4
     push {r7}
     sub sp, #0xc
     movs r5, #0
-    ldr r0, .L08034C70 @ =gPlayStatus
+    ldr r0, .L08034C70 @ =gPlaySt
     ldrb r2, [r0, #0xf]
     ldr r0, .L08034C74 @ =0x08B96ED0
     ldr r0, [r0]
@@ -72456,7 +71456,7 @@ func_08034BE4: @ 0x08034BE4
     pop {r1}
     bx r1
     .align 2, 0
-.L08034C70: .4byte gPlayStatus
+.L08034C70: .4byte gPlaySt
 .L08034C74: .4byte 0x08B96ED0
 .L08034C78: .4byte 0x081D3658
 .L08034C7C: .4byte 0x00000427
@@ -73024,7 +72024,7 @@ func_080350A0: @ 0x080350A0
     ldr r1, [r4, #0x30]
     ldr r2, [r4, #0x58]
     bl PutMapCursor
-    ldr r0, .L080350E0 @ =gKeys
+    ldr r0, .L080350E0 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #9
     ldrh r1, [r1, #4]
@@ -73051,7 +72051,7 @@ func_080350A0: @ 0x080350A0
     pop {r0}
     bx r0
     .align 2, 0
-.L080350E0: .4byte gKeys
+.L080350E0: .4byte gpKeySt
     func_end func_080350A0
 
     thumb_func_start func_080350E4
@@ -73101,7 +72101,7 @@ func_08035124: @ 0x08035124
     movs r0, #1
     mov r1, ip
     strb r0, [r1]
-    ldr r1, .L08035180 @ =gPlayStatus
+    ldr r1, .L08035180 @ =gPlaySt
     ldrb r0, [r1, #0xd]
     cmp r0, #0
     beq .L080351A6
@@ -73140,7 +72140,7 @@ func_08035124: @ 0x08035124
     bl CameraMoveWatchPosition
     b .L080351B8
     .align 2, 0
-.L08035180: .4byte gPlayStatus
+.L08035180: .4byte gPlaySt
 .L08035184: .4byte gActiveUnit
 .L08035188: .4byte gMapFog
 .L0803518C: .4byte 0x0203A97C
@@ -73429,7 +72429,7 @@ func_08035398: @ 0x08035398
     lsls r1, r1, #0x18
     asrs r1, r1, #0x18
     bl func_08078C14
-    ldr r0, .L08035418 @ =gPlayStatus
+    ldr r0, .L08035418 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -73449,7 +72449,7 @@ func_08035398: @ 0x08035398
     pop {r1}
     bx r1
     .align 2, 0
-.L08035418: .4byte gPlayStatus
+.L08035418: .4byte gPlaySt
 .L0803541C: .4byte 0x08B9701C
     func_end func_08035398
 
@@ -81574,7 +80574,7 @@ func_08039138: @ 0x08039138
 
     thumb_func_start func_0803916C
 func_0803916C: @ 0x0803916C
-    ldr r1, .L0803917C @ =gPlayStatus
+    ldr r1, .L0803917C @ =gPlaySt
     ldr r0, .L08039180 @ =0x030013C0
     ldr r0, [r0]
     ldrb r0, [r0, #4]
@@ -81582,7 +80582,7 @@ func_0803916C: @ 0x0803916C
     muls r0, r1, r0
     bx lr
     .align 2, 0
-.L0803917C: .4byte gPlayStatus
+.L0803917C: .4byte gPlaySt
 .L08039180: .4byte 0x030013C0
     func_end func_0803916C
 
@@ -82322,7 +81322,7 @@ func_08039534: @ 0x08039534
 func_08039704: @ 0x08039704
     push {r4, r5, r6, lr}
     sub sp, #0xc
-    ldr r0, .L08039754 @ =gPlayStatus
+    ldr r0, .L08039754 @ =gPlaySt
     ldrb r2, [r0, #0xf]
     mov r1, sp
     ldr r0, .L08039758 @ =0x081D3B68
@@ -82361,7 +81361,7 @@ func_08039704: @ 0x08039704
     pop {r0}
     bx r0
     .align 2, 0
-.L08039754: .4byte gPlayStatus
+.L08039754: .4byte gPlaySt
 .L08039758: .4byte 0x081D3B68
     func_end func_08039704
 
@@ -82614,7 +81614,7 @@ func_0803993C: @ 0x0803993C
     push {r4, r5, r6, lr}
     movs r1, #0
     movs r5, #0
-    ldr r0, .L0803995C @ =gPlayStatus
+    ldr r0, .L0803995C @ =gPlaySt
     movs r2, #0xe
     ldrsb r2, [r0, r2]
     movs r4, #0xff
@@ -82627,7 +81627,7 @@ func_0803993C: @ 0x0803993C
     beq .L08039966
     b .L0803997C
     .align 2, 0
-.L0803995C: .4byte gPlayStatus
+.L0803995C: .4byte gPlaySt
 .L08039960:
     cmp r0, #0x80
     beq .L0803996A
@@ -88827,7 +87827,7 @@ func_0803C90C: @ 0x0803C90C
     stm r1!, {r3, r4, r5}
     ldr r0, [r0]
     str r0, [r1]
-    ldr r0, .L0803C940 @ =gPlayStatus
+    ldr r0, .L0803C940 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -88844,7 +87844,7 @@ func_0803C90C: @ 0x0803C90C
     bx r0
     .align 2, 0
 .L0803C93C: .4byte 0x081D3BFC
-.L0803C940: .4byte gPlayStatus
+.L0803C940: .4byte gPlaySt
     func_end func_0803C90C
 
     thumb_func_start func_0803C944
@@ -91491,7 +90491,7 @@ func_0803DC8C: @ 0x0803DC8C
 .L0803DCBC: .4byte 0x02023C62
 .L0803DCC0:
     adds r0, r6, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -91613,7 +90613,7 @@ func_0803DD98: @ 0x0803DD98
     mov r0, sp
     movs r2, #8
     bl memcpy
-    ldr r0, .L0803DDCC @ =gPlayStatus
+    ldr r0, .L0803DDCC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -91630,7 +90630,7 @@ func_0803DD98: @ 0x0803DD98
     bx r0
     .align 2, 0
 .L0803DDC8: .4byte 0x081D5220
-.L0803DDCC: .4byte gPlayStatus
+.L0803DDCC: .4byte gPlaySt
     func_end func_0803DD98
 
     thumb_func_start func_0803DDD0
@@ -91656,7 +90656,7 @@ func_0803DDD0: @ 0x0803DDD0
 func_0803DDF4: @ 0x0803DDF4
     push {r4, r5, r6, lr}
     adds r5, r0, #0
-    ldr r0, .L0803DE18 @ =gKeys
+    ldr r0, .L0803DE18 @ =gpKeySt
     ldr r0, [r0]
     ldrh r4, [r0, #8]
     adds r3, r4, #0
@@ -91673,7 +90673,7 @@ func_0803DDF4: @ 0x0803DDF4
     str r3, [r0]
     b .L0803DE78
     .align 2, 0
-.L0803DE18: .4byte gKeys
+.L0803DE18: .4byte gpKeySt
 .L0803DE1C: .4byte 0x0203DC48
 .L0803DE20: .4byte 0x030013F4
 .L0803DE24:
@@ -91863,7 +90863,7 @@ func_0803DF48: @ 0x0803DF48
     lsls r0, r4, #2
     adds r0, r0, r1
     ldr r7, [r0]
-    bl func_080174D8
+    bl InitUnits
     cmp r4, #0
     beq .L0803DF7C
     cmp r4, #0
@@ -92455,7 +91455,7 @@ func_0803E358: @ 0x0803E358
     lsls r0, r6, #4
     adds r0, r0, r7
     ldr r0, [r0, #8]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     lsls r2, r6, #1
     adds r2, #5
@@ -92760,7 +91760,7 @@ func_0803E6B0: @ 0x0803E6B0
     lsrs r5, r2, #0x18
     lsls r3, r3, #0x18
     lsrs r6, r3, #0x18
-    ldr r1, .L0803E710 @ =gKeys
+    ldr r1, .L0803E710 @ =gpKeySt
     ldr r2, [r1]
     ldrh r3, [r2, #6]
     movs r0, #0x40
@@ -92804,7 +91804,7 @@ func_0803E6B0: @ 0x0803E6B0
     pop {r0}
     bx r0
     .align 2, 0
-.L0803E710: .4byte gKeys
+.L0803E710: .4byte gpKeySt
     func_end func_0803E6B0
 
     thumb_func_start func_0803E714
@@ -92868,7 +91868,7 @@ func_0803E714: @ 0x0803E714
     movs r1, #1
     bl func_0803DC8C
 .L0803E792:
-    ldr r0, .L0803E7E8 @ =gKeys
+    ldr r0, .L0803E7E8 @ =gpKeySt
     ldr r1, [r0]
     adds r0, r7, #0
     ldrh r1, [r1, #8]
@@ -92908,7 +91908,7 @@ func_0803E714: @ 0x0803E714
     .align 2, 0
 .L0803E7E0: .4byte 0x08B98C9C
 .L0803E7E4: .4byte 0x0203D90C
-.L0803E7E8: .4byte gKeys
+.L0803E7E8: .4byte gpKeySt
 .L0803E7EC:
     movs r0, #2
     bl func_0803DD98
@@ -92936,7 +91936,7 @@ func_0803E714: @ 0x0803E714
     bl Proc_Goto
     b .L0803E880
 .L0803E824:
-    ldr r5, .L0803E890 @ =gKeys
+    ldr r5, .L0803E890 @ =gpKeySt
     ldr r1, [r5]
     movs r0, #2
     ldrh r1, [r1, #8]
@@ -92965,7 +91965,7 @@ func_0803E714: @ 0x0803E714
     asrs r0, r0, #0x18
     cmp r0, #0
     beq .L0803E880
-    ldr r0, .L0803E898 @ =gPlayStatus
+    ldr r0, .L0803E898 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -92989,9 +91989,9 @@ func_0803E714: @ 0x0803E714
     pop {r0}
     bx r0
     .align 2, 0
-.L0803E890: .4byte gKeys
+.L0803E890: .4byte gpKeySt
 .L0803E894: .4byte 0x0203D90C
-.L0803E898: .4byte gPlayStatus
+.L0803E898: .4byte gPlaySt
 .L0803E89C: .4byte 0x0000038A
     func_end func_0803E714
 
@@ -93003,7 +92003,7 @@ func_0803E8A0: @ 0x0803E8A0
     ldr r0, [r4, #0x2c]
     bl Proc_End
     bl func_08047CA8
-    bl func_080174D8
+    bl InitUnits
     movs r0, #1
     bl GetUnit
     adds r1, r0, #0
@@ -93210,7 +92210,7 @@ func_0803E930: @ 0x0803E930
     adds r1, #0x28
     movs r0, #0x50
     bl func_08049F58
-    ldr r0, .L0803EA78 @ =gKeys
+    ldr r0, .L0803EA78 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -93234,7 +92234,7 @@ func_0803E930: @ 0x0803E930
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.L0803EA78: .4byte gKeys
+.L0803EA78: .4byte gpKeySt
 .L0803EA7C: .4byte .L0803EA80
 .L0803EA80: @ jump table
     .4byte .L0803EAA0 @ case 0
@@ -93336,16 +92336,16 @@ func_0803E930: @ 0x0803E930
     ldr r0, [r7, #0x38]
     cmp r1, r0
     bge .L0803EB70
-    ldr r0, .L0803EB6C @ =gKeys
+    ldr r0, .L0803EB6C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x80
     ldrh r2, [r1, #6]
     orrs r0, r2
     b .L0803EB7A
     .align 2, 0
-.L0803EB6C: .4byte gKeys
+.L0803EB6C: .4byte gpKeySt
 .L0803EB70:
-    ldr r0, .L0803EB84 @ =gKeys
+    ldr r0, .L0803EB84 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x40
     ldrh r3, [r1, #6]
@@ -93356,7 +92356,7 @@ func_0803E930: @ 0x0803E930
     strb r0, [r4]
     b .L0803EC76
     .align 2, 0
-.L0803EB84: .4byte gKeys
+.L0803EB84: .4byte gpKeySt
 .L0803EB88:
     movs r0, #2
     bl func_0803DD98
@@ -93470,7 +92470,7 @@ func_0803E930: @ 0x0803E930
     movs r1, #6
     bl Proc_Goto
 .L0803EC76:
-    ldr r0, .L0803ECAC @ =gKeys
+    ldr r0, .L0803ECAC @ =gpKeySt
     ldr r1, [r0]
     movs r0, #2
     ldrh r1, [r1, #8]
@@ -93493,7 +92493,7 @@ func_0803E930: @ 0x0803E930
 .L0803ECA0: .4byte 0x0203DA78
 .L0803ECA4: .4byte 0x0203DC4C
 .L0803ECA8: .4byte 0x0203D90C
-.L0803ECAC: .4byte gKeys
+.L0803ECAC: .4byte gpKeySt
 .L0803ECB0:
     cmp r0, #8
     beq .L0803ECBE
@@ -93508,7 +92508,7 @@ func_0803E930: @ 0x0803E930
     movs r1, #6
     bl Proc_Goto
 .L0803ECCA:
-    ldr r0, .L0803ED74 @ =gKeys
+    ldr r0, .L0803ED74 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #8
     ldrh r1, [r1, #8]
@@ -93522,7 +92522,7 @@ func_0803E930: @ 0x0803E930
     asrs r0, r0, #0x18
     cmp r0, #0
     beq .L0803ED06
-    ldr r0, .L0803ED78 @ =gPlayStatus
+    ldr r0, .L0803ED78 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -93538,7 +92538,7 @@ func_0803E930: @ 0x0803E930
     movs r1, #9
     bl Proc_Goto
 .L0803ED06:
-    ldr r0, .L0803ED74 @ =gKeys
+    ldr r0, .L0803ED74 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x40
     ldrh r1, [r1, #6]
@@ -93591,8 +92591,8 @@ func_0803E930: @ 0x0803E930
     bl func_08048C50
     b .L0803ED8E
     .align 2, 0
-.L0803ED74: .4byte gKeys
-.L0803ED78: .4byte gPlayStatus
+.L0803ED74: .4byte gpKeySt
+.L0803ED78: .4byte gPlaySt
 .L0803ED7C: .4byte 0x0000038A
 .L0803ED80: .4byte 0x0203D90C
 .L0803ED84:
@@ -93602,7 +92602,7 @@ func_0803E930: @ 0x0803E930
     subs r0, #1
     str r0, [r7, #0x40]
 .L0803ED8E:
-    ldr r0, .L0803EE08 @ =gKeys
+    ldr r0, .L0803EE08 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x80
     ldrh r1, [r1, #6]
@@ -93660,7 +92660,7 @@ func_0803E930: @ 0x0803E930
     bl func_08048C50
     b .L0803EE18
     .align 2, 0
-.L0803EE08: .4byte gKeys
+.L0803EE08: .4byte gpKeySt
 .L0803EE0C:
     subs r0, r1, #1
     ldr r1, [r7, #0x40]
@@ -93900,7 +92900,7 @@ func_0803EFC4: @ 0x0803EFC4
     adds r1, #0x18
     movs r0, #0x60
     bl func_0804925C
-    ldr r0, .L0803F068 @ =gKeys
+    ldr r0, .L0803F068 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x20
     ldrh r1, [r1, #8]
@@ -93917,7 +92917,7 @@ func_0803EFC4: @ 0x0803EFC4
     movs r0, #3
     bl func_0803DD98
 .L0803EFF6:
-    ldr r0, .L0803F068 @ =gKeys
+    ldr r0, .L0803F068 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x10
     ldrh r1, [r1, #8]
@@ -93943,7 +92943,7 @@ func_0803EFC4: @ 0x0803EFC4
     lsls r1, r1, #3
     adds r1, #0x20
     bl func_08049F58
-    ldr r0, .L0803F068 @ =gKeys
+    ldr r0, .L0803F068 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #2
@@ -93969,7 +92969,7 @@ func_0803EFC4: @ 0x0803EFC4
     bl Proc_Break
     b .L0803F0B8
     .align 2, 0
-.L0803F068: .4byte gKeys
+.L0803F068: .4byte gpKeySt
 .L0803F06C: .4byte 0x02022C7E
 .L0803F070:
     movs r0, #1
@@ -94483,7 +93483,7 @@ func_0803F2F8: @ 0x0803F2F8
     cmp r0, #0
     beq .L0803F4DA
     movs r4, #0
-    bl func_0802E6E4
+    bl GetTacticianName
     adds r2, r0, #0
     ldrb r1, [r2]
     add r3, sp, #0x14
@@ -94810,7 +93810,7 @@ func_0803F6C4: @ 0x0803F6C4
 .L0803F6F0: .4byte 0x0203D90C
 .L0803F6F4:
     adds r0, r4, #0
-    bl func_0802E6EC
+    bl SetTacticianName
 .L0803F6FA:
     adds r0, r5, #0
     bl Proc_Break
@@ -94829,7 +93829,7 @@ func_0803F710: @ 0x0803F710
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    ldr r6, .L0803F790 @ =gKeys
+    ldr r6, .L0803F790 @ =gpKeySt
     ldr r1, [r6]
     movs r0, #0x40
     ldrh r1, [r1, #6]
@@ -94891,7 +93891,7 @@ func_0803F710: @ 0x0803F710
     beq .L0803F79A
     b .L0803F7B6
     .align 2, 0
-.L0803F790: .4byte gKeys
+.L0803F790: .4byte gpKeySt
 .L0803F794:
     cmp r0, #5
     beq .L0803F7AE
@@ -94911,7 +93911,7 @@ func_0803F710: @ 0x0803F710
     adds r1, r5, #0
     bl func_0803F6C4
 .L0803F7B6:
-    ldr r6, .L0803F804 @ =gKeys
+    ldr r6, .L0803F804 @ =gpKeySt
     ldr r1, [r6]
     movs r0, #0x80
     lsls r0, r0, #2
@@ -94950,7 +93950,7 @@ func_0803F710: @ 0x0803F710
     bl func_0803F66C
     b .L0803F820
     .align 2, 0
-.L0803F804: .4byte gKeys
+.L0803F804: .4byte gpKeySt
 .L0803F808:
     bl func_0803DA14
     lsls r0, r0, #0x18
@@ -95242,7 +94242,7 @@ func_0803FA3C: @ 0x0803FA3C
     movs r0, #0x40
     movs r1, #0x58
     bl func_0804925C
-    ldr r0, .L0803FACC @ =gKeys
+    ldr r0, .L0803FACC @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x20
     ldrh r1, [r1, #8]
@@ -95259,7 +94259,7 @@ func_0803FA3C: @ 0x0803FA3C
     movs r0, #3
     bl func_0803DD98
 .L0803FA6A:
-    ldr r0, .L0803FACC @ =gKeys
+    ldr r0, .L0803FACC @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x10
     ldrh r1, [r1, #8]
@@ -95283,7 +94283,7 @@ func_0803FA3C: @ 0x0803FA3C
     adds r0, #0x50
     movs r1, #0x60
     bl func_08049F58
-    ldr r0, .L0803FACC @ =gKeys
+    ldr r0, .L0803FACC @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #2
@@ -95303,7 +94303,7 @@ func_0803FA3C: @ 0x0803FA3C
     bl Proc_Break
     b .L0803FB1A
     .align 2, 0
-.L0803FACC: .4byte gKeys
+.L0803FACC: .4byte gpKeySt
 .L0803FAD0: .4byte 0x02022F76
 .L0803FAD4:
     movs r0, #1
@@ -96178,7 +95178,7 @@ func_080401EC: @ 0x080401EC
     push {r4, lr}
     adds r4, r0, #0
     bl func_080490D4
-    ldr r0, .L08040228 @ =gKeys
+    ldr r0, .L08040228 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -96204,7 +95204,7 @@ func_080401EC: @ 0x080401EC
     pop {r0}
     bx r0
     .align 2, 0
-.L08040228: .4byte gKeys
+.L08040228: .4byte gpKeySt
 .L0804022C: .4byte 0x0869D668
 .L08040230: .4byte 0x0869D6E0
 .L08040234: .4byte 0x0000040C
@@ -96227,7 +95227,7 @@ func_08040238: @ 0x08040238
     movs r2, #0
     bl StartBgmExt
 .L08040256:
-    ldr r0, .L0804026C @ =gPlayStatus
+    ldr r0, .L0804026C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -96239,7 +95239,7 @@ func_08040238: @ 0x08040238
     pop {r0}
     bx r0
     .align 2, 0
-.L0804026C: .4byte gPlayStatus
+.L0804026C: .4byte gPlaySt
     func_end func_08040238
 
     thumb_func_start func_08040270
@@ -96490,7 +95490,7 @@ func_08040444: @ 0x08040444
     mov r0, sp
     movs r2, #3
     bl memcpy
-    bl func_080174D8
+    bl InitUnits
     movs r6, #0
     ldr r1, .L080404D0 @ =0x0203D90C
     ldrb r0, [r1, #5]
@@ -96772,7 +95772,7 @@ func_08040640: @ 0x08040640
     lsls r0, r0, #2
     adds r0, r0, r1
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     movs r0, #0xa
     str r0, [sp]
@@ -97022,7 +96022,7 @@ func_080408B8: @ 0x080408B8
     bl Proc_Find
     cmp r0, #0
     beq .L08040904
-    ldr r0, .L08040900 @ =gKeys
+    ldr r0, .L08040900 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #2
     ldrh r1, [r1, #8]
@@ -97038,7 +96038,7 @@ func_080408B8: @ 0x080408B8
     .align 2, 0
 .L080408F8: .4byte 0x0203DC24
 .L080408FC: .4byte 0x08B98B38
-.L08040900: .4byte gKeys
+.L08040900: .4byte gpKeySt
 .L08040904:
     bl func_08047B14
     ldr r2, .L0804094C @ =0x08B98AEC
@@ -97125,7 +96125,7 @@ func_080408B8: @ 0x080408B8
     movs r1, #1
     bl func_0803DC8C
 .L080409BA:
-    ldr r0, .L08040A18 @ =gKeys
+    ldr r0, .L08040A18 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #8
     ldrh r1, [r1, #8]
@@ -97169,7 +96169,7 @@ func_080408B8: @ 0x080408B8
     str r0, [r4, #0x34]
     b .L08040A94
     .align 2, 0
-.L08040A18: .4byte gKeys
+.L08040A18: .4byte gpKeySt
 .L08040A1C: .4byte 0x08B98AEC
 .L08040A20: .4byte 0x0203D90C
 .L08040A24:
@@ -97554,7 +96554,7 @@ func_08040CFC: @ 0x08040CFC
     strb r0, [r5]
     ldrb r0, [r4]
     str r0, [r7, #0x38]
-    ldr r0, .L08040D7C @ =gPlayStatus
+    ldr r0, .L08040D7C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -97583,7 +96583,7 @@ func_08040CFC: @ 0x08040CFC
     b .L08040D90
     .align 2, 0
 .L08040D78: .4byte 0x0203D90C
-.L08040D7C: .4byte gPlayStatus
+.L08040D7C: .4byte gPlaySt
 .L08040D80: .4byte 0x08B98AEC
 .L08040D84: .4byte 0x000003CE
 .L08040D88:
@@ -97610,7 +96610,7 @@ func_08040CFC: @ 0x08040CFC
     thumb_func_start func_08040DB0
 func_08040DB0: @ 0x08040DB0
     push {lr}
-    ldr r0, .L08040DC8 @ =gPlayStatus
+    ldr r0, .L08040DC8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -97622,7 +96622,7 @@ func_08040DB0: @ 0x08040DB0
     pop {r0}
     bx r0
     .align 2, 0
-.L08040DC8: .4byte gPlayStatus
+.L08040DC8: .4byte gPlaySt
     func_end func_08040DB0
 
     thumb_func_start func_08040DCC
@@ -97676,7 +96676,7 @@ func_08040E08: @ 0x08040E08
     ldr r1, .L08040EC8 @ =0x0203DC24
     movs r0, #0
     str r0, [r1]
-    bl func_080174D8
+    bl InitUnits
     ldr r0, .L08040ECC @ =0x0203D90C
     ldrb r0, [r0, #3]
     ldr r4, .L08040ED0 @ =0x08B99084
@@ -97774,7 +96774,7 @@ func_08040ED8: @ 0x08040ED8
     ldrsh r0, [r0, r1]
     cmp r0, #0
     bne .L08040F08
-    ldr r0, .L08041044 @ =gPlayStatus
+    ldr r0, .L08041044 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -97939,7 +96939,7 @@ func_08040ED8: @ 0x08040ED8
     pop {r0}
     bx r0
     .align 2, 0
-.L08041044: .4byte gPlayStatus
+.L08041044: .4byte gPlaySt
 .L08041048: .4byte 0x08B99084
 .L0804104C: .4byte 0x0203D90C
 .L08041050: .4byte 0x08B98AEC
@@ -97956,7 +96956,7 @@ func_0804105C: @ 0x0804105C
     ldrsh r0, [r0, r1]
     cmp r0, #0
     bne .L0804107C
-    ldr r0, .L080410F0 @ =gPlayStatus
+    ldr r0, .L080410F0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -98022,7 +97022,7 @@ func_0804105C: @ 0x0804105C
     pop {r0}
     bx r0
     .align 2, 0
-.L080410F0: .4byte gPlayStatus
+.L080410F0: .4byte gPlaySt
 .L080410F4: .4byte 0x0203DC24
 .L080410F8: .4byte 0x0300479C
 .L080410FC: .4byte 0x08B98AEC
@@ -98045,7 +97045,7 @@ func_08041104: @ 0x08041104
     movs r1, #0
     bl Text_SetColor
     ldr r0, .L08041160 @ =0x00000785
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -98127,7 +97127,7 @@ func_0804116C: @ 0x0804116C
     movs r1, #0
     bl Text_SetColor
     ldr r0, [r6]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -98291,13 +97291,13 @@ func_080412E0: @ 0x080412E0
     movs r0, #0
     strb r0, [r4]
     mov r0, sb
-    bl func_080A09A0
+    bl IsSaveValid
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0804143E
     mov r0, sb
     add r1, sp, #8
-    bl func_080A09B4
+    bl ReadGameSavePlaySt
     add r0, sp, #8
     bl func_080824A4
     adds r2, r7, #0
@@ -98564,7 +97564,7 @@ func_08041584: @ 0x08041584
     lsrs r6, r2, #0x18
     lsls r0, r0, #0x18
     lsrs r7, r0, #0x18
-    ldr r1, .L0804160C @ =gKeys
+    ldr r1, .L0804160C @ =gpKeySt
     ldr r3, [r1]
     ldrh r2, [r3, #6]
     movs r0, #0x40
@@ -98627,7 +97627,7 @@ func_08041584: @ 0x08041584
     pop {r0}
     bx r0
     .align 2, 0
-.L0804160C: .4byte gKeys
+.L0804160C: .4byte gpKeySt
     func_end func_08041584
 
     thumb_func_start func_08041610
@@ -98659,7 +97659,7 @@ func_08041610: @ 0x08041610
     movs r0, #3
     bl func_0803DD98
 .L0804164A:
-    ldr r4, .L08041688 @ =gKeys
+    ldr r4, .L08041688 @ =gpKeySt
     ldr r1, [r4]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -98688,7 +97688,7 @@ func_08041610: @ 0x08041610
     pop {r0}
     bx r0
     .align 2, 0
-.L08041688: .4byte gKeys
+.L08041688: .4byte gpKeySt
     func_end func_08041610
 
     thumb_func_start func_0804168C
@@ -98697,7 +97697,7 @@ func_0804168C: @ 0x0804168C
     adds r4, r0, #0
     ldr r0, [r4, #0x48]
     bl func_080A08EC
-    ldr r1, .L080416CC @ =gPlayStatus
+    ldr r1, .L080416CC @ =gPlaySt
     movs r0, #0xdf
     ldrb r2, [r1, #0x14]
     ands r0, r2
@@ -98721,7 +97721,7 @@ func_0804168C: @ 0x0804168C
     pop {r0}
     bx r0
     .align 2, 0
-.L080416CC: .4byte gPlayStatus
+.L080416CC: .4byte gPlaySt
 .L080416D0: .4byte 0x0203D90C
     func_end func_0804168C
 
@@ -98922,7 +97922,7 @@ func_080417F8: @ 0x080417F8
     lsls r4, r4, #2
     adds r4, r4, r0
     ldr r0, [r4]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     mov r0, r8
     movs r1, #0x88
@@ -98932,7 +97932,7 @@ func_080417F8: @ 0x080417F8
     lsls r5, r5, #2
     adds r5, r5, r0
     ldr r0, [r5]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     mov r0, r8
     movs r1, #0xa2
@@ -99110,7 +98110,7 @@ func_08041920: @ 0x08041920
     adds r0, r4, #0
     bl ClearText
     ldr r0, .L08041B28 @ =0x0000077F
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x10
@@ -99118,21 +98118,21 @@ func_08041920: @ 0x08041920
     bl Text_InsertDrawString
     movs r0, #0xf0
     lsls r0, r0, #3
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x54
     movs r2, #0
     bl Text_InsertDrawString
     ldr r0, .L08041B2C @ =0x00000781
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x78
     movs r2, #0
     bl Text_InsertDrawString
     ldr r0, .L08041B30 @ =0x00000782
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x96
@@ -99291,7 +98291,7 @@ func_08041B48: @ 0x08041B48
     bl func_08048C50
     b .L08041C3A
 .L08041B8E:
-    ldr r0, .L08041C40 @ =gKeys
+    ldr r0, .L08041C40 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x40
     ldrh r1, [r1, #6]
@@ -99324,7 +98324,7 @@ func_08041B48: @ 0x08041B48
     movs r0, #0xa
     bl func_08048C50
 .L08041BD4:
-    ldr r0, .L08041C40 @ =gKeys
+    ldr r0, .L08041C40 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x80
     ldrh r1, [r1, #6]
@@ -99360,7 +98360,7 @@ func_08041B48: @ 0x08041B48
     movs r0, #0xa
     bl func_08048C50
 .L08041C20:
-    ldr r0, .L08041C40 @ =gKeys
+    ldr r0, .L08041C40 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #2
     ldrh r1, [r1, #8]
@@ -99376,7 +98376,7 @@ func_08041B48: @ 0x08041B48
     pop {r0}
     bx r0
     .align 2, 0
-.L08041C40: .4byte gKeys
+.L08041C40: .4byte gpKeySt
     func_end func_08041B48
 
     thumb_func_start func_08041C44
@@ -99496,7 +98496,7 @@ func_08041C5C: @ 0x08041C5C
     adds r0, r4, #0
     bl ClearText
     ldr r0, .L08041EBC @ =0x0000077F
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x10
@@ -99504,21 +98504,21 @@ func_08041C5C: @ 0x08041C5C
     bl Text_InsertDrawString
     movs r0, #0xf0
     lsls r0, r0, #3
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x54
     movs r2, #0
     bl Text_InsertDrawString
     ldr r0, .L08041EC0 @ =0x00000781
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x78
     movs r2, #0
     bl Text_InsertDrawString
     ldr r0, .L08041EC4 @ =0x00000782
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x96
@@ -99763,7 +98763,7 @@ func_08041ED8: @ 0x08041ED8
 func_08041F94: @ 0x08041F94
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L08041FB8 @ =gKeys
+    ldr r0, .L08041FB8 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -99779,7 +98779,7 @@ func_08041F94: @ 0x08041F94
     pop {r0}
     bx r0
     .align 2, 0
-.L08041FB8: .4byte gKeys
+.L08041FB8: .4byte gpKeySt
     func_end func_08041F94
 
     thumb_func_start func_08041FBC
@@ -99902,7 +98902,7 @@ func_0804203C: @ 0x0804203C
     adds r0, #0xc
     adds r0, r5, r0
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -100036,7 +99036,7 @@ func_080420F0: @ 0x080420F0
     movs r1, #0
     bl Text_SetColor
     ldr r0, [r5]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -100122,7 +99122,7 @@ func_08042298: @ 0x08042298
     adds r6, r0, #0
     movs r4, #0
     movs r7, #0
-    ldr r5, .L080423B4 @ =gKeys
+    ldr r5, .L080423B4 @ =gpKeySt
     ldr r1, [r5]
     movs r0, #2
     ldrh r1, [r1, #8]
@@ -100151,7 +99151,7 @@ func_08042298: @ 0x08042298
     str r0, [r6, #0x30]
     movs r4, #1
 .L080422E0:
-    ldr r2, .L080423B4 @ =gKeys
+    ldr r2, .L080423B4 @ =gpKeySt
     ldr r1, [r2]
     movs r0, #0x80
     ldrh r1, [r1, #6]
@@ -100256,7 +99256,7 @@ func_08042298: @ 0x08042298
     pop {r0}
     bx r0
     .align 2, 0
-.L080423B4: .4byte gKeys
+.L080423B4: .4byte gpKeySt
 .L080423B8: .4byte 0x0203DA0C
 .L080423BC: .4byte 0x081D5358
 .L080423C0: .4byte 0x000003C3
@@ -100324,13 +99324,13 @@ func_08042428: @ 0x08042428
     movs r4, #0
 .L0804242E:
     adds r0, r4, #0
-    bl func_080A09A0
+    bl IsSaveValid
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08042452
     adds r0, r4, #0
     mov r1, sp
-    bl func_080A09B4
+    bl ReadGameSavePlaySt
     mov r0, sp
     bl func_080A0A10
     lsls r0, r0, #0x18
@@ -100869,7 +99869,7 @@ func_080428B8: @ 0x080428B8
     ldr r0, [r5, #0x48]
     cmp r0, #1
     bne .L08042938
-    ldr r0, .L080429B0 @ =gKeys
+    ldr r0, .L080429B0 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x20
     ldrh r1, [r1, #8]
@@ -100898,7 +99898,7 @@ func_080428B8: @ 0x080428B8
     movs r0, #3
     bl func_0803DD98
 .L08042902:
-    ldr r0, .L080429B0 @ =gKeys
+    ldr r0, .L080429B0 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x10
     ldrh r1, [r1, #8]
@@ -100923,7 +99923,7 @@ func_080428B8: @ 0x080428B8
     movs r0, #3
     bl func_0803DD98
 .L08042938:
-    ldr r1, .L080429B0 @ =gKeys
+    ldr r1, .L080429B0 @ =gpKeySt
     ldr r2, [r1]
     ldrh r3, [r2, #6]
     movs r0, #0x40
@@ -100989,7 +99989,7 @@ func_080428B8: @ 0x080428B8
     pop {r0}
     bx r0
     .align 2, 0
-.L080429B0: .4byte gKeys
+.L080429B0: .4byte gpKeySt
 .L080429B4: .4byte 0x0203D90C
     func_end func_080428B8
 
@@ -101050,7 +100050,7 @@ func_080429B8: @ 0x080429B8
     ldr r0, [r4, #0x48]
     bl func_08047F8C
 .L08042A36:
-    ldr r5, .L08042A88 @ =gKeys
+    ldr r5, .L08042A88 @ =gpKeySt
     ldr r1, [r5]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -101088,7 +100088,7 @@ func_080429B8: @ 0x080429B8
     bx r0
     .align 2, 0
 .L08042A84: .4byte 0x081D541C
-.L08042A88: .4byte gKeys
+.L08042A88: .4byte gpKeySt
 .L08042A8C: .4byte 0x0203D90C
     func_end func_080429B8
 
@@ -101249,7 +100249,7 @@ func_08042BB8: @ 0x08042BB8
     movs r3, #0
     bl InitTextFont
     movs r0, #5
-    bl func_080A09A0
+    bl IsSaveValid
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08042BDC
@@ -101263,7 +100263,7 @@ func_08042BB8: @ 0x08042BB8
     bl func_0803D9F4
     bl func_08044ED8
     bl func_0802D380
-    ldr r1, .L08042C2C @ =gPlayStatus
+    ldr r1, .L08042C2C @ =gPlaySt
     movs r0, #0xdf
     ldrb r2, [r1, #0x14]
     ands r0, r2
@@ -101287,7 +100287,7 @@ func_08042BB8: @ 0x08042BB8
 .L08042C20: .4byte 0x0203DA60
 .L08042C24: .4byte 0x06001800
 .L08042C28: .4byte 0x0203D90C
-.L08042C2C: .4byte gPlayStatus
+.L08042C2C: .4byte gPlaySt
 .L08042C30: .4byte 0x08B99640
 .L08042C34: .4byte 0x08B9333C
     func_end func_08042BB8
@@ -101327,7 +100327,7 @@ func_08042C58: @ 0x08042C58
     strb r0, [r1, #5]
     strb r0, [r1, #3]
     strb r0, [r1, #1]
-    ldr r1, .L08042CB0 @ =gPlayStatus
+    ldr r1, .L08042CB0 @ =gPlaySt
     adds r1, #0x41
     subs r0, #0xd
     ldrb r2, [r1]
@@ -101350,7 +100350,7 @@ func_08042C58: @ 0x08042C58
 .L08042CA4: .4byte 0x0203DA60
 .L08042CA8: .4byte 0x06001800
 .L08042CAC: .4byte 0x0203D90C
-.L08042CB0: .4byte gPlayStatus
+.L08042CB0: .4byte gPlaySt
 .L08042CB4: .4byte 0x08B98E14
     func_end func_08042C58
 
@@ -101363,7 +100363,7 @@ func_08042CB8: @ 0x08042CB8
     bl Proc_Find
     cmp r0, #0
     beq .L08042CE4
-    ldr r0, .L08042CE0 @ =gKeys
+    ldr r0, .L08042CE0 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #2
     ldrh r1, [r1, #8]
@@ -101375,7 +100375,7 @@ func_08042CB8: @ 0x08042CB8
     b .L08042D2E
     .align 2, 0
 .L08042CDC: .4byte 0x08B98B38
-.L08042CE0: .4byte gKeys
+.L08042CE0: .4byte gpKeySt
 .L08042CE4:
     ldr r0, .L08042D38 @ =0x08B98AEC
     ldr r2, [r0]
@@ -101634,7 +100634,7 @@ func_08042EB8: @ 0x08042EB8
     ldrb r0, [r0]
     cmp r1, r0
     bhs .L08042F10
-    ldr r0, .L08042F18 @ =gPlayStatus
+    ldr r0, .L08042F18 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -101672,7 +100672,7 @@ func_08042EB8: @ 0x08042EB8
     pop {r0}
     bx r0
     .align 2, 0
-.L08042F18: .4byte gPlayStatus
+.L08042F18: .4byte gPlaySt
 .L08042F1C: .4byte 0x0203D970
 .L08042F20: .4byte 0x081D5444
 .L08042F24: .4byte 0x0202303C
@@ -101689,7 +100689,7 @@ func_08042F28: @ 0x08042F28
     ldrb r0, [r0]
     cmp r1, r0
     bhs .L08042F80
-    ldr r0, .L08042F88 @ =gPlayStatus
+    ldr r0, .L08042F88 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -101727,7 +100727,7 @@ func_08042F28: @ 0x08042F28
     pop {r0}
     bx r0
     .align 2, 0
-.L08042F88: .4byte gPlayStatus
+.L08042F88: .4byte gPlaySt
 .L08042F8C: .4byte 0x0203D970
 .L08042F90: .4byte 0x081D544C
 .L08042F94: .4byte 0x0202303C
@@ -101796,7 +100796,7 @@ func_08043010: @ 0x08043010
     movs r0, #1
     b .L08043052
 .L08043020:
-    ldr r0, .L08043058 @ =gPlayStatus
+    ldr r0, .L08043058 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -101824,7 +100824,7 @@ func_08043010: @ 0x08043010
     pop {r1}
     bx r1
     .align 2, 0
-.L08043058: .4byte gPlayStatus
+.L08043058: .4byte gPlaySt
 .L0804305C: .4byte 0x08B98AEC
 .L08043060: .4byte 0x02000000
 .L08043064: .4byte 0x0E007400
@@ -101901,7 +100901,7 @@ func_080430C4: @ 0x080430C4
     bl InitSystemTextFont
     ldr r4, .L08043124 @ =0x0203D970
     ldr r0, .L08043128 @ =0x00000771
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     movs r2, #0
@@ -102141,7 +101141,7 @@ func_080431E0: @ 0x080431E0
     adds r0, r4, #0
     bl ClearText
     ldr r0, .L080433C8 @ =0x0000118D
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -102293,7 +101293,7 @@ func_080433F0: @ 0x080433F0
     adds r6, r0, #0
     cmp r1, #0
     bne .L0804346C
-    ldr r0, .L08043468 @ =gKeys
+    ldr r0, .L08043468 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #2
     ldrh r1, [r1, #8]
@@ -102307,7 +101307,7 @@ func_080433F0: @ 0x080433F0
     bl Proc_Goto
     b .L080434D6
     .align 2, 0
-.L08043468: .4byte gKeys
+.L08043468: .4byte gpKeySt
 .L0804346C:
     adds r4, r6, #0
     movs r0, #0
@@ -102638,7 +101638,7 @@ func_08043700: @ 0x08043700
     push {r4, r5, r6, lr}
     adds r5, r0, #0
     ldr r4, [r5, #0x54]
-    ldr r0, .L08043774 @ =gKeys
+    ldr r0, .L08043774 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x40
     ldrh r1, [r1, #8]
@@ -102653,7 +101653,7 @@ func_08043700: @ 0x08043700
     movs r0, #3
     bl func_0803DD98
 .L08043724:
-    ldr r0, .L08043774 @ =gKeys
+    ldr r0, .L08043774 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x80
     ldrh r1, [r1, #8]
@@ -102668,7 +101668,7 @@ func_08043700: @ 0x08043700
     movs r0, #3
     bl func_0803DD98
 .L08043742:
-    ldr r0, .L08043774 @ =gKeys
+    ldr r0, .L08043774 @ =gpKeySt
     ldr r1, [r0]
     movs r6, #1
     adds r0, r6, #0
@@ -102692,7 +101692,7 @@ func_08043700: @ 0x08043700
     bl Proc_Break
     b .L08043782
     .align 2, 0
-.L08043774: .4byte gKeys
+.L08043774: .4byte gpKeySt
 .L08043778: .4byte 0x02000C04
 .L0804377C:
     movs r0, #0
@@ -102805,7 +101805,7 @@ func_08043828: @ 0x08043828
     bne .L0804387C
     ldr r7, .L08043878 @ =0x00001186
     adds r0, r7, #0
-    bl GetMsg
+    bl DecodeMsg
     bl func_080055FC
     adds r5, r0, #0
     cmp r4, #0
@@ -102815,7 +101815,7 @@ func_08043828: @ 0x08043828
     asrs r6, r0, #1
 .L08043864:
     adds r0, r7, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     mov r0, sb
     adds r1, r6, #0
@@ -102842,7 +101842,7 @@ func_08043828: @ 0x08043828
     lsls r0, r0, #1
     adds r0, r0, r1
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     bl func_080055FC
     subs r0, #1
     str r0, [sp, #4]
@@ -102853,13 +101853,13 @@ func_08043828: @ 0x08043828
     adds r0, r0, r1
     str r0, [sp, #0x14]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     bl func_080055FC
     subs r0, #1
     str r0, [sp, #8]
     adds r5, r5, r0
     ldr r0, .L08043974 @ =0x00001185
-    bl GetMsg
+    bl DecodeMsg
     bl func_080055FC
     str r0, [sp, #0xc]
     adds r5, r5, r0
@@ -102868,7 +101868,7 @@ func_08043828: @ 0x08043828
     cmp r4, #0
     beq .L080438EA
     ldr r0, .L08043978 @ =0x00001188
-    bl GetMsg
+    bl DecodeMsg
     bl func_080055FC
     adds r5, r5, r0
 .L080438EA:
@@ -102888,7 +101888,7 @@ func_08043828: @ 0x08043828
     ldr r1, .L08043970 @ =0x08B99880
     adds r0, r0, r1
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     mov r0, sb
     adds r1, r6, #0
@@ -102899,7 +101899,7 @@ func_08043828: @ 0x08043828
 .L0804391C:
     ldr r2, [sp, #0x14]
     ldrh r0, [r2]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     mov r0, sb
     adds r1, r6, #0
@@ -102908,7 +101908,7 @@ func_08043828: @ 0x08043828
     ldr r0, [sp, #8]
     adds r6, r6, r0
     ldr r0, .L08043974 @ =0x00001185
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     mov r0, sb
     adds r1, r6, #0
@@ -102919,7 +101919,7 @@ func_08043828: @ 0x08043828
     cmp r4, #0
     beq .L08043960
     ldr r0, .L08043978 @ =0x00001188
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     mov r0, sb
     adds r1, r6, #0
@@ -102955,7 +101955,7 @@ func_0804397C: @ 0x0804397C
     adds r3, r7, #0
     bl func_08043828
     ldrh r0, [r5]
-    bl GetMsg
+    bl DecodeMsg
     bl func_080055FC
     movs r1, #0x46
     subs r1, r1, r0
@@ -102969,7 +101969,7 @@ func_0804397C: @ 0x0804397C
     adds r4, r1, #0
     adds r4, #0x28
     ldrh r0, [r5]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r6, #0
     adds r1, r4, #0
@@ -102987,21 +101987,21 @@ func_080439D0: @ 0x080439D0
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, .L08043A10 @ =0x00001191
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
     movs r2, #0
     bl Text_InsertDrawString
     movs r0, #1
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x80
     movs r2, #0
     bl Text_InsertDrawString
     movs r0, #2
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0xb0
@@ -103689,7 +102689,7 @@ func_08043F50: @ 0x08043F50
     adds r0, #0x28
     movs r1, #0x60
     bl func_08049F58
-    ldr r0, .L08043FAC @ =gKeys
+    ldr r0, .L08043FAC @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r6, #2
@@ -103703,7 +102703,7 @@ func_08043F50: @ 0x08043F50
     b .L08044012
     .align 2, 0
 .L08043FA8: .4byte 0x08B999BC
-.L08043FAC: .4byte gKeys
+.L08043FAC: .4byte gpKeySt
 .L08043FB0:
     movs r0, #0x20
     ands r0, r1
@@ -103717,7 +102717,7 @@ func_08043F50: @ 0x08043F50
     movs r0, #3
     bl func_0803DD98
 .L08043FC8:
-    ldr r0, .L0804402C @ =gKeys
+    ldr r0, .L0804402C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x10
     ldrh r1, [r1, #8]
@@ -103736,7 +102736,7 @@ func_08043F50: @ 0x08043F50
     movs r0, #3
     bl func_0803DD98
 .L08043FEE:
-    ldr r0, .L0804402C @ =gKeys
+    ldr r0, .L0804402C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -103765,7 +102765,7 @@ func_08043F50: @ 0x08043F50
     bl Proc_Break
     b .L08044072
     .align 2, 0
-.L0804402C: .4byte gKeys
+.L0804402C: .4byte gpKeySt
 .L08044030: .4byte 0x020236A4
 .L08044034:
     movs r0, #2
@@ -103808,7 +102808,7 @@ func_08043F50: @ 0x08043F50
 func_0804408C: @ 0x0804408C
     push {lr}
     adds r2, r0, #0
-    ldr r0, .L080440A8 @ =gKeys
+    ldr r0, .L080440A8 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #9
     ldrh r1, [r1, #8]
@@ -103821,7 +102821,7 @@ func_0804408C: @ 0x0804408C
     pop {r0}
     bx r0
     .align 2, 0
-.L080440A8: .4byte gKeys
+.L080440A8: .4byte gpKeySt
     func_end func_0804408C
 
     thumb_func_start func_080440AC
@@ -103832,8 +102832,8 @@ func_080440AC: @ 0x080440AC
     bx r0
     func_end func_080440AC
 
-    thumb_func_start func_080440B8
-func_080440B8: @ 0x080440B8
+    thumb_func_start GC_ConnectToFE6
+GC_ConnectToFE6: @ 0x080440B8
     push {r4, lr}
     adds r4, r0, #0
     bl LoadUiFrameGraphics
@@ -103852,7 +102852,7 @@ func_080440B8: @ 0x080440B8
 .L080440DC: .4byte 0x0203DA60
 .L080440E0: .4byte 0x06001800
 .L080440E4: .4byte 0x08B999D8
-    func_end func_080440B8
+    func_end GC_ConnectToFE6
 
     thumb_func_start func_080440E8
 func_080440E8: @ 0x080440E8
@@ -104568,7 +103568,7 @@ func_08044630: @ 0x08044630
     ldrb r0, [r0, #6]
     cmp r1, r0
     bne .L0804468A
-    ldr r0, .L080446C0 @ =gPlayStatus
+    ldr r0, .L080446C0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -104603,7 +103603,7 @@ func_08044630: @ 0x08044630
     bx r0
     .align 2, 0
 .L080446BC: .4byte 0x08B98AEC
-.L080446C0: .4byte gPlayStatus
+.L080446C0: .4byte gPlaySt
 .L080446C4: .4byte 0x0203DC9C
     func_end func_08044630
 
@@ -105067,7 +104067,7 @@ func_08044A8C: @ 0x08044A8C
     adds r4, r0, #0
     bl func_080442D4
     ldr r0, .L08044ABC @ =0x000012CB
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     str r4, [sp]
     movs r0, #0x58
@@ -105094,7 +104094,7 @@ func_08044AC0: @ 0x08044AC0
     adds r4, r0, #0
     bl func_080442D4
     ldr r0, .L08044AE8 @ =0x000012CB
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     str r4, [sp]
     movs r0, #0x58
@@ -105670,7 +104670,7 @@ func_08044ED8: @ 0x08044ED8
     orrs r0, r1
     strb r0, [r4, #4]
     bl InitTraps
-    ldr r4, .L08044F38 @ =gPlayStatus
+    ldr r4, .L08044F38 @ =gPlaySt
     movs r0, #0x40
     strb r0, [r4, #0xf]
     movs r0, #0x41
@@ -105695,7 +104695,7 @@ func_08044ED8: @ 0x08044ED8
     .align 2, 0
 .L08044F30: .4byte gBmStatus
 .L08044F34: .4byte 0x01000020
-.L08044F38: .4byte gPlayStatus
+.L08044F38: .4byte gPlaySt
     func_end func_08044ED8
 
     thumb_func_start func_08044F3C
@@ -105707,7 +104707,7 @@ func_08044F3C: @ 0x08044F3C
     ldr r0, .L08044F6C @ =gMapFog
     ldr r2, [r0]
     movs r1, #0
-    ldr r0, .L08044F70 @ =gPlayStatus
+    ldr r0, .L08044F70 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     bne .L08044F5A
@@ -105721,7 +104721,7 @@ func_08044F3C: @ 0x08044F3C
     bx r0
     .align 2, 0
 .L08044F6C: .4byte gMapFog
-.L08044F70: .4byte gPlayStatus
+.L08044F70: .4byte gPlaySt
     func_end func_08044F3C
 
     thumb_func_start func_08044F74
@@ -105798,7 +104798,7 @@ func_08044FD0: @ 0x08044FD0
     thumb_func_start func_08044FFC
 func_08044FFC: @ 0x08044FFC
     push {r4, r5, lr}
-    ldr r1, .L08045054 @ =gPlayStatus
+    ldr r1, .L08045054 @ =gPlaySt
     movs r0, #0x42
     adds r0, r0, r1
     mov ip, r0
@@ -105841,7 +104841,7 @@ func_08044FFC: @ 0x08044FFC
     pop {r0}
     bx r0
     .align 2, 0
-.L08045054: .4byte gPlayStatus
+.L08045054: .4byte gPlaySt
     func_end func_08044FFC
 
     thumb_func_start func_08045058
@@ -105908,7 +104908,7 @@ func_08045058: @ 0x08045058
     bl Proc_Start
     bl func_0802D380
     bl func_08044FFC
-    ldr r1, .L08045120 @ =gPlayStatus
+    ldr r1, .L08045120 @ =gPlaySt
     movs r0, #0xbf
     ldrb r2, [r1, #0x14]
     ands r0, r2
@@ -105924,7 +104924,7 @@ func_08045058: @ 0x08045058
 .L08045114: .4byte 0x03001414
 .L08045118: .4byte gBmStatus
 .L0804511C: .4byte 0x08B961A8
-.L08045120: .4byte gPlayStatus
+.L08045120: .4byte gPlaySt
     func_end func_08045058
 
     thumb_func_start func_08045124
@@ -105966,7 +104966,7 @@ func_08045124: @ 0x08045124
 func_08045170: @ 0x08045170
     push {lr}
     adds r2, r0, #0
-    ldr r0, .L08045190 @ =gKeys
+    ldr r0, .L08045190 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x80
     lsls r0, r0, #2
@@ -105980,7 +104980,7 @@ func_08045170: @ 0x08045170
     pop {r0}
     bx r0
     .align 2, 0
-.L08045190: .4byte gKeys
+.L08045190: .4byte gpKeySt
     func_end func_08045170
 
     thumb_func_start func_08045194
@@ -105997,17 +104997,17 @@ func_08045194: @ 0x08045194
     .align 2, 0
 .L080451A8: .4byte 0x0203D90C
 .L080451AC:
-    ldr r0, .L080451B8 @ =gPlayStatus
+    ldr r0, .L080451B8 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0
     beq .L080451CE
     ldr r0, .L080451BC @ =0x08B99FF8
     b .L080451D0
     .align 2, 0
-.L080451B8: .4byte gPlayStatus
+.L080451B8: .4byte gPlaySt
 .L080451BC: .4byte 0x08B99FF8
 .L080451C0:
-    ldr r0, .L080451D8 @ =gPlayStatus
+    ldr r0, .L080451D8 @ =gPlaySt
     ldr r1, .L080451DC @ =0x08B98AEC
     ldr r1, [r1]
     ldrb r0, [r0, #0xf]
@@ -106021,7 +105021,7 @@ func_08045194: @ 0x08045194
     bl Proc_StartBlocking
     b .L080451EC
     .align 2, 0
-.L080451D8: .4byte gPlayStatus
+.L080451D8: .4byte gPlaySt
 .L080451DC: .4byte 0x08B98AEC
 .L080451E0: .4byte 0x08B99D58
 .L080451E4:
@@ -106075,12 +105075,12 @@ func_080451FC: @ 0x080451FC
     .align 2, 0
 .L0804523C: .4byte 0x0203DC9C
 .L08045240:
-    ldr r0, .L08045248 @ =gPlayStatus
+    ldr r0, .L08045248 @ =gPlaySt
     strb r2, [r0, #0xf]
     ldr r2, .L0804524C @ =0x03001400
     b .L08045252
     .align 2, 0
-.L08045248: .4byte gPlayStatus
+.L08045248: .4byte gPlaySt
 .L0804524C: .4byte 0x03001400
 .L08045250:
     adds r1, #1
@@ -106463,7 +105463,7 @@ func_08045500: @ 0x08045500
     blt .L08045528
     bl func_080442FC
     ldr r0, .L0804553C @ =0x08B99D3C
-    bl func_0800AF5C
+    bl StartEvent
     adds r0, r4, #0
     movs r1, #3
     bl Proc_Goto
@@ -106512,7 +105512,7 @@ func_08045558: @ 0x08045558
     ldrb r1, [r0, #2]
     mov sl, r1
     bl func_08045448
-    ldr r4, .L08045648 @ =gKeys
+    ldr r4, .L08045648 @ =gpKeySt
     ldr r0, [r4]
     ldrh r0, [r0, #6]
     movs r1, #0
@@ -106552,7 +105552,7 @@ func_08045558: @ 0x08045558
     asrs r5, r0, #0x18
     cmp r5, #1
     bne .L08045668
-    ldr r0, .L0804565C @ =gPlayStatus
+    ldr r0, .L0804565C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -106601,16 +105601,16 @@ func_08045558: @ 0x08045558
     .align 2, 0
 .L08045640: .4byte 0x081D5501
 .L08045644: .4byte 0x0203DC9C
-.L08045648: .4byte gKeys
+.L08045648: .4byte gpKeySt
 .L0804564C: .4byte gActiveUnitId
 .L08045650: .4byte 0x03001400
 .L08045654: .4byte gActiveUnit
 .L08045658: .4byte 0x08B98AEC
-.L0804565C: .4byte gPlayStatus
+.L0804565C: .4byte gPlaySt
 .L08045660: .4byte 0x00000389
 .L08045664: .4byte 0x03001420
 .L08045668:
-    ldr r0, .L080456AC @ =gPlayStatus
+    ldr r0, .L080456AC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -106620,7 +105620,7 @@ func_08045558: @ 0x08045558
     lsls r0, r0, #2
     bl m4aSongNumStart
 .L0804567C:
-    ldr r2, .L080456B0 @ =gKeys
+    ldr r2, .L080456B0 @ =gpKeySt
     ldr r1, [r2]
     movs r0, #0x80
     lsls r0, r0, #1
@@ -106642,8 +105642,8 @@ func_08045558: @ 0x08045558
     bl Proc_Goto
     b .L0804575A
     .align 2, 0
-.L080456AC: .4byte gPlayStatus
-.L080456B0: .4byte gKeys
+.L080456AC: .4byte gPlaySt
+.L080456B0: .4byte gpKeySt
 .L080456B4: .4byte gActiveUnit
 .L080456B8:
     ldr r1, [r2]
@@ -106653,7 +105653,7 @@ func_08045558: @ 0x08045558
     cmp r0, #0
     beq .L080456F4
     bl func_080442FC
-    ldr r0, .L080456EC @ =gPlayStatus
+    ldr r0, .L080456EC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -106663,14 +105663,14 @@ func_08045558: @ 0x08045558
     lsls r0, r0, #2
     bl m4aSongNumStart
     ldr r0, .L080456F0 @ =0x08B99D20
-    bl func_0800AF5C
+    bl StartEvent
 .L080456E2:
     adds r0, r6, #0
     movs r1, #2
     bl Proc_Goto
     b .L0804575A
     .align 2, 0
-.L080456EC: .4byte gPlayStatus
+.L080456EC: .4byte gPlaySt
 .L080456F0: .4byte 0x08B99D20
 .L080456F4:
     ldr r0, .L0804576C @ =gActiveUnit
@@ -106712,7 +105712,7 @@ func_08045558: @ 0x08045558
     ldrb r0, [r0, #2]
     cmp sl, r0
     beq .L0804575A
-    ldr r0, .L0804577C @ =gPlayStatus
+    ldr r0, .L0804577C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -106734,7 +105734,7 @@ func_08045558: @ 0x08045558
 .L08045770: .4byte 0x03001418
 .L08045774: .4byte 0x03001414
 .L08045778: .4byte 0x0203DC9C
-.L0804577C: .4byte gPlayStatus
+.L0804577C: .4byte gPlaySt
 .L08045780: .4byte 0x00000385
     func_end func_08045558
 
@@ -106758,7 +105758,7 @@ func_08045790: @ 0x08045790
     ldr r6, .L0804586C @ =0x0203DC9C
     ldrb r0, [r6, #2]
     str r0, [sp, #4]
-    ldr r1, .L08045870 @ =gKeys
+    ldr r1, .L08045870 @ =gpKeySt
     ldr r0, [r1]
     ldrh r0, [r0, #6]
     movs r1, #1
@@ -106808,14 +105808,14 @@ func_08045790: @ 0x08045790
     adds r1, r4, #0
     movs r2, #0
     bl PutMapCursor
-    ldr r2, .L08045870 @ =gKeys
+    ldr r2, .L08045870 @ =gpKeySt
     ldr r0, [r2]
     ldrh r1, [r0, #8]
     movs r0, #1
     ands r0, r1
     cmp r0, #0
     beq .L08045890
-    ldr r0, .L08045888 @ =gPlayStatus
+    ldr r0, .L08045888 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -106850,20 +105850,20 @@ func_08045790: @ 0x08045790
     b .L08045944
     .align 2, 0
 .L0804586C: .4byte 0x0203DC9C
-.L08045870: .4byte gKeys
+.L08045870: .4byte gpKeySt
 .L08045874: .4byte gActiveUnitId
 .L08045878: .4byte 0x03001400
 .L0804587C: .4byte gActiveUnit
 .L08045880: .4byte 0x03001418
 .L08045884: .4byte 0x03001414
-.L08045888: .4byte gPlayStatus
+.L08045888: .4byte gPlaySt
 .L0804588C: .4byte 0x00000389
 .L08045890:
     movs r0, #2
     ands r0, r1
     cmp r0, #0
     beq .L080458FC
-    ldr r0, .L080458F0 @ =gPlayStatus
+    ldr r0, .L080458F0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -106902,7 +105902,7 @@ func_08045790: @ 0x08045790
     bl Proc_Goto
     b .L08045944
     .align 2, 0
-.L080458F0: .4byte gPlayStatus
+.L080458F0: .4byte gPlaySt
 .L080458F4: .4byte 0x0000038B
 .L080458F8: .4byte 0x03001420
 .L080458FC:
@@ -106932,7 +105932,7 @@ func_08045790: @ 0x08045790
     ldrb r0, [r0, #2]
     cmp r2, r0
     beq .L08045944
-    ldr r0, .L08045958 @ =gPlayStatus
+    ldr r0, .L08045958 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -106951,7 +105951,7 @@ func_08045790: @ 0x08045790
     bx r0
     .align 2, 0
 .L08045954: .4byte 0x0203DC9C
-.L08045958: .4byte gPlayStatus
+.L08045958: .4byte gPlaySt
 .L0804595C: .4byte 0x00000385
     func_end func_08045790
 
@@ -107251,14 +106251,14 @@ func_08045AB8: @ 0x08045AB8
 func_08045BC8: @ 0x08045BC8
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L08045BF8 @ =gKeys
+    ldr r0, .L08045BF8 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #1
     ands r0, r1
     cmp r0, #0
     beq .L08045C04
-    ldr r0, .L08045BFC @ =gPlayStatus
+    ldr r0, .L08045BFC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -107272,15 +106272,15 @@ func_08045BC8: @ 0x08045BC8
     bl Proc_Break
     b .L08045C2A
     .align 2, 0
-.L08045BF8: .4byte gKeys
-.L08045BFC: .4byte gPlayStatus
+.L08045BF8: .4byte gpKeySt
+.L08045BFC: .4byte gPlaySt
 .L08045C00: .4byte 0x0000038A
 .L08045C04:
     movs r0, #2
     ands r0, r1
     cmp r0, #0
     beq .L08045C2A
-    ldr r0, .L08045C30 @ =gPlayStatus
+    ldr r0, .L08045C30 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -107298,7 +106298,7 @@ func_08045BC8: @ 0x08045BC8
     pop {r0}
     bx r0
     .align 2, 0
-.L08045C30: .4byte gPlayStatus
+.L08045C30: .4byte gPlaySt
 .L08045C34: .4byte 0x0000038B
     func_end func_08045BC8
 
@@ -108056,7 +107056,7 @@ func_080461A4: @ 0x080461A4
     bl Proc_Break
     b .L08046278
 .L0804626A:
-    ldr r0, .L08046284 @ =gPlayStatus
+    ldr r0, .L08046284 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     bl func_08044B34
     mov r0, r8
@@ -108068,7 +107068,7 @@ func_080461A4: @ 0x080461A4
     pop {r0}
     bx r0
     .align 2, 0
-.L08046284: .4byte gPlayStatus
+.L08046284: .4byte gPlaySt
     func_end func_080461A4
 
     thumb_func_start func_08046288
@@ -108086,7 +107086,7 @@ func_08046288: @ 0x08046288
     thumb_func_start func_080462A4
 func_080462A4: @ 0x080462A4
     push {lr}
-    ldr r0, .L080462D0 @ =gKeys
+    ldr r0, .L080462D0 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #2
     ldrh r1, [r1, #8]
@@ -108108,7 +107108,7 @@ func_080462A4: @ 0x080462A4
     pop {r0}
     bx r0
     .align 2, 0
-.L080462D0: .4byte gKeys
+.L080462D0: .4byte gpKeySt
 .L080462D4: .4byte 0x0300479C
 .L080462D8: .4byte 0x08B98AEC
     func_end func_080462A4
@@ -108591,7 +107591,7 @@ func_08046674: @ 0x08046674
     push {r4, r5, lr}
     adds r5, r0, #0
     adds r4, r1, #0
-    ldr r0, .L080466B4 @ =gKeys
+    ldr r0, .L080466B4 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #8
     ldrh r1, [r1, #4]
@@ -108600,7 +107600,7 @@ func_08046674: @ 0x08046674
     beq .L080466C0
     bl func_080442FC
     str r4, [r5, #0x58]
-    ldr r0, .L080466B8 @ =gPlayStatus
+    ldr r0, .L080466B8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -108610,7 +107610,7 @@ func_08046674: @ 0x08046674
     lsls r0, r0, #2
     bl m4aSongNumStart
     ldr r0, .L080466BC @ =0x08B99D20
-    bl func_0800AF5C
+    bl StartEvent
 .L080466A8:
     adds r0, r5, #0
     movs r1, #3
@@ -108618,8 +107618,8 @@ func_08046674: @ 0x08046674
     movs r0, #1
     b .L080466C2
     .align 2, 0
-.L080466B4: .4byte gKeys
-.L080466B8: .4byte gPlayStatus
+.L080466B4: .4byte gpKeySt
+.L080466B8: .4byte gPlaySt
 .L080466BC: .4byte 0x08B99D20
 .L080466C0:
     movs r0, #0
@@ -108656,7 +107656,7 @@ func_080466C8: @ 0x080466C8
     ldrb r0, [r0]
     cmp r0, #0
     beq .L08046714
-    ldr r0, .L0804672C @ =gPlayStatus
+    ldr r0, .L0804672C @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, r4
     beq .L08046714
@@ -108679,7 +107679,7 @@ func_080466C8: @ 0x080466C8
     bx r0
     .align 2, 0
 .L08046728: .4byte 0x0203DC9C
-.L0804672C: .4byte gPlayStatus
+.L0804672C: .4byte gPlaySt
     func_end func_080466C8
 
     thumb_func_start func_08046730
@@ -108738,7 +107738,7 @@ func_08046760: @ 0x08046760
     adds r0, #0x7d
     movs r1, #0xe
     strb r1, [r0]
-    ldr r0, .L080468D0 @ =gPlayStatus
+    ldr r0, .L080468D0 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     lsls r0, r0, #6
     str r0, [sp, #0x14]
@@ -108898,7 +107898,7 @@ func_08046760: @ 0x08046760
     b .L080468EA
     .align 2, 0
 .L080468CC: .4byte 0x0203A8EC
-.L080468D0: .4byte gPlayStatus
+.L080468D0: .4byte gPlaySt
 .L080468D4: .4byte gActiveUnitId
 .L080468D8: .4byte gActiveUnit
 .L080468DC: .4byte 0x00010004
@@ -109270,7 +108270,7 @@ func_08046B8C: @ 0x08046B8C
 .L08046BA4: .4byte 0x0203DC9C
 .L08046BA8:
     bl EndAllMus
-    ldr r0, .L08046BC0 @ =gPlayStatus
+    ldr r0, .L08046BC0 @ =gPlaySt
     ldrb r1, [r0, #0xf]
     movs r0, #6
     movs r2, #0
@@ -109280,7 +108280,7 @@ func_08046B8C: @ 0x08046B8C
     pop {r0}
     bx r0
     .align 2, 0
-.L08046BC0: .4byte gPlayStatus
+.L08046BC0: .4byte gPlaySt
     func_end func_08046B8C
 
     thumb_func_start func_08046BC4
@@ -109298,7 +108298,7 @@ func_08046BC4: @ 0x08046BC4
 .L08046BD8: .4byte 0x0203DC9C
 .L08046BDC:
     bl EndAllMus
-    ldr r0, .L08046BF4 @ =gPlayStatus
+    ldr r0, .L08046BF4 @ =gPlaySt
     ldrb r1, [r0, #0xf]
     movs r0, #7
     movs r2, #0
@@ -109308,7 +108308,7 @@ func_08046BC4: @ 0x08046BC4
     pop {r0}
     bx r0
     .align 2, 0
-.L08046BF4: .4byte gPlayStatus
+.L08046BF4: .4byte gPlaySt
     func_end func_08046BC4
 
     thumb_func_start func_08046BF8
@@ -109367,7 +108367,7 @@ func_08046C3C: @ 0x08046C3C
     adds r0, r2, #0
     adds r0, #0xf
     adds r1, r1, r0
-    ldr r3, .L08046CBC @ =gPlayStatus
+    ldr r3, .L08046CBC @ =gPlaySt
     ldrb r0, [r3, #0xf]
     strb r0, [r1]
     ldrb r0, [r2, #0xe]
@@ -109411,7 +108411,7 @@ func_08046C3C: @ 0x08046C3C
     b .L08046CCE
     .align 2, 0
 .L08046CB8: .4byte 0x0203DC9C
-.L08046CBC: .4byte gPlayStatus
+.L08046CBC: .4byte gPlaySt
 .L08046CC0:
     ldrb r0, [r3, #0xf]
     bl func_08044B34
@@ -109470,7 +108470,7 @@ func_08046D10: @ 0x08046D10
     adds r0, r2, #0
     adds r0, #0xf
     adds r1, r1, r0
-    ldr r3, .L08046D84 @ =gPlayStatus
+    ldr r3, .L08046D84 @ =gPlaySt
     ldrb r0, [r3, #0xf]
     strb r0, [r1]
     ldrb r0, [r2, #0xe]
@@ -109514,7 +108514,7 @@ func_08046D10: @ 0x08046D10
     .align 2, 0
 .L08046D7C: .4byte 0x0203DC9C
 .L08046D80: .4byte 0x0203D90C
-.L08046D84: .4byte gPlayStatus
+.L08046D84: .4byte gPlaySt
 .L08046D88:
     ldrb r0, [r3, #0xf]
     bl func_08044B34
@@ -109551,7 +108551,7 @@ func_08046DC0: @ 0x08046DC0
     push {r4, lr}
     movs r3, #0
     str r3, [r0, #0x58]
-    ldr r2, .L08046DE0 @ =gPlayStatus
+    ldr r2, .L08046DE0 @ =gPlaySt
     ldrb r4, [r2, #0xf]
     lsls r1, r4, #6
     str r1, [r0, #0x5c]
@@ -109564,7 +108564,7 @@ func_08046DC0: @ 0x08046DC0
     pop {r0}
     bx r0
     .align 2, 0
-.L08046DE0: .4byte gPlayStatus
+.L08046DE0: .4byte gPlaySt
 .L08046DE4: .4byte 0x0203DC9C
     func_end func_08046DC0
 
@@ -110800,7 +109800,7 @@ func_080476E4: @ 0x080476E4
     ldr r1, [r4, #0x30]
     movs r0, #0xd
     strh r0, [r1, #0x1e]
-    ldr r0, .L08047764 @ =gPlayStatus
+    ldr r0, .L08047764 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -110815,7 +109815,7 @@ func_080476E4: @ 0x080476E4
     .align 2, 0
 .L0804775C: .4byte 0x08C9D044
 .L08047760: .4byte gDispIo
-.L08047764: .4byte gPlayStatus
+.L08047764: .4byte gPlaySt
     func_end func_080476E4
 
     thumb_func_start func_08047768
@@ -113599,7 +112599,7 @@ func_08048CA8: @ 0x08048CA8
     ldr r0, .L08048CC4 @ =0x081C9D88
     ldr r1, .L08048CC8 @ =0x06002000
     bl Decompress
-    ldr r0, .L08048CCC @ =gPlayStatus
+    ldr r0, .L08048CCC @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #1
     beq .L08048CF4
@@ -113611,7 +112611,7 @@ func_08048CA8: @ 0x08048CA8
     .align 2, 0
 .L08048CC4: .4byte 0x081C9D88
 .L08048CC8: .4byte 0x06002000
-.L08048CCC: .4byte gPlayStatus
+.L08048CCC: .4byte gPlaySt
 .L08048CD0:
     cmp r0, #2
     beq .L08048D0C
@@ -113662,7 +112662,7 @@ func_08048CA8: @ 0x08048CA8
     bl ApplyPaletteExt
 .L08048D3E:
     ldr r2, .L08048D5C @ =0x0300144C
-    ldr r1, .L08048D60 @ =gPlayStatus
+    ldr r1, .L08048D60 @ =gPlaySt
     ldrb r0, [r1, #0xf]
     str r0, [r2]
     movs r0, #0
@@ -113674,13 +112674,13 @@ func_08048CA8: @ 0x08048CA8
 .L08048D54: .4byte 0x06002800
 .L08048D58: .4byte 0x081C9F48
 .L08048D5C: .4byte 0x0300144C
-.L08048D60: .4byte gPlayStatus
+.L08048D60: .4byte gPlaySt
     func_end func_08048CA8
 
     thumb_func_start func_08048D64
 func_08048D64: @ 0x08048D64
     push {r4, lr}
-    ldr r1, .L08048DD4 @ =gPlayStatus
+    ldr r1, .L08048DD4 @ =gPlaySt
     ldr r0, .L08048DD8 @ =0x0300144C
     ldr r0, [r0]
     movs r2, #0
@@ -113735,7 +112735,7 @@ func_08048D64: @ 0x08048D64
     pop {r0}
     bx r0
     .align 2, 0
-.L08048DD4: .4byte gPlayStatus
+.L08048DD4: .4byte gPlaySt
 .L08048DD8: .4byte 0x0300144C
 .L08048DDC: .4byte gDispIo
     func_end func_08048D64
@@ -115462,7 +114462,7 @@ func_08049A94: @ 0x08049A94
     movs r3, #1
 .L08049A9E:
     ldr r2, .L08049ABC @ =0x08B9A830
-    ldr r1, .L08049AC0 @ =gPlayStatus
+    ldr r1, .L08049AC0 @ =gPlaySt
     adds r1, #0x41
     movs r0, #0xc
     ldrb r1, [r1]
@@ -115476,7 +114476,7 @@ func_08049A94: @ 0x08049A94
     bx r0
     .align 2, 0
 .L08049ABC: .4byte 0x08B9A830
-.L08049AC0: .4byte gPlayStatus
+.L08049AC0: .4byte gPlaySt
     func_end func_08049A94
 
     thumb_func_start func_08049AC4
@@ -115489,7 +114489,7 @@ func_08049AC4: @ 0x08049AC4
     lsls r3, r3, #0x13
 .L08049AD0:
     ldr r2, .L08049AEC @ =0x08B9A840
-    ldr r1, .L08049AF0 @ =gPlayStatus
+    ldr r1, .L08049AF0 @ =gPlaySt
     adds r1, #0x41
     movs r0, #0xc
     ldrb r1, [r1]
@@ -115502,7 +114502,7 @@ func_08049AC4: @ 0x08049AC4
     bx r0
     .align 2, 0
 .L08049AEC: .4byte 0x08B9A840
-.L08049AF0: .4byte gPlayStatus
+.L08049AF0: .4byte gPlaySt
     func_end func_08049AC4
 
     thumb_func_start func_08049AF4
@@ -115514,7 +114514,7 @@ func_08049AF4: @ 0x08049AF4
     movs r3, #6
 .L08049AFE:
     ldr r2, .L08049B1C @ =0x08B9A850
-    ldr r1, .L08049B20 @ =gPlayStatus
+    ldr r1, .L08049B20 @ =gPlaySt
     adds r1, #0x41
     movs r0, #0xc
     ldrb r1, [r1]
@@ -115528,7 +114528,7 @@ func_08049AF4: @ 0x08049AF4
     bx r0
     .align 2, 0
 .L08049B1C: .4byte 0x08B9A850
-.L08049B20: .4byte gPlayStatus
+.L08049B20: .4byte gPlaySt
     func_end func_08049AF4
 
     thumb_func_start func_08049B24
@@ -115537,7 +114537,7 @@ func_08049B24: @ 0x08049B24
     adds r5, r0, #0
     cmp r5, #0
     bge .L08049B36
-    ldr r0, .L08049B6C @ =gPlayStatus
+    ldr r0, .L08049B6C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1c
@@ -115566,7 +114566,7 @@ func_08049B24: @ 0x08049B24
     pop {r0}
     bx r0
     .align 2, 0
-.L08049B6C: .4byte gPlayStatus
+.L08049B6C: .4byte gPlaySt
 .L08049B70: .4byte 0x08B9A840
 .L08049B74: .4byte gFadeComponentStep
     func_end func_08049B24
@@ -116548,7 +115548,7 @@ StartMenuExt: @ 0x0804A280
     movs r1, #0
     movs r2, #0
     bl SetBgOffset
-    ldr r0, .L0804A2E0 @ =gPlayStatus
+    ldr r0, .L0804A2E0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -116569,7 +115569,7 @@ StartMenuExt: @ 0x0804A280
     movs r0, #0
     b .L0804A2FC
     .align 2, 0
-.L0804A2E0: .4byte gPlayStatus
+.L0804A2E0: .4byte gPlaySt
 .L0804A2E4: .4byte 0x08B9A8A0
 .L0804A2E8:
     bl LockGame
@@ -116713,7 +115713,7 @@ StartMenuExt: @ 0x0804A280
     adds r1, #0x2f
     strb r0, [r1]
 .L0804A3FE:
-    ldr r0, .L0804A420 @ =gKeys
+    ldr r0, .L0804A420 @ =gpKeySt
     ldr r0, [r0]
     strh r2, [r0, #8]
     adds r0, r5, #0
@@ -116728,7 +115728,7 @@ StartMenuExt: @ 0x0804A280
     .align 2, 0
 .L0804A418: .4byte 0x08B9A8A0
 .L0804A41C: .4byte 0x08B9A8E0
-.L0804A420: .4byte gKeys
+.L0804A420: .4byte gpKeySt
     func_end StartMenuExt
 
     thumb_func_start func_0804A424
@@ -116918,7 +115918,7 @@ func_0804A4E0: @ 0x0804A4E0
     beq .L0804A5B2
     adds r4, r5, #0
     adds r4, #0x34
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -117053,7 +116053,7 @@ func_0804A63C: @ 0x0804A63C
     ands r0, r4
     cmp r0, #0
     beq .L0804A6A8
-    ldr r0, .L0804A730 @ =gPlayStatus
+    ldr r0, .L0804A730 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -117066,7 +116066,7 @@ func_0804A63C: @ 0x0804A63C
     ands r0, r4
     cmp r0, #0
     beq .L0804A6C2
-    ldr r0, .L0804A730 @ =gPlayStatus
+    ldr r0, .L0804A730 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -117129,7 +116129,7 @@ func_0804A63C: @ 0x0804A63C
     pop {r0}
     bx r0
     .align 2, 0
-.L0804A730: .4byte gPlayStatus
+.L0804A730: .4byte gPlaySt
 .L0804A734: .4byte 0x0000038A
 .L0804A738: .4byte 0x0000038B
     func_end func_0804A63C
@@ -117144,7 +116144,7 @@ func_0804A73C: @ 0x0804A73C
     adds r1, r6, #0
     adds r1, #0x62
     strb r0, [r1]
-    ldr r1, .L0804A814 @ =gKeys
+    ldr r1, .L0804A814 @ =gpKeySt
     ldr r3, [r1]
     ldrh r4, [r3, #6]
     movs r0, #0x40
@@ -117206,7 +116206,7 @@ func_0804A73C: @ 0x0804A73C
     adds r0, r6, #0
     movs r2, #1
     bl func_0804A5E0
-    ldr r0, .L0804A818 @ =gPlayStatus
+    ldr r0, .L0804A818 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -117246,8 +116246,8 @@ func_0804A73C: @ 0x0804A73C
     pop {r0}
     bx r0
     .align 2, 0
-.L0804A814: .4byte gKeys
-.L0804A818: .4byte gPlayStatus
+.L0804A814: .4byte gpKeySt
+.L0804A818: .4byte gPlaySt
 .L0804A81C: .4byte 0x00000386
     func_end func_0804A73C
 
@@ -117273,7 +116273,7 @@ func_0804A820: @ 0x0804A820
     lsls r0, r0, #0x18
     lsrs r6, r0, #0x18
 .L0804A848:
-    ldr r0, .L0804A86C @ =gKeys
+    ldr r0, .L0804A86C @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #1
@@ -117290,7 +116290,7 @@ func_0804A820: @ 0x0804A820
     ldr r2, [r7, #0x14]
     b .L0804A87C
     .align 2, 0
-.L0804A86C: .4byte gKeys
+.L0804A86C: .4byte gpKeySt
 .L0804A870:
     movs r0, #2
     ands r0, r1
@@ -117451,7 +116451,7 @@ func_0804A954: @ 0x0804A954
     ldr r0, [sp]
     ldr r1, [sp, #4]
     bl func_08049F58
-    ldr r0, .L0804A99C @ =gKeys
+    ldr r0, .L0804A99C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -117465,7 +116465,7 @@ func_0804A954: @ 0x0804A954
     bl func_08004758
     b .L0804A9CA
     .align 2, 0
-.L0804A99C: .4byte gKeys
+.L0804A99C: .4byte gpKeySt
 .L0804A9A0: .4byte 0x08B9A888
 .L0804A9A4:
     adds r1, r5, #0
@@ -117520,7 +116520,7 @@ func_0804A9E4: @ 0x0804A9E4
     ldr r0, [sp]
     ldr r1, [sp, #4]
     bl func_0804A004
-    ldr r0, .L0804AA2C @ =gKeys
+    ldr r0, .L0804AA2C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -117538,7 +116538,7 @@ func_0804A9E4: @ 0x0804A9E4
     pop {r0}
     bx r0
     .align 2, 0
-.L0804AA2C: .4byte gKeys
+.L0804AA2C: .4byte gpKeySt
 .L0804AA30: .4byte 0x08B9A888
     func_end func_0804A9E4
 
@@ -117582,7 +116582,7 @@ func_0804AA68: @ 0x0804AA68
     ldr r0, [sp]
     ldr r1, [sp, #4]
     bl func_0804A004
-    ldr r0, .L0804AAA8 @ =gKeys
+    ldr r0, .L0804AAA8 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #3
     ldrh r1, [r1, #8]
@@ -117598,7 +116598,7 @@ func_0804AA68: @ 0x0804AA68
     pop {r0}
     bx r0
     .align 2, 0
-.L0804AAA8: .4byte gKeys
+.L0804AAA8: .4byte gpKeySt
 .L0804AAAC: .4byte 0x08B9A888
     func_end func_0804AA68
 
@@ -118086,7 +117086,7 @@ func_0804ADAC: @ 0x0804ADAC
     ands r0, r5
     cmp r0, #0
     beq .L0804AE0C
-    ldr r0, .L0804AE7C @ =gPlayStatus
+    ldr r0, .L0804AE7C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -118099,7 +117099,7 @@ func_0804ADAC: @ 0x0804ADAC
     ands r0, r5
     cmp r0, #0
     beq .L0804AE26
-    ldr r0, .L0804AE7C @ =gPlayStatus
+    ldr r0, .L0804AE7C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -118149,7 +117149,7 @@ func_0804ADAC: @ 0x0804ADAC
     pop {r0}
     bx r0
     .align 2, 0
-.L0804AE7C: .4byte gPlayStatus
+.L0804AE7C: .4byte gPlaySt
 .L0804AE80: .4byte 0x0000038A
 .L0804AE84: .4byte 0x0000038B
     func_end func_0804ADAC
@@ -118194,7 +117194,7 @@ StartMapSelect: @ 0x0804AE88
     adds r0, r5, #0
     bl _call_via_r2
 .L0804AEDA:
-    ldr r0, .L0804AEEC @ =gKeys
+    ldr r0, .L0804AEEC @ =gpKeySt
     ldr r0, [r0]
     strh r6, [r0, #8]
     adds r0, r5, #0
@@ -118203,7 +117203,7 @@ StartMapSelect: @ 0x0804AE88
     bx r1
     .align 2, 0
 .L0804AEE8: .4byte 0x08B9A92C
-.L0804AEEC: .4byte gKeys
+.L0804AEEC: .4byte gpKeySt
     func_end StartMapSelect
 
     thumb_func_start func_0804AEF0
@@ -118250,7 +117250,7 @@ func_0804AF34: @ 0x0804AF34
     push {r4, lr}
     adds r4, r0, #0
     ldr r3, [r4, #0x30]
-    ldr r2, .L0804AFA4 @ =gKeys
+    ldr r2, .L0804AFA4 @ =gpKeySt
     ldr r1, [r2]
     movs r0, #0x60
     ldrh r1, [r1, #6]
@@ -118293,7 +117293,7 @@ func_0804AF34: @ 0x0804AF34
     adds r0, r4, #0
     bl _call_via_r2
 .L0804AF8C:
-    ldr r0, .L0804AFA8 @ =gPlayStatus
+    ldr r0, .L0804AFA8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -118306,8 +117306,8 @@ func_0804AF34: @ 0x0804AF34
     pop {r0}
     bx r0
     .align 2, 0
-.L0804AFA4: .4byte gKeys
-.L0804AFA8: .4byte gPlayStatus
+.L0804AFA4: .4byte gpKeySt
+.L0804AFA8: .4byte gPlaySt
 .L0804AFAC: .4byte 0x00000387
     func_end func_0804AF34
 
@@ -118316,7 +117316,7 @@ func_0804AFB0: @ 0x0804AFB0
     push {r4, lr}
     adds r2, r0, #0
     movs r4, #0
-    ldr r0, .L0804AFD0 @ =gKeys
+    ldr r0, .L0804AFD0 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #1
@@ -118330,7 +117330,7 @@ func_0804AFB0: @ 0x0804AFB0
     ldr r3, [r0, #0x14]
     b .L0804AFF0
     .align 2, 0
-.L0804AFD0: .4byte gKeys
+.L0804AFD0: .4byte gpKeySt
 .L0804AFD4:
     movs r0, #2
     ands r0, r1
@@ -118688,7 +117688,7 @@ func_0804B218: @ 0x0804B218
     bl Proc_Start
     str r0, [r4]
     ldr r0, .L0804B268 @ =func_0804B284
-    bl func_080019B8
+    bl SetMainFunc
     bl func_0804D4CC
     ldr r0, .L0804B26C @ =0x02017724
     movs r1, #0
@@ -118726,7 +117726,7 @@ func_0804B218: @ 0x0804B218
     thumb_func_start func_0804B284
 func_0804B284: @ 0x0804B284
     push {lr}
-    ldr r0, .L0804B29C @ =gKeys
+    ldr r0, .L0804B29C @ =gpKeySt
     ldr r0, [r0]
     bl RefreshKeySt
     ldr r0, .L0804B2A0 @ =0x0200001C
@@ -118736,7 +117736,7 @@ func_0804B284: @ 0x0804B284
     bl func_0804B328
     b .L0804B2B0
     .align 2, 0
-.L0804B29C: .4byte gKeys
+.L0804B29C: .4byte gpKeySt
 .L0804B2A0: .4byte 0x0200001C
 .L0804B2A4:
     ldr r0, .L0804B2C4 @ =0x02000020
@@ -119055,7 +118055,7 @@ func_0804B490: @ 0x0804B490
 func_0804B52C: @ 0x0804B52C
     push {r4, lr}
     adds r4, r0, #0
-    bl func_0800ED20
+    bl IsEventRunning
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0804B566
@@ -119484,7 +118484,7 @@ func_0804B858: @ 0x0804B858
     push {r4, r5, r6, lr}
     adds r6, r0, #0
     movs r4, #0
-    ldr r0, .L0804B888 @ =gKeys
+    ldr r0, .L0804B888 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #2
     ldrh r1, [r1, #4]
@@ -119507,7 +118507,7 @@ func_0804B858: @ 0x0804B858
     beq .L0804B93C
     b .L0804B93E
     .align 2, 0
-.L0804B888: .4byte gKeys
+.L0804B888: .4byte gpKeySt
 .L0804B88C: .4byte 0x0203E02C
 .L0804B890:
     cmp r0, #0
@@ -122699,7 +121699,7 @@ func_0804D0B8: @ 0x0804D0B8
 .L0804D142:
     mov ip, r0
 .L0804D144:
-    ldr r0, .L0804D1C0 @ =gPlayStatus
+    ldr r0, .L0804D1C0 @ =gPlaySt
     ldrb r0, [r0, #0x15]
     ldr r0, .L0804D1C4 @ =0x0200004C
     ldr r1, [r5, #0x10]
@@ -122758,7 +121758,7 @@ func_0804D0B8: @ 0x0804D0B8
 .L0804D1B4: .4byte 0x0200003C
 .L0804D1B8: .4byte 0x02014DC8
 .L0804D1BC: .4byte 0xFFFFF800
-.L0804D1C0: .4byte gPlayStatus
+.L0804D1C0: .4byte gPlaySt
 .L0804D1C4: .4byte 0x0200004C
 .L0804D1C8: .4byte 0x02000044
 .L0804D1CC: .4byte 0x08B9B29C
@@ -122807,7 +121807,7 @@ func_0804D1D4: @ 0x0804D1D4
     ldr r0, [r0]
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
 .L0804D23E:
     ldr r4, .L0804D27C @ =0x02017660
@@ -122883,7 +121883,7 @@ func_0804D1D4: @ 0x0804D1D4
     ldr r0, [r0]
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
 .L0804D2FE:
     ldr r4, .L0804D33C @ =0x02017678
@@ -124657,7 +123657,7 @@ func_0804E0F0: @ 0x0804E0F0
 func_0804E168: @ 0x0804E168
     push {r4, r5, lr}
     adds r4, r0, #0
-    bl func_0800ED20
+    bl IsEventRunning
     lsls r0, r0, #0x18
     asrs r5, r0, #0x18
     cmp r5, #0
@@ -128406,7 +127406,7 @@ func_0804FF04: @ 0x0804FF04
     ldrsh r0, [r1, r2]
     cmp r0, #0
     bne .L0804FF2C
-    ldr r0, .L0804FF28 @ =gPlayStatus
+    ldr r0, .L0804FF28 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -128415,7 +127415,7 @@ func_0804FF04: @ 0x0804FF04
     b .L0804FF36
     .align 2, 0
 .L0804FF24: .4byte 0x0203E00A
-.L0804FF28: .4byte gPlayStatus
+.L0804FF28: .4byte gPlaySt
 .L0804FF2C:
     movs r2, #0
     ldrsh r0, [r1, r2]
@@ -129849,7 +128849,7 @@ func_080509A4: @ 0x080509A4
     str r1, [r0]
     str r1, [r0, #4]
     ldr r0, .L08050A04 @ =func_08050A38
-    bl func_080019B8
+    bl SetMainFunc
     movs r0, #0
     bl SetOnHBlankA
 .L080509F4:
@@ -129879,7 +128879,7 @@ func_08050A08: @ 0x08050A08
 .L08050A26:
     bl func_08050EB4
     ldr r0, .L08050A34 @ =func_08050A38
-    bl func_080019B8
+    bl SetMainFunc
 .L08050A30:
     pop {r0}
     bx r0
@@ -129890,7 +128890,7 @@ func_08050A08: @ 0x08050A08
     thumb_func_start func_08050A38
 func_08050A38: @ 0x08050A38
     push {r4, lr}
-    ldr r0, .L08050A9C @ =gKeys
+    ldr r0, .L08050A9C @ =gpKeySt
     ldr r0, [r0]
     bl RefreshKeySt
     bl func_080069B0
@@ -129927,7 +128927,7 @@ func_08050A38: @ 0x08050A38
     pop {r0}
     bx r0
     .align 2, 0
-.L08050A9C: .4byte gKeys
+.L08050A9C: .4byte gpKeySt
 .L08050AA0: .4byte gProcTreeRoots
 .L08050AA4: .4byte gBmStatus
 .L08050AA8: .4byte 0x04000006
@@ -130524,7 +129524,7 @@ func_08050F44: @ 0x08050F44
     .align 2, 0
 .L08050F64: .4byte 0x0203E00A
 .L08050F68:
-    ldr r0, .L08050F94 @ =gPlayStatus
+    ldr r0, .L08050F94 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -130543,7 +129543,7 @@ func_08050F44: @ 0x08050F44
     pop {r0}
     bx r0
     .align 2, 0
-.L08050F94: .4byte gPlayStatus
+.L08050F94: .4byte gPlaySt
     func_end func_08050F44
 
     thumb_func_start func_08050F98
@@ -132823,7 +131823,7 @@ func_08051D50: @ 0x08051D50
     cmp r7, #0
     beq .L0805218E
     ldrb r4, [r2]
-    ldr r0, .L08052258 @ =gPlayStatus
+    ldr r0, .L08052258 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -132837,7 +131837,7 @@ func_08051D50: @ 0x08051D50
     cmp r4, #0
     beq .L080521AC
     ldrb r4, [r6]
-    ldr r0, .L08052258 @ =gPlayStatus
+    ldr r0, .L08052258 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -132859,7 +131859,7 @@ func_08051D50: @ 0x08051D50
     strh r0, [r1, #2]
     cmp r7, #0
     beq .L080521DA
-    ldr r0, .L08052258 @ =gPlayStatus
+    ldr r0, .L08052258 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -132874,7 +131874,7 @@ func_08051D50: @ 0x08051D50
     beq .L080521FA
     mov r3, sb
     ldrh r4, [r3, #2]
-    ldr r0, .L08052258 @ =gPlayStatus
+    ldr r0, .L08052258 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -132909,7 +131909,7 @@ func_08051D50: @ 0x08051D50
     ldrh r0, [r1, #2]
     strh r0, [r1]
 .L0805222A:
-    ldr r0, .L08052258 @ =gPlayStatus
+    ldr r0, .L08052258 @ =gPlaySt
     ldrb r0, [r0, #0x15]
     cmp r0, #2
     bgt .L08052268
@@ -132926,7 +131926,7 @@ func_08051D50: @ 0x08051D50
 .L0805224C: .4byte 0x0203E0D8
 .L08052250: .4byte 0x0203E028
 .L08052254: .4byte 0x0000FFFF
-.L08052258: .4byte gPlayStatus
+.L08052258: .4byte gPlaySt
 .L0805225C: .4byte gBmStatus
 .L08052260: .4byte 0x0203E02C
 .L08052264: .4byte 0x0203E00E
@@ -133459,7 +132459,7 @@ func_08051D50: @ 0x08051D50
     bl func_0804B1A0
     cmp r0, #1
     beq .L0805267E
-    ldr r0, .L0805268C @ =gPlayStatus
+    ldr r0, .L0805268C @ =gPlaySt
     adds r0, #0x40
     ldrb r0, [r0]
     lsls r0, r0, #0x1f
@@ -133472,7 +132472,7 @@ func_08051D50: @ 0x08051D50
     .align 2, 0
 .L08052684: .4byte 0x0203E0B0
 .L08052688: .4byte 0x081DAB78
-.L0805268C: .4byte gPlayStatus
+.L0805268C: .4byte gPlaySt
 .L08052690: .4byte 0x0203E0E8
 .L08052694:
     ldr r1, .L080526BC @ =0x0203E0E8
@@ -133503,7 +132503,7 @@ func_08051D50: @ 0x08051D50
     ldr r0, .L08052824 @ =0x0203E0D8
     ldrh r4, [r0, #2]
 .L080526D0:
-    ldr r0, .L08052828 @ =gPlayStatus
+    ldr r0, .L08052828 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -133678,7 +132678,7 @@ func_08051D50: @ 0x08051D50
     b .L08052846
     .align 2, 0
 .L08052824: .4byte 0x0203E0D8
-.L08052828: .4byte gPlayStatus
+.L08052828: .4byte gPlaySt
 .L0805282C: .4byte 0x0203E00A
 .L08052830: .4byte 0x0203E02C
 .L08052834: .4byte 0x0203E010
@@ -139426,7 +138426,7 @@ func_08055594: @ 0x08055594
     bl func_08006508
     bl func_08055734
     ldr r0, .L080555A8 @ =func_08050A38
-    bl func_080019B8
+    bl SetMainFunc
     pop {r0}
     bx r0
     .align 2, 0
@@ -139704,8 +138704,8 @@ func_080557DC: @ 0x080557DC
     adds r4, r0, #0
     bl func_0804B1D8
     bl func_0804C438
-    ldr r0, .L08055800 @ =func_0801529C
-    bl func_080019B8
+    ldr r0, .L08055800 @ =OnMain
+    bl SetMainFunc
     ldr r0, .L08055804 @ =OnVBlank
     bl SetOnVBlank
     adds r0, r4, #0
@@ -139714,7 +138714,7 @@ func_080557DC: @ 0x080557DC
     pop {r0}
     bx r0
     .align 2, 0
-.L08055800: .4byte func_0801529C
+.L08055800: .4byte OnMain
 .L08055804: .4byte OnVBlank
     func_end func_080557DC
 
@@ -171200,7 +170200,7 @@ func_080654D8: @ 0x080654D8
     ldrsh r0, [r4, r1]
     cmp r0, #0
     bne .L080654F6
-    ldr r0, .L0806552C @ =gPlayStatus
+    ldr r0, .L0806552C @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -171233,7 +170233,7 @@ func_080654D8: @ 0x080654D8
     pop {r0}
     bx r0
     .align 2, 0
-.L0806552C: .4byte gPlayStatus
+.L0806552C: .4byte gPlaySt
     func_end func_080654D8
 
     thumb_func_start func_08065530
@@ -175578,7 +174578,7 @@ func_080675C8: @ 0x080675C8
     bl func_080676D0
     adds r0, r5, #0
     bl func_08003510
-    ldr r0, .L0806760C @ =gPlayStatus
+    ldr r0, .L0806760C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -175590,7 +174590,7 @@ func_080675C8: @ 0x080675C8
     b .L0806761E
     .align 2, 0
 .L08067608: .4byte gBmStatus
-.L0806760C: .4byte gPlayStatus
+.L0806760C: .4byte gPlaySt
 .L08067610:
     ldr r0, .L08067624 @ =0x08BDAF68
     movs r1, #3
@@ -175627,7 +174627,7 @@ func_08067628: @ 0x08067628
     bl func_080676D0
     ldr r0, [r4, #0x44]
     bl func_08003510
-    ldr r0, .L08067678 @ =gPlayStatus
+    ldr r0, .L08067678 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -175645,7 +174645,7 @@ func_08067628: @ 0x08067628
     pop {r0}
     bx r0
     .align 2, 0
-.L08067678: .4byte gPlayStatus
+.L08067678: .4byte gPlaySt
     func_end func_08067628
 
     thumb_func_start func_0806767C
@@ -176678,7 +175678,7 @@ func_08067E48: @ 0x08067E48
     rsbs r1, r0, #0
     orrs r1, r0
     lsrs r4, r1, #0x1f
-    ldr r0, .L08067F58 @ =gPlayStatus
+    ldr r0, .L08067F58 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     cmp r0, #0x3e
     beq .L08067EEE
@@ -176742,7 +175742,7 @@ func_08067E48: @ 0x08067E48
     b .L080680CE
     .align 2, 0
 .L08067F54: .4byte 0x0203E010
-.L08067F58: .4byte gPlayStatus
+.L08067F58: .4byte gPlaySt
 .L08067F5C:
     cmp r0, #0x86
     bne .L08067F7C
@@ -176804,7 +175804,7 @@ func_08067E48: @ 0x08067E48
     ands r0, r1
     cmp r0, #0
     beq .L08067FEA
-    ldr r0, .L08067FFC @ =gPlayStatus
+    ldr r0, .L08067FFC @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -176824,7 +175824,7 @@ func_08067E48: @ 0x08067E48
     bl func_0806768C
     b .L080680CE
     .align 2, 0
-.L08067FFC: .4byte gPlayStatus
+.L08067FFC: .4byte gPlaySt
 .L08068000:
     movs r4, #0
     ldr r0, [r6, #4]
@@ -178550,7 +177550,7 @@ func_08068B28: @ 0x08068B28
     adds r0, r0, r1
     ldr r0, [r0]
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
     lsls r1, r7, #3
     ldr r0, .L08068E9C @ =0x02017660
@@ -178629,7 +177629,7 @@ func_08068B28: @ 0x08068B28
     ldr r0, [r0]
     ldr r0, [r0, #4]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -178647,7 +177647,7 @@ func_08068B28: @ 0x08068B28
     bl Text_SetColor
     ldr r0, .L08068EB8 @ =0x08CC26D4
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -178742,7 +177742,7 @@ func_08068F18: @ 0x08068F18
     ldr r0, [r0]
     ldr r0, [r0, #4]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -183117,7 +182117,7 @@ func_0806B1A4: @ 0x0806B1A4
     str r1, [sp, #4]
     movs r0, #0xea
     lsls r0, r0, #3
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
     bl func_080055FC
     adds r4, r0, #0
@@ -183146,7 +182146,7 @@ func_0806B1A4: @ 0x0806B1A4
     adds r4, r0, #0
     adds r4, #0x10
     ldr r0, .L0806B250 @ =0x00000751
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
     bl func_080055FC
     adds r0, r0, r4
@@ -183156,7 +182156,7 @@ func_0806B1A4: @ 0x0806B1A4
 .L0806B250: .4byte 0x00000751
 .L0806B254:
     ldr r0, .L0806B2AC @ =0x0000075A
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
     bl func_080055FC
     adds r1, r0, #2
@@ -183221,7 +182221,7 @@ func_0806B1A4: @ 0x0806B1A4
     bl Text_Skip
     ldr r0, .L0806B30C @ =0x00000751
 .L0806B2F2:
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
     adds r0, r6, #0
     movs r1, #0
@@ -183234,7 +182234,7 @@ func_0806B1A4: @ 0x0806B1A4
 .L0806B30C: .4byte 0x00000751
 .L0806B310:
     ldr r0, .L0806B364 @ =0x0000075A
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
     adds r0, r6, #0
     movs r1, #0
@@ -183861,7 +182861,7 @@ func_0806B7CC: @ 0x0806B7CC
     bl func_08006508
     bl func_0806B8E8
     ldr r0, .L0806B7E0 @ =func_08050A38
-    bl func_080019B8
+    bl SetMainFunc
     pop {r0}
     bx r0
     .align 2, 0
@@ -184083,8 +183083,8 @@ func_0806B98C: @ 0x0806B98C
     adds r4, r0, #0
     bl func_0804B1D8
     bl func_0804C438
-    ldr r0, .L0806B9B0 @ =func_0801529C
-    bl func_080019B8
+    ldr r0, .L0806B9B0 @ =OnMain
+    bl SetMainFunc
     ldr r0, .L0806B9B4 @ =OnVBlank
     bl SetOnVBlank
     adds r0, r4, #0
@@ -184093,7 +183093,7 @@ func_0806B98C: @ 0x0806B98C
     pop {r0}
     bx r0
     .align 2, 0
-.L0806B9B0: .4byte func_0801529C
+.L0806B9B0: .4byte OnMain
 .L0806B9B4: .4byte OnVBlank
     func_end func_0806B98C
 
@@ -185745,7 +184745,7 @@ func_0806C5BC: @ 0x0806C5BC
     sub sp, #8
     add r7, sp, #4
     str r0, [r7]
-    ldr r1, .L0806C670 @ =gPlayStatus
+    ldr r1, .L0806C670 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -185827,7 +184827,7 @@ func_0806C5BC: @ 0x0806C5BC
     pop {r0}
     bx r0
     .align 2, 0
-.L0806C670: .4byte gPlayStatus
+.L0806C670: .4byte gPlaySt
 .L0806C674: .4byte 0x00000397
 .L0806C678: .4byte gSinLut
     func_end func_0806C5BC
@@ -187522,7 +186522,7 @@ func_0806D250: @ 0x0806D250
     beq .L0806D2D8
     b .L0806D33C
 .L0806D2D8:
-    ldr r0, .L0806D334 @ =gPlayStatus
+    ldr r0, .L0806D334 @ =gPlaySt
     ldrb r1, [r0, #0xd]
     cmp r1, #0
     beq .L0806D33C
@@ -187568,7 +186568,7 @@ func_0806D250: @ 0x0806D250
     bne .L0806D33C
     b .L0806D378
     .align 2, 0
-.L0806D334: .4byte gPlayStatus
+.L0806D334: .4byte gPlaySt
 .L0806D338: .4byte gMapFog
 .L0806D33C:
     ldr r1, [r7]
@@ -187679,7 +186679,7 @@ GetMuQ4MovementSpeed: @ 0x0806D380
     str r0, [r7, #8]
     b .L0806D442
 .L0806D406:
-    ldr r1, .L0806D434 @ =gPlayStatus
+    ldr r1, .L0806D434 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x40
     ldrb r0, [r1]
@@ -187687,7 +186687,7 @@ GetMuQ4MovementSpeed: @ 0x0806D380
     lsrs r0, r1, #0x1f
     cmp r0, #0
     bne .L0806D43C
-    ldr r1, .L0806D438 @ =gKeys
+    ldr r1, .L0806D438 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #4]
     movs r2, #1
@@ -187704,8 +186704,8 @@ GetMuQ4MovementSpeed: @ 0x0806D380
 .L0806D432:
     b .L0806D442
     .align 2, 0
-.L0806D434: .4byte gPlayStatus
-.L0806D438: .4byte gKeys
+.L0806D434: .4byte gPlaySt
+.L0806D438: .4byte gpKeySt
 .L0806D43C:
     ldr r0, [r7, #4]
     lsls r1, r0, #2
@@ -187727,7 +186727,7 @@ GetMuQ4MovementSpeed: @ 0x0806D380
     bl IsFirstPlaythrough
     cmp r0, #0
     bne .L0806D480
-    ldr r1, .L0806D47C @ =gKeys
+    ldr r1, .L0806D47C @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #4]
     movs r2, #1
@@ -187741,9 +186741,9 @@ GetMuQ4MovementSpeed: @ 0x0806D380
     movs r0, #0x80
     b .L0806D4C2
     .align 2, 0
-.L0806D47C: .4byte gKeys
+.L0806D47C: .4byte gpKeySt
 .L0806D480:
-    ldr r1, .L0806D4B4 @ =gPlayStatus
+    ldr r1, .L0806D4B4 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x40
     ldrb r0, [r1]
@@ -187769,7 +186769,7 @@ GetMuQ4MovementSpeed: @ 0x0806D380
     adds r0, r1, #0
     b .L0806D4C2
     .align 2, 0
-.L0806D4B4: .4byte gPlayStatus
+.L0806D4B4: .4byte gPlaySt
 .L0806D4B8: .4byte 0x08C9D03C
 .L0806D4BC:
     .byte 0x01, 0xE0
@@ -188026,7 +187026,7 @@ StartMuDeathFade: @ 0x0806D5AC
     orrs r1, r3
     adds r2, r1, #0
     strh r2, [r0, #0x1e]
-    ldr r1, .L0806D6D4 @ =gPlayStatus
+    ldr r1, .L0806D6D4 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -188061,7 +187061,7 @@ StartMuDeathFade: @ 0x0806D5AC
     .align 2, 0
 .L0806D6CC: .4byte 0x08C9D044
 .L0806D6D0: .4byte gDispIo
-.L0806D6D4: .4byte gPlayStatus
+.L0806D6D4: .4byte gPlaySt
     func_end StartMuDeathFade
 
     thumb_func_start func_0806D6D8
@@ -188273,7 +187273,7 @@ func_0806D804: @ 0x0806D804
     ands r1, r2
     adds r2, r1, #0
     strh r2, [r0, #0x1a]
-    ldr r1, .L0806D88C @ =gPlayStatus
+    ldr r1, .L0806D88C @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -188290,7 +187290,7 @@ func_0806D804: @ 0x0806D804
     bx r0
     .align 2, 0
 .L0806D888: .4byte 0x08C9D05C
-.L0806D88C: .4byte gPlayStatus
+.L0806D88C: .4byte gPlaySt
     func_end func_0806D804
 
     thumb_func_start func_0806D890
@@ -188554,7 +187554,7 @@ func_0806DA18: @ 0x0806DA18
     ands r1, r2
     adds r2, r1, #0
     strh r2, [r0, #0x1a]
-    ldr r1, .L0806DAB0 @ =gPlayStatus
+    ldr r1, .L0806DAB0 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -188571,7 +187571,7 @@ func_0806DA18: @ 0x0806DA18
     bx r0
     .align 2, 0
 .L0806DAAC: .4byte 0x08C9D0AC
-.L0806DAB0: .4byte gPlayStatus
+.L0806DAB0: .4byte gPlaySt
     func_end func_0806DA18
 
     thumb_func_start func_0806DAB4
@@ -189932,7 +188932,7 @@ func_0806E474: @ 0x0806E474
     bl func_0801551C
     bl LoadUiFrameGraphics
     bl ApplySystemObjectsGraphics
-    bl func_0800ED20
+    bl IsEventRunning
     lsls r1, r0, #0x18
     asrs r0, r1, #0x18
     cmp r0, #0
@@ -190828,7 +189828,7 @@ func_0806EAEC: @ 0x0806EAEC
 func_0806EB20: @ 0x0806EB20
     push {r7, lr}
     mov r7, sp
-    ldr r1, .L0806EB40 @ =gPlayStatus
+    ldr r1, .L0806EB40 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -190843,7 +189843,7 @@ func_0806EB20: @ 0x0806EB20
     pop {r0}
     bx r0
     .align 2, 0
-.L0806EB40: .4byte gPlayStatus
+.L0806EB40: .4byte gPlaySt
     func_end func_0806EB20
 
     thumb_func_start func_0806EB44
@@ -192753,7 +191753,7 @@ func_0806F910: @ 0x0806F910
     lsrs r0, r1, #0x10
     cmp r0, #0
     bne .L0806F9D6
-    ldr r1, .L0806FA30 @ =gPlayStatus
+    ldr r1, .L0806FA30 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -192810,7 +191810,7 @@ func_0806F910: @ 0x0806F910
     b .L0806F924
     .align 2, 0
 .L0806FA2C: .4byte 0x0203E0FC
-.L0806FA30: .4byte gPlayStatus
+.L0806FA30: .4byte gPlaySt
 .L0806FA34: .4byte 0x00000395
 .L0806FA38:
     adds r0, r7, #0
@@ -193159,7 +192159,7 @@ func_0806FBA4: @ 0x0806FBA4
     ldr r0, [r1]
     ldrh r1, [r0]
     adds r0, r1, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -193578,7 +192578,7 @@ func_0807003C: @ 0x0807003C
     sub sp, #4
     mov r7, sp
     str r0, [r7]
-    ldr r1, .L08070068 @ =gPlayStatus
+    ldr r1, .L08070068 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -193596,7 +192596,7 @@ func_0807003C: @ 0x0807003C
     pop {r0}
     bx r0
     .align 2, 0
-.L08070068: .4byte gPlayStatus
+.L08070068: .4byte gPlaySt
     func_end func_0807003C
 
     thumb_func_start func_0807006C
@@ -194076,7 +193076,7 @@ func_08070324: @ 0x08070324
     ldr r0, [r7, #0xc]
     ldrh r1, [r0]
     adds r0, r1, #0
-    bl GetMsg
+    bl DecodeMsg
     ldr r1, .L08070460 @ =0x08C9D938
     ldr r2, [r7]
     movs r3, #0x64
@@ -194255,7 +193255,7 @@ func_08070324: @ 0x08070324
     ldr r0, [r7, #0x10]
     ldrh r1, [r0]
     adds r0, r1, #0
-    bl GetMsg
+    bl DecodeMsg
     ldr r1, .L080705E0 @ =0x08C9D938
     ldr r2, [r7]
     movs r3, #0x64
@@ -194999,7 +193999,7 @@ func_08070B60: @ 0x08070B60
     movs r3, #0
     ldrsh r0, [r1, r3]
     str r0, [r7, #8]
-    ldr r1, .L08070BA4 @ =gKeys
+    ldr r1, .L08070BA4 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #8]
     movs r2, #8
@@ -195017,12 +194017,12 @@ func_08070B60: @ 0x08070B60
     bne .L08070BA8
     b .L08071074
     .align 2, 0
-.L08070BA4: .4byte gKeys
+.L08070BA4: .4byte gpKeySt
 .L08070BA8:
     ldr r0, [r7]
     bl Proc_Break
 .L08070BAE:
-    ldr r1, .L08070BCC @ =gKeys
+    ldr r1, .L08070BCC @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #4]
     movs r2, #0x80
@@ -195038,12 +194038,12 @@ func_08070B60: @ 0x08070B60
     str r0, [r7, #0xc]
     b .L08070BD4
     .align 2, 0
-.L08070BCC: .4byte gKeys
+.L08070BCC: .4byte gpKeySt
 .L08070BD0:
     movs r0, #1
     str r0, [r7, #0xc]
 .L08070BD4:
-    ldr r1, .L08070CEC @ =gKeys
+    ldr r1, .L08070CEC @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #6]
     movs r2, #1
@@ -195184,7 +194184,7 @@ func_08070B60: @ 0x08070B60
     strh r2, [r0]
     b .L08070D48
     .align 2, 0
-.L08070CEC: .4byte gKeys
+.L08070CEC: .4byte gpKeySt
 .L08070CF0: .4byte 0x08C9D938
 .L08070CF4: .4byte 0x08C9D8C0
 .L08070CF8:
@@ -195229,7 +194229,7 @@ func_08070B60: @ 0x08070B60
     adds r1, r2, #0
     strh r1, [r0]
 .L08070D48:
-    ldr r1, .L08070E6C @ =gKeys
+    ldr r1, .L08070E6C @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #6]
     movs r2, #2
@@ -195374,7 +194374,7 @@ func_08070B60: @ 0x08070B60
     .align 2, 0
 .L08070E64: .4byte 0x08C9D938
 .L08070E68: .4byte 0x08C9D8C0
-.L08070E6C: .4byte gKeys
+.L08070E6C: .4byte gpKeySt
 .L08070E70:
     ldr r1, .L0807107C @ =0x08C9D938
     ldr r0, [r1]
@@ -195415,7 +194415,7 @@ func_08070B60: @ 0x08070B60
     adds r2, r1, #0
     strh r2, [r0]
 .L08070EBC:
-    ldr r1, .L08071084 @ =gKeys
+    ldr r1, .L08071084 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #6]
     movs r2, #0x20
@@ -195474,7 +194474,7 @@ func_08070B60: @ 0x08070B60
     adds r2, r1, #0
     strh r2, [r0]
 .L08070F2E:
-    ldr r1, .L08071084 @ =gKeys
+    ldr r1, .L08071084 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #6]
     movs r2, #0x10
@@ -195533,7 +194533,7 @@ func_08070B60: @ 0x08070B60
     adds r2, r1, #0
     strh r2, [r0]
 .L08070FA0:
-    ldr r1, .L08071084 @ =gKeys
+    ldr r1, .L08071084 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #6]
     movs r2, #0x40
@@ -195567,7 +194567,7 @@ func_08070B60: @ 0x08070B60
     adds r2, r1, #0
     strh r2, [r0]
 .L08070FE2:
-    ldr r1, .L08071084 @ =gKeys
+    ldr r1, .L08071084 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #6]
     movs r2, #0x80
@@ -195601,7 +194601,7 @@ func_08070B60: @ 0x08070B60
     adds r2, r1, #0
     strh r2, [r0]
 .L08071024:
-    ldr r1, .L08071084 @ =gKeys
+    ldr r1, .L08071084 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #6]
     movs r2, #0xf0
@@ -195617,7 +194617,7 @@ func_08070B60: @ 0x08070B60
     movs r2, #1
     bl func_08070324
 .L08071044:
-    ldr r1, .L08071084 @ =gKeys
+    ldr r1, .L08071084 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #6]
     movs r2, #0xf3
@@ -195648,7 +194648,7 @@ func_08070B60: @ 0x08070B60
     .align 2, 0
 .L0807107C: .4byte 0x08C9D938
 .L08071080: .4byte 0x08C9D8C0
-.L08071084: .4byte gKeys
+.L08071084: .4byte gpKeySt
     func_end func_08070B60
 
     thumb_func_start func_08071088
@@ -198775,7 +197775,7 @@ func_080728F0: @ 0x080728F0
     sub sp, #0xc
     add r7, sp, #8
     str r0, [r7]
-    ldr r1, .L080729EC @ =gPlayStatus
+    ldr r1, .L080729EC @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -198887,7 +197887,7 @@ func_080728F0: @ 0x080728F0
     pop {r0}
     bx r0
     .align 2, 0
-.L080729EC: .4byte gPlayStatus
+.L080729EC: .4byte gPlaySt
 .L080729F0: .4byte 0x083F6D78
 .L080729F4: .4byte 0x06013800
 .L080729F8: .4byte 0x083F7030
@@ -201744,7 +200744,7 @@ func_08074008: @ 0x08074008
     ldr r0, [r1, #4]
     ldrh r1, [r0]
     adds r0, r1, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     adds r0, r5, #0
     movs r1, #0
@@ -201835,7 +200835,7 @@ func_08074008: @ 0x08074008
     ldr r1, [r0]
     ldr r2, [r1]
     adds r0, r2, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #3
@@ -203542,7 +202542,7 @@ func_08074D88: @ 0x08074D88
     ldrb r0, [r1]
     cmp r0, #0
     bne .L08074EA4
-    ldr r1, .L08074E9C @ =gPlayStatus
+    ldr r1, .L08074E9C @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -203557,10 +202557,10 @@ func_08074D88: @ 0x08074D88
     b .L08074EBC
     .align 2, 0
 .L08074E98: .4byte 0x08C9DDB4
-.L08074E9C: .4byte gPlayStatus
+.L08074E9C: .4byte gPlaySt
 .L08074EA0: .4byte 0x000002CD
 .L08074EA4:
-    ldr r1, .L08074EF8 @ =gPlayStatus
+    ldr r1, .L08074EF8 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -203604,7 +202604,7 @@ func_08074D88: @ 0x08074D88
     pop {r0}
     bx r0
     .align 2, 0
-.L08074EF8: .4byte gPlayStatus
+.L08074EF8: .4byte gPlaySt
 .L08074EFC: .4byte 0x00000396
     func_end func_08074D88
 
@@ -203783,7 +202783,7 @@ func_08074F20: @ 0x08074F20
     movs r4, #2
     str r4, [sp, #4]
     bl StartSpriteAnimProc
-    ldr r1, .L0807508C @ =gPlayStatus
+    ldr r1, .L0807508C @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -203806,7 +202806,7 @@ func_08074F20: @ 0x08074F20
 .L08075080: .4byte 0x0203E0FC
 .L08075084: .4byte gBmStatus
 .L08075088: .4byte 0x083EC514
-.L0807508C: .4byte gPlayStatus
+.L0807508C: .4byte gPlaySt
 .L08075090: .4byte 0x0000037B
     func_end func_08074F20
 
@@ -206364,7 +205364,7 @@ func_080763B4: @ 0x080763B4
     sub sp, #4
     mov r7, sp
     str r0, [r7]
-    ldr r1, .L08076464 @ =gPlayStatus
+    ldr r1, .L08076464 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -206448,7 +205448,7 @@ func_080763B4: @ 0x080763B4
     pop {r0}
     bx r0
     .align 2, 0
-.L08076464: .4byte gPlayStatus
+.L08076464: .4byte gPlaySt
 .L08076468: .4byte 0x0203E0FC
 .L0807646C: .4byte 0x0203A470
     func_end func_080763B4
@@ -206795,7 +205795,7 @@ func_080766D8: @ 0x080766D8
     sub sp, #4
     mov r7, sp
     str r0, [r7]
-    ldr r1, .L08076758 @ =gPlayStatus
+    ldr r1, .L08076758 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -206855,7 +205855,7 @@ func_080766D8: @ 0x080766D8
     pop {r0}
     bx r0
     .align 2, 0
-.L08076758: .4byte gPlayStatus
+.L08076758: .4byte gPlaySt
 .L0807675C: .4byte 0x0203E0FC
 .L08076760: .4byte gBmStatus
     func_end func_080766D8
@@ -210305,7 +209305,7 @@ func_08078100: @ 0x08078100
     ldr r0, [r4, #4]
     cmp r0, #1
     beq .L0807811A
-    bl func_0800AF5C
+    bl StartEvent
 .L0807811A:
     pop {r4}
     pop {r0}
@@ -210625,15 +209625,15 @@ func_080782FC: @ 0x080782FC
     .4byte .L08078380 @ case 3
     .4byte .L08078398 @ case 4
 .L08078340:
-    ldr r1, .L0807834C @ =gPlayStatus
+    ldr r1, .L0807834C @ =gPlaySt
     ldrb r0, [r1, #0x1b]
     cmp r0, #2
     bne .L080783EC
     b .L08078358
     .align 2, 0
-.L0807834C: .4byte gPlayStatus
+.L0807834C: .4byte gPlaySt
 .L08078350:
-    ldr r1, .L08078364 @ =gPlayStatus
+    ldr r1, .L08078364 @ =gPlaySt
     ldrb r2, [r1, #0x1b]
     cmp r2, #3
     bne .L080783EC
@@ -210645,9 +209645,9 @@ func_080782FC: @ 0x080782FC
     beq .L080783A4
     b .L080783EC
     .align 2, 0
-.L08078364: .4byte gPlayStatus
+.L08078364: .4byte gPlaySt
 .L08078368:
-    ldr r1, .L0807837C @ =gPlayStatus
+    ldr r1, .L0807837C @ =gPlaySt
     movs r0, #0x40
     ldrb r2, [r1, #0x14]
     ands r0, r2
@@ -210658,9 +209658,9 @@ func_080782FC: @ 0x080782FC
     beq .L080783A4
     b .L080783EC
     .align 2, 0
-.L0807837C: .4byte gPlayStatus
+.L0807837C: .4byte gPlaySt
 .L08078380:
-    ldr r1, .L08078394 @ =gPlayStatus
+    ldr r1, .L08078394 @ =gPlaySt
     movs r0, #0x40
     ldrb r2, [r1, #0x14]
     ands r0, r2
@@ -210671,9 +209671,9 @@ func_080782FC: @ 0x080782FC
     beq .L080783A4
     b .L080783EC
     .align 2, 0
-.L08078394: .4byte gPlayStatus
+.L08078394: .4byte gPlaySt
 .L08078398:
-    ldr r1, .L080783C4 @ =gPlayStatus
+    ldr r1, .L080783C4 @ =gPlaySt
     movs r0, #0x40
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -210688,7 +209688,7 @@ func_080782FC: @ 0x080782FC
 .L080783B0:
     cmp r5, #0
     bne .L080783C8
-    ldr r0, .L080783C4 @ =gPlayStatus
+    ldr r0, .L080783C4 @ =gPlaySt
     ldrh r1, [r0, #0x10]
     cmp r1, r6
     bne .L080783EC
@@ -210697,9 +209697,9 @@ func_080782FC: @ 0x080782FC
     bne .L080783EC
     b .L080783DA
     .align 2, 0
-.L080783C4: .4byte gPlayStatus
+.L080783C4: .4byte gPlaySt
 .L080783C8:
-    ldr r1, .L080783E8 @ =gPlayStatus
+    ldr r1, .L080783E8 @ =gPlaySt
     ldrh r0, [r1, #0x10]
     cmp r0, r6
     blt .L080783EC
@@ -210717,7 +209717,7 @@ func_080782FC: @ 0x080782FC
     movs r0, #1
     b .L080783EE
     .align 2, 0
-.L080783E8: .4byte gPlayStatus
+.L080783E8: .4byte gPlaySt
 .L080783EC:
     movs r0, #0
 .L080783EE:
@@ -210754,21 +209754,21 @@ func_080783F4: @ 0x080783F4
     beq .L08078444
     b .L08078450
 .L08078424:
-    ldr r0, .L08078430 @ =gPlayStatus
+    ldr r0, .L08078430 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #2
     beq .L08078450
     b .L0807846E
     .align 2, 0
-.L08078430: .4byte gPlayStatus
+.L08078430: .4byte gPlaySt
 .L08078434:
-    ldr r0, .L08078440 @ =gPlayStatus
+    ldr r0, .L08078440 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
     beq .L08078450
     b .L0807846E
     .align 2, 0
-.L08078440: .4byte gPlayStatus
+.L08078440: .4byte gPlaySt
 .L08078444:
     lsrs r0, r0, #0x10
     bl GetFlag
@@ -211131,7 +210131,7 @@ func_08078650: @ 0x08078650
 func_080786B4: @ 0x080786B4
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L080786D4 @ =gPlayStatus
+    ldr r0, .L080786D4 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #2
     bne .L080786D8
@@ -211144,7 +210144,7 @@ func_080786B4: @ 0x080786B4
     bl func_08078650
     b .L080786DA
     .align 2, 0
-.L080786D4: .4byte gPlayStatus
+.L080786D4: .4byte gPlaySt
 .L080786D8:
     movs r0, #0
 .L080786DA:
@@ -211157,7 +210157,7 @@ func_080786B4: @ 0x080786B4
 func_080786E0: @ 0x080786E0
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L08078700 @ =gPlayStatus
+    ldr r0, .L08078700 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
     bne .L08078704
@@ -211170,7 +210170,7 @@ func_080786E0: @ 0x080786E0
     bl func_08078650
     b .L08078706
     .align 2, 0
-.L08078700: .4byte gPlayStatus
+.L08078700: .4byte gPlaySt
 .L08078704:
     movs r0, #0
 .L08078706:
@@ -211318,7 +210318,7 @@ func_08078794: @ 0x08078794
     thumb_func_start func_080787F4
 func_080787F4: @ 0x080787F4
     push {lr}
-    ldr r0, .L08078814 @ =gPlayStatus
+    ldr r0, .L08078814 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0x80
     bne .L08078818
@@ -211333,7 +210333,7 @@ func_080787F4: @ 0x080787F4
     movs r0, #1
     b .L0807881A
     .align 2, 0
-.L08078814: .4byte gPlayStatus
+.L08078814: .4byte gPlaySt
 .L08078818:
     movs r0, #0
 .L0807881A:
@@ -211344,7 +210344,7 @@ func_080787F4: @ 0x080787F4
     thumb_func_start func_08078820
 func_08078820: @ 0x08078820
     push {lr}
-    ldr r0, .L08078864 @ =gPlayStatus
+    ldr r0, .L08078864 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0x80
     bne .L08078860
@@ -211376,7 +210376,7 @@ func_08078820: @ 0x08078820
     movs r0, #0
     b .L0807886A
     .align 2, 0
-.L08078864: .4byte gPlayStatus
+.L08078864: .4byte gPlaySt
 .L08078868:
     movs r0, #1
 .L0807886A:
@@ -211401,7 +210401,7 @@ func_08078870: @ 0x08078870
     thumb_func_start func_08078888
 func_08078888: @ 0x08078888
     push {lr}
-    ldr r0, .L080788A4 @ =gPlayStatus
+    ldr r0, .L080788A4 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0x80
     bne .L080788A8
@@ -211414,7 +210414,7 @@ func_08078888: @ 0x08078888
     asrs r0, r0, #0x18
     b .L080788AA
     .align 2, 0
-.L080788A4: .4byte gPlayStatus
+.L080788A4: .4byte gPlaySt
 .L080788A8:
     movs r0, #0
 .L080788AA:
@@ -211425,7 +210425,7 @@ func_08078888: @ 0x08078888
     thumb_func_start func_080788B0
 func_080788B0: @ 0x080788B0
     push {lr}
-    ldr r0, .L080788CC @ =gPlayStatus
+    ldr r0, .L080788CC @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0x80
     bne .L080788D0
@@ -211438,7 +210438,7 @@ func_080788B0: @ 0x080788B0
     asrs r0, r0, #0x18
     b .L080788D2
     .align 2, 0
-.L080788CC: .4byte gPlayStatus
+.L080788CC: .4byte gPlaySt
 .L080788D0:
     movs r0, #0
 .L080788D2:
@@ -211449,7 +210449,7 @@ func_080788B0: @ 0x080788B0
     thumb_func_start func_080788D8
 func_080788D8: @ 0x080788D8
     push {lr}
-    ldr r0, .L080788F4 @ =gPlayStatus
+    ldr r0, .L080788F4 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0x80
     bne .L080788F8
@@ -211462,7 +210462,7 @@ func_080788D8: @ 0x080788D8
     asrs r0, r0, #0x18
     b .L080788FA
     .align 2, 0
-.L080788F4: .4byte gPlayStatus
+.L080788F4: .4byte gPlaySt
 .L080788F8:
     movs r0, #0
 .L080788FA:
@@ -211473,7 +210473,7 @@ func_080788D8: @ 0x080788D8
     thumb_func_start func_08078900
 func_08078900: @ 0x08078900
     push {lr}
-    ldr r0, .L0807891C @ =gPlayStatus
+    ldr r0, .L0807891C @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0x80
     bne .L08078920
@@ -211486,7 +210486,7 @@ func_08078900: @ 0x08078900
     asrs r0, r0, #0x18
     b .L08078922
     .align 2, 0
-.L0807891C: .4byte gPlayStatus
+.L0807891C: .4byte gPlaySt
 .L08078920:
     movs r0, #0
 .L08078922:
@@ -211551,7 +210551,7 @@ func_08078928: @ 0x08078928
 func_08078988: @ 0x08078988
     push {lr}
     sub sp, #0x1c
-    ldr r0, .L080789AC @ =gPlayStatus
+    ldr r0, .L080789AC @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -211565,7 +210565,7 @@ func_08078988: @ 0x08078988
     movs r0, #0
     b .L080789B2
     .align 2, 0
-.L080789AC: .4byte gPlayStatus
+.L080789AC: .4byte gPlaySt
 .L080789B0:
     movs r0, #1
 .L080789B2:
@@ -211578,7 +210578,7 @@ func_08078988: @ 0x08078988
 func_080789B8: @ 0x080789B8
     push {lr}
     sub sp, #0x1c
-    ldr r0, .L080789E0 @ =gPlayStatus
+    ldr r0, .L080789E0 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -211593,7 +210593,7 @@ func_080789B8: @ 0x080789B8
     bl func_08078100
     b .L080789EA
     .align 2, 0
-.L080789E0: .4byte gPlayStatus
+.L080789E0: .4byte gPlaySt
 .L080789E4:
     mov r0, sp
     bl func_08078100
@@ -211618,7 +210618,7 @@ func_080789FC: @ 0x080789FC
     lsrs r4, r4, #0x18
     lsls r5, r5, #0x18
     lsrs r5, r5, #0x18
-    ldr r0, .L08078A30 @ =gPlayStatus
+    ldr r0, .L08078A30 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -211634,7 +210634,7 @@ func_080789FC: @ 0x080789FC
     movs r0, #0
     b .L08078A36
     .align 2, 0
-.L08078A30: .4byte gPlayStatus
+.L08078A30: .4byte gPlaySt
 .L08078A34:
     movs r0, #1
 .L08078A36:
@@ -211654,7 +210654,7 @@ func_08078A40: @ 0x08078A40
     lsrs r4, r4, #0x18
     lsls r5, r5, #0x18
     lsrs r5, r5, #0x18
-    ldr r0, .L08078A7C @ =gPlayStatus
+    ldr r0, .L08078A7C @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -211675,7 +210675,7 @@ func_08078A40: @ 0x08078A40
     pop {r0}
     bx r0
     .align 2, 0
-.L08078A7C: .4byte gPlayStatus
+.L08078A7C: .4byte gPlaySt
     func_end func_08078A40
 
     thumb_func_start func_08078A80
@@ -211881,7 +210881,7 @@ func_08078BD0: @ 0x08078BD0
     lsrs r4, r4, #0x18
     lsls r5, r5, #0x18
     lsrs r5, r5, #0x18
-    ldr r0, .L08078C04 @ =gPlayStatus
+    ldr r0, .L08078C04 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -211897,7 +210897,7 @@ func_08078BD0: @ 0x08078BD0
     ldr r0, [sp, #0xc]
     b .L08078C0A
     .align 2, 0
-.L08078C04: .4byte gPlayStatus
+.L08078C04: .4byte gPlaySt
 .L08078C08:
     movs r0, #0
 .L08078C0A:
@@ -211917,7 +210917,7 @@ func_08078C14: @ 0x08078C14
     lsrs r4, r4, #0x18
     lsls r5, r5, #0x18
     lsrs r5, r5, #0x18
-    ldr r0, .L08078C58 @ =gPlayStatus
+    ldr r0, .L08078C58 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -211943,7 +210943,7 @@ func_08078C14: @ 0x08078C14
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.L08078C58: .4byte gPlayStatus
+.L08078C58: .4byte gPlaySt
 .L08078C5C: .4byte .L08078C60
 .L08078C60: @ jump table
     .4byte .L08078DF0 @ case 0
@@ -212390,7 +211390,7 @@ func_08078FBC: @ 0x08078FBC
 func_08078FC8: @ 0x08078FC8
     push {lr}
     sub sp, #0x1c
-    ldr r0, .L08078FFC @ =gPlayStatus
+    ldr r0, .L08078FFC @ =gPlaySt
     movs r1, #0xe
     ldrsb r1, [r0, r1]
     lsls r1, r1, #0x10
@@ -212414,7 +211414,7 @@ func_08078FC8: @ 0x08078FC8
     pop {r1}
     bx r1
     .align 2, 0
-.L08078FFC: .4byte gPlayStatus
+.L08078FFC: .4byte gPlaySt
 .L08079000: .4byte 0x08C9EA2C
     func_end func_08078FC8
 
@@ -212422,7 +211422,7 @@ func_08078FC8: @ 0x08078FC8
 func_08079004: @ 0x08079004
     push {r4, lr}
     sub sp, #0x1c
-    ldr r0, .L08079048 @ =gPlayStatus
+    ldr r0, .L08079048 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -212451,7 +211451,7 @@ func_08079004: @ 0x08079004
     movs r0, #1
     b .L08079052
     .align 2, 0
-.L08079048: .4byte gPlayStatus
+.L08079048: .4byte gPlaySt
 .L0807904C: .4byte 0x08C9EA2C
 .L08079050:
     movs r0, #0
@@ -212466,7 +211466,7 @@ func_08079004: @ 0x08079004
 func_0807905C: @ 0x0807905C
     push {lr}
     sub sp, #0x1c
-    ldr r0, .L0807909C @ =gPlayStatus
+    ldr r0, .L0807909C @ =gPlaySt
     movs r2, #0xe
     ldrsb r2, [r0, r2]
     lsls r2, r2, #0x10
@@ -212494,7 +211494,7 @@ func_0807905C: @ 0x0807905C
     movs r0, #1
     b .L080790AC
     .align 2, 0
-.L0807909C: .4byte gPlayStatus
+.L0807909C: .4byte gPlaySt
 .L080790A0: .4byte 0x08C9EA2C
 .L080790A4:
     mov r0, sp
@@ -212535,7 +211535,7 @@ func_080790C0: @ 0x080790C0
 func_080790C4: @ 0x080790C4
     push {lr}
     sub sp, #0x1c
-    ldr r0, .L080790FC @ =gPlayStatus
+    ldr r0, .L080790FC @ =gPlaySt
     movs r2, #0xe
     ldrsb r2, [r0, r2]
     lsls r2, r2, #0x10
@@ -212560,7 +211560,7 @@ func_080790C4: @ 0x080790C4
     pop {r1}
     bx r1
     .align 2, 0
-.L080790FC: .4byte gPlayStatus
+.L080790FC: .4byte gPlaySt
 .L08079100: .4byte 0x08C9EA2C
     func_end func_080790C4
 
@@ -212568,7 +211568,7 @@ func_080790C4: @ 0x080790C4
 func_08079104: @ 0x08079104
     push {lr}
     sub sp, #0x1c
-    ldr r0, .L08079130 @ =gPlayStatus
+    ldr r0, .L08079130 @ =gPlaySt
     movs r2, #0xe
     ldrsb r2, [r0, r2]
     lsls r2, r2, #0x10
@@ -212588,7 +211588,7 @@ func_08079104: @ 0x08079104
     movs r0, #1
     b .L0807913A
     .align 2, 0
-.L08079130: .4byte gPlayStatus
+.L08079130: .4byte gPlaySt
 .L08079134: .4byte 0x08C9EA2C
 .L08079138:
     movs r0, #0
@@ -212602,7 +211602,7 @@ func_08079104: @ 0x08079104
 func_08079140: @ 0x08079140
     push {lr}
     sub sp, #0x1c
-    ldr r0, .L08079170 @ =gPlayStatus
+    ldr r0, .L08079170 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -212623,7 +211623,7 @@ func_08079140: @ 0x08079140
     movs r0, #0
     b .L0807917A
     .align 2, 0
-.L08079170: .4byte gPlayStatus
+.L08079170: .4byte gPlaySt
 .L08079174: .4byte gActiveUnit
 .L08079178:
     movs r0, #1
@@ -212637,7 +211637,7 @@ func_08079140: @ 0x08079140
 func_08079180: @ 0x08079180
     push {lr}
     sub sp, #0x1c
-    ldr r0, .L080791B8 @ =gPlayStatus
+    ldr r0, .L080791B8 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -212662,7 +211662,7 @@ func_08079180: @ 0x08079180
     pop {r0}
     bx r0
     .align 2, 0
-.L080791B8: .4byte gPlayStatus
+.L080791B8: .4byte gPlaySt
 .L080791BC: .4byte gActiveUnit
     func_end func_08079180
 
@@ -212698,7 +211698,7 @@ func_080791D0: @ 0x080791D0
     thumb_func_start func_080791F0
 func_080791F0: @ 0x080791F0
     push {r4, lr}
-    ldr r4, .L08079208 @ =gPlayStatus
+    ldr r4, .L08079208 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl func_080315BC
@@ -212708,7 +211708,7 @@ func_080791F0: @ 0x080791F0
     ldr r0, [r0, #0x10]
     b .L0807920E
     .align 2, 0
-.L08079208: .4byte gPlayStatus
+.L08079208: .4byte gPlaySt
 .L0807920C:
     ldr r0, [r0, #0x14]
 .L0807920E:
@@ -212721,7 +211721,7 @@ func_080791F0: @ 0x080791F0
 func_08079214: @ 0x08079214
     push {r4, r5, lr}
     sub sp, #0x1c
-    ldr r5, .L08079248 @ =gPlayStatus
+    ldr r5, .L08079248 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r5, r0]
     bl func_080315BC
@@ -212744,7 +211744,7 @@ func_08079214: @ 0x08079214
     ldr r0, [r4, #0x24]
     b .L0807925C
     .align 2, 0
-.L08079248: .4byte gPlayStatus
+.L08079248: .4byte gPlaySt
 .L0807924C:
     ldr r0, [r4, #0x20]
     b .L0807925C
@@ -212776,7 +211776,7 @@ func_08079214: @ 0x08079214
     thumb_func_start func_08079280
 func_08079280: @ 0x08079280
     push {r4, lr}
-    ldr r4, .L080792A4 @ =gPlayStatus
+    ldr r4, .L080792A4 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl func_080315BC
@@ -212792,7 +211792,7 @@ func_08079280: @ 0x08079280
     ldr r0, [r1, #0x34]
     b .L080792BC
     .align 2, 0
-.L080792A4: .4byte gPlayStatus
+.L080792A4: .4byte gPlaySt
 .L080792A8:
     ldr r0, [r1, #0x30]
     b .L080792BC
@@ -212820,7 +211820,7 @@ func_080792C4: @ 0x080792C4
     lsls r1, r1, #0x18
     lsrs r4, r1, #0x18
     ldr r3, .L080792E0 @ =0x08C9EDA0
-    ldr r1, .L080792E4 @ =gPlayStatus
+    ldr r1, .L080792E4 @ =gPlaySt
     movs r0, #0x80
     ldrb r2, [r1, #0x14]
     ands r0, r2
@@ -212829,7 +211829,7 @@ func_080792C4: @ 0x080792C4
     b .L08079316
     .align 2, 0
 .L080792E0: .4byte 0x08C9EDA0
-.L080792E4: .4byte gPlayStatus
+.L080792E4: .4byte gPlaySt
 .L080792E8:
     adds r0, r3, #0
     b .L08079318
@@ -212886,7 +211886,7 @@ func_08079320: @ 0x08079320
     ldrb r1, [r4, #1]
     cmp r1, #0x43
     beq .L08079350
-    ldr r0, .L08079354 @ =gPlayStatus
+    ldr r0, .L08079354 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -212897,7 +211897,7 @@ func_08079320: @ 0x08079320
     adds r0, r4, #0
     b .L08079362
     .align 2, 0
-.L08079354: .4byte gPlayStatus
+.L08079354: .4byte gPlaySt
 .L08079358:
     adds r4, #0xc
 .L0807935A:
@@ -212930,7 +211930,7 @@ func_08079368: @ 0x08079368
     ldrb r1, [r4, #1]
     cmp r1, #0x43
     beq .L08079398
-    ldr r0, .L0807939C @ =gPlayStatus
+    ldr r0, .L0807939C @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -212941,7 +211941,7 @@ func_08079368: @ 0x08079368
     adds r0, r4, #0
     b .L080793AA
     .align 2, 0
-.L0807939C: .4byte gPlayStatus
+.L0807939C: .4byte gPlaySt
 .L080793A0:
     adds r4, #0x10
 .L080793A2:
@@ -212974,7 +211974,7 @@ func_080793B0: @ 0x080793B0
     ldrb r1, [r4, #1]
     cmp r1, #0x43
     beq .L080793E0
-    ldr r0, .L080793E4 @ =gPlayStatus
+    ldr r0, .L080793E4 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -212985,7 +211985,7 @@ func_080793B0: @ 0x080793B0
     adds r0, r4, #0
     b .L080793F2
     .align 2, 0
-.L080793E4: .4byte gPlayStatus
+.L080793E4: .4byte gPlaySt
 .L080793E8:
     adds r4, #0xc
 .L080793EA:
@@ -213079,7 +212079,7 @@ func_08079464: @ 0x08079464
     b .L0807949C
 .L08079496:
     ldr r0, [r5, #8]
-    bl func_0800AF5C
+    bl StartEvent
 .L0807949C:
     bl func_0800ADB8
     ldr r0, [r5, #0xc]
@@ -213146,7 +212146,7 @@ func_08079514: @ 0x08079514
     bl func_08079368
     cmp r0, #0
     bne .L0807954C
-    ldr r6, .L08079554 @ =gPlayStatus
+    ldr r6, .L08079554 @ =gPlaySt
     ldr r1, .L08079558 @ =0x08C9F22C
     ldrb r0, [r6, #0x1b]
     cmp r0, #1
@@ -213169,7 +212169,7 @@ func_08079514: @ 0x08079514
     b .L08079562
     .align 2, 0
 .L08079550: .4byte 0x08C9F2EC
-.L08079554: .4byte gPlayStatus
+.L08079554: .4byte gPlaySt
 .L08079558: .4byte 0x08C9F22C
 .L0807955C: .4byte 0x08C9F16C
 .L08079560:
@@ -213276,7 +212276,7 @@ func_08079624: @ 0x08079624
     push {r4, r5, r6, lr}
     lsls r0, r0, #0x18
     lsrs r5, r0, #0x18
-    ldr r6, .L08079674 @ =gPlayStatus
+    ldr r6, .L08079674 @ =gPlaySt
     ldr r1, .L08079678 @ =0x08C9F22C
     ldrb r0, [r6, #0x1b]
     cmp r0, #1
@@ -213291,7 +212291,7 @@ func_08079624: @ 0x08079624
     ldr r0, [r4, #4]
     cmp r0, #0
     beq .L0807964C
-    bl func_0800AF5C
+    bl StartEvent
 .L0807964C:
     bl func_0800ADB8
     ldr r0, [r4, #8]
@@ -213310,7 +212310,7 @@ func_08079624: @ 0x08079624
     strb r0, [r1]
     b .L080796FC
     .align 2, 0
-.L08079674: .4byte gPlayStatus
+.L08079674: .4byte gPlaySt
 .L08079678: .4byte 0x08C9F22C
 .L0807967C: .4byte 0x08C9F16C
 .L08079680:
@@ -213343,7 +212343,7 @@ func_08079624: @ 0x08079624
     ldr r0, [r4, #8]
     cmp r0, #0
     beq .L080796C2
-    bl func_0800AF5C
+    bl StartEvent
 .L080796C2:
     bl func_0800ADB8
     ldr r0, [r4, #0xc]
@@ -213385,18 +212385,18 @@ func_08079704: @ 0x08079704
     movs r0, #0x2b
     movs r1, #0
     bl StartBgm
-    ldr r0, .L0807972C @ =gPlayStatus
+    ldr r0, .L0807972C @ =gPlaySt
     adds r0, #0x41
     movs r1, #1
     ldrb r2, [r0]
     orrs r1, r2
     strb r1, [r0]
     ldr r0, .L08079730 @ =0x08CA749C
-    bl func_0800AF5C
+    bl StartEvent
     pop {r0}
     bx r0
     .align 2, 0
-.L0807972C: .4byte gPlayStatus
+.L0807972C: .4byte gPlaySt
 .L08079730: .4byte 0x08CA749C
     func_end func_08079704
 
@@ -213563,8 +212563,8 @@ func_080797D4: @ 0x080797D4
 .L08079808: .4byte 0x03004AD8
     func_end func_080797D4
 
-    thumb_func_start ClearChapterFlags
-ClearChapterFlags: @ 0x0807980C
+    thumb_func_start ResetChapterFlags
+ResetChapterFlags: @ 0x0807980C
     ldr r1, .L0807981C @ =0x03004AD8
     movs r2, #0
     adds r0, r1, #5
@@ -213576,7 +212576,7 @@ ClearChapterFlags: @ 0x0807980C
     bx lr
     .align 2, 0
 .L0807981C: .4byte 0x03004AD8
-    func_end ClearChapterFlags
+    func_end ResetChapterFlags
 
     thumb_func_start func_08079820
 func_08079820: @ 0x08079820
@@ -213681,8 +212681,8 @@ func_08079894: @ 0x08079894
 .L080798CC: .4byte 0x03004AD0
     func_end func_08079894
 
-    thumb_func_start ClearPermanentFlags
-ClearPermanentFlags: @ 0x080798D0
+    thumb_func_start ResetPermanentFlags
+ResetPermanentFlags: @ 0x080798D0
     ldr r1, .L080798E0 @ =0x03004AD0
     movs r2, #0
     adds r0, r1, #7
@@ -213694,7 +212694,7 @@ ClearPermanentFlags: @ 0x080798D0
     bx lr
     .align 2, 0
 .L080798E0: .4byte 0x03004AD0
-    func_end ClearPermanentFlags
+    func_end ResetPermanentFlags
 
     thumb_func_start SetFlag
 SetFlag: @ 0x080798E4
@@ -213770,7 +212770,7 @@ func_08079938: @ 0x08079938
 
     thumb_func_start func_0807993C
 func_0807993C: @ 0x0807993C
-    ldr r1, .L0807994C @ =gPlayStatus
+    ldr r1, .L0807994C @ =gPlaySt
     movs r0, #0x40
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -213779,7 +212779,7 @@ func_0807993C: @ 0x0807993C
     movs r0, #0
     b .L08079952
     .align 2, 0
-.L0807994C: .4byte gPlayStatus
+.L0807994C: .4byte gPlaySt
 .L08079950:
     movs r0, #1
 .L08079952:
@@ -213843,7 +212843,7 @@ func_08079990: @ 0x08079990
     ldrb r1, [r2]
     cmp r1, #0
     bne .L080799A0
-    ldr r0, .L080799C4 @ =gPlayStatus
+    ldr r0, .L080799C4 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -213853,13 +212853,13 @@ func_08079990: @ 0x08079990
     pop {r1}
     bx r1
     .align 2, 0
-.L080799C4: .4byte gPlayStatus
+.L080799C4: .4byte gPlaySt
     func_end func_08079990
 
     thumb_func_start func_080799C8
 func_080799C8: @ 0x080799C8
     push {r4, r5, lr}
-    ldr r1, .L08079A10 @ =gPlayStatus
+    ldr r1, .L08079A10 @ =gPlaySt
     movs r0, #0x40
     ldrb r2, [r1, #0x14]
     ands r0, r2
@@ -213894,7 +212894,7 @@ func_080799C8: @ 0x080799C8
     pop {r0}
     bx r0
     .align 2, 0
-.L08079A10: .4byte gPlayStatus
+.L08079A10: .4byte gPlaySt
     func_end func_080799C8
 
     thumb_func_start func_08079A14
@@ -213925,26 +212925,26 @@ func_08079A14: @ 0x08079A14
     thumb_func_start func_08079A38
 func_08079A38: @ 0x08079A38
     push {lr}
-    ldr r0, .L08079A58 @ =gPlayStatus
+    ldr r0, .L08079A58 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     bl func_080315BC
     ldr r0, [r0, #0x3c]
-    bl func_0800AF5C
+    bl StartEvent
     movs r0, #0x91
     bl SetFlag
     pop {r0}
     bx r0
     .align 2, 0
-.L08079A58: .4byte gPlayStatus
+.L08079A58: .4byte gPlaySt
     func_end func_08079A38
 
     thumb_func_start func_08079A5C
 func_08079A5C: @ 0x08079A5C
     push {r4, lr}
     movs r4, #0
-    ldr r1, .L08079A8C @ =gPlayStatus
+    ldr r1, .L08079A8C @ =gPlaySt
     movs r0, #0x40
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -213966,7 +212966,7 @@ func_08079A5C: @ 0x08079A5C
     pop {r1}
     bx r1
     .align 2, 0
-.L08079A8C: .4byte gPlayStatus
+.L08079A8C: .4byte gPlaySt
     func_end func_08079A5C
 
     thumb_func_start func_08079A90
@@ -214041,7 +213041,7 @@ func_08079AF0: @ 0x08079AF0
 func_08079AF4: @ 0x08079AF4
     push {lr}
     bl func_08085C7C
-    ldr r0, .L08079B18 @ =gPlayStatus
+    ldr r0, .L08079B18 @ =gPlaySt
     movs r1, #2
     ldrb r0, [r0, #0x1b]
     cmp r0, #2
@@ -214055,7 +213055,7 @@ func_08079AF4: @ 0x08079AF4
     pop {r0}
     bx r0
     .align 2, 0
-.L08079B18: .4byte gPlayStatus
+.L08079B18: .4byte gPlaySt
     func_end func_08079AF4
 
     thumb_func_start func_08079B1C
@@ -214175,7 +213175,7 @@ func_08079BD4: @ 0x08079BD4
 
     thumb_func_start func_08079BE0
 func_08079BE0: @ 0x08079BE0
-    ldr r0, .L08079BF4 @ =gKeys
+    ldr r0, .L08079BF4 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -214185,7 +213185,7 @@ func_08079BE0: @ 0x08079BE0
     movs r0, #1
     b .L08079BFA
     .align 2, 0
-.L08079BF4: .4byte gKeys
+.L08079BF4: .4byte gpKeySt
 .L08079BF8:
     movs r0, #0
 .L08079BFA:
@@ -214203,7 +213203,7 @@ func_08079BFC: @ 0x08079BFC
 
     thumb_func_start func_08079C08
 func_08079C08: @ 0x08079C08
-    ldr r0, .L08079C1C @ =gKeys
+    ldr r0, .L08079C1C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -214213,7 +213213,7 @@ func_08079C08: @ 0x08079C08
     movs r0, #0
     b .L08079C22
     .align 2, 0
-.L08079C1C: .4byte gKeys
+.L08079C1C: .4byte gpKeySt
 .L08079C20:
     movs r0, #1
 .L08079C22:
@@ -215288,7 +214288,7 @@ func_0807A278: @ 0x0807A278
     thumb_func_start func_0807A2B4
 func_0807A2B4: @ 0x0807A2B4
     movs r1, #0
-    ldr r0, .L0807A2C4 @ =gPlayStatus
+    ldr r0, .L0807A2C4 @ =gPlaySt
     ldrh r0, [r0, #0x10]
     cmp r0, #0x14
     bls .L0807A2C0
@@ -215297,13 +214297,13 @@ func_0807A2B4: @ 0x0807A2B4
     adds r0, r1, #0
     bx lr
     .align 2, 0
-.L0807A2C4: .4byte gPlayStatus
+.L0807A2C4: .4byte gPlaySt
     func_end func_0807A2B4
 
     thumb_func_start func_0807A2C8
 func_0807A2C8: @ 0x0807A2C8
     movs r1, #0
-    ldr r0, .L0807A2D8 @ =gPlayStatus
+    ldr r0, .L0807A2D8 @ =gPlaySt
     ldrh r0, [r0, #0x10]
     cmp r0, #0x19
     bls .L0807A2D4
@@ -215312,13 +214312,13 @@ func_0807A2C8: @ 0x0807A2C8
     adds r0, r1, #0
     bx lr
     .align 2, 0
-.L0807A2D8: .4byte gPlayStatus
+.L0807A2D8: .4byte gPlaySt
     func_end func_0807A2C8
 
     thumb_func_start func_0807A2DC
 func_0807A2DC: @ 0x0807A2DC
     movs r1, #0
-    ldr r0, .L0807A2EC @ =gPlayStatus
+    ldr r0, .L0807A2EC @ =gPlaySt
     ldrh r0, [r0, #0x10]
     cmp r0, #0x1e
     bls .L0807A2E8
@@ -215327,13 +214327,13 @@ func_0807A2DC: @ 0x0807A2DC
     adds r0, r1, #0
     bx lr
     .align 2, 0
-.L0807A2EC: .4byte gPlayStatus
+.L0807A2EC: .4byte gPlaySt
     func_end func_0807A2DC
 
     thumb_func_start func_0807A2F0
 func_0807A2F0: @ 0x0807A2F0
     movs r1, #0
-    ldr r0, .L0807A300 @ =gPlayStatus
+    ldr r0, .L0807A300 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0
     bne .L0807A2FC
@@ -215342,13 +214342,13 @@ func_0807A2F0: @ 0x0807A2F0
     adds r0, r1, #0
     bx lr
     .align 2, 0
-.L0807A300: .4byte gPlayStatus
+.L0807A300: .4byte gPlaySt
     func_end func_0807A2F0
 
     thumb_func_start func_0807A304
 func_0807A304: @ 0x0807A304
     movs r1, #0
-    ldr r0, .L0807A314 @ =gPlayStatus
+    ldr r0, .L0807A314 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0x80
     bne .L0807A310
@@ -215357,7 +214357,7 @@ func_0807A304: @ 0x0807A304
     adds r0, r1, #0
     bx lr
     .align 2, 0
-.L0807A314: .4byte gPlayStatus
+.L0807A314: .4byte gPlaySt
     func_end func_0807A304
 
     thumb_func_start func_0807A318
@@ -215461,26 +214461,26 @@ func_0807A3A4: @ 0x0807A3A4
 
     thumb_func_start func_0807A3B8
 func_0807A3B8: @ 0x0807A3B8
-    ldr r0, .L0807A3C4 @ =gPlayStatus
+    ldr r0, .L0807A3C4 @ =gPlaySt
     adds r0, #0x2b
     ldrb r0, [r0]
     lsls r0, r0, #0x1f
     lsrs r0, r0, #0x1f
     bx lr
     .align 2, 0
-.L0807A3C4: .4byte gPlayStatus
+.L0807A3C4: .4byte gPlaySt
     func_end func_0807A3B8
 
     thumb_func_start IsTactFemale
 IsTactFemale: @ 0x0807A3C8
-    ldr r0, .L0807A3D4 @ =gPlayStatus
+    ldr r0, .L0807A3D4 @ =gPlaySt
     adds r0, #0x2c
     ldrb r0, [r0]
     lsls r0, r0, #0x1f
     lsrs r0, r0, #0x1f
     bx lr
     .align 2, 0
-.L0807A3D4: .4byte gPlayStatus
+.L0807A3D4: .4byte gPlaySt
     func_end IsTactFemale
 
     thumb_func_start func_0807A3D8
@@ -215496,14 +214496,14 @@ func_0807A3D8: @ 0x0807A3D8
 
     thumb_func_start IsTutorialDisabled
 IsTutorialDisabled: @ 0x0807A3E8
-    ldr r0, .L0807A3F4 @ =gPlayStatus
+    ldr r0, .L0807A3F4 @ =gPlaySt
     adds r0, #0x42
     ldrb r0, [r0]
     lsls r0, r0, #0x1a
     lsrs r0, r0, #0x1f
     bx lr
     .align 2, 0
-.L0807A3F4: .4byte gPlayStatus
+.L0807A3F4: .4byte gPlaySt
     func_end IsTutorialDisabled
 
     thumb_func_start func_0807A3F8
@@ -215538,7 +214538,7 @@ func_0807A408: @ 0x0807A408
     thumb_func_start func_0807A420
 func_0807A420: @ 0x0807A420
     movs r1, #0
-    ldr r0, .L0807A430 @ =gPlayStatus
+    ldr r0, .L0807A430 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
     bne .L0807A42C
@@ -215547,7 +214547,7 @@ func_0807A420: @ 0x0807A420
     adds r0, r1, #0
     bx lr
     .align 2, 0
-.L0807A430: .4byte gPlayStatus
+.L0807A430: .4byte gPlaySt
     func_end func_0807A420
 
     thumb_func_start func_0807A434
@@ -215577,7 +214577,7 @@ func_0807A450: @ 0x0807A450
     thumb_func_start func_0807A454
 func_0807A454: @ 0x0807A454
     push {lr}
-    ldr r1, .L0807A478 @ =gPlayStatus
+    ldr r1, .L0807A478 @ =gPlaySt
     movs r0, #8
     ldrb r2, [r1, #0x14]
     ands r0, r2
@@ -215596,12 +214596,12 @@ func_0807A454: @ 0x0807A454
     pop {r0}
     bx r0
     .align 2, 0
-.L0807A478: .4byte gPlayStatus
+.L0807A478: .4byte gPlaySt
     func_end func_0807A454
 
     thumb_func_start func_0807A47C
 func_0807A47C: @ 0x0807A47C
-    ldr r0, .L0807A494 @ =gPlayStatus
+    ldr r0, .L0807A494 @ =gPlaySt
     ldrb r1, [r0, #0x14]
     movs r0, #0x80
     ands r0, r1
@@ -215614,7 +214614,7 @@ func_0807A47C: @ 0x0807A47C
     movs r0, #0
     b .L0807A49A
     .align 2, 0
-.L0807A494: .4byte gPlayStatus
+.L0807A494: .4byte gPlaySt
 .L0807A498:
     movs r0, #1
 .L0807A49A:
@@ -216000,7 +215000,7 @@ func_0807A76C: @ 0x0807A76C
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0807A7A6
-    ldr r0, .L0807A7AC @ =gKeys
+    ldr r0, .L0807A7AC @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x80
     lsls r0, r0, #1
@@ -216018,7 +215018,7 @@ func_0807A76C: @ 0x0807A76C
     pop {r0}
     bx r0
     .align 2, 0
-.L0807A7AC: .4byte gKeys
+.L0807A7AC: .4byte gpKeySt
 .L0807A7B0: .4byte 0x08CA7534
     func_end func_0807A76C
 
@@ -216639,7 +215639,7 @@ func_0807AC10: @ 0x0807AC10
 .L0807AC28:
     movs r1, #0
     bl Proc_Goto
-    ldr r0, .L0807AC4C @ =gPlayStatus
+    ldr r0, .L0807AC4C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -216653,7 +215653,7 @@ func_0807AC10: @ 0x0807AC10
     bx r0
     .align 2, 0
 .L0807AC48: .4byte 0x08CA759C
-.L0807AC4C: .4byte gPlayStatus
+.L0807AC4C: .4byte gPlaySt
 .L0807AC50: .4byte 0x0000026A
     func_end func_0807AC10
 
@@ -216666,7 +215666,7 @@ func_0807AC54: @ 0x0807AC54
     bl Proc_Find
     cmp r0, #0
     bne .L0807AC7E
-    ldr r0, .L0807AC90 @ =gPlayStatus
+    ldr r0, .L0807AC90 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -216686,7 +215686,7 @@ func_0807AC54: @ 0x0807AC54
     bx r0
     .align 2, 0
 .L0807AC8C: .4byte 0x08CA756C
-.L0807AC90: .4byte gPlayStatus
+.L0807AC90: .4byte gPlaySt
 .L0807AC94: .4byte 0x0000026A
     func_end func_0807AC54
 
@@ -216699,7 +215699,7 @@ func_0807AC98: @ 0x0807AC98
     bl Proc_Find
     cmp r0, #0
     bne .L0807ACC2
-    ldr r0, .L0807ACD4 @ =gPlayStatus
+    ldr r0, .L0807ACD4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -216719,7 +215719,7 @@ func_0807AC98: @ 0x0807AC98
     bx r0
     .align 2, 0
 .L0807ACD0: .4byte 0x08CA756C
-.L0807ACD4: .4byte gPlayStatus
+.L0807ACD4: .4byte gPlaySt
 .L0807ACD8: .4byte 0x0000026A
     func_end func_0807AC98
 
@@ -216885,7 +215885,7 @@ func_0807AE04: @ 0x0807AE04
     adds r1, r0, #0
     ldr r0, .L0807AE24 @ =0x08CA75B4
     bl Proc_Start
-    ldr r0, .L0807AE28 @ =gPlayStatus
+    ldr r0, .L0807AE28 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -216898,7 +215898,7 @@ func_0807AE04: @ 0x0807AE04
     bx r0
     .align 2, 0
 .L0807AE24: .4byte 0x08CA75B4
-.L0807AE28: .4byte gPlayStatus
+.L0807AE28: .4byte gPlaySt
 .L0807AE2C: .4byte 0x0000026A
     func_end func_0807AE04
 
@@ -217553,7 +216553,7 @@ func_0807B354: @ 0x0807B354
     ands r1, r0
     cmp r1, #0
     bne .L0807B380
-    ldr r0, .L0807B384 @ =gPlayStatus
+    ldr r0, .L0807B384 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -217565,7 +216565,7 @@ func_0807B354: @ 0x0807B354
     pop {r0}
     bx r0
     .align 2, 0
-.L0807B384: .4byte gPlayStatus
+.L0807B384: .4byte gPlaySt
     func_end func_0807B354
 
     thumb_func_start func_0807B388
@@ -217932,7 +216932,7 @@ func_0807B60C: @ 0x0807B60C
     bl func_0807C360
     str r6, [r4, #0xc]
 .L0807B672:
-    ldr r0, .L0807B690 @ =gPlayStatus
+    ldr r0, .L0807B690 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -217947,7 +216947,7 @@ func_0807B60C: @ 0x0807B60C
     bx r0
     .align 2, 0
 .L0807B68C: .4byte 0x02022C00
-.L0807B690: .4byte gPlayStatus
+.L0807B690: .4byte gPlaySt
     func_end func_0807B60C
 
     thumb_func_start func_0807B694
@@ -218112,7 +217112,7 @@ func_0807B7B4: @ 0x0807B7B4
     ldr r0, [r4, #0x54]
     cmp r0, #1
     bne .L0807B7E8
-    ldr r0, .L0807B814 @ =gPlayStatus
+    ldr r0, .L0807B814 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -218135,7 +217135,7 @@ func_0807B7B4: @ 0x0807B7B4
     ands r0, r1
     cmp r0, #0
     bne .L0807B80A
-    ldr r0, .L0807B814 @ =gPlayStatus
+    ldr r0, .L0807B814 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -218149,7 +217149,7 @@ func_0807B7B4: @ 0x0807B7B4
     pop {r1}
     bx r1
     .align 2, 0
-.L0807B814: .4byte gPlayStatus
+.L0807B814: .4byte gPlaySt
     func_end func_0807B7B4
 
     thumb_func_start func_0807B818
@@ -218588,7 +217588,7 @@ func_0807BB30: @ 0x0807BB30
     ldrh r4, [r4]
     cmp r4, #0x10
     bne .L0807BB9A
-    ldr r0, .L0807BBDC @ =gPlayStatus
+    ldr r0, .L0807BBDC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -218627,7 +217627,7 @@ func_0807BB30: @ 0x0807BB30
     bx r0
     .align 2, 0
 .L0807BBD8: .4byte gDispIo
-.L0807BBDC: .4byte gPlayStatus
+.L0807BBDC: .4byte gPlaySt
 .L0807BBE0: .4byte gBg0Tm
     func_end func_0807BB30
 
@@ -220100,7 +219100,7 @@ func_0807C6CC: @ 0x0807C6CC
     movs r2, #0
     movs r3, #0
     bl func_080AA78C
-    ldr r0, .L0807C7AC @ =gPlayStatus
+    ldr r0, .L0807C7AC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -220119,7 +219119,7 @@ func_0807C6CC: @ 0x0807C6CC
 .L0807C7A0: .4byte 0x0000E0FF
 .L0807C7A4: .4byte func_080778C8
 .L0807C7A8: .4byte 0x08CF0B8C
-.L0807C7AC: .4byte gPlayStatus
+.L0807C7AC: .4byte gPlaySt
 .L0807C7B0: .4byte 0x000002FA
     func_end func_0807C6CC
 
@@ -220355,7 +219355,7 @@ func_0807C8FC: @ 0x0807C8FC
 func_0807C96C: @ 0x0807C96C
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L0807C984 @ =gPlayStatus
+    ldr r0, .L0807C984 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -220365,7 +219365,7 @@ func_0807C96C: @ 0x0807C96C
     beq .L0807C996
     b .L0807C9A2
     .align 2, 0
-.L0807C984: .4byte gPlayStatus
+.L0807C984: .4byte gPlaySt
 .L0807C988:
     movs r0, #0x6a
     bl GetFlag
@@ -220438,7 +219438,7 @@ func_0807CA04: @ 0x0807CA04
     movs r1, #2
     movs r2, #1
     bl InitTalk
-    ldr r4, .L0807CA38 @ =gPlayStatus
+    ldr r4, .L0807CA38 @ =gPlaySt
     ldrb r0, [r4, #0x1b]
     cmp r0, #2
     bne .L0807CA22
@@ -220459,7 +219459,7 @@ func_0807CA04: @ 0x0807CA04
     pop {r0}
     bx r0
     .align 2, 0
-.L0807CA38: .4byte gPlayStatus
+.L0807CA38: .4byte gPlaySt
 .L0807CA3C: .4byte 0x00000FC9
 .L0807CA40: .4byte 0x00000FCA
     func_end func_0807CA04
@@ -220544,7 +219544,7 @@ func_0807CAC0: @ 0x0807CAC0
     movs r0, #0x10
     strb r0, [r1]
     bl ApplySystemObjectsGraphics
-    ldr r1, .L0807CB20 @ =gPlayStatus
+    ldr r1, .L0807CB20 @ =gPlaySt
     movs r0, #0x80
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -220566,7 +219566,7 @@ func_0807CAC0: @ 0x0807CAC0
     bx r0
     .align 2, 0
 .L0807CB1C: .4byte gDispIo
-.L0807CB20: .4byte gPlayStatus
+.L0807CB20: .4byte gPlaySt
 .L0807CB24: .4byte 0x08CA7994
     func_end func_0807CAC0
 
@@ -220600,7 +219600,7 @@ func_0807CB3C: @ 0x0807CB3C
     movs r2, #0x11
     movs r3, #4
     bl func_08049CE4
-    ldr r0, .L0807CBD0 @ =gPlayStatus
+    ldr r0, .L0807CBD0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -220610,7 +219610,7 @@ func_0807CB3C: @ 0x0807CB3C
     bl m4aSongNumStart
 .L0807CB74:
     ldr r0, .L0807CBD8 @ =0x000012CE
-    bl GetMsg
+    bl DecodeMsg
     ldr r4, .L0807CBDC @ =0x02022EA2
     adds r1, r4, #0
     adds r1, #0xe
@@ -220628,7 +219628,7 @@ func_0807CB3C: @ 0x0807CB3C
     movs r1, #2
     bl func_080061D8
     ldr r0, .L0807CBE0 @ =0x000012CF
-    bl GetMsg
+    bl DecodeMsg
     adds r4, #0x2a
     movs r1, #8
     str r1, [sp]
@@ -220649,7 +219649,7 @@ func_0807CB3C: @ 0x0807CB3C
     pop {r0}
     bx r0
     .align 2, 0
-.L0807CBD0: .4byte gPlayStatus
+.L0807CBD0: .4byte gPlaySt
 .L0807CBD4: .4byte 0x0000037B
 .L0807CBD8: .4byte 0x000012CE
 .L0807CBDC: .4byte 0x02022EA2
@@ -220668,7 +219668,7 @@ func_0807CBE4: @ 0x0807CBE4
     lsls r0, r0, #0x10
     cmp r0, #0
     beq .L0807CC06
-    ldr r0, .L0807CC10 @ =gKeys
+    ldr r0, .L0807CC10 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #3
     ldrh r1, [r1, #8]
@@ -220682,7 +219682,7 @@ func_0807CBE4: @ 0x0807CBE4
     pop {r0}
     bx r0
     .align 2, 0
-.L0807CC10: .4byte gKeys
+.L0807CC10: .4byte gpKeySt
     func_end func_0807CBE4
 
     thumb_func_start func_0807CC14
@@ -220817,7 +219817,7 @@ func_0807CC5C: @ 0x0807CC5C
     strb r2, [r1, #0xa]
     ldr r0, .L0807CD40 @ =func_080777E4
     bl SetOnHBlankA
-    ldr r0, .L0807CD44 @ =gPlayStatus
+    ldr r0, .L0807CD44 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -220837,7 +219837,7 @@ func_0807CC5C: @ 0x0807CC5C
 .L0807CD38: .4byte 0x030028AC
 .L0807CD3C: .4byte 0x0000FFE0
 .L0807CD40: .4byte func_080777E4
-.L0807CD44: .4byte gPlayStatus
+.L0807CD44: .4byte gPlaySt
 .L0807CD48: .4byte 0x00000269
     func_end func_0807CC5C
 
@@ -221595,7 +220595,7 @@ func_0807D29C: @ 0x0807D29C
     thumb_func_start func_0807D2B0
 func_0807D2B0: @ 0x0807D2B0
     push {lr}
-    ldr r0, .L0807D2DC @ =gPlayStatus
+    ldr r0, .L0807D2DC @ =gPlaySt
     ldrb r0, [r0, #0xf]
     cmp r0, #0
     bne .L0807D2D8
@@ -221616,7 +220616,7 @@ func_0807D2B0: @ 0x0807D2B0
     movs r0, #0
     b .L0807D2E6
     .align 2, 0
-.L0807D2DC: .4byte gPlayStatus
+.L0807D2DC: .4byte gPlaySt
 .L0807D2E0: .4byte gActiveUnit
 .L0807D2E4:
     movs r0, #1
@@ -222127,7 +221127,7 @@ func_0807D644: @ 0x0807D644
     movs r2, #0xc
     ldrsh r1, [r1, r2]
     str r1, [r0, #0x2c]
-    ldr r0, .L0807D680 @ =gPlayStatus
+    ldr r0, .L0807D680 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -222141,7 +221141,7 @@ func_0807D644: @ 0x0807D644
     .align 2, 0
 .L0807D678: .4byte 0x08CBB47C
 .L0807D67C: .4byte gBmStatus
-.L0807D680: .4byte gPlayStatus
+.L0807D680: .4byte gPlaySt
 .L0807D684: .4byte 0x0000026A
     func_end func_0807D644
 
@@ -223085,7 +222085,7 @@ func_0807DC5C: @ 0x0807DC5C
     bl func_08009798
     bl ClearTalk
     ldrh r0, [r5, #4]
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     movs r0, #0xa
     movs r1, #0xe
@@ -223148,7 +222148,7 @@ func_0807DDD0: @ 0x0807DDD0
     thumb_func_start func_0807DDEC
 func_0807DDEC: @ 0x0807DDEC
     push {lr}
-    ldr r0, .L0807DE10 @ =gPlayStatus
+    ldr r0, .L0807DE10 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
     bne .L0807DE14
@@ -223164,7 +222164,7 @@ func_0807DDEC: @ 0x0807DDEC
     movs r0, #1
     b .L0807DE16
     .align 2, 0
-.L0807DE10: .4byte gPlayStatus
+.L0807DE10: .4byte gPlaySt
 .L0807DE14:
     movs r0, #0
 .L0807DE16:
@@ -223254,7 +222254,7 @@ func_0807DEA8: @ 0x0807DEA8
     ldr r0, .L0807DECC @ =0x083FC954
     ldm r0!, {r3, r4, r5}
     stm r1!, {r3, r4, r5}
-    ldr r0, .L0807DED0 @ =gPlayStatus
+    ldr r0, .L0807DED0 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
     bne .L0807DED4
@@ -223266,7 +222266,7 @@ func_0807DEA8: @ 0x0807DEA8
     b .L0807DEDE
     .align 2, 0
 .L0807DECC: .4byte 0x083FC954
-.L0807DED0: .4byte gPlayStatus
+.L0807DED0: .4byte gPlaySt
 .L0807DED4:
     movs r0, #1
     str r0, [sp, #0x10]
@@ -223368,7 +222368,7 @@ func_0807DF24: @ 0x0807DF24
     movs r0, #0x26
     movs r1, #0
     bl func_08011D34
-    ldr r1, .L0807DFD8 @ =gPlayStatus
+    ldr r1, .L0807DFD8 @ =gPlaySt
     adds r1, #0x2b
     movs r4, #1
     adds r0, r4, #0
@@ -223402,7 +222402,7 @@ func_0807DF24: @ 0x0807DF24
     bx r0
     .align 2, 0
 .L0807DFD4: .4byte 0x083FC960
-.L0807DFD8: .4byte gPlayStatus
+.L0807DFD8: .4byte gPlaySt
     func_end func_0807DF24
 
     thumb_func_start func_0807DFDC
@@ -223597,7 +222597,7 @@ func_0807E128: @ 0x0807E128
     ands r0, r1
     cmp r0, #0
     bne .L0807E1A2
-    ldr r0, .L0807E160 @ =gPlayStatus
+    ldr r0, .L0807E160 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
     bne .L0807E164
@@ -223609,7 +222609,7 @@ func_0807E128: @ 0x0807E128
     b .L0807E16E
     .align 2, 0
 .L0807E15C: .4byte 0x083FC988
-.L0807E160: .4byte gPlayStatus
+.L0807E160: .4byte gPlaySt
 .L0807E164:
     movs r0, #1
     str r0, [sp, #0x10]
@@ -224184,7 +223184,7 @@ func_0807E49C: @ 0x0807E49C
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0807E622
-    ldr r0, .L0807E63C @ =gPlayStatus
+    ldr r0, .L0807E63C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -224205,7 +223205,7 @@ func_0807E49C: @ 0x0807E49C
     .align 2, 0
 .L0807E634: .4byte gBmStatus
 .L0807E638: .4byte 0x000001FF
-.L0807E63C: .4byte gPlayStatus
+.L0807E63C: .4byte gPlaySt
     func_end func_0807E49C
 
     thumb_func_start func_0807E640
@@ -224661,7 +223661,7 @@ func_0807E97C: @ 0x0807E97C
 func_0807E99C: @ 0x0807E99C
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L0807E9C8 @ =gPlayStatus
+    ldr r0, .L0807E9C8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -224680,7 +223680,7 @@ func_0807E99C: @ 0x0807E99C
     pop {r0}
     bx r0
     .align 2, 0
-.L0807E9C8: .4byte gPlayStatus
+.L0807E9C8: .4byte gPlaySt
 .L0807E9CC: .4byte 0x000002FB
     func_end func_0807E99C
 
@@ -224688,7 +223688,7 @@ func_0807E99C: @ 0x0807E99C
 func_0807E9D0: @ 0x0807E9D0
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L0807E9FC @ =gPlayStatus
+    ldr r0, .L0807E9FC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -224707,7 +223707,7 @@ func_0807E9D0: @ 0x0807E9D0
     pop {r0}
     bx r0
     .align 2, 0
-.L0807E9FC: .4byte gPlayStatus
+.L0807E9FC: .4byte gPlaySt
     func_end func_0807E9D0
 
     thumb_func_start func_0807EA00
@@ -225037,7 +224037,7 @@ func_0807EC30: @ 0x0807EC30
     bl func_0807E7D4
     adds r5, #0x4c
     strh r4, [r5]
-    ldr r0, .L0807ECA4 @ =gPlayStatus
+    ldr r0, .L0807ECA4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -225053,7 +224053,7 @@ func_0807EC30: @ 0x0807EC30
 .L0807EC98: .4byte gDispIo
 .L0807EC9C: .4byte 0x0000FFE0
 .L0807ECA0: .4byte 0x0000E0FF
-.L0807ECA4: .4byte gPlayStatus
+.L0807ECA4: .4byte gPlaySt
     func_end func_0807EC30
 
     thumb_func_start func_0807ECA8
@@ -225166,7 +224166,7 @@ func_0807ED40: @ 0x0807ED40
 
     thumb_func_start func_0807ED78
 func_0807ED78: @ 0x0807ED78
-    ldr r0, .L0807ED88 @ =gKeys
+    ldr r0, .L0807ED88 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #8
     ldrb r1, [r1, #4]
@@ -225175,12 +224175,12 @@ func_0807ED78: @ 0x0807ED78
     asrs r0, r0, #0x18
     bx lr
     .align 2, 0
-.L0807ED88: .4byte gKeys
+.L0807ED88: .4byte gpKeySt
     func_end func_0807ED78
 
     thumb_func_start func_0807ED8C
 func_0807ED8C: @ 0x0807ED8C
-    ldr r0, .L0807ED9C @ =gKeys
+    ldr r0, .L0807ED9C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #4
     ldrb r1, [r1, #4]
@@ -225189,7 +224189,7 @@ func_0807ED8C: @ 0x0807ED8C
     asrs r0, r0, #0x18
     bx lr
     .align 2, 0
-.L0807ED9C: .4byte gKeys
+.L0807ED9C: .4byte gpKeySt
     func_end func_0807ED8C
 
     thumb_func_start func_0807EDA0
@@ -225200,7 +224200,7 @@ func_0807EDA0: @ 0x0807EDA0
 
     thumb_func_start func_0807EDA4
 func_0807EDA4: @ 0x0807EDA4
-    ldr r0, .L0807EDB4 @ =gKeys
+    ldr r0, .L0807EDB4 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #2
     ldrb r1, [r1, #4]
@@ -225209,7 +224209,7 @@ func_0807EDA4: @ 0x0807EDA4
     asrs r0, r0, #0x18
     bx lr
     .align 2, 0
-.L0807EDB4: .4byte gKeys
+.L0807EDB4: .4byte gpKeySt
     func_end func_0807EDA4
 
     thumb_func_start func_0807EDB8
@@ -225272,7 +224272,7 @@ func_0807EE04: @ 0x0807EE04
 
     thumb_func_start func_0807EE20
 func_0807EE20: @ 0x0807EE20
-    ldr r0, .L0807EE34 @ =gKeys
+    ldr r0, .L0807EE34 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -225282,7 +224282,7 @@ func_0807EE20: @ 0x0807EE20
     movs r0, #1
     b .L0807EE3A
     .align 2, 0
-.L0807EE34: .4byte gKeys
+.L0807EE34: .4byte gpKeySt
 .L0807EE38:
     movs r0, #0
 .L0807EE3A:
@@ -225366,7 +224366,7 @@ func_0807EE90: @ 0x0807EE90
     thumb_func_start func_0807EEAC
 func_0807EEAC: @ 0x0807EEAC
     movs r1, #0
-    ldr r0, .L0807EEBC @ =gPlayStatus
+    ldr r0, .L0807EEBC @ =gPlaySt
     ldrb r0, [r0, #0xe]
     cmp r0, #4
     bne .L0807EEB8
@@ -225375,13 +224375,13 @@ func_0807EEAC: @ 0x0807EEAC
     adds r0, r1, #0
     bx lr
     .align 2, 0
-.L0807EEBC: .4byte gPlayStatus
+.L0807EEBC: .4byte gPlaySt
     func_end func_0807EEAC
 
     thumb_func_start func_0807EEC0
 func_0807EEC0: @ 0x0807EEC0
     movs r1, #0
-    ldr r0, .L0807EED0 @ =gPlayStatus
+    ldr r0, .L0807EED0 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     cmp r0, #5
     bne .L0807EECC
@@ -225390,13 +224390,13 @@ func_0807EEC0: @ 0x0807EEC0
     adds r0, r1, #0
     bx lr
     .align 2, 0
-.L0807EED0: .4byte gPlayStatus
+.L0807EED0: .4byte gPlaySt
     func_end func_0807EEC0
 
     thumb_func_start func_0807EED4
 func_0807EED4: @ 0x0807EED4
     movs r1, #0
-    ldr r0, .L0807EEE4 @ =gPlayStatus
+    ldr r0, .L0807EEE4 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     cmp r0, #6
     bne .L0807EEE0
@@ -225405,13 +224405,13 @@ func_0807EED4: @ 0x0807EED4
     adds r0, r1, #0
     bx lr
     .align 2, 0
-.L0807EEE4: .4byte gPlayStatus
+.L0807EEE4: .4byte gPlaySt
     func_end func_0807EED4
 
     thumb_func_start func_0807EEE8
 func_0807EEE8: @ 0x0807EEE8
     movs r1, #0
-    ldr r0, .L0807EEF8 @ =gPlayStatus
+    ldr r0, .L0807EEF8 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     cmp r0, #0x26
     bne .L0807EEF4
@@ -225420,7 +224420,7 @@ func_0807EEE8: @ 0x0807EEE8
     adds r0, r1, #0
     bx lr
     .align 2, 0
-.L0807EEF8: .4byte gPlayStatus
+.L0807EEF8: .4byte gPlaySt
     func_end func_0807EEE8
 
     thumb_func_start func_0807EEFC
@@ -225550,16 +224550,16 @@ func_0807EF90: @ 0x0807EF90
 .L0807EFD0: .4byte 0x00004E1F
     func_end func_0807EF90
 
-    thumb_func_start func_0807EFD4
-func_0807EFD4: @ 0x0807EFD4
+    thumb_func_start TransferLynModeUnits
+TransferLynModeUnits: @ 0x0807EFD4
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
     movs r7, #0
     movs r6, #1
-    ldr r0, .L0807F01C @ =gPlayStatus
-    bl func_0809FBD4
-    bl func_080B6A74
+    ldr r0, .L0807F01C @ =gPlaySt
+    bl RegisterChapterStats
+    bl ComputeChapterRankings
     bl func_0809F618
     bl func_0807EF90
     movs r5, #1
@@ -225584,7 +224584,7 @@ func_0807EFD4: @ 0x0807EFD4
     ldr r0, [r4]
     b .L0807F08A
     .align 2, 0
-.L0807F01C: .4byte gPlayStatus
+.L0807F01C: .4byte gPlaySt
 .L0807F020: .4byte 0x08CA0448
 .L0807F024:
     ldrb r0, [r5, #1]
@@ -225653,10 +224653,10 @@ func_0807EFD4: @ 0x0807EFD4
     cmp r5, #0x3f
     ble .L0807EFF2
     bl func_0809FA2C
-    ldr r1, .L0807F0C0 @ =gPlayStatus
+    ldr r1, .L0807F0C0 @ =gPlaySt
     movs r0, #0xc
     strb r0, [r1, #0xe]
-    bl func_0802E3D4
+    bl CleanupUnitsBeforeChapter
     bl func_080A0400
     pop {r3}
     mov r8, r3
@@ -225664,13 +224664,13 @@ func_0807EFD4: @ 0x0807EFD4
     pop {r0}
     bx r0
     .align 2, 0
-.L0807F0C0: .4byte gPlayStatus
-    func_end func_0807EFD4
+.L0807F0C0: .4byte gPlaySt
+    func_end TransferLynModeUnits
 
-    thumb_func_start func_0807F0C4
-func_0807F0C4: @ 0x0807F0C4
+    thumb_func_start SetPostLynModeChapter
+SetPostLynModeChapter: @ 0x0807F0C4
     push {r4, lr}
-    ldr r4, .L0807F0D4 @ =gPlayStatus
+    ldr r4, .L0807F0D4 @ =gPlaySt
     ldrb r0, [r4, #0x1b]
     cmp r0, #2
     beq .L0807F0D8
@@ -225678,15 +224678,15 @@ func_0807F0C4: @ 0x0807F0C4
     beq .L0807F0E2
     b .L0807F0EC
     .align 2, 0
-.L0807F0D4: .4byte gPlayStatus
+.L0807F0D4: .4byte gPlaySt
 .L0807F0D8:
     movs r0, #0xc
-    bl SetNextChapter
+    bl SetNextChapterId
     movs r0, #0xc
     b .L0807F0EA
 .L0807F0E2:
     movs r0, #0xd
-    bl SetNextChapter
+    bl SetNextChapterId
     movs r0, #0xd
 .L0807F0EA:
     strb r0, [r4, #0xe]
@@ -225694,7 +224694,7 @@ func_0807F0C4: @ 0x0807F0C4
     pop {r4}
     pop {r0}
     bx r0
-    func_end func_0807F0C4
+    func_end SetPostLynModeChapter
 
     thumb_func_start func_0807F0F4
 func_0807F0F4: @ 0x0807F0F4
@@ -226739,8 +225739,8 @@ func_0807F898: @ 0x0807F898
 .L0807F8D0: .4byte 0x0400001C
     func_end func_0807F898
 
-    thumb_func_start func_0807F8D4
-func_0807F8D4: @ 0x0807F8D4
+    thumb_func_start StartMuralBackgroundAlt
+StartMuralBackgroundAlt: @ 0x0807F8D4
     push {r4, r5, r6, r7, lr}
     adds r7, r0, #0
     adds r4, r1, #0
@@ -226811,7 +225811,7 @@ func_0807F8D4: @ 0x0807F8D4
 .L0807F960: .4byte 0x08418E44
 .L0807F964: .4byte 0x0000027F
 .L0807F968: .4byte 0x08CC1C5C
-    func_end func_0807F8D4
+    func_end StartMuralBackgroundAlt
 
     thumb_func_start func_0807F96C
 func_0807F96C: @ 0x0807F96C
@@ -226888,8 +225888,8 @@ func_0807F96C: @ 0x0807F96C
 .L0807FA00: .4byte 0x08CC1C5C
     func_end func_0807F96C
 
-    thumb_func_start func_0807FA04
-func_0807FA04: @ 0x0807FA04
+    thumb_func_start EndMuralBackground
+EndMuralBackground: @ 0x0807FA04
     push {lr}
     ldr r0, .L0807FA10 @ =0x08CC1C5C
     bl Proc_EndEach
@@ -226897,7 +225897,7 @@ func_0807FA04: @ 0x0807FA04
     bx r0
     .align 2, 0
 .L0807FA10: .4byte 0x08CC1C5C
-    func_end func_0807FA04
+    func_end EndMuralBackground
 
     thumb_func_start func_0807FA14
 func_0807FA14: @ 0x0807FA14
@@ -226948,7 +225948,7 @@ func_0807FA48: @ 0x0807FA48
     cmp r0, #0
     beq .L0807FA72
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     ldr r5, [r6]
     ldr r1, [r6, #4]
     ldrb r2, [r6, #8]
@@ -226985,7 +225985,7 @@ func_0807FA8C: @ 0x0807FA8C
     ldr r0, [r7, #0xc]
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
     movs r0, #0x38
     adds r1, r5, #0
@@ -227017,7 +226017,7 @@ func_0807FA8C: @ 0x0807FA8C
     ldr r0, [r7, #0xc]
     ldr r0, [r0, #4]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r7, #0
     adds r2, #0x20
     ldr r1, .L0807FB78 @ =0x00000342
@@ -227148,7 +226148,7 @@ func_0807FBF0: @ 0x0807FBF0
     ands r0, r1
     cmp r0, #0
     bne .L0807FCF6
-    ldr r0, .L0807FD08 @ =gPlayStatus
+    ldr r0, .L0807FD08 @ =gPlaySt
     ldrb r1, [r0, #0x14]
     movs r0, #8
     ands r0, r1
@@ -227193,21 +226193,21 @@ func_0807FBF0: @ 0x0807FBF0
     adds r0, r5, #0
     bl ClearText
     ldr r0, .L0807FD10 @ =0x000012AB
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #6
     movs r2, #3
     bl Text_InsertDrawString
     ldr r0, .L0807FD14 @ =0x000012AC
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #0x2e
     movs r2, #3
     bl Text_InsertDrawString
     ldr r0, .L0807FD18 @ =0x000012AD
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #0x56
@@ -227256,7 +226256,7 @@ func_0807FBF0: @ 0x0807FBF0
     .align 2, 0
 .L0807FD00: .4byte 0x0200310C
 .L0807FD04: .4byte gBmStatus
-.L0807FD08: .4byte gPlayStatus
+.L0807FD08: .4byte gPlaySt
 .L0807FD0C: .4byte 0x000003E7
 .L0807FD10: .4byte 0x000012AB
 .L0807FD14: .4byte 0x000012AC
@@ -227387,7 +226387,7 @@ func_0807FDF0: @ 0x0807FDF0
     cmp r4, #0
     beq .L0807FE5C
     ldr r0, .L0807FE54 @ =0x000010F9
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r5, #0
     adds r3, #0x30
     ldr r1, .L0807FE58 @ =0x0200327E
@@ -227409,7 +226409,7 @@ func_0807FDF0: @ 0x0807FDF0
 .L0807FE58: .4byte 0x0200327E
 .L0807FE5C:
     ldr r0, .L08080048 @ =0x000010F8
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r5, #0
     adds r2, #0x30
     ldr r1, .L0808004C @ =0x0200327E
@@ -227941,7 +226941,7 @@ func_08080270: @ 0x08080270
     adds r0, r4, #0
     bl func_08018D38
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     mov r1, r8
     adds r1, #6
     adds r1, r6, r1
@@ -228461,7 +227461,7 @@ func_080806FC: @ 0x080806FC
     adds r4, r0, #0
     cmp r4, #0
     bne .L0808074C
-    ldr r0, .L0808075C @ =gPlayStatus
+    ldr r0, .L0808075C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -228494,7 +227494,7 @@ func_080806FC: @ 0x080806FC
     bx r0
     .align 2, 0
 .L08080758: .4byte 0x08CC1DA4
-.L0808075C: .4byte gPlayStatus
+.L0808075C: .4byte gPlaySt
 .L08080760: .4byte 0x0000038F
 .L08080764: .4byte 0x0200310C
     func_end func_080806FC
@@ -228874,7 +227874,7 @@ func_08080A30: @ 0x08080A30
     adds r2, #0x4a
     strh r1, [r2]
     str r5, [r0, #0x38]
-    ldr r0, .L08080A68 @ =gPlayStatus
+    ldr r0, .L08080A68 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -228888,7 +227888,7 @@ func_08080A30: @ 0x08080A30
     bx r0
     .align 2, 0
 .L08080A64: .4byte 0x08CC1DBC
-.L08080A68: .4byte gPlayStatus
+.L08080A68: .4byte gPlaySt
     func_end func_08080A30
 
     thumb_func_start func_08080A6C
@@ -229681,7 +228681,7 @@ func_08081088: @ 0x08081088
     movs r2, #1
     rsbs r2, r2, #0
     movs r0, #0
-    bl func_0807F8D4
+    bl StartMuralBackgroundAlt
     ldr r0, .L08081160 @ =0x083FCE8C
     ldr r1, .L08081164 @ =0x06014800
     bl Decompress
@@ -229855,7 +228855,7 @@ func_0808119C: @ 0x0808119C
 func_0808127C: @ 0x0808127C
     push {r4, r5, r6, lr}
     adds r5, r0, #0
-    ldr r1, .L08081304 @ =gKeys
+    ldr r1, .L08081304 @ =gpKeySt
     ldr r2, [r1]
     movs r0, #2
     ldrh r3, [r2, #8]
@@ -229907,7 +228907,7 @@ func_0808127C: @ 0x0808127C
     bl EnablePalSync
     adds r0, r5, #0
     bl Proc_Break
-    ldr r0, .L08081314 @ =gPlayStatus
+    ldr r0, .L08081314 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -229919,11 +228919,11 @@ func_0808127C: @ 0x0808127C
     bl m4aSongNumStart
     b .L08081400
     .align 2, 0
-.L08081304: .4byte gKeys
+.L08081304: .4byte gpKeySt
 .L08081308: .4byte gDispIo
 .L0808130C: .4byte 0x0000FFE0
 .L08081310: .4byte gPal
-.L08081314: .4byte gPlayStatus
+.L08081314: .4byte gPlaySt
 .L08081318: .4byte 0x0000038B
 .L0808131C:
     ldrh r1, [r2, #6]
@@ -230048,7 +229048,7 @@ func_0808127C: @ 0x0808127C
     thumb_func_start func_0808140C
 func_0808140C: @ 0x0808140C
     push {r4, lr}
-    ldr r3, .L08081438 @ =gPlayStatus
+    ldr r3, .L08081438 @ =gPlaySt
     movs r1, #0xfc
     ldrb r0, [r3, #0x14]
     ands r1, r0
@@ -230068,7 +229068,7 @@ func_0808140C: @ 0x0808140C
     pop {r0}
     bx r0
     .align 2, 0
-.L08081438: .4byte gPlayStatus
+.L08081438: .4byte gPlaySt
 .L0808143C: .4byte 0x0200310C
 .L08081440: .4byte 0x0203E670
     func_end func_0808140C
@@ -230116,7 +229116,7 @@ func_08081458: @ 0x08081458
     thumb_func_start func_08081490
 func_08081490: @ 0x08081490
     push {lr}
-    bl func_0807FA04
+    bl EndMuralBackground
     pop {r0}
     bx r0
     func_end func_08081490
@@ -230130,7 +229130,7 @@ StartStatScreen: @ 0x0808149C
     movs r3, #0
     strh r3, [r2, #4]
     strh r3, [r2, #6]
-    ldr r4, .L080814E8 @ =gPlayStatus
+    ldr r4, .L080814E8 @ =gPlaySt
     movs r1, #3
     ldrb r7, [r4, #0x14]
     ands r1, r7
@@ -230158,7 +229158,7 @@ StartStatScreen: @ 0x0808149C
     bx r0
     .align 2, 0
 .L080814E4: .4byte 0x0200310C
-.L080814E8: .4byte gPlayStatus
+.L080814E8: .4byte gPlaySt
 .L080814EC: .4byte 0x0000038A
 .L080814F0: .4byte 0x08CC1F6C
     func_end StartStatScreen
@@ -230618,7 +229618,7 @@ func_08081820: @ 0x08081820
     ldrb r0, [r0]
     cmp r0, #0
     bne .L08081854
-    ldr r0, .L08081860 @ =gPlayStatus
+    ldr r0, .L08081860 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -230633,7 +229633,7 @@ func_08081820: @ 0x08081820
     bx r0
     .align 2, 0
 .L0808185C: .4byte 0x08CC209C
-.L08081860: .4byte gPlayStatus
+.L08081860: .4byte gPlaySt
     func_end func_08081820
 
     thumb_func_start func_08081864
@@ -230678,7 +229678,7 @@ func_0808188C: @ 0x0808188C
     ldrb r0, [r0]
     cmp r0, #0
     bne .L080818D0
-    ldr r0, .L080818DC @ =gPlayStatus
+    ldr r0, .L080818DC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -230700,7 +229700,7 @@ func_0808188C: @ 0x0808188C
     bx r0
     .align 2, 0
 .L080818D8: .4byte 0x08CC209C
-.L080818DC: .4byte gPlayStatus
+.L080818DC: .4byte gPlaySt
 .L080818E0: .4byte 0x00000391
     func_end func_0808188C
 
@@ -230890,7 +229890,7 @@ func_080819C8: @ 0x080819C8
     movs r0, #1
     bl SetTextFontGlyphs
     ldrh r0, [r6]
-    bl GetMsg
+    bl DecodeMsg
     add r2, sp, #4
     mov r1, sp
     bl func_080056C4
@@ -230964,7 +229964,7 @@ func_08081A94: @ 0x08081A94
     movs r0, #1
     bl SetTextFontGlyphs
     ldrh r0, [r4]
-    bl GetMsg
+    bl DecodeMsg
     add r2, sp, #4
     mov r1, sp
     bl func_080056C4
@@ -231079,7 +230079,7 @@ func_08081BB4: @ 0x08081BB4
     ldrb r2, [r2, #0x11]
     adds r1, r2, r1
     bl func_08049F58
-    ldr r6, .L08081C50 @ =gKeys
+    ldr r6, .L08081C50 @ =gpKeySt
     ldr r1, [r6]
     movs r0, #0x40
     ldrh r1, [r1, #6]
@@ -231139,11 +230139,11 @@ func_08081BB4: @ 0x08081BB4
     b .L08081C72
     .align 2, 0
 .L08081C4C: .4byte 0x0203E694
-.L08081C50: .4byte gKeys
+.L08081C50: .4byte gpKeySt
 .L08081C54:
     cmp r4, #0
     beq .L08081C72
-    ldr r0, .L08081C78 @ =gPlayStatus
+    ldr r0, .L08081C78 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -231160,7 +230160,7 @@ func_08081BB4: @ 0x08081BB4
     pop {r0}
     bx r0
     .align 2, 0
-.L08081C78: .4byte gPlayStatus
+.L08081C78: .4byte gPlaySt
 .L08081C7C: .4byte 0x00000387
     func_end func_08081BB4
 
@@ -231249,7 +230249,7 @@ func_08081CDC: @ 0x08081CDC
     movs r4, #0x60
     b .L08081D28
 .L08081D16:
-    ldr r0, .L08081D3C @ =gPlayStatus
+    ldr r0, .L08081D3C @ =gPlaySt
     adds r0, #0x2b
     movs r1, #1
     ldrb r0, [r0]
@@ -231270,7 +230270,7 @@ func_08081CDC: @ 0x08081CDC
     pop {r0}
     bx r0
     .align 2, 0
-.L08081D3C: .4byte gPlayStatus
+.L08081D3C: .4byte gPlaySt
     func_end func_08081CDC
 
     thumb_func_start func_08081D40
@@ -231576,7 +230576,7 @@ func_08081F14: @ 0x08081F14
 func_08081F44: @ 0x08081F44
     push {lr}
     adds r2, r0, #0
-    ldr r0, .L08081F64 @ =gKeys
+    ldr r0, .L08081F64 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -231590,7 +230590,7 @@ func_08081F44: @ 0x08081F44
     pop {r0}
     bx r0
     .align 2, 0
-.L08081F64: .4byte gKeys
+.L08081F64: .4byte gpKeySt
     func_end func_08081F44
 
     thumb_func_start func_08081F68
@@ -232087,19 +231087,19 @@ func_080822A4: @ 0x080822A4
     b .L080822E8
 .L080822C2:
     ldr r0, .L080822CC @ =0x000005D2
-    bl GetMsg
+    bl DecodeMsg
     b .L08082302
     .align 2, 0
 .L080822CC: .4byte 0x000005D2
 .L080822D0:
     ldr r0, .L080822D8 @ =0x000005D3
-    bl GetMsg
+    bl DecodeMsg
     b .L08082302
     .align 2, 0
 .L080822D8: .4byte 0x000005D3
 .L080822DC:
     ldr r0, .L080822E4 @ =0x000005D4
-    bl GetMsg
+    bl DecodeMsg
     b .L08082302
     .align 2, 0
 .L080822E4: .4byte 0x000005D4
@@ -232114,7 +231114,7 @@ func_080822A4: @ 0x080822A4
     adds r0, #0x70
     adds r0, r0, r1
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
 .L08082302:
     pop {r4}
     pop {r1}
@@ -232795,14 +231795,14 @@ func_0808281C: @ 0x0808281C
     movs r2, #8
     bl Text_InsertDrawString
     ldr r0, .L0808289C @ =0x0000110C
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x30
     movs r2, #8
     bl Text_InsertDrawString
     ldr r0, .L080828A0 @ =0x0000110E
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x6c
@@ -232810,21 +231810,21 @@ func_0808281C: @ 0x0808281C
     bl Text_InsertDrawString
     adds r4, #8
     ldr r0, .L080828A4 @ =0x0000110F
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
     movs r2, #8
     bl Text_InsertDrawString
     ldr r0, .L080828A8 @ =0x00001104
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x30
     movs r2, #8
     bl Text_InsertDrawString
     ldr r0, .L080828AC @ =0x0000110D
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x6c
@@ -232903,7 +231903,7 @@ func_0808292C: @ 0x0808292C
     adds r5, r0, #0
     ldr r4, .L08082984 @ =0x0203E6B8
     ldr r0, .L08082988 @ =0x00001115
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -232917,7 +231917,7 @@ func_0808292C: @ 0x0808292C
     movs r2, #7
     bl Text_InsertDrawString
     ldr r0, .L0808298C @ =0x0000110C
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x30
@@ -232943,7 +231943,7 @@ func_0808292C: @ 0x0808292C
     thumb_func_start func_08082990
 func_08082990: @ 0x08082990
     push {r4, lr}
-    ldr r1, .L080829DC @ =gPlayStatus
+    ldr r1, .L080829DC @ =gPlaySt
     adds r1, #0x2b
     movs r0, #1
     ldrb r1, [r1]
@@ -232953,21 +231953,21 @@ func_08082990: @ 0x08082990
     ldr r4, .L080829E0 @ =0x0203E6B8
     movs r0, #0x88
     lsls r0, r0, #5
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
     movs r2, #8
     bl Text_InsertDrawString
     ldr r0, .L080829E4 @ =0x000012AF
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x38
     movs r2, #8
     bl Text_InsertDrawString
     ldr r0, .L080829E8 @ =0x000010F2
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x70
@@ -232975,14 +231975,14 @@ func_08082990: @ 0x08082990
     bl Text_InsertDrawString
     b .L08082A00
     .align 2, 0
-.L080829DC: .4byte gPlayStatus
+.L080829DC: .4byte gPlaySt
 .L080829E0: .4byte 0x0203E6B8
 .L080829E4: .4byte 0x000012AF
 .L080829E8: .4byte 0x000010F2
 .L080829EC:
     ldr r4, .L08082A08 @ =0x0203E6B8
     ldr r0, .L08082A0C @ =0x00001290
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x10
@@ -233000,7 +232000,7 @@ func_08082990: @ 0x08082990
     thumb_func_start func_08082A10
 func_08082A10: @ 0x08082A10
     push {r4, r5, r6, r7, lr}
-    ldr r7, .L08082A6C @ =gPlayStatus
+    ldr r7, .L08082A6C @ =gPlaySt
     adds r5, r7, #0
     adds r5, #0x2b
     movs r0, #1
@@ -233008,7 +232008,7 @@ func_08082A10: @ 0x08082A10
     ands r0, r1
     cmp r0, #0
     beq .L08082AC8
-    bl func_0802E6E4
+    bl GetTacticianName
     adds r6, r0, #0
     ldrb r0, [r6]
     cmp r0, #0
@@ -233016,21 +232016,21 @@ func_08082A10: @ 0x08082A10
     ldr r4, .L08082A70 @ =0x0203E6B8
     ldr r5, .L08082A74 @ =0x0000127C
     adds r0, r5, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x14
     movs r2, #7
     bl Text_InsertDrawString
     adds r0, r5, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x50
     movs r2, #7
     bl Text_InsertDrawString
     ldr r0, .L08082A78 @ =0x0000127E
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x8c
@@ -233038,7 +232038,7 @@ func_08082A10: @ 0x08082A10
     bl Text_InsertDrawString
     b .L08082AC8
     .align 2, 0
-.L08082A6C: .4byte gPlayStatus
+.L08082A6C: .4byte gPlaySt
 .L08082A70: .4byte 0x0203E6B8
 .L08082A74: .4byte 0x0000127C
 .L08082A78: .4byte 0x0000127E
@@ -233051,7 +232051,7 @@ func_08082A10: @ 0x08082A10
     adds r0, r0, r1
     ldr r0, [r0]
     bl func_080A6DD0
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x10
@@ -233063,7 +232063,7 @@ func_08082A10: @ 0x08082A10
     lsls r0, r0, #0x1f
     lsrs r0, r0, #0x1f
     bl func_080A6DC0
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x4c
@@ -233372,7 +232372,7 @@ func_08082C8C: @ 0x08082C8C
     strh r1, [r0]
     mov r1, sl
     ldr r0, [r1, #0x5c]
-    bl GetMsg
+    bl DecodeMsg
     bl MsgExpand
     str r0, [r4, #0x2c]
     adds r1, r4, #0
@@ -233382,7 +232382,7 @@ func_08082C8C: @ 0x08082C8C
     adds r0, r4, #0
     adds r0, #0x5e
     strh r5, [r0]
-    ldr r0, .L08082D3C @ =gPlayStatus
+    ldr r0, .L08082D3C @ =gPlaySt
     adds r0, #0x40
     ldrb r0, [r0]
     lsls r0, r0, #0x19
@@ -233397,7 +232397,7 @@ func_08082C8C: @ 0x08082C8C
     .align 2, 0
 .L08082D34: .4byte 0x0203E6A0
 .L08082D38: .4byte 0x08CC2994
-.L08082D3C: .4byte gPlayStatus
+.L08082D3C: .4byte gPlaySt
 .L08082D40:
     cmp r2, #2
     beq .L08082D5A
@@ -233588,7 +232588,7 @@ func_08082E80: @ 0x08082E80
     movs r1, #3
     bl Proc_Start
     adds r5, r0, #0
-    ldr r0, .L08082EC8 @ =gPlayStatus
+    ldr r0, .L08082EC8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -233607,7 +232607,7 @@ func_08082E80: @ 0x08082E80
     b .L08082EE8
     .align 2, 0
 .L08082EC4: .4byte 0x08CC29E4
-.L08082EC8: .4byte gPlayStatus
+.L08082EC8: .4byte gPlaySt
 .L08082ECC:
     ldrh r0, [r5, #0x30]
     strh r0, [r5, #0x38]
@@ -233639,7 +232639,7 @@ func_08082E80: @ 0x08082E80
     movs r0, #1
     bl SetTextFontGlyphs
     ldrh r0, [r4]
-    bl GetMsg
+    bl DecodeMsg
     add r2, sp, #4
     mov r1, sp
     bl func_080056C4
@@ -233672,7 +232672,7 @@ func_08082E80: @ 0x08082E80
     thumb_func_start func_08082F50
 func_08082F50: @ 0x08082F50
     push {lr}
-    ldr r0, .L08082F74 @ =gPlayStatus
+    ldr r0, .L08082F74 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -233687,7 +232687,7 @@ func_08082F50: @ 0x08082F50
     pop {r0}
     bx r0
     .align 2, 0
-.L08082F74: .4byte gPlayStatus
+.L08082F74: .4byte gPlaySt
 .L08082F78: .4byte 0x00000391
 .L08082F7C: .4byte 0x08CC29E4
     func_end func_08082F50
@@ -233717,7 +232717,7 @@ func_08082F80: @ 0x08082F80
 func_08082FA4: @ 0x08082FA4
     push {lr}
     adds r2, r0, #0
-    ldr r0, .L08082FC0 @ =gKeys
+    ldr r0, .L08082FC0 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -233730,7 +232730,7 @@ func_08082FA4: @ 0x08082FA4
     pop {r0}
     bx r0
     .align 2, 0
-.L08082FC0: .4byte gKeys
+.L08082FC0: .4byte gpKeySt
     func_end func_08082FA4
 
     thumb_func_start func_08082FC4
@@ -233947,7 +232947,7 @@ func_080830D8: @ 0x080830D8
 func_08083128: @ 0x08083128
     push {lr}
     adds r2, r0, #0
-    ldr r0, .L08083144 @ =gKeys
+    ldr r0, .L08083144 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
@@ -233960,7 +232960,7 @@ func_08083128: @ 0x08083128
     pop {r0}
     bx r0
     .align 2, 0
-.L08083144: .4byte gKeys
+.L08083144: .4byte gpKeySt
     func_end func_08083128
 
     thumb_func_start func_08083148
@@ -234252,7 +233252,7 @@ func_08083254: @ 0x08083254
     ands r1, r0
     cmp r1, #0
     beq .L08083390
-    ldr r0, .L080833A4 @ =gPlayStatus
+    ldr r0, .L080833A4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -234268,7 +233268,7 @@ func_08083254: @ 0x08083254
 .L08083398: .4byte 0x0203E70C
 .L0808339C: .4byte 0x08194674
 .L080833A0: .4byte 0x0203E6F4
-.L080833A4: .4byte gPlayStatus
+.L080833A4: .4byte gPlaySt
 .L080833A8: .4byte 0x000002E6
     func_end func_08083254
 
@@ -234395,7 +233395,7 @@ func_08083478: @ 0x08083478
     ands r1, r0
     cmp r1, #0
     bne .L0808349E
-    ldr r0, .L080834A4 @ =gKeys
+    ldr r0, .L080834A4 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xa
     ldrh r1, [r1, #8]
@@ -234410,7 +233410,7 @@ func_08083478: @ 0x08083478
     pop {r0}
     bx r0
     .align 2, 0
-.L080834A4: .4byte gKeys
+.L080834A4: .4byte gpKeySt
     func_end func_08083478
 
     thumb_func_start func_080834A8
@@ -234421,7 +233421,7 @@ func_080834A8: @ 0x080834A8
     ands r1, r0
     cmp r1, #0
     beq .L080834C8
-    ldr r0, .L080834D8 @ =gPlayStatus
+    ldr r0, .L080834D8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -234436,7 +233436,7 @@ func_080834A8: @ 0x080834A8
     pop {r0}
     bx r0
     .align 2, 0
-.L080834D8: .4byte gPlayStatus
+.L080834D8: .4byte gPlaySt
 .L080834DC: .4byte 0x000002E7
     func_end func_080834A8
 
@@ -234942,7 +233942,7 @@ func_0808380C: @ 0x0808380C
     movs r0, #1
     bl SetTextFontGlyphs
     ldrh r0, [r5]
-    bl GetMsg
+    bl DecodeMsg
     bl MsgExpand
     add r2, sp, #4
     mov r1, sp
@@ -235521,7 +234521,7 @@ func_08083CE8: @ 0x08083CE8
     movs r2, #0
     ldrsh r1, [r0, r2]
     mov r8, r1
-    ldr r0, .L08083D1C @ =gKeys
+    ldr r0, .L08083D1C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xf3
     ldrh r1, [r1, #8]
@@ -235537,7 +234537,7 @@ func_08083CE8: @ 0x08083CE8
     mov r8, r3
     b .L08083D84
     .align 2, 0
-.L08083D1C: .4byte gKeys
+.L08083D1C: .4byte gpKeySt
 .L08083D20:
     bl func_08083C44
     ldr r0, .L08083D40 @ =0x08CC2A4C
@@ -236099,7 +235099,7 @@ func_08083CE8: @ 0x08083CE8
     ands r1, r0
     cmp r1, #0
     beq .L080842BC
-    ldr r0, .L080842B4 @ =gPlayStatus
+    ldr r0, .L080842B4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -236109,10 +235109,10 @@ func_08083CE8: @ 0x08083CE8
     bl m4aSongNumStart
     b .L080842CE
     .align 2, 0
-.L080842B4: .4byte gPlayStatus
+.L080842B4: .4byte gPlaySt
 .L080842B8: .4byte 0x000002E5
 .L080842BC:
-    ldr r0, .L080842E8 @ =gPlayStatus
+    ldr r0, .L080842E8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -236136,7 +235136,7 @@ func_08083CE8: @ 0x08083CE8
     pop {r0}
     bx r0
     .align 2, 0
-.L080842E8: .4byte gPlayStatus
+.L080842E8: .4byte gPlaySt
 .L080842EC: .4byte 0x0000038E
     func_end func_08083CE8
 
@@ -236452,7 +235452,7 @@ func_08084490: @ 0x08084490
     movs r0, #0
     strh r0, [r1]
     ldr r0, [r5, #0x5c]
-    bl GetMsg
+    bl DecodeMsg
     bl MsgExpand
     str r0, [r4, #0x2c]
     ldr r1, [r5, #0x2c]
@@ -237959,7 +236959,7 @@ func_08085110: @ 0x08085110
     mov r2, r8
     ldr r0, [r2]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r6, r0, #0
     movs r0, #0x30
     adds r1, r6, #0
@@ -238193,7 +237193,7 @@ func_08085290: @ 0x08085290
     ldr r2, [sp]
     ldr r0, [r2]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     mov sb, r0
     movs r0, #0x30
     mov r1, sb
@@ -239242,7 +238242,7 @@ func_08085ADC: @ 0x08085ADC
     movs r1, #2
     bl ApplyIconPalette
     bl ResetTextFont
-    ldr r4, .L08085C04 @ =gPlayStatus
+    ldr r4, .L08085C04 @ =gPlaySt
     adds r0, r4, #0
     adds r0, #0x40
     ldrb r0, [r0]
@@ -239274,7 +238274,7 @@ func_08085ADC: @ 0x08085ADC
 .L08085BF8: .4byte 0x06002EA0
 .L08085BFC: .4byte 0x06015D40
 .L08085C00: .4byte gPal
-.L08085C04: .4byte gPlayStatus
+.L08085C04: .4byte gPlaySt
 .L08085C08: .4byte 0x08CC2C00
 .L08085C0C: .4byte gBmStatus
 .L08085C10: .4byte 0x08CC2D98
@@ -239289,7 +238289,7 @@ func_08085ADC: @ 0x08085ADC
     movs r1, #3
     bl Proc_Start
 .L08085C28:
-    ldr r0, .L08085C5C @ =gPlayStatus
+    ldr r0, .L08085C5C @ =gPlaySt
     adds r4, r0, #0
     adds r4, #0x40
     ldrb r1, [r4]
@@ -239315,7 +238315,7 @@ func_08085ADC: @ 0x08085ADC
     bx r0
     .align 2, 0
 .L08085C58: .4byte 0x08CC2D38
-.L08085C5C: .4byte gPlayStatus
+.L08085C5C: .4byte gPlaySt
 .L08085C60: .4byte 0x08CC2C60
 .L08085C64: .4byte 0x08CC2CE8
     func_end func_08085ADC
@@ -239527,13 +238527,13 @@ func_08085DCC: @ 0x08085DCC
     bl ClearText
     adds r0, r4, #0
     bl ClearText
-    ldr r6, .L08085E54 @ =gPlayStatus
+    ldr r6, .L08085E54 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r6, r0]
     bl GetChapterInfo
     adds r0, #0x8e
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r4, r0, #0
     movs r0, #0x48
     adds r1, r4, #0
@@ -239558,7 +238558,7 @@ func_08085DCC: @ 0x08085DCC
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.L08085E54: .4byte gPlayStatus
+.L08085E54: .4byte gPlaySt
 .L08085E58: .4byte .L08085E5C
 .L08085E5C: @ jump table
     .4byte .L08085E70 @ case 0
@@ -239575,18 +238575,18 @@ func_08085DCC: @ 0x08085DCC
     adds r4, r7, #0
     adds r4, #0x34
     ldr r0, .L08085EAC @ =0x0000128D
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x10
     movs r2, #0
     bl Text_InsertDrawString
-    ldr r0, .L08085EB0 @ =gPlayStatus
+    ldr r0, .L08085EB0 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     beq .L08085EB8
     ldr r0, .L08085EB4 @ =0x0000127C
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x28
@@ -239595,7 +238595,7 @@ func_08085DCC: @ 0x08085DCC
     b .L08085F58
     .align 2, 0
 .L08085EAC: .4byte 0x0000128D
-.L08085EB0: .4byte gPlayStatus
+.L08085EB0: .4byte gPlaySt
 .L08085EB4: .4byte 0x0000127C
 .L08085EB8:
     movs r0, #0x80
@@ -239607,7 +238607,7 @@ func_08085DCC: @ 0x08085DCC
     bl Text_InsertDrawNumberOrBlank
     b .L08085F58
 .L08085ECC:
-    ldr r5, .L08085F04 @ =gPlayStatus
+    ldr r5, .L08085F04 @ =gPlaySt
     ldrh r4, [r5, #0x10]
     movs r0, #0xe
     ldrsb r0, [r5, r0]
@@ -239618,7 +238618,7 @@ func_08085DCC: @ 0x08085DCC
     cmp r4, r0
     blt .L08085F0C
     ldr r0, .L08085F08 @ =0x0000128E
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
     adds r4, r7, #0
     adds r4, #0x34
@@ -239632,7 +238632,7 @@ func_08085DCC: @ 0x08085DCC
     bl Text_InsertDrawString
     b .L08085F58
     .align 2, 0
-.L08085F04: .4byte gPlayStatus
+.L08085F04: .4byte gPlaySt
 .L08085F08: .4byte 0x0000128E
 .L08085F0C:
     adds r4, r7, #0
@@ -239643,7 +238643,7 @@ func_08085DCC: @ 0x08085DCC
     movs r2, #2
     bl Text_InsertDrawNumberOrBlank
     ldr r0, .L08085F68 @ =0x000012B0
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x13
@@ -239660,7 +238660,7 @@ func_08085DCC: @ 0x08085DCC
     movs r2, #2
     bl Text_InsertDrawNumberOrBlank
     ldr r0, .L08085F6C @ =0x0000128F
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x2b
@@ -240554,7 +239554,7 @@ func_08086618: @ 0x08086618
     thumb_func_start func_0808663C
 func_0808663C: @ 0x0808663C
     push {r4, lr}
-    ldr r4, .L08086664 @ =gKeys
+    ldr r4, .L08086664 @ =gpKeySt
     ldr r0, [r4]
     bl RefreshKeySt
     ldr r1, [r4]
@@ -240571,7 +239571,7 @@ func_0808663C: @ 0x0808663C
     pop {r0}
     bx r0
     .align 2, 0
-.L08086664: .4byte gKeys
+.L08086664: .4byte gpKeySt
     func_end func_0808663C
 
     thumb_func_start func_08086668
@@ -240610,7 +239610,7 @@ func_08086668: @ 0x08086668
     adds r0, #0x5c
     strh r1, [r0]
     ldr r0, .L080866F4 @ =0x0000074F
-    bl GetMsg
+    bl DecodeMsg
     str r0, [r5, #0x2c]
     adds r0, r5, #0
     bl func_08082B6C
@@ -240705,7 +239705,7 @@ func_080866FC: @ 0x080866FC
     adds r2, r5, #0
     bl CpuFastSet
     bl func_08086668
-    ldr r0, .L080867B8 @ =gPlayStatus
+    ldr r0, .L080867B8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -240715,7 +239715,7 @@ func_080866FC: @ 0x080866FC
     bl m4aSongNumStart
 .L0808679C:
     ldr r0, .L080867BC @ =func_0808663C
-    bl func_080019B8
+    bl SetMainFunc
     add sp, #8
     pop {r4, r5}
     pop {r0}
@@ -240724,7 +239724,7 @@ func_080866FC: @ 0x080866FC
 .L080867AC: .4byte gDispIo
 .L080867B0: .4byte 0x01000008
 .L080867B4: .4byte 0x06008000
-.L080867B8: .4byte gPlayStatus
+.L080867B8: .4byte gPlaySt
 .L080867BC: .4byte func_0808663C
     func_end func_080866FC
 
@@ -240744,7 +239744,7 @@ func_080867C0: @ 0x080867C0
     ldr r0, .L080867F0 @ =func_08086618
     bl SetOnVBlank
     ldr r0, .L080867F4 @ =func_080866FC
-    bl func_080019B8
+    bl SetMainFunc
     pop {r0}
     bx r0
     .align 2, 0
@@ -241125,7 +240125,7 @@ func_080869C8: @ 0x080869C8
     mov r1, r8
     adds r1, #0x2f
     strb r0, [r1]
-    bl func_080A03A8
+    bl GetGlobalCompletionCount
     mov r1, r8
     adds r1, #0x2b
     strb r0, [r1]
@@ -241242,7 +240242,7 @@ func_080869C8: @ 0x080869C8
     mov r0, r8
     movs r1, #0
     movs r2, #0xe
-    bl func_0807F8D4
+    bl StartMuralBackgroundAlt
     ldr r0, .L08086C08 @ =0x08403A08
     movs r1, #0xe0
     lsls r1, r1, #1
@@ -241318,7 +240318,7 @@ func_08086C10: @ 0x08086C10
     bl Text_SetCursor
     ldr r4, .L08086CA8 @ =0x0000127C
     adds r0, r4, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -241326,7 +240326,7 @@ func_08086C10: @ 0x08086C10
     movs r1, #0xa0
     bl Text_SetCursor
     adds r0, r4, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -241334,7 +240334,7 @@ func_08086C10: @ 0x08086C10
     movs r1, #0xb8
     bl Text_SetCursor
     adds r0, r4, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -241351,7 +240351,7 @@ func_08086C10: @ 0x08086C10
     bl Text_SetColor
     ldr r0, [r4]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -241373,7 +240373,7 @@ func_08086C10: @ 0x08086C10
     movs r1, #0xa0
     bl Text_SetCursor
     ldr r0, .L08086D00 @ =0x0000127C
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -241398,7 +240398,7 @@ func_08086C10: @ 0x08086C10
     movs r1, #0xb8
     bl Text_SetCursor
     ldr r0, .L08086D3C @ =0x0000127C
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -241438,7 +240438,7 @@ func_08086C10: @ 0x08086C10
     bl Text_SetCursor
     ldr r4, .L08086E2C @ =0x0000127C
     adds r0, r4, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -241446,7 +240446,7 @@ func_08086C10: @ 0x08086C10
     movs r1, #0xa0
     bl Text_SetCursor
     adds r0, r4, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -241454,7 +240454,7 @@ func_08086C10: @ 0x08086C10
     movs r1, #0xb8
     bl Text_SetCursor
     adds r0, r4, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -241466,7 +240466,7 @@ func_08086C10: @ 0x08086C10
     movs r1, #0xb1
     bl Text_SetCursor
     ldr r0, .L08086E30 @ =0x000012B0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -241575,7 +240575,7 @@ func_08086EA8: @ 0x08086EA8
     bl TmFillRect_thm
     adds r0, r4, #0
     adds r0, #0x18
-    ldr r1, .L08086EE8 @ =gPlayStatus
+    ldr r1, .L08086EE8 @ =gPlaySt
     ldrh r2, [r1, #0x10]
     movs r1, #2
     bl func_080061D8
@@ -241592,7 +240592,7 @@ func_08086EA8: @ 0x08086EA8
     bx r0
     .align 2, 0
 .L08086EE4: .4byte 0x02022FA0
-.L08086EE8: .4byte gPlayStatus
+.L08086EE8: .4byte gPlaySt
     func_end func_08086EA8
 
     thumb_func_start func_08086EEC
@@ -241621,7 +240621,7 @@ func_08086EEC: @ 0x08086EEC
     adds r0, r4, #0
     movs r1, #2
     bl func_080061D8
-    ldr r0, .L08086F50 @ =gPlayStatus
+    ldr r0, .L08086F50 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     beq .L08086F54
@@ -241639,7 +240639,7 @@ func_08086EEC: @ 0x08086EEC
     .align 2, 0
 .L08086F48: .4byte 0x08CC2E88
 .L08086F4C: .4byte 0x02023608
-.L08086F50: .4byte gPlayStatus
+.L08086F50: .4byte gPlaySt
 .L08086F54:
     adds r0, r4, #0
     adds r0, #0xc
@@ -241653,14 +240653,14 @@ func_08086EEC: @ 0x08086EEC
     adds r7, #0x2c
     movs r0, #1
     strb r0, [r7]
-    ldr r0, .L08086FE4 @ =gPlayStatus
+    ldr r0, .L08086FE4 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     bl GetChapterInfo
     adds r0, #0x8c
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
     ldr r0, .L08086FE8 @ =0x020040BC
     mov r8, r0
@@ -241705,7 +240705,7 @@ func_08086EEC: @ 0x08086EEC
     bl func_08005590
     b .L08086FF8
     .align 2, 0
-.L08086FE4: .4byte gPlayStatus
+.L08086FE4: .4byte gPlaySt
 .L08086FE8: .4byte 0x020040BC
 .L08086FEC: .4byte 0x02022E62
 .L08086FF0:
@@ -241748,7 +240748,7 @@ func_0808702C: @ 0x0808702C
     adds r4, #0x3e
     movs r0, #0
     strb r0, [r4]
-    ldr r1, .L0808705C @ =gKeys
+    ldr r1, .L0808705C @ =gpKeySt
     ldr r6, [r1]
     ldrh r2, [r6, #8]
     movs r0, #0x80
@@ -241762,7 +240762,7 @@ func_0808702C: @ 0x0808702C
     bl func_080867F8
     b .L0808713A
     .align 2, 0
-.L0808705C: .4byte gKeys
+.L0808705C: .4byte gpKeySt
 .L08087060:
     movs r0, #1
     ands r0, r2
@@ -241790,7 +240790,7 @@ func_0808702C: @ 0x0808702C
     movs r0, #1
     strb r0, [r1]
 .L08087094:
-    ldr r0, .L080870B0 @ =gPlayStatus
+    ldr r0, .L080870B0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -241804,7 +240804,7 @@ func_0808702C: @ 0x0808702C
     bl Proc_Goto
     b .L0808713A
     .align 2, 0
-.L080870B0: .4byte gPlayStatus
+.L080870B0: .4byte gPlaySt
 .L080870B4: .4byte 0x0000038A
 .L080870B8:
     movs r0, #2
@@ -241814,7 +240814,7 @@ func_0808702C: @ 0x0808702C
     adds r0, r5, #0
     movs r1, #1
     bl Proc_Goto
-    ldr r0, .L080870DC @ =gPlayStatus
+    ldr r0, .L080870DC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -241824,7 +240824,7 @@ func_0808702C: @ 0x0808702C
     bl m4aSongNumStart
     b .L0808713A
     .align 2, 0
-.L080870DC: .4byte gPlayStatus
+.L080870DC: .4byte gPlaySt
 .L080870E0: .4byte 0x0000038B
 .L080870E4:
     movs r0, #0x20
@@ -241855,7 +240855,7 @@ func_0808702C: @ 0x0808702C
     ldrb r0, [r4]
     cmp r0, r7
     beq .L0808713A
-    ldr r0, .L08087140 @ =gPlayStatus
+    ldr r0, .L08087140 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -241876,7 +240876,7 @@ func_0808702C: @ 0x0808702C
     pop {r0}
     bx r0
     .align 2, 0
-.L08087140: .4byte gPlayStatus
+.L08087140: .4byte gPlaySt
 .L08087144: .4byte 0x00000386
     func_end func_0808702C
 
@@ -242040,7 +241040,7 @@ func_080871E0: @ 0x080871E0
     bl func_08082058
     movs r4, #0xb8
     lsls r4, r4, #4
-    ldr r0, .L080872B0 @ =gPlayStatus
+    ldr r0, .L080872B0 @ =gPlaySt
     bl func_080824A4
     adds r1, r0, #0
     adds r0, r4, #0
@@ -242057,7 +241057,7 @@ func_080871E0: @ 0x080871E0
 .L080872A4: .4byte 0x00000405
 .L080872A8: .4byte 0x00000404
 .L080872AC: .4byte 0x0000044E
-.L080872B0: .4byte gPlayStatus
+.L080872B0: .4byte gPlaySt
     func_end func_080871E0
 
     thumb_func_start func_080872B4
@@ -243115,7 +242115,7 @@ func_08087ADC: @ 0x08087ADC
 func_08087B20: @ 0x08087B20
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L08087B54 @ =gKeys
+    ldr r0, .L08087B54 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xa
     ldrh r1, [r1, #8]
@@ -243137,7 +242137,7 @@ func_08087B20: @ 0x08087B20
     pop {r0}
     bx r0
     .align 2, 0
-.L08087B54: .4byte gKeys
+.L08087B54: .4byte gpKeySt
     func_end func_08087B20
 
     thumb_func_start func_08087B58
@@ -243240,7 +242240,7 @@ func_08087BFC: @ 0x08087BFC
     cmp r4, #0
     beq .L08087C5E
     ldr r0, [sp, #0x2c]
-    bl GetMsg
+    bl DecodeMsg
     str r0, [r4, #0x2c]
     bl .L08088074
     lsls r0, r0, #0x18
@@ -243354,7 +242354,7 @@ func_08087BFC: @ 0x08087BFC
     mov r1, sb
     strh r0, [r1]
     ldr r0, [sp, #0x2c]
-    bl GetMsg
+    bl DecodeMsg
     str r0, [r4, #0x2c]
     bl .L08088074
     lsls r0, r0, #0x18
@@ -244192,7 +243192,7 @@ func_08088380: @ 0x08088380
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     mov sl, r0
-    ldr r0, .L080883C4 @ =gKeys
+    ldr r0, .L080883C4 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xf3
     ldrh r1, [r1, #8]
@@ -244212,7 +243212,7 @@ func_08088380: @ 0x08088380
     mov sl, r0
     b .L080883FA
     .align 2, 0
-.L080883C4: .4byte gKeys
+.L080883C4: .4byte gpKeySt
 .L080883C8:
     adds r1, r6, #0
     adds r1, #0x55
@@ -244753,7 +243753,7 @@ func_08088380: @ 0x08088380
     ldrb r0, [r1]
     cmp r0, #0
     bne .L08088902
-    ldr r0, .L08088930 @ =gPlayStatus
+    ldr r0, .L08088930 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -244785,7 +243785,7 @@ func_08088380: @ 0x08088380
     pop {r0}
     bx r0
     .align 2, 0
-.L08088930: .4byte gPlayStatus
+.L08088930: .4byte gPlaySt
 .L08088934: .4byte 0x0000038E
     func_end func_08088380
 
@@ -245001,7 +244001,7 @@ func_08088A90: @ 0x08088A90
 func_08088AA8: @ 0x08088AA8
     push {r4, r5, r6, lr}
     adds r4, r0, #0
-    ldr r1, .L08088AD4 @ =gKeys
+    ldr r1, .L08088AD4 @ =gpKeySt
     ldr r0, [r1]
     ldrh r2, [r0, #8]
     movs r0, #2
@@ -245009,7 +244009,7 @@ func_08088AA8: @ 0x08088AA8
     adds r5, r1, #0
     cmp r0, #0
     beq .L08088AE0
-    ldr r0, .L08088AD8 @ =gPlayStatus
+    ldr r0, .L08088AD8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -245021,8 +244021,8 @@ func_08088AA8: @ 0x08088AA8
     movs r0, #0
     b .L08088B00
     .align 2, 0
-.L08088AD4: .4byte gKeys
-.L08088AD8: .4byte gPlayStatus
+.L08088AD4: .4byte gpKeySt
+.L08088AD8: .4byte gPlaySt
 .L08088ADC: .4byte 0x0000038B
 .L08088AE0:
     movs r6, #1
@@ -245030,7 +244030,7 @@ func_08088AA8: @ 0x08088AA8
     ands r0, r2
     cmp r0, #0
     beq .L08088B14
-    ldr r0, .L08088B0C @ =gPlayStatus
+    ldr r0, .L08088B0C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -245047,7 +244047,7 @@ func_08088AA8: @ 0x08088AA8
     bl Proc_Break
     b .L08088B7A
     .align 2, 0
-.L08088B0C: .4byte gPlayStatus
+.L08088B0C: .4byte gPlaySt
 .L08088B10: .4byte 0x0000038A
 .L08088B14:
     movs r0, #0x20
@@ -245057,7 +244057,7 @@ func_08088AA8: @ 0x08088AA8
     ldrh r2, [r4, #0x2a]
     cmp r2, #2
     bne .L08088B36
-    ldr r0, .L08088B80 @ =gPlayStatus
+    ldr r0, .L08088B80 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -245077,7 +244077,7 @@ func_08088AA8: @ 0x08088AA8
     ldrh r0, [r4, #0x2a]
     cmp r0, #1
     bne .L08088B5E
-    ldr r0, .L08088B80 @ =gPlayStatus
+    ldr r0, .L08088B80 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -245107,7 +244107,7 @@ func_08088AA8: @ 0x08088AA8
     pop {r0}
     bx r0
     .align 2, 0
-.L08088B80: .4byte gPlayStatus
+.L08088B80: .4byte gPlaySt
 .L08088B84: .4byte 0x00000387
     func_end func_08088AA8
 
@@ -245124,14 +244124,14 @@ func_08088B88: @ 0x08088B88
     ldr r6, [sp, #0x1c]
     ldr r7, [sp, #0x24]
     ldr r0, [r5]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     mov r0, r8
     movs r1, #0x10
     adds r2, r6, #0
     bl Text_InsertDrawString
     ldr r0, [r5, #4]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     mov r0, r8
     movs r1, #0x38
@@ -245335,7 +244335,7 @@ func_08088CD4: @ 0x08088CD4
     movs r1, #0
     bl Text_SetColor
     ldr r0, [r4]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -245919,7 +244919,7 @@ func_08089148: @ 0x08089148
     ldr r0, [r0]
     adds r1, r4, #0
     bl StartStatScreen
-    ldr r1, .L080891D0 @ =gPlayStatus
+    ldr r1, .L080891D0 @ =gPlaySt
     adds r0, r4, #0
     adds r0, #0x34
     ldrb r0, [r0]
@@ -245938,7 +244938,7 @@ func_08089148: @ 0x08089148
     bx r0
     .align 2, 0
 .L080891CC: .4byte 0x0200CBF0
-.L080891D0: .4byte gPlayStatus
+.L080891D0: .4byte gPlaySt
     func_end func_08089148
 
     thumb_func_start func_080891D4
@@ -246538,7 +245538,7 @@ func_0808966C: @ 0x0808966C
     ldrb r0, [r0]
     cmp r0, #1
     bne .L080896C8
-    ldr r0, .L080896C4 @ =gPlayStatus
+    ldr r0, .L080896C4 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     adds r5, r0, #1
     adds r0, #0x40
@@ -246563,7 +245563,7 @@ func_0808966C: @ 0x0808966C
     bl func_0808955C
 .L080896B2:
     adds r5, #1
-    ldr r0, .L080896C4 @ =gPlayStatus
+    ldr r0, .L080896C4 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     adds r0, #0x40
     cmp r5, r0
@@ -246571,14 +245571,14 @@ func_0808966C: @ 0x0808966C
     b .L08089704
     .align 2, 0
 .L080896C0: .4byte 0x0200E668
-.L080896C4: .4byte gPlayStatus
+.L080896C4: .4byte gPlaySt
 .L080896C8:
-    ldr r0, .L080896D0 @ =gPlayStatus
+    ldr r0, .L080896D0 @ =gPlaySt
     ldrb r0, [r0, #0xf]
     adds r4, r0, #1
     b .L080896FE
     .align 2, 0
-.L080896D0: .4byte gPlayStatus
+.L080896D0: .4byte gPlaySt
 .L080896D4:
     adds r0, r4, #0
     bl GetUnit
@@ -246598,7 +245598,7 @@ func_0808966C: @ 0x0808966C
     bl func_0808955C
 .L080896F8:
     adds r4, #1
-    ldr r0, .L08089710 @ =gPlayStatus
+    ldr r0, .L08089710 @ =gPlaySt
     ldrb r0, [r0, #0xf]
 .L080896FE:
     adds r0, #0x40
@@ -246610,7 +245610,7 @@ func_0808966C: @ 0x0808966C
     bx r0
     .align 2, 0
 .L0808970C: .4byte 0x0001000C
-.L08089710: .4byte gPlayStatus
+.L08089710: .4byte gPlaySt
     func_end func_0808966C
 
     thumb_func_start func_08089714
@@ -246748,7 +245748,7 @@ func_08089794: @ 0x08089794
     cmp r0, #1
     bne .L080898A0
 .L08089828:
-    ldr r4, .L08089884 @ =gPlayStatus
+    ldr r4, .L08089884 @ =gPlaySt
     ldrb r1, [r4, #0x1a]
     mov r3, r8
     adds r3, #0x34
@@ -246793,7 +245793,7 @@ func_08089794: @ 0x08089794
 .L08089878: .4byte gDispIo
 .L0808987C: .4byte 0x02022BC0
 .L08089880: .4byte 0x01000008
-.L08089884: .4byte gPlayStatus
+.L08089884: .4byte gPlaySt
 .L08089888:
     mov r6, sl
     strb r1, [r6]
@@ -246938,7 +245938,7 @@ func_08089794: @ 0x08089794
     movs r1, #0
     bl Text_SetColor
     ldr r0, .L08089A14 @ =0x000010F2
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -247123,7 +246123,7 @@ func_08089794: @ 0x08089794
     movs r0, #0
     movs r1, #0
     movs r2, #0xa
-    bl func_0807F8D4
+    bl StartMuralBackgroundAlt
     mov r1, r8
     str r0, [r1, #0x44]
 .L08089B82:
@@ -247248,7 +246248,7 @@ func_08089C00: @ 0x08089C00
     ldrb r0, [r6]
     adds r0, #1
     strb r0, [r6]
-    ldr r0, .L08089C80 @ =gPlayStatus
+    ldr r0, .L08089C80 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -247260,10 +246260,10 @@ func_08089C00: @ 0x08089C00
     .align 2, 0
 .L08089C78: .4byte gBg0Tm
 .L08089C7C: .4byte 0x0200E668
-.L08089C80: .4byte gPlayStatus
+.L08089C80: .4byte gPlaySt
 .L08089C84: .4byte 0x0000038A
 .L08089C88:
-    ldr r0, .L08089CA4 @ =gPlayStatus
+    ldr r0, .L08089CA4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -247278,7 +246278,7 @@ func_08089C00: @ 0x08089C00
     pop {r0}
     bx r0
     .align 2, 0
-.L08089CA4: .4byte gPlayStatus
+.L08089CA4: .4byte gPlaySt
     func_end func_08089C00
 
     thumb_func_start func_08089CA8
@@ -247332,7 +246332,7 @@ func_08089CA8: @ 0x08089CA8
     ldrb r0, [r6]
     subs r0, #1
     strb r0, [r6]
-    ldr r0, .L08089D28 @ =gPlayStatus
+    ldr r0, .L08089D28 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -247344,10 +246344,10 @@ func_08089CA8: @ 0x08089CA8
     .align 2, 0
 .L08089D20: .4byte gBg0Tm
 .L08089D24: .4byte 0x0200E668
-.L08089D28: .4byte gPlayStatus
+.L08089D28: .4byte gPlaySt
 .L08089D2C: .4byte 0x0000038B
 .L08089D30:
-    ldr r0, .L08089D4C @ =gPlayStatus
+    ldr r0, .L08089D4C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -247362,7 +246362,7 @@ func_08089CA8: @ 0x08089CA8
     pop {r0}
     bx r0
     .align 2, 0
-.L08089D4C: .4byte gPlayStatus
+.L08089D4C: .4byte gPlaySt
     func_end func_08089CA8
 
     thumb_func_start func_08089D50
@@ -247449,7 +246449,7 @@ func_08089DD4: @ 0x08089DD4
     ands r0, r1
     cmp r0, #0
     beq .L08089E08
-    ldr r0, .L08089E04 @ =gPlayStatus
+    ldr r0, .L08089E04 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -247460,7 +246460,7 @@ func_08089DD4: @ 0x08089DD4
     bl m4aSongNumStart
     b .L08089E62
     .align 2, 0
-.L08089E04: .4byte gPlayStatus
+.L08089E04: .4byte gPlaySt
 .L08089E08:
     ldr r4, [r6, #0xc]
     movs r5, #0xc0
@@ -247480,7 +246480,7 @@ func_08089DD4: @ 0x08089DD4
     ands r1, r5
     cmp r1, #0
     beq .L08089E50
-    ldr r0, .L08089E48 @ =gPlayStatus
+    ldr r0, .L08089E48 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -247491,10 +246491,10 @@ func_08089DD4: @ 0x08089DD4
     b .L08089E62
     .align 2, 0
 .L08089E44: .4byte 0xFFFF3FFF
-.L08089E48: .4byte gPlayStatus
+.L08089E48: .4byte gPlaySt
 .L08089E4C: .4byte 0x0000038A
 .L08089E50:
-    ldr r0, .L08089E68 @ =gPlayStatus
+    ldr r0, .L08089E68 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -247507,7 +246507,7 @@ func_08089DD4: @ 0x08089DD4
     pop {r0}
     bx r0
     .align 2, 0
-.L08089E68: .4byte gPlayStatus
+.L08089E68: .4byte gPlaySt
 .L08089E6C: .4byte 0x0000038B
     func_end func_08089DD4
 
@@ -247519,7 +246519,7 @@ func_08089E70: @ 0x08089E70
     push {r6, r7}
     sub sp, #4
     adds r5, r0, #0
-    ldr r2, .L08089E98 @ =gKeys
+    ldr r2, .L08089E98 @ =gpKeySt
     ldr r1, [r2]
     movs r0, #0x80
     lsls r0, r0, #2
@@ -247533,7 +246533,7 @@ func_08089E70: @ 0x08089E70
     movs r0, #2
     b .L08089EA2
     .align 2, 0
-.L08089E98: .4byte gKeys
+.L08089E98: .4byte gpKeySt
 .L08089E9C:
     adds r1, r5, #0
     adds r1, #0x31
@@ -247595,7 +246595,7 @@ func_08089E70: @ 0x08089E70
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     bl func_0807FA20
-    ldr r0, .L08089F2C @ =gPlayStatus
+    ldr r0, .L08089F2C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -247609,7 +246609,7 @@ func_08089E70: @ 0x08089E70
     b .L0808A206
     .align 2, 0
 .L08089F28: .4byte 0x0200CBF0
-.L08089F2C: .4byte gPlayStatus
+.L08089F2C: .4byte gPlaySt
 .L08089F30: .4byte 0x0000038A
 .L08089F34:
     ldrh r1, [r3, #6]
@@ -247671,7 +246671,7 @@ func_08089E70: @ 0x08089E70
     adds r0, r5, #0
     adds r0, #0x2d
     strb r6, [r0]
-    ldr r0, .L08089FC4 @ =gPlayStatus
+    ldr r0, .L08089FC4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -247683,7 +246683,7 @@ func_08089E70: @ 0x08089E70
     bl m4aSongNumStart
     b .L0808A206
     .align 2, 0
-.L08089FC4: .4byte gPlayStatus
+.L08089FC4: .4byte gPlaySt
 .L08089FC8: .4byte 0x0000038F
 .L08089FCC:
     movs r6, #0x10
@@ -247744,7 +246744,7 @@ func_08089E70: @ 0x08089E70
     adds r0, r5, #0
     adds r0, #0x2d
     strb r7, [r0]
-    ldr r0, .L0808A05C @ =gPlayStatus
+    ldr r0, .L0808A05C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -247758,7 +246758,7 @@ func_08089E70: @ 0x08089E70
     bl Proc_Goto
     b .L0808A206
     .align 2, 0
-.L0808A05C: .4byte gPlayStatus
+.L0808A05C: .4byte gPlaySt
 .L0808A060: .4byte 0x0000038F
 .L0808A064:
     movs r7, #0x40
@@ -247789,7 +246789,7 @@ func_08089E70: @ 0x08089E70
     bne .L0808A098
     b .L0808A206
 .L0808A098:
-    ldr r0, .L0808A0B4 @ =gPlayStatus
+    ldr r0, .L0808A0B4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -247804,12 +246804,12 @@ func_08089E70: @ 0x08089E70
     strb r0, [r1]
     b .L0808A206
     .align 2, 0
-.L0808A0B4: .4byte gPlayStatus
+.L0808A0B4: .4byte gPlaySt
 .L0808A0B8: .4byte 0x00000386
 .L0808A0BC:
     subs r0, #1
     strb r0, [r6]
-    ldr r0, .L0808A13C @ =gPlayStatus
+    ldr r0, .L0808A13C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -247870,7 +246870,7 @@ func_08089E70: @ 0x08089E70
     bne .L0808A206
     b .L0808A202
     .align 2, 0
-.L0808A13C: .4byte gPlayStatus
+.L0808A13C: .4byte gPlaySt
 .L0808A140: .4byte 0x00000386
 .L0808A144: .4byte gBg0Tm
 .L0808A148:
@@ -247908,7 +246908,7 @@ func_08089E70: @ 0x08089E70
     bge .L0808A206
     adds r0, r1, #1
     strb r0, [r6]
-    ldr r0, .L0808A1F4 @ =gPlayStatus
+    ldr r0, .L0808A1F4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -247959,7 +246959,7 @@ func_08089E70: @ 0x08089E70
     b .L0808A206
     .align 2, 0
 .L0808A1F0: .4byte 0x0200E668
-.L0808A1F4: .4byte gPlayStatus
+.L0808A1F4: .4byte gPlaySt
 .L0808A1F8: .4byte 0x00000386
 .L0808A1FC: .4byte gBg0Tm
 .L0808A200:
@@ -247990,7 +246990,7 @@ func_0808A214: @ 0x0808A214
     adds r4, r7, #0
     adds r4, #0x2b
     ldrb r0, [r4]
-    ldr r2, .L0808A248 @ =gKeys
+    ldr r2, .L0808A248 @ =gpKeySt
     cmp r0, #0
     beq .L0808A24C
     ldr r1, [r2]
@@ -248005,7 +247005,7 @@ func_0808A214: @ 0x0808A214
     strb r0, [r4]
     b .L0808A4F4
     .align 2, 0
-.L0808A248: .4byte gKeys
+.L0808A248: .4byte gpKeySt
 .L0808A24C:
     ldr r1, [r2]
     movs r0, #1
@@ -248026,7 +247026,7 @@ func_0808A214: @ 0x0808A214
     adds r2, #0x2a
     movs r0, #1
     strb r0, [r2]
-    ldr r0, .L0808A2D4 @ =gPlayStatus
+    ldr r0, .L0808A2D4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -248075,7 +247075,7 @@ func_0808A214: @ 0x0808A214
     movs r4, #0
     b .L0808A2F8
     .align 2, 0
-.L0808A2D4: .4byte gPlayStatus
+.L0808A2D4: .4byte gPlaySt
 .L0808A2D8: .4byte 0x0000038A
 .L0808A2DC: .4byte 0x08CC3578
 .L0808A2E0:
@@ -248134,7 +247134,7 @@ func_0808A214: @ 0x0808A214
     ldrb r4, [r0]
     cmp r4, #0
     bne .L0808A378
-    ldr r0, .L0808A370 @ =gPlayStatus
+    ldr r0, .L0808A370 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -248152,7 +247152,7 @@ func_0808A214: @ 0x0808A214
     strb r4, [r0]
     b .L0808A4F4
     .align 2, 0
-.L0808A370: .4byte gPlayStatus
+.L0808A370: .4byte gPlaySt
 .L0808A374: .4byte 0x00000386
 .L0808A378:
     ldr r1, [r2]
@@ -248186,7 +247186,7 @@ func_0808A214: @ 0x0808A214
     bne .L0808A3B2
     b .L0808A4F4
 .L0808A3B2:
-    ldr r0, .L0808A400 @ =gPlayStatus
+    ldr r0, .L0808A400 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -248227,7 +247227,7 @@ func_0808A214: @ 0x0808A214
     strb r4, [r6]
     b .L0808A47C
     .align 2, 0
-.L0808A400: .4byte gPlayStatus
+.L0808A400: .4byte gPlaySt
 .L0808A404: .4byte 0x0000038F
 .L0808A408: .4byte 0x08CC3578
 .L0808A40C:
@@ -248275,7 +247275,7 @@ func_0808A214: @ 0x0808A214
     cmp r0, #3
     beq .L0808A4F4
     strb r4, [r2]
-    ldr r0, .L0808A48C @ =gPlayStatus
+    ldr r0, .L0808A48C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -248296,12 +247296,12 @@ func_0808A214: @ 0x0808A214
     b .L0808A4F4
     .align 2, 0
 .L0808A488: .4byte 0x08CC3578
-.L0808A48C: .4byte gPlayStatus
+.L0808A48C: .4byte gPlaySt
 .L0808A490: .4byte 0x0000038F
 .L0808A494:
     strb r3, [r2]
 .L0808A496:
-    ldr r0, .L0808A4AC @ =gPlayStatus
+    ldr r0, .L0808A4AC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -248311,7 +247311,7 @@ func_0808A214: @ 0x0808A214
     bl m4aSongNumStart
     b .L0808A4F4
     .align 2, 0
-.L0808A4AC: .4byte gPlayStatus
+.L0808A4AC: .4byte gPlaySt
 .L0808A4B0: .4byte 0x00000387
 .L0808A4B4:
     movs r0, #0x80
@@ -248436,7 +247436,7 @@ func_0808A508: @ 0x0808A508
     ldrh r0, [r4, #0x3e]
     bl func_08088DC0
 .L0808A5A0:
-    ldr r0, .L0808A60C @ =gKeys
+    ldr r0, .L0808A60C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #2
     ldrh r1, [r1, #8]
@@ -248448,7 +247448,7 @@ func_0808A508: @ 0x0808A508
     ldrb r0, [r5]
     cmp r0, #0
     bne .L0808A5DC
-    ldr r0, .L0808A610 @ =gPlayStatus
+    ldr r0, .L0808A610 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -248490,8 +247490,8 @@ func_0808A508: @ 0x0808A508
     pop {r0}
     bx r0
     .align 2, 0
-.L0808A60C: .4byte gKeys
-.L0808A610: .4byte gPlayStatus
+.L0808A60C: .4byte gpKeySt
+.L0808A610: .4byte gPlaySt
 .L0808A614: .4byte 0x0000038B
 .L0808A618: .4byte 0x08CC3578
     func_end func_0808A508
@@ -248517,7 +247517,7 @@ func_0808A61C: @ 0x0808A61C
     bl func_0808DD68
     bl func_08088BE8
 .L0808A644:
-    ldr r2, .L0808A6C8 @ =gPlayStatus
+    ldr r2, .L0808A6C8 @ =gPlaySt
     adds r0, r4, #0
     adds r0, #0x34
     ldrb r0, [r0]
@@ -248576,7 +247576,7 @@ func_0808A61C: @ 0x0808A61C
     bx r0
     .align 2, 0
 .L0808A6C4: .4byte 0x0200CBF0
-.L0808A6C8: .4byte gPlayStatus
+.L0808A6C8: .4byte gPlaySt
 .L0808A6CC: .4byte gBg0Tm
 .L0808A6D0: .4byte gBg1Tm
 .L0808A6D4: .4byte gBg2Tm
@@ -249298,7 +248298,7 @@ func_0808ABC4: @ 0x0808ABC4
     adds r0, #4
     adds r0, r6, r0
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r7, #0
     bl Text_DrawString
@@ -249473,7 +248473,7 @@ func_0808AD00: @ 0x0808AD00
     ldr r0, [r0]
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -249540,7 +248540,7 @@ func_0808AD00: @ 0x0808AD00
     ldr r0, [r0]
     ldr r0, [r0, #4]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     ldr r3, [sp, #0x50]
     ldr r4, [sp, #0x2c]
@@ -249572,7 +248572,7 @@ func_0808AD00: @ 0x0808AD00
     cmp r0, #0
     bne .L0808AECC
     ldr r0, .L0808AEC8 @ =0x0000127F
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r7, #0
     adds r1, #0x22
     movs r2, #0
@@ -249670,7 +248670,7 @@ func_0808AD00: @ 0x0808AD00
 .L0808AF7C:
     ldr r0, .L0808AF9C @ =0x00001275
 .L0808AF7E:
-    bl GetMsg
+    bl DecodeMsg
     ldr r1, [sp, #0x54]
     add r1, sl
     adds r1, #0x30
@@ -249686,7 +248686,7 @@ func_0808AD00: @ 0x0808AD00
 .L0808AF9C: .4byte 0x00001275
 .L0808AFA0:
     ldr r0, .L0808AFBC @ =0x00001276
-    bl GetMsg
+    bl DecodeMsg
     ldr r1, [sp, #0x54]
     add r1, sl
     adds r1, #0x30
@@ -249707,7 +248707,7 @@ func_0808AD00: @ 0x0808AD00
     ldr r0, [r0]
     ldr r0, [r0, #4]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     ldr r1, [sp, #0x50]
     ldr r2, [sp, #0x2c]
@@ -249939,7 +248939,7 @@ func_0808AD00: @ 0x0808AD00
     cmp r5, #0
     bne .L0808B1F0
     ldr r0, .L0808B1E8 @ =0x0000127F
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     ldr r4, [sp, #0x50]
     ldr r6, [sp, #0x2c]
@@ -250088,7 +249088,7 @@ func_0808AD00: @ 0x0808AD00
 .L0808B2FC: .4byte 0x0200D5B0
 .L0808B300:
     ldr r0, .L0808B3D8 @ =0x0000127D
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     ldr r4, [sp, #0x50]
     ldr r6, [sp, #0x2c]
@@ -250309,7 +249309,7 @@ func_0808AD00: @ 0x0808AD00
     lsrs r0, r0, #0x18
     bl func_08018D38
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     lsls r0, r4, #3
     ldr r1, .L0808B504 @ =0x0200D5A8
@@ -250341,7 +249341,7 @@ func_0808AD00: @ 0x0808AD00
     lsrs r0, r0, #0x18
     bl func_08018D38
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     lsls r0, r4, #3
     ldr r1, .L0808B554 @ =0x0200D5A8
@@ -250396,7 +249396,7 @@ func_0808AD00: @ 0x0808AD00
     orrs r6, r2
 .L0808B584:
     ldr r0, .L0808B5CC @ =0x0000127D
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     lsls r0, r4, #3
     ldr r1, .L0808B5D0 @ =0x0200D5A8
@@ -255214,7 +254214,7 @@ func_0808DA04: @ 0x0808DA04
     .align 2, 0
 .L0808DA24: .4byte 0x08CC3B30
 .L0808DA28:
-    ldr r0, .L0808DA38 @ =gPlayStatus
+    ldr r0, .L0808DA38 @ =gPlaySt
     ldrb r1, [r0, #0xe]
     cmp r1, #0x2e
     bne .L0808DA40
@@ -255223,7 +254223,7 @@ func_0808DA04: @ 0x0808DA04
     ldr r0, .L0808DA3C @ =0x000003EF
     b .L0808DA64
     .align 2, 0
-.L0808DA38: .4byte gPlayStatus
+.L0808DA38: .4byte gPlaySt
 .L0808DA3C: .4byte 0x000003EF
 .L0808DA40:
     ldrb r0, [r0, #0x1b]
@@ -255326,7 +254326,7 @@ func_0808DAC4: @ 0x0808DAC4
     adds r2, r2, r1
     adds r1, r2, #0
     bl Decompress
-    ldr r1, .L0808DB10 @ =gPlayStatus
+    ldr r1, .L0808DB10 @ =gPlaySt
     adds r1, #0x41
     movs r0, #0xc
     ldrb r1, [r1]
@@ -255344,7 +254344,7 @@ func_0808DAC4: @ 0x0808DAC4
     .align 2, 0
 .L0808DB08: .4byte 0x0840F374
 .L0808DB0C: .4byte 0x08406528
-.L0808DB10: .4byte gPlayStatus
+.L0808DB10: .4byte gPlaySt
     func_end func_0808DAC4
 
     thumb_func_start func_0808DB14
@@ -255443,7 +254443,7 @@ func_0808DBBC: @ 0x0808DBBC
     push {lr}
     movs r1, #0xc
     bl Proc_Goto
-    ldr r0, .L0808DBDC @ =gPlayStatus
+    ldr r0, .L0808DBDC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -255455,7 +254455,7 @@ func_0808DBBC: @ 0x0808DBBC
     pop {r0}
     bx r0
     .align 2, 0
-.L0808DBDC: .4byte gPlayStatus
+.L0808DBDC: .4byte gPlaySt
 .L0808DBE0: .4byte 0x0000038A
     func_end func_0808DBBC
 
@@ -255463,7 +254463,7 @@ func_0808DBBC: @ 0x0808DBBC
 func_0808DBE4: @ 0x0808DBE4
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L0808DC10 @ =gPlayStatus
+    ldr r0, .L0808DC10 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -255483,7 +254483,7 @@ func_0808DBE4: @ 0x0808DBE4
     pop {r0}
     bx r0
     .align 2, 0
-.L0808DC10: .4byte gPlayStatus
+.L0808DC10: .4byte gPlaySt
 .L0808DC14: .4byte 0x0000038A
     func_end func_0808DBE4
 
@@ -255520,14 +254520,14 @@ func_0808DC3C: @ 0x0808DC3C
 
     thumb_func_start func_0808DC48
 func_0808DC48: @ 0x0808DC48
-    ldr r0, .L0808DC54 @ =gPlayStatus
+    ldr r0, .L0808DC54 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     cmp r0, #0x2e
     beq .L0808DC58
     movs r0, #1
     b .L0808DC5A
     .align 2, 0
-.L0808DC54: .4byte gPlayStatus
+.L0808DC54: .4byte gPlaySt
 .L0808DC58:
     movs r0, #0
 .L0808DC5A:
@@ -255738,7 +254738,7 @@ func_0808DD78: @ 0x0808DD78
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0808DE5E
-    ldr r0, .L0808DD98 @ =gPlayStatus
+    ldr r0, .L0808DD98 @ =gPlaySt
     ldrb r1, [r0, #0x1b]
     cmp r1, #2
     beq .L0808DDAA
@@ -255748,7 +254748,7 @@ func_0808DD78: @ 0x0808DD78
     beq .L0808DDA2
     b .L0808DDB4
     .align 2, 0
-.L0808DD98: .4byte gPlayStatus
+.L0808DD98: .4byte gPlaySt
 .L0808DD9C:
     cmp r1, #3
     beq .L0808DDB0
@@ -255884,7 +254884,7 @@ func_0808DE68: @ 0x0808DE68
     thumb_func_start func_0808DEA8
 func_0808DEA8: @ 0x0808DEA8
     adds r1, r0, #0
-    ldr r0, .L0808DEC4 @ =gPlayStatus
+    ldr r0, .L0808DEC4 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -255898,7 +254898,7 @@ func_0808DEA8: @ 0x0808DEA8
     beq .L0808DED4
     b .L0808DEEC
     .align 2, 0
-.L0808DEC4: .4byte gPlayStatus
+.L0808DEC4: .4byte gPlaySt
 .L0808DEC8:
     ldr r0, [r1]
     ldrb r0, [r0, #4]
@@ -255965,7 +254965,7 @@ func_0808DF20: @ 0x0808DF20
     adds r1, r0, #0
     adds r1, #0x2f
     strb r6, [r1]
-    ldr r2, .L0808DF50 @ =gPlayStatus
+    ldr r2, .L0808DF50 @ =gPlaySt
     movs r0, #0x80
     ldrb r3, [r2, #0x14]
     ands r0, r3
@@ -255982,7 +254982,7 @@ func_0808DF20: @ 0x0808DF20
     bl func_0808FEC0
     b .L0808DF8C
     .align 2, 0
-.L0808DF50: .4byte gPlayStatus
+.L0808DF50: .4byte gPlaySt
 .L0808DF54: .4byte func_0808DBBC
 .L0808DF58: .4byte 0x00001146
 .L0808DF5C:
@@ -256072,7 +255072,7 @@ func_0808DF9C: @ 0x0808DF9C
     movs r2, #1
     bl func_0808FEC0
 .L0808E016:
-    ldr r1, .L0808E040 @ =gPlayStatus
+    ldr r1, .L0808E040 @ =gPlaySt
     movs r0, #0x80
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -256091,7 +255091,7 @@ func_0808DF9C: @ 0x0808DF9C
     .align 2, 0
 .L0808E038: .4byte func_0808DC88
 .L0808E03C: .4byte 0x00001141
-.L0808E040: .4byte gPlayStatus
+.L0808E040: .4byte gPlaySt
 .L0808E044: .4byte func_0808DBE4
 .L0808E048:
     ldr r1, .L0808E0B4 @ =func_0808DB94
@@ -256626,7 +255626,7 @@ func_0808E448: @ 0x0808E448
     movs r0, #0
     movs r1, #0
     movs r2, #0xa
-    bl func_0807F8D4
+    bl StartMuralBackgroundAlt
     b .L0808E468
 .L0808E460:
     movs r0, #0
@@ -256644,7 +255644,7 @@ func_0808E46C: @ 0x0808E46C
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0808E47E
-    bl func_0807FA04
+    bl EndMuralBackground
     b .L0808E482
 .L0808E47E:
     bl func_080907C0
@@ -256681,14 +255681,14 @@ func_0808E488: @ 0x0808E488
     adds r0, r5, #0
     movs r1, #0
     bl func_08005CF8
-    ldr r0, .L0808E508 @ =gPlayStatus
+    ldr r0, .L0808E508 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     bl GetChapterInfo
     adds r0, #0x8e
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r4, r0, #0
     movs r0, #0x60
     adds r1, r4, #0
@@ -256707,7 +255707,7 @@ func_0808E488: @ 0x0808E488
     .align 2, 0
 .L0808E500: .4byte 0x06010000
 .L0808E504: .4byte 0x08194674
-.L0808E508: .4byte gPlayStatus
+.L0808E508: .4byte gPlaySt
     func_end func_0808E488
 
     thumb_func_start func_0808E50C
@@ -256787,7 +255787,7 @@ func_0808E564: @ 0x0808E564
 func_0808E598: @ 0x0808E598
     push {r4, lr}
     ldr r4, .L0808E5B4 @ =0x020106B4
-    bl GetMsg
+    bl DecodeMsg
 .L0808E5A0:
     adds r1, r0, #0
 .L0808E5A2:
@@ -256853,7 +255853,7 @@ func_0808E5FC: @ 0x0808E5FC
 func_0808E60C: @ 0x0808E60C
     push {lr}
     ldr r0, [r0, #0x58]
-    bl GetMsg
+    bl DecodeMsg
     pop {r0}
     bx r0
     func_end func_0808E60C
@@ -257302,7 +256302,7 @@ func_0808E9A8: @ 0x0808E9A8
     lsls r0, r4, #2
     adds r0, r0, r1
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     ldr r1, .L0808EA28 @ =0x02022C6C
     adds r1, r6, r1
     movs r2, #0
@@ -257402,7 +256402,7 @@ func_0808EA80: @ 0x0808EA80
     mov r8, r2
     cmp r2, #0
     beq .L0808EADC
-    ldr r0, .L0808EAD8 @ =gKeys
+    ldr r0, .L0808EAD8 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -257416,16 +256416,16 @@ func_0808EA80: @ 0x0808EA80
     b .L0808EC76
     .align 2, 0
 .L0808EAD4: .4byte 0x0840F384
-.L0808EAD8: .4byte gKeys
+.L0808EAD8: .4byte gpKeySt
 .L0808EADC:
-    ldr r0, .L0808EB30 @ =gKeys
+    ldr r0, .L0808EB30 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #1
     ands r0, r1
     cmp r0, #0
     beq .L0808EB3C
-    ldr r0, .L0808EB34 @ =gPlayStatus
+    ldr r0, .L0808EB34 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -257459,8 +256459,8 @@ func_0808EA80: @ 0x0808EA80
     bl Proc_Goto
     b .L0808EC76
     .align 2, 0
-.L0808EB30: .4byte gKeys
-.L0808EB34: .4byte gPlayStatus
+.L0808EB30: .4byte gpKeySt
+.L0808EB34: .4byte gPlaySt
 .L0808EB38: .4byte 0x0000038A
 .L0808EB3C:
     movs r0, #0x80
@@ -257498,7 +256498,7 @@ func_0808EA80: @ 0x0808EA80
     movs r0, #1
     movs r1, #4
     bl func_0808FFF0
-    ldr r0, .L0808EBAC @ =gPlayStatus
+    ldr r0, .L0808EBAC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -257513,10 +256513,10 @@ func_0808EA80: @ 0x0808EA80
     .align 2, 0
 .L0808EBA4: .4byte 0x02023578
 .L0808EBA8: .4byte 0x084050D8
-.L0808EBAC: .4byte gPlayStatus
+.L0808EBAC: .4byte gPlaySt
 .L0808EBB0: .4byte 0x0000038B
 .L0808EBB4:
-    ldr r0, .L0808EC10 @ =gKeys
+    ldr r0, .L0808EC10 @ =gpKeySt
     ldr r1, [r0]
     movs r2, #0x40
     adds r0, r2, #0
@@ -257542,7 +256542,7 @@ func_0808EA80: @ 0x0808EA80
     subs r0, #1
     strb r0, [r5]
 .L0808EBE6:
-    ldr r7, .L0808EC10 @ =gKeys
+    ldr r7, .L0808EC10 @ =gpKeySt
     ldr r1, [r7]
     movs r0, #0x80
     mov r8, r0
@@ -257562,7 +256562,7 @@ func_0808EA80: @ 0x0808EA80
     adds r0, #1
     b .L0808EC22
     .align 2, 0
-.L0808EC10: .4byte gKeys
+.L0808EC10: .4byte gpKeySt
 .L0808EC14:
     ldr r1, [r7]
     mov r0, r8
@@ -257604,7 +256604,7 @@ func_0808EA80: @ 0x0808EA80
     adds r1, r7, #0
     movs r2, #7
     bl func_080A951C
-    ldr r0, .L0808EC88 @ =gPlayStatus
+    ldr r0, .L0808EC88 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -257622,7 +256622,7 @@ func_0808EA80: @ 0x0808EA80
     pop {r0}
     bx r0
     .align 2, 0
-.L0808EC88: .4byte gPlayStatus
+.L0808EC88: .4byte gPlaySt
 .L0808EC8C: .4byte 0x00000386
     func_end func_0808EA80
 
@@ -257977,7 +256977,7 @@ func_0808EEF8: @ 0x0808EEF8
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0808EF86
-    ldr r4, .L0808EF90 @ =gPlayStatus
+    ldr r4, .L0808EF90 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl GetChapterInfo
@@ -258021,7 +257021,7 @@ func_0808EEF8: @ 0x0808EEF8
     pop {r1}
     bx r1
     .align 2, 0
-.L0808EF90: .4byte gPlayStatus
+.L0808EF90: .4byte gPlaySt
     func_end func_0808EEF8
 
     thumb_func_start func_0808EF94
@@ -258056,7 +257056,7 @@ func_0808EF94: @ 0x0808EF94
     ldrh r0, [r2]
     cmp r0, #1
     bne .L0808EFEC
-    ldr r0, .L0808EFF8 @ =gKeys
+    ldr r0, .L0808EFF8 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #8
     ldrh r1, [r1, #8]
@@ -258075,7 +257075,7 @@ func_0808EF94: @ 0x0808EF94
     bx r0
     .align 2, 0
 .L0808EFF4: .4byte 0x08B905F8
-.L0808EFF8: .4byte gKeys
+.L0808EFF8: .4byte gpKeySt
     func_end func_0808EF94
 
     thumb_func_start func_0808EFFC
@@ -258115,7 +257115,7 @@ func_0808EFFC: @ 0x0808EFFC
     thumb_func_start func_0808F034
 func_0808F034: @ 0x0808F034
     push {r4, lr}
-    ldr r4, .L0808F098 @ =gPlayStatus
+    ldr r4, .L0808F098 @ =gPlaySt
     movs r0, #0x80
     ldrb r1, [r4, #0x14]
     ands r0, r1
@@ -258161,7 +257161,7 @@ func_0808F034: @ 0x0808F034
     movs r0, #1
     b .L0808F09E
     .align 2, 0
-.L0808F098: .4byte gPlayStatus
+.L0808F098: .4byte gPlaySt
 .L0808F09C:
     movs r0, #0
 .L0808F09E:
@@ -258179,7 +257179,7 @@ func_0808F0A4: @ 0x0808F0A4
     adds r6, r0, #0
     movs r5, #0
     str r5, [r6, #0x58]
-    ldr r4, .L0808F0C8 @ =gPlayStatus
+    ldr r4, .L0808F0C8 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     cmp r0, #0x11
@@ -258190,7 +257190,7 @@ func_0808F0A4: @ 0x0808F0A4
     beq .L0808F0D2
     b .L0808F12C
     .align 2, 0
-.L0808F0C8: .4byte gPlayStatus
+.L0808F0C8: .4byte gPlaySt
 .L0808F0CC:
     cmp r0, #0x14
     beq .L0808F118
@@ -258287,7 +257287,7 @@ func_0808F0A4: @ 0x0808F0A4
     ldrb r1, [r3, #0x18]
     orrs r0, r1
     strb r0, [r3, #0x18]
-    ldr r4, .L0808F2F8 @ =gPlayStatus
+    ldr r4, .L0808F2F8 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl GetChapterInfo
@@ -258309,7 +257309,7 @@ func_0808F0A4: @ 0x0808F0A4
     movs r3, #0xc
     bl func_08049CE4
     ldr r0, .L0808F2FC @ =0x0000113D
-    bl GetMsg
+    bl DecodeMsg
     ldr r5, .L0808F300 @ =0x02023DA6
     movs r4, #8
     str r4, [sp]
@@ -258320,7 +257320,7 @@ func_0808F0A4: @ 0x0808F0A4
     movs r3, #0
     bl func_08005AD4
     ldr r0, .L0808F304 @ =0x0000113E
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r5, #0
     adds r1, #0x80
     str r4, [sp]
@@ -258330,7 +257330,7 @@ func_0808F0A4: @ 0x0808F0A4
     movs r3, #0
     bl func_08005AD4
     ldr r0, .L0808F308 @ =0x00001146
-    bl GetMsg
+    bl DecodeMsg
     movs r2, #0x80
     lsls r2, r2, #1
     adds r1, r5, r2
@@ -258341,7 +257341,7 @@ func_0808F0A4: @ 0x0808F0A4
     movs r3, #0
     bl func_08005AD4
     ldr r0, .L0808F30C @ =0x00001141
-    bl GetMsg
+    bl DecodeMsg
     movs r2, #0xc0
     lsls r2, r2, #1
     adds r1, r5, r2
@@ -258353,7 +257353,7 @@ func_0808F0A4: @ 0x0808F0A4
     bl func_08005AD4
     movs r0, #0x8a
     lsls r0, r0, #5
-    bl GetMsg
+    bl DecodeMsg
     movs r2, #0x80
     lsls r2, r2, #2
     adds r1, r5, r2
@@ -258433,7 +257433,7 @@ func_0808F0A4: @ 0x0808F0A4
     lsls r0, r0, #7
     movs r1, #4
     bl func_0808E488
-    ldr r0, .L0808F2F8 @ =gPlayStatus
+    ldr r0, .L0808F2F8 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #1
     bne .L0808F344
@@ -258443,7 +257443,7 @@ func_0808F0A4: @ 0x0808F0A4
     b .L0808F34E
     .align 2, 0
 .L0808F2F4: .4byte gDispIo
-.L0808F2F8: .4byte gPlayStatus
+.L0808F2F8: .4byte gPlaySt
 .L0808F2FC: .4byte 0x0000113D
 .L0808F300: .4byte 0x02023DA6
 .L0808F304: .4byte 0x0000113E
@@ -259337,7 +258337,7 @@ func_0808F9B0: @ 0x0808F9B0
     movs r1, #0x78
     bl StartSpriteAnimProc
     str r0, [r5, #0x38]
-    ldr r4, .L0808FA44 @ =gPlayStatus
+    ldr r4, .L0808FA44 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl GetChapterInfo
@@ -259367,7 +258367,7 @@ func_0808F9B0: @ 0x0808F9B0
     bx r0
     .align 2, 0
 .L0808FA40: .4byte 0x084062AC
-.L0808FA44: .4byte gPlayStatus
+.L0808FA44: .4byte gPlaySt
     func_end func_0808F9B0
 
     thumb_func_start func_0808FA48
@@ -259599,7 +258599,7 @@ func_0808FB98: @ 0x0808FB98
     ldrsb r0, [r6, r0]
     cmp r0, #0
     beq .L0808FC0C
-    ldr r2, .L0808FC08 @ =gKeys
+    ldr r2, .L0808FC08 @ =gpKeySt
     ldr r1, [r2]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -259615,9 +258615,9 @@ func_0808FB98: @ 0x0808FB98
     strb r0, [r6]
     b .L0808FDCC
     .align 2, 0
-.L0808FC08: .4byte gKeys
+.L0808FC08: .4byte gpKeySt
 .L0808FC0C:
-    ldr r1, .L0808FC34 @ =gKeys
+    ldr r1, .L0808FC34 @ =gpKeySt
     ldr r0, [r1]
     ldrh r3, [r0, #8]
     movs r0, #0x80
@@ -259637,7 +258637,7 @@ func_0808FB98: @ 0x0808FB98
     strb r0, [r6]
     b .L0808FDCC
     .align 2, 0
-.L0808FC34: .4byte gKeys
+.L0808FC34: .4byte gpKeySt
 .L0808FC38:
     movs r6, #1
     adds r0, r6, #0
@@ -259660,7 +258660,7 @@ func_0808FB98: @ 0x0808FB98
     ldr r0, [r4, #0x14]
     ldr r1, [r5, #0x2c]
     bl _call_via_r1
-    ldr r0, .L0808FC7C @ =gPlayStatus
+    ldr r0, .L0808FC7C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -259672,7 +258672,7 @@ func_0808FB98: @ 0x0808FB98
     bl m4aSongNumStart
     b .L0808FDCC
     .align 2, 0
-.L0808FC7C: .4byte gPlayStatus
+.L0808FC7C: .4byte gPlaySt
 .L0808FC80: .4byte 0x0000038A
 .L0808FC84:
     movs r0, #2
@@ -259692,7 +258692,7 @@ func_0808FB98: @ 0x0808FB98
     adds r0, r4, #0
     movs r1, #0
     bl Proc_Goto
-    ldr r0, .L0808FCC0 @ =gPlayStatus
+    ldr r0, .L0808FCC0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -259704,7 +258704,7 @@ func_0808FB98: @ 0x0808FB98
     bl m4aSongNumStart
     b .L0808FDCC
     .align 2, 0
-.L0808FCC0: .4byte gPlayStatus
+.L0808FCC0: .4byte gPlaySt
 .L0808FCC4: .4byte 0x0000038B
 .L0808FCC8:
     movs r0, #8
@@ -259719,7 +258719,7 @@ func_0808FB98: @ 0x0808FB98
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0808FD08
-    ldr r0, .L0808FD00 @ =gPlayStatus
+    ldr r0, .L0808FD00 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -259733,10 +258733,10 @@ func_0808FB98: @ 0x0808FB98
     bl Proc_Goto
     b .L0808FDCC
     .align 2, 0
-.L0808FD00: .4byte gPlayStatus
+.L0808FD00: .4byte gPlaySt
 .L0808FD04: .4byte 0x0000038A
 .L0808FD08:
-    ldr r0, .L0808FD20 @ =gPlayStatus
+    ldr r0, .L0808FD20 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -259747,7 +258747,7 @@ func_0808FB98: @ 0x0808FB98
     bl m4aSongNumStart
     b .L0808FDCC
     .align 2, 0
-.L0808FD20: .4byte gPlayStatus
+.L0808FD20: .4byte gPlaySt
 .L0808FD24:
     ldr r3, [r1]
     movs r6, #0x40
@@ -259802,7 +258802,7 @@ func_0808FB98: @ 0x0808FB98
     ldrb r0, [r5]
     cmp sb, r0
     beq .L0808FDCC
-    ldr r0, .L0808FDD8 @ =gPlayStatus
+    ldr r0, .L0808FDD8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -259845,7 +258845,7 @@ func_0808FB98: @ 0x0808FB98
     pop {r0}
     bx r0
     .align 2, 0
-.L0808FDD8: .4byte gPlayStatus
+.L0808FDD8: .4byte gPlaySt
 .L0808FDDC: .4byte 0x00000386
     func_end func_0808FB98
 
@@ -260197,7 +259197,7 @@ func_0808FFF0: @ 0x0808FFF0
     adds r0, r5, #0
     bl ClearText
     ldr r0, [r4, #0x34]
-    bl GetMsg
+    bl DecodeMsg
     lsls r1, r6, #1
     ldr r2, .L08090098 @ =gBg0Tm
     adds r1, r1, r2
@@ -261911,7 +260911,7 @@ func_08090CE4: @ 0x08090CE4
 func_08090CF8: @ 0x08090CF8
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L08090D1C @ =gKeys
+    ldr r0, .L08090D1C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xf3
     ldrh r1, [r1, #8]
@@ -261926,7 +260926,7 @@ func_08090CF8: @ 0x08090CF8
     pop {r0}
     bx r0
     .align 2, 0
-.L08090D1C: .4byte gKeys
+.L08090D1C: .4byte gpKeySt
     func_end func_08090CF8
 
     thumb_func_start func_08090D20
@@ -263256,7 +262256,7 @@ func_080913FC: @ 0x080913FC
     movs r1, #3
     bl Text_SetColor
     ldr r0, .L08091818 @ =0x00001259
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     ldr r0, .L080917E8 @ =0x02012A90
     bl Text_DrawString
@@ -263274,7 +262274,7 @@ func_080913FC: @ 0x080913FC
     movs r1, #0
     bl Text_SetCursor
     ldr r0, .L0809181C @ =0x0000125A
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     ldr r0, .L080917E4 @ =0x02012A80
     bl Text_DrawString
@@ -263282,7 +262282,7 @@ func_080913FC: @ 0x080913FC
     movs r1, #0x20
     bl Text_SetCursor
     ldr r0, .L08091820 @ =0x0000125B
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     ldr r0, .L080917E4 @ =0x02012A80
     bl Text_DrawString
@@ -263364,7 +262364,7 @@ func_08091868: @ 0x08091868
     adds r0, #8
     bl ClearText
     ldr r0, .L080918B0 @ =0x0000125C
-    bl GetMsg
+    bl DecodeMsg
     adds r5, #0x42
     movs r1, #0
     str r1, [sp]
@@ -263475,7 +262475,7 @@ func_08091944: @ 0x08091944
     adds r2, r2, r1
     adds r1, r2, #0
     bl Decompress
-    ldr r1, .L08091990 @ =gPlayStatus
+    ldr r1, .L08091990 @ =gPlaySt
     adds r1, #0x41
     movs r0, #0xc
     ldrb r1, [r1]
@@ -263493,7 +262493,7 @@ func_08091944: @ 0x08091944
     .align 2, 0
 .L08091988: .4byte 0x0840F3B4
 .L0809198C: .4byte 0x08406528
-.L08091990: .4byte gPlayStatus
+.L08091990: .4byte gPlaySt
     func_end func_08091944
 
     thumb_func_start func_08091994
@@ -263639,7 +262639,7 @@ func_08091AD8: @ 0x08091AD8
     mov r2, r8
     adds r2, #0x29
     ldrb r7, [r2]
-    ldr r0, .L08091BB4 @ =gKeys
+    ldr r0, .L08091BB4 @ =gpKeySt
     ldr r1, [r0]
     ldrh r5, [r1, #6]
     mov r3, r8
@@ -263740,7 +262740,7 @@ func_08091AD8: @ 0x08091AD8
     adds r1, #4
     b .L08091BCC
     .align 2, 0
-.L08091BB4: .4byte gKeys
+.L08091BB4: .4byte gpKeySt
 .L08091BB8:
     mov r1, r8
     ldrh r0, [r1, #0x32]
@@ -263789,7 +262789,7 @@ func_08091AD8: @ 0x08091AD8
     movs r2, #7
     bl func_080A951C
 .L08091C1C:
-    ldr r0, .L08091C34 @ =gPlayStatus
+    ldr r0, .L08091C34 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -263801,7 +262801,7 @@ func_08091AD8: @ 0x08091AD8
     movs r0, #1
     b .L08091C3E
     .align 2, 0
-.L08091C34: .4byte gPlayStatus
+.L08091C34: .4byte gPlaySt
 .L08091C38: .4byte 0x00000385
 .L08091C3C:
     movs r0, #0
@@ -263999,7 +262999,7 @@ func_08091DBC: @ 0x08091DBC
     beq .L08091DCE
     b .L08091EEA
 .L08091DCE:
-    ldr r0, .L08091DE8 @ =gKeys
+    ldr r0, .L08091DE8 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #0x80
@@ -264011,7 +263011,7 @@ func_08091DBC: @ 0x08091DBC
     bl Proc_Break
     b .L08091EF0
     .align 2, 0
-.L08091DE8: .4byte gKeys
+.L08091DE8: .4byte gpKeySt
 .L08091DEC:
     movs r0, #1
     ands r0, r1
@@ -264067,7 +263067,7 @@ func_08091DBC: @ 0x08091DBC
     adds r0, r6, #0
     movs r1, #2
     bl Proc_Goto
-    ldr r0, .L08091E74 @ =gPlayStatus
+    ldr r0, .L08091E74 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -264077,7 +263077,7 @@ func_08091DBC: @ 0x08091DBC
     bl m4aSongNumStart
     b .L08091EF0
     .align 2, 0
-.L08091E74: .4byte gPlayStatus
+.L08091E74: .4byte gPlaySt
 .L08091E78: .4byte 0x0000038A
 .L08091E7C:
     movs r0, #2
@@ -264087,7 +263087,7 @@ func_08091DBC: @ 0x08091DBC
     adds r0, r6, #0
     movs r1, #0xc
     bl Proc_Goto
-    ldr r0, .L08091EA0 @ =gPlayStatus
+    ldr r0, .L08091EA0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -264097,7 +263097,7 @@ func_08091DBC: @ 0x08091DBC
     bl m4aSongNumStart
     b .L08091EF0
     .align 2, 0
-.L08091EA0: .4byte gPlayStatus
+.L08091EA0: .4byte gPlaySt
 .L08091EA4: .4byte 0x0000038B
 .L08091EA8:
     adds r0, r6, #0
@@ -264169,7 +263169,7 @@ func_08091F04: @ 0x08091F04
     movs r5, #1
 .L08091F3C:
     ldr r0, .L08092000 @ =0x0000125D
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -264182,7 +263182,7 @@ func_08091F04: @ 0x08091F04
     movs r5, #1
 .L08091F5A:
     ldr r0, .L08092004 @ =0x0000125E
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0x20
@@ -264201,7 +263201,7 @@ func_08091F04: @ 0x08091F04
     movs r4, #1
 .L08091F86:
     ldr r0, .L08092008 @ =0x0000125F
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r7, #0
     movs r1, #0
@@ -264229,7 +263229,7 @@ func_08091F04: @ 0x08091F04
 .L08091FC0:
     movs r0, #0x93
     lsls r0, r0, #5
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #0x20
@@ -264314,7 +263314,7 @@ func_08092010: @ 0x08092010
     mov r1, r8
     ldr r0, [r1]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r4, r0, #0
     movs r0, #0x28
     adds r1, r4, #0
@@ -264511,7 +263511,7 @@ func_08092220: @ 0x08092220
     beq .L08092236
     b .L08092444
 .L08092236:
-    ldr r0, .L08092268 @ =gKeys
+    ldr r0, .L08092268 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #0x80
@@ -264536,7 +263536,7 @@ func_08092220: @ 0x08092220
     bl func_0808190C
     b .L08092564
     .align 2, 0
-.L08092268: .4byte gKeys
+.L08092268: .4byte gpKeySt
 .L0809226C: .4byte 0x08CC4430
 .L08092270:
     movs r0, #1
@@ -264690,7 +263690,7 @@ func_08092220: @ 0x08092220
     movs r0, #1
     bl EnableBgSync
 .L080923BC:
-    ldr r0, .L080923DC @ =gPlayStatus
+    ldr r0, .L080923DC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -264704,10 +263704,10 @@ func_08092220: @ 0x08092220
     .align 2, 0
 .L080923D4: .4byte 0x02022EC4
 .L080923D8: .4byte 0x02012A20
-.L080923DC: .4byte gPlayStatus
+.L080923DC: .4byte gPlaySt
 .L080923E0: .4byte 0x0000038A
 .L080923E4:
-    ldr r0, .L080923FC @ =gPlayStatus
+    ldr r0, .L080923FC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -264720,7 +263720,7 @@ func_08092220: @ 0x08092220
     bl m4aSongNumStart
     b .L08092564
     .align 2, 0
-.L080923FC: .4byte gPlayStatus
+.L080923FC: .4byte gPlaySt
 .L08092400:
     movs r0, #2
     ands r0, r1
@@ -264736,7 +263736,7 @@ func_08092220: @ 0x08092220
     strb r0, [r2]
     movs r0, #0
     bl func_080A8A78
-    ldr r0, .L0809243C @ =gPlayStatus
+    ldr r0, .L0809243C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -264750,10 +263750,10 @@ func_08092220: @ 0x08092220
     bl Proc_Goto
     b .L08092564
     .align 2, 0
-.L0809243C: .4byte gPlayStatus
+.L0809243C: .4byte gPlaySt
 .L08092440: .4byte 0x0000038B
 .L08092444:
-    ldr r0, .L08092480 @ =gKeys
+    ldr r0, .L08092480 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -264765,7 +263765,7 @@ func_08092220: @ 0x08092220
     movs r0, #0xff
     strb r0, [r4]
 .L0809245C:
-    ldr r1, .L08092480 @ =gKeys
+    ldr r1, .L08092480 @ =gpKeySt
     ldr r3, [r1]
     movs r6, #0x20
     adds r0, r6, #0
@@ -264783,7 +263783,7 @@ func_08092220: @ 0x08092220
     subs r0, r2, #1
     b .L08092490
     .align 2, 0
-.L08092480: .4byte gKeys
+.L08092480: .4byte gpKeySt
 .L08092484:
     adds r0, r6, #0
     ldrh r3, [r3, #8]
@@ -264865,7 +263865,7 @@ func_08092220: @ 0x08092220
     ldrb r0, [r4]
     cmp r7, r0
     beq .L08092564
-    ldr r0, .L0809256C @ =gPlayStatus
+    ldr r0, .L0809256C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -264911,7 +263911,7 @@ func_08092220: @ 0x08092220
     pop {r0}
     bx r0
     .align 2, 0
-.L0809256C: .4byte gPlayStatus
+.L0809256C: .4byte gPlaySt
 .L08092570: .4byte 0x00000385
 .L08092574: .4byte 0x08CC4430
     func_end func_08092220
@@ -265101,7 +264101,7 @@ func_08092708: @ 0x08092708
     beq .L0809271A
     b .L08092840
 .L0809271A:
-    ldr r0, .L08092734 @ =gKeys
+    ldr r0, .L08092734 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #0x80
@@ -265113,7 +264113,7 @@ func_08092708: @ 0x08092708
     bl Proc_Break
     b .L08092846
     .align 2, 0
-.L08092734: .4byte gKeys
+.L08092734: .4byte gpKeySt
 .L08092738:
     movs r0, #1
     ands r0, r1
@@ -265142,7 +264142,7 @@ func_08092708: @ 0x08092708
     adds r0, r6, #0
     movs r1, #6
     bl Proc_Goto
-    ldr r0, .L0809278C @ =gPlayStatus
+    ldr r0, .L0809278C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -265152,10 +264152,10 @@ func_08092708: @ 0x08092708
     bl m4aSongNumStart
     b .L08092846
     .align 2, 0
-.L0809278C: .4byte gPlayStatus
+.L0809278C: .4byte gPlaySt
 .L08092790: .4byte 0x0000038A
 .L08092794:
-    ldr r0, .L080927AC @ =gPlayStatus
+    ldr r0, .L080927AC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -265166,7 +264166,7 @@ func_08092708: @ 0x08092708
     bl m4aSongNumStart
     b .L08092846
     .align 2, 0
-.L080927AC: .4byte gPlayStatus
+.L080927AC: .4byte gPlaySt
 .L080927B0:
     movs r0, #2
     ands r0, r1
@@ -265177,7 +264177,7 @@ func_08092708: @ 0x08092708
     adds r0, r6, #0
     movs r1, #2
     bl Proc_Goto
-    ldr r0, .L080927DC @ =gPlayStatus
+    ldr r0, .L080927DC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -265187,7 +264187,7 @@ func_08092708: @ 0x08092708
     bl m4aSongNumStart
     b .L08092846
     .align 2, 0
-.L080927DC: .4byte gPlayStatus
+.L080927DC: .4byte gPlaySt
 .L080927E0: .4byte 0x0000038B
 .L080927E4:
     adds r0, r6, #0
@@ -265703,7 +264703,7 @@ func_08092B6C: @ 0x08092B6C
     bl Text_SetColor
     ldr r0, [r4]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r6, #0
     bl Text_DrawString
@@ -266208,7 +265208,7 @@ func_08092F50: @ 0x08092F50
     bl ClearText
     ldr r0, [r5]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     movs r1, #0x1f
     mov r2, r8
     ands r1, r2
@@ -266632,14 +265632,14 @@ func_080932F4: @ 0x080932F4
     bl ClearText
     ldr r0, [r5]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     movs r0, #0x38
     bl GetStringTextCenteredPos
     adds r6, r0, #0
     ldr r0, [r5]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r4, #0
     subs r1, #0x80
     mov r2, sb
@@ -266825,7 +265825,7 @@ func_080934BC: @ 0x080934BC
     adds r0, r5, #0
     bl ClearText
     ldr r0, .L08093598 @ =0x00001272
-    bl GetMsg
+    bl DecodeMsg
     ldr r1, .L0809359C @ =0x02022CBC
     str r4, [sp]
     str r0, [sp, #4]
@@ -266839,7 +265839,7 @@ func_080934BC: @ 0x080934BC
     movs r2, #3
     bl func_08005518
     ldr r0, .L080935A0 @ =0x00001271
-    bl GetMsg
+    bl DecodeMsg
     ldr r7, .L0809359C @ =0x02022CBC
     movs r1, #0
     str r1, [sp]
@@ -266941,7 +265941,7 @@ func_080935A4: @ 0x080935A4
     ldr r0, [r2]
     ldrb r0, [r0, #4]
     bl func_0808DCB0
-    ldr r0, .L080935F0 @ =gPlayStatus
+    ldr r0, .L080935F0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -266957,10 +265957,10 @@ func_080935A4: @ 0x080935A4
     movs r0, #1
     b .L0809360E
     .align 2, 0
-.L080935F0: .4byte gPlayStatus
+.L080935F0: .4byte gPlaySt
 .L080935F4: .4byte 0x0000038A
 .L080935F8:
-    ldr r0, .L08093614 @ =gPlayStatus
+    ldr r0, .L08093614 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -266976,7 +265976,7 @@ func_080935A4: @ 0x080935A4
     pop {r1}
     bx r1
     .align 2, 0
-.L08093614: .4byte gPlayStatus
+.L08093614: .4byte gPlaySt
     func_end func_080935A4
 
     thumb_func_start func_08093618
@@ -267002,7 +266002,7 @@ func_08093618: @ 0x08093618
     ldr r0, [r4]
     ldrb r0, [r0, #4]
     bl func_0808DCD8
-    ldr r0, .L08093668 @ =gPlayStatus
+    ldr r0, .L08093668 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -267018,10 +266018,10 @@ func_08093618: @ 0x08093618
     movs r0, #1
     b .L08093686
     .align 2, 0
-.L08093668: .4byte gPlayStatus
+.L08093668: .4byte gPlaySt
 .L0809366C: .4byte 0x0000038B
 .L08093670:
-    ldr r0, .L0809368C @ =gPlayStatus
+    ldr r0, .L0809368C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -267037,7 +266037,7 @@ func_08093618: @ 0x08093618
     pop {r1}
     bx r1
     .align 2, 0
-.L0809368C: .4byte gPlayStatus
+.L0809368C: .4byte gPlaySt
     func_end func_08093618
 
     thumb_func_start func_08093690
@@ -267134,14 +266134,14 @@ func_08093734: @ 0x08093734
     asrs r6, r0, #0x18
     cmp r6, #0
     bne .L08093780
-    ldr r0, .L08093788 @ =gPlayStatus
+    ldr r0, .L08093788 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     bl GetChapterInfo
     adds r0, #0x8e
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r4, r0, #0
     ldr r5, .L0809378C @ =0x02012B40
     adds r0, r5, #0
@@ -267164,7 +266164,7 @@ func_08093734: @ 0x08093734
     pop {r0}
     bx r0
     .align 2, 0
-.L08093788: .4byte gPlayStatus
+.L08093788: .4byte gPlaySt
 .L0809378C: .4byte 0x02012B40
 .L08093790: .4byte 0x02023062
     func_end func_08093734
@@ -267546,7 +266546,7 @@ func_08093AA0: @ 0x08093AA0
     beq .L08093AAE
     b .L08093CD2
 .L08093AAE:
-    ldr r3, .L08093AFC @ =gKeys
+    ldr r3, .L08093AFC @ =gpKeySt
     ldr r1, [r3]
     ldrh r6, [r1, #6]
     adds r2, r5, #0
@@ -267574,7 +266574,7 @@ func_08093AA0: @ 0x08093AA0
     ldrb r0, [r0]
     cmp r0, #0
     bne .L08093B04
-    ldr r0, .L08093B00 @ =gPlayStatus
+    ldr r0, .L08093B00 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -267587,10 +266587,10 @@ func_08093AA0: @ 0x08093AA0
     bl m4aSongNumStart
     b .L08093D4C
     .align 2, 0
-.L08093AFC: .4byte gKeys
-.L08093B00: .4byte gPlayStatus
+.L08093AFC: .4byte gpKeySt
+.L08093B00: .4byte gPlaySt
 .L08093B04:
-    ldr r0, .L08093B20 @ =gPlayStatus
+    ldr r0, .L08093B20 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -267604,14 +266604,14 @@ func_08093AA0: @ 0x08093AA0
     bl Proc_Goto
     b .L08093D4C
     .align 2, 0
-.L08093B20: .4byte gPlayStatus
+.L08093B20: .4byte gPlaySt
 .L08093B24: .4byte 0x0000038A
 .L08093B28:
     adds r0, r4, #0
     ands r0, r1
     cmp r0, #0
     beq .L08093B54
-    ldr r0, .L08093B4C @ =gPlayStatus
+    ldr r0, .L08093B4C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -267625,7 +266625,7 @@ func_08093AA0: @ 0x08093AA0
     bl Proc_Goto
     b .L08093D4C
     .align 2, 0
-.L08093B4C: .4byte gPlayStatus
+.L08093B4C: .4byte gPlaySt
 .L08093B50: .4byte 0x0000038A
 .L08093B54:
     movs r0, #0x80
@@ -267659,7 +266659,7 @@ func_08093AA0: @ 0x08093AA0
     ands r0, r1
     cmp r0, #0
     beq .L08093BB8
-    ldr r0, .L08093BB0 @ =gPlayStatus
+    ldr r0, .L08093BB0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -267673,7 +266673,7 @@ func_08093AA0: @ 0x08093AA0
     bl Proc_Goto
     b .L08093D4C
     .align 2, 0
-.L08093BB0: .4byte gPlayStatus
+.L08093BB0: .4byte gPlaySt
 .L08093BB4: .4byte 0x0000038B
 .L08093BB8:
     movs r0, #0x20
@@ -267743,7 +266743,7 @@ func_08093AA0: @ 0x08093AA0
     movs r1, #1
     adds r2, r5, #0
     bl func_080A8E14
-    ldr r0, .L08093C9C @ =gPlayStatus
+    ldr r0, .L08093C9C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -267788,7 +266788,7 @@ func_08093AA0: @ 0x08093AA0
     b .L08093CCA
     .align 2, 0
 .L08093C98: .4byte func_080933B4
-.L08093C9C: .4byte gPlayStatus
+.L08093C9C: .4byte gPlaySt
 .L08093CA0: .4byte 0x00000385
 .L08093CA4:
     ldrh r1, [r5, #0x2e]
@@ -268002,14 +267002,14 @@ func_08093E00: @ 0x08093E00
 func_08093E2C: @ 0x08093E2C
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L08093E80 @ =gKeys
+    ldr r0, .L08093E80 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #8]
     ands r0, r1
     cmp r0, #0
     beq .L08093E52
-    ldr r0, .L08093E84 @ =gPlayStatus
+    ldr r0, .L08093E84 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -268019,14 +267019,14 @@ func_08093E2C: @ 0x08093E2C
     lsls r0, r0, #2
     bl m4aSongNumStart
 .L08093E52:
-    ldr r0, .L08093E80 @ =gKeys
+    ldr r0, .L08093E80 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x40
     ldrh r1, [r1, #6]
     ands r0, r1
     cmp r0, #0
     beq .L08093E78
-    ldr r0, .L08093E84 @ =gPlayStatus
+    ldr r0, .L08093E84 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -268042,8 +267042,8 @@ func_08093E2C: @ 0x08093E2C
     pop {r0}
     bx r0
     .align 2, 0
-.L08093E80: .4byte gKeys
-.L08093E84: .4byte gPlayStatus
+.L08093E80: .4byte gpKeySt
+.L08093E84: .4byte gPlaySt
 .L08093E88: .4byte 0x00000385
     func_end func_08093E2C
 
@@ -268241,7 +267241,7 @@ func_08093FE4: @ 0x08093FE4
     push {r4, r5, lr}
     adds r4, r0, #0
     ldr r5, [r4, #0x34]
-    ldr r0, .L08094044 @ =gKeys
+    ldr r0, .L08094044 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x20
     ldrh r1, [r1, #6]
@@ -268287,12 +267287,12 @@ func_08093FE4: @ 0x08093FE4
     subs r0, #8
     b .L0809404A
     .align 2, 0
-.L08094044: .4byte gKeys
+.L08094044: .4byte gpKeySt
 .L08094048:
     subs r0, r2, #1
 .L0809404A:
     str r0, [r4, #0x34]
-    ldr r0, .L080940B8 @ =gPlayStatus
+    ldr r0, .L080940B8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -268301,7 +267301,7 @@ func_08093FE4: @ 0x08093FE4
     ldr r0, .L080940BC @ =0x00000387
     bl m4aSongNumStart
 .L0809405E:
-    ldr r0, .L080940C0 @ =gKeys
+    ldr r0, .L080940C0 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x10
     ldrh r1, [r1, #6]
@@ -268348,14 +267348,14 @@ func_08093FE4: @ 0x08093FE4
     adds r0, #8
     b .L080940C6
     .align 2, 0
-.L080940B8: .4byte gPlayStatus
+.L080940B8: .4byte gPlaySt
 .L080940BC: .4byte 0x00000387
-.L080940C0: .4byte gKeys
+.L080940C0: .4byte gpKeySt
 .L080940C4:
     adds r0, r2, #7
 .L080940C6:
     str r0, [r4, #0x34]
-    ldr r0, .L08094140 @ =gPlayStatus
+    ldr r0, .L08094140 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -268364,7 +267364,7 @@ func_08093FE4: @ 0x08093FE4
     ldr r0, .L08094144 @ =0x00000387
     bl m4aSongNumStart
 .L080940DA:
-    ldr r0, .L08094148 @ =gKeys
+    ldr r0, .L08094148 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x40
     ldrh r1, [r1, #6]
@@ -268405,7 +267405,7 @@ func_08093FE4: @ 0x08093FE4
     ble .L08094150
     subs r0, r2, #1
     str r0, [r4, #0x34]
-    ldr r0, .L08094140 @ =gPlayStatus
+    ldr r0, .L08094140 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -268415,12 +267415,12 @@ func_08093FE4: @ 0x08093FE4
     bl m4aSongNumStart
     b .L0809417A
     .align 2, 0
-.L08094140: .4byte gPlayStatus
+.L08094140: .4byte gPlaySt
 .L08094144: .4byte 0x00000387
-.L08094148: .4byte gKeys
+.L08094148: .4byte gpKeySt
 .L0809414C: .4byte 0x00000386
 .L08094150:
-    ldr r0, .L080941E0 @ =gKeys
+    ldr r0, .L080941E0 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x40
     ldrh r1, [r1, #8]
@@ -268432,7 +267432,7 @@ func_08093FE4: @ 0x08093FE4
     adds r0, r2, r3
     subs r0, #1
     str r0, [r4, #0x34]
-    ldr r0, .L080941E4 @ =gPlayStatus
+    ldr r0, .L080941E4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -268441,7 +267441,7 @@ func_08093FE4: @ 0x08093FE4
     ldr r0, .L080941E8 @ =0x00000386
     bl m4aSongNumStart
 .L0809417A:
-    ldr r0, .L080941E0 @ =gKeys
+    ldr r0, .L080941E0 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x80
     ldrh r1, [r1, #6]
@@ -268483,7 +267483,7 @@ func_08093FE4: @ 0x08093FE4
     bge .L080941EC
     adds r0, r2, #1
     str r0, [r4, #0x34]
-    ldr r0, .L080941E4 @ =gPlayStatus
+    ldr r0, .L080941E4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -268493,11 +267493,11 @@ func_08093FE4: @ 0x08093FE4
     bl m4aSongNumStart
     b .L08094212
     .align 2, 0
-.L080941E0: .4byte gKeys
-.L080941E4: .4byte gPlayStatus
+.L080941E0: .4byte gpKeySt
+.L080941E4: .4byte gPlaySt
 .L080941E8: .4byte 0x00000386
 .L080941EC:
-    ldr r0, .L0809421C @ =gKeys
+    ldr r0, .L0809421C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x80
     ldrh r1, [r1, #8]
@@ -268507,7 +267507,7 @@ func_08093FE4: @ 0x08093FE4
     movs r0, #8
     ands r2, r0
     str r2, [r4, #0x34]
-    ldr r0, .L08094220 @ =gPlayStatus
+    ldr r0, .L08094220 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -268522,8 +267522,8 @@ func_08093FE4: @ 0x08093FE4
     movs r0, #0
     b .L0809422A
     .align 2, 0
-.L0809421C: .4byte gKeys
-.L08094220: .4byte gPlayStatus
+.L0809421C: .4byte gpKeySt
+.L08094220: .4byte gPlaySt
 .L08094224: .4byte 0x00000386
 .L08094228:
     movs r0, #1
@@ -268850,7 +267850,7 @@ func_08094350: @ 0x08094350
     ldr r0, [r4, #0x2c]
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r7, r0, #0
     bl func_080055FC
     adds r3, r0, #0
@@ -268872,7 +267872,7 @@ func_08094350: @ 0x08094350
     ldr r0, [r1, #0x30]
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r7, r0, #0
     bl func_080055FC
     subs r4, r4, r0
@@ -269010,7 +268010,7 @@ func_08094630: @ 0x08094630
     ldr r2, [r6, #0x3c]
     cmp r2, #0xff
     beq .L0809465C
-    ldr r0, .L08094658 @ =gKeys
+    ldr r0, .L08094658 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -269024,9 +268024,9 @@ func_08094630: @ 0x08094630
     movs r0, #0xff
     b .L08094924
     .align 2, 0
-.L08094658: .4byte gKeys
+.L08094658: .4byte gpKeySt
 .L0809465C:
-    ldr r0, .L08094698 @ =gKeys
+    ldr r0, .L08094698 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #0x80
@@ -269058,7 +268058,7 @@ func_08094630: @ 0x08094630
     lsls r1, r4, #4
     b .L0809491C
     .align 2, 0
-.L08094698: .4byte gKeys
+.L08094698: .4byte gpKeySt
 .L0809469C:
     ldr r4, [r6, #0x38]
     cmp r4, #0xff
@@ -269164,7 +268164,7 @@ func_08094630: @ 0x08094630
 .L08094770:
     str r0, [r6, #0x38]
 .L08094772:
-    ldr r0, .L080947B0 @ =gPlayStatus
+    ldr r0, .L080947B0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -269194,7 +268194,7 @@ func_08094630: @ 0x08094630
     bl func_080A951C
     b .L08094926
     .align 2, 0
-.L080947B0: .4byte gPlayStatus
+.L080947B0: .4byte gPlaySt
 .L080947B4: .4byte 0x0000038A
 .L080947B8:
     movs r0, #2
@@ -269218,7 +268218,7 @@ func_08094630: @ 0x08094630
     lsls r3, r3, #4
     movs r2, #0xb
     bl func_080A951C
-    ldr r0, .L080947FC @ =gPlayStatus
+    ldr r0, .L080947FC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -269231,7 +268231,7 @@ func_08094630: @ 0x08094630
     bl func_080A8A78
     b .L08094926
     .align 2, 0
-.L080947FC: .4byte gPlayStatus
+.L080947FC: .4byte gPlaySt
 .L08094800: .4byte 0x0000038B
 .L08094804:
     movs r2, #1
@@ -269293,7 +268293,7 @@ func_08094630: @ 0x08094630
     lsls r3, r3, #4
     movs r2, #0xb
     bl func_080A951C
-    ldr r0, .L08094890 @ =gPlayStatus
+    ldr r0, .L08094890 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -269303,7 +268303,7 @@ func_08094630: @ 0x08094630
     bl m4aSongNumStart
     b .L08094926
     .align 2, 0
-.L08094890: .4byte gPlayStatus
+.L08094890: .4byte gPlaySt
 .L08094894: .4byte 0x0000038A
 .L08094898:
     movs r0, #2
@@ -269312,7 +268312,7 @@ func_08094630: @ 0x08094630
     beq .L080948C4
     adds r0, r6, #0
     bl Proc_Break
-    ldr r0, .L080948BC @ =gPlayStatus
+    ldr r0, .L080948BC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -269322,7 +268322,7 @@ func_08094630: @ 0x08094630
     bl m4aSongNumStart
     b .L08094926
     .align 2, 0
-.L080948BC: .4byte gPlayStatus
+.L080948BC: .4byte gPlaySt
 .L080948C0: .4byte 0x0000038B
 .L080948C4:
     adds r0, r6, #0
@@ -269436,7 +268436,7 @@ func_0809496C: @ 0x0809496C
 func_0809498C: @ 0x0809498C
     push {r4, r5, r6, r7, lr}
     adds r4, r0, #0
-    ldr r5, .L080949B8 @ =gKeys
+    ldr r5, .L080949B8 @ =gpKeySt
     ldr r0, [r5]
     ldrh r1, [r0, #6]
     movs r7, #0x40
@@ -269456,7 +268456,7 @@ func_0809498C: @ 0x0809498C
     str r0, [r4, #0x30]
     b .L080949FA
     .align 2, 0
-.L080949B8: .4byte gKeys
+.L080949B8: .4byte gpKeySt
 .L080949BC:
     ldr r1, [r5]
     adds r0, r7, #0
@@ -269491,7 +268491,7 @@ func_0809498C: @ 0x0809498C
     beq .L08094A18
     str r6, [r4, #0x30]
 .L080949FA:
-    ldr r0, .L08094A10 @ =gPlayStatus
+    ldr r0, .L08094A10 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -269503,7 +268503,7 @@ func_0809498C: @ 0x0809498C
     movs r0, #1
     b .L08094A1A
     .align 2, 0
-.L08094A10: .4byte gPlayStatus
+.L08094A10: .4byte gPlaySt
 .L08094A14: .4byte 0x00000386
 .L08094A18:
     movs r0, #0
@@ -269531,7 +268531,7 @@ func_08094A20: @ 0x08094A20
     cmp r4, #0
     bge .L08094A30
     ldr r0, .L08094A8C @ =0x000010F4
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r6, #0
     adds r6, #8
     ldr r5, .L08094A90 @ =0x02023D82
@@ -269550,7 +268550,7 @@ func_08094A20: @ 0x08094A20
     cmp r4, #0
     beq .L08094A98
     ldr r0, .L08094A94 @ =0x000010F9
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r6, #0
     adds r6, #8
     adds r1, r5, #0
@@ -269569,7 +268569,7 @@ func_08094A20: @ 0x08094A20
 .L08094A94: .4byte 0x000010F9
 .L08094A98:
     ldr r0, .L08094BA8 @ =0x000010F8
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r6, #0
     adds r6, #8
     adds r1, r5, #0
@@ -269582,7 +268582,7 @@ func_08094A20: @ 0x08094A20
     bl func_08005AD4
 .L08094AB4:
     ldr r0, .L08094BAC @ =0x000010FB
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r6, #0
     adds r6, #8
     ldr r7, .L08094BB0 @ =0x02023E82
@@ -269595,7 +268595,7 @@ func_08094A20: @ 0x08094A20
     movs r3, #0
     bl func_08005AD4
     ldr r0, .L08094BB4 @ =0x000010FC
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r6, #0
     adds r6, #8
     adds r1, r7, #0
@@ -269607,7 +268607,7 @@ func_08094A20: @ 0x08094A20
     movs r3, #0
     bl func_08005AD4
     ldr r0, .L08094BB8 @ =0x000010FD
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r6, #0
     adds r6, #8
     adds r1, r7, #0
@@ -269619,7 +268619,7 @@ func_08094A20: @ 0x08094A20
     movs r3, #0
     bl func_08005AD4
     ldr r0, .L08094BBC @ =0x000010FE
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r6, #0
     adds r6, #8
     adds r1, r7, #0
@@ -269631,7 +268631,7 @@ func_08094A20: @ 0x08094A20
     movs r3, #0
     bl func_08005AD4
     ldr r0, .L08094BC0 @ =0x000010FF
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r6, #0
     adds r6, #8
     adds r1, r7, #0
@@ -269643,7 +268643,7 @@ func_08094A20: @ 0x08094A20
     movs r3, #0
     bl func_08005AD4
     ldr r0, .L08094BC4 @ =0x00001107
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r6, #0
     adds r6, #8
     adds r1, r7, #0
@@ -269657,7 +268657,7 @@ func_08094A20: @ 0x08094A20
     mov r1, r8
     ldr r0, [r1, #4]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r4, r0, #0
     movs r0, #0x38
     adds r1, r4, #0
@@ -270126,7 +269126,7 @@ func_08094EF4: @ 0x08094EF4
     movs r1, #0
     bl Text_SetColor
     adds r0, r5, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     ldr r2, .L08094F74 @ =0x02022FBE
     mov r0, sp
@@ -270147,7 +269147,7 @@ func_08094EF4: @ 0x08094EF4
     movs r1, #1
     bl Text_SetColor
     adds r0, r5, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     ldr r2, .L08094FB0 @ =0x02022FBE
     mov r0, sp
@@ -270386,7 +269386,7 @@ func_08094FE4: @ 0x08094FE4
     ldr r0, [r7, #0x2c]
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r4, r0, #0
     bl func_080055FC
     movs r3, #0x30
@@ -270555,7 +269555,7 @@ func_08095324: @ 0x08095324
     ldr r0, [r4, #0x38]
     cmp r0, #0xff
     beq .L0809534C
-    ldr r0, .L08095348 @ =gKeys
+    ldr r0, .L08095348 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -270567,9 +269567,9 @@ func_08095324: @ 0x08095324
     movs r0, #0xff
     b .L0809544C
     .align 2, 0
-.L08095348: .4byte gKeys
+.L08095348: .4byte gpKeySt
 .L0809534C:
-    ldr r0, .L080953B0 @ =gKeys
+    ldr r0, .L080953B0 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #0x80
@@ -270602,7 +269602,7 @@ func_08095324: @ 0x08095324
     movs r3, #0
     bl func_080A89C8
     str r5, [r4, #0x3c]
-    ldr r0, .L080953B4 @ =gPlayStatus
+    ldr r0, .L080953B4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -270616,11 +269616,11 @@ func_08095324: @ 0x08095324
     bl Proc_Goto
     b .L0809544E
     .align 2, 0
-.L080953B0: .4byte gKeys
-.L080953B4: .4byte gPlayStatus
+.L080953B0: .4byte gpKeySt
+.L080953B4: .4byte gPlaySt
 .L080953B8: .4byte 0x0000038A
 .L080953BC:
-    ldr r0, .L080953D4 @ =gPlayStatus
+    ldr r0, .L080953D4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -270631,7 +269631,7 @@ func_08095324: @ 0x08095324
     bl m4aSongNumStart
     b .L0809544E
     .align 2, 0
-.L080953D4: .4byte gPlayStatus
+.L080953D4: .4byte gPlaySt
 .L080953D8:
     movs r0, #2
     ands r0, r1
@@ -270640,7 +269640,7 @@ func_08095324: @ 0x08095324
     adds r0, r4, #0
     movs r1, #5
     bl Proc_Goto
-    ldr r0, .L080953FC @ =gPlayStatus
+    ldr r0, .L080953FC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -270650,7 +269650,7 @@ func_08095324: @ 0x08095324
     bl m4aSongNumStart
     b .L0809544E
     .align 2, 0
-.L080953FC: .4byte gPlayStatus
+.L080953FC: .4byte gPlaySt
 .L08095400: .4byte 0x0000038B
 .L08095404:
     adds r0, r4, #0
@@ -270714,7 +269714,7 @@ func_0809546C: @ 0x0809546C
     adds r0, r4, #0
     bl ClearText
     ldr r0, .L080954DC @ =0x00001269
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r4, #0
     adds r4, #8
     ldr r5, .L080954E0 @ =0x02023FC2
@@ -270729,7 +269729,7 @@ func_0809546C: @ 0x0809546C
     adds r0, r4, #0
     bl ClearText
     ldr r0, .L080954E4 @ =0x000010EE
-    bl GetMsg
+    bl DecodeMsg
     adds r5, #0x82
     str r6, [sp]
     str r0, [sp, #4]
@@ -270739,7 +269739,7 @@ func_0809546C: @ 0x0809546C
     movs r3, #0
     bl func_08005AD4
     ldr r0, .L080954E8 @ =0x000010EF
-    bl GetMsg
+    bl DecodeMsg
     str r6, [sp]
     str r0, [sp, #4]
     adds r0, r4, #0
@@ -270808,7 +269808,7 @@ func_08095528: @ 0x08095528
     movs r2, #0xd
     movs r3, #4
     bl func_08092CB8
-    ldr r5, .L08095584 @ =gKeys
+    ldr r5, .L08095584 @ =gpKeySt
     ldr r1, [r5]
     ldrh r3, [r1, #8]
     movs r0, #2
@@ -270826,7 +269826,7 @@ func_08095528: @ 0x08095528
     movs r0, #0
     bl func_080A8A78
     bl func_080954EC
-    ldr r0, .L08095588 @ =gPlayStatus
+    ldr r0, .L08095588 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -270837,8 +269837,8 @@ func_08095528: @ 0x08095528
     b .L080955F6
     .align 2, 0
 .L08095580: .4byte 0x0000A580
-.L08095584: .4byte gKeys
-.L08095588: .4byte gPlayStatus
+.L08095584: .4byte gpKeySt
+.L08095588: .4byte gPlaySt
 .L0809558C: .4byte 0x0000038B
 .L08095590:
     movs r6, #1
@@ -270851,7 +269851,7 @@ func_08095528: @ 0x08095528
     cmp r0, #0
     bne .L080955CC
     bl func_080A9564
-    ldr r0, .L080955C4 @ =gPlayStatus
+    ldr r0, .L080955C4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -270865,7 +269865,7 @@ func_08095528: @ 0x08095528
     bl Proc_Goto
     b .L0809564A
     .align 2, 0
-.L080955C4: .4byte gPlayStatus
+.L080955C4: .4byte gPlaySt
 .L080955C8: .4byte 0x0000038A
 .L080955CC:
     ldr r1, [r4, #0x30]
@@ -270876,7 +269876,7 @@ func_08095528: @ 0x08095528
     movs r0, #0x10
     movs r2, #0xb
     bl func_080A951C
-    ldr r0, .L08095600 @ =gPlayStatus
+    ldr r0, .L08095600 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -270892,7 +269892,7 @@ func_08095528: @ 0x08095528
     bl Proc_Break
     b .L0809564A
     .align 2, 0
-.L08095600: .4byte gPlayStatus
+.L08095600: .4byte gPlaySt
 .L08095604: .4byte 0x0000038B
 .L08095608:
     movs r0, #0x20
@@ -270920,7 +269920,7 @@ func_08095528: @ 0x08095528
     movs r1, #0x78
     movs r2, #0
     bl func_080A951C
-    ldr r0, .L08095654 @ =gPlayStatus
+    ldr r0, .L08095654 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -270934,7 +269934,7 @@ func_08095528: @ 0x08095528
     pop {r0}
     bx r0
     .align 2, 0
-.L08095654: .4byte gPlayStatus
+.L08095654: .4byte gPlaySt
 .L08095658: .4byte 0x00000387
     func_end func_08095528
 
@@ -271013,7 +270013,7 @@ func_0809565C: @ 0x0809565C
     .4byte .L0809576E @ case 50
     .4byte .L08095754 @ case 51
 .L08095754:
-    ldr r0, .L08095774 @ =gPlayStatus
+    ldr r0, .L08095774 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -271030,7 +270030,7 @@ func_0809565C: @ 0x0809565C
     pop {r0}
     bx r0
     .align 2, 0
-.L08095774: .4byte gPlayStatus
+.L08095774: .4byte gPlaySt
 .L08095778: .4byte 0x0000038A
 .L0809577C:
     .byte 0x10, 0xB5, 0x04, 0x1C
@@ -271153,7 +270153,7 @@ func_080958C8: @ 0x080958C8
     adds r5, r1, #0
     str r2, [sp, #8]
     adds r0, r3, #0
-    bl GetMsg
+    bl DecodeMsg
     mov sl, r0
     ldr r0, [sp, #0x2c]
     bl GetItemIcon
@@ -271412,7 +270412,7 @@ func_080959B0: @ 0x080959B0
     ble .L08095ACC
     movs r0, #0x78
     str r0, [r7, #0x2c]
-    ldr r0, .L08095B20 @ =gPlayStatus
+    ldr r0, .L08095B20 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -271426,7 +270426,7 @@ func_080959B0: @ 0x080959B0
     pop {r0}
     bx r0
     .align 2, 0
-.L08095B20: .4byte gPlayStatus
+.L08095B20: .4byte gPlaySt
 .L08095B24: .4byte 0x0000037A
     func_end func_080959B0
 
@@ -271447,7 +270447,7 @@ func_08095B28: @ 0x08095B28
     str r0, [r5, #0x2c]
     cmp r0, #0
     beq .L08095B56
-    ldr r0, .L08095B68 @ =gKeys
+    ldr r0, .L08095B68 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #3
     ldrh r1, [r1, #8]
@@ -271464,7 +270464,7 @@ func_08095B28: @ 0x08095B28
     bx r0
     .align 2, 0
 .L08095B64: .4byte 0x0000A580
-.L08095B68: .4byte gKeys
+.L08095B68: .4byte gpKeySt
     func_end func_08095B28
 
     thumb_func_start func_08095B6C
@@ -271641,7 +270641,7 @@ func_08095CA8: @ 0x08095CA8
     ldr r0, [sp]
     bl ClearText
     ldr r0, .L08095CF8 @ =0x0000126D
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     ldr r0, [sp]
     movs r1, #0
@@ -272049,7 +271049,7 @@ func_08095FCC: @ 0x08095FCC
     movs r4, #1
 .L08096008:
     ldr r0, .L08096048 @ =0x0000126E
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r7, #0
     movs r1, #0
@@ -272062,7 +271062,7 @@ func_08095FCC: @ 0x08095FCC
     movs r4, #1
 .L08096024:
     ldr r0, .L08096050 @ =0x0000126F
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #0x40
@@ -272093,7 +271093,7 @@ func_08096054: @ 0x08096054
     movs r3, #0
     bl TmFillRect_thm
     ldr r0, .L08096104 @ =0x0000125A
-    bl GetMsg
+    bl DecodeMsg
     ldr r4, .L08096108 @ =0x02012B68
     adds r1, r6, #0
     adds r1, #0xda
@@ -272114,7 +271114,7 @@ func_08096054: @ 0x08096054
     movs r3, #2
     bl func_08006F80
     ldr r0, .L0809610C @ =0x00001270
-    bl GetMsg
+    bl DecodeMsg
     adds r4, #8
     str r5, [sp]
     str r0, [sp, #4]
@@ -272523,7 +271523,7 @@ func_08096370: @ 0x08096370
     ldr r0, [r7, #0x2c]
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r0, r7, #0
     bl func_080A89B4
     adds r0, r7, #0
@@ -272788,7 +271788,7 @@ func_08096668: @ 0x08096668
     beq .L0809667A
     b .L080967D4
 .L0809667A:
-    ldr r1, .L08096698 @ =gKeys
+    ldr r1, .L08096698 @ =gpKeySt
     ldr r0, [r1]
     ldrh r3, [r0, #8]
     movs r7, #1
@@ -272805,7 +271805,7 @@ func_08096668: @ 0x08096668
     beq .L08096708
     b .L08096888
     .align 2, 0
-.L08096698: .4byte gKeys
+.L08096698: .4byte gpKeySt
 .L0809669C:
     bl func_08090C48
     lsls r0, r0, #0x18
@@ -272832,7 +271832,7 @@ func_08096668: @ 0x08096668
     movs r0, #1
     adds r1, r5, #0
     bl func_08095C28
-    ldr r0, .L08096700 @ =gPlayStatus
+    ldr r0, .L08096700 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -272848,7 +271848,7 @@ func_08096668: @ 0x08096668
     .align 2, 0
 .L080966F8: .4byte func_08096110
 .L080966FC: .4byte func_08096160
-.L08096700: .4byte gPlayStatus
+.L08096700: .4byte gPlaySt
 .L08096704: .4byte 0x0000038A
 .L08096708:
     ldr r0, [r5, #0x2c]
@@ -272871,7 +271871,7 @@ func_08096668: @ 0x08096668
     movs r0, #2
     adds r1, r5, #0
     bl func_08095C28
-    ldr r0, .L08096760 @ =gPlayStatus
+    ldr r0, .L08096760 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -272887,10 +271887,10 @@ func_08096668: @ 0x08096668
     .align 2, 0
 .L08096758: .4byte func_08096110
 .L0809675C: .4byte func_08096198
-.L08096760: .4byte gPlayStatus
+.L08096760: .4byte gPlaySt
 .L08096764: .4byte 0x0000038A
 .L08096768:
-    ldr r0, .L08096780 @ =gPlayStatus
+    ldr r0, .L08096780 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -272903,7 +271903,7 @@ func_08096668: @ 0x08096668
     bl m4aSongNumStart
     b .L08096888
     .align 2, 0
-.L08096780: .4byte gPlayStatus
+.L08096780: .4byte gPlaySt
 .L08096784:
     movs r0, #2
     ands r0, r3
@@ -272912,7 +271912,7 @@ func_08096668: @ 0x08096668
     adds r0, r5, #0
     movs r1, #8
     bl Proc_Goto
-    ldr r0, .L080967A8 @ =gPlayStatus
+    ldr r0, .L080967A8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -272922,7 +271922,7 @@ func_08096668: @ 0x08096668
     bl m4aSongNumStart
     b .L08096888
     .align 2, 0
-.L080967A8: .4byte gPlayStatus
+.L080967A8: .4byte gPlaySt
 .L080967AC: .4byte 0x0000038B
 .L080967B0:
     movs r0, #0x80
@@ -272943,7 +271943,7 @@ func_08096668: @ 0x08096668
     .align 2, 0
 .L080967D0: .4byte 0x08CC4B8C
 .L080967D4:
-    ldr r2, .L080967F0 @ =gKeys
+    ldr r2, .L080967F0 @ =gpKeySt
     ldr r1, [r2]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -272956,7 +271956,7 @@ func_08096668: @ 0x08096668
     strh r0, [r5, #0x38]
     b .L08096888
     .align 2, 0
-.L080967F0: .4byte gKeys
+.L080967F0: .4byte gpKeySt
 .L080967F4:
     ldr r3, [r2]
     movs r1, #0x40
@@ -273007,7 +272007,7 @@ func_08096668: @ 0x08096668
     ldrb r0, [r4]
     cmp r6, r0
     beq .L08096888
-    ldr r0, .L08096890 @ =gPlayStatus
+    ldr r0, .L08096890 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -273041,7 +272041,7 @@ func_08096668: @ 0x08096668
     pop {r0}
     bx r0
     .align 2, 0
-.L08096890: .4byte gPlayStatus
+.L08096890: .4byte gPlaySt
 .L08096894: .4byte 0x00000386
 .L08096898: .4byte 0x08CC4B8C
     func_end func_08096668
@@ -273555,7 +272555,7 @@ func_08096C60: @ 0x08096C60
     cmp r0, #0
     bne .L08096C9C
 .L08096C7C:
-    ldr r0, .L08096C98 @ =gPlayStatus
+    ldr r0, .L08096C98 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -273569,7 +272569,7 @@ func_08096C60: @ 0x08096C60
     b .L08096DAE
     .align 2, 0
 .L08096C94: .4byte 0x02012466
-.L08096C98: .4byte gPlayStatus
+.L08096C98: .4byte gPlaySt
 .L08096C9C:
     movs r5, #0
     strh r5, [r7, #0x38]
@@ -273660,7 +272660,7 @@ func_08096C60: @ 0x08096C60
     adds r0, r7, #0
     movs r1, #1
     bl Proc_Goto
-    ldr r0, .L08096D94 @ =gPlayStatus
+    ldr r0, .L08096D94 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -273676,10 +272676,10 @@ func_08096C60: @ 0x08096C60
 .L08096D88: .4byte 0x02023C7E
 .L08096D8C: .4byte func_08096C54
 .L08096D90: .4byte 0x0203A85C
-.L08096D94: .4byte gPlayStatus
+.L08096D94: .4byte gPlaySt
 .L08096D98: .4byte 0x0000038B
 .L08096D9C:
-    ldr r0, .L08096DB8 @ =gPlayStatus
+    ldr r0, .L08096DB8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -273694,7 +272694,7 @@ func_08096C60: @ 0x08096C60
     pop {r0}
     bx r0
     .align 2, 0
-.L08096DB8: .4byte gPlayStatus
+.L08096DB8: .4byte gPlaySt
 .L08096DBC: .4byte 0x0000038A
     func_end func_08096C60
 
@@ -273733,7 +272733,7 @@ func_08096DC0: @ 0x08096DC0
     cmp r0, #0xff
     bne .L08096EA0
 .L08096DFE:
-    ldr r1, .L08096E38 @ =gKeys
+    ldr r1, .L08096E38 @ =gpKeySt
     ldr r0, [r1]
     ldrh r3, [r0, #8]
     movs r0, #0x80
@@ -273762,11 +272762,11 @@ func_08096DC0: @ 0x08096DC0
     strh r0, [r4, #0x38]
     b .L0809713E
     .align 2, 0
-.L08096E38: .4byte gKeys
+.L08096E38: .4byte gpKeySt
 .L08096E3C: .4byte 0x02012466
 .L08096E40: .4byte 0x020117E4
 .L08096E44:
-    ldr r0, .L08096E5C @ =gPlayStatus
+    ldr r0, .L08096E5C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -273779,7 +272779,7 @@ func_08096DC0: @ 0x08096DC0
     bl m4aSongNumStart
     b .L0809713E
     .align 2, 0
-.L08096E5C: .4byte gPlayStatus
+.L08096E5C: .4byte gPlaySt
 .L08096E60:
     movs r0, #1
     ands r0, r3
@@ -273796,7 +272796,7 @@ func_08096DC0: @ 0x08096DC0
     adds r0, r4, #0
     movs r1, #1
     bl Proc_Goto
-    ldr r0, .L08096E98 @ =gPlayStatus
+    ldr r0, .L08096E98 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -273809,10 +272809,10 @@ func_08096DC0: @ 0x08096DC0
     strh r0, [r4, #0x38]
     b .L0809713E
     .align 2, 0
-.L08096E98: .4byte gPlayStatus
+.L08096E98: .4byte gPlaySt
 .L08096E9C: .4byte 0x0000038B
 .L08096EA0:
-    ldr r2, .L08096EBC @ =gKeys
+    ldr r2, .L08096EBC @ =gpKeySt
     ldr r1, [r2]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -273826,7 +272826,7 @@ func_08096DC0: @ 0x08096DC0
     strh r1, [r4, #0x38]
     b .L0809713E
     .align 2, 0
-.L08096EBC: .4byte gKeys
+.L08096EBC: .4byte gpKeySt
 .L08096EC0:
     mov r3, r8
     ldr r2, [r3]
@@ -273839,7 +272839,7 @@ func_08096DC0: @ 0x08096DC0
     beq .L08096F0C
     movs r0, #0
     bl func_080A8D98
-    ldr r0, .L08096F04 @ =gPlayStatus
+    ldr r0, .L08096F04 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -273859,7 +272859,7 @@ func_08096DC0: @ 0x08096DC0
     bl func_08096950
     b .L0809713E
     .align 2, 0
-.L08096F04: .4byte gPlayStatus
+.L08096F04: .4byte gPlaySt
 .L08096F08: .4byte 0x00000387
 .L08096F0C:
     movs r0, #0x10
@@ -273868,7 +272868,7 @@ func_08096DC0: @ 0x08096DC0
     beq .L08096F4C
     movs r0, #1
     bl func_080A8D98
-    ldr r0, .L08096F44 @ =gPlayStatus
+    ldr r0, .L08096F44 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -273887,7 +272887,7 @@ func_08096DC0: @ 0x08096DC0
     bl func_080969F4
     b .L0809713E
     .align 2, 0
-.L08096F44: .4byte gPlayStatus
+.L08096F44: .4byte gPlaySt
 .L08096F48: .4byte 0x00000387
 .L08096F4C:
     movs r0, #0x80
@@ -274035,7 +273035,7 @@ func_08096DC0: @ 0x08096DC0
     adds r0, r0, r1
     ldrh r0, [r0, #2]
     mov sb, r0
-    ldr r0, .L080970B4 @ =gPlayStatus
+    ldr r0, .L080970B4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -274076,7 +273076,7 @@ func_08096DC0: @ 0x08096DC0
     b .L080970F4
     .align 2, 0
 .L080970B0: .4byte 0x020117E4
-.L080970B4: .4byte gPlayStatus
+.L080970B4: .4byte gPlaySt
 .L080970B8: .4byte 0x00000386
 .L080970BC:
     ldrb r1, [r7]
@@ -274158,7 +273158,7 @@ func_08096DC0: @ 0x08096DC0
 func_0809714C: @ 0x0809714C
     push {r4, r5, r6, r7, lr}
     adds r4, r0, #0
-    ldr r6, .L0809717C @ =gKeys
+    ldr r6, .L0809717C @ =gpKeySt
     ldr r0, [r6]
     ldrh r1, [r0, #6]
     movs r7, #0x40
@@ -274180,7 +273180,7 @@ func_0809714C: @ 0x0809714C
     strb r0, [r2]
     b .L080971C2
     .align 2, 0
-.L0809717C: .4byte gKeys
+.L0809717C: .4byte gpKeySt
 .L08097180:
     ldr r1, [r6]
     adds r0, r7, #0
@@ -274217,7 +273217,7 @@ func_0809714C: @ 0x0809714C
     beq .L080971E0
     strb r5, [r2]
 .L080971C2:
-    ldr r0, .L080971D8 @ =gPlayStatus
+    ldr r0, .L080971D8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -274229,7 +273229,7 @@ func_0809714C: @ 0x0809714C
     movs r0, #1
     b .L080971E2
     .align 2, 0
-.L080971D8: .4byte gPlayStatus
+.L080971D8: .4byte gPlaySt
 .L080971DC: .4byte 0x00000386
 .L080971E0:
     movs r0, #0
@@ -274333,7 +273333,7 @@ func_08097204: @ 0x08097204
     adds r0, r5, #0
     movs r1, #1
     bl Proc_Goto
-    ldr r0, .L080972E0 @ =gPlayStatus
+    ldr r0, .L080972E0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -274348,10 +273348,10 @@ func_08097204: @ 0x08097204
 .L080972D4: .4byte 0x02023C7E
 .L080972D8: .4byte func_08096C54
 .L080972DC: .4byte 0x0203A85C
-.L080972E0: .4byte gPlayStatus
+.L080972E0: .4byte gPlaySt
 .L080972E4: .4byte 0x0000038B
 .L080972E8:
-    ldr r0, .L0809731C @ =gPlayStatus
+    ldr r0, .L0809731C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -274377,7 +273377,7 @@ func_08097204: @ 0x08097204
     pop {r0}
     bx r0
     .align 2, 0
-.L0809731C: .4byte gPlayStatus
+.L0809731C: .4byte gPlaySt
 .L08097320: .4byte 0x0000038A
     func_end func_08097204
 
@@ -274388,7 +273388,7 @@ func_08097324: @ 0x08097324
     ldrh r0, [r4, #0x38]
     cmp r0, #1
     bne .L0809734C
-    ldr r0, .L08097348 @ =gKeys
+    ldr r0, .L08097348 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -274401,9 +273401,9 @@ func_08097324: @ 0x08097324
     strh r0, [r4, #0x38]
     b .L0809742A
     .align 2, 0
-.L08097348: .4byte gKeys
+.L08097348: .4byte gpKeySt
 .L0809734C:
-    ldr r0, .L08097380 @ =gKeys
+    ldr r0, .L08097380 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #0x80
@@ -274429,7 +273429,7 @@ func_08097324: @ 0x08097324
     strh r0, [r4, #0x38]
     b .L0809742A
     .align 2, 0
-.L08097380: .4byte gKeys
+.L08097380: .4byte gpKeySt
 .L08097384:
     movs r0, #1
     ands r0, r1
@@ -274464,7 +273464,7 @@ func_08097324: @ 0x08097324
     adds r0, r4, #0
     movs r1, #1
     bl Proc_Goto
-    ldr r0, .L080973E0 @ =gPlayStatus
+    ldr r0, .L080973E0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -274474,7 +273474,7 @@ func_08097324: @ 0x08097324
     bl m4aSongNumStart
     b .L0809742A
     .align 2, 0
-.L080973E0: .4byte gPlayStatus
+.L080973E0: .4byte gPlaySt
 .L080973E4: .4byte 0x0000038B
 .L080973E8:
     adds r0, r4, #0
@@ -274682,7 +273682,7 @@ func_08097554: @ 0x08097554
     movs r3, #0
     bl TmFillRect_thm
     ldr r0, .L08097594 @ =0x00001262
-    bl GetMsg
+    bl DecodeMsg
     ldr r2, .L08097598 @ =0x02012BE0
     movs r1, #0
     str r1, [sp]
@@ -274732,7 +273732,7 @@ func_0809759C: @ 0x0809759C
     cmp r0, r4
     bgt .L080975F8
     ldr r0, .L080975F4 @ =0x0000127D
-    bl GetMsg
+    bl DecodeMsg
     movs r1, #0
     str r1, [sp]
     str r0, [sp, #4]
@@ -274757,7 +273757,7 @@ func_0809759C: @ 0x0809759C
     cmp r4, #0
     bne .L0809762C
     ldr r0, .L08097628 @ =0x0000125A
-    bl GetMsg
+    bl DecodeMsg
     str r4, [sp]
     str r0, [sp, #4]
     adds r0, r7, #0
@@ -274775,7 +273775,7 @@ func_0809759C: @ 0x0809759C
     bl GetUnitByPid
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     movs r1, #0
     str r1, [sp]
     str r0, [sp, #4]
@@ -275146,7 +274146,7 @@ func_080976F0: @ 0x080976F0
     ldr r0, [r7, #0x2c]
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     mov r8, r0
     movs r1, #0xe0
     lsls r1, r1, #4
@@ -275793,7 +274793,7 @@ func_08097E68: @ 0x08097E68
     beq .L08097EA8
     b .L08097FA4
 .L08097EA8:
-    ldr r1, .L08097EE4 @ =gKeys
+    ldr r1, .L08097EE4 @ =gpKeySt
     ldr r0, [r1]
     ldrh r3, [r0, #8]
     movs r0, #0x80
@@ -275822,7 +274822,7 @@ func_08097E68: @ 0x08097E68
     strh r0, [r4, #0x36]
     b .L08098266
     .align 2, 0
-.L08097EE4: .4byte gKeys
+.L08097EE4: .4byte gpKeySt
 .L08097EE8: .4byte 0x02012466
 .L08097EEC: .4byte 0x020117E4
 .L08097EF0:
@@ -275835,7 +274835,7 @@ func_08097E68: @ 0x08097E68
     cmp r0, #0
     bne .L08097F20
 .L08097F00:
-    ldr r0, .L08097F1C @ =gPlayStatus
+    ldr r0, .L08097F1C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -275849,7 +274849,7 @@ func_08097E68: @ 0x08097E68
     b .L08098266
     .align 2, 0
 .L08097F18: .4byte 0x02012466
-.L08097F1C: .4byte gPlayStatus
+.L08097F1C: .4byte gPlaySt
 .L08097F20:
     ldr r0, .L08097F48 @ =0x020117E4
     mov r2, sb
@@ -275876,7 +274876,7 @@ func_08097E68: @ 0x08097E68
     movs r1, #6
 .L08097F50:
     bl Proc_Goto
-    ldr r0, .L08097F6C @ =gPlayStatus
+    ldr r0, .L08097F6C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -275888,7 +274888,7 @@ func_08097E68: @ 0x08097E68
     bl m4aSongNumStart
     b .L08098266
     .align 2, 0
-.L08097F6C: .4byte gPlayStatus
+.L08097F6C: .4byte gPlaySt
 .L08097F70: .4byte 0x0000038A
 .L08097F74:
     movs r0, #2
@@ -275898,7 +274898,7 @@ func_08097E68: @ 0x08097E68
     adds r0, r4, #0
     movs r1, #8
     bl Proc_Goto
-    ldr r0, .L08097F9C @ =gPlayStatus
+    ldr r0, .L08097F9C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -275911,10 +274911,10 @@ func_08097E68: @ 0x08097E68
     strh r3, [r4, #0x36]
     b .L08098266
     .align 2, 0
-.L08097F9C: .4byte gPlayStatus
+.L08097F9C: .4byte gPlaySt
 .L08097FA0: .4byte 0x0000038B
 .L08097FA4:
-    ldr r2, .L08097FC0 @ =gKeys
+    ldr r2, .L08097FC0 @ =gpKeySt
     ldr r1, [r2]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -275928,7 +274928,7 @@ func_08097E68: @ 0x08097E68
     strh r0, [r4, #0x36]
     b .L08098266
     .align 2, 0
-.L08097FC0: .4byte gKeys
+.L08097FC0: .4byte gpKeySt
 .L08097FC4:
     mov r1, r8
     ldr r2, [r1]
@@ -275941,7 +274941,7 @@ func_08097E68: @ 0x08097E68
     beq .L08098010
     movs r0, #0
     bl func_080A8D98
-    ldr r0, .L08098008 @ =gPlayStatus
+    ldr r0, .L08098008 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -275961,7 +274961,7 @@ func_08097E68: @ 0x08097E68
     bl func_08097B64
     b .L08098266
     .align 2, 0
-.L08098008: .4byte gPlayStatus
+.L08098008: .4byte gPlaySt
 .L0809800C: .4byte 0x00000387
 .L08098010:
     movs r0, #0x10
@@ -275970,7 +274970,7 @@ func_08097E68: @ 0x08097E68
     beq .L08098050
     movs r0, #1
     bl func_080A8D98
-    ldr r0, .L08098048 @ =gPlayStatus
+    ldr r0, .L08098048 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -275989,7 +274989,7 @@ func_08097E68: @ 0x08097E68
     bl func_08097C08
     b .L08098266
     .align 2, 0
-.L08098048: .4byte gPlayStatus
+.L08098048: .4byte gPlaySt
 .L0809804C: .4byte 0x00000387
 .L08098050:
     movs r0, #0x80
@@ -276140,7 +275140,7 @@ func_08097E68: @ 0x08097E68
     adds r0, r0, r5
     ldrh r0, [r0, #2]
     mov sl, r0
-    ldr r0, .L080981DC @ =gPlayStatus
+    ldr r0, .L080981DC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -276197,7 +275197,7 @@ func_08097E68: @ 0x08097E68
     b .L0809821C
     .align 2, 0
 .L080981D8: .4byte 0x020117E4
-.L080981DC: .4byte gPlayStatus
+.L080981DC: .4byte gPlaySt
 .L080981E0: .4byte 0x00000386
 .L080981E4:
     ldrb r1, [r7]
@@ -276298,7 +275298,7 @@ func_08098274: @ 0x08098274
 .L08098298:
     cmp r1, #0
     beq .L08098318
-    ldr r1, .L080982BC @ =gKeys
+    ldr r1, .L080982BC @ =gpKeySt
     ldr r5, [r1]
     movs r6, #0x40
     adds r0, r6, #0
@@ -276315,7 +275315,7 @@ func_08098274: @ 0x08098274
     strb r0, [r2]
     b .L080982CC
     .align 2, 0
-.L080982BC: .4byte gKeys
+.L080982BC: .4byte gpKeySt
 .L080982C0:
     adds r0, r6, #0
     ldrh r5, [r5, #8]
@@ -276349,7 +275349,7 @@ func_08098274: @ 0x08098274
     ldrb r2, [r2]
     cmp r7, r2
     beq .L08098318
-    ldr r0, .L08098310 @ =gPlayStatus
+    ldr r0, .L08098310 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -276361,7 +275361,7 @@ func_08098274: @ 0x08098274
     movs r0, #1
     b .L0809831A
     .align 2, 0
-.L08098310: .4byte gPlayStatus
+.L08098310: .4byte gPlaySt
 .L08098314: .4byte 0x00000386
 .L08098318:
     movs r0, #0
@@ -276466,7 +275466,7 @@ func_0809835C: @ 0x0809835C
     bl func_080A8E14
     movs r0, #4
     bl EnableBgSync
-    ldr r0, .L08098410 @ =gPlayStatus
+    ldr r0, .L08098410 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -276484,7 +275484,7 @@ func_0809835C: @ 0x0809835C
 .L08098404: .4byte 0x02012B78
 .L08098408: .4byte 0x02023C7E
 .L0809840C: .4byte func_0809759C
-.L08098410: .4byte gPlayStatus
+.L08098410: .4byte gPlaySt
 .L08098414: .4byte 0x0000038A
     func_end func_0809835C
 
@@ -276495,7 +275495,7 @@ func_08098418: @ 0x08098418
     ldrh r0, [r5, #0x36]
     cmp r0, #1
     bne .L08098440
-    ldr r0, .L0809843C @ =gKeys
+    ldr r0, .L0809843C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -276508,9 +275508,9 @@ func_08098418: @ 0x08098418
     strh r0, [r5, #0x36]
     b .L0809854A
     .align 2, 0
-.L0809843C: .4byte gKeys
+.L0809843C: .4byte gpKeySt
 .L08098440:
-    ldr r0, .L08098474 @ =gKeys
+    ldr r0, .L08098474 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #0x80
@@ -276536,7 +275536,7 @@ func_08098418: @ 0x08098418
     strh r0, [r5, #0x36]
     b .L0809854A
     .align 2, 0
-.L08098474: .4byte gKeys
+.L08098474: .4byte gpKeySt
 .L08098478:
     movs r0, #1
     ands r0, r1
@@ -276589,7 +275589,7 @@ func_08098418: @ 0x08098418
     bl func_080A8A78
     adds r0, r5, #0
     bl Proc_Break
-    ldr r0, .L08098500 @ =gPlayStatus
+    ldr r0, .L08098500 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -276599,7 +275599,7 @@ func_08098418: @ 0x08098418
     bl m4aSongNumStart
     b .L0809854A
     .align 2, 0
-.L08098500: .4byte gPlayStatus
+.L08098500: .4byte gPlaySt
 .L08098504: .4byte 0x0000038B
 .L08098508:
     adds r0, r5, #0
@@ -276813,35 +275813,35 @@ func_08098660: @ 0x08098660
     bl func_08005CF8
     movs r0, #0x93
     lsls r0, r0, #5
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #0
     movs r2, #0
     bl Text_InsertDrawString
     ldr r0, .L0809870C @ =0x00001265
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #0x20
     movs r2, #0
     bl Text_InsertDrawString
     ldr r0, .L08098710 @ =0x00001266
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #0x40
     movs r2, #0
     bl Text_InsertDrawString
     ldr r0, .L08098714 @ =0x00001267
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #0x80
     movs r2, #3
     bl Text_InsertDrawString
     ldr r0, .L08098718 @ =0x00001259
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #0xc0
@@ -277060,7 +276060,7 @@ func_080988A8: @ 0x080988A8
     movs r3, #0
     bl TmFillRect_thm
     ldr r0, .L08098900 @ =0x0000125A
-    bl GetMsg
+    bl DecodeMsg
     ldr r3, .L08098904 @ =0x02012B68
     adds r1, r4, #0
     adds r1, #0xda
@@ -277361,7 +276361,7 @@ func_08098908: @ 0x08098908
 func_08098B7C: @ 0x08098B7C
     push {r4, r5, r6, r7, lr}
     adds r4, r0, #0
-    ldr r6, .L08098BAC @ =gKeys
+    ldr r6, .L08098BAC @ =gpKeySt
     ldr r0, [r6]
     ldrh r1, [r0, #6]
     movs r7, #0x40
@@ -277383,7 +276383,7 @@ func_08098B7C: @ 0x08098B7C
     strb r0, [r2]
     b .L08098BF2
     .align 2, 0
-.L08098BAC: .4byte gKeys
+.L08098BAC: .4byte gpKeySt
 .L08098BB0:
     ldr r1, [r6]
     adds r0, r7, #0
@@ -277420,7 +276420,7 @@ func_08098B7C: @ 0x08098B7C
     beq .L08098C10
     strb r5, [r2]
 .L08098BF2:
-    ldr r0, .L08098C08 @ =gPlayStatus
+    ldr r0, .L08098C08 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -277432,7 +276432,7 @@ func_08098B7C: @ 0x08098B7C
     movs r0, #1
     b .L08098C12
     .align 2, 0
-.L08098C08: .4byte gPlayStatus
+.L08098C08: .4byte gPlaySt
 .L08098C0C: .4byte 0x00000386
 .L08098C10:
     movs r0, #0
@@ -277492,7 +276492,7 @@ func_08098C78: @ 0x08098C78
     ldrh r0, [r4, #0x34]
     cmp r0, #1
     bne .L08098CA0
-    ldr r0, .L08098C9C @ =gKeys
+    ldr r0, .L08098C9C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -277505,9 +276505,9 @@ func_08098C78: @ 0x08098C78
     strh r0, [r4, #0x34]
     b .L08098DC6
     .align 2, 0
-.L08098C9C: .4byte gKeys
+.L08098C9C: .4byte gpKeySt
 .L08098CA0:
-    ldr r0, .L08098CD8 @ =gKeys
+    ldr r0, .L08098CD8 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #0x80
@@ -277535,7 +276535,7 @@ func_08098C78: @ 0x08098C78
     strh r0, [r4, #0x34]
     b .L08098DC6
     .align 2, 0
-.L08098CD8: .4byte gKeys
+.L08098CD8: .4byte gpKeySt
 .L08098CDC:
     movs r0, #1
     ands r0, r1
@@ -277575,7 +276575,7 @@ func_08098C78: @ 0x08098C78
     adds r0, r4, #0
     movs r1, #2
     bl Proc_Goto
-    ldr r0, .L08098D40 @ =gPlayStatus
+    ldr r0, .L08098D40 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -277585,7 +276585,7 @@ func_08098C78: @ 0x08098C78
     bl m4aSongNumStart
     b .L08098DC6
     .align 2, 0
-.L08098D40: .4byte gPlayStatus
+.L08098D40: .4byte gPlaySt
 .L08098D44: .4byte 0x0000038A
 .L08098D48:
     movs r0, #2
@@ -277595,7 +276595,7 @@ func_08098C78: @ 0x08098C78
     adds r0, r4, #0
     movs r1, #3
     bl Proc_Goto
-    ldr r0, .L08098D6C @ =gPlayStatus
+    ldr r0, .L08098D6C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -277605,7 +276605,7 @@ func_08098C78: @ 0x08098C78
     bl m4aSongNumStart
     b .L08098DC6
     .align 2, 0
-.L08098D6C: .4byte gPlayStatus
+.L08098D6C: .4byte gPlaySt
 .L08098D70: .4byte 0x0000038B
 .L08098D74:
     adds r0, r4, #0
@@ -277714,7 +276714,7 @@ func_08098E18: @ 0x08098E18
     strh r1, [r0]
     ldr r0, [r4, #0x2c]
     bl UnitRemoveInvalidItems
-    ldr r0, .L08098E84 @ =gPlayStatus
+    ldr r0, .L08098E84 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -277738,7 +276738,7 @@ func_08098E18: @ 0x08098E18
     bl Proc_Goto
     b .L08098EA2
     .align 2, 0
-.L08098E84: .4byte gPlayStatus
+.L08098E84: .4byte gPlaySt
 .L08098E88: .4byte 0x02022EA4
 .L08098E8C: .4byte 0x02012B78
 .L08098E90:
@@ -277764,7 +276764,7 @@ func_08098EA8: @ 0x08098EA8
     adds r4, r2, #0
     adds r4, #0x31
     ldrb r5, [r4]
-    ldr r6, .L08098ECC @ =gKeys
+    ldr r6, .L08098ECC @ =gpKeySt
     ldr r1, [r6]
     ldrh r3, [r1, #8]
     movs r0, #1
@@ -277777,7 +276777,7 @@ func_08098EA8: @ 0x08098EA8
     bl func_08098E18
     b .L08098F46
     .align 2, 0
-.L08098ECC: .4byte gKeys
+.L08098ECC: .4byte gpKeySt
 .L08098ED0:
     movs r0, #2
     ands r0, r3
@@ -277789,7 +276789,7 @@ func_08098EA8: @ 0x08098EA8
     adds r0, r2, #0
     movs r1, #1
     bl Proc_Goto
-    ldr r0, .L08098EF8 @ =gPlayStatus
+    ldr r0, .L08098EF8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -277799,7 +276799,7 @@ func_08098EA8: @ 0x08098EA8
     bl m4aSongNumStart
     b .L08098F46
     .align 2, 0
-.L08098EF8: .4byte gPlayStatus
+.L08098EF8: .4byte gPlaySt
 .L08098EFC: .4byte 0x0000038B
 .L08098F00:
     movs r0, #0x20
@@ -277821,7 +276821,7 @@ func_08098EA8: @ 0x08098EA8
     ldrb r0, [r4]
     cmp r5, r0
     beq .L08098F46
-    ldr r0, .L08098F4C @ =gPlayStatus
+    ldr r0, .L08098F4C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -277843,7 +276843,7 @@ func_08098EA8: @ 0x08098EA8
     pop {r0}
     bx r0
     .align 2, 0
-.L08098F4C: .4byte gPlayStatus
+.L08098F4C: .4byte gPlaySt
 .L08098F50: .4byte 0x00000387
     func_end func_08098EA8
 
@@ -277918,7 +276918,7 @@ func_08098FC4: @ 0x08098FC4
     adds r3, r5, #0
     adds r3, #0x29
     ldrb r4, [r3]
-    ldr r2, .L08099054 @ =gKeys
+    ldr r2, .L08099054 @ =gpKeySt
     ldr r1, [r2]
     movs r0, #0x20
     ldrh r1, [r1, #6]
@@ -277977,7 +276977,7 @@ func_08098FC4: @ 0x08098FC4
     ldrb r3, [r3]
     cmp r4, r3
     beq .L08099060
-    ldr r0, .L08099058 @ =gPlayStatus
+    ldr r0, .L08099058 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -277989,8 +276989,8 @@ func_08098FC4: @ 0x08098FC4
     movs r0, #1
     b .L08099062
     .align 2, 0
-.L08099054: .4byte gKeys
-.L08099058: .4byte gPlayStatus
+.L08099054: .4byte gpKeySt
+.L08099058: .4byte gPlaySt
 .L0809905C: .4byte 0x00000385
 .L08099060:
     movs r0, #0
@@ -278004,7 +277004,7 @@ func_08098FC4: @ 0x08098FC4
 func_08099068: @ 0x08099068
     push {r4, r5, r6, lr}
     adds r4, r0, #0
-    ldr r0, .L0809909C @ =gKeys
+    ldr r0, .L0809909C @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r6, #1
@@ -278028,7 +277028,7 @@ func_08099068: @ 0x08099068
     beq .L080990AA
     b .L080990E0
     .align 2, 0
-.L0809909C: .4byte gKeys
+.L0809909C: .4byte gpKeySt
 .L080990A0:
     cmp r1, #2
     beq .L080990B0
@@ -278052,7 +277052,7 @@ func_08099068: @ 0x08099068
     movs r1, #5
 .L080990C0:
     bl Proc_Goto
-    ldr r0, .L080990D8 @ =gPlayStatus
+    ldr r0, .L080990D8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -278062,10 +277062,10 @@ func_08099068: @ 0x08099068
     bl m4aSongNumStart
     b .L08099168
     .align 2, 0
-.L080990D8: .4byte gPlayStatus
+.L080990D8: .4byte gPlaySt
 .L080990DC: .4byte 0x0000038A
 .L080990E0:
-    ldr r0, .L080990F8 @ =gPlayStatus
+    ldr r0, .L080990F8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -278076,7 +277076,7 @@ func_08099068: @ 0x08099068
     bl m4aSongNumStart
     b .L08099168
     .align 2, 0
-.L080990F8: .4byte gPlayStatus
+.L080990F8: .4byte gPlaySt
 .L080990FC:
     movs r0, #2
     ands r0, r1
@@ -278085,7 +277085,7 @@ func_08099068: @ 0x08099068
     adds r0, r4, #0
     movs r1, #6
     bl Proc_Goto
-    ldr r0, .L08099120 @ =gPlayStatus
+    ldr r0, .L08099120 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -278095,7 +277095,7 @@ func_08099068: @ 0x08099068
     bl m4aSongNumStart
     b .L08099168
     .align 2, 0
-.L08099120: .4byte gPlayStatus
+.L08099120: .4byte gPlaySt
 .L08099124: .4byte 0x0000038B
 .L08099128:
     adds r0, r4, #0
@@ -278234,7 +277234,7 @@ func_080991F8: @ 0x080991F8
     asrs r0, r0, #0x18
     b .L0809923A
 .L08099224:
-    ldr r0, .L08099234 @ =gPlayStatus
+    ldr r0, .L08099234 @ =gPlaySt
     adds r0, #0x2b
     ldrb r0, [r0]
     ands r1, r0
@@ -278244,7 +277244,7 @@ func_080991F8: @ 0x080991F8
     movs r0, #1
     b .L0809923A
     .align 2, 0
-.L08099234: .4byte gPlayStatus
+.L08099234: .4byte gPlaySt
 .L08099238:
     movs r0, #0
 .L0809923A:
@@ -278255,7 +277255,7 @@ func_080991F8: @ 0x080991F8
     thumb_func_start func_08099240
 func_08099240: @ 0x08099240
     push {r4, lr}
-    ldr r4, .L08099264 @ =gPlayStatus
+    ldr r4, .L08099264 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl GetChapterInfo
@@ -278272,13 +277272,13 @@ func_08099240: @ 0x08099240
     pop {r1}
     bx r1
     .align 2, 0
-.L08099264: .4byte gPlayStatus
+.L08099264: .4byte gPlaySt
     func_end func_08099240
 
     thumb_func_start func_08099268
 func_08099268: @ 0x08099268
     push {lr}
-    ldr r0, .L08099280 @ =gPlayStatus
+    ldr r0, .L08099280 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -278288,13 +277288,13 @@ func_08099268: @ 0x08099268
     pop {r1}
     bx r1
     .align 2, 0
-.L08099280: .4byte gPlayStatus
+.L08099280: .4byte gPlaySt
     func_end func_08099268
 
     thumb_func_start func_08099284
 func_08099284: @ 0x08099284
     push {lr}
-    ldr r0, .L0809929C @ =gPlayStatus
+    ldr r0, .L0809929C @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -278304,13 +277304,13 @@ func_08099284: @ 0x08099284
     pop {r1}
     bx r1
     .align 2, 0
-.L0809929C: .4byte gPlayStatus
+.L0809929C: .4byte gPlaySt
     func_end func_08099284
 
     thumb_func_start func_080992A0
 func_080992A0: @ 0x080992A0
     push {lr}
-    ldr r0, .L080992B8 @ =gPlayStatus
+    ldr r0, .L080992B8 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -278320,13 +277320,13 @@ func_080992A0: @ 0x080992A0
     pop {r1}
     bx r1
     .align 2, 0
-.L080992B8: .4byte gPlayStatus
+.L080992B8: .4byte gPlaySt
     func_end func_080992A0
 
     thumb_func_start func_080992BC
 func_080992BC: @ 0x080992BC
     push {lr}
-    ldr r0, .L080992D4 @ =gPlayStatus
+    ldr r0, .L080992D4 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -278336,7 +277336,7 @@ func_080992BC: @ 0x080992BC
     pop {r1}
     bx r1
     .align 2, 0
-.L080992D4: .4byte gPlayStatus
+.L080992D4: .4byte gPlaySt
     func_end func_080992BC
 
     thumb_func_start func_080992D8
@@ -278360,7 +277360,7 @@ func_080992D8: @ 0x080992D8
     thumb_func_start func_080992F4
 func_080992F4: @ 0x080992F4
     push {lr}
-    ldr r1, .L08099310 @ =gPlayStatus
+    ldr r1, .L08099310 @ =gPlaySt
     movs r0, #0x40
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -278373,7 +277373,7 @@ func_080992F4: @ 0x080992F4
     movs r0, #0
     b .L08099316
     .align 2, 0
-.L08099310: .4byte gPlayStatus
+.L08099310: .4byte gPlaySt
 .L08099314:
     movs r0, #1
 .L08099316:
@@ -278408,7 +277408,7 @@ func_08099330: @ 0x08099330
 
     thumb_func_start func_08099340
 func_08099340: @ 0x08099340
-    ldr r0, .L08099350 @ =gPlayStatus
+    ldr r0, .L08099350 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -278417,7 +277417,7 @@ func_08099340: @ 0x08099340
     movs r0, #0
     b .L08099356
     .align 2, 0
-.L08099350: .4byte gPlayStatus
+.L08099350: .4byte gPlaySt
 .L08099354:
     movs r0, #1
 .L08099356:
@@ -278789,7 +277789,7 @@ func_08099628: @ 0x08099628
     adds r0, r4, #0
     bl ClearText
     ldm r7!, {r0}
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r4, #0
     adds r4, #8
     ldr r1, .L08099680 @ =0x02023C68
@@ -278995,7 +277995,7 @@ func_08099728: @ 0x08099728
     movs r1, #8
     bl InitText
     bl func_08099628
-    ldr r0, .L08099838 @ =gPlayStatus
+    ldr r0, .L08099838 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
     bne .L0809983C
@@ -279014,7 +278014,7 @@ func_08099728: @ 0x08099728
 .L0809982C: .4byte gDispIo
 .L08099830: .4byte 0x020129A8
 .L08099834: .4byte 0x02012A90
-.L08099838: .4byte gPlayStatus
+.L08099838: .4byte gPlaySt
 .L0809983C:
     movs r3, #0x81
     lsls r3, r3, #1
@@ -279034,7 +278034,7 @@ func_08099728: @ 0x08099728
     thumb_func_start func_08099858
 func_08099858: @ 0x08099858
     adds r2, r0, #0
-    ldr r3, .L08099878 @ =gPlayStatus
+    ldr r3, .L08099878 @ =gPlaySt
     adds r1, r3, #0
     adds r1, #0x2b
     movs r0, #1
@@ -279050,7 +278050,7 @@ func_08099858: @ 0x08099858
     ldr r0, .L0809987C @ =0x00000F97
     b .L080998A6
     .align 2, 0
-.L08099878: .4byte gPlayStatus
+.L08099878: .4byte gPlaySt
 .L0809987C: .4byte 0x00000F97
 .L08099880:
     adds r1, r2, #0
@@ -279111,7 +278111,7 @@ func_080998D8: @ 0x080998D8
     bl Proc_Break
     b .L08099916
 .L080998EE:
-    ldr r0, .L0809991C @ =gKeys
+    ldr r0, .L0809991C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #8
     ldrh r1, [r1, #8]
@@ -279121,7 +278121,7 @@ func_080998D8: @ 0x080998D8
     adds r0, r4, #0
     movs r1, #0
     bl Proc_Goto
-    ldr r0, .L08099920 @ =gPlayStatus
+    ldr r0, .L08099920 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -279134,8 +278134,8 @@ func_080998D8: @ 0x080998D8
     pop {r0}
     bx r0
     .align 2, 0
-.L0809991C: .4byte gKeys
-.L08099920: .4byte gPlayStatus
+.L0809991C: .4byte gpKeySt
+.L08099920: .4byte gPlaySt
 .L08099924: .4byte 0x0000038B
     func_end func_080998D8
 
@@ -279394,7 +278394,7 @@ func_08099AC0: @ 0x08099AC0
     lsls r1, r1, #2
     movs r2, #0x20
     bl ApplyPaletteExt
-    ldr r2, .L08099B60 @ =gPlayStatus
+    ldr r2, .L08099B60 @ =gPlaySt
     adds r2, #0x40
     movs r0, #0x61
     rsbs r0, r0, #0
@@ -279428,7 +278428,7 @@ func_08099AC0: @ 0x08099AC0
 .L08099B54: .4byte 0x0840E830
 .L08099B58: .4byte 0x06017000
 .L08099B5C: .4byte 0x0840E978
-.L08099B60: .4byte gPlayStatus
+.L08099B60: .4byte gPlaySt
 .L08099B64: .4byte func_08099968
 .L08099B68: .4byte gDispIo
     func_end func_08099AC0
@@ -279497,7 +278497,7 @@ func_08099BA4: @ 0x08099BA4
     lsls r0, r0, #2
     adds r0, r0, r1
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r4, #0
     adds r1, #0x42
     movs r2, #0xc
@@ -279538,7 +278538,7 @@ func_08099BA4: @ 0x08099BA4
     mov r8, r3
     subs r3, #4
     ldm r3!, {r0}
-    bl GetMsg
+    bl DecodeMsg
     ldr r5, .L08099D50 @ =0x02023C64
     adds r1, r4, r5
     movs r2, #5
@@ -279554,7 +278554,7 @@ func_08099BA4: @ 0x08099BA4
     bge .L08099C30
     movs r6, #5
     ldr r0, .L08099D54 @ =0x000012C4
-    bl GetMsg
+    bl DecodeMsg
     movs r2, #0xef
     lsls r2, r2, #1
     adds r1, r5, r2
@@ -279578,7 +278578,7 @@ func_08099BA4: @ 0x08099BA4
     movs r2, #0x1e
     bl func_0800615C
     ldr r0, .L08099D58 @ =0x000012C5
-    bl GetMsg
+    bl DecodeMsg
     ldr r2, .L08099D5C @ =0x0000025E
     adds r1, r5, r2
     str r4, [sp]
@@ -279619,7 +278619,7 @@ func_08099BA4: @ 0x08099BA4
     movs r1, #2
     bl func_080063CC
     ldr r0, .L08099D68 @ =0x000012C6
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r5, #0
     adds r1, #0x50
     str r6, [sp]
@@ -279643,7 +278643,7 @@ func_08099BA4: @ 0x08099BA4
     cmp r0, #0
     bne .L08099D74
     ldr r0, .L08099D70 @ =0x000012BA
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r5, #0
     adds r1, #0x5e
     str r4, [sp]
@@ -279668,7 +278668,7 @@ func_08099BA4: @ 0x08099BA4
 .L08099D70: .4byte 0x000012BA
 .L08099D74:
     ldr r0, .L08099DE4 @ =0x000012BB
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r5, #0
     adds r1, #0x5e
     str r4, [sp]
@@ -279685,7 +278685,7 @@ func_08099BA4: @ 0x08099BA4
     movs r1, #2
     bl func_080061D8
     ldr r0, .L08099DEC @ =0x000012C8
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r4, #2
     movs r5, #5
     str r5, [sp]
@@ -279744,7 +278744,7 @@ func_08099BA4: @ 0x08099BA4
     lsls r0, r0, #2
     adds r0, r0, r1
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r4, #0
     adds r1, #0x42
     movs r2, #0xc
@@ -279765,7 +278765,7 @@ func_08099BA4: @ 0x08099BA4
     lsls r0, r6, #2
     adds r0, r0, r1
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     ldr r7, .L08099F28 @ =0x02023C64
     adds r1, r5, r7
     movs r2, #5
@@ -279790,7 +278790,7 @@ func_08099BA4: @ 0x08099BA4
     cmp r6, #4
     ble .L08099E42
     ldr r0, .L08099F2C @ =0x000012C4
-    bl GetMsg
+    bl DecodeMsg
     movs r6, #0xef
     lsls r6, r6, #1
     adds r1, r7, r6
@@ -279809,7 +278809,7 @@ func_08099BA4: @ 0x08099BA4
     movs r3, #0x14
     bl func_08099B6C
     ldr r0, .L08099F30 @ =0x000012C5
-    bl GetMsg
+    bl DecodeMsg
     ldr r2, .L08099F34 @ =0x0000025E
     adds r1, r7, r2
     str r4, [sp]
@@ -279826,7 +278826,7 @@ func_08099BA4: @ 0x08099BA4
     movs r3, #0x14
     bl func_08099B6C
     ldr r0, .L08099F38 @ =0x000012C6
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r7, #0
     adds r1, #0x50
     mov r6, sb
@@ -279848,7 +278848,7 @@ func_08099BA4: @ 0x08099BA4
     cmp r0, #0
     bne .L08099F40
     ldr r0, .L08099F3C @ =0x000012BA
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r7, #0
     adds r1, #0x5e
     str r4, [sp]
@@ -279869,7 +278869,7 @@ func_08099BA4: @ 0x08099BA4
 .L08099F3C: .4byte 0x000012BA
 .L08099F40:
     ldr r0, .L08099F9C @ =0x000012BB
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r7, #0
     adds r1, #0x5e
     str r4, [sp]
@@ -280112,15 +279112,15 @@ func_0809A024: @ 0x0809A024
     adds r0, r4, #0
     bl strcpy
     adds r0, r4, #0
-    bl func_0802E6EC
+    bl SetTacticianName
     b .L0809A152
     .align 2, 0
 .L0809A140: .4byte 0x0100000C
 .L0809A144: .4byte 0x001FFFFF
 .L0809A148:
     ldr r0, .L0809A190 @ =0x0000055B
-    bl GetMsg
-    bl func_0802E6EC
+    bl DecodeMsg
+    bl SetTacticianName
 .L0809A152:
     ldrb r0, [r5]
     cmp r0, #0
@@ -280272,7 +279272,7 @@ func_0809A280: @ 0x0809A280
     strb r5, [r0]
     adds r0, #1
     strb r5, [r0]
-    ldr r1, .L0809A2CC @ =gKeys
+    ldr r1, .L0809A2CC @ =gpKeySt
     ldr r2, [r1]
     movs r0, #2
     ldrh r3, [r2, #8]
@@ -280280,7 +279280,7 @@ func_0809A280: @ 0x0809A280
     adds r3, r1, #0
     cmp r0, #0
     beq .L0809A2D8
-    ldr r0, .L0809A2D0 @ =gPlayStatus
+    ldr r0, .L0809A2D0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -280301,8 +279301,8 @@ func_0809A280: @ 0x0809A280
     bl Proc_Goto
     b .L0809A370
     .align 2, 0
-.L0809A2CC: .4byte gKeys
-.L0809A2D0: .4byte gPlayStatus
+.L0809A2CC: .4byte gpKeySt
+.L0809A2D0: .4byte gPlaySt
 .L0809A2D4: .4byte 0x0000038B
 .L0809A2D8:
     movs r0, #4
@@ -280325,7 +279325,7 @@ func_0809A280: @ 0x0809A280
     lsrs r0, r0, #0x10
     cmp r0, #0xb4
     bls .L0809A32A
-    ldr r0, .L0809A31C @ =gPlayStatus
+    ldr r0, .L0809A31C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -280339,7 +279339,7 @@ func_0809A280: @ 0x0809A280
     bl Proc_Goto
     b .L0809A370
     .align 2, 0
-.L0809A31C: .4byte gPlayStatus
+.L0809A31C: .4byte gPlaySt
 .L0809A320: .4byte 0x0000038A
 .L0809A324:
     adds r1, r4, #0
@@ -280516,7 +279516,7 @@ func_0809A404: @ 0x0809A404
     adds r1, r2, #0
     orrs r0, r1
     strh r0, [r4, #0x3c]
-    ldr r0, .L0809A500 @ =gPlayStatus
+    ldr r0, .L0809A500 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -280580,7 +279580,7 @@ func_0809A404: @ 0x0809A404
 .L0809A4F4: .4byte gDispIo
 .L0809A4F8: .4byte 0x0000FFE0
 .L0809A4FC: .4byte 0x0000E0FF
-.L0809A500: .4byte gPlayStatus
+.L0809A500: .4byte gPlaySt
     func_end func_0809A404
 
     thumb_func_start func_0809A504
@@ -281142,14 +280142,14 @@ func_0809A924: @ 0x0809A924
     sub sp, #0x20
     adds r5, r0, #0
     adds r4, r1, #0
-    ldr r0, .L0809A99C @ =gPlayStatus
+    ldr r0, .L0809A99C @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     bl GetChapterInfo
     adds r0, #0x8e
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r6, r0, #0
     ldr r0, .L0809A9A0 @ =0x06010000
     adds r5, r5, r0
@@ -281188,7 +280188,7 @@ func_0809A924: @ 0x0809A924
     pop {r0}
     bx r0
     .align 2, 0
-.L0809A99C: .4byte gPlayStatus
+.L0809A99C: .4byte gPlaySt
 .L0809A9A0: .4byte 0x06010000
 .L0809A9A4: .4byte 0x08194674
     func_end func_0809A924
@@ -281285,7 +280285,7 @@ func_0809A9A8: @ 0x0809A9A8
     lsls r0, r0, #7
     movs r1, #1
     bl func_0809A924
-    ldr r4, .L0809AAE4 @ =gPlayStatus
+    ldr r4, .L0809AAE4 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl GetChapterInfo
@@ -281322,7 +280322,7 @@ func_0809A9A8: @ 0x0809A9A8
 .L0809AAD8: .4byte gDispIo
 .L0809AADC: .4byte 0x0000FFFC
 .L0809AAE0: .4byte 0x02012A90
-.L0809AAE4: .4byte gPlayStatus
+.L0809AAE4: .4byte gPlaySt
 .L0809AAE8: .4byte func_0809A8E4
 .L0809AAEC:
     cmp r6, #0x4b
@@ -281432,7 +280432,7 @@ func_0809ABC0: @ 0x0809ABC0
     push {lr}
     sub sp, #0x10
     adds r2, r0, #0
-    ldr r1, .L0809ABD8 @ =gPlayStatus
+    ldr r1, .L0809ABD8 @ =gPlaySt
     adds r1, #0x2b
     movs r0, #1
     ldrb r1, [r1]
@@ -281442,7 +280442,7 @@ func_0809ABC0: @ 0x0809ABC0
     ldr r0, .L0809ABDC @ =0x00000FBD
     b .L0809ABE2
     .align 2, 0
-.L0809ABD8: .4byte gPlayStatus
+.L0809ABD8: .4byte gPlaySt
 .L0809ABDC: .4byte 0x00000FBD
 .L0809ABE0:
     ldr r0, .L0809AC14 @ =0x00000FBE
@@ -281479,7 +280479,7 @@ func_0809AC20: @ 0x0809AC20
     push {lr}
     sub sp, #0x10
     adds r2, r0, #0
-    ldr r1, .L0809AC38 @ =gPlayStatus
+    ldr r1, .L0809AC38 @ =gPlaySt
     adds r1, #0x2b
     movs r0, #1
     ldrb r1, [r1]
@@ -281489,7 +280489,7 @@ func_0809AC20: @ 0x0809AC20
     ldr r0, .L0809AC3C @ =0x00000FBF
     b .L0809AC44
     .align 2, 0
-.L0809AC38: .4byte gPlayStatus
+.L0809AC38: .4byte gPlaySt
 .L0809AC3C: .4byte 0x00000FBF
 .L0809AC40:
     movs r0, #0xfc
@@ -281544,7 +280544,7 @@ func_0809AC9C: @ 0x0809AC9C
     push {lr}
     sub sp, #0x10
     adds r2, r0, #0
-    ldr r1, .L0809ACB4 @ =gPlayStatus
+    ldr r1, .L0809ACB4 @ =gPlaySt
     adds r1, #0x2b
     movs r0, #1
     ldrb r1, [r1]
@@ -281554,7 +280554,7 @@ func_0809AC9C: @ 0x0809AC9C
     ldr r0, .L0809ACB8 @ =0x00000FC1
     b .L0809ACBE
     .align 2, 0
-.L0809ACB4: .4byte gPlayStatus
+.L0809ACB4: .4byte gPlaySt
 .L0809ACB8: .4byte 0x00000FC1
 .L0809ACBC:
     ldr r0, .L0809ACF0 @ =0x00000FC2
@@ -281652,7 +280652,7 @@ func_0809AD64: @ 0x0809AD64
     ble .L0809AD9A
     rsbs r0, r4, #0
     bl func_08023928
-    ldr r0, .L0809ADA4 @ =gPlayStatus
+    ldr r0, .L0809ADA4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -281666,7 +280666,7 @@ func_0809AD64: @ 0x0809AD64
     bl Proc_Goto
     b .L0809ADBA
     .align 2, 0
-.L0809ADA4: .4byte gPlayStatus
+.L0809ADA4: .4byte gPlaySt
 .L0809ADA8:
     adds r0, r5, #0
     movs r1, #2
@@ -281819,7 +280819,7 @@ func_0809AEBC: @ 0x0809AEBC
     push {r4, r5, lr}
     adds r4, r0, #0
     ldr r3, .L0809AEF4 @ =0x020229A2
-    ldr r5, .L0809AEF8 @ =gPlayStatus
+    ldr r5, .L0809AEF8 @ =gPlaySt
     adds r1, r4, #0
     adds r1, #0x2c
     movs r2, #0xe
@@ -281847,7 +280847,7 @@ func_0809AEBC: @ 0x0809AEBC
     bx r0
     .align 2, 0
 .L0809AEF4: .4byte 0x020229A2
-.L0809AEF8: .4byte gPlayStatus
+.L0809AEF8: .4byte gPlaySt
     func_end func_0809AEBC
 
     thumb_func_start func_0809AEFC
@@ -282476,8 +281476,8 @@ func_0809B1C4: @ 0x0809B1C4
     adds r0, r4, #0
     bl LoadMetaSave
     ldr r0, .L0809B3D4 @ =0x0000055B
-    bl GetMsg
-    bl func_0802E6EC
+    bl DecodeMsg
+    bl SetTacticianName
     movs r6, #0
     add r0, sp, #0x28
     mov sl, r0
@@ -282754,7 +281754,7 @@ func_0809B568: @ 0x0809B568
     movs r6, #4
 .L0809B582:
     ldr r0, .L0809B5E4 @ =0x000012C9
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -283365,7 +282365,7 @@ func_0809BA80: @ 0x0809BA80
 .L0809BAA6:
     ldr r0, [r6, #0x38]
     mov sl, r0
-    ldr r3, .L0809BAF0 @ =gKeys
+    ldr r3, .L0809BAF0 @ =gpKeySt
     ldr r1, [r3]
     ldrh r5, [r1, #6]
     adds r2, r6, #0
@@ -283400,7 +282400,7 @@ func_0809BA80: @ 0x0809BA80
     strb r4, [r0]
     b .L0809BDE0
     .align 2, 0
-.L0809BAF0: .4byte gKeys
+.L0809BAF0: .4byte gpKeySt
 .L0809BAF4:
     ldr r0, [r3]
     ldrh r1, [r0, #8]
@@ -283454,7 +282454,7 @@ func_0809BA80: @ 0x0809BA80
     adds r0, r6, #0
     movs r1, #2
     bl Proc_Goto
-    ldr r0, .L0809BB7C @ =gPlayStatus
+    ldr r0, .L0809BB7C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -283466,7 +282466,7 @@ func_0809BA80: @ 0x0809BA80
     bl m4aSongNumStart
     b .L0809BDE0
     .align 2, 0
-.L0809BB7C: .4byte gPlayStatus
+.L0809BB7C: .4byte gPlaySt
 .L0809BB80: .4byte 0x0000038A
 .L0809BB84:
     movs r0, #2
@@ -283476,7 +282476,7 @@ func_0809BA80: @ 0x0809BA80
     adds r0, r6, #0
     movs r1, #3
     bl Proc_Goto
-    ldr r0, .L0809BBAC @ =gPlayStatus
+    ldr r0, .L0809BBAC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -283488,7 +282488,7 @@ func_0809BA80: @ 0x0809BA80
     bl m4aSongNumStart
     b .L0809BDE0
     .align 2, 0
-.L0809BBAC: .4byte gPlayStatus
+.L0809BBAC: .4byte gPlaySt
 .L0809BBB0: .4byte 0x0000038B
 .L0809BBB4:
     movs r0, #0x20
@@ -283566,7 +282566,7 @@ func_0809BA80: @ 0x0809BA80
     movs r0, #0
     mov r7, r8
     strb r0, [r7]
-    ldr r0, .L0809BC80 @ =gPlayStatus
+    ldr r0, .L0809BC80 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -283593,7 +282593,7 @@ func_0809BA80: @ 0x0809BA80
     strb r0, [r1]
     b .L0809BCB8
     .align 2, 0
-.L0809BC80: .4byte gPlayStatus
+.L0809BC80: .4byte gPlaySt
 .L0809BC84: .4byte 0x00000385
 .L0809BC88:
     cmp r4, #0x2f
@@ -283742,7 +282742,7 @@ func_0809BA80: @ 0x0809BA80
 .L0809BDB0: .4byte 0x08BDCE4C
 .L0809BDB4: .4byte 0x0000FFD8
 .L0809BDB8:
-    ldr r0, .L0809BDF0 @ =gKeys
+    ldr r0, .L0809BDF0 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #2
     ldrh r1, [r1, #8]
@@ -283752,7 +282752,7 @@ func_0809BA80: @ 0x0809BA80
     adds r0, r6, #0
     movs r1, #3
     bl Proc_Goto
-    ldr r0, .L0809BDF4 @ =gPlayStatus
+    ldr r0, .L0809BDF4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -283769,8 +282769,8 @@ func_0809BA80: @ 0x0809BA80
     pop {r0}
     bx r0
     .align 2, 0
-.L0809BDF0: .4byte gKeys
-.L0809BDF4: .4byte gPlayStatus
+.L0809BDF0: .4byte gpKeySt
+.L0809BDF4: .4byte gPlaySt
 .L0809BDF8: .4byte 0x0000038B
     func_end func_0809BA80
 
@@ -283939,7 +282939,7 @@ func_0809BE80: @ 0x0809BE80
     ldr r1, .L0809BF70 @ =0x08BDCE4C
     adds r0, r0, r1
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -284094,7 +283094,7 @@ func_0809C044: @ 0x0809C044
     bl SetTextFont
     movs r0, #1
     bl SetTextFontGlyphs
-    bl func_0802E6E4
+    bl GetTacticianName
     adds r1, r4, #0
     adds r4, #8
     ldr r6, .L0809C120 @ =0x02023D80
@@ -284109,7 +283109,7 @@ func_0809C044: @ 0x0809C044
     bl func_08005AD4
     subs r0, r6, #4
     ldr r2, .L0809C124 @ =0x081C3AC0
-    ldr r5, .L0809C128 @ =gPlayStatus
+    ldr r5, .L0809C128 @ =gPlaySt
     adds r7, r5, #0
     adds r7, #0x2b
     ldrb r3, [r7]
@@ -284124,7 +283124,7 @@ func_0809C044: @ 0x0809C044
     ldrb r7, [r7]
     lsrs r0, r7, #4
     bl func_080A6DB0
-    bl GetMsg
+    bl DecodeMsg
     adds r7, r0, #0
     movs r0, #0x40
     adds r1, r7, #0
@@ -284144,7 +283144,7 @@ func_0809C044: @ 0x0809C044
     lsls r0, r5, #0x1f
     lsrs r0, r0, #0x1f
     bl func_080A6DC0
-    bl GetMsg
+    bl DecodeMsg
     adds r7, r0, #0
     movs r0, #0x40
     adds r1, r7, #0
@@ -284175,14 +283175,14 @@ func_0809C044: @ 0x0809C044
 .L0809C11C: .4byte 0x08194714
 .L0809C120: .4byte 0x02023D80
 .L0809C124: .4byte 0x081C3AC0
-.L0809C128: .4byte gPlayStatus
+.L0809C128: .4byte gPlaySt
     func_end func_0809C044
 
     thumb_func_start func_0809C12C
 func_0809C12C: @ 0x0809C12C
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L0809C150 @ =gPlayStatus
+    ldr r0, .L0809C150 @ =gPlaySt
     ldrh r0, [r0, #0x2c]
     lsls r0, r0, #0x13
     lsrs r0, r0, #0x17
@@ -284199,7 +283199,7 @@ func_0809C12C: @ 0x0809C12C
     pop {r0}
     bx r0
     .align 2, 0
-.L0809C150: .4byte gPlayStatus
+.L0809C150: .4byte gPlaySt
     func_end func_0809C12C
 
     thumb_func_start func_0809C154
@@ -284384,7 +283384,7 @@ func_0809C154: @ 0x0809C154
     movs r0, #0
     bl SetTextFont
     bl func_0809C044
-    ldr r0, .L0809C340 @ =gPlayStatus
+    ldr r0, .L0809C340 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
     bne .L0809C344
@@ -284410,7 +283410,7 @@ func_0809C154: @ 0x0809C154
 .L0809C334: .4byte 0x02012990
 .L0809C338: .4byte 0x06004000
 .L0809C33C: .4byte 0x02012A90
-.L0809C340: .4byte gPlayStatus
+.L0809C340: .4byte gPlaySt
 .L0809C344:
     movs r3, #0x81
     lsls r3, r3, #1
@@ -284539,7 +283539,7 @@ func_0809C44C: @ 0x0809C44C
     bl Proc_Break
     b .L0809C488
 .L0809C462:
-    ldr r0, .L0809C490 @ =gKeys
+    ldr r0, .L0809C490 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #8
     ldrh r1, [r1, #8]
@@ -284548,7 +283548,7 @@ func_0809C44C: @ 0x0809C44C
     beq .L0809C488
     adds r0, r4, #0
     bl Proc_Break
-    ldr r0, .L0809C494 @ =gPlayStatus
+    ldr r0, .L0809C494 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -284561,8 +283561,8 @@ func_0809C44C: @ 0x0809C44C
     pop {r0}
     bx r0
     .align 2, 0
-.L0809C490: .4byte gKeys
-.L0809C494: .4byte gPlayStatus
+.L0809C490: .4byte gpKeySt
+.L0809C494: .4byte gPlaySt
 .L0809C498: .4byte 0x0000038B
     func_end func_0809C44C
 
@@ -284888,7 +283888,7 @@ func_0809C654: @ 0x0809C654
     ldr r1, .L0809C7A0 @ =0x08BDCE4C
     adds r0, r0, r1
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     mov r2, sl
     lsls r2, r2, #1
     mov r8, r2
@@ -285062,7 +284062,7 @@ func_0809C844: @ 0x0809C844
     muls r0, r1, r0
     adds r0, r0, r4
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r4, r0, #0
     movs r0, #0x30
     adds r1, r4, #0
@@ -285081,7 +284081,7 @@ func_0809C844: @ 0x0809C844
 .L0809C8B4:
     movs r0, #0x94
     lsls r0, r0, #5
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r6, #0
     movs r1, #0x30
@@ -285094,7 +284094,7 @@ func_0809C844: @ 0x0809C844
     movs r4, #1
 .L0809C8D2:
     ldr r0, .L0809C920 @ =0x00001281
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r6, #0
     movs r1, #0x60
@@ -285589,7 +284589,7 @@ func_0809CC30: @ 0x0809CC30
     asrs r0, r0, #0x18
     cmp r0, #0
     bne .L0809CCFC
-    ldr r2, .L0809CDB8 @ =gPlayStatus
+    ldr r2, .L0809CDB8 @ =gPlaySt
     adds r2, #0x40
     movs r0, #0x61
     rsbs r0, r0, #0
@@ -285717,7 +284717,7 @@ func_0809CC30: @ 0x0809CC30
     b .L0809CDE8
     .align 2, 0
 .L0809CDB4: .4byte gDispIo
-.L0809CDB8: .4byte gPlayStatus
+.L0809CDB8: .4byte gPlaySt
 .L0809CDBC: .4byte 0x0000FFE0
 .L0809CDC0: .4byte 0x0000E0FF
 .L0809CDC4: .4byte gBg1Tm
@@ -285773,14 +284773,14 @@ func_0809CE38: @ 0x0809CE38
     mov r7, r8
     push {r7}
     adds r6, r0, #0
-    ldr r0, .L0809CE6C @ =gKeys
+    ldr r0, .L0809CE6C @ =gpKeySt
     ldr r1, [r0]
     ldrh r3, [r1, #8]
     movs r0, #2
     ands r0, r3
     cmp r0, #0
     beq .L0809CE78
-    ldr r0, .L0809CE70 @ =gPlayStatus
+    ldr r0, .L0809CE70 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -285794,8 +284794,8 @@ func_0809CE38: @ 0x0809CE38
     bl Proc_Goto
     b .L0809CFE8
     .align 2, 0
-.L0809CE6C: .4byte gKeys
-.L0809CE70: .4byte gPlayStatus
+.L0809CE6C: .4byte gpKeySt
+.L0809CE70: .4byte gPlaySt
 .L0809CE74: .4byte 0x0000038B
 .L0809CE78:
     ldrh r2, [r1, #6]
@@ -285843,7 +284843,7 @@ func_0809CE38: @ 0x0809CE38
     adds r5, r1, #0
     cmp r0, #0
     beq .L0809CEF4
-    ldr r0, .L0809CEEC @ =gPlayStatus
+    ldr r0, .L0809CEEC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -285857,7 +284857,7 @@ func_0809CE38: @ 0x0809CE38
     bl Proc_Goto
     b .L0809CFE8
     .align 2, 0
-.L0809CEEC: .4byte gPlayStatus
+.L0809CEEC: .4byte gPlaySt
 .L0809CEF0: .4byte 0x0000038A
 .L0809CEF4:
     movs r0, #0x20
@@ -285874,7 +284874,7 @@ func_0809CE38: @ 0x0809CE38
     adds r0, r0, r1
     strb r0, [r5]
 .L0809CF0E:
-    ldr r0, .L0809CFC0 @ =gKeys
+    ldr r0, .L0809CFC0 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x10
     ldrh r1, [r1, #6]
@@ -285903,7 +284903,7 @@ func_0809CE38: @ 0x0809CE38
     adds r1, r1, r2
     strb r1, [r5]
 .L0809CF48:
-    ldr r4, .L0809CFC0 @ =gKeys
+    ldr r4, .L0809CFC0 @ =gpKeySt
     ldr r1, [r4]
     movs r0, #0x40
     ldrh r1, [r1, #6]
@@ -285951,7 +284951,7 @@ func_0809CE38: @ 0x0809CE38
     lsls r3, r3, #4
     movs r2, #1
     bl func_080A951C
-    ldr r0, .L0809CFC4 @ =gPlayStatus
+    ldr r0, .L0809CFC4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -285961,15 +284961,15 @@ func_0809CE38: @ 0x0809CE38
     bl m4aSongNumStart
     b .L0809CFE8
     .align 2, 0
-.L0809CFC0: .4byte gKeys
-.L0809CFC4: .4byte gPlayStatus
+.L0809CFC0: .4byte gpKeySt
+.L0809CFC4: .4byte gPlaySt
 .L0809CFC8: .4byte 0x00000385
 .L0809CFCC:
     movs r0, #1
     ands r0, r3
     cmp r0, #0
     beq .L0809CFE8
-    ldr r0, .L0809CFF4 @ =gPlayStatus
+    ldr r0, .L0809CFF4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -285985,7 +284985,7 @@ func_0809CE38: @ 0x0809CE38
     pop {r0}
     bx r0
     .align 2, 0
-.L0809CFF4: .4byte gPlayStatus
+.L0809CFF4: .4byte gPlaySt
     func_end func_0809CE38
 
     thumb_func_start func_0809CFF8
@@ -286138,7 +285138,7 @@ func_0809D0BC: @ 0x0809D0BC
     orrs r0, r1
     strh r0, [r3, #0x3c]
     bl func_0809C49C
-    ldr r0, .L0809D158 @ =gPlayStatus
+    ldr r0, .L0809D158 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -286154,7 +285154,7 @@ func_0809D0BC: @ 0x0809D0BC
 .L0809D14C: .4byte gDispIo
 .L0809D150: .4byte 0x0000FFE0
 .L0809D154: .4byte 0x0000E0FF
-.L0809D158: .4byte gPlayStatus
+.L0809D158: .4byte gPlaySt
     func_end func_0809D0BC
 
     thumb_func_start func_0809D15C
@@ -288431,7 +287431,7 @@ func_0809E25C: @ 0x0809E25C
     movs r0, #0
     movs r1, #0
     movs r2, #0xa
-    bl func_0807F8D4
+    bl StartMuralBackgroundAlt
     str r0, [r6, #0x2c]
 .L0809E38E:
     add sp, #4
@@ -290480,12 +289480,12 @@ func_0809F1F4: @ 0x0809F1F4
 
     thumb_func_start func_0809F218
 func_0809F218: @ 0x0809F218
-    ldr r0, .L0809F220 @ =gPlayStatus
+    ldr r0, .L0809F220 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     subs r0, #1
     bx lr
     .align 2, 0
-.L0809F220: .4byte gPlayStatus
+.L0809F220: .4byte gPlaySt
     func_end func_0809F218
 
     thumb_func_start func_0809F224
@@ -290732,7 +289732,7 @@ func_0809F388: @ 0x0809F388
     ands r1, r2
     orrs r1, r0
     str r1, [r7, #8]
-    ldr r2, .L0809F49C @ =gPlayStatus
+    ldr r2, .L0809F49C @ =gPlaySt
     adds r0, r2, #0
     adds r0, #0x2b
     ldrb r0, [r0]
@@ -290811,7 +289811,7 @@ func_0809F388: @ 0x0809F388
     .align 2, 0
 .L0809F494: .4byte 0x0100000C
 .L0809F498: .4byte 0xFFE00000
-.L0809F49C: .4byte gPlayStatus
+.L0809F49C: .4byte gPlaySt
 .L0809F4A0: .4byte 0xFFFF807F
 .L0809F4A4: .4byte 0x000003FF
 .L0809F4A8: .4byte 0xFFFE007F
@@ -290971,7 +289971,7 @@ func_0809F388: @ 0x0809F388
     ands r1, r3
     orrs r1, r0
     strh r1, [r7, #0xa]
-    bl func_0802E6E4
+    bl GetTacticianName
     adds r1, r0, #0
     mov r0, sl
     bl strcpy
@@ -290995,7 +289995,7 @@ func_0809F618: @ 0x0809F618
     sub sp, #0x30
     bl func_0809F218
     adds r6, r0, #0
-    ldr r0, .L0809F664 @ =gPlayStatus
+    ldr r0, .L0809F664 @ =gPlaySt
     ldrb r0, [r0, #0x14]
     lsrs r4, r0, #6
     movs r0, #1
@@ -291025,7 +290025,7 @@ func_0809F618: @ 0x0809F618
     pop {r0}
     bx r0
     .align 2, 0
-.L0809F664: .4byte gPlayStatus
+.L0809F664: .4byte gPlaySt
     func_end func_0809F618
 
     thumb_func_start func_0809F668
@@ -291535,7 +290535,7 @@ func_0809F98C: @ 0x0809F98C
     thumb_func_start func_0809FA2C
 func_0809FA2C: @ 0x0809FA2C
     push {lr}
-    ldr r1, .L0809FA48 @ =gPlayStatus
+    ldr r1, .L0809FA48 @ =gPlaySt
     ldr r0, .L0809FA4C @ =0xFFFFE00F
     ldrh r2, [r1, #0x2c]
     ands r0, r2
@@ -291546,7 +290546,7 @@ func_0809FA2C: @ 0x0809FA2C
     pop {r0}
     bx r0
     .align 2, 0
-.L0809FA48: .4byte gPlayStatus
+.L0809FA48: .4byte gPlaySt
 .L0809FA4C: .4byte 0xFFFFE00F
     func_end func_0809FA2C
 
@@ -291560,7 +290560,7 @@ func_0809FA50: @ 0x0809FA50
     ldr r1, .L0809FA90 @ =0x0203E7A0
     ldr r2, .L0809FA94 @ =0x01000230
     bl CpuSet
-    ldr r4, .L0809FA98 @ =gPlayStatus
+    ldr r4, .L0809FA98 @ =gPlaySt
     ldr r0, [r4, #0x38]
     ldr r1, .L0809FA9C @ =0xF00000FF
     ands r0, r1
@@ -291585,7 +290585,7 @@ func_0809FA50: @ 0x0809FA50
     .align 2, 0
 .L0809FA90: .4byte 0x0203E7A0
 .L0809FA94: .4byte 0x01000230
-.L0809FA98: .4byte gPlayStatus
+.L0809FA98: .4byte gPlaySt
 .L0809FA9C: .4byte 0xF00000FF
 .L0809FAA0: .4byte 0xFFF00000
     func_end func_0809FA50
@@ -291746,8 +290746,8 @@ func_0809FB70: @ 0x0809FB70
 .L0809FBB0: .4byte 0x0000FF80
     func_end func_0809FB70
 
-    thumb_func_start func_0809FBB4
-func_0809FBB4: @ 0x0809FBB4
+    thumb_func_start GetNextChapterStatsEntry
+GetNextChapterStatsEntry: @ 0x0809FBB4
     push {lr}
     bl GetChapterCompletionStatsListCount
     cmp r0, #0
@@ -291764,10 +290764,10 @@ func_0809FBB4: @ 0x0809FBB4
 .L0809FBD0:
     pop {r1}
     bx r1
-    func_end func_0809FBB4
+    func_end GetNextChapterStatsEntry
 
-    thumb_func_start func_0809FBD4
-func_0809FBD4: @ 0x0809FBD4
+    thumb_func_start RegisterChapterStats
+RegisterChapterStats: @ 0x0809FBD4
     push {r4, r5, lr}
     adds r4, r0, #0
     bl GetChapterCompletionStatsListCount
@@ -291812,7 +290812,7 @@ func_0809FBD4: @ 0x0809FBD4
     bx r0
     .align 2, 0
 .L0809FC2C: .4byte 0x0000EA60
-    func_end func_0809FBD4
+    func_end RegisterChapterStats
 
     thumb_func_start func_0809FC30
 func_0809FC30: @ 0x0809FC30
@@ -291869,7 +290869,7 @@ func_0809FC5C: @ 0x0809FC5C
     thumb_func_start IsChapterPartOfCurrentMode
 IsChapterPartOfCurrentMode: @ 0x0809FC88
     adds r1, r0, #0
-    ldr r0, .L0809FC9C @ =gPlayStatus
+    ldr r0, .L0809FC9C @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #1
     bne .L0809FCA0
@@ -291879,7 +290879,7 @@ IsChapterPartOfCurrentMode: @ 0x0809FC88
     movs r0, #1
     b .L0809FCAE
     .align 2, 0
-.L0809FC9C: .4byte gPlayStatus
+.L0809FC9C: .4byte gPlaySt
 .L0809FCA0:
     cmp r0, #1
     blt .L0809FCAC
@@ -292100,7 +291100,7 @@ func_0809FDFC: @ 0x0809FDFC
     ldrb r0, [r0]
     cmp r0, #1
     beq .L0809FECC
-    ldr r7, .L0809FEE0 @ =gPlayStatus
+    ldr r7, .L0809FEE0 @ =gPlaySt
     ldrb r2, [r7, #0x14]
     movs r0, #8
     ands r0, r2
@@ -292172,7 +291172,7 @@ func_0809FDFC: @ 0x0809FDFC
     .align 2, 0
 .L0809FED8: .4byte 0x0203E790
 .L0809FEDC: .4byte gBmStatus
-.L0809FEE0: .4byte gPlayStatus
+.L0809FEE0: .4byte gPlaySt
 .L0809FEE4: .4byte 0x000019DC
     func_end func_0809FDFC
 
@@ -292196,7 +291196,7 @@ func_0809FEE8: @ 0x0809FEE8
     adds r3, r1, r0
     cmp r3, #0
     beq .L0809FF52
-    ldr r2, .L0809FF5C @ =gPlayStatus
+    ldr r2, .L0809FF5C @ =gPlaySt
     movs r1, #0xe
     ldrsb r1, [r2, r1]
     movs r0, #0x3f
@@ -292236,7 +291236,7 @@ func_0809FEE8: @ 0x0809FEE8
     bx r0
     .align 2, 0
 .L0809FF58: .4byte 0x0203E790
-.L0809FF5C: .4byte gPlayStatus
+.L0809FF5C: .4byte gPlaySt
 .L0809FF60: .4byte 0x000003FF
 .L0809FF64: .4byte 0xFF003FFF
 .L0809FF68: .4byte 0xFF803FFF
@@ -292794,13 +291794,13 @@ func_080A031C: @ 0x080A031C
     add r5, sp, #0x64
 .L080A033E:
     adds r0, r4, #0
-    bl func_080A09A0
+    bl IsSaveValid
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080A035C
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080A09B4
+    bl ReadGameSavePlaySt
     ldrb r0, [r5, #0x18]
     cmp r0, r6
     bne .L080A035C
@@ -292861,8 +291861,8 @@ MetaSave_CountCompletedPlaythroughs: @ 0x080A038C
     bx lr
     func_end MetaSave_CountCompletedPlaythroughs
 
-    thumb_func_start func_080A03A8
-func_080A03A8: @ 0x080A03A8
+    thumb_func_start GetGlobalCompletionCount
+GetGlobalCompletionCount: @ 0x080A03A8
     push {lr}
     sub sp, #0x64
     mov r0, sp
@@ -292879,7 +291879,7 @@ func_080A03A8: @ 0x080A03A8
     add sp, #0x64
     pop {r1}
     bx r1
-    func_end func_080A03A8
+    func_end GetGlobalCompletionCount
 
     thumb_func_start func_080A03C8
 func_080A03C8: @ 0x080A03C8
@@ -292974,28 +291974,28 @@ func_080A0458: @ 0x080A0458
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080A047C
-    ldr r0, .L080A0470 @ =gPlayStatus
+    ldr r0, .L080A0470 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #2
     bne .L080A0474
     movs r0, #0
     b .L080A0496
     .align 2, 0
-.L080A0470: .4byte gPlayStatus
+.L080A0470: .4byte gPlaySt
 .L080A0474:
     cmp r0, #3
     bne .L080A047C
     movs r0, #2
     b .L080A0496
 .L080A047C:
-    ldr r0, .L080A0488 @ =gPlayStatus
+    ldr r0, .L080A0488 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #2
     bne .L080A048C
     movs r0, #1
     b .L080A0496
     .align 2, 0
-.L080A0488: .4byte gPlayStatus
+.L080A0488: .4byte gPlaySt
 .L080A048C:
     cmp r0, #3
     beq .L080A0494
@@ -293014,7 +292014,7 @@ func_080A049C: @ 0x080A049C
     sub sp, #0x64
     bl func_080A0458
     adds r5, r0, #0
-    ldr r7, .L080A04E8 @ =gPlayStatus
+    ldr r7, .L080A04E8 @ =gPlaySt
     ldrb r0, [r7, #0x14]
     lsrs r4, r0, #6
     movs r0, #1
@@ -293045,7 +292045,7 @@ func_080A049C: @ 0x080A049C
     beq .L080A04FA
     b .L080A0522
     .align 2, 0
-.L080A04E8: .4byte gPlayStatus
+.L080A04E8: .4byte gPlaySt
 .L080A04EC:
     cmp r5, #3
     bgt .L080A0522
@@ -293231,7 +292231,7 @@ func_080A061C: @ 0x080A061C
     sub sp, #0x58
     adds r5, r0, #0
     movs r0, #3
-    bl func_080A1384
+    bl IsValidSuspendSave
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080A0644
@@ -293317,19 +292317,19 @@ SaveNewGame: @ 0x080A06C4
     adds r7, r0, #0
     cmp r5, #0
     bne .L080A06E0
-    ldr r0, .L080A07F4 @ =gPlayStatus
+    ldr r0, .L080A07F4 @ =gPlaySt
     ldrb r5, [r0, #0x1b]
 .L080A06E0:
     movs r0, #0
     bl SetGameTime
     adds r0, r4, #0
     bl InitPlayConfig
-    bl func_080174D8
+    bl InitUnits
     bl func_0802E708
-    bl ClearPermanentFlags
+    bl ResetPermanentFlags
     movs r0, #3
     bl func_080A10D8
-    ldr r4, .L080A07F4 @ =gPlayStatus
+    ldr r4, .L080A07F4 @ =gPlaySt
     adds r1, r4, #0
     adds r1, #0x2c
     movs r0, #2
@@ -293380,7 +292380,7 @@ SaveNewGame: @ 0x080A06C4
     strb r0, [r4, #0x18]
     mov r0, r8
     strb r0, [r4, #0xc]
-    bl func_080A03A8
+    bl GetGlobalCompletionCount
     movs r1, #0x1f
     ands r0, r1
     lsls r0, r0, #7
@@ -293444,7 +292444,7 @@ SaveNewGame: @ 0x080A06C4
     pop {r0}
     bx r0
     .align 2, 0
-.L080A07F4: .4byte gPlayStatus
+.L080A07F4: .4byte gPlaySt
 .L080A07F8: .4byte 0xFFFFE00F
 .L080A07FC: .4byte 0x01000008
 .L080A0800: .4byte 0xFF801FFF
@@ -293466,7 +292466,7 @@ func_080A0810: @ 0x080A0810
     adds r7, r0, #0
     movs r0, #3
     bl func_080A10D8
-    ldr r4, .L080A08E0 @ =gPlayStatus
+    ldr r4, .L080A08E0 @ =gPlaySt
     mov r0, sb
     strb r0, [r4, #0xc]
     bl GetGameTime
@@ -293546,7 +292546,7 @@ func_080A0810: @ 0x080A0810
     pop {r0}
     bx r0
     .align 2, 0
-.L080A08E0: .4byte gPlayStatus
+.L080A08E0: .4byte gPlaySt
 .L080A08E4: .4byte gBlueUnits
 .L080A08E8: .4byte 0x00011217
     func_end func_080A0810
@@ -293571,7 +292571,7 @@ func_080A08EC: @ 0x080A08EC
     bl func_080A10D8
 .L080A0912:
     ldr r0, .L080A0994 @ =0x03005E70
-    ldr r4, .L080A0998 @ =gPlayStatus
+    ldr r4, .L080A0998 @ =gPlaySt
     ldr r3, [r0]
     adds r0, r7, #0
     adds r1, r4, #0
@@ -293581,7 +292581,7 @@ func_080A08EC: @ 0x080A08EC
     bl SetGameTime
     mov r0, sb
     strb r0, [r4, #0xc]
-    bl func_080174D8
+    bl InitUnits
     movs r6, #0
     adds r4, r7, #0
     adds r4, #0x48
@@ -293627,12 +292627,12 @@ func_080A08EC: @ 0x080A08EC
     .align 2, 0
 .L080A0990: .4byte gBmStatus
 .L080A0994: .4byte 0x03005E70
-.L080A0998: .4byte gPlayStatus
+.L080A0998: .4byte gPlaySt
 .L080A099C: .4byte gBlueUnits
     func_end func_080A08EC
 
-    thumb_func_start func_080A09A0
-func_080A09A0: @ 0x080A09A0
+    thumb_func_start IsSaveValid
+IsSaveValid: @ 0x080A09A0
     push {lr}
     adds r1, r0, #0
     movs r0, #0
@@ -293641,10 +292641,10 @@ func_080A09A0: @ 0x080A09A0
     asrs r0, r0, #0x18
     pop {r1}
     bx r1
-    func_end func_080A09A0
+    func_end IsSaveValid
 
-    thumb_func_start func_080A09B4
-func_080A09B4: @ 0x080A09B4
+    thumb_func_start ReadGameSavePlaySt
+ReadGameSavePlaySt: @ 0x080A09B4
     push {r4, lr}
     adds r4, r1, #0
     bl func_0809E918
@@ -293658,7 +292658,7 @@ func_080A09B4: @ 0x080A09B4
     bx r0
     .align 2, 0
 .L080A09D0: .4byte 0x03005E70
-    func_end func_080A09B4
+    func_end ReadGameSavePlaySt
 
     thumb_func_start func_080A09D4
 func_080A09D4: @ 0x080A09D4
@@ -293723,13 +292723,13 @@ func_080A0A30: @ 0x080A0A30
     push {r4, lr}
     sub sp, #0x48
     adds r4, r0, #0
-    bl func_080A09A0
+    bl IsSaveValid
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080A0A54
     adds r0, r4, #0
     mov r1, sp
-    bl func_080A09B4
+    bl ReadGameSavePlaySt
     mov r0, sp
     bl func_080A0A10
     lsls r0, r0, #0x18
@@ -294615,7 +293615,7 @@ func_080A1100: @ 0x080A1100
     push {r5, r6, r7}
     sub sp, #0x20
     mov r8, r0
-    ldr r4, .L080A121C @ =gPlayStatus
+    ldr r4, .L080A121C @ =gPlaySt
     movs r0, #8
     ldrb r1, [r4, #0x14]
     ands r0, r1
@@ -294734,7 +293734,7 @@ func_080A1100: @ 0x080A1100
     pop {r0}
     bx r0
     .align 2, 0
-.L080A121C: .4byte gPlayStatus
+.L080A121C: .4byte gPlaySt
 .L080A1220: .4byte 0x0203A85C
 .L080A1224: .4byte gBuf
 .L080A1228: .4byte gBlueUnits
@@ -294751,8 +293751,8 @@ func_080A1100: @ 0x080A1100
 .L080A1254: .4byte gBmStatus
     func_end func_080A1100
 
-    thumb_func_start func_080A1258
-func_080A1258: @ 0x080A1258
+    thumb_func_start ReadSuspendSave
+ReadSuspendSave: @ 0x080A1258
     push {r4, r5, r6, lr}
     sub sp, #0x10
     ldr r1, .L080A1344 @ =0x0203ECC4
@@ -294761,7 +293761,7 @@ func_080A1258: @ 0x080A1258
     bl func_0809E918
     adds r6, r0, #0
     ldr r5, .L080A1348 @ =0x03005E70
-    ldr r4, .L080A134C @ =gPlayStatus
+    ldr r4, .L080A134C @ =gPlaySt
     ldr r3, [r5]
     adds r1, r4, #0
     movs r2, #0x48
@@ -294775,7 +293775,7 @@ func_080A1258: @ 0x080A1258
     movs r2, #0x1c
     bl _call_via_r3
     bl func_0802F208
-    bl func_080174D8
+    bl InitUnits
     movs r4, #0
     movs r5, #0
 .L080A1296:
@@ -294847,7 +293847,7 @@ func_080A1258: @ 0x080A1258
     bl _call_via_r3
     mov r0, sp
     bl func_0804ABF4
-    ldr r0, .L080A134C @ =gPlayStatus
+    ldr r0, .L080A134C @ =gPlaySt
     ldrb r0, [r0, #0xc]
     bl func_080A09D4
     bl func_080A0588
@@ -294858,7 +293858,7 @@ func_080A1258: @ 0x080A1258
     .align 2, 0
 .L080A1344: .4byte 0x0203ECC4
 .L080A1348: .4byte 0x03005E70
-.L080A134C: .4byte gPlayStatus
+.L080A134C: .4byte gPlaySt
 .L080A1350: .4byte 0x0203A85C
 .L080A1354: .4byte gBlueUnits
 .L080A1358: .4byte 0x00000AF4
@@ -294872,10 +293872,10 @@ func_080A1258: @ 0x080A1258
 .L080A1378: .4byte 0x00001F24
 .L080A137C: .4byte 0x00001724
 .L080A1380: .4byte 0x00001F0C
-    func_end func_080A1258
+    func_end ReadSuspendSave
 
-    thumb_func_start func_080A1384
-func_080A1384: @ 0x080A1384
+    thumb_func_start IsValidSuspendSave
+IsValidSuspendSave: @ 0x080A1384
     push {r4, lr}
     adds r4, r0, #0
     bl func_0809E478
@@ -294916,7 +293916,7 @@ func_080A1384: @ 0x080A1384
     pop {r4}
     pop {r1}
     bx r1
-    func_end func_080A1384
+    func_end IsValidSuspendSave
 
     thumb_func_start func_080A13D8
 func_080A13D8: @ 0x080A13D8
@@ -294924,7 +293924,7 @@ func_080A13D8: @ 0x080A13D8
     ldr r2, .L080A13E8 @ =0x0203ECC4
     ldrb r2, [r2]
     adds r0, r2, r0
-    bl func_080A09B4
+    bl ReadGameSavePlaySt
     pop {r0}
     bx r0
     .align 2, 0
@@ -297691,7 +296691,7 @@ func_080A26A4: @ 0x080A26A4
 func_080A28CC: @ 0x080A28CC
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L080A2908 @ =gPlayStatus
+    ldr r0, .L080A2908 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -297716,7 +296716,7 @@ func_080A28CC: @ 0x080A28CC
     pop {r0}
     bx r0
     .align 2, 0
-.L080A2908: .4byte gPlayStatus
+.L080A2908: .4byte gPlaySt
     func_end func_080A28CC
 
     thumb_func_start func_080A290C
@@ -298122,7 +297122,7 @@ func_080A2A84: @ 0x080A2A84
 func_080A2C30: @ 0x080A2C30
     push {r4, r5, lr}
     adds r4, r0, #0
-    ldr r0, .L080A2C94 @ =gPlayStatus
+    ldr r0, .L080A2C94 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -298170,7 +297170,7 @@ func_080A2C30: @ 0x080A2C30
     pop {r0}
     bx r0
     .align 2, 0
-.L080A2C94: .4byte gPlayStatus
+.L080A2C94: .4byte gPlaySt
 .L080A2C98: .4byte 0x00000399
 .L080A2C9C: .4byte 0x030028AC
 .L080A2CA0: .4byte 0x0000FFE0
@@ -298689,7 +297689,7 @@ func_080A3080: @ 0x080A3080
     bne .L080A310A
     str r0, [r3, #0x2c]
     str r0, [r3, #0x30]
-    ldr r2, .L080A3144 @ =gKeys
+    ldr r2, .L080A3144 @ =gpKeySt
     ldr r1, [r2]
     movs r0, #0x20
     ldrh r1, [r1, #4]
@@ -298775,7 +297775,7 @@ func_080A3080: @ 0x080A3080
     bx r0
     .align 2, 0
 .L080A3140: .4byte gBmStatus
-.L080A3144: .4byte gKeys
+.L080A3144: .4byte gpKeySt
     func_end func_080A3080
 
     thumb_func_start func_080A3148
@@ -298846,7 +297846,7 @@ func_080A31A4: @ 0x080A31A4
     bl func_080A2FB8
     adds r0, r4, #0
     bl func_080A3080
-    ldr r0, .L080A3208 @ =gKeys
+    ldr r0, .L080A3208 @ =gpKeySt
     ldr r0, [r0]
     movs r3, #0xc0
     lsls r3, r3, #2
@@ -298880,7 +297880,7 @@ func_080A31A4: @ 0x080A31A4
     strb r1, [r2, #0xa]
     b .L080A3244
     .align 2, 0
-.L080A3208: .4byte gKeys
+.L080A3208: .4byte gpKeySt
 .L080A320C: .4byte 0x030028AC
 .L080A3210: .4byte 0x0000FFE0
 .L080A3214: .4byte 0x0000E0FF
@@ -298914,7 +297914,7 @@ func_080A31A4: @ 0x080A31A4
     ands r0, r1
     cmp r0, #0
     bne .L080A3264
-    ldr r0, .L080A3280 @ =gKeys
+    ldr r0, .L080A3280 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xa
     ldrh r1, [r1, #8]
@@ -298933,7 +297933,7 @@ func_080A31A4: @ 0x080A31A4
 .L080A3274: .4byte 0x0000E0FF
 .L080A3278: .4byte gBmStatus
 .L080A327C: .4byte 0x000F000F
-.L080A3280: .4byte gKeys
+.L080A3280: .4byte gpKeySt
     func_end func_080A31A4
 
     thumb_func_start func_080A3284
@@ -299217,7 +298217,7 @@ func_080A3474: @ 0x080A3474
     push {r4, r5, lr}
     sub sp, #0x48
     adds r4, r0, #0
-    bl func_080A09A0
+    bl IsSaveValid
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080A3488
@@ -299226,7 +298226,7 @@ func_080A3474: @ 0x080A3474
 .L080A3488:
     adds r0, r4, #0
     mov r1, sp
-    bl func_080A09B4
+    bl ReadGameSavePlaySt
     mov r1, sp
     adds r1, #0x2b
     movs r0, #1
@@ -299235,7 +298235,7 @@ func_080A3474: @ 0x080A3474
     adds r4, r1, #0
     cmp r0, #0
     bne .L080A34B8
-    ldr r1, .L080A34B4 @ =gPlayStatus
+    ldr r1, .L080A34B4 @ =gPlaySt
     adds r1, #0x2b
     movs r0, #2
     rsbs r0, r0, #0
@@ -299245,9 +298245,9 @@ func_080A3474: @ 0x080A3474
     movs r0, #1
     b .L080A350E
     .align 2, 0
-.L080A34B4: .4byte gPlayStatus
+.L080A34B4: .4byte gPlaySt
 .L080A34B8:
-    ldr r2, .L080A34D8 @ =gPlayStatus
+    ldr r2, .L080A34D8 @ =gPlaySt
     adds r1, r2, #0
     adds r1, #0x2b
     movs r0, #1
@@ -299263,11 +298263,11 @@ func_080A3474: @ 0x080A3474
     strb r1, [r0]
     b .L080A34E0
     .align 2, 0
-.L080A34D8: .4byte gPlayStatus
+.L080A34D8: .4byte gPlaySt
 .L080A34DC:
-    bl func_0802E6EC
+    bl SetTacticianName
 .L080A34E0:
-    ldr r2, .L080A3518 @ =gPlayStatus
+    ldr r2, .L080A3518 @ =gPlaySt
     add r0, sp, #0x2c
     ldrb r0, [r0]
     lsls r1, r0, #0x1f
@@ -299296,7 +298296,7 @@ func_080A3474: @ 0x080A3474
     pop {r1}
     bx r1
     .align 2, 0
-.L080A3518: .4byte gPlayStatus
+.L080A3518: .4byte gPlaySt
     func_end func_080A3474
 
     thumb_func_start func_080A351C
@@ -299314,7 +298314,7 @@ func_080A351C: @ 0x080A351C
     ldrb r0, [r5]
     cmp r0, #8
     bne .L080A3554
-    ldr r0, .L080A3550 @ =gKeys
+    ldr r0, .L080A3550 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xf9
     lsls r0, r0, #1
@@ -299327,9 +298327,9 @@ func_080A351C: @ 0x080A351C
     strb r0, [r5]
     b .L080A35B0
     .align 2, 0
-.L080A3550: .4byte gKeys
+.L080A3550: .4byte gpKeySt
 .L080A3554:
-    ldr r0, .L080A3588 @ =gKeys
+    ldr r0, .L080A3588 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x80
     lsls r0, r0, #1
@@ -299343,7 +298343,7 @@ func_080A351C: @ 0x080A351C
     bl func_080A3474
     cmp r0, #0
     bne .L080A3590
-    ldr r0, .L080A358C @ =gPlayStatus
+    ldr r0, .L080A358C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -299354,8 +298354,8 @@ func_080A351C: @ 0x080A351C
     bl m4aSongNumStart
     b .L080A35B0
     .align 2, 0
-.L080A3588: .4byte gKeys
-.L080A358C: .4byte gPlayStatus
+.L080A3588: .4byte gpKeySt
+.L080A358C: .4byte gPlaySt
 .L080A3590:
     cmp r0, #0
     blt .L080A35B0
@@ -299905,7 +298905,7 @@ func_080A39F8: @ 0x080A39F8
     adds r1, #0x2e
     movs r0, #2
     strb r0, [r1]
-    ldr r0, .L080A3A28 @ =gKeys
+    ldr r0, .L080A3A28 @ =gpKeySt
     ldr r3, [r0]
     ldrh r1, [r3, #6]
     movs r2, #0x40
@@ -299923,7 +298923,7 @@ func_080A39F8: @ 0x080A39F8
     subs r0, #1
     b .L080A3A5E
     .align 2, 0
-.L080A3A28: .4byte gKeys
+.L080A3A28: .4byte gpKeySt
 .L080A3A2C:
     adds r0, r2, #0
     ldrh r3, [r3, #8]
@@ -299953,7 +298953,7 @@ func_080A39F8: @ 0x080A39F8
     adds r0, r2, #1
 .L080A3A5E:
     strb r0, [r1]
-    ldr r0, .L080A3A74 @ =gPlayStatus
+    ldr r0, .L080A3A74 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -299963,7 +298963,7 @@ func_080A39F8: @ 0x080A39F8
     bl m4aSongNumStart
     b .L080A3A9A
     .align 2, 0
-.L080A3A74: .4byte gPlayStatus
+.L080A3A74: .4byte gPlaySt
 .L080A3A78: .4byte 0x00000386
 .L080A3A7C:
     adds r0, r6, #0
@@ -299972,7 +298972,7 @@ func_080A39F8: @ 0x080A39F8
     cmp r0, #0
     beq .L080A3A9A
     strb r4, [r1]
-    ldr r0, .L080A3AF4 @ =gPlayStatus
+    ldr r0, .L080A3AF4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -299981,7 +298981,7 @@ func_080A39F8: @ 0x080A39F8
     ldr r0, .L080A3AF8 @ =0x00000386
     bl m4aSongNumStart
 .L080A3A9A:
-    ldr r0, .L080A3AFC @ =gKeys
+    ldr r0, .L080A3AFC @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #1
@@ -300002,7 +299002,7 @@ func_080A39F8: @ 0x080A39F8
     adds r4, r5, #0
     adds r4, #0x42
     strh r0, [r4]
-    ldr r0, .L080A3AF4 @ =gPlayStatus
+    ldr r0, .L080A3AF4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300027,9 +299027,9 @@ func_080A39F8: @ 0x080A39F8
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.L080A3AF4: .4byte gPlayStatus
+.L080A3AF4: .4byte gPlaySt
 .L080A3AF8: .4byte 0x00000386
-.L080A3AFC: .4byte gKeys
+.L080A3AFC: .4byte gpKeySt
 .L080A3B00: .4byte 0x0000038A
 .L080A3B04: .4byte .L080A3B08
 .L080A3B08: @ jump table
@@ -300156,7 +299156,7 @@ func_080A39F8: @ 0x080A39F8
     ands r0, r1
     cmp r0, #0
     beq .L080A3C68
-    ldr r0, .L080A3C70 @ =gPlayStatus
+    ldr r0, .L080A3C70 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300178,7 +299178,7 @@ func_080A39F8: @ 0x080A39F8
     pop {r0}
     bx r0
     .align 2, 0
-.L080A3C70: .4byte gPlayStatus
+.L080A3C70: .4byte gPlaySt
 .L080A3C74: .4byte 0x0000038B
     func_end func_080A39F8
 
@@ -300222,7 +299222,7 @@ func_080A3CAC: @ 0x080A3CAC
     ldrb r1, [r5]
     cmp r1, #0
     bne .L080A3D5C
-    ldr r0, .L080A3CE4 @ =gPlayStatus
+    ldr r0, .L080A3CE4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300244,7 +299244,7 @@ func_080A3CAC: @ 0x080A3CAC
     beq .L080A3D00
     b .L080A3D54
     .align 2, 0
-.L080A3CE4: .4byte gPlayStatus
+.L080A3CE4: .4byte gPlaySt
 .L080A3CE8: .4byte 0x0000038A
 .L080A3CEC:
     cmp r0, #0x20
@@ -300345,7 +299345,7 @@ func_080A3CAC: @ 0x080A3CAC
     adds r1, #0x44
     movs r0, #0xf0
     strh r0, [r1]
-    ldr r0, .L080A3DC0 @ =gPlayStatus
+    ldr r0, .L080A3DC0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300358,7 +299358,7 @@ func_080A3CAC: @ 0x080A3CAC
     bl func_080A3354
     b .L080A3E7A
     .align 2, 0
-.L080A3DC0: .4byte gPlayStatus
+.L080A3DC0: .4byte gPlaySt
 .L080A3DC4: .4byte 0x0000038A
 .L080A3DC8:
     cmp r1, #1
@@ -300377,7 +299377,7 @@ func_080A3CAC: @ 0x080A3CAC
     movs r1, #6
 .L080A3DE6:
     bl Proc_Goto
-    ldr r0, .L080A3E00 @ =gPlayStatus
+    ldr r0, .L080A3E00 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300387,10 +299387,10 @@ func_080A3CAC: @ 0x080A3CAC
     bl m4aSongNumStart
     b .L080A3E7A
     .align 2, 0
-.L080A3E00: .4byte gPlayStatus
+.L080A3E00: .4byte gPlaySt
 .L080A3E04: .4byte 0x0000038A
 .L080A3E08:
-    ldr r0, .L080A3E1C @ =gPlayStatus
+    ldr r0, .L080A3E1C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300400,7 +299400,7 @@ func_080A3CAC: @ 0x080A3CAC
     bl m4aSongNumStart
     b .L080A3E7A
     .align 2, 0
-.L080A3E1C: .4byte gPlayStatus
+.L080A3E1C: .4byte gPlaySt
 .L080A3E20: .4byte 0x0000038B
 .L080A3E24:
     cmp r1, #1
@@ -300413,7 +299413,7 @@ func_080A3CAC: @ 0x080A3CAC
     adds r0, r4, #0
     movs r1, #6
     bl Proc_Goto
-    ldr r0, .L080A3E50 @ =gPlayStatus
+    ldr r0, .L080A3E50 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300424,7 +299424,7 @@ func_080A3CAC: @ 0x080A3CAC
     bl m4aSongNumStart
     b .L080A3E7A
     .align 2, 0
-.L080A3E50: .4byte gPlayStatus
+.L080A3E50: .4byte gPlaySt
 .L080A3E54:
     adds r0, r4, #0
     movs r1, #0x11
@@ -300435,7 +299435,7 @@ func_080A3CAC: @ 0x080A3CAC
     ldrh r1, [r5]
     orrs r0, r1
     strh r0, [r5]
-    ldr r0, .L080A3E90 @ =gPlayStatus
+    ldr r0, .L080A3E90 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300454,7 +299454,7 @@ func_080A3CAC: @ 0x080A3CAC
     pop {r0}
     bx r0
     .align 2, 0
-.L080A3E90: .4byte gPlayStatus
+.L080A3E90: .4byte gPlaySt
 .L080A3E94: .4byte 0x0000038B
     func_end func_080A3CAC
 
@@ -300479,7 +299479,7 @@ func_080A3E98: @ 0x080A3E98
     adds r4, r0, #0
     cmp r1, #0
     bne .L080A3F0C
-    ldr r0, .L080A3ED4 @ =gKeys
+    ldr r0, .L080A3ED4 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #0x40
@@ -300491,7 +299491,7 @@ func_080A3E98: @ 0x080A3E98
     adds r0, r5, #0
     b .L080A3EE4
     .align 2, 0
-.L080A3ED4: .4byte gKeys
+.L080A3ED4: .4byte gpKeySt
 .L080A3ED8:
     movs r0, #0x80
     ands r0, r1
@@ -300504,7 +299504,7 @@ func_080A3E98: @ 0x080A3E98
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080A3F70
-    ldr r0, .L080A3F04 @ =gPlayStatus
+    ldr r0, .L080A3F04 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300514,10 +299514,10 @@ func_080A3E98: @ 0x080A3E98
     bl m4aSongNumStart
     b .L080A3F70
     .align 2, 0
-.L080A3F04: .4byte gPlayStatus
+.L080A3F04: .4byte gPlaySt
 .L080A3F08: .4byte 0x00000386
 .L080A3F0C:
-    ldr r0, .L080A3F3C @ =gKeys
+    ldr r0, .L080A3F3C @ =gpKeySt
     ldr r0, [r0]
     ldrh r2, [r0, #8]
     movs r0, #0x20
@@ -300528,7 +299528,7 @@ func_080A3E98: @ 0x080A3E98
     beq .L080A3F70
     movs r0, #1
     strb r0, [r4]
-    ldr r0, .L080A3F40 @ =gPlayStatus
+    ldr r0, .L080A3F40 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300541,8 +299541,8 @@ func_080A3E98: @ 0x080A3E98
     bl func_080A3404
     b .L080A3F70
     .align 2, 0
-.L080A3F3C: .4byte gKeys
-.L080A3F40: .4byte gPlayStatus
+.L080A3F3C: .4byte gpKeySt
+.L080A3F40: .4byte gPlaySt
 .L080A3F44: .4byte 0x00000387
 .L080A3F48:
     movs r0, #0x10
@@ -300553,7 +299553,7 @@ func_080A3E98: @ 0x080A3E98
     beq .L080A3F70
     movs r0, #2
     strb r0, [r4]
-    ldr r0, .L080A3FA4 @ =gPlayStatus
+    ldr r0, .L080A3FA4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300565,7 +299565,7 @@ func_080A3E98: @ 0x080A3E98
     adds r0, r5, #0
     bl func_080A3404
 .L080A3F70:
-    ldr r0, .L080A3FAC @ =gKeys
+    ldr r0, .L080A3FAC @ =gpKeySt
     ldr r0, [r0]
     ldrh r2, [r0, #8]
     movs r1, #1
@@ -300591,9 +299591,9 @@ func_080A3E98: @ 0x080A3E98
     beq .L080A3FE8
     b .L080A40E4
     .align 2, 0
-.L080A3FA4: .4byte gPlayStatus
+.L080A3FA4: .4byte gPlaySt
 .L080A3FA8: .4byte 0x00000387
-.L080A3FAC: .4byte gKeys
+.L080A3FAC: .4byte gpKeySt
 .L080A3FB0:
     cmp r0, #4
     beq .L080A4028
@@ -300628,7 +299628,7 @@ func_080A3E98: @ 0x080A3E98
     movs r0, #0xf0
     strh r0, [r1]
 .L080A3FE8:
-    ldr r0, .L080A4004 @ =gPlayStatus
+    ldr r0, .L080A4004 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300641,7 +299641,7 @@ func_080A3E98: @ 0x080A3E98
     bl func_080A3354
     b .L080A40E4
     .align 2, 0
-.L080A4004: .4byte gPlayStatus
+.L080A4004: .4byte gPlaySt
 .L080A4008: .4byte 0x0000038A
 .L080A400C:
     adds r0, r5, #0
@@ -300649,7 +299649,7 @@ func_080A3E98: @ 0x080A3E98
     ldrb r0, [r0]
     cmp r0, #0xff
     beq .L080A4038
-    ldr r0, .L080A4030 @ =gPlayStatus
+    ldr r0, .L080A4030 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300662,7 +299662,7 @@ func_080A3E98: @ 0x080A3E98
     bl func_080A3CAC
     b .L080A40E4
     .align 2, 0
-.L080A4030: .4byte gPlayStatus
+.L080A4030: .4byte gPlaySt
 .L080A4034: .4byte 0x0000038A
 .L080A4038:
     adds r0, r5, #0
@@ -300670,7 +299670,7 @@ func_080A3E98: @ 0x080A3E98
     adds r0, r5, #0
     movs r1, #6
     bl Proc_Goto
-    ldr r0, .L080A405C @ =gPlayStatus
+    ldr r0, .L080A405C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300681,7 +299681,7 @@ func_080A3E98: @ 0x080A3E98
     bl m4aSongNumStart
     b .L080A40E4
     .align 2, 0
-.L080A405C: .4byte gPlayStatus
+.L080A405C: .4byte gPlaySt
 .L080A4060:
     movs r0, #2
     ands r0, r2
@@ -300690,7 +299690,7 @@ func_080A3E98: @ 0x080A3E98
     adds r0, r5, #0
     adds r0, #0x29
     strb r1, [r0]
-    ldr r0, .L080A4098 @ =gPlayStatus
+    ldr r0, .L080A4098 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300709,7 +299709,7 @@ func_080A3E98: @ 0x080A3E98
     bl func_080A3404
     b .L080A40E4
     .align 2, 0
-.L080A4098: .4byte gPlayStatus
+.L080A4098: .4byte gPlaySt
 .L080A409C: .4byte 0x0000038B
 .L080A40A0:
     adds r2, r5, #0
@@ -300910,7 +299910,7 @@ func_080A4108: @ 0x080A4108
     adds r1, r7, #0
     adds r1, #0x42
     strh r0, [r1]
-    ldr r0, .L080A4240 @ =gPlayStatus
+    ldr r0, .L080A4240 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -300924,7 +299924,7 @@ func_080A4108: @ 0x080A4108
     bl Proc_Goto
     b .L080A43CC
     .align 2, 0
-.L080A4240: .4byte gPlayStatus
+.L080A4240: .4byte gPlaySt
 .L080A4244: .4byte 0x0000038B
 .L080A4248:
     adds r0, r7, #0
@@ -301371,7 +300371,7 @@ func_080A45A0: @ 0x080A45A0
     adds r1, #0x2e
     movs r0, #0xa
     strb r0, [r1]
-    ldr r0, .L080A45E4 @ =gKeys
+    ldr r0, .L080A45E4 @ =gpKeySt
     ldr r3, [r0]
     ldrh r1, [r3, #6]
     movs r6, #0x40
@@ -301397,7 +300397,7 @@ func_080A45A0: @ 0x080A45A0
     strb r0, [r2]
     b .L080A4612
     .align 2, 0
-.L080A45E4: .4byte gKeys
+.L080A45E4: .4byte gpKeySt
 .L080A45E8:
     movs r6, #0x80
     adds r0, r6, #0
@@ -301428,7 +300428,7 @@ func_080A45A0: @ 0x080A45A0
     ldrb r0, [r5]
     cmp r7, r0
     beq .L080A4630
-    ldr r0, .L080A4680 @ =gPlayStatus
+    ldr r0, .L080A4680 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -301437,7 +300437,7 @@ func_080A45A0: @ 0x080A45A0
     ldr r0, .L080A4684 @ =0x00000386
     bl m4aSongNumStart
 .L080A4630:
-    ldr r0, .L080A4688 @ =gKeys
+    ldr r0, .L080A4688 @ =gpKeySt
     ldr r0, [r0]
     ldrh r2, [r0, #8]
     movs r1, #1
@@ -301453,7 +300453,7 @@ func_080A45A0: @ 0x080A45A0
     adds r5, #0x35
     movs r6, #0
     strb r0, [r5]
-    ldr r0, .L080A4680 @ =gPlayStatus
+    ldr r0, .L080A4680 @ =gPlaySt
     adds r7, r0, #0
     adds r7, #0x41
     ldrb r1, [r7]
@@ -301477,9 +300477,9 @@ func_080A45A0: @ 0x080A45A0
     beq .L080A46E8
     b .L080A4702
     .align 2, 0
-.L080A4680: .4byte gPlayStatus
+.L080A4680: .4byte gPlaySt
 .L080A4684: .4byte 0x00000386
-.L080A4688: .4byte gKeys
+.L080A4688: .4byte gpKeySt
 .L080A468C: .4byte 0x0000038A
 .L080A4690:
     cmp r0, #0x20
@@ -301556,7 +300556,7 @@ func_080A45A0: @ 0x080A45A0
     adds r0, r4, #0
     movs r1, #9
     bl Proc_Goto
-    ldr r0, .L080A4744 @ =gPlayStatus
+    ldr r0, .L080A4744 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -301570,7 +300570,7 @@ func_080A45A0: @ 0x080A45A0
     pop {r0}
     bx r0
     .align 2, 0
-.L080A4744: .4byte gPlayStatus
+.L080A4744: .4byte gPlaySt
 .L080A4748: .4byte 0x0000038B
     func_end func_080A45A0
 
@@ -301617,7 +300617,7 @@ func_080A474C: @ 0x080A474C
     ldrb r0, [r0]
     cmp r4, r0
     beq .L080A47AC
-    ldr r0, .L080A47A4 @ =gPlayStatus
+    ldr r0, .L080A47A4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -301627,7 +300627,7 @@ func_080A474C: @ 0x080A474C
     bl m4aSongNumStart
     b .L080A4762
     .align 2, 0
-.L080A47A4: .4byte gPlayStatus
+.L080A47A4: .4byte gPlaySt
 .L080A47A8: .4byte 0x00000386
 .L080A47AC:
     movs r0, #0
@@ -301648,7 +300648,7 @@ func_080A47B4: @ 0x080A47B4
     ldr r1, [r4, #0x30]
     ldr r2, [r4, #0x58]
     bl func_08081A94
-    ldr r0, .L080A47E8 @ =gPlayStatus
+    ldr r0, .L080A47E8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -301663,21 +300663,21 @@ func_080A47B4: @ 0x080A47B4
     bx r0
     .align 2, 0
 .L080A47E4: .4byte 0x06013800
-.L080A47E8: .4byte gPlayStatus
+.L080A47E8: .4byte gPlaySt
     func_end func_080A47B4
 
     thumb_func_start func_080A47EC
 func_080A47EC: @ 0x080A47EC
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L080A4820 @ =gKeys
+    ldr r0, .L080A4820 @ =gpKeySt
     ldr r1, [r0]
     ldr r0, .L080A4824 @ =0x00000103
     ldrh r1, [r1, #8]
     ands r0, r1
     cmp r0, #0
     beq .L080A481A
-    ldr r0, .L080A4828 @ =gPlayStatus
+    ldr r0, .L080A4828 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -301694,9 +300694,9 @@ func_080A47EC: @ 0x080A47EC
     pop {r0}
     bx r0
     .align 2, 0
-.L080A4820: .4byte gKeys
+.L080A4820: .4byte gpKeySt
 .L080A4824: .4byte 0x00000103
-.L080A4828: .4byte gPlayStatus
+.L080A4828: .4byte gPlaySt
 .L080A482C: .4byte 0x00000391
     func_end func_080A47EC
 
@@ -301732,7 +300732,7 @@ func_080A4850: @ 0x080A4850
     ldrb r1, [r3]
     cmp r1, #0
     bne .L080A4896
-    ldr r0, .L080A4880 @ =gKeys
+    ldr r0, .L080A4880 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #0x40
@@ -301745,7 +300745,7 @@ func_080A4850: @ 0x080A4850
     bl func_080A474C
     b .L080A48EE
     .align 2, 0
-.L080A4880: .4byte gKeys
+.L080A4880: .4byte gpKeySt
 .L080A4884:
     movs r0, #0x80
     ands r0, r1
@@ -301756,7 +300756,7 @@ func_080A4850: @ 0x080A4850
     bl func_080A474C
     b .L080A48EE
 .L080A4896:
-    ldr r0, .L080A48C0 @ =gKeys
+    ldr r0, .L080A48C0 @ =gpKeySt
     ldr r0, [r0]
     ldrh r2, [r0, #8]
     movs r0, #0x20
@@ -301767,7 +300767,7 @@ func_080A4850: @ 0x080A4850
     beq .L080A48EE
     movs r0, #1
     strb r0, [r3]
-    ldr r0, .L080A48C4 @ =gPlayStatus
+    ldr r0, .L080A48C4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -301777,8 +300777,8 @@ func_080A4850: @ 0x080A4850
     bl m4aSongNumStart
     b .L080A48EE
     .align 2, 0
-.L080A48C0: .4byte gKeys
-.L080A48C4: .4byte gPlayStatus
+.L080A48C0: .4byte gpKeySt
+.L080A48C4: .4byte gPlaySt
 .L080A48C8: .4byte 0x00000387
 .L080A48CC:
     movs r0, #0x10
@@ -301789,7 +300789,7 @@ func_080A4850: @ 0x080A4850
     beq .L080A48EE
     movs r0, #2
     strb r0, [r3]
-    ldr r0, .L080A4930 @ =gPlayStatus
+    ldr r0, .L080A4930 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -301798,7 +300798,7 @@ func_080A4850: @ 0x080A4850
     ldr r0, .L080A4934 @ =0x00000387
     bl m4aSongNumStart
 .L080A48EE:
-    ldr r0, .L080A4938 @ =gKeys
+    ldr r0, .L080A4938 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r3, #1
@@ -301831,9 +300831,9 @@ func_080A4850: @ 0x080A4850
     beq .L080A4966
     b .L080A4990
     .align 2, 0
-.L080A4930: .4byte gPlayStatus
+.L080A4930: .4byte gPlaySt
 .L080A4934: .4byte 0x00000387
-.L080A4938: .4byte gKeys
+.L080A4938: .4byte gpKeySt
 .L080A493C:
     movs r2, #0xed
     lsls r2, r2, #3
@@ -301863,7 +300863,7 @@ func_080A4850: @ 0x080A4850
     adds r0, r4, #0
     movs r1, #0xe
     bl Proc_Goto
-    ldr r0, .L080A4988 @ =gPlayStatus
+    ldr r0, .L080A4988 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -301873,7 +300873,7 @@ func_080A4850: @ 0x080A4850
     bl m4aSongNumStart
     b .L080A49FE
     .align 2, 0
-.L080A4988: .4byte gPlayStatus
+.L080A4988: .4byte gPlaySt
 .L080A498C: .4byte 0x0000038A
 .L080A4990:
     adds r0, r4, #0
@@ -301894,7 +300894,7 @@ func_080A4850: @ 0x080A4850
     ands r0, r1
     cmp r0, #0
     beq .L080A49FE
-    ldr r0, .L080A49E0 @ =gPlayStatus
+    ldr r0, .L080A49E0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -301915,7 +300915,7 @@ func_080A4850: @ 0x080A4850
     bl func_080A3404
     b .L080A49FE
     .align 2, 0
-.L080A49E0: .4byte gPlayStatus
+.L080A49E0: .4byte gPlaySt
 .L080A49E4: .4byte 0x0000038B
 .L080A49E8:
     ldr r0, .L080A4A04 @ =0x084130A4
@@ -302011,7 +301011,7 @@ func_080A4A24: @ 0x080A4A24
     cmp r0, #0
     beq .L080A4AAE
     movs r0, #3
-    bl func_080A1258
+    bl ReadSuspendSave
     movs r0, #4
     bl SetNextGameAction
     b .L080A4AD6
@@ -302416,8 +301416,8 @@ func_080A4DA8: @ 0x080A4DA8
     bx r0
     func_end func_080A4DA8
 
-    thumb_func_start func_080A4DB4
-func_080A4DB4: @ 0x080A4DB4
+    thumb_func_start StartMainMenu
+StartMainMenu: @ 0x080A4DB4
     push {lr}
     adds r1, r0, #0
     ldr r0, .L080A4DE4 @ =0x08CE3C54
@@ -302430,7 +301430,7 @@ func_080A4DB4: @ 0x080A4DB4
     strh r1, [r3]
     adds r0, #0x35
     strb r2, [r0]
-    ldr r2, .L080A4DE8 @ =gPlayStatus
+    ldr r2, .L080A4DE8 @ =gPlaySt
     adds r2, #0x40
     movs r0, #0x61
     rsbs r0, r0, #0
@@ -302443,8 +301443,8 @@ func_080A4DB4: @ 0x080A4DB4
     bx r0
     .align 2, 0
 .L080A4DE4: .4byte 0x08CE3C54
-.L080A4DE8: .4byte gPlayStatus
-    func_end func_080A4DB4
+.L080A4DE8: .4byte gPlaySt
+    func_end StartMainMenu
 
     thumb_func_start func_080A4DEC
 func_080A4DEC: @ 0x080A4DEC
@@ -302748,7 +301748,7 @@ func_080A503C: @ 0x080A503C
     movs r0, #0x40
     movs r1, #0x30
     bl func_08081A94
-    ldr r0, .L080A5070 @ =gPlayStatus
+    ldr r0, .L080A5070 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -302759,7 +301759,7 @@ func_080A503C: @ 0x080A503C
     b .L080A5080
     .align 2, 0
 .L080A506C: .4byte 0x00000765
-.L080A5070: .4byte gPlayStatus
+.L080A5070: .4byte gPlaySt
 .L080A5074: .4byte 0x0000037B
 .L080A5078:
     adds r0, r1, #0
@@ -302784,7 +301784,7 @@ func_080A5084: @ 0x080A5084
     movs r0, #0x40
     movs r1, #0x30
     bl func_08081A94
-    ldr r0, .L080A50B8 @ =gPlayStatus
+    ldr r0, .L080A50B8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -302795,7 +301795,7 @@ func_080A5084: @ 0x080A5084
     b .L080A50C8
     .align 2, 0
 .L080A50B4: .4byte 0x00000766
-.L080A50B8: .4byte gPlayStatus
+.L080A50B8: .4byte gPlaySt
 .L080A50BC: .4byte 0x0000037B
 .L080A50C0:
     adds r0, r1, #0
@@ -302817,7 +301817,7 @@ func_080A50CC: @ 0x080A50CC
     ldrsh r0, [r1, r3]
     cmp r0, #0x1e
     ble .L080A50FC
-    ldr r0, .L080A50F8 @ =gKeys
+    ldr r0, .L080A50F8 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xb
     ldrh r1, [r1, #8]
@@ -302829,7 +301829,7 @@ func_080A50CC: @ 0x080A50CC
     bl Proc_Break
     b .L080A5100
     .align 2, 0
-.L080A50F8: .4byte gKeys
+.L080A50F8: .4byte gpKeySt
 .L080A50FC:
     adds r0, r2, #1
     strh r0, [r1]
@@ -304670,7 +303670,7 @@ func_080A5F18: @ 0x080A5F18
     lsls r1, r1, #0x18
     cmp r1, #0
     beq .L080A5F7C
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
     ldr r0, .L080A5F6C @ =0x02000044
     bl SetTextFont
@@ -304690,7 +303690,7 @@ func_080A5F18: @ 0x080A5F18
     movs r1, #0x28
     bl Text_SetCursor
     ldr r0, .L080A5F74 @ =0x00001265
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -304935,7 +303935,7 @@ func_080A6114: @ 0x080A6114
     lsls r6, r1, #0x18
 .L080A6128:
     adds r0, r4, #0
-    bl func_080A09A0
+    bl IsSaveValid
     lsls r0, r0, #0x18
     cmp r0, r6
     beq .L080A614E
@@ -304962,7 +303962,7 @@ func_080A6114: @ 0x080A6114
     lsls r6, r1, #0x18
 .L080A6156:
     adds r0, r4, #0
-    bl func_080A09A0
+    bl IsSaveValid
     lsls r0, r0, #0x18
     cmp r0, r6
     beq .L080A614E
@@ -305295,14 +304295,14 @@ func_080A6398: @ 0x080A6398
     cmp r4, #2
     bhi .L080A645C
     adds r0, r4, #0
-    bl func_080A09A0
+    bl IsSaveValid
     lsls r0, r0, #0x18
     asrs r2, r0, #0x18
     cmp r2, #0
     beq .L080A6428
     adds r0, r4, #0
     mov r1, sp
-    bl func_080A09B4
+    bl ReadGameSavePlaySt
     mov r0, sp
     bl func_080824A4
     adds r1, r5, #0
@@ -305388,7 +304388,7 @@ func_080A6398: @ 0x080A6398
     cmp r1, r0
     bne .L080A6492
     movs r0, #3
-    bl func_080A1384
+    bl IsValidSuspendSave
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080A648E
@@ -305729,7 +304729,7 @@ func_080A66D8: @ 0x080A66D8
     cmp r0, #0
     bne .L080A66F4
     ldr r0, .L080A66FC @ =0x0000078F
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_080327C4
@@ -305812,19 +304812,19 @@ func_080A6748: @ 0x080A6748
     movs r2, #0x20
     bl ApplyPaletteExt
     ldr r5, .L080A681C @ =0x02000084
-    bl func_0802E6E4
+    bl GetTacticianName
     adds r3, r0, #0
     adds r0, r5, #0
     movs r1, #0
     movs r2, #4
     bl Text_InsertDrawString
-    ldr r4, .L080A6820 @ =gPlayStatus
+    ldr r4, .L080A6820 @ =gPlaySt
     adds r7, r4, #0
     adds r7, #0x2b
     ldrb r1, [r7]
     lsrs r0, r1, #4
     bl func_080A6DB0
-    bl GetMsg
+    bl DecodeMsg
     adds r6, r0, #0
     movs r0, #0x40
     adds r1, r6, #0
@@ -305840,7 +304840,7 @@ func_080A6748: @ 0x080A6748
     lsls r0, r4, #0x1f
     lsrs r0, r0, #0x1f
     bl func_080A6DC0
-    bl GetMsg
+    bl DecodeMsg
     adds r6, r0, #0
     movs r0, #0x40
     adds r1, r6, #0
@@ -305872,7 +304872,7 @@ func_080A6748: @ 0x080A6748
 .L080A6814: .4byte 0x06011000
 .L080A6818: .4byte 0x08194714
 .L080A681C: .4byte 0x02000084
-.L080A6820: .4byte gPlayStatus
+.L080A6820: .4byte gPlaySt
 .L080A6824: .4byte 0x02022DBC
 .L080A6828: .4byte 0x081C3AC0
     func_end func_080A6748
@@ -305946,9 +304946,9 @@ func_080A68A4: @ 0x080A68A4
     strb r1, [r0]
     movs r0, #0xf2
     lsls r0, r0, #3
-    bl GetMsg
-    bl func_0802E6EC
-    ldr r1, .L080A68D8 @ =gPlayStatus
+    bl DecodeMsg
+    bl SetTacticianName
+    ldr r1, .L080A68D8 @ =gPlaySt
     adds r2, r1, #0
     adds r2, #0x2b
     movs r0, #0xf
@@ -305964,7 +304964,7 @@ func_080A68A4: @ 0x080A68A4
     pop {r0}
     bx r0
     .align 2, 0
-.L080A68D8: .4byte gPlayStatus
+.L080A68D8: .4byte gPlaySt
     func_end func_080A68A4
 
     thumb_func_start func_080A68DC
@@ -306246,7 +305246,7 @@ func_080A6B00: @ 0x080A6B00
 func_080A6B34: @ 0x080A6B34
     push {r4, lr}
     adds r4, r0, #0
-    bl func_0807FA04
+    bl EndMuralBackground
     bl func_0808E46C
     adds r0, r4, #0
     bl func_080A9DC0
@@ -306266,14 +305266,14 @@ func_080A6B4C: @ 0x080A6B4C
     asrs r0, r0, #0x18
     cmp r0, #0
     bne .L080A6C0A
-    ldr r0, .L080A6B90 @ =gKeys
+    ldr r0, .L080A6B90 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #1
     ands r0, r1
     cmp r0, #0
     beq .L080A6BCA
-    ldr r0, .L080A6B94 @ =gPlayStatus
+    ldr r0, .L080A6B94 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -306291,8 +305291,8 @@ func_080A6B4C: @ 0x080A6B4C
     beq .L080A6BA2
     b .L080A6CAE
     .align 2, 0
-.L080A6B90: .4byte gKeys
-.L080A6B94: .4byte gPlayStatus
+.L080A6B90: .4byte gpKeySt
+.L080A6B94: .4byte gPlaySt
 .L080A6B98: .4byte 0x0000038A
 .L080A6B9C:
     cmp r0, #2
@@ -306325,7 +305325,7 @@ func_080A6B4C: @ 0x080A6B4C
     adds r0, r4, #0
     movs r1, #1
     bl Proc_Goto
-    ldr r0, .L080A6BF0 @ =gPlayStatus
+    ldr r0, .L080A6BF0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -306335,7 +305335,7 @@ func_080A6B4C: @ 0x080A6B4C
     bl m4aSongNumStart
     b .L080A6CAE
     .align 2, 0
-.L080A6BF0: .4byte gPlayStatus
+.L080A6BF0: .4byte gPlaySt
 .L080A6BF4: .4byte 0x0000038A
 .L080A6BF8:
     movs r0, #0x80
@@ -306347,7 +305347,7 @@ func_080A6B4C: @ 0x080A6B4C
     bl func_080A6664
     b .L080A6CAE
 .L080A6C0A:
-    ldr r0, .L080A6CB4 @ =gKeys
+    ldr r0, .L080A6CB4 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x81
     lsls r0, r0, #1
@@ -306358,7 +305358,7 @@ func_080A6B4C: @ 0x080A6B4C
     adds r0, r4, #0
     bl func_080A66B0
 .L080A6C20:
-    ldr r2, .L080A6CB4 @ =gKeys
+    ldr r2, .L080A6CB4 @ =gpKeySt
     ldr r1, [r2]
     movs r0, #0x80
     ldrh r1, [r1, #6]
@@ -306423,7 +305423,7 @@ func_080A6B4C: @ 0x080A6B4C
     ldr r0, [r4, #0x2c]
     adds r1, r4, #0
     bl func_080A6700
-    ldr r0, .L080A6CB8 @ =gPlayStatus
+    ldr r0, .L080A6CB8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -306436,8 +305436,8 @@ func_080A6B4C: @ 0x080A6B4C
     pop {r0}
     bx r0
     .align 2, 0
-.L080A6CB4: .4byte gKeys
-.L080A6CB8: .4byte gPlayStatus
+.L080A6CB4: .4byte gpKeySt
+.L080A6CB8: .4byte gPlaySt
 .L080A6CBC: .4byte 0x00000385
     func_end func_080A6B4C
 
@@ -306455,7 +305455,7 @@ func_080A6CD0: @ 0x080A6CD0
     push {r4, lr}
     sub sp, #8
     adds r4, r0, #0
-    ldr r0, .L080A6CE8 @ =gPlayStatus
+    ldr r0, .L080A6CE8 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #1
     bne .L080A6CEC
@@ -306464,7 +305464,7 @@ func_080A6CD0: @ 0x080A6CD0
     bl Proc_Goto
     b .L080A6D52
     .align 2, 0
-.L080A6CE8: .4byte gPlayStatus
+.L080A6CE8: .4byte gPlaySt
 .L080A6CEC:
     movs r0, #0
     bl InitBgs
@@ -306534,7 +305534,7 @@ func_080A6D68: @ 0x080A6D68
     cmp r0, #0
     bne .L080A6D92
 .L080A6D7C:
-    ldr r1, .L080A6D98 @ =gPlayStatus
+    ldr r1, .L080A6D98 @ =gPlaySt
     adds r1, #0x2b
     movs r0, #2
     rsbs r0, r0, #0
@@ -306549,11 +305549,11 @@ func_080A6D68: @ 0x080A6D68
     pop {r0}
     bx r0
     .align 2, 0
-.L080A6D98: .4byte gPlayStatus
+.L080A6D98: .4byte gPlaySt
     func_end func_080A6D68
 
-    thumb_func_start func_080A6D9C
-func_080A6D9C: @ 0x080A6D9C
+    thumb_func_start StartTacticianInfo
+StartTacticianInfo: @ 0x080A6D9C
     push {lr}
     adds r1, r0, #0
     ldr r0, .L080A6DAC @ =0x08CE45E4
@@ -306562,7 +305562,7 @@ func_080A6D9C: @ 0x080A6D9C
     bx r0
     .align 2, 0
 .L080A6DAC: .4byte 0x08CE45E4
-    func_end func_080A6D9C
+    func_end StartTacticianInfo
 
     thumb_func_start func_080A6DB0
 func_080A6DB0: @ 0x080A6DB0
@@ -306685,7 +305685,7 @@ func_080A6E78: @ 0x080A6E78
     push {r4, r5, r6, r7, lr}
     sub sp, #4
     adds r4, r0, #0
-    ldr r0, .L080A6F2C @ =gPlayStatus
+    ldr r0, .L080A6F2C @ =gPlaySt
     adds r0, #0x2b
     ldrb r0, [r0]
     lsrs r0, r0, #4
@@ -306729,7 +305729,7 @@ func_080A6E78: @ 0x080A6E78
 .L080A6EDE:
     adds r0, r5, #0
     bl func_080A6DB0
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     strb r7, [r3, #3]
     lsls r4, r5, #5
@@ -306739,7 +305739,7 @@ func_080A6E78: @ 0x080A6E78
     bl Text_InsertDrawString
     adds r0, r5, #6
     bl func_080A6DB0
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     strb r7, [r3, #3]
     adds r0, r6, #0
@@ -306751,7 +305751,7 @@ func_080A6E78: @ 0x080A6E78
     cmp r5, #5
     ble .L080A6EDE
     movs r0, #0
-    bl GetMsg
+    bl DecodeMsg
     movs r0, #0
     bl SetTextFont
     add sp, #4
@@ -306759,7 +305759,7 @@ func_080A6E78: @ 0x080A6E78
     pop {r0}
     bx r0
     .align 2, 0
-.L080A6F2C: .4byte gPlayStatus
+.L080A6F2C: .4byte gPlaySt
 .L080A6F30: .4byte 0x0200006C
     func_end func_080A6E78
 
@@ -306788,7 +305788,7 @@ func_080A6F34: @ 0x080A6F34
     subs r4, #1
     cmp r4, #0
     bge .L080A6F4A
-    ldr r1, .L080A7004 @ =gKeys
+    ldr r1, .L080A7004 @ =gpKeySt
     ldr r2, [r1]
     ldrh r5, [r2, #8]
     movs r0, #1
@@ -306796,7 +305796,7 @@ func_080A6F34: @ 0x080A6F34
     mov r8, r1
     cmp r0, #0
     beq .L080A7020
-    ldr r5, .L080A7008 @ =gPlayStatus
+    ldr r5, .L080A7008 @ =gPlaySt
     adds r0, r5, #0
     adds r0, #0x41
     ldrb r0, [r0]
@@ -306837,7 +305837,7 @@ func_080A6F34: @ 0x080A6F34
     ldrb r5, [r5]
     lsrs r0, r5, #4
     bl func_080A6DB0
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
     adds r4, #0x18
     movs r0, #0x40
@@ -306857,8 +305857,8 @@ func_080A6F34: @ 0x080A6F34
     .align 2, 0
 .L080A6FFC: .4byte 0x0000F4C0
 .L080A7000: .4byte 0x08B90600
-.L080A7004: .4byte gKeys
-.L080A7008: .4byte gPlayStatus
+.L080A7004: .4byte gpKeySt
+.L080A7008: .4byte gPlaySt
 .L080A700C: .4byte 0x0000038A
 .L080A7010: .4byte 0x02022DBC
 .L080A7014: .4byte 0x081C3AC0
@@ -306869,7 +305869,7 @@ func_080A6F34: @ 0x080A6F34
     ands r0, r5
     cmp r0, #0
     beq .L080A704C
-    ldr r0, .L080A7044 @ =gPlayStatus
+    ldr r0, .L080A7044 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -306882,7 +305882,7 @@ func_080A6F34: @ 0x080A6F34
     bl Proc_Break
     b .L080A7144
     .align 2, 0
-.L080A7044: .4byte gPlayStatus
+.L080A7044: .4byte gPlaySt
 .L080A7048: .4byte 0x0000038B
 .L080A704C:
     movs r6, #0x40
@@ -307005,7 +306005,7 @@ func_080A6F34: @ 0x080A6F34
     adds r0, r4, #0
     movs r2, #2
     bl func_080A951C
-    ldr r0, .L080A7154 @ =gPlayStatus
+    ldr r0, .L080A7154 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -307022,7 +306022,7 @@ func_080A6F34: @ 0x080A6F34
     pop {r0}
     bx r0
     .align 2, 0
-.L080A7154: .4byte gPlayStatus
+.L080A7154: .4byte gPlaySt
 .L080A7158: .4byte 0x00000385
     func_end func_080A6F34
 
@@ -307068,7 +306068,7 @@ func_080A71A8: @ 0x080A71A8
     push {r4, r5, lr}
     sub sp, #4
     adds r4, r0, #0
-    ldr r0, .L080A7220 @ =gPlayStatus
+    ldr r0, .L080A7220 @ =gPlaySt
     adds r0, #0x2c
     ldrb r0, [r0]
     lsls r0, r0, #0x1f
@@ -307100,7 +306100,7 @@ func_080A71A8: @ 0x080A71A8
 .L080A71F2:
     adds r0, r4, #0
     bl func_080A6DC0
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     ldr r0, .L080A7228 @ =0x0200008C
     adds r1, r5, #0
@@ -307117,7 +306117,7 @@ func_080A71A8: @ 0x080A71A8
     pop {r0}
     bx r0
     .align 2, 0
-.L080A7220: .4byte gPlayStatus
+.L080A7220: .4byte gPlaySt
 .L080A7224: .4byte 0x0200006C
 .L080A7228: .4byte 0x0200008C
     func_end func_080A71A8
@@ -307146,7 +306146,7 @@ func_080A722C: @ 0x080A722C
     subs r4, #1
     cmp r4, #0
     bge .L080A7240
-    ldr r1, .L080A72E8 @ =gKeys
+    ldr r1, .L080A72E8 @ =gpKeySt
     ldr r3, [r1]
     ldrh r2, [r3, #8]
     movs r5, #1
@@ -307154,7 +306154,7 @@ func_080A722C: @ 0x080A722C
     ands r0, r2
     cmp r0, #0
     beq .L080A72FC
-    ldr r4, .L080A72EC @ =gPlayStatus
+    ldr r4, .L080A72EC @ =gPlaySt
     adds r0, r4, #0
     adds r0, #0x41
     ldrb r0, [r0]
@@ -307187,7 +306187,7 @@ func_080A722C: @ 0x080A722C
     lsls r0, r4, #0x1f
     lsrs r0, r0, #0x1f
     bl func_080A6DC0
-    bl GetMsg
+    bl DecodeMsg
     adds r4, r0, #0
     adds r5, #0x18
     movs r0, #0x40
@@ -307207,8 +306207,8 @@ func_080A722C: @ 0x080A722C
     .align 2, 0
 .L080A72E0: .4byte 0x0000F4C0
 .L080A72E4: .4byte 0x08B905F8
-.L080A72E8: .4byte gKeys
-.L080A72EC: .4byte gPlayStatus
+.L080A72E8: .4byte gpKeySt
+.L080A72EC: .4byte gPlaySt
 .L080A72F0: .4byte 0x0000038A
 .L080A72F4: .4byte 0x0200006C
 .L080A72F8: .4byte 0x06011000
@@ -307217,7 +306217,7 @@ func_080A722C: @ 0x080A722C
     ands r0, r2
     cmp r0, #0
     beq .L080A7328
-    ldr r0, .L080A7320 @ =gPlayStatus
+    ldr r0, .L080A7320 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -307230,7 +306230,7 @@ func_080A722C: @ 0x080A722C
     bl Proc_Break
     b .L080A7398
     .align 2, 0
-.L080A7320: .4byte gPlayStatus
+.L080A7320: .4byte gPlaySt
 .L080A7324: .4byte 0x0000038B
 .L080A7328:
     movs r4, #0x20
@@ -307284,7 +306284,7 @@ func_080A722C: @ 0x080A722C
     movs r1, #0x60
     movs r2, #3
     bl func_080A951C
-    ldr r0, .L080A73A4 @ =gPlayStatus
+    ldr r0, .L080A73A4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -307300,7 +306300,7 @@ func_080A722C: @ 0x080A722C
     pop {r0}
     bx r0
     .align 2, 0
-.L080A73A4: .4byte gPlayStatus
+.L080A73A4: .4byte gPlaySt
 .L080A73A8: .4byte 0x00000385
     func_end func_080A722C
 
@@ -307615,7 +306615,7 @@ func_080A75F0: @ 0x080A75F0
     ldr r1, .L080A7660 @ =0x08CE48C0
     mov r8, r1
     ldr r0, [r1, #0x24]
-    bl GetMsg
+    bl DecodeMsg
     ldr r4, .L080A7664 @ =0x020235FC
     movs r6, #0
     str r6, [sp]
@@ -307627,7 +306627,7 @@ func_080A75F0: @ 0x080A75F0
     bl func_08005AD4
     mov r1, r8
     ldr r0, [r1, #0x2c]
-    bl GetMsg
+    bl DecodeMsg
     movs r1, #0x80
     lsls r1, r1, #1
     adds r4, r4, r1
@@ -307679,7 +306679,7 @@ func_080A7668: @ 0x080A7668
     lsls r4, r4, #2
     adds r0, r4, r5
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     ldr r6, .L080A76F4 @ =0x0202367C
     movs r1, #0
     mov sb, r1
@@ -307693,7 +306693,7 @@ func_080A7668: @ 0x080A7668
     adds r5, #8
     adds r4, r4, r5
     ldr r0, [r4]
-    bl GetMsg
+    bl DecodeMsg
     adds r6, #0x8a
     mov r1, sb
     str r1, [sp]
@@ -307737,7 +306737,7 @@ func_080A76F8: @ 0x080A76F8
     adds r0, #8
     bl ClearText
     ldr r0, .L080A775C @ =0x000012BA
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     ldr r1, .L080A7760 @ =0x0202377E
     movs r2, #1
@@ -307794,7 +306794,7 @@ func_080A76F8: @ 0x080A76F8
     beq .L080A77AA
 .L080A7788:
     ldr r0, .L080A77B4 @ =0x000012BB
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     ldr r4, .L080A77B8 @ =0x020000C4
     ldr r1, .L080A77BC @ =0x020237FE
@@ -308579,7 +307579,7 @@ func_080A7C84: @ 0x080A7C84
     bge .L080A7E54
     adds r2, r7, #0
 .L080A7D7E:
-    ldr r1, .L080A7DF0 @ =gPlayStatus
+    ldr r1, .L080A7DF0 @ =gPlaySt
     movs r0, #0x40
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -308622,7 +307622,7 @@ func_080A7C84: @ 0x080A7C84
 .L080A7DE4: .4byte 0x0841625C
 .L080A7DE8: .4byte 0x08CE48F0
 .L080A7DEC: .4byte 0x08418DF0
-.L080A7DF0: .4byte gPlayStatus
+.L080A7DF0: .4byte gPlaySt
 .L080A7DF4:
     adds r1, r6, #0
     adds r1, #0x49
@@ -309069,7 +308069,7 @@ func_080A8150: @ 0x080A8150
 func_080A817C: @ 0x080A817C
     push {r4, r5, r6, r7, lr}
     adds r4, r0, #0
-    ldr r2, .L080A81BC @ =gKeys
+    ldr r2, .L080A81BC @ =gpKeySt
     ldr r1, [r2]
     movs r0, #0x40
     ldrh r1, [r1, #6]
@@ -309085,7 +308085,7 @@ func_080A817C: @ 0x080A817C
     ldrb r0, [r0]
     cmp r0, #1
     bne .L080A81C8
-    ldr r0, .L080A81C0 @ =gPlayStatus
+    ldr r0, .L080A81C0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -309099,8 +308099,8 @@ func_080A817C: @ 0x080A817C
     bl func_080A8150
     b .L080A840E
     .align 2, 0
-.L080A81BC: .4byte gKeys
-.L080A81C0: .4byte gPlayStatus
+.L080A81BC: .4byte gpKeySt
+.L080A81C0: .4byte gPlaySt
 .L080A81C4: .4byte 0x00000386
 .L080A81C8:
     ldr r1, [r2]
@@ -309159,7 +308159,7 @@ func_080A817C: @ 0x080A817C
     cmp r0, #0
     bne .L080A8250
 .L080A8232:
-    ldr r0, .L080A824C @ =gPlayStatus
+    ldr r0, .L080A824C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -309172,9 +308172,9 @@ func_080A817C: @ 0x080A817C
     bl m4aSongNumStart
     b .L080A840E
     .align 2, 0
-.L080A824C: .4byte gPlayStatus
+.L080A824C: .4byte gPlaySt
 .L080A8250:
-    ldr r0, .L080A826C @ =gPlayStatus
+    ldr r0, .L080A826C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -309188,7 +308188,7 @@ func_080A817C: @ 0x080A817C
     bl func_080A8150
     b .L080A840E
     .align 2, 0
-.L080A826C: .4byte gPlayStatus
+.L080A826C: .4byte gPlaySt
 .L080A8270: .4byte 0x00000386
 .L080A8274:
     ldr r1, [r2]
@@ -309215,7 +308215,7 @@ func_080A817C: @ 0x080A817C
     movs r0, #1
 .L080A82A2:
     bl func_080A8D98
-    ldr r0, .L080A82C0 @ =gPlayStatus
+    ldr r0, .L080A82C0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -309228,7 +308228,7 @@ func_080A817C: @ 0x080A817C
     bl func_080A8120
     b .L080A840E
     .align 2, 0
-.L080A82C0: .4byte gPlayStatus
+.L080A82C0: .4byte gPlaySt
 .L080A82C4: .4byte 0x00000387
 .L080A82C8:
     ldrh r1, [r1, #8]
@@ -309237,7 +308237,7 @@ func_080A817C: @ 0x080A817C
     cmp r0, #0
     beq .L080A8388
     str r7, [r4, #0x2c]
-    ldr r6, .L080A8348 @ =gPlayStatus
+    ldr r6, .L080A8348 @ =gPlaySt
     adds r0, r6, #0
     adds r0, #0x41
     ldrb r0, [r0]
@@ -309296,7 +308296,7 @@ func_080A817C: @ 0x080A817C
     strb r0, [r6, #0x14]
     b .L080A8382
     .align 2, 0
-.L080A8348: .4byte gPlayStatus
+.L080A8348: .4byte gPlaySt
 .L080A834C: .4byte 0x0000038A
 .L080A8350: .4byte 0x0201E8D4
 .L080A8354:
@@ -309338,7 +308338,7 @@ func_080A817C: @ 0x080A817C
     cmp r1, #0
     bne .L080A83C2
     str r1, [r4, #0x2c]
-    ldr r0, .L080A8414 @ =gPlayStatus
+    ldr r0, .L080A8414 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -309396,7 +308396,7 @@ func_080A817C: @ 0x080A817C
     pop {r0}
     bx r0
     .align 2, 0
-.L080A8414: .4byte gPlayStatus
+.L080A8414: .4byte gPlaySt
 .L080A8418: .4byte 0x0000038B
 .L080A841C: .4byte 0x000001FF
 .L080A8420: .4byte 0x0201E8D4
@@ -309708,8 +308708,8 @@ func_080A8664: @ 0x080A8664
 .L080A8678: .4byte 0x08CE4930
     func_end func_080A8664
 
-    thumb_func_start func_080A867C
-func_080A867C: @ 0x080A867C
+    thumb_func_start StartModeSelect
+StartModeSelect: @ 0x080A867C
     push {r4, lr}
     adds r4, r0, #0
     bl func_0809E9FC
@@ -309727,7 +308727,7 @@ func_080A867C: @ 0x080A867C
     bx r0
     .align 2, 0
 .L080A869C: .4byte 0x08CE4930
-    func_end func_080A867C
+    func_end StartModeSelect
 
     thumb_func_start func_080A86A0
 func_080A86A0: @ 0x080A86A0
@@ -311484,7 +310484,7 @@ func_080A9364: @ 0x080A9364
     lsls r4, r4, #2
     adds r2, r2, r4
     adds r2, r2, r1
-    ldr r1, .L080A9428 @ =gPlayStatus
+    ldr r1, .L080A9428 @ =gPlaySt
     adds r1, #0x41
     ldrb r1, [r1]
     lsls r1, r1, #0x1c
@@ -311567,7 +310567,7 @@ func_080A9364: @ 0x080A9364
     bx r0
     .align 2, 0
 .L080A9424: .4byte gPal
-.L080A9428: .4byte gPlayStatus
+.L080A9428: .4byte gPlaySt
 .L080A942C: .4byte 0x0840DD24
 .L080A9430: .4byte 0x08B905B0
     func_end func_080A9364
@@ -314700,7 +313700,7 @@ func_080AAAA8: @ 0x080AAAA8
     bl GetChapterInfo
     adds r1, r0, #0
     movs r2, #0
-    ldr r0, .L080AAB08 @ =gPlayStatus
+    ldr r0, .L080AAB08 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
     bne .L080AAAD8
@@ -314727,7 +313727,7 @@ func_080AAAA8: @ 0x080AAAA8
     b .L080AABAA
     .align 2, 0
 .L080AAB04: .4byte 0x08418E18
-.L080AAB08: .4byte gPlayStatus
+.L080AAB08: .4byte gPlaySt
 .L080AAB0C: .4byte 0x00001186
 .L080AAB10: .4byte 0x0000118B
 .L080AAB14:
@@ -314767,7 +313767,7 @@ func_080AAAA8: @ 0x080AAAA8
     bl GetChapterInfo
     adds r1, r0, #0
     movs r2, #0
-    ldr r0, .L080AABC4 @ =gPlayStatus
+    ldr r0, .L080AABC4 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
     bne .L080AAB76
@@ -314807,7 +313807,7 @@ func_080AAAA8: @ 0x080AAAA8
     bx r1
     .align 2, 0
 .L080AABC0: .4byte 0x00001185
-.L080AABC4: .4byte gPlayStatus
+.L080AABC4: .4byte gPlaySt
 .L080AABC8: .4byte 0x00001188
 .L080AABCC: .4byte 0x0000118B
     func_end func_080AAAA8
@@ -314885,7 +313885,7 @@ func_080AAC2C: @ 0x080AAC2C
 func_080AAC48: @ 0x080AAC48
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L080AAC70 @ =gPlayStatus
+    ldr r0, .L080AAC70 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -314903,14 +313903,14 @@ func_080AAC48: @ 0x080AAC48
     pop {r0}
     bx r0
     .align 2, 0
-.L080AAC70: .4byte gPlayStatus
+.L080AAC70: .4byte gPlaySt
     func_end func_080AAC48
 
     thumb_func_start func_080AAC74
 func_080AAC74: @ 0x080AAC74
     push {lr}
     adds r2, r0, #0
-    ldr r0, .L080AACA8 @ =gKeys
+    ldr r0, .L080AACA8 @ =gpKeySt
     ldr r1, [r0]
     ldr r0, .L080AACAC @ =0x0000030B
     ldrh r1, [r1, #8]
@@ -314919,7 +313919,7 @@ func_080AAC74: @ 0x080AAC74
     beq .L080AACA2
     adds r0, r2, #0
     bl Proc_Break
-    ldr r0, .L080AACB0 @ =gPlayStatus
+    ldr r0, .L080AACB0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -314933,9 +313933,9 @@ func_080AAC74: @ 0x080AAC74
     pop {r0}
     bx r0
     .align 2, 0
-.L080AACA8: .4byte gKeys
+.L080AACA8: .4byte gpKeySt
 .L080AACAC: .4byte 0x0000030B
-.L080AACB0: .4byte gPlayStatus
+.L080AACB0: .4byte gPlaySt
 .L080AACB4: .4byte 0x00000391
     func_end func_080AAC74
 
@@ -316916,7 +315916,7 @@ func_080ABB60: @ 0x080ABB60
     asrs r0, r0, #0x18
     cmp r0, #0
     bne .L080ABC54
-    ldr r0, .L080ABC3C @ =gKeys
+    ldr r0, .L080ABC3C @ =gpKeySt
     ldr r1, [r0]
     ldrh r2, [r1, #6]
     adds r3, r4, #0
@@ -317021,7 +316021,7 @@ func_080ABB60: @ 0x080ABB60
     bl func_080AB654
     b .L080ABC46
     .align 2, 0
-.L080ABC3C: .4byte gKeys
+.L080ABC3C: .4byte gpKeySt
 .L080ABC40:
     adds r0, r4, #0
     bl func_080AB5DC
@@ -317065,7 +316065,7 @@ func_080ABB60: @ 0x080ABB60
     .align 2, 0
 .L080ABC90: .4byte 0x0000FFFC
 .L080ABC94:
-    ldr r0, .L080ABCB0 @ =gKeys
+    ldr r0, .L080ABCB0 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #0x80
@@ -317078,7 +316078,7 @@ func_080ABB60: @ 0x080ABB60
     bl Proc_Goto
     b .L080ABD44
     .align 2, 0
-.L080ABCB0: .4byte gKeys
+.L080ABCB0: .4byte gpKeySt
 .L080ABCB4:
     movs r0, #2
     ands r0, r1
@@ -317113,7 +316113,7 @@ func_080ABB60: @ 0x080ABB60
     bl func_080AC87C
     b .L080ABD44
 .L080ABCFC:
-    ldr r0, .L080ABD14 @ =gPlayStatus
+    ldr r0, .L080ABD14 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -317124,7 +316124,7 @@ func_080ABB60: @ 0x080ABB60
     bl m4aSongNumStart
     b .L080ABD44
     .align 2, 0
-.L080ABD14: .4byte gPlayStatus
+.L080ABD14: .4byte gPlaySt
 .L080ABD18:
     movs r0, #4
     ands r0, r1
@@ -317482,7 +316482,7 @@ func_080ABFC8: @ 0x080ABFC8
 func_080AC000: @ 0x080AC000
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L080AC020 @ =gKeys
+    ldr r0, .L080AC020 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #5
@@ -317495,7 +316495,7 @@ func_080AC000: @ 0x080AC000
     bl func_080AC87C
     b .L080AC068
     .align 2, 0
-.L080AC020: .4byte gKeys
+.L080AC020: .4byte gpKeySt
 .L080AC024:
     movs r0, #0x20
     ands r0, r1
@@ -317708,7 +316708,7 @@ func_080AC174: @ 0x080AC174
     .align 2, 0
 .L080AC1B0: .4byte 0x08CE4D28
 .L080AC1B4:
-    ldr r0, .L080AC1CC @ =gKeys
+    ldr r0, .L080AC1CC @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #0x10
@@ -317719,7 +316719,7 @@ func_080AC174: @ 0x080AC174
     bl func_080AB1C8
     b .L080AC216
     .align 2, 0
-.L080AC1CC: .4byte gKeys
+.L080AC1CC: .4byte gpKeySt
 .L080AC1D0:
     movs r0, #0x20
     ands r0, r1
@@ -317945,7 +316945,7 @@ func_080AC384: @ 0x080AC384
     adds r1, r1, r0
     ldr r0, [r1]
 .L080AC3A6:
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
     ldr r4, .L080AC3F4 @ =0x0201EA50
     adds r0, r4, #0
@@ -318870,7 +317870,7 @@ func_080ACABC: @ 0x080ACABC
     thumb_func_start func_080ACAF8
 func_080ACAF8: @ 0x080ACAF8
     push {r4, r5, lr}
-    ldr r5, .L080ACB60 @ =gPlayStatus
+    ldr r5, .L080ACB60 @ =gPlaySt
     movs r2, #0x40
     adds r0, r2, #0
     ldrb r1, [r5, #0x14]
@@ -318918,7 +317918,7 @@ func_080ACAF8: @ 0x080ACAF8
     pop {r0}
     bx r0
     .align 2, 0
-.L080ACB60: .4byte gPlayStatus
+.L080ACB60: .4byte gPlaySt
     func_end func_080ACAF8
 
     thumb_func_start func_080ACB64
@@ -319038,7 +318038,7 @@ func_080ACBC8: @ 0x080ACBC8
     beq .L080ACC5A
     b .L080ACC98
 .L080ACC4E:
-    ldr r0, .L080ACC84 @ =gPlayStatus
+    ldr r0, .L080ACC84 @ =gPlaySt
     adds r0, #0x2b
     ldrb r0, [r0]
     ands r1, r0
@@ -319066,7 +318066,7 @@ func_080ACBC8: @ 0x080ACBC8
     strb r6, [r0, #1]
     b .L080ACC92
     .align 2, 0
-.L080ACC84: .4byte gPlayStatus
+.L080ACC84: .4byte gPlaySt
 .L080ACC88: .4byte 0x08CE577C
 .L080ACC8C:
     ldr r0, [r5]
@@ -319309,7 +318309,7 @@ func_080ACE60: @ 0x080ACE60
     adds r6, r0, #0
     movs r4, #0
     movs r7, #0
-    ldr r0, .L080ACEC4 @ =gPlayStatus
+    ldr r0, .L080ACEC4 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #2
     bne .L080ACE76
@@ -319353,7 +318353,7 @@ func_080ACE60: @ 0x080ACE60
     bl func_08024DEC
     b .L080ACEEA
     .align 2, 0
-.L080ACEC4: .4byte gPlayStatus
+.L080ACEC4: .4byte gPlaySt
 .L080ACEC8: .4byte 0x08CE5788
 .L080ACECC: .4byte 0x00010004
 .L080ACED0:
@@ -319700,7 +318700,7 @@ func_080AD1AC: @ 0x080AD1AC
     beq .L080AD1CC
     b .L080AD3B6
 .L080AD1CC:
-    ldr r0, .L080AD208 @ =gKeys
+    ldr r0, .L080AD208 @ =gpKeySt
     ldr r2, [r0]
     ldrh r1, [r2, #8]
     movs r7, #1
@@ -319728,7 +318728,7 @@ func_080AD1AC: @ 0x080AD1AC
     bl func_080AACB8
     b .L080AD402
     .align 2, 0
-.L080AD208: .4byte gKeys
+.L080AD208: .4byte gpKeySt
 .L080AD20C: .4byte 0x08CE577C
 .L080AD210: .4byte 0x00000763
 .L080AD214:
@@ -319759,7 +318759,7 @@ func_080AD1AC: @ 0x080AD1AC
     adds r0, r5, #0
     movs r1, #1
     bl Proc_Goto
-    ldr r0, .L080AD260 @ =gPlayStatus
+    ldr r0, .L080AD260 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -319771,7 +318771,7 @@ func_080AD1AC: @ 0x080AD1AC
     bl m4aSongNumStart
     b .L080AD402
     .align 2, 0
-.L080AD260: .4byte gPlayStatus
+.L080AD260: .4byte gPlaySt
 .L080AD264: .4byte 0x0000038A
 .L080AD268:
     ldrb r1, [r1, #2]
@@ -319800,7 +318800,7 @@ func_080AD1AC: @ 0x080AD1AC
 .L080AD29C: .4byte 0x00000BB8
 .L080AD2A0: .4byte 0x00001388
 .L080AD2A4:
-    ldr r0, .L080AD2BC @ =gPlayStatus
+    ldr r0, .L080AD2BC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -319813,7 +318813,7 @@ func_080AD1AC: @ 0x080AD1AC
     bl m4aSongNumStart
     b .L080AD402
     .align 2, 0
-.L080AD2BC: .4byte gPlayStatus
+.L080AD2BC: .4byte gPlaySt
 .L080AD2C0:
     movs r0, #2
     ands r0, r1
@@ -319821,7 +318821,7 @@ func_080AD1AC: @ 0x080AD1AC
     beq .L080AD2EC
     adds r0, r5, #0
     bl Proc_Break
-    ldr r0, .L080AD2E4 @ =gPlayStatus
+    ldr r0, .L080AD2E4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -319833,7 +318833,7 @@ func_080AD1AC: @ 0x080AD1AC
     bl m4aSongNumStart
     b .L080AD402
     .align 2, 0
-.L080AD2E4: .4byte gPlayStatus
+.L080AD2E4: .4byte gPlaySt
 .L080AD2E8: .4byte 0x0000038B
 .L080AD2EC:
     ldrh r1, [r2, #6]
@@ -319859,7 +318859,7 @@ func_080AD1AC: @ 0x080AD1AC
     ldr r0, [r0]
     cmp r4, r0
     bge .L080AD402
-    ldr r0, .L080AD350 @ =gPlayStatus
+    ldr r0, .L080AD350 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -319886,7 +318886,7 @@ func_080AD1AC: @ 0x080AD1AC
     b .L080AD3A8
     .align 2, 0
 .L080AD34C: .4byte 0x08CE5780
-.L080AD350: .4byte gPlayStatus
+.L080AD350: .4byte gPlaySt
 .L080AD354: .4byte 0x00000386
 .L080AD358:
     adds r0, r5, #0
@@ -320188,7 +319188,7 @@ func_080AD49C: @ 0x080AD49C
     adds r2, r7, #0
     bl func_08005588
     ldr r0, .L080AD5BC @ =0x0000125A
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r6, #0
     bl Text_DrawString
@@ -320213,7 +319213,7 @@ func_080AD49C: @ 0x080AD49C
     bl func_08005588
     ldr r0, [r4]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r6, #0
     bl Text_DrawString
@@ -320349,7 +319349,7 @@ func_080AD6E4: @ 0x080AD6E4
     adds r6, r5, #0
     adds r6, #0x2a
     ldrb r4, [r6]
-    ldr r0, .L080AD714 @ =gKeys
+    ldr r0, .L080AD714 @ =gpKeySt
     ldr r2, [r0]
     ldrh r1, [r2, #8]
     movs r0, #1
@@ -320366,7 +319366,7 @@ func_080AD6E4: @ 0x080AD6E4
     bl Proc_Goto
     b .L080AD7A6
     .align 2, 0
-.L080AD714: .4byte gKeys
+.L080AD714: .4byte gpKeySt
 .L080AD718:
     movs r1, #1
     rsbs r1, r1, #0
@@ -320384,7 +319384,7 @@ func_080AD6E4: @ 0x080AD6E4
     beq .L080AD758
     adds r0, r5, #0
     bl Proc_Break
-    ldr r0, .L080AD750 @ =gPlayStatus
+    ldr r0, .L080AD750 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -320394,7 +319394,7 @@ func_080AD6E4: @ 0x080AD6E4
     bl m4aSongNumStart
     b .L080AD7A6
     .align 2, 0
-.L080AD750: .4byte gPlayStatus
+.L080AD750: .4byte gPlaySt
 .L080AD754: .4byte 0x0000038B
 .L080AD758:
     ldrh r1, [r2, #6]
@@ -320420,7 +319420,7 @@ func_080AD6E4: @ 0x080AD6E4
     ldrb r0, [r0]
     cmp r4, r0
     bge .L080AD7A6
-    ldr r0, .L080AD7AC @ =gPlayStatus
+    ldr r0, .L080AD7AC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -320442,7 +319442,7 @@ func_080AD6E4: @ 0x080AD6E4
     pop {r0}
     bx r0
     .align 2, 0
-.L080AD7AC: .4byte gPlayStatus
+.L080AD7AC: .4byte gPlaySt
 .L080AD7B0: .4byte 0x00000386
     func_end func_080AD6E4
 
@@ -320651,7 +319651,7 @@ func_080AD820: @ 0x080AD820
 .L080AD984: .4byte 0x000010B3
 .L080AD988: .4byte 0x00000282
 .L080AD98C:
-    ldr r0, .L080AD9A0 @ =gPlayStatus
+    ldr r0, .L080AD9A0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -320661,10 +319661,10 @@ func_080AD820: @ 0x080AD820
     bl m4aSongNumStart
     b .L080AD9BA
     .align 2, 0
-.L080AD9A0: .4byte gPlayStatus
+.L080AD9A0: .4byte gPlaySt
 .L080AD9A4: .4byte 0x0000037A
 .L080AD9A8:
-    ldr r0, .L080ADA48 @ =gPlayStatus
+    ldr r0, .L080ADA48 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -320741,7 +319741,7 @@ func_080AD820: @ 0x080AD820
     pop {r0}
     bx r0
     .align 2, 0
-.L080ADA48: .4byte gPlayStatus
+.L080ADA48: .4byte gPlaySt
 .L080ADA4C: .4byte gBg1Tm
 .L080ADA50: .4byte gDispIo
 .L080ADA54: .4byte 0x0000FFFC
@@ -320756,7 +319756,7 @@ func_080ADA58: @ 0x080ADA58
     str r0, [r2, #0x30]
     cmp r0, #0x1e
     ble .L080ADA80
-    ldr r0, .L080ADA7C @ =gKeys
+    ldr r0, .L080ADA7C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #3
     ldrh r1, [r1, #8]
@@ -320767,7 +319767,7 @@ func_080ADA58: @ 0x080ADA58
     bl Proc_Break
     b .L080ADA8C
     .align 2, 0
-.L080ADA7C: .4byte gKeys
+.L080ADA7C: .4byte gpKeySt
 .L080ADA80:
     ldr r0, [r2, #0x30]
     cmp r0, #0x78
@@ -320846,7 +319846,7 @@ GetOptionMenuLayoutId: @ 0x080ADB0C
     ldr r0, [r0]
     movs r1, #0x32
     ldrsh r2, [r0, r1]
-    ldr r1, .L080ADB34 @ =gPlayStatus
+    ldr r1, .L080ADB34 @ =gPlaySt
     movs r0, #0x40
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -320861,7 +319861,7 @@ GetOptionMenuLayoutId: @ 0x080ADB0C
     .align 2, 0
 .L080ADB2C: .4byte 0x020144F4
 .L080ADB30: .4byte 0x08CE583C
-.L080ADB34: .4byte gPlayStatus
+.L080ADB34: .4byte gPlaySt
     func_end GetOptionMenuLayoutId
 
     thumb_func_start func_080ADB38
@@ -321095,7 +320095,7 @@ func_080ADCC4: @ 0x080ADCC4
     adds r4, r4, r0
     adds r4, r4, r6
     ldrh r0, [r4, #4]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     ldr r0, [r5]
     adds r0, #0xa8
@@ -321148,7 +320148,7 @@ func_080ADD34: @ 0x080ADD34
     muls r0, r1, r0
     adds r0, r0, r6
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     mov r1, r8
     ldr r0, [r1]
@@ -321240,7 +320240,7 @@ func_080ADDB4: @ 0x080ADDB4
     movs r5, #2
 .L080ADE2E:
     ldrh r0, [r4, #6]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r7, #0
     adds r1, r6, #0
@@ -321422,7 +320422,7 @@ func_080ADFA0: @ 0x080ADFA0
     push {r5, r6, r7}
     mov sl, r0
     movs r5, #0
-    ldr r0, .L080AE1B0 @ =gPlayStatus
+    ldr r0, .L080AE1B0 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #1
     beq .L080ADFBE
@@ -321651,7 +320651,7 @@ func_080ADFA0: @ 0x080ADFA0
     pop {r0}
     bx r0
     .align 2, 0
-.L080AE1B0: .4byte gPlayStatus
+.L080AE1B0: .4byte gPlaySt
 .L080AE1B4: .4byte 0x08CE583C
 .L080AE1B8: .4byte 0x08CE5868
 .L080AE1BC: .4byte gDispIo
@@ -321762,7 +320762,7 @@ func_080AE27C: @ 0x080AE27C
     bl func_080ADB48
     lsls r0, r0, #0x18
     lsrs r3, r0, #0x18
-    ldr r0, .L080AE2E0 @ =gKeys
+    ldr r0, .L080AE2E0 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #6]
     movs r0, #0x30
@@ -321786,7 +320786,7 @@ func_080AE27C: @ 0x080AE27C
     .align 2, 0
 .L080AE2D8: .4byte 0x08CE583C
 .L080AE2DC: .4byte 0x08CE5868
-.L080AE2E0: .4byte gKeys
+.L080AE2E0: .4byte gpKeySt
 .L080AE2E4:
     ldr r2, .L080AE350 @ =0x08CE58D8
     adds r4, r3, #1
@@ -321823,7 +320823,7 @@ func_080AE27C: @ 0x080AE27C
     bl func_080ADDB4
     movs r0, #5
     bl EnableBgSync
-    ldr r0, .L080AE358 @ =gPlayStatus
+    ldr r0, .L080AE358 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -321841,7 +320841,7 @@ func_080AE27C: @ 0x080AE27C
     .align 2, 0
 .L080AE350: .4byte 0x08CE58D8
 .L080AE354: .4byte 0x08CE5B98
-.L080AE358: .4byte gPlayStatus
+.L080AE358: .4byte gPlaySt
 .L080AE35C: .4byte 0x00000387
     func_end func_080AE27C
 
@@ -321879,7 +320879,7 @@ func_080AE360: @ 0x080AE360
     .4byte .L080AE4A8 @ case 14
     .4byte .L080AE4B8 @ case 15
 .L080AE3BC:
-    ldr r0, .L080AE3D4 @ =gPlayStatus
+    ldr r0, .L080AE3D4 @ =gPlaySt
     adds r0, #0x42
     ldrb r0, [r0]
     lsls r0, r0, #0x1d
@@ -321892,7 +320892,7 @@ func_080AE360: @ 0x080AE360
     beq .L080AE3E2
     b .L080AE3F2
     .align 2, 0
-.L080AE3D4: .4byte gPlayStatus
+.L080AE3D4: .4byte gPlaySt
 .L080AE3D8:
     cmp r0, #2
     beq .L080AE3EE
@@ -321912,60 +320912,60 @@ func_080AE360: @ 0x080AE360
     movs r0, #3
     b .L080AE4C4
 .L080AE3F2:
-    ldr r0, .L080AE3FC @ =gPlayStatus
+    ldr r0, .L080AE3FC @ =gPlaySt
     adds r0, #0x40
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
     b .L080AE4C0
     .align 2, 0
-.L080AE3FC: .4byte gPlayStatus
+.L080AE3FC: .4byte gPlaySt
 .L080AE400:
-    ldr r0, .L080AE408 @ =gPlayStatus
+    ldr r0, .L080AE408 @ =gPlaySt
     adds r0, #0x40
     b .L080AE45C
     .align 2, 0
-.L080AE408: .4byte gPlayStatus
+.L080AE408: .4byte gPlaySt
 .L080AE40C:
-    ldr r0, .L080AE418 @ =gPlayStatus
+    ldr r0, .L080AE418 @ =gPlaySt
     adds r0, #0x40
     ldrb r0, [r0]
     lsls r0, r0, #0x1b
     b .L080AE4C0
     .align 2, 0
-.L080AE418: .4byte gPlayStatus
+.L080AE418: .4byte gPlaySt
 .L080AE41C:
-    ldr r0, .L080AE428 @ =gPlayStatus
+    ldr r0, .L080AE428 @ =gPlaySt
     adds r0, #0x40
     ldrb r0, [r0]
     lsls r0, r0, #0x19
     lsrs r2, r0, #0x1e
     b .L080AE4C2
     .align 2, 0
-.L080AE428: .4byte gPlayStatus
+.L080AE428: .4byte gPlaySt
 .L080AE42C:
-    ldr r0, .L080AE434 @ =gPlayStatus
+    ldr r0, .L080AE434 @ =gPlaySt
     adds r0, #0x40
     b .L080AE47C
     .align 2, 0
-.L080AE434: .4byte gPlayStatus
+.L080AE434: .4byte gPlaySt
 .L080AE438:
-    ldr r0, .L080AE444 @ =gPlayStatus
+    ldr r0, .L080AE444 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1f
     b .L080AE4C0
     .align 2, 0
-.L080AE444: .4byte gPlayStatus
+.L080AE444: .4byte gPlaySt
 .L080AE448:
-    ldr r0, .L080AE454 @ =gPlayStatus
+    ldr r0, .L080AE454 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
     b .L080AE4C0
     .align 2, 0
-.L080AE454: .4byte gPlayStatus
+.L080AE454: .4byte gPlaySt
 .L080AE458:
-    ldr r0, .L080AE464 @ =gPlayStatus
+    ldr r0, .L080AE464 @ =gPlaySt
     adds r0, #0x41
 .L080AE45C:
     ldrb r0, [r0]
@@ -321973,51 +320973,51 @@ func_080AE360: @ 0x080AE360
     lsrs r2, r0, #0x1e
     b .L080AE4C2
     .align 2, 0
-.L080AE464: .4byte gPlayStatus
+.L080AE464: .4byte gPlaySt
 .L080AE468:
-    ldr r0, .L080AE474 @ =gPlayStatus
+    ldr r0, .L080AE474 @ =gPlaySt
     adds r0, #0x42
     ldrb r0, [r0]
     lsls r0, r0, #0x1b
     lsrs r2, r0, #0x1e
     b .L080AE4C2
     .align 2, 0
-.L080AE474: .4byte gPlayStatus
+.L080AE474: .4byte gPlaySt
 .L080AE478:
-    ldr r0, .L080AE484 @ =gPlayStatus
+    ldr r0, .L080AE484 @ =gPlaySt
     adds r0, #0x41
 .L080AE47C:
     ldrb r0, [r0]
     lsrs r2, r0, #7
     b .L080AE4C2
     .align 2, 0
-.L080AE484: .4byte gPlayStatus
+.L080AE484: .4byte gPlaySt
 .L080AE488:
-    ldr r0, .L080AE494 @ =gPlayStatus
+    ldr r0, .L080AE494 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x19
     b .L080AE4C0
     .align 2, 0
-.L080AE494: .4byte gPlayStatus
+.L080AE494: .4byte gPlaySt
 .L080AE498:
-    ldr r0, .L080AE4A4 @ =gPlayStatus
+    ldr r0, .L080AE4A4 @ =gPlaySt
     adds r0, #0x40
     ldrb r0, [r0]
     lsls r0, r0, #0x1f
     b .L080AE4C0
     .align 2, 0
-.L080AE4A4: .4byte gPlayStatus
+.L080AE4A4: .4byte gPlaySt
 .L080AE4A8:
-    ldr r0, .L080AE4B4 @ =gPlayStatus
+    ldr r0, .L080AE4B4 @ =gPlaySt
     adds r0, #0x42
     ldrb r0, [r0]
     lsls r0, r0, #0x1f
     b .L080AE4C0
     .align 2, 0
-.L080AE4B4: .4byte gPlayStatus
+.L080AE4B4: .4byte gPlaySt
 .L080AE4B8:
-    ldr r0, .L080AE4C8 @ =gPlayStatus
+    ldr r0, .L080AE4C8 @ =gPlaySt
     adds r0, #0x42
     ldrb r0, [r0]
     lsls r0, r0, #0x1a
@@ -322028,7 +321028,7 @@ func_080AE360: @ 0x080AE360
 .L080AE4C4:
     bx lr
     .align 2, 0
-.L080AE4C8: .4byte gPlayStatus
+.L080AE4C8: .4byte gPlaySt
     func_end func_080AE360
 
     thumb_func_start func_080AE4CC
@@ -322080,7 +321080,7 @@ func_080AE4CC: @ 0x080AE4CC
     beq .L080AE57C
     b .L080AE590
 .L080AE540:
-    ldr r1, .L080AE550 @ =gPlayStatus
+    ldr r1, .L080AE550 @ =gPlaySt
     adds r1, #0x42
     movs r0, #7
     rsbs r0, r0, #0
@@ -322089,9 +321089,9 @@ func_080AE4CC: @ 0x080AE4CC
     strb r0, [r1]
     b .L080AE6C8
     .align 2, 0
-.L080AE550: .4byte gPlayStatus
+.L080AE550: .4byte gPlaySt
 .L080AE554:
-    ldr r1, .L080AE564 @ =gPlayStatus
+    ldr r1, .L080AE564 @ =gPlaySt
     adds r1, #0x42
     movs r0, #6
     ldrb r3, [r1]
@@ -322099,9 +321099,9 @@ func_080AE4CC: @ 0x080AE4CC
     strb r0, [r1]
     b .L080AE6C8
     .align 2, 0
-.L080AE564: .4byte gPlayStatus
+.L080AE564: .4byte gPlaySt
 .L080AE568:
-    ldr r0, .L080AE578 @ =gPlayStatus
+    ldr r0, .L080AE578 @ =gPlaySt
     adds r0, #0x42
     movs r1, #7
     rsbs r1, r1, #0
@@ -322110,9 +321110,9 @@ func_080AE4CC: @ 0x080AE4CC
     movs r2, #2
     b .L080AE664
     .align 2, 0
-.L080AE578: .4byte gPlayStatus
+.L080AE578: .4byte gPlaySt
 .L080AE57C:
-    ldr r0, .L080AE58C @ =gPlayStatus
+    ldr r0, .L080AE58C @ =gPlaySt
     adds r0, #0x42
     movs r1, #7
     rsbs r1, r1, #0
@@ -322121,9 +321121,9 @@ func_080AE4CC: @ 0x080AE4CC
     movs r2, #4
     b .L080AE664
     .align 2, 0
-.L080AE58C: .4byte gPlayStatus
+.L080AE58C: .4byte gPlaySt
 .L080AE590:
-    ldr r2, .L080AE5A4 @ =gPlayStatus
+    ldr r2, .L080AE5A4 @ =gPlaySt
     adds r2, #0x40
     movs r0, #1
     adds r1, r3, #0
@@ -322133,9 +321133,9 @@ func_080AE4CC: @ 0x080AE4CC
     rsbs r0, r0, #0
     b .L080AE6C0
     .align 2, 0
-.L080AE5A4: .4byte gPlayStatus
+.L080AE5A4: .4byte gPlaySt
 .L080AE5A8:
-    ldr r2, .L080AE5BC @ =gPlayStatus
+    ldr r2, .L080AE5BC @ =gPlaySt
     adds r2, #0x40
     movs r0, #3
     adds r1, r3, #0
@@ -322145,9 +321145,9 @@ func_080AE4CC: @ 0x080AE4CC
     rsbs r0, r0, #0
     b .L080AE6C0
     .align 2, 0
-.L080AE5BC: .4byte gPlayStatus
+.L080AE5BC: .4byte gPlaySt
 .L080AE5C0:
-    ldr r2, .L080AE5D4 @ =gPlayStatus
+    ldr r2, .L080AE5D4 @ =gPlaySt
     adds r2, #0x40
     movs r0, #1
     adds r1, r3, #0
@@ -322157,9 +321157,9 @@ func_080AE4CC: @ 0x080AE4CC
     rsbs r0, r0, #0
     b .L080AE6C0
     .align 2, 0
-.L080AE5D4: .4byte gPlayStatus
+.L080AE5D4: .4byte gPlaySt
 .L080AE5D8:
-    ldr r2, .L080AE5EC @ =gPlayStatus
+    ldr r2, .L080AE5EC @ =gPlaySt
     adds r2, #0x40
     movs r0, #3
     adds r1, r3, #0
@@ -322169,15 +321169,15 @@ func_080AE4CC: @ 0x080AE4CC
     rsbs r0, r0, #0
     b .L080AE6C0
     .align 2, 0
-.L080AE5EC: .4byte gPlayStatus
+.L080AE5EC: .4byte gPlaySt
 .L080AE5F0:
-    ldr r0, .L080AE5F8 @ =gPlayStatus
+    ldr r0, .L080AE5F8 @ =gPlaySt
     adds r0, #0x40
     b .L080AE65C
     .align 2, 0
-.L080AE5F8: .4byte gPlayStatus
+.L080AE5F8: .4byte gPlaySt
 .L080AE5FC:
-    ldr r2, .L080AE60C @ =gPlayStatus
+    ldr r2, .L080AE60C @ =gPlaySt
     adds r2, #0x41
     movs r0, #1
     adds r1, r3, #0
@@ -322186,9 +321186,9 @@ func_080AE4CC: @ 0x080AE4CC
     rsbs r0, r0, #0
     b .L080AE6C0
     .align 2, 0
-.L080AE60C: .4byte gPlayStatus
+.L080AE60C: .4byte gPlaySt
 .L080AE610:
-    ldr r2, .L080AE624 @ =gPlayStatus
+    ldr r2, .L080AE624 @ =gPlaySt
     adds r2, #0x41
     movs r0, #1
     adds r1, r3, #0
@@ -322198,9 +321198,9 @@ func_080AE4CC: @ 0x080AE4CC
     rsbs r0, r0, #0
     b .L080AE6C0
     .align 2, 0
-.L080AE624: .4byte gPlayStatus
+.L080AE624: .4byte gPlaySt
 .L080AE628:
-    ldr r2, .L080AE63C @ =gPlayStatus
+    ldr r2, .L080AE63C @ =gPlaySt
     adds r2, #0x41
     movs r0, #3
     adds r1, r3, #0
@@ -322210,9 +321210,9 @@ func_080AE4CC: @ 0x080AE4CC
     rsbs r0, r0, #0
     b .L080AE6C0
     .align 2, 0
-.L080AE63C: .4byte gPlayStatus
+.L080AE63C: .4byte gPlaySt
 .L080AE640:
-    ldr r2, .L080AE654 @ =gPlayStatus
+    ldr r2, .L080AE654 @ =gPlaySt
     adds r2, #0x42
     movs r0, #3
     adds r1, r3, #0
@@ -322222,9 +321222,9 @@ func_080AE4CC: @ 0x080AE4CC
     rsbs r0, r0, #0
     b .L080AE6C0
     .align 2, 0
-.L080AE654: .4byte gPlayStatus
+.L080AE654: .4byte gPlaySt
 .L080AE658:
-    ldr r0, .L080AE66C @ =gPlayStatus
+    ldr r0, .L080AE66C @ =gPlaySt
     adds r0, #0x41
 .L080AE65C:
     lsls r2, r3, #7
@@ -322236,9 +321236,9 @@ func_080AE4CC: @ 0x080AE4CC
     strb r1, [r0]
     b .L080AE6C8
     .align 2, 0
-.L080AE66C: .4byte gPlayStatus
+.L080AE66C: .4byte gPlaySt
 .L080AE670:
-    ldr r2, .L080AE684 @ =gPlayStatus
+    ldr r2, .L080AE684 @ =gPlaySt
     adds r2, #0x41
     movs r0, #1
     adds r1, r3, #0
@@ -322248,9 +321248,9 @@ func_080AE4CC: @ 0x080AE4CC
     rsbs r0, r0, #0
     b .L080AE6C0
     .align 2, 0
-.L080AE684: .4byte gPlayStatus
+.L080AE684: .4byte gPlaySt
 .L080AE688:
-    ldr r2, .L080AE698 @ =gPlayStatus
+    ldr r2, .L080AE698 @ =gPlaySt
     adds r2, #0x40
     movs r0, #1
     adds r1, r3, #0
@@ -322259,9 +321259,9 @@ func_080AE4CC: @ 0x080AE4CC
     rsbs r0, r0, #0
     b .L080AE6C0
     .align 2, 0
-.L080AE698: .4byte gPlayStatus
+.L080AE698: .4byte gPlaySt
 .L080AE69C:
-    ldr r2, .L080AE6AC @ =gPlayStatus
+    ldr r2, .L080AE6AC @ =gPlaySt
     adds r2, #0x42
     movs r0, #1
     adds r1, r3, #0
@@ -322270,9 +321270,9 @@ func_080AE4CC: @ 0x080AE4CC
     rsbs r0, r0, #0
     b .L080AE6C0
     .align 2, 0
-.L080AE6AC: .4byte gPlayStatus
+.L080AE6AC: .4byte gPlaySt
 .L080AE6B0:
-    ldr r2, .L080AE6CC @ =gPlayStatus
+    ldr r2, .L080AE6CC @ =gPlaySt
     adds r2, #0x42
     movs r0, #1
     adds r1, r3, #0
@@ -322288,7 +321288,7 @@ func_080AE4CC: @ 0x080AE4CC
 .L080AE6C8:
     bx lr
     .align 2, 0
-.L080AE6CC: .4byte gPlayStatus
+.L080AE6CC: .4byte gPlaySt
     func_end func_080AE4CC
 
     thumb_func_start func_080AE6D0
@@ -322386,14 +321386,14 @@ func_080AE754: @ 0x080AE754
     .4byte .L080AE998 @ case 5
     .4byte .L080AE998 @ case 6
 .L080AE794:
-    ldr r0, .L080AE7B8 @ =gKeys
+    ldr r0, .L080AE7B8 @ =gpKeySt
     ldr r2, [r0]
     ldrh r1, [r2, #8]
     movs r0, #2
     ands r0, r1
     cmp r0, #0
     beq .L080AE7C4
-    ldr r0, .L080AE7BC @ =gPlayStatus
+    ldr r0, .L080AE7BC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -322403,8 +321403,8 @@ func_080AE754: @ 0x080AE754
     bl m4aSongNumStart
     b .L080AE81A
     .align 2, 0
-.L080AE7B8: .4byte gKeys
-.L080AE7BC: .4byte gPlayStatus
+.L080AE7B8: .4byte gpKeySt
+.L080AE7BC: .4byte gPlaySt
 .L080AE7C0: .4byte 0x0000038B
 .L080AE7C4:
     movs r4, #1
@@ -322437,7 +321437,7 @@ func_080AE754: @ 0x080AE754
     beq .L080AE800
     b .L080AE9AC
 .L080AE800:
-    ldr r0, .L080AE82C @ =gPlayStatus
+    ldr r0, .L080AE82C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -322457,7 +321457,7 @@ func_080AE754: @ 0x080AE754
     .align 2, 0
 .L080AE824: .4byte 0x08CE5868
 .L080AE828: .4byte 0x08CE583C
-.L080AE82C: .4byte gPlayStatus
+.L080AE82C: .4byte gPlaySt
 .L080AE830: .4byte 0x0000038A
 .L080AE834:
     ldrh r1, [r2, #6]
@@ -322556,7 +321556,7 @@ func_080AE754: @ 0x080AE754
     bl Proc_Start
     movs r0, #5
     bl EnableBgSync
-    ldr r0, .L080AE910 @ =gPlayStatus
+    ldr r0, .L080AE910 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -322568,10 +321568,10 @@ func_080AE754: @ 0x080AE754
     .align 2, 0
 .L080AE908: .4byte 0x08CE583C
 .L080AE90C: .4byte 0x08CE5B98
-.L080AE910: .4byte gPlayStatus
+.L080AE910: .4byte gPlaySt
 .L080AE914: .4byte 0x00000386
 .L080AE918:
-    ldr r0, .L080AE978 @ =gKeys
+    ldr r0, .L080AE978 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x30
     ldrh r1, [r1, #8]
@@ -322617,7 +321617,7 @@ func_080AE754: @ 0x080AE754
     bl _call_via_r1
     b .L080AE9AC
     .align 2, 0
-.L080AE978: .4byte gKeys
+.L080AE978: .4byte gpKeySt
 .L080AE97C: .4byte 0x08CE58D8
 .L080AE980: .4byte 0x08CE5868
 .L080AE984: .4byte 0x08CE583C
@@ -322659,7 +321659,7 @@ func_080AE754: @ 0x080AE754
 func_080AE9C0: @ 0x080AE9C0
     push {r4, lr}
     adds r4, r0, #0
-    bl func_0807FA04
+    bl EndMuralBackground
     ldr r0, .L080AE9E4 @ =0x08CE5BB8
     bl Proc_EndEach
     ldr r0, .L080AE9E8 @ =0x08CE5B98
@@ -323274,7 +322274,7 @@ func_080AEDF0: @ 0x080AEDF0
     strb r0, [r6]
     b .L080AEE6A
 .L080AEE56:
-    ldr r0, .L080AEE70 @ =gKeys
+    ldr r0, .L080AEE70 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xb
     ldrh r1, [r1, #4]
@@ -323288,7 +322288,7 @@ func_080AEDF0: @ 0x080AEDF0
     pop {r0}
     bx r0
     .align 2, 0
-.L080AEE70: .4byte gKeys
+.L080AEE70: .4byte gpKeySt
     func_end func_080AEDF0
 
     thumb_func_start func_080AEE74
@@ -323356,8 +322356,8 @@ func_080AEECC: @ 0x080AEECC
     bx r0
     func_end func_080AEECC
 
-    thumb_func_start func_080AEEE4
-func_080AEEE4: @ 0x080AEEE4
+    thumb_func_start StartLordSelect
+StartLordSelect: @ 0x080AEEE4
     push {r4, lr}
     adds r4, r0, #0
     lsls r4, r4, #0x18
@@ -323371,7 +322371,7 @@ func_080AEEE4: @ 0x080AEEE4
     bx r0
     .align 2, 0
 .L080AEEFC: .4byte 0x08CE5E44
-    func_end func_080AEEE4
+    func_end StartLordSelect
 
     thumb_func_start func_080AEF00
 func_080AEF00: @ 0x080AEF00
@@ -325043,7 +324043,7 @@ func_080AF99C: @ 0x080AF99C
     add r0, sp, #0x1c
     adds r0, r0, r6
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -325066,7 +324066,7 @@ func_080AF99C: @ 0x080AF99C
     adds r0, r0, r6
     adds r0, #4
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r5, #0
     bl Text_DrawString
@@ -326016,7 +325016,7 @@ func_080B034C: @ 0x080B034C
     bl func_080097FC
     ldr r1, [r7, #8]
     adds r0, r1, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     ldr r3, [r7, #4]
     movs r0, #8
@@ -326787,7 +325787,7 @@ func_080B0808: @ 0x080B0808
     ldrb r0, [r1]
     cmp r0, #0
     beq .L080B0982
-    ldr r1, .L080B097C @ =gKeys
+    ldr r1, .L080B097C @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #8]
     movs r2, #0x81
@@ -326811,11 +325811,11 @@ func_080B0808: @ 0x080B0808
 .L080B0978:
     b .L080B0AA4
     .align 2, 0
-.L080B097C: .4byte gKeys
+.L080B097C: .4byte gpKeySt
 .L080B0980:
     .byte 0x36, 0xE0
 .L080B0982:
-    ldr r1, .L080B09EC @ =gKeys
+    ldr r1, .L080B09EC @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #8]
     movs r2, #0x80
@@ -326868,7 +325868,7 @@ func_080B0808: @ 0x080B0808
     bl func_0808198C
     b .L080B0AA4
     .align 2, 0
-.L080B09EC: .4byte gKeys
+.L080B09EC: .4byte gpKeySt
 .L080B09F0:
     ldr r1, [r7]
     ldr r0, [r1, #0x2c]
@@ -326886,7 +325886,7 @@ func_080B0808: @ 0x080B0808
     lsls r1, r0, #0x10
     lsrs r0, r1, #0x10
     str r0, [r7, #8]
-    ldr r1, .L080B0A44 @ =gKeys
+    ldr r1, .L080B0A44 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #8]
     movs r2, #1
@@ -326909,7 +325909,7 @@ func_080B0808: @ 0x080B0808
     bl Proc_Goto
     b .L080B0A5E
     .align 2, 0
-.L080B0A44: .4byte gKeys
+.L080B0A44: .4byte gpKeySt
 .L080B0A48:
     ldr r1, [r7, #8]
     adds r0, r1, #0
@@ -326922,7 +325922,7 @@ func_080B0808: @ 0x080B0808
 .L080B0A5E:
     b .L080B0AA4
 .L080B0A60:
-    ldr r1, .L080B0A98 @ =gKeys
+    ldr r1, .L080B0A98 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #8]
     movs r2, #2
@@ -326933,7 +325933,7 @@ func_080B0808: @ 0x080B0808
     lsrs r0, r1, #0x10
     cmp r0, #0
     beq .L080B0AA4
-    ldr r1, .L080B0A9C @ =gPlayStatus
+    ldr r1, .L080B0A9C @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -326950,8 +325950,8 @@ func_080B0808: @ 0x080B0808
     bl Proc_Goto
     b .L080B0AA4
     .align 2, 0
-.L080B0A98: .4byte gKeys
-.L080B0A9C: .4byte gPlayStatus
+.L080B0A98: .4byte gpKeySt
+.L080B0A9C: .4byte gPlaySt
 .L080B0AA0: .4byte 0x0000038B
 .L080B0AA4:
     add sp, #0xc
@@ -327369,7 +326369,7 @@ func_080B0C9C: @ 0x080B0C9C
     ldrb r0, [r1]
     cmp r0, #0
     beq .L080B0DD6
-    ldr r1, .L080B0DD0 @ =gKeys
+    ldr r1, .L080B0DD0 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #8]
     movs r2, #0x81
@@ -327393,11 +326393,11 @@ func_080B0C9C: @ 0x080B0C9C
 .L080B0DCE:
     b .L080B0F14
     .align 2, 0
-.L080B0DD0: .4byte gKeys
+.L080B0DD0: .4byte gpKeySt
 .L080B0DD4:
     .byte 0x38, 0xE0
 .L080B0DD6:
-    ldr r1, .L080B0E44 @ =gKeys
+    ldr r1, .L080B0E44 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #8]
     movs r2, #0x80
@@ -327451,9 +326451,9 @@ func_080B0C9C: @ 0x080B0C9C
     bl func_0808198C
     b .L080B0F14
     .align 2, 0
-.L080B0E44: .4byte gKeys
+.L080B0E44: .4byte gpKeySt
 .L080B0E48:
-    ldr r1, .L080B0E94 @ =gKeys
+    ldr r1, .L080B0E94 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #8]
     movs r2, #1
@@ -327489,7 +326489,7 @@ func_080B0C9C: @ 0x080B0C9C
     bl Proc_Goto
     b .L080B0ECC
     .align 2, 0
-.L080B0E94: .4byte gKeys
+.L080B0E94: .4byte gpKeySt
 .L080B0E98:
     ldr r1, [r7]
     ldr r0, [r1, #0x2c]
@@ -327516,7 +326516,7 @@ func_080B0C9C: @ 0x080B0C9C
 .L080B0ECC:
     b .L080B0F14
 .L080B0ECE:
-    ldr r1, .L080B0F08 @ =gKeys
+    ldr r1, .L080B0F08 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #8]
     movs r2, #2
@@ -327527,7 +326527,7 @@ func_080B0C9C: @ 0x080B0C9C
     lsrs r0, r1, #0x10
     cmp r0, #0
     beq .L080B0F14
-    ldr r1, .L080B0F0C @ =gPlayStatus
+    ldr r1, .L080B0F0C @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -327544,8 +326544,8 @@ func_080B0C9C: @ 0x080B0C9C
     bl Proc_Goto
     b .L080B0F14
     .align 2, 0
-.L080B0F08: .4byte gKeys
-.L080B0F0C: .4byte gPlayStatus
+.L080B0F08: .4byte gpKeySt
+.L080B0F0C: .4byte gPlaySt
 .L080B0F10: .4byte 0x0000038B
 .L080B0F14:
     add sp, #8
@@ -327922,7 +326922,7 @@ func_080B10AC: @ 0x080B10AC
     ldrb r0, [r1]
     cmp r0, #0
     beq .L080B1226
-    ldr r1, .L080B1220 @ =gKeys
+    ldr r1, .L080B1220 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #8]
     movs r2, #0x81
@@ -327946,11 +326946,11 @@ func_080B10AC: @ 0x080B10AC
 .L080B121C:
     b .L080B12D8
     .align 2, 0
-.L080B1220: .4byte gKeys
+.L080B1220: .4byte gpKeySt
 .L080B1224:
     .byte 0x36, 0xE0
 .L080B1226:
-    ldr r1, .L080B1290 @ =gKeys
+    ldr r1, .L080B1290 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #8]
     movs r2, #0x80
@@ -328003,9 +327003,9 @@ func_080B10AC: @ 0x080B10AC
     bl func_0808198C
     b .L080B12D8
     .align 2, 0
-.L080B1290: .4byte gKeys
+.L080B1290: .4byte gpKeySt
 .L080B1294:
-    ldr r1, .L080B12CC @ =gKeys
+    ldr r1, .L080B12CC @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #8]
     movs r2, #3
@@ -328016,7 +327016,7 @@ func_080B10AC: @ 0x080B10AC
     lsrs r0, r1, #0x10
     cmp r0, #0
     beq .L080B12D8
-    ldr r1, .L080B12D0 @ =gPlayStatus
+    ldr r1, .L080B12D0 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -328033,8 +327033,8 @@ func_080B10AC: @ 0x080B10AC
     bl Proc_Goto
     b .L080B12D8
     .align 2, 0
-.L080B12CC: .4byte gKeys
-.L080B12D0: .4byte gPlayStatus
+.L080B12CC: .4byte gpKeySt
+.L080B12D0: .4byte gPlaySt
 .L080B12D4: .4byte 0x0000038B
 .L080B12D8:
     add sp, #8
@@ -329325,7 +328325,7 @@ func_080B1CCC: @ 0x080B1CCC
 .L080B1D1E:
     ldr r1, .L080B1D3C @ =0x0000127E
     adds r0, r1, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     ldr r0, [r7]
     movs r1, #0x5c
@@ -329800,7 +328800,7 @@ func_080B209C: @ 0x080B209C
 .L080B20C6:
     ldr r0, [r7]
     str r0, [r7, #0xc]
-    ldr r1, .L080B2110 @ =gKeys
+    ldr r1, .L080B2110 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #6]
     movs r2, #0x40
@@ -329820,7 +328820,7 @@ func_080B209C: @ 0x080B209C
     ldrsb r1, [r0, r1]
     cmp r1, #0
     beq .L080B210E
-    ldr r1, .L080B2110 @ =gKeys
+    ldr r1, .L080B2110 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #8]
     movs r2, #0x40
@@ -329837,7 +328837,7 @@ func_080B209C: @ 0x080B209C
 .L080B210E:
     b .L080B211A
     .align 2, 0
-.L080B2110: .4byte gKeys
+.L080B2110: .4byte gpKeySt
 .L080B2114:
     ldr r0, [r7]
     subs r1, r0, #1
@@ -329845,7 +328845,7 @@ func_080B209C: @ 0x080B209C
 .L080B211A:
     b .L080B216E
 .L080B211C:
-    ldr r1, .L080B2164 @ =gKeys
+    ldr r1, .L080B2164 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #6]
     movs r2, #0x80
@@ -329867,7 +328867,7 @@ func_080B209C: @ 0x080B209C
     ldrsb r1, [r0, r1]
     cmp r1, #0
     beq .L080B2162
-    ldr r1, .L080B2164 @ =gKeys
+    ldr r1, .L080B2164 @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #8]
     movs r2, #0x80
@@ -329883,7 +328883,7 @@ func_080B209C: @ 0x080B209C
 .L080B2162:
     b .L080B216E
     .align 2, 0
-.L080B2164: .4byte gKeys
+.L080B2164: .4byte gpKeySt
 .L080B2168:
     ldr r0, [r7]
     adds r1, r0, #1
@@ -329893,7 +328893,7 @@ func_080B209C: @ 0x080B209C
     ldr r1, [r7]
     cmp r0, r1
     beq .L080B218E
-    ldr r1, .L080B2194 @ =gPlayStatus
+    ldr r1, .L080B2194 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -329909,7 +328909,7 @@ func_080B209C: @ 0x080B209C
     adds r0, r1, #0
     b .L080B219C
     .align 2, 0
-.L080B2194: .4byte gPlayStatus
+.L080B2194: .4byte gPlaySt
 .L080B2198: .4byte 0x00000386
 .L080B219C:
     add sp, #0x10
@@ -331207,7 +330207,7 @@ func_080B2B44: @ 0x080B2B44
     ldr r1, [r7, #4]
     adds r0, r1, #0
     bl SetGold
-    ldr r1, .L080B2B90 @ =gPlayStatus
+    ldr r1, .L080B2B90 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -331228,7 +330228,7 @@ func_080B2B44: @ 0x080B2B44
     pop {r0}
     bx r0
     .align 2, 0
-.L080B2B90: .4byte gPlayStatus
+.L080B2B90: .4byte gPlaySt
 .L080B2B94: .4byte 0x02022E16
     func_end func_080B2B44
 
@@ -331457,7 +330457,7 @@ func_080B2D20: @ 0x080B2D20
     ldr r1, .L080B2D6C @ =0x02022E16
     adds r0, r1, #0
     bl func_080B18B0
-    ldr r1, .L080B2D70 @ =gPlayStatus
+    ldr r1, .L080B2D70 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -331474,7 +330474,7 @@ func_080B2D20: @ 0x080B2D20
     b .L080B2D78
     .align 2, 0
 .L080B2D6C: .4byte 0x02022E16
-.L080B2D70: .4byte gPlayStatus
+.L080B2D70: .4byte gPlaySt
 .L080B2D74:
     b .L080B2D78
 .L080B2D76:
@@ -331518,7 +330518,7 @@ func_080B2DAC: @ 0x080B2DAC
     bl func_08007F64
     bl func_080097FC
     ldr r0, [r7]
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     ldr r3, [r7, #4]
     movs r0, #8
@@ -331560,7 +330560,7 @@ func_080B2DF8: @ 0x080B2DF8
     ldr r0, .L080B2E98 @ =0x08CC26D4
     ldr r1, [r0]
     adds r0, r1, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -331578,7 +330578,7 @@ func_080B2DF8: @ 0x080B2DF8
     ldr r0, [r1]
     ldrh r1, [r0]
     adds r0, r1, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -331589,7 +330589,7 @@ func_080B2DF8: @ 0x080B2DF8
     ldr r0, [r1, #4]
     ldrh r1, [r0]
     adds r0, r1, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     adds r0, r4, #0
     movs r1, #0
@@ -331628,7 +330628,7 @@ func_080B2EB0: @ 0x080B2EB0
     beq .L080B2EC2
     b .L080B2EE0
 .L080B2EC2:
-    ldr r1, .L080B2EDC @ =gPlayStatus
+    ldr r1, .L080B2EDC @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -331642,9 +330642,9 @@ func_080B2EB0: @ 0x080B2EB0
 .L080B2EDA:
     b .L080B2F04
     .align 2, 0
-.L080B2EDC: .4byte gPlayStatus
+.L080B2EDC: .4byte gPlaySt
 .L080B2EE0:
-    ldr r1, .L080B2F00 @ =gPlayStatus
+    ldr r1, .L080B2F00 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -331660,7 +330660,7 @@ func_080B2EB0: @ 0x080B2EB0
     bl Proc_End
     b .L080B2F04
     .align 2, 0
-.L080B2F00: .4byte gPlayStatus
+.L080B2F00: .4byte gPlaySt
 .L080B2F04:
     add sp, #4
     pop {r7}
@@ -331690,7 +330690,7 @@ func_080B2F28: @ 0x080B2F28
     mov r7, sp
     ldr r1, .L080B2F3C @ =0x08CE750C
     adds r0, r1, #0
-    bl func_0800AF5C
+    bl StartEvent
     pop {r7}
     pop {r0}
     bx r0
@@ -336836,7 +335836,7 @@ func_080B55BC: @ 0x080B55BC
     ands r1, r0
     cmp r1, #0
     beq .L080B55DA
-    ldr r0, .L080B55E0 @ =gPlayStatus
+    ldr r0, .L080B55E0 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -336848,14 +335848,14 @@ func_080B55BC: @ 0x080B55BC
     pop {r0}
     bx r0
     .align 2, 0
-.L080B55E0: .4byte gPlayStatus
+.L080B55E0: .4byte gPlaySt
     func_end func_080B55BC
 
     thumb_func_start func_080B55E4
 func_080B55E4: @ 0x080B55E4
     push {r4, r5, lr}
     ldr r5, .L080B561C @ =0x08C9CDA4
-    ldr r4, .L080B5620 @ =gPlayStatus
+    ldr r4, .L080B5620 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl GetChapterInfo
@@ -336874,14 +335874,14 @@ func_080B55E4: @ 0x080B55E4
     lsls r0, r0, #2
     adds r0, r0, r5
     ldr r0, [r0]
-    bl func_0800AF5C
+    bl StartEvent
 .L080B5616:
     pop {r4, r5}
     pop {r0}
     bx r0
     .align 2, 0
 .L080B561C: .4byte 0x08C9CDA4
-.L080B5620: .4byte gPlayStatus
+.L080B5620: .4byte gPlaySt
     func_end func_080B55E4
 
     thumb_func_start func_080B5624
@@ -338332,7 +337332,7 @@ func_080B608C: @ 0x080B608C
     bl SetOnHBlankA
     ldr r0, .L080B6184 @ =func_080B5FE0
     bl SetOnHBlankA
-    ldr r0, .L080B6188 @ =gPlayStatus
+    ldr r0, .L080B6188 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -338353,7 +337353,7 @@ func_080B608C: @ 0x080B608C
 .L080B617C: .4byte 0x0000FFE0
 .L080B6180: .4byte 0x02000814
 .L080B6184: .4byte func_080B5FE0
-.L080B6188: .4byte gPlayStatus
+.L080B6188: .4byte gPlaySt
 .L080B618C: .4byte 0x00000269
     func_end func_080B608C
 
@@ -339062,7 +338062,7 @@ func_080B6674: @ 0x080B6674
 func_080B66B4: @ 0x080B66B4
     push {r4, r5, lr}
     sub sp, #0x10
-    ldr r0, .L080B672C @ =gPlayStatus
+    ldr r0, .L080B672C @ =gPlaySt
     ldrh r5, [r0, #0x10]
     movs r1, #0xe
     ldrsb r1, [r0, r1]
@@ -339119,7 +338119,7 @@ func_080B66B4: @ 0x080B66B4
     pop {r1}
     bx r1
     .align 2, 0
-.L080B672C: .4byte gPlayStatus
+.L080B672C: .4byte gPlaySt
 .L080B6730: .4byte 0x08C9A200
     func_end func_080B66B4
 
@@ -339254,7 +338254,7 @@ func_080B67F0: @ 0x080B67F0
     ldrb r0, [r0, #5]
     lsls r1, r0, #0x1a
     lsrs r1, r1, #0x1a
-    ldr r0, .L080B6840 @ =gPlayStatus
+    ldr r0, .L080B6840 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -339272,7 +338272,7 @@ func_080B67F0: @ 0x080B67F0
     bx r1
     .align 2, 0
 .L080B683C: .4byte 0x00010004
-.L080B6840: .4byte gPlayStatus
+.L080B6840: .4byte gPlaySt
     func_end func_080B67F0
 
     thumb_func_start func_080B6844
@@ -339284,7 +338284,7 @@ func_080B6844: @ 0x080B6844
 func_080B6848: @ 0x080B6848
     push {r4, r5, r6, lr}
     bl func_08017120
-    ldr r1, .L080B6890 @ =gPlayStatus
+    ldr r1, .L080B6890 @ =gPlaySt
     ldr r5, [r1, #0x30]
     subs r5, r0, r5
     str r0, [r1, #0x30]
@@ -339315,7 +338315,7 @@ func_080B6848: @ 0x080B6848
     movs r0, #4
     b .L080B68BC
     .align 2, 0
-.L080B6890: .4byte gPlayStatus
+.L080B6890: .4byte gPlaySt
 .L080B6894: .4byte 0x08C9A200
 .L080B6898:
     lsls r0, r1, #4
@@ -339364,7 +338364,7 @@ func_080B68C4: @ 0x080B68C4
     ble .L080B68E6
     adds r5, r7, #0
 .L080B68E6:
-    ldr r6, .L080B68FC @ =gPlayStatus
+    ldr r6, .L080B68FC @ =gPlaySt
     ldr r0, [r6, #0x34]
     mov r8, r0
     lsls r0, r0, #0xc
@@ -339375,7 +338375,7 @@ func_080B68C4: @ 0x080B68C4
     b .L080B694C
     .align 2, 0
 .L080B68F8: .4byte 0x000FFFFF
-.L080B68FC: .4byte gPlayStatus
+.L080B68FC: .4byte gPlaySt
 .L080B6900:
     ldrh r1, [r6, #0x36]
     lsrs r1, r1, #4
@@ -339474,7 +338474,7 @@ func_080B6994: @ 0x080B6994
     ble .L080B69B2
     adds r1, r4, #0
 .L080B69B2:
-    ldr r3, .L080B6A68 @ =gPlayStatus
+    ldr r3, .L080B6A68 @ =gPlaySt
     ldr r2, [r3, #0x38]
     lsls r0, r2, #4
     lsrs r0, r0, #0xc
@@ -339561,19 +338561,19 @@ func_080B6994: @ 0x080B6994
     bx r1
     .align 2, 0
 .L080B6A64: .4byte 0x000FFFFF
-.L080B6A68: .4byte gPlayStatus
+.L080B6A68: .4byte gPlaySt
 .L080B6A6C: .4byte 0xF00000FF
 .L080B6A70: .4byte 0x08C9A200
     func_end func_080B6994
 
-    thumb_func_start func_080B6A74
-func_080B6A74: @ 0x080B6A74
+    thumb_func_start ComputeChapterRankings
+ComputeChapterRankings: @ 0x080B6A74
     push {r4, r5, r6, lr}
     sub sp, #4
     bl GetChapterCompletionStatsListCount
     cmp r0, #0
     ble .L080B6B3E
-    ldr r6, .L080B6B48 @ =gPlayStatus
+    ldr r6, .L080B6B48 @ =gPlaySt
     ldrb r0, [r6, #0x1b]
     cmp r0, #3
     bgt .L080B6AF6
@@ -339628,7 +338628,7 @@ func_080B6A74: @ 0x080B6A74
     orrs r1, r0
     strb r1, [r2]
 .L080B6AF6:
-    ldr r5, .L080B6B48 @ =gPlayStatus
+    ldr r5, .L080B6B48 @ =gPlaySt
     adds r0, r5, #0
     adds r0, #0x3e
     ldrb r1, [r0]
@@ -339670,12 +338670,12 @@ func_080B6A74: @ 0x080B6A74
     pop {r0}
     bx r0
     .align 2, 0
-.L080B6B48: .4byte gPlayStatus
+.L080B6B48: .4byte gPlaySt
 .L080B6B4C: .4byte 0xFFFC7FFF
 .L080B6B50: .4byte 0xFFFFFE3F
 .L080B6B54: .4byte 0x000001FF
 .L080B6B58: .4byte 0xFFFFE00F
-    func_end func_080B6A74
+    func_end ComputeChapterRankings
 
     thumb_func_start func_080B6B5C
 func_080B6B5C: @ 0x080B6B5C
@@ -340002,7 +339002,7 @@ func_080B6D64: @ 0x080B6D64
 .L080B6DA4:
     ldr r0, [r2, #4]
 .L080B6DA6:
-    bl GetMsg
+    bl DecodeMsg
     bl func_080B6D48
     strb r0, [r4, #4]
     ldr r0, [r5]
@@ -340300,7 +339300,7 @@ func_080B6FB8: @ 0x080B6FB8
     adds r0, r7, #0
     bl GetChapterInfo
     adds r2, r0, #0
-    ldr r0, .L080B7050 @ =gPlayStatus
+    ldr r0, .L080B7050 @ =gPlaySt
     movs r1, #0
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
@@ -340325,7 +339325,7 @@ func_080B6FB8: @ 0x080B6FB8
     b .L080B6FDC
     .align 2, 0
 .L080B704C: .4byte 0x08CEDDFC
-.L080B7050: .4byte gPlayStatus
+.L080B7050: .4byte gPlaySt
 .L080B7054: .4byte 0x0000118B
 .L080B7058:
     ldr r0, [r4]
@@ -340417,7 +339417,7 @@ func_080B70B4: @ 0x080B70B4
     ldr r0, [r5]
     cmp r0, #0xcd
     bne .L080B7120
-    ldr r0, .L080B711C @ =gPlayStatus
+    ldr r0, .L080B711C @ =gPlaySt
     adds r0, #0x2c
     ldrb r0, [r0]
     lsls r0, r0, #0x1f
@@ -340426,14 +339426,14 @@ func_080B70B4: @ 0x080B70B4
     ldr r0, [r5, #8]
     b .L080B713E
     .align 2, 0
-.L080B711C: .4byte gPlayStatus
+.L080B711C: .4byte gPlaySt
 .L080B7120:
     movs r0, #0
     ldrsb r0, [r4, r0]
     cmp r0, #0
     blt .L080B713C
     ldr r0, [r5, #8]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     str r1, [r6]
     movs r0, #0
@@ -340443,7 +339443,7 @@ func_080B70B4: @ 0x080B70B4
 .L080B713C:
     ldr r0, [r5, #4]
 .L080B713E:
-    bl GetMsg
+    bl DecodeMsg
     str r0, [r6]
 .L080B7144:
     bl MsgExpand
@@ -340993,7 +339993,7 @@ func_080B7530: @ 0x080B7530
     strh r1, [r0]
     ldr r0, [r4, #0x34]
     ldr r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     str r0, [r4, #0x2c]
     bl MsgExpand
     str r0, [r4, #0x2c]
@@ -341327,7 +340327,7 @@ func_080B77DC: @ 0x080B77DC
     ldrsb r0, [r2, r0]
     cmp r0, #0
     beq .L080B7806
-    ldr r0, .L080B780C @ =gKeys
+    ldr r0, .L080B780C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #8
     ldrh r1, [r1, #8]
@@ -341343,7 +340343,7 @@ func_080B77DC: @ 0x080B77DC
     pop {r0}
     bx r0
     .align 2, 0
-.L080B780C: .4byte gKeys
+.L080B780C: .4byte gpKeySt
     func_end func_080B77DC
 
     thumb_func_start func_080B7810
@@ -341636,7 +340636,7 @@ func_080B7A24: @ 0x080B7A24
     adds r1, r2, #0
     bl func_080B70B4
 .L080B7A68:
-    ldr r0, .L080B7A94 @ =gKeys
+    ldr r0, .L080B7A94 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #4]
@@ -341657,7 +340657,7 @@ func_080B7A24: @ 0x080B7A24
     b .L080B7AA4
     .align 2, 0
 .L080B7A90: .4byte 0x02000888
-.L080B7A94: .4byte gKeys
+.L080B7A94: .4byte gpKeySt
 .L080B7A98:
     adds r0, r6, #0
     adds r0, #0x44
@@ -341967,7 +340967,7 @@ func_080B7CD0: @ 0x080B7CD0
     bl Proc_Break
     b .L080B7D02
 .L080B7CEE:
-    ldr r0, .L080B7D08 @ =gKeys
+    ldr r0, .L080B7D08 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #8
     ldrh r1, [r1, #8]
@@ -341980,7 +340980,7 @@ func_080B7CD0: @ 0x080B7CD0
     pop {r0}
     bx r0
     .align 2, 0
-.L080B7D08: .4byte gKeys
+.L080B7D08: .4byte gpKeySt
     func_end func_080B7CD0
 
     thumb_func_start func_080B7D0C
@@ -342255,7 +341255,7 @@ func_080B7EF8: @ 0x080B7EF8
     adds r0, r4, #0
     bl GetChapterInfo
     adds r2, r0, #0
-    ldr r0, .L080B7F50 @ =gPlayStatus
+    ldr r0, .L080B7F50 @ =gPlaySt
     movs r1, #0
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
@@ -342266,7 +341266,7 @@ func_080B7EF8: @ 0x080B7EF8
     adds r0, #0x74
     adds r0, r0, r1
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r5, #0
     bl func_080AAA7C
     adds r5, r0, #0
@@ -342279,7 +341279,7 @@ func_080B7EF8: @ 0x080B7EF8
     bx r1
     .align 2, 0
 .L080B7F4C: .4byte 0x085E9ACC
-.L080B7F50: .4byte gPlayStatus
+.L080B7F50: .4byte gPlaySt
     func_end func_080B7EF8
 
     thumb_func_start func_080B7F54
@@ -342330,7 +341330,7 @@ func_080B7F54: @ 0x080B7F54
     .4byte .L080B80B4 @ case 5
 .L080B7FBC:
     ldr r0, .L080B7FD8 @ =0x00001019
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r4, #0
     bl func_080AAA7C
     adds r4, r0, #0
@@ -342345,7 +341345,7 @@ func_080B7F54: @ 0x080B7F54
 .L080B7FDC: .4byte 0x085E9AD0
 .L080B7FE0:
     ldr r0, .L080B7FFC @ =0x0000101A
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r4, #0
     bl func_080AAA7C
     adds r4, r0, #0
@@ -342360,7 +341360,7 @@ func_080B7F54: @ 0x080B7F54
 .L080B8000: .4byte 0x0000101B
 .L080B8004:
     ldr r0, .L080B8020 @ =0x0000101A
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r4, #0
     bl func_080AAA7C
     adds r4, r0, #0
@@ -342379,7 +341379,7 @@ func_080B7F54: @ 0x080B7F54
     cmp r0, #1
     bhi .L080B8054
     ldr r0, .L080B804C @ =0x0000101A
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r4, #0
     bl func_080AAA7C
     adds r4, r0, #0
@@ -342394,7 +341394,7 @@ func_080B7F54: @ 0x080B7F54
 .L080B8050: .4byte 0x0000101C
 .L080B8054:
     ldr r0, .L080B8070 @ =0x00001019
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r4, #0
     bl func_080AAA7C
     adds r4, r0, #0
@@ -342417,7 +341417,7 @@ func_080B7F54: @ 0x080B7F54
 .L080B8084:
     ldr r0, .L080B80AC @ =0x00001092
 .L080B8086:
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r4, #0
     bl func_080AAA7C
     adds r4, r0, #0
@@ -342427,7 +341427,7 @@ func_080B7F54: @ 0x080B7F54
     adds r4, r0, #0
     ldr r0, .L080B80B0 @ =0x00001093
 .L080B809E:
-    bl GetMsg
+    bl DecodeMsg
 .L080B80A2:
     adds r1, r4, #0
     bl func_080AAA7C
@@ -342650,7 +341650,7 @@ func_080B8230: @ 0x080B8230
     adds r1, #0x40
     ldr r2, .L080B8288 @ =0x01000010
     bl CpuSet
-    ldr r0, .L080B828C @ =gPlayStatus
+    ldr r0, .L080B828C @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
     bne .L080B8294
@@ -342660,7 +341660,7 @@ func_080B8230: @ 0x080B8230
     .align 2, 0
 .L080B8284: .4byte gDispIo
 .L080B8288: .4byte 0x01000010
-.L080B828C: .4byte gPlayStatus
+.L080B828C: .4byte gPlaySt
 .L080B8290: .4byte 0x08CEE630
 .L080B8294:
     ldr r0, .L080B82A8 @ =0x08CEE630
@@ -342866,7 +341866,7 @@ func_080B839C: @ 0x080B839C
     mov r0, ip
     cmp r0, #0xcd
     bne .L080B8410
-    ldr r1, .L080B840C @ =gPlayStatus
+    ldr r1, .L080B840C @ =gPlaySt
     adds r1, #0x2b
     adds r0, r6, #0
     ldrb r1, [r1]
@@ -342876,7 +341876,7 @@ func_080B839C: @ 0x080B839C
     str r3, [r4, #0x38]
     b .L080B8488
     .align 2, 0
-.L080B840C: .4byte gPlayStatus
+.L080B840C: .4byte gPlaySt
 .L080B8410:
     ldrb r0, [r5, #1]
     bl func_080B82E8
@@ -343223,7 +342223,7 @@ func_080B8654: @ 0x080B8654
     cmp r0, #3
     ble .L080B86C8
     ldr r0, .L080B86C4 @ =0x00001074
-    bl GetMsg
+    bl DecodeMsg
     b .L080B86DE
     .align 2, 0
 .L080B86B4: .4byte 0x08CEE858
@@ -343235,13 +342235,13 @@ func_080B8654: @ 0x080B8654
     cmp r0, #1
     ble .L080B86D8
     ldr r0, .L080B86D4 @ =0x00001076
-    bl GetMsg
+    bl DecodeMsg
     b .L080B86DE
     .align 2, 0
 .L080B86D4: .4byte 0x00001076
 .L080B86D8:
     ldr r0, .L080B8708 @ =0x00001078
-    bl GetMsg
+    bl DecodeMsg
 .L080B86DE:
     bl MsgExpand
     adds r6, r0, #0
@@ -343267,7 +342267,7 @@ func_080B8654: @ 0x080B8654
 .L080B8714:
     ldrb r0, [r0, #1]
     bl func_080B7EB0
-    bl GetMsg
+    bl DecodeMsg
     adds r6, r0, #0
     movs r0, #0x78
     adds r1, r6, #0
@@ -343284,7 +342284,7 @@ func_080B8654: @ 0x080B8654
     movs r2, #0
     bl func_08005AD4
     ldr r0, .L080B885C @ =0x000012AB
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     ldr r0, [r5]
     adds r0, #0x40
@@ -343296,7 +342296,7 @@ func_080B8654: @ 0x080B8654
     movs r3, #0
     bl func_08005AD4
     ldr r0, .L080B8860 @ =0x000012AC
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     ldr r0, [r5]
     adds r0, #0x40
@@ -343308,7 +342308,7 @@ func_080B8654: @ 0x080B8654
     movs r3, #0x20
     bl func_08005AD4
     ldr r0, .L080B8864 @ =0x000012AD
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     ldr r0, [r5]
     adds r0, #0x40
@@ -343512,7 +342512,7 @@ func_080B88E0: @ 0x080B88E0
     ldr r0, [r7, #0x38]
     ldrb r0, [r0, #1]
     bl func_080B7EB0
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
     movs r0, #0x78
     adds r1, r5, #0
@@ -343529,7 +342529,7 @@ func_080B88E0: @ 0x080B88E0
     str r5, [sp, #4]
     bl func_08005AD4
     ldr r0, .L080B8B64 @ =0x000012AB
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     ldr r0, [r6]
     adds r0, #0x38
@@ -343544,7 +342544,7 @@ func_080B88E0: @ 0x080B88E0
     bl func_08005AD4
     ldr r0, .L080B8B6C @ =0x000012AC
     mov sl, r0
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     ldr r0, [r6]
     adds r0, #0x38
@@ -343558,7 +342558,7 @@ func_080B88E0: @ 0x080B88E0
     bl func_08005AD4
     ldr r0, .L080B8B70 @ =0x000012AD
     mov sb, r0
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     ldr r0, [r6]
     adds r0, #0x38
@@ -343608,7 +342608,7 @@ func_080B88E0: @ 0x080B88E0
     ldr r0, [r7, #0x38]
     ldrb r0, [r0, #2]
     bl func_080B7EB0
-    bl GetMsg
+    bl DecodeMsg
     adds r5, r0, #0
     movs r0, #0x78
     adds r1, r5, #0
@@ -343625,7 +342625,7 @@ func_080B88E0: @ 0x080B88E0
     movs r2, #0
     bl func_08005AD4
     ldr r0, .L080B8B64 @ =0x000012AB
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     ldr r0, [r6]
     adds r0, #0x40
@@ -343638,7 +342638,7 @@ func_080B88E0: @ 0x080B88E0
     movs r3, #0
     bl func_08005AD4
     mov r0, sl
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     ldr r0, [r6]
     adds r0, #0x40
@@ -343651,7 +342651,7 @@ func_080B88E0: @ 0x080B88E0
     movs r3, #0x20
     bl func_08005AD4
     mov r0, sb
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     ldr r0, [r6]
     adds r0, #0x40
@@ -344032,7 +343032,7 @@ func_080B8CAC: @ 0x080B8CAC
     ldr r0, [r6, #0x2c]
     ldr r0, [r0, #4]
 .L080B8D88:
-    bl GetMsg
+    bl DecodeMsg
 .L080B8D8C:
     str r0, [r6, #0x44]
 .L080B8D8E:
@@ -344047,7 +343047,7 @@ func_080B8CAC: @ 0x080B8CAC
 func_080B8D98: @ 0x080B8D98
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L080B8DC4 @ =gKeys
+    ldr r0, .L080B8DC4 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #8
     ldrh r1, [r1, #8]
@@ -344065,7 +343065,7 @@ func_080B8D98: @ 0x080B8D98
     bl Proc_Goto
     b .L080B8E70
     .align 2, 0
-.L080B8DC4: .4byte gKeys
+.L080B8DC4: .4byte gpKeySt
 .L080B8DC8:
     ldr r0, [r4, #0x3c]
     cmp r0, #0
@@ -344279,7 +343279,7 @@ func_080B8F64: @ 0x080B8F64
     ldr r0, [r2, #0x58]
     adds r0, #1
     str r0, [r2, #0x58]
-    ldr r0, .L080B8F84 @ =gKeys
+    ldr r0, .L080B8F84 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #9
     ldrh r3, [r1, #8]
@@ -344290,7 +343290,7 @@ func_080B8F64: @ 0x080B8F64
     bl Proc_Break
     b .L080B8FB8
     .align 2, 0
-.L080B8F84: .4byte gKeys
+.L080B8F84: .4byte gpKeySt
 .L080B8F88:
     movs r0, #4
     ldrh r1, [r1, #4]
@@ -344733,7 +343733,7 @@ func_080B924C: @ 0x080B924C
     ldr r4, [r5]
     adds r4, #0x90
     ldr r0, .L080B9338 @ =0x0000118A
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -344744,7 +343744,7 @@ func_080B924C: @ 0x080B924C
     ldr r4, [r5]
     adds r4, #0x98
     ldr r0, .L080B933C @ =0x00001185
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -344809,7 +343809,7 @@ func_080B9340: @ 0x080B9340
     bl func_0809FC5C
     adds r4, r0, #0
     ldr r0, .L080B9404 @ =0x000012D1
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     mov r3, sb
     ldr r0, [r3]
@@ -344861,7 +343861,7 @@ func_080B9340: @ 0x080B9340
     bl GetChapterInfo
     adds r1, r0, #0
     movs r2, #0
-    ldr r0, .L080B9440 @ =gPlayStatus
+    ldr r0, .L080B9440 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
     bne .L080B942A
@@ -344878,7 +343878,7 @@ func_080B9340: @ 0x080B9340
     ldr r0, .L080B9444 @ =0x00001187
     b .L080B9456
     .align 2, 0
-.L080B9440: .4byte gPlayStatus
+.L080B9440: .4byte gPlaySt
 .L080B9444: .4byte 0x00001187
 .L080B9448:
     cmp r6, #0
@@ -344889,7 +343889,7 @@ func_080B9340: @ 0x080B9340
     blt .L080B9484
     ldr r0, .L080B947C @ =0x00001186
 .L080B9456:
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     mov r1, sb
     ldr r0, [r1]
@@ -344938,7 +343938,7 @@ func_080B9340: @ 0x080B9340
     cmp r6, #0x19
     bne .L080B94F4
     ldr r0, .L080B94F0 @ =0x00001189
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     mov r0, sl
     lsls r4, r0, #3
@@ -344966,7 +343966,7 @@ func_080B9340: @ 0x080B9340
     bl GetChapterInfo
     adds r1, r0, #0
     movs r2, #0
-    ldr r0, .L080B9560 @ =gPlayStatus
+    ldr r0, .L080B9560 @ =gPlaySt
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
     bne .L080B9508
@@ -344983,7 +343983,7 @@ func_080B9340: @ 0x080B9340
     cmp r1, #0
     beq .L080B9542
     ldr r0, .L080B9564 @ =0x00001188
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     ldr r1, .L080B9568 @ =0x08CEEBA4
     ldr r0, [r1]
@@ -345016,7 +344016,7 @@ func_080B9340: @ 0x080B9340
     str r3, [sp, #0xc]
     b .L080B9574
     .align 2, 0
-.L080B9560: .4byte gPlayStatus
+.L080B9560: .4byte gPlaySt
 .L080B9564: .4byte 0x00001188
 .L080B9568: .4byte 0x08CEEBA4
 .L080B956C:
@@ -345030,7 +344030,7 @@ func_080B9340: @ 0x080B9340
     movs r0, #0x19
     bl GetChapterInfo
     adds r2, r0, #0
-    ldr r0, .L080B95C0 @ =gPlayStatus
+    ldr r0, .L080B95C0 @ =gPlaySt
     movs r1, #0
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
@@ -345041,7 +344041,7 @@ func_080B9340: @ 0x080B9340
     adds r0, #0x74
     adds r0, r0, r1
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     ldr r0, .L080B95C4 @ =0x08CEEBA4
     adds r1, r4, #0
@@ -345061,14 +344061,14 @@ func_080B9340: @ 0x080B9340
     bl func_08005AD4
     b .L080B960E
     .align 2, 0
-.L080B95C0: .4byte gPlayStatus
+.L080B95C0: .4byte gPlaySt
 .L080B95C4: .4byte 0x08CEEBA4
 .L080B95C8: .4byte gBg1Tm
 .L080B95CC:
     adds r0, r6, #0
     bl GetChapterInfo
     adds r2, r0, #0
-    ldr r0, .L080B9648 @ =gPlayStatus
+    ldr r0, .L080B9648 @ =gPlaySt
     movs r1, #0
     ldrb r0, [r0, #0x1b]
     cmp r0, #3
@@ -345079,7 +344079,7 @@ func_080B9340: @ 0x080B9340
     adds r0, #0x74
     adds r0, r0, r1
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     ldr r0, .L080B964C @ =0x08CEEBA4
     adds r1, r4, #0
@@ -345127,7 +344127,7 @@ func_080B9340: @ 0x080B9340
     pop {r1}
     bx r1
     .align 2, 0
-.L080B9648: .4byte gPlayStatus
+.L080B9648: .4byte gPlaySt
 .L080B964C: .4byte 0x08CEEBA4
 .L080B9650: .4byte gBg1Tm
     func_end func_080B9340
@@ -345199,7 +344199,7 @@ func_080B9654: @ 0x080B9654
     adds r0, #1
     strb r0, [r5]
 .L080B96D6:
-    ldr r0, .L080B96F8 @ =gKeys
+    ldr r0, .L080B96F8 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #4]
@@ -345218,7 +344218,7 @@ func_080B9654: @ 0x080B9654
     pop {r0}
     bx r0
     .align 2, 0
-.L080B96F8: .4byte gKeys
+.L080B96F8: .4byte gpKeySt
     func_end func_080B9654
 
     thumb_func_start func_080B96FC
@@ -345245,7 +344245,7 @@ func_080B96FC: @ 0x080B96FC
     movs r1, #0x10
     movs r2, #0x80
     bl PutSpriteExt
-    ldr r1, .L080B98F8 @ =gPlayStatus
+    ldr r1, .L080B98F8 @ =gPlaySt
     movs r0, #0x80
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -345461,7 +344461,7 @@ func_080B96FC: @ 0x080B96FC
 .L080B98EC: .4byte 0x08CEEA70
 .L080B98F0: .4byte 0x00009480
 .L080B98F4: .4byte 0x08CEEAE4
-.L080B98F8: .4byte gPlayStatus
+.L080B98F8: .4byte gPlaySt
 .L080B98FC: .4byte 0x08CEEA90
 .L080B9900: .4byte 0x00008480
 .L080B9904: .4byte 0x08CEEA9E
@@ -345775,7 +344775,7 @@ func_080B9B38: @ 0x080B9B38
     bl ApplyPaletteExt
     movs r0, #0xf
     bl EnableBgSync
-    ldr r4, .L080B9C38 @ =gPlayStatus
+    ldr r4, .L080B9C38 @ =gPlaySt
     movs r0, #0x80
     ldrb r6, [r4, #0x14]
     ands r0, r6
@@ -345821,7 +344821,7 @@ func_080B9B38: @ 0x080B9B38
 .L080B9C2C: .4byte 0x085DFAF0
 .L080B9C30: .4byte 0x085DFA90
 .L080B9C34: .4byte 0x085DFAB0
-.L080B9C38: .4byte gPlayStatus
+.L080B9C38: .4byte gPlaySt
 .L080B9C3C:
     bl func_0809FC30
     add r1, sp, #8
@@ -346170,7 +345170,7 @@ func_080B9E58: @ 0x080B9E58
     bne .L080B9F40
     movs r0, #0
     str r0, [r4, #0x30]
-    ldr r1, .L080B9F14 @ =gPlayStatus
+    ldr r1, .L080B9F14 @ =gPlaySt
     movs r0, #0x80
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -346184,7 +345184,7 @@ func_080B9E58: @ 0x080B9E58
     b .L080B9F22
     .align 2, 0
 .L080B9F10: .4byte 0x0000011F
-.L080B9F14: .4byte gPlayStatus
+.L080B9F14: .4byte gPlaySt
 .L080B9F18:
     ldr r0, [r4, #0x2c]
     adds r0, #0xa
@@ -346194,7 +345194,7 @@ func_080B9E58: @ 0x080B9E58
     ldr r0, [r4, #0x2c]
     adds r0, #1
     str r0, [r4, #0x2c]
-    ldr r0, .L080B9F48 @ =gPlayStatus
+    ldr r0, .L080B9F48 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -346210,14 +345210,14 @@ func_080B9E58: @ 0x080B9E58
     pop {r0}
     bx r0
     .align 2, 0
-.L080B9F48: .4byte gPlayStatus
+.L080B9F48: .4byte gPlaySt
     func_end func_080B9E58
 
     thumb_func_start func_080B9F4C
 func_080B9F4C: @ 0x080B9F4C
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L080B9F74 @ =gKeys
+    ldr r0, .L080B9F74 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xb
     ldrh r1, [r1, #8]
@@ -346234,7 +345234,7 @@ func_080B9F4C: @ 0x080B9F4C
     pop {r0}
     bx r0
     .align 2, 0
-.L080B9F74: .4byte gKeys
+.L080B9F74: .4byte gpKeySt
     func_end func_080B9F4C
 
     thumb_func_start func_080B9F78
@@ -346250,7 +345250,7 @@ func_080B9F78: @ 0x080B9F78
 func_080B9F84: @ 0x080B9F84
     push {lr}
     adds r2, r0, #0
-    ldr r1, .L080B9FA0 @ =gPlayStatus
+    ldr r1, .L080B9FA0 @ =gPlaySt
     movs r0, #0x80
     ldrb r1, [r1, #0x14]
     ands r0, r1
@@ -346261,7 +345261,7 @@ func_080B9F84: @ 0x080B9F84
     bl Proc_Goto
     b .L080B9FAC
     .align 2, 0
-.L080B9FA0: .4byte gPlayStatus
+.L080B9FA0: .4byte gPlaySt
 .L080B9FA4:
     adds r0, r2, #0
     movs r1, #0
@@ -346572,7 +345572,7 @@ func_080BA10C: @ 0x080BA10C
     adds r0, #0x2c
     str r0, [r4, #0x30]
 .L080BA216:
-    ldr r0, .L080BA240 @ =gKeys
+    ldr r0, .L080BA240 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #8
     ldrh r1, [r1, #8]
@@ -346590,7 +345590,7 @@ func_080BA10C: @ 0x080BA10C
     .align 2, 0
 .L080BA238: .4byte 0x01000200
 .L080BA23C: .4byte gBg3Tm
-.L080BA240: .4byte gKeys
+.L080BA240: .4byte gpKeySt
 .L080BA244:
     ldr r0, [r4, #0x2c]
     ldr r1, [r4, #0x3c]
@@ -347201,7 +346201,7 @@ func_080BA6D8: @ 0x080BA6D8
     strb r0, [r2, #1]
     movs r0, #0xe
     bl EnableBgSync
-    ldr r0, .L080BA760 @ =gPlayStatus
+    ldr r0, .L080BA760 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -347221,7 +346221,7 @@ func_080BA6D8: @ 0x080BA6D8
 .L080BA754: .4byte func_080BA3CC
 .L080BA758: .4byte 0x08CEFA40
 .L080BA75C: .4byte gDispIo
-.L080BA760: .4byte gPlayStatus
+.L080BA760: .4byte gPlaySt
     func_end func_080BA6D8
 
     thumb_func_start func_080BA764
@@ -347549,14 +346549,14 @@ func_080BA9B0: @ 0x080BA9B0
     lsls r1, r1, #2
     movs r2, #2
     bl ApplyPaletteExt
-    ldr r0, .L080BAA10 @ =gKeys
+    ldr r0, .L080BAA10 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #9
     ldrh r1, [r1, #8]
     ands r0, r1
     cmp r0, #0
     beq .L080BAA1C
-    ldr r0, .L080BAA14 @ =gPlayStatus
+    ldr r0, .L080BAA14 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -347572,8 +346572,8 @@ func_080BA9B0: @ 0x080BA9B0
     b .L080BAA32
     .align 2, 0
 .L080BAA0C: .4byte 0x085E9B2C
-.L080BAA10: .4byte gKeys
-.L080BAA14: .4byte gPlayStatus
+.L080BAA10: .4byte gpKeySt
+.L080BAA14: .4byte gPlaySt
 .L080BAA18: .4byte 0x0000038D
 .L080BAA1C:
     ldr r1, [r4, #0x54]
@@ -347673,8 +346673,8 @@ func_080BAA90: @ 0x080BAA90
 .L080BAAD0: .4byte 0x08672570
     func_end func_080BAA90
 
-    thumb_func_start func_080BAAD4
-func_080BAAD4: @ 0x080BAAD4
+    thumb_func_start StartTitleScreen_WithMusic
+StartTitleScreen_WithMusic: @ 0x080BAAD4
     push {lr}
     adds r1, r0, #0
     ldr r0, .L080BAAF0 @ =0x08CEEF6C
@@ -347689,10 +346689,10 @@ func_080BAAD4: @ 0x080BAAD4
     bx r0
     .align 2, 0
 .L080BAAF0: .4byte 0x08CEEF6C
-    func_end func_080BAAD4
+    func_end StartTitleScreen_WithMusic
 
-    thumb_func_start func_080BAAF4
-func_080BAAF4: @ 0x080BAAF4
+    thumb_func_start StartTitleScreen_FlagFalse
+StartTitleScreen_FlagFalse: @ 0x080BAAF4
     push {lr}
     adds r1, r0, #0
     ldr r0, .L080BAB08 @ =0x08CEEF6C
@@ -347704,10 +346704,10 @@ func_080BAAF4: @ 0x080BAAF4
     bx r0
     .align 2, 0
 .L080BAB08: .4byte 0x08CEEF6C
-    func_end func_080BAAF4
+    func_end StartTitleScreen_FlagFalse
 
-    thumb_func_start func_080BAB0C
-func_080BAB0C: @ 0x080BAB0C
+    thumb_func_start StartTitleScreen_FlagTrue
+StartTitleScreen_FlagTrue: @ 0x080BAB0C
     push {lr}
     adds r1, r0, #0
     ldr r0, .L080BAB20 @ =0x08CEEF6C
@@ -347719,7 +346719,7 @@ func_080BAB0C: @ 0x080BAB0C
     bx r0
     .align 2, 0
 .L080BAB20: .4byte 0x08CEEF6C
-    func_end func_080BAB0C
+    func_end StartTitleScreen_FlagTrue
 
     thumb_func_start func_080BAB24
 func_080BAB24: @ 0x080BAB24
@@ -351004,7 +350004,7 @@ func_080BC570: @ 0x080BC570
     asrs r0, r0, #0x18
     cmp r0, #0
     beq .L080BC5AC
-    ldr r0, .L080BC5B4 @ =gKeys
+    ldr r0, .L080BC5B4 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xb
     ldrh r1, [r1, #8]
@@ -351025,7 +350025,7 @@ func_080BC570: @ 0x080BC570
     pop {r0}
     bx r0
     .align 2, 0
-.L080BC5B4: .4byte gKeys
+.L080BC5B4: .4byte gpKeySt
     func_end func_080BC570
 
     thumb_func_start func_080BC5B8
@@ -351510,7 +350510,7 @@ func_080BC960: @ 0x080BC960
     adds r4, r0, #0
     movs r0, #8
     bl func_08003F8C
-    ldr r0, .L080BC98C @ =gPlayStatus
+    ldr r0, .L080BC98C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -351526,7 +350526,7 @@ func_080BC960: @ 0x080BC960
     pop {r0}
     bx r0
     .align 2, 0
-.L080BC98C: .4byte gPlayStatus
+.L080BC98C: .4byte gPlaySt
 .L080BC990: .4byte 0x08CEF284
     func_end func_080BC960
 

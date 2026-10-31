@@ -25,7 +25,7 @@ int IsUnitCurrentMainLord(struct Unit * unit)
             break;
     }
 
-    switch (gPlayStatus.scenario)
+    switch (gPlaySt.scenario)
     {
         case 1:
             mode_value = 1;

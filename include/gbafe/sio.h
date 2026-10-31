@@ -187,7 +187,7 @@ bool CheckInLinkArena(void);
 // sub_804305C
 // sub_8043168
 // sub_804321C
-void sub_8043290(/* TODO */);
+void func_08042BB8(/* TODO */);
 void StartNameSelect(ProcPtr parent);
 void StartTacticianNameSelect(ProcPtr parent);
 // sub_8043390
@@ -208,7 +208,7 @@ void StartTacticianNameSelect(ProcPtr parent);
 // sub_80438E0
 // sub_80438FC
 // sub_8043918
-void sub_8043948(/* TODO */);
+void func_080431AC(/* TODO */);
 // sub_804395C
 // sub_804397C
 // Sio_DrawFe6CommImage

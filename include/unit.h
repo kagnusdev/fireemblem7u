@@ -260,7 +260,7 @@ struct UnitInfo
     /* 0C */ u8 ai[4];
 };
 
-// ... func_080174D8(...)
+// ... InitUnits(...)
 // ... ClearUnit(...)
 // ... func_08017530(...)
 // ... func_0801754C(...)

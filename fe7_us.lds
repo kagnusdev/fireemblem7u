@@ -14,7 +14,7 @@ gSongTable = 0x0869D6E0;
 MsgHuffNodes = 0x08B7D71C;
 MsgHuffRoot = 0x08B808A8;
 
-gKeys = 0x08B857F8;
+gpKeySt = 0x08B857F8;
 gEventCmdTable = 0x08B90E48;
 gBackgroundTable = 0x08B91588;
 ProcScr_EventWaitForMu = 0x08B91A08;
@@ -38,6 +38,7 @@ SECTIONS
         src/event.o(.text);
         asm/event.o(.text);
         src/sprite-anim.o(.text);
+        src/game-ctrl.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -114,6 +115,7 @@ SECTIONS
     {
         . = ALIGN(4); asm/data.o(.data_0);
         . = ALIGN(4); src/sprite-anim.o(.data);
+        . = ALIGN(4); src/game-ctrl.o(.data);
         . = ALIGN(4); asm/data.o(.data);
         . = ALIGN(4); src/sio_link_loader.o(.data);
 

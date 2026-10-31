@@ -129,7 +129,7 @@ extern struct Struct_02007508 gUnkOpAnim_02007508;
 // ??? gUnk_08DB8FD0
 // ??? gUnk_08DB9010
 extern struct ProcCmd CONST_DATA ProcScr_08DB9030[];
-extern struct ProcCmd CONST_DATA ProcScr_OpeningSeqence[];
+extern struct ProcCmd CONST_DATA ProcScr_OpeningSequence[];
 extern struct ProcCmd CONST_DATA ProcScr_08DB91A8[];
 extern struct ProcCmd CONST_DATA ProcScr_08DB91C0[];
 extern struct ProcCmd CONST_DATA ProcScr_08DB9208[];

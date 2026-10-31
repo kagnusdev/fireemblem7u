@@ -37,8 +37,8 @@ void AgbMain(void)
     REG_DISPSTAT = 8;
     REG_IME = 1;
 
-    InitKeySt(gKeys);
-    RefreshKeySt(gKeys);
+    InitKeySt(gpKeySt);
+    RefreshKeySt(gpKeySt);
 
     InitRamFuncs();
     SramInit();

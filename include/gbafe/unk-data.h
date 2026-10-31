@@ -2258,7 +2258,7 @@ extern struct ProcCmd ProcScr_MixPalette[];
 // ??? gUnk_08DB0F0C
 // ??? gUnk_08DB0F24
 // ??? gUnk_08DB0F44
-extern struct ProcCmd ProcScr_StartWorldMapEvent[];
+extern const struct ProcCmd ProcScr_StartWorldMapEvent[];
 // ??? gUnk_08DB1004
 // ??? gUnk_08DB101C
 // ??? gUnk_08DB1034
@@ -2282,9 +2282,9 @@ extern struct ProcCmd ProcScr_StartWorldMapEvent[];
 // ??? gUnk_08DB7DD0
 // ??? gUnk_08DB7E28
 // ??? gUnk_08DB7E70
-extern struct ProcCmd ProcScr_Unk_08DB7EB0[];
-extern struct ProcCmd ProcScr_Unk_08DB8048[];
-extern struct ProcCmd ProcScr_Unk_08DB8088[];
+extern const struct ProcCmd ProcScr_Unk_08CEDEE4[];
+extern const struct ProcCmd ProcScr_Unk_08CEE084[];
+extern const struct ProcCmd ProcScr_Unk_08CEE0C4[];
 // ??? gUnk_08DB8118
 // ??? gUnk_08DB85EC
 // ??? gUnk_08DB85F4

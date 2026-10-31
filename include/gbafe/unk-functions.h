@@ -74,8 +74,8 @@ void CleanupUnitsBeforeChapter(void);
 // ResumeMapMainDuringBerserk
 // ResumeMapMainDuringArena
 // ResumeMapMainDuringPhaseChange
-void sub_802EB7C(/* TODO */);
-void sub_802EBA0(/* TODO */);
+void func_0802E6B0(/* TODO */);
+void func_0802E6D4(/* TODO */);
 char *GetTacticianName();
 void SetTacticianName(const char *name);
 // sub_802EBCC
@@ -1187,7 +1187,7 @@ void sub_80B7980(u16 *, int, int, int, int);
 // sub_80B9B1C
 // sub_80B9B80
 // sub_80B9BD4
-void sub_80B9C0C(/* TODO */);
+void func_080B90AC(/* TODO */);
 // sub_80B9C20
 // sub_80B9C88
 // sub_80B9CBC

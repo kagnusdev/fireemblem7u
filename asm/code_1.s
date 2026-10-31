@@ -1864,8 +1864,8 @@ func_08001990: @ 0x08001990
 .L080019B4: .4byte gDispIo
     func_end func_08001990
 
-    thumb_func_start func_080019B8
-func_080019B8: @ 0x080019B8
+    thumb_func_start SetMainFunc
+SetMainFunc: @ 0x080019B8
     push {r7, lr}
     sub sp, #4
     mov r7, sp
@@ -1879,7 +1879,7 @@ func_080019B8: @ 0x080019B8
     bx r0
     .align 2, 0
 .L080019D0: .4byte gMainFunc
-    func_end func_080019B8
+    func_end SetMainFunc
 
     thumb_func_start RunMainFunc
 RunMainFunc: @ 0x080019D4
@@ -2310,7 +2310,7 @@ func_08001CEC: @ 0x08001CEC
     sub sp, #4
     mov r7, sp
     str r0, [r7]
-    ldr r1, .L08001D50 @ =gKeys
+    ldr r1, .L08001D50 @ =gpKeySt
     ldr r0, [r1]
     ldr r1, [r7]
     adds r2, r1, #0
@@ -2324,7 +2324,7 @@ func_08001CEC: @ 0x08001CEC
     orrs r2, r1
     adds r1, r2, #0
     strh r1, [r0, #8]
-    ldr r1, .L08001D50 @ =gKeys
+    ldr r1, .L08001D50 @ =gpKeySt
     ldr r0, [r1]
     ldr r1, [r7]
     adds r2, r1, #0
@@ -2338,7 +2338,7 @@ func_08001CEC: @ 0x08001CEC
     orrs r2, r1
     adds r1, r2, #0
     strh r1, [r0, #6]
-    ldr r1, .L08001D50 @ =gKeys
+    ldr r1, .L08001D50 @ =gpKeySt
     ldr r0, [r1]
     ldr r1, [r7]
     adds r2, r1, #0
@@ -2357,7 +2357,7 @@ func_08001CEC: @ 0x08001CEC
     pop {r0}
     bx r0
     .align 2, 0
-.L08001D50: .4byte gKeys
+.L08001D50: .4byte gpKeySt
     func_end func_08001CEC
 
     thumb_func_start func_08001D54
@@ -4504,7 +4504,7 @@ SoftResetIfKeyCombo: @ 0x08002CF4
     asrs r0, r1, #0x18
     cmp r0, #0
     beq .L08002D40
-    ldr r1, .L08002D1C @ =gKeys
+    ldr r1, .L08002D1C @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #4]
     ldr r0, .L08002D20 @ =0x00000303
@@ -4515,10 +4515,10 @@ SoftResetIfKeyCombo: @ 0x08002CF4
     bl SoftReset
     b .L08002D40
     .align 2, 0
-.L08002D1C: .4byte gKeys
+.L08002D1C: .4byte gpKeySt
 .L08002D20: .4byte 0x00000303
 .L08002D24:
-    ldr r1, .L08002D3C @ =gKeys
+    ldr r1, .L08002D3C @ =gpKeySt
     ldr r0, [r1]
     ldrh r1, [r0, #4]
     cmp r1, #0xf
@@ -4528,7 +4528,7 @@ SoftResetIfKeyCombo: @ 0x08002CF4
     bl SoftReset
     b .L08002D40
     .align 2, 0
-.L08002D3C: .4byte gKeys
+.L08002D3C: .4byte gpKeySt
 .L08002D40:
     pop {r7}
     pop {r0}
@@ -5959,7 +5959,7 @@ StartOrChangeBgm: @ 0x08003814
     .align 2, 0
 .L08003838: .4byte gBgmStatus
 .L0800383C:
-    ldr r1, .L08003850 @ =gPlayStatus
+    ldr r1, .L08003850 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -5969,7 +5969,7 @@ StartOrChangeBgm: @ 0x08003814
     beq .L08003854
     b .L08003888
     .align 2, 0
-.L08003850: .4byte gPlayStatus
+.L08003850: .4byte gPlaySt
 .L08003854:
     bl func_0800421C
     ldr r0, .L0800387C @ =gBgmStatus
@@ -6128,7 +6128,7 @@ StartBgmFadeIn: @ 0x0800397C
     str r0, [r7]
     str r1, [r7, #4]
     str r2, [r7, #8]
-    ldr r1, .L0800399C @ =gPlayStatus
+    ldr r1, .L0800399C @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -6138,7 +6138,7 @@ StartBgmFadeIn: @ 0x0800397C
     beq .L080039A0
     b .L08003A4E
     .align 2, 0
-.L0800399C: .4byte gPlayStatus
+.L0800399C: .4byte gPlaySt
 .L080039A0:
     ldr r0, .L08003A58 @ =gBgmStatus
     ldrb r1, [r0, #6]
@@ -6239,7 +6239,7 @@ OverrideBgm: @ 0x08003A70
     sub sp, #4
     mov r7, sp
     str r0, [r7]
-    ldr r1, .L08003A8C @ =gPlayStatus
+    ldr r1, .L08003A8C @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -6249,7 +6249,7 @@ OverrideBgm: @ 0x08003A70
     beq .L08003A90
     b .L08003AE2
     .align 2, 0
-.L08003A8C: .4byte gPlayStatus
+.L08003A8C: .4byte gPlaySt
 .L08003A90:
     ldr r0, .L08003AEC @ =gBgmStatus
     ldr r1, .L08003AEC @ =gBgmStatus
@@ -6306,7 +6306,7 @@ OverrideBgm: @ 0x08003A70
 func_08003AF8: @ 0x08003AF8
     push {r7, lr}
     mov r7, sp
-    ldr r1, .L08003B10 @ =gPlayStatus
+    ldr r1, .L08003B10 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -6316,7 +6316,7 @@ func_08003AF8: @ 0x08003AF8
     beq .L08003B14
     b .L08003B7A
     .align 2, 0
-.L08003B10: .4byte gPlayStatus
+.L08003B10: .4byte gPlaySt
 .L08003B14:
     ldr r0, .L08003B20 @ =gBgmStatus
     ldrh r1, [r0, #2]
@@ -6384,7 +6384,7 @@ RestoreBgm: @ 0x08003B8C
     mov r7, sp
     adds r1, r7, #0
     strh r0, [r1]
-    ldr r1, .L08003BA8 @ =gPlayStatus
+    ldr r1, .L08003BA8 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -6394,7 +6394,7 @@ RestoreBgm: @ 0x08003B8C
     beq .L08003BAC
     b .L08003C14
     .align 2, 0
-.L08003BA8: .4byte gPlayStatus
+.L08003BA8: .4byte gPlaySt
 .L08003BAC:
     ldr r0, .L08003BB8 @ =gBgmStatus
     ldrh r1, [r0, #2]
@@ -6461,7 +6461,7 @@ RestoreBgm: @ 0x08003B8C
 func_08003C28: @ 0x08003C28
     push {r7, lr}
     mov r7, sp
-    ldr r1, .L08003C40 @ =gPlayStatus
+    ldr r1, .L08003C40 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -6471,7 +6471,7 @@ func_08003C28: @ 0x08003C28
     beq .L08003C44
     b .L08003C66
     .align 2, 0
-.L08003C40: .4byte gPlayStatus
+.L08003C40: .4byte gPlaySt
 .L08003C44:
     ldr r0, .L08003C6C @ =gBgmStatus
     ldr r1, .L08003C6C @ =gBgmStatus
@@ -6791,7 +6791,7 @@ PlaySongDelayed: @ 0x08003EA0
     str r0, [r7]
     str r1, [r7, #4]
     str r2, [r7, #8]
-    ldr r1, .L08003EC0 @ =gPlayStatus
+    ldr r1, .L08003EC0 @ =gPlaySt
     adds r0, r1, #0
     adds r1, #0x41
     ldrb r0, [r1]
@@ -6801,7 +6801,7 @@ PlaySongDelayed: @ 0x08003EA0
     beq .L08003EC4
     b .L08003F06
     .align 2, 0
-.L08003EC0: .4byte gPlayStatus
+.L08003EC0: .4byte gPlaySt
 .L08003EC4:
     ldr r1, .L08003F10 @ =0x08B85854
     adds r0, r1, #0
@@ -8031,8 +8031,8 @@ func_08004768: @ 0x08004768
     bx lr
     func_end func_08004768
 
-    thumb_func_start func_0800476C
-func_0800476C: @ 0x0800476C
+    thumb_func_start Proc_ForAll
+Proc_ForAll: @ 0x0800476C
     push {r4, r5, r6, lr}
     adds r6, r0, #0
     ldr r4, .L08004790 @ =gProcs
@@ -8053,7 +8053,7 @@ func_0800476C: @ 0x0800476C
     bx r0
     .align 2, 0
 .L08004790: .4byte gProcs
-    func_end func_0800476C
+    func_end Proc_ForAll
 
     thumb_func_start Proc_ForEach
 Proc_ForEach: @ 0x08004794
@@ -10499,7 +10499,7 @@ Text_DrawNumberOrBlank: @ 0x080057D8
     adds r0, r4, #0
     bl Text_Skip
     ldr r0, .L08005804 @ =0x0000127C
-    bl GetMsg
+    bl DecodeMsg
     adds r1, r0, #0
     adds r0, r4, #0
     bl Text_DrawString
@@ -15251,7 +15251,7 @@ func_08007AFC: @ 0x08007AFC
     ldr r2, .L08007B1C @ =0x030041C0
     ldr r0, [r2]
     ldr r4, [r0, #0x48]
-    ldr r1, .L08007B20 @ =gKeys
+    ldr r1, .L08007B20 @ =gpKeySt
     ldr r0, [r1]
     movs r3, #1
     ldrh r0, [r0, #4]
@@ -15264,7 +15264,7 @@ func_08007AFC: @ 0x08007AFC
     b .L08007B26
     .align 2, 0
 .L08007B1C: .4byte 0x030041C0
-.L08007B20: .4byte gKeys
+.L08007B20: .4byte gpKeySt
 .L08007B24:
     strh r3, [r4, #0x32]
 .L08007B26:
@@ -15907,7 +15907,7 @@ StartTalkMsg: @ 0x0800801C
     adds r4, r0, #0
     adds r5, r1, #0
     adds r0, r2, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     adds r0, r4, #0
     adds r1, r5, #0
@@ -15925,7 +15925,7 @@ func_0800803C: @ 0x0800803C
     adds r5, r1, #0
     adds r0, r2, #0
     adds r6, r3, #0
-    bl GetMsg
+    bl DecodeMsg
     adds r2, r0, #0
     adds r0, r4, #0
     adds r1, r5, #0
@@ -16094,7 +16094,7 @@ TalkSkipListener_OnIdle: @ 0x08008130
     bl CheckTalkFlag
     cmp r0, #0
     bne .L080081A8
-    ldr r0, .L08008198 @ =gKeys
+    ldr r0, .L08008198 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xa
     ldrh r1, [r1, #8]
@@ -16121,7 +16121,7 @@ TalkSkipListener_OnIdle: @ 0x08008130
     .align 2, 0
 .L08008190: .4byte 0x08B90ACC
 .L08008194: .4byte 0x08B90B24
-.L08008198: .4byte gKeys
+.L08008198: .4byte gpKeySt
 .L0800819C: .4byte 0x08B909B8
 .L080081A0: .4byte gBg0Tm
 .L080081A4: .4byte gBg1Tm
@@ -16134,7 +16134,7 @@ TalkSkipListener_OnIdle: @ 0x08008130
     bl CheckTalkFlag
     cmp r0, #0
     bne .L080081D2
-    ldr r0, .L080081DC @ =gKeys
+    ldr r0, .L080081DC @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xf3
     ldrh r1, [r1, #8]
@@ -16151,7 +16151,7 @@ TalkSkipListener_OnIdle: @ 0x08008130
     bx r0
     .align 2, 0
 .L080081D8: .4byte 0x08B90A4C
-.L080081DC: .4byte gKeys
+.L080081DC: .4byte gpKeySt
 .L080081E0: .4byte 0x08B909B8
     func_end TalkSkipListener_OnIdle
 
@@ -17401,7 +17401,7 @@ func_080085BC: @ 0x080085BC
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1, #4]
-    bl func_0802E6E4
+    bl GetTacticianName
     ldr r1, [r4]
     str r0, [r1]
     b .L080085C6
@@ -18180,7 +18180,7 @@ TalkWaitForInput_OnIdle: @ 0x08009230
     movs r0, #0
     bl func_080069F4
 .L08009290:
-    ldr r0, .L080092B4 @ =gKeys
+    ldr r0, .L080092B4 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0xf3
     ldrh r1, [r1, #8]
@@ -18197,7 +18197,7 @@ TalkWaitForInput_OnIdle: @ 0x08009230
     .align 2, 0
 .L080092AC: .4byte 0x08B90A8C
 .L080092B0: .4byte 0x0000B2BF
-.L080092B4: .4byte gKeys
+.L080092B4: .4byte gpKeySt
     func_end TalkWaitForInput_OnIdle
 
     thumb_func_start func_080092B8
@@ -18367,7 +18367,7 @@ func_080093CC: @ 0x080093CC
     adds r0, r0, r4
     mov r8, r0
     ldrh r0, [r7]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r6, #0
     mov r1, r8
@@ -18375,7 +18375,7 @@ func_080093CC: @ 0x080093CC
     bl Text_InsertDrawString
     adds r4, #0x38
     ldrh r0, [r7, #8]
-    bl GetMsg
+    bl DecodeMsg
     adds r3, r0, #0
     adds r0, r6, #0
     adds r1, r4, #0
@@ -18438,14 +18438,14 @@ func_080093CC: @ 0x080093CC
 func_08009480: @ 0x08009480
     push {r4, r5, lr}
     adds r4, r0, #0
-    ldr r0, .L080094AC @ =gKeys
+    ldr r0, .L080094AC @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
     movs r0, #2
     ands r0, r1
     cmp r0, #0
     beq .L080094BC
-    ldr r0, .L080094B0 @ =gPlayStatus
+    ldr r0, .L080094B0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -18458,8 +18458,8 @@ func_08009480: @ 0x08009480
     movs r0, #0
     b .L080094DE
     .align 2, 0
-.L080094AC: .4byte gKeys
-.L080094B0: .4byte gPlayStatus
+.L080094AC: .4byte gpKeySt
+.L080094B0: .4byte gPlaySt
 .L080094B4: .4byte 0x0000038B
 .L080094B8: .4byte 0x030000E0
 .L080094BC:
@@ -18468,7 +18468,7 @@ func_08009480: @ 0x08009480
     ands r0, r1
     cmp r0, #0
     beq .L080094F4
-    ldr r0, .L080094E8 @ =gPlayStatus
+    ldr r0, .L080094E8 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -18486,7 +18486,7 @@ func_08009480: @ 0x08009480
     bl Proc_Break
     b .L08009574
     .align 2, 0
-.L080094E8: .4byte gPlayStatus
+.L080094E8: .4byte gPlaySt
 .L080094EC: .4byte 0x0000038A
 .L080094F0: .4byte 0x030000E0
 .L080094F4:
@@ -18497,7 +18497,7 @@ func_08009480: @ 0x08009480
     ldrh r0, [r4, #0x2a]
     cmp r0, #2
     bne .L08009522
-    ldr r0, .L0800957C @ =gPlayStatus
+    ldr r0, .L0800957C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -18513,7 +18513,7 @@ func_08009480: @ 0x08009480
     beq .L08009522
     bl _call_via_r0
 .L08009522:
-    ldr r0, .L08009584 @ =gKeys
+    ldr r0, .L08009584 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x10
     ldrh r1, [r1, #8]
@@ -18523,7 +18523,7 @@ func_08009480: @ 0x08009480
     ldrh r1, [r4, #0x2a]
     cmp r1, #1
     bne .L08009558
-    ldr r0, .L0800957C @ =gPlayStatus
+    ldr r0, .L0800957C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -18558,9 +18558,9 @@ func_08009480: @ 0x08009480
     pop {r0}
     bx r0
     .align 2, 0
-.L0800957C: .4byte gPlayStatus
+.L0800957C: .4byte gPlaySt
 .L08009580: .4byte 0x00000387
-.L08009584: .4byte gKeys
+.L08009584: .4byte gpKeySt
     func_end func_08009480
 
     thumb_func_start func_08009588
@@ -20394,7 +20394,7 @@ func_0800A11C: @ 0x0800A11C
     .align 2, 0
 .L0800A478: .4byte 0x08B909B8
 .L0800A47C:
-    bl func_0802E6E4
+    bl GetTacticianName
     bl func_080055FC
     b .L0800A496
 .L0800A486:
@@ -20718,7 +20718,7 @@ LoadUnitWrapper: @ 0x0800A618
     strb r0, [r4, #0x10]
     ldrb r0, [r5, #5]
     strb r0, [r4, #0x11]
-    ldr r1, .L0800A704 @ =gPlayStatus
+    ldr r1, .L0800A704 @ =gPlaySt
     movs r0, #0x40
     ldrb r2, [r1, #0x14]
     ands r0, r2
@@ -20751,7 +20751,7 @@ LoadUnitWrapper: @ 0x0800A618
     bx r0
     .align 2, 0
 .L0800A700: .4byte 0xFFFEFFFF
-.L0800A704: .4byte gPlayStatus
+.L0800A704: .4byte gPlaySt
     func_end LoadUnitWrapper
 
     thumb_func_start FakeLoadUnit
@@ -20832,7 +20832,7 @@ func_0800A71C: @ 0x0800A71C
 
     thumb_func_start func_0800A7A0
 func_0800A7A0: @ 0x0800A7A0
-    ldr r0, .L0800A7B4 @ =gKeys
+    ldr r0, .L0800A7B4 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x80
     lsls r0, r0, #1
@@ -20843,7 +20843,7 @@ func_0800A7A0: @ 0x0800A7A0
     movs r0, #0
     b .L0800A7BA
     .align 2, 0
-.L0800A7B4: .4byte gKeys
+.L0800A7B4: .4byte gpKeySt
 .L0800A7B8:
     movs r0, #1
 .L0800A7BA:
@@ -20961,7 +20961,7 @@ func_0800A7E4: @ 0x0800A7E4
 .L0800A894: .4byte 0x03000108
 .L0800A898:
     ldr r0, [r5, #4]
-    bl GetMsg
+    bl DecodeMsg
     bl func_080055FC
     b .L0800A902
 .L0800A8A4:
@@ -20973,7 +20973,7 @@ func_0800A7E4: @ 0x0800A7E4
     ldr r0, [r0]
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     bl func_080055FC
     b .L0800A902
     .align 2, 0
@@ -21079,7 +21079,7 @@ func_0800A918: @ 0x0800A918
 .L0800A994:
     add r4, sp, #0x10
     ldr r0, [r5, #4]
-    bl GetMsg
+    bl DecodeMsg
     b .L0800A9E8
 .L0800A99E:
     add r0, sp, #0x10
@@ -21092,7 +21092,7 @@ func_0800A918: @ 0x0800A918
     ldr r0, [r0]
     ldr r0, [r0]
     ldrh r0, [r0]
-    bl GetMsg
+    bl DecodeMsg
     b .L0800A9E8
     .align 2, 0
 .L0800A9B8: .4byte 0x03000104
@@ -21254,7 +21254,7 @@ func_0800AAD8: @ 0x0800AAD8
     ldrh r0, [r1]
     cmp r0, #0
     beq .L0800AAF6
-    ldr r0, .L0800AAFC @ =gPlayStatus
+    ldr r0, .L0800AAFC @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -21266,7 +21266,7 @@ func_0800AAD8: @ 0x0800AAD8
     pop {r0}
     bx r0
     .align 2, 0
-.L0800AAFC: .4byte gPlayStatus
+.L0800AAFC: .4byte gPlaySt
     func_end func_0800AAD8
 
     thumb_func_start func_0800AB00
@@ -21478,7 +21478,7 @@ func_0800AC8C: @ 0x0800AC8C
     ldr r0, [r1, #0x30]
     cmp r0, #0
     bge .L0800ACAC
-    ldr r0, .L0800ACA8 @ =gKeys
+    ldr r0, .L0800ACA8 @ =gpKeySt
     ldr r0, [r0]
     ldrh r0, [r0, #8]
     cmp r0, #0
@@ -21487,7 +21487,7 @@ func_0800AC8C: @ 0x0800AC8C
     bl Proc_Break
     b .L0800ACBE
     .align 2, 0
-.L0800ACA8: .4byte gKeys
+.L0800ACA8: .4byte gpKeySt
 .L0800ACAC:
     cmp r0, #0
     beq .L0800ACBE
@@ -21816,7 +21816,7 @@ EventForceSlowTextSpeed: @ 0x0800AEF0
     rsbs r0, r0, #0
     cmp r1, r0
     bne .L0800AF18
-    ldr r2, .L0800AF1C @ =gPlayStatus
+    ldr r2, .L0800AF1C @ =gPlaySt
     adds r2, #0x40
     ldrb r1, [r2]
     lsls r0, r1, #0x19
@@ -21831,7 +21831,7 @@ EventForceSlowTextSpeed: @ 0x0800AEF0
 .L0800AF18:
     bx lr
     .align 2, 0
-.L0800AF1C: .4byte gPlayStatus
+.L0800AF1C: .4byte gPlaySt
     func_end EventForceSlowTextSpeed
 
     thumb_func_start func_0800AF20
@@ -21846,7 +21846,7 @@ func_0800AF20: @ 0x0800AF20
     rsbs r0, r0, #0
     cmp r1, r0
     beq .L0800AF50
-    ldr r2, .L0800AF58 @ =gPlayStatus
+    ldr r2, .L0800AF58 @ =gPlaySt
     adds r2, #0x40
     movs r0, #3
     ands r1, r0
@@ -21865,28 +21865,28 @@ func_0800AF20: @ 0x0800AF20
     pop {r0}
     bx r0
     .align 2, 0
-.L0800AF58: .4byte gPlayStatus
+.L0800AF58: .4byte gPlaySt
     func_end func_0800AF20
 
-    thumb_func_start func_0800AF5C
-func_0800AF5C: @ 0x0800AF5C
+    thumb_func_start StartEvent
+StartEvent: @ 0x0800AF5C
     push {lr}
     movs r1, #3
-    bl StartEvent
+    bl StartEventInternal
     pop {r1}
     bx r1
-    func_end func_0800AF5C
+    func_end StartEvent
 
     thumb_func_start func_0800AF68
 func_0800AF68: @ 0x0800AF68
     push {lr}
-    bl StartEvent
+    bl StartEventInternal
     pop {r1}
     bx r1
     func_end func_0800AF68
 
-    thumb_func_start StartEvent
-StartEvent: @ 0x0800AF74
+    thumb_func_start StartEventInternal
+StartEventInternal: @ 0x0800AF74
     push {r4, r5, r6, r7, lr}
     adds r7, r0, #0
     adds r5, r1, #0
@@ -22065,7 +22065,7 @@ StartEvent: @ 0x0800AF74
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    func_end StartEvent
+    func_end StartEventInternal
 
     thumb_func_start func_0800B0F0
 func_0800B0F0: @ 0x0800B0F0
@@ -22457,7 +22457,7 @@ Event_MainLoop: @ 0x0800B390
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0800B3E0
-    ldr r0, .L0800B3DC @ =gKeys
+    ldr r0, .L0800B3DC @ =gpKeySt
     ldr r1, [r0]
     movs r0, #8
     ldrh r1, [r1, #8]
@@ -22469,7 +22469,7 @@ Event_MainLoop: @ 0x0800B390
     b .L0800B494
     .align 2, 0
 .L0800B3D8: .4byte 0x08B969E4
-.L0800B3DC: .4byte gKeys
+.L0800B3DC: .4byte gpKeySt
 .L0800B3E0:
     adds r3, r4, #0
     adds r3, #0x50
@@ -22483,13 +22483,13 @@ Event_MainLoop: @ 0x0800B390
     ldrb r0, [r0]
     cmp r0, #0
     beq .L0800B494
-    ldr r0, .L0800B434 @ =gPlayStatus
+    ldr r0, .L0800B434 @ =gPlaySt
     adds r0, #0x40
     ldrb r0, [r0]
     lsrs r0, r0, #7
     cmp r0, #0
     bne .L0800B412
-    ldr r0, .L0800B438 @ =gKeys
+    ldr r0, .L0800B438 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
     ldrh r1, [r1, #4]
@@ -22514,8 +22514,8 @@ Event_MainLoop: @ 0x0800B390
     strh r0, [r3]
     b .L0800B494
     .align 2, 0
-.L0800B434: .4byte gPlayStatus
-.L0800B438: .4byte gKeys
+.L0800B434: .4byte gPlaySt
+.L0800B438: .4byte gpKeySt
 .L0800B43C:
     ldr r1, [r4, #0x40]
     cmp r1, #0

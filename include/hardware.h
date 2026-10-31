@@ -202,7 +202,7 @@ void SetOnVBlank(void (*func)(void));
 // ... func_080018D0(...)
 // ... func_08001948(...)
 // ... func_08001990(...)
-// ... func_080019B8(...)
+// ... SetMainFunc(...)
 void RunMainFunc(void);
 // ... func_080019F4(...)
 void RefreshKeySt(struct Keys * keys);
@@ -261,13 +261,13 @@ extern void * gBgMapVramTable[4];
 
 extern void (*gMainFunc)(void);
 
-// existing code prefers gKeys, which is a pointer to this
+// existing code prefers gpKeySt, which is a pointer to this
 extern struct Keys gKeysInstance;
 
 extern u32 gUnk_02024C8C;
 extern u32 gUnk_02024C90;
 
-extern struct Keys * SHOULD_BE_CONST gKeys;
+extern struct Keys * SHOULD_BE_CONST gpKeySt;
 
 // TODO: remove the SAFE from the names
 #define TILE_CHR(chr) ((chr) & 0x3FF)

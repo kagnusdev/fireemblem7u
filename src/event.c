@@ -187,7 +187,7 @@ void StartGiveItem(struct Unit * unit, fu16 iid, Proc * parent);
 #include "m4a.h"
 
 #define PlaySe(id)                                                                                                     \
-    if (!gPlayStatus.config_se_disable)                                                                                \
+    if (!gPlaySt.config_se_disable)                                                                                \
     m4aSongNumStart((id))
 
 void RenderMapForFade(void);
@@ -333,7 +333,7 @@ int EvtCmd_Background(struct EventProc * proc)
 
 int EvtCmd_BackgroundLynModeDeath(struct EventProc * proc)
 {
-    int background = GetChapterInfo(gPlayStatus.chapter)->default_background;
+    int background = GetChapterInfo(gPlaySt.chapter)->default_background;
 
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0)
         return EVENT_CMDRET_CONTINUE;
@@ -437,19 +437,19 @@ int EvtCmd_ClearSkipFadeToPrep(struct EventProc * proc)
 
     if (proc->unk_4D)
     {
-        if (!GetChapterInfo(gPlayStatus.chapter)->has_prep)
+        if (!GetChapterInfo(gPlaySt.chapter)->has_prep)
             Event_FadeOutOfSkip(proc);
     }
     else
     {
         if (proc->background == -1)
         {
-            if (GetChapterInfo(gPlayStatus.chapter)->has_prep)
+            if (GetChapterInfo(gPlaySt.chapter)->has_prep)
                 StartMidLockingFadeToBlack(proc);
         }
         else
         {
-            if (!GetChapterInfo(gPlayStatus.chapter)->has_prep)
+            if (!GetChapterInfo(gPlaySt.chapter)->has_prep)
                 Event_FadeOutOfSkip(proc);
         }
     }
@@ -575,7 +575,7 @@ int EvtCmd_TalkByMode(struct EventProc * proc)
 
     InitTalk(BGCHR_TALK, 2, TRUE);
 
-    if (gPlayStatus.scenario != PLAY_SCENARIO_3)
+    if (gPlaySt.scenario != PLAY_SCENARIO_3)
     {
         EventStartTalk(proc, proc->script[1], TRUE);
     }
@@ -639,7 +639,7 @@ int EvtCmd_TalkMoreByMode(struct EventProc * proc)
         return EVENT_CMDRET_CONTINUE;
     }
 
-    if (gPlayStatus.scenario != PLAY_SCENARIO_3)
+    if (gPlaySt.scenario != PLAY_SCENARIO_3)
     {
         EventStartTalk(proc, proc->script[1], FALSE);
     }
@@ -1427,7 +1427,7 @@ int EvtCmd_SavePositionPid(struct EventProc * proc)
             return EVENT_CMDRET_CONTINUE;
 
         unit = GetUnitByPid(GetLeaderPid());
-        slot = gPlayStatus.scenario;
+        slot = gPlaySt.scenario;
     }
     else
     {
@@ -1456,7 +1456,7 @@ int EvtCmd_MovePidToSavedPosition(struct EventProc * proc)
             return EVENT_CMDRET_CONTINUE;
 
         unit = GetUnitByPid(GetLeaderPid());
-        slot = gPlayStatus.scenario;
+        slot = gPlaySt.scenario;
     }
     else
     {
@@ -1672,12 +1672,12 @@ int EvtCmd_LoadUnitsAlive(struct EventProc * proc)
 
 int EvtCmd_LoadUnitsFiltered(struct EventProc * proc)
 {
-    if ((proc->script[1] & 0xFFFF0000) != 0 && (gPlayStatus.flags & PLAY_FLAG_HARD) == 0)
+    if ((proc->script[1] & 0xFFFF0000) != 0 && (gPlaySt.flags & PLAY_FLAG_HARD) == 0)
     {
         return EVENT_CMDRET_CONTINUE;
     }
 
-    if (gPlayStatus.scenario != (proc->script[1] & 0xFF))
+    if (gPlaySt.scenario != (proc->script[1] & 0xFF))
     {
         return EVENT_CMDRET_CONTINUE;
     }
@@ -1710,7 +1710,7 @@ int EvtCmd_LoadUnitsParty(struct EventProc * proc)
 
 int EvtCmd_LoadUnitsPartyIfScenario(struct EventProc * proc)
 {
-    if (gPlayStatus.scenario == (proc->script[1] & 0xFF))
+    if (gPlaySt.scenario == (proc->script[1] & 0xFF))
     {
         MapFill(gMapOther, 0);
 
@@ -1727,12 +1727,12 @@ int EvtCmd_LoadUnitsByMode(struct EventProc * proc)
 {
     int idx;
 
-    if ((gPlayStatus.flags & PLAY_FLAG_HARD) != 0)
+    if ((gPlaySt.flags & PLAY_FLAG_HARD) != 0)
         idx = 1;
     else
         idx = 0;
 
-    if (gPlayStatus.scenario == PLAY_SCENARIO_3)
+    if (gPlaySt.scenario == PLAY_SCENARIO_3)
         idx += 2;
 
     MapFill(gMapOther, 0);
@@ -1781,12 +1781,12 @@ int EvtCmd_LoadUnitsPartyByMode(struct EventProc * proc)
 {
     int idx;
 
-    if ((gPlayStatus.flags & PLAY_FLAG_HARD) != 0)
+    if ((gPlaySt.flags & PLAY_FLAG_HARD) != 0)
         idx = 1;
     else
         idx = 0;
 
-    if (gPlayStatus.scenario == PLAY_SCENARIO_3)
+    if (gPlaySt.scenario == PLAY_SCENARIO_3)
         idx += 2;
 
     MapFill(gMapOther, 0);
@@ -1951,10 +1951,10 @@ void EventLoadUnitsAsParty(struct EventProc * proc)
         suitable_unit_count++;
     })
 
-    if (suitable_unit_count > 0 && GetChapterInfo(gPlayStatus.chapter)->has_prep)
+    if (suitable_unit_count > 0 && GetChapterInfo(gPlaySt.chapter)->has_prep)
         return;
 
-    if (GetChapterInfo(gPlayStatus.chapter)->has_prep)
+    if (GetChapterInfo(gPlaySt.chapter)->has_prep)
     {
         FOR_UNITS_FACTION(FACTION_BLUE, unit, {
             if ((unit->flags & (UNIT_FLAG_DEAD | UNIT_FLAG_AWAY)) != 0)
@@ -2360,7 +2360,7 @@ int EvtCmd_GotoIfyActive(struct EventProc * proc)
 
 int EvtCmd_GotoIfyEliwoodMode(struct EventProc * proc)
 {
-    if (gPlayStatus.scenario == PLAY_SCENARIO_2)
+    if (gPlaySt.scenario == PLAY_SCENARIO_2)
     {
         return EventGotoLabel(proc, proc->script[1]);
     }
@@ -2370,7 +2370,7 @@ int EvtCmd_GotoIfyEliwoodMode(struct EventProc * proc)
 
 int EvtCmd_GotoIfyHectorMode(struct EventProc * proc)
 {
-    if (gPlayStatus.scenario == PLAY_SCENARIO_3)
+    if (gPlaySt.scenario == PLAY_SCENARIO_3)
     {
         return EventGotoLabel(proc, proc->script[1]);
     }
@@ -2382,12 +2382,12 @@ int EvtCmd_GotoIfyDifficulty(struct EventProc * proc)
 {
     if (SCR_HI16(proc->script[0]) != 0)
     {
-        if ((gPlayStatus.flags & PLAY_FLAG_HARD) != 0)
+        if ((gPlaySt.flags & PLAY_FLAG_HARD) != 0)
             return EventGotoLabel(proc, proc->script[1]);
     }
     else
     {
-        if ((gPlayStatus.flags & PLAY_FLAG_HARD) == 0)
+        if ((gPlaySt.flags & PLAY_FLAG_HARD) == 0)
             return EventGotoLabel(proc, proc->script[1]);
     }
 
@@ -2418,7 +2418,7 @@ int EvtCmd_GotoIfnTalkYes2(struct EventProc * proc)
 
 int EvtCmd_GotoIfnTutorial(struct EventProc * proc)
 {
-    if ((gPlayStatus.flags & PLAY_FLAG_HARD) != 0 || IsTutorialDisabled())
+    if ((gPlaySt.flags & PLAY_FLAG_HARD) != 0 || IsTutorialDisabled())
     {
         return EventGotoLabel(proc, proc->script[1]);
     }
@@ -2450,7 +2450,7 @@ int EvtCmd_GotoIfnDeadAndFlagOnce(struct EventProc * proc)
 
 int EvtCmd_GotoIfyTurnCountReached(struct EventProc * proc)
 {
-    if (gPlayStatus.turn >= SCR_HI16(proc->script[0]))
+    if (gPlaySt.turn >= SCR_HI16(proc->script[0]))
     {
         return EventGotoLabel(proc, proc->script[1]);
     }

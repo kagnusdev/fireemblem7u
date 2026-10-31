@@ -588,7 +588,7 @@ EvtCmd_PlaySe: @ 0x0800E500
     ands r0, r1
     cmp r0, #0
     bne .L0800E526
-    ldr r0, .L0800E52C @ =gPlayStatus
+    ldr r0, .L0800E52C @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -602,7 +602,7 @@ EvtCmd_PlaySe: @ 0x0800E500
     pop {r1}
     bx r1
     .align 2, 0
-.L0800E52C: .4byte gPlayStatus
+.L0800E52C: .4byte gPlaySt
     func_end EvtCmd_PlaySe
 
     thumb_func_start EventEndBattleMap
@@ -624,7 +624,7 @@ EvtCmd_NextChapter: @ 0x0800E540
     ldrh r5, [r0, #2]
     bl EndAllMus
     adds r0, r5, #0
-    bl SetNextChapter
+    bl SetNextChapterId
     movs r0, #1
     bl SetNextGameAction
     adds r1, r4, #0
@@ -687,7 +687,7 @@ EvtCmd_SetMap: @ 0x0800E5B4
     adds r1, #0x4c
     movs r0, #0xff
     strb r0, [r1]
-    ldr r1, .L0800E5FC @ =gPlayStatus
+    ldr r1, .L0800E5FC @ =gPlaySt
     ldr r0, [r4, #0x30]
     ldr r0, [r0, #4]
     strb r0, [r1, #0xe]
@@ -711,20 +711,20 @@ EvtCmd_SetMap: @ 0x0800E5B4
     pop {r1}
     bx r1
     .align 2, 0
-.L0800E5FC: .4byte gPlayStatus
+.L0800E5FC: .4byte gPlaySt
 .L0800E600: .4byte gBmStatus
     func_end EvtCmd_SetMap
 
     thumb_func_start EvtCmd_SetMapId
 EvtCmd_SetMapId: @ 0x0800E604
-    ldr r1, .L0800E610 @ =gPlayStatus
+    ldr r1, .L0800E610 @ =gPlaySt
     ldr r0, [r0, #0x30]
     ldrh r0, [r0, #2]
     strb r0, [r1, #0xe]
     movs r0, #0
     bx lr
     .align 2, 0
-.L0800E610: .4byte gPlayStatus
+.L0800E610: .4byte gPlaySt
     func_end EvtCmd_SetMapId
 
     thumb_func_start Event_EndSkip
@@ -1609,7 +1609,7 @@ EvtCmd_EnqueueEvent: @ 0x0800EC30
     push {lr}
     ldr r0, [r0, #0x30]
     adds r0, #4
-    bl func_0800AF5C
+    bl StartEvent
     movs r0, #0
     pop {r1}
     bx r1
@@ -1739,8 +1739,8 @@ func_0800ED1C: @ 0x0800ED1C
     bx lr
     func_end func_0800ED1C
 
-    thumb_func_start func_0800ED20
-func_0800ED20: @ 0x0800ED20
+    thumb_func_start IsEventRunning
+IsEventRunning: @ 0x0800ED20
     push {lr}
     movs r0, #6
     bl func_080046F4
@@ -1750,7 +1750,7 @@ func_0800ED20: @ 0x0800ED20
 .L0800ED2E:
     pop {r1}
     bx r1
-    func_end func_0800ED20
+    func_end IsEventRunning
 
     thumb_func_start func_0800ED34
 func_0800ED34: @ 0x0800ED34
@@ -1797,7 +1797,7 @@ func_0800ED78: @ 0x0800ED78
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, .L0800ED8C @ =0x08B91AD8
-    bl func_0800AF5C
+    bl StartEvent
     str r4, [r0, #0x48]
     pop {r4}
     pop {r1}
@@ -1812,7 +1812,7 @@ func_0800ED90: @ 0x0800ED90
     adds r4, r0, #0
     adds r5, r1, #0
     ldr r0, .L0800EDA8 @ =0x08B91AE8
-    bl func_0800AF5C
+    bl StartEvent
     str r4, [r0, #0x48]
     str r5, [r0, #0x58]
     pop {r4, r5}
@@ -1844,7 +1844,7 @@ func_0800EDC8: @ 0x0800EDC8
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, .L0800EDDC @ =0x08B91B10
-    bl func_0800AF5C
+    bl StartEvent
     str r4, [r0, #0x48]
     pop {r4}
     pop {r1}
@@ -2124,7 +2124,7 @@ func_0800EFCC: @ 0x0800EFCC
     lsls r4, r4, #0x10
     lsrs r4, r4, #0x10
     ldr r0, .L0800EFE4 @ =0x08B91DF4
-    bl func_0800AF5C
+    bl StartEvent
     adds r0, #0x5c
     strh r4, [r0]
     pop {r4}
@@ -2144,7 +2144,7 @@ func_0800EFE8: @ 0x0800EFE8
     lsls r5, r5, #0x10
     lsrs r5, r5, #0x10
     ldr r0, .L0800F00C @ =0x08B91E0C
-    bl func_0800AF5C
+    bl StartEvent
     adds r1, r0, #0
     adds r1, #0x55
     strb r4, [r1]
@@ -2162,7 +2162,7 @@ func_0800F010: @ 0x0800F010
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, .L0800F024 @ =0x08B91E28
-    bl func_0800AF5C
+    bl StartEvent
     str r4, [r0, #0x58]
     pop {r4}
     pop {r0}
@@ -2178,7 +2178,7 @@ func_0800F028: @ 0x0800F028
     lsls r4, r4, #0x18
     lsrs r4, r4, #0x18
     ldr r0, .L0800F040 @ =0x08B91E40
-    bl func_0800AF5C
+    bl StartEvent
     adds r0, #0x4f
     strb r4, [r0]
     pop {r4}
@@ -2198,7 +2198,7 @@ func_0800F044: @ 0x0800F044
     lsls r5, r5, #0x18
     lsrs r5, r5, #0x18
     ldr r0, .L0800F068 @ =0x08B91E4C
-    bl func_0800AF5C
+    bl StartEvent
     adds r1, r0, #0
     adds r1, #0x5c
     strh r4, [r1]
@@ -2218,7 +2218,7 @@ func_0800F06C: @ 0x0800F06C
     lsls r4, r1, #0x18
     lsrs r4, r4, #0x18
     ldr r0, .L0800F088 @ =0x08B91E68
-    bl func_0800AF5C
+    bl StartEvent
     str r5, [r0, #0x58]
     adds r0, #0x4f
     strb r4, [r0]
@@ -2303,7 +2303,7 @@ func_0800F0C8: @ 0x0800F0C8
     ands r1, r0
     cmp r1, #0
     beq .L0800F14C
-    ldr r5, .L0800F148 @ =gPlayStatus
+    ldr r5, .L0800F148 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r5, r0]
     bl GetChapterInfo
@@ -2333,7 +2333,7 @@ func_0800F0C8: @ 0x0800F0C8
     b .L0800F156
     .align 2, 0
 .L0800F144: .4byte 0x0201000C
-.L0800F148: .4byte gPlayStatus
+.L0800F148: .4byte gPlaySt
 .L0800F14C:
     ldrb r0, [r6, #6]
     strb r0, [r4, #0x10]
@@ -2415,7 +2415,7 @@ func_0800F1C0: @ 0x0800F1C0
     ands r0, r1
     cmp r0, #0
     beq .L0800F26A
-    ldr r4, .L0800F218 @ =gPlayStatus
+    ldr r4, .L0800F218 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl GetChapterInfo
@@ -2444,7 +2444,7 @@ func_0800F1C0: @ 0x0800F1C0
     strb r0, [r7, #0x11]
     b .L0800F270
     .align 2, 0
-.L0800F218: .4byte gPlayStatus
+.L0800F218: .4byte gPlaySt
 .L0800F21C:
     ldrb r0, [r4, #6]
     strb r0, [r7, #0x10]
@@ -2525,7 +2525,7 @@ func_0800F27C: @ 0x0800F27C
     ands r1, r0
     cmp r1, #0
     beq .L0800F2E4
-    ldr r5, .L0800F2F0 @ =gPlayStatus
+    ldr r5, .L0800F2F0 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r5, r0]
     bl GetChapterInfo
@@ -2565,7 +2565,7 @@ func_0800F27C: @ 0x0800F27C
     pop {r0}
     bx r0
     .align 2, 0
-.L0800F2F0: .4byte gPlayStatus
+.L0800F2F0: .4byte gPlaySt
     func_end func_0800F27C
 
     thumb_func_start Event_SetExitMap
@@ -5392,7 +5392,7 @@ func_08010690: @ 0x08010690
     bl Proc_Start
     adds r7, r0, #0
     adds r0, r4, #0
-    bl GetMsg
+    bl DecodeMsg
     mov sl, r0
     mov r0, r8
     str r0, [r7, #0x30]
@@ -6537,7 +6537,7 @@ func_08010F0C: @ 0x08010F0C
 func_08010FBC: @ 0x08010FBC
     push {r4, r5, lr}
     adds r5, r0, #0
-    ldr r4, .L08011004 @ =gPlayStatus
+    ldr r4, .L08011004 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl ApplyChapterMapGraphics
@@ -6563,7 +6563,7 @@ func_08010FBC: @ 0x08010FBC
     pop {r0}
     bx r0
     .align 2, 0
-.L08011004: .4byte gPlayStatus
+.L08011004: .4byte gPlaySt
     func_end func_08010FBC
 
     thumb_func_start func_08011008
