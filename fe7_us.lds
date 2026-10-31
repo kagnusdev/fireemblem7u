@@ -37,6 +37,7 @@ SECTIONS
         asm/code_1.o(.text);
         src/event.o(.text);
         asm/event.o(.text);
+        src/sprite-anim.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -111,6 +112,8 @@ SECTIONS
 
     .data : ALIGN(4)
     {
+        . = ALIGN(4); asm/data.o(.data_0);
+        . = ALIGN(4); src/sprite-anim.o(.data);
         . = ALIGN(4); asm/data.o(.data);
         . = ALIGN(4); src/sio_link_loader.o(.data);
 
@@ -125,6 +128,8 @@ SECTIONS
 
     .bss (NOLOAD) : ALIGN(4)
     {
+        . = 0x000110;
+        . = ALIGN(4); src/sprite-anim.o(.bss);
         . = 0x002258;
         . = ALIGN(4); src/gbasram.o(.bss);
         . = ALIGN(4); *libc.a:syscalls.o(.bss);

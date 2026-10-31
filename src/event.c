@@ -122,7 +122,7 @@ void HideUnitSprite(struct Unit * unit);
 Proc * StartMu(struct Unit * unit);
 void DisableMuCamera(Proc * mu);
 void SetMuMoveScript(Proc * mu, u8 const * move_script);
-Proc * SpawnProc(struct ProcScr const * script, Proc * parent);
+Proc * Proc_Start(struct ProcScr const * script, Proc * parent);
 void func_0806D4CC(Proc * mu, int move_speed);
 
 struct SpriteAnim;
@@ -1575,7 +1575,7 @@ bool DisplayMovement(struct EventProc * proc, struct Unit * unit, u8 const * mov
         DisableMuCamera(mu);
     }
 
-    wait_for_mu_proc = SpawnProc(ProcScr_EventWaitForMu, PROC_TREE_3);
+    wait_for_mu_proc = Proc_Start(ProcScr_EventWaitForMu, PROC_TREE_3);
     wait_for_mu_proc->mu_proc = mu;
 
     HideUnitSprite(unit);
@@ -2794,7 +2794,7 @@ int EvtCmd_FlashCursorPosition(struct EventProc * proc)
     x = SCR_LO16_SIGN(proc->script[1]);
     y = SCR_HI16_SIGN(proc->script[1]);
 
-    flash_cursor_proc = SpawnProc(ProcScr_EventFlashCursor, proc);
+    flash_cursor_proc = Proc_Start(ProcScr_EventFlashCursor, proc);
 
     flash_cursor_proc->x = x;
     flash_cursor_proc->y = y;
@@ -2813,7 +2813,7 @@ int EvtCmd_FlashCursorPid(struct EventProc * proc)
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0)
         return EVENT_CMDRET_CONTINUE;
 
-    flash_cursor_proc = SpawnProc(ProcScr_EventFlashCursor, proc);
+    flash_cursor_proc = Proc_Start(ProcScr_EventFlashCursor, proc);
 
     flash_cursor_proc->x = unit->x;
     flash_cursor_proc->y = unit->y;
@@ -2865,7 +2865,7 @@ int EvtCmd_PutCursor(struct EventProc * proc)
     x = SCR_LO16_SIGN(proc->script[1]);
     y = SCR_HI16_SIGN(proc->script[1]);
 
-    cursor_proc = SpawnProc(ProcScr_EventCursor, proc);
+    cursor_proc = Proc_Start(ProcScr_EventCursor, proc);
 
     cursor_proc->x = x;
     cursor_proc->y = y;

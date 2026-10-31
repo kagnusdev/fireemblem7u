@@ -1497,7 +1497,7 @@ EvtCmd_SetWeatherWithFade: @ 0x0800EB70
     adds r4, r0, #0
     ldr r0, .L0800EB8C @ =0x08B91A78
     adds r1, r4, #0
-    bl SpawnProcLocking
+    bl Proc_StartBlocking
     ldr r1, [r4, #0x30]
     ldrh r1, [r1, #2]
     adds r0, #0x64
@@ -1528,7 +1528,7 @@ EvtCmd_SetWeather: @ 0x0800EB90
 .L0800EBAC:
     ldr r0, .L0800EBC4 @ =0x08B91A78
     adds r1, r4, #0
-    bl SpawnProcLocking
+    bl Proc_StartBlocking
     ldr r1, [r4, #0x30]
     ldrh r1, [r1, #2]
     adds r0, #0x64
@@ -2059,14 +2059,14 @@ StartGiveItem: @ 0x0800EF54
     bhi .L0800EF70
     ldr r0, .L0800EF6C @ =0x08B91DC4
     adds r1, r2, #0
-    bl SpawnProc
+    bl Proc_Start
     b .L0800EF78
     .align 2, 0
 .L0800EF6C: .4byte 0x08B91DC4
 .L0800EF70:
     ldr r0, .L0800EF98 @ =0x08B91DC4
     adds r1, r2, #0
-    bl SpawnProcLocking
+    bl Proc_StartBlocking
 .L0800EF78:
     str r5, [r0, #0x58]
     str r4, [r0, #0x54]
@@ -4802,7 +4802,7 @@ func_080101CC: @ 0x080101CC
     str r7, [sp]
     movs r0, #4
     adds r3, r5, #0
-    bl func_08006A34
+    bl PutSpriteExt
     ldr r0, [r6, #0x44]
     subs r0, #2
     lsls r0, r0, #3
@@ -4815,7 +4815,7 @@ func_080101CC: @ 0x080101CC
     str r0, [sp]
     movs r0, #4
     adds r3, r5, #0
-    bl func_08006A34
+    bl PutSpriteExt
     ldr r1, [r6, #0x30]
     ldrh r0, [r4]
     adds r0, #0x18
@@ -4826,7 +4826,7 @@ func_080101CC: @ 0x080101CC
     str r0, [sp]
     movs r0, #4
     adds r3, r5, #0
-    bl func_08006A34
+    bl PutSpriteExt
     ldr r0, [r6, #0x44]
     subs r0, #2
     lsls r0, r0, #3
@@ -4841,7 +4841,7 @@ func_080101CC: @ 0x080101CC
     str r0, [sp]
     movs r0, #4
     adds r3, r5, #0
-    bl func_08006A34
+    bl PutSpriteExt
     ldr r1, [r6, #0x30]
     ldrh r0, [r4]
     adds r0, #8
@@ -4852,7 +4852,7 @@ func_080101CC: @ 0x080101CC
     str r0, [sp]
     movs r0, #4
     adds r3, r5, #0
-    bl func_08006A34
+    bl PutSpriteExt
     ldr r1, [r6, #0x30]
     ldrh r0, [r4]
     adds r0, #0x10
@@ -4863,7 +4863,7 @@ func_080101CC: @ 0x080101CC
     str r0, [sp]
     movs r0, #4
     adds r3, r5, #0
-    bl func_08006A34
+    bl PutSpriteExt
     ldr r0, [r6, #0x44]
     subs r0, #1
     lsls r0, r0, #3
@@ -4878,7 +4878,7 @@ func_080101CC: @ 0x080101CC
     str r0, [sp]
     movs r0, #4
     adds r3, r5, #0
-    bl func_08006A34
+    bl PutSpriteExt
     ldr r0, [r6, #0x44]
     subs r0, #1
     lsls r0, r0, #3
@@ -4893,7 +4893,7 @@ func_080101CC: @ 0x080101CC
     str r0, [sp]
     movs r0, #4
     adds r3, r5, #0
-    bl func_08006A34
+    bl PutSpriteExt
     movs r5, #2
     b .L0801030E
     .align 2, 0
@@ -4913,7 +4913,7 @@ func_080101CC: @ 0x080101CC
     str r0, [sp]
     movs r0, #4
     ldr r3, .L0801034C @ =0x08B905E8
-    bl func_08006A34
+    bl PutSpriteExt
     adds r5, #2
 .L0801030E:
     ldr r0, [r6, #0x44]
@@ -4939,7 +4939,7 @@ func_080101CC: @ 0x080101CC
     str r0, [sp]
     movs r0, #4
     ldr r3, .L08010350 @ =0x08B905B0
-    bl func_08006A34
+    bl PutSpriteExt
     adds r5, #1
     ldr r0, [r6, #0x44]
     subs r0, #1
@@ -4965,7 +4965,7 @@ func_080101CC: @ 0x080101CC
     str r0, [sp]
     movs r0, #4
     ldr r3, .L08010454 @ =0x08B905E8
-    bl func_08006A34
+    bl PutSpriteExt
     adds r5, #2
 .L08010374:
     ldr r0, [r6, #0x44]
@@ -4994,7 +4994,7 @@ func_080101CC: @ 0x080101CC
     str r3, [sp]
     movs r0, #4
     ldr r3, .L08010454 @ =0x08B905E8
-    bl func_08006A34
+    bl PutSpriteExt
     ldr r1, [r6, #0x30]
     adds r1, r1, r4
     mov r2, sb
@@ -5006,7 +5006,7 @@ func_080101CC: @ 0x080101CC
     str r3, [sp]
     movs r0, #4
     ldr r3, .L08010454 @ =0x08B905E8
-    bl func_08006A34
+    bl PutSpriteExt
     adds r5, #2
     ldr r0, [r6, #0x44]
     subs r0, #2
@@ -5033,7 +5033,7 @@ func_080101CC: @ 0x080101CC
     str r7, [sp]
     movs r0, #4
     mov r3, sb
-    bl func_08006A34
+    bl PutSpriteExt
     ldr r1, [r6, #0x30]
     adds r1, r1, r4
     mov r3, r8
@@ -5044,7 +5044,7 @@ func_080101CC: @ 0x080101CC
     str r7, [sp]
     movs r0, #4
     mov r3, sb
-    bl func_08006A34
+    bl PutSpriteExt
     adds r5, #1
     ldr r0, [r6, #0x44]
     subs r0, #1
@@ -5065,7 +5065,7 @@ func_080101CC: @ 0x080101CC
     str r4, [sp]
     movs r0, #0
     ldr r3, .L0801045C @ =0x08B905F8
-    bl func_08006A34
+    bl PutSpriteExt
     adds r4, #4
     adds r7, #0x20
     subs r5, #1
@@ -5389,7 +5389,7 @@ func_08010690: @ 0x08010690
     movs r6, #0
     ldr r0, .L08010788 @ =0x08B91EDC
     ldr r1, [sp, #0x44]
-    bl SpawnProc
+    bl Proc_Start
     adds r7, r0, #0
     adds r0, r4, #0
     bl GetMsg
@@ -5407,7 +5407,7 @@ func_08010690: @ 0x08010690
     strh r6, [r0]
     ldr r0, .L0801078C @ =0x08B91EFC
     ldr r1, [sp, #0x44]
-    bl SpawnProcLocking
+    bl Proc_StartBlocking
     ldr r0, .L08010790 @ =0x0842535C
     ldr r1, [r7, #0x3c]
     adds r1, #0x10
@@ -5590,7 +5590,7 @@ func_0801080C: @ 0x0801080C
 .L0801084C: .4byte 0x08B91EDC
 .L08010850:
     ldr r0, .L0801085C @ =0x08B91F14
-    bl SpawnProcLocking
+    bl Proc_StartBlocking
 .L08010856:
     movs r0, #2
 .L08010858:
@@ -5936,7 +5936,7 @@ func_08010AF8: @ 0x08010AF8
     lsls r4, r4, #0x18
     lsrs r4, r4, #0x18
     ldr r0, .L08010B20 @ =0x08B91F34
-    bl SpawnProcLocking
+    bl Proc_StartBlocking
     str r5, [r0, #0x2c]
     str r6, [r0, #0x34]
     movs r1, #0xff
@@ -6266,7 +6266,7 @@ func_08010D98: @ 0x08010D98
     lsls r4, r4, #0x18
     lsrs r4, r4, #0x18
     ldr r0, .L08010DC0 @ =0x08B91F84
-    bl SpawnProcLocking
+    bl Proc_StartBlocking
     str r5, [r0, #0x2c]
     str r6, [r0, #0x34]
     movs r1, #0xff
@@ -6647,7 +6647,7 @@ func_0801109C: @ 0x0801109C
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, .L080110B4 @ =0x08B91FDC
-    bl SpawnProcLocking
+    bl Proc_StartBlocking
     str r4, [r0, #0x34]
     movs r1, #0xff
     ands r1, r4
@@ -7013,7 +7013,7 @@ func_0801135C: @ 0x0801135C
     cmp r0, #0
     bne .L08011384
     ldr r0, .L08011380 @ =0x08B92034
-    bl SpawnProcLocking
+    bl Proc_StartBlocking
     str r4, [r0, #0x2c]
     movs r0, #2
     b .L08011386
@@ -7151,7 +7151,7 @@ func_08011464: @ 0x08011464
     cmp r0, #0
     bne .L08011490
     ldr r0, .L0801148C @ =0x08B92140
-    bl SpawnProcLocking
+    bl Proc_StartBlocking
     str r4, [r0, #0x3c]
     str r5, [r0, #0x40]
     movs r0, #2
@@ -7354,7 +7354,7 @@ func_080115C4: @ 0x080115C4
     lsls r1, r1, #1
     movs r2, #0
     ldr r3, .L08011620 @ =0x00005040
-    bl func_0801245C
+    bl StartSpriteAnimProc
     lsls r2, r4, #2
     adds r1, r6, #0
     adds r1, #0x44
@@ -7470,7 +7470,7 @@ func_08011624: @ 0x08011624
     adds r2, r2, r3
     movs r3, #1
     rsbs r3, r3, #0
-    bl func_080124DC
+    bl SetSpriteAnimProcParameters
     adds r4, #0x20
     adds r5, #1
     cmp r5, #7
@@ -7491,7 +7491,7 @@ func_08011624: @ 0x08011624
     movs r1, #4
     str r1, [sp, #4]
     ldr r1, [sp, #8]
-    bl func_0801245C
+    bl StartSpriteAnimProc
 .L08011710:
     ldr r0, [r6, #0x30]
     cmp r0, #0xa0
@@ -7510,7 +7510,7 @@ func_08011624: @ 0x08011624
     .align 2, 0
 .L0801172C: .4byte gBmStatus
 .L08011730: .4byte 0x000001FF
-.L08011734: .4byte 0x080C5A48
+.L08011734: .4byte gSinLut
 .L08011738: .4byte 0x081AA8B8
 .L0801173C: .4byte 0x00005040
     func_end func_08011624
@@ -7523,7 +7523,7 @@ func_08011740: @ 0x08011740
     movs r4, #7
 .L08011748:
     ldm r5!, {r0}
-    bl func_080124F8
+    bl EndSpriteAnimProc
     subs r4, #1
     cmp r4, #0
     bge .L08011748
@@ -7656,7 +7656,7 @@ func_08011828: @ 0x08011828
     cmp r0, #0
     bne .L08011854
     ldr r0, .L08011850 @ =0x08B92354
-    bl SpawnProcLocking
+    bl Proc_StartBlocking
     str r4, [r0, #0x3c]
     str r5, [r0, #0x40]
     movs r0, #2
@@ -7856,7 +7856,7 @@ func_08011998: @ 0x08011998
     ldr r7, [sp, #0x18]
     ldr r1, [sp, #0x24]
     ldr r0, .L080119D0 @ =0x08B923A4
-    bl SpawnProcLocking
+    bl Proc_StartBlocking
     str r4, [r0, #0x2c]
     mov r1, r8
     str r1, [r0, #0x30]
@@ -8013,7 +8013,7 @@ func_08011AB8: @ 0x08011AB8
     adds r7, r3, #0
     ldr r1, [sp, #0x1c]
     ldr r0, .L08011B08 @ =0x08B923CC
-    bl SpawnProcLocking
+    bl Proc_StartBlocking
     adds r5, r0, #0
     movs r0, #0xff
     ands r0, r4
@@ -8190,7 +8190,7 @@ func_08011BE4: @ 0x08011BE4
     movs r3, #1
     rsbs r3, r3, #0
     adds r0, r6, #0
-    bl func_080124DC
+    bl SetSpriteAnimProcParameters
     b .L08011C2C
     .align 2, 0
 .L08011C1C: .4byte gBmStatus
@@ -8211,7 +8211,7 @@ func_08011C34: @ 0x08011C34
     ldr r0, [r0, #0x34]
     cmp r0, #0
     beq .L08011C40
-    bl func_080124F8
+    bl EndSpriteAnimProc
 .L08011C40:
     pop {r0}
     bx r0
@@ -8260,7 +8260,7 @@ func_08011C44: @ 0x08011C44
     b .L08011C9A
 .L08011C8E:
     ldr r0, .L08011CA0 @ =0x08B923EC
-    bl SpawnProc
+    bl Proc_Start
     str r4, [r0, #0x2c]
     str r5, [r0, #0x30]
     str r6, [r0, #0x38]
@@ -8654,7 +8654,7 @@ EvtCmd_WarpLoadUnits: @ 0x08011F58
     bl MapFill
     ldr r0, .L08011FA8 @ =0x08B92414
     adds r1, r4, #0
-    bl SpawnProcLocking
+    bl Proc_StartBlocking
     adds r2, r0, #0
     ldr r0, [r4, #0x30]
     ldr r0, [r0, #4]

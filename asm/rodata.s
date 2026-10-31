@@ -2,7 +2,10 @@
 
     @ 0C5808 ... 677370
 
-    .incbin "baserom.gba", 0x0C5808, 0x677370 - 0x0C5808
+    .incbin "baserom.gba", 0x0C5808, 0x0C5A48 - 0x0C5808
+    .global gSinLut
+gSinLut:
+    .incbin "baserom.gba", 0x0C5A48, 0x677370 - 0x0C5A48
 
     .section ".rodata_2", "a"
 
