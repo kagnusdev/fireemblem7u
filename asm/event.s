@@ -1247,13 +1247,13 @@ EvtCmd_FightScript: @ 0x0800E948
     ands r2, r1
     str r2, [sp]
     ldrh r7, [r0, #0x10]
-    ldr r1, .L0800E994 @ =0x0203A85C
+    ldr r1, .L0800E994 @ =gActionSt
     cmp r2, #0
     bne .L0800E998
     str r6, [r1, #0x18]
     b .L0800E99C
     .align 2, 0
-.L0800E994: .4byte 0x0203A85C
+.L0800E994: .4byte gActionSt
 .L0800E998:
     movs r0, #0
     str r0, [r1, #0x18]
@@ -1369,7 +1369,7 @@ EvtCmd_FightScript: @ 0x0800E948
 .L0800EA78:
     bl BattleApplyUnitUpdates
     bl func_08053434
-    ldr r1, .L0800EA9C @ =0x0203A85C
+    ldr r1, .L0800EA9C @ =gActionSt
     movs r0, #0
     str r0, [r1, #0x18]
     b .L0800EAE6
@@ -1379,7 +1379,7 @@ EvtCmd_FightScript: @ 0x0800E948
 .L0800EA90: .4byte 0x0203A438
 .L0800EA94: .4byte 0x0203A3D8
 .L0800EA98: .4byte 0x0203A50C
-.L0800EA9C: .4byte 0x0203A85C
+.L0800EA9C: .4byte gActionSt
 .L0800EAA0:
     bl GetGameLock
     lsls r0, r0, #0x18
@@ -1439,7 +1439,7 @@ EventScriptedBattleWait: @ 0x0800EB04
     ldr r0, .L0800EB30 @ =EventScriptedBattleWaitB
     str r0, [r5, #0x40]
     bl BattleApplyUnitUpdates
-    ldr r1, .L0800EB34 @ =0x0203A85C
+    ldr r1, .L0800EB34 @ =gActionSt
     movs r0, #0
     str r0, [r1, #0x18]
 .L0800EB28:
@@ -1448,7 +1448,7 @@ EventScriptedBattleWait: @ 0x0800EB04
     bx r0
     .align 2, 0
 .L0800EB30: .4byte EventScriptedBattleWaitB
-.L0800EB34: .4byte 0x0203A85C
+.L0800EB34: .4byte gActionSt
     func_end EventScriptedBattleWait
 
     thumb_func_start EventScriptedBattleWaitB

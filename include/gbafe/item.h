@@ -124,6 +124,7 @@ s32 GetPartyTotalGoldValue(void);
 // sub_80175CC
 int GetItemIndex(int item);
 char *GetItemName(int item);
+char *GetItemNameWithArticle(int item, int unk1);
 int GetItemDescMsg(int item);
 int GetItemUseDescId(int item);
 int GetItemType(int item);

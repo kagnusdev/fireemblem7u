@@ -6,9 +6,9 @@
 
     .data
 
-    @ B928A4 ... CF0CD0
+    @ B928BC ... CF0CD0
 
-    .incbin "baserom.gba", 0xB928A4, 0xCC1B1C - 0xB928A4
+    .incbin "baserom.gba", 0xB928BC, 0xCC1B1C - 0xB928BC
 
     .global gUnk_08CC1B1C
 gUnk_08CC1B1C:

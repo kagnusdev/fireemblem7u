@@ -16,5 +16,5 @@ extern char const * CONST_DATA gMsgTable[];
 
 char * DecodeMsg(int id);
 char * DecodeMsgInBuffer(int id, char * buffer);
-char * sub_8013374(void);
-char * sub_8013488(void);
+char * MsgExpand(void);
+char * func_08012F14(bool8 with_article, bool8 is_unique, bool8 is_capital);

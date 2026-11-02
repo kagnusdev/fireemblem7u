@@ -903,7 +903,7 @@ void StartGame(void);
 // ... ForceEnableSounds(...)
 // ... func_08012C10(...)
 // ... DecodeMsg(...)
-// ... GetMsgTo(...)
+// ... DecodeMsgInBuffer(...)
 // ... MsgExpand(...)
 // ... GetArticle(...)
 // ... func_08012EFC(...)
@@ -911,7 +911,7 @@ void StartGame(void);
 // ... func_08012FE8(...)
 // ... func_080130B0(...)
 // ... func_080130B4(...)
-// ... func_080130DC(...)
+// ... StringCopy(...)
 // ... func_080130F4(...)
 // ... func_08013138(...)
 void Decompress(void const * src, void * dst);

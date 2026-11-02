@@ -45,8 +45,8 @@ int sub_802D1E8(struct Unit * unit, int slot);
 
 // DecodeMsg
 // DecodeMsgInBuffer
-// sub_8013374
-// sub_8013488
+// MsgExpand
+// func_08012F14
 
 /* util.h */
 /* bm.h */

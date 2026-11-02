@@ -3,7 +3,7 @@
 
 #include "prelude.h"
 
-extern char gMsgBuf[0x1000];
-extern i32 gLoadedMsg;
+// extern char sMsgString[0x1000];
+extern i32 sActiveMsg;
 
 #endif // MSG_H

@@ -23,6 +23,9 @@ ProcScr_EventFlashCursor = 0x08B91A38;
 ProcScr_EventCursor = 0x08B91A50;
 ProcScr_MoveCamera = 0x08B92E38;
 
+gMsgTable = 0x08B808AC;
+gActionSt = 0x0203A85C;
+
 gNumMusicPlayers = 9;
 gMaxLines = 0;
 
@@ -39,6 +42,7 @@ SECTIONS
         asm/event.o(.text);
         src/sprite-anim.o(.text);
         src/game-ctrl.o(.text);
+        src/msg.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -101,6 +105,8 @@ SECTIONS
     {
         . = ALIGN(4); src/main.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata);
+        . = ALIGN(4); src/msg.o(.rodata);
+        . = ALIGN(4); asm/rodata.o(.rodata_1);
         . = ALIGN(4); src/m4a.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_2);
         . = ALIGN(4); *libc.a:vfprintf.o(.rodata);
@@ -116,6 +122,7 @@ SECTIONS
         . = ALIGN(4); asm/data.o(.data_0);
         . = ALIGN(4); src/sprite-anim.o(.data);
         . = ALIGN(4); src/game-ctrl.o(.data);
+        . = ALIGN(4); src/msg.o(.data);
         . = ALIGN(4); asm/data.o(.data);
         . = ALIGN(4); src/sio_link_loader.o(.data);
 

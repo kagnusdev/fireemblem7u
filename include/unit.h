@@ -341,7 +341,7 @@ struct Unit * GetUnitByPid(int pid);
 // ... func_08018CF0(...)
 struct Unit * GetUnit(int id);
 // ... GetJobInfo(...)
-// ... func_08018D38(...)
+// ... GetCharacterData(...)
 // ... func_08018D50(...)
 // ... func_08018D68(...)
 
