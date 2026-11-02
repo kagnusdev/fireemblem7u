@@ -132,3 +132,5 @@ endif
 %/interrupt.o:      CFLAGS += -O0
 
 %/gbasram.o:        CFLAGS += -O1
+
+%/random.o:         CFLAGS += -O0

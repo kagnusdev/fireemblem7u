@@ -37,6 +37,7 @@ SECTIONS
         src/armfunc.o(.text);
         src/main.o(.text);
         src/interrupt.o(.text);
+        src/random.o(.text);
         asm/code_1.o(.text);
         src/event.o(.text);
         asm/event.o(.text);
@@ -104,6 +105,8 @@ SECTIONS
     .rodata : ALIGN(4)
     {
         . = ALIGN(4); src/main.o(.rodata);
+        . = ALIGN(4); src/interrupt.o(.rodata);
+        . = ALIGN(4); src/random.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata);
         . = ALIGN(4); src/msg.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_1);
@@ -137,6 +140,7 @@ SECTIONS
 
     .bss (NOLOAD) : ALIGN(4)
     {
+        . = ALIGN(4); src/random.o(.bss);
         . = 0x000110;
         . = ALIGN(4); src/sprite-anim.o(.bss);
         . = 0x002258;
