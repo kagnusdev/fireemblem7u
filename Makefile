@@ -134,3 +134,5 @@ endif
 %/gbasram.o:        CFLAGS += -O1
 
 %/random.o:         CFLAGS += -O0
+
+%/hardware.o:        CFLAGS += -O0

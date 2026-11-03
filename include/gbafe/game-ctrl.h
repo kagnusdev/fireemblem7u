@@ -76,4 +76,4 @@ void ForceEnableSounds(void);
 extern void func_08002C74(void);
 extern void func_08002C8C(void);
 
-extern u8 func_08002CA4();
+extern s8 func_08002CA4(void);

@@ -894,7 +894,7 @@ func_08013578: @ 0x08013578
     ldr r0, .L080135FC @ =0x000001FF
     cmp r6, r0
     ble .L08013584
-    bl func_08001070
+    bl DisablePalSync
     movs r1, #0xa0
     lsls r1, r1, #0x13
     movs r2, #0x80
@@ -4999,8 +4999,8 @@ OnVBlank: @ 0x0801524C
     beq .L08015286
     movs r0, #0
     strb r0, [r1]
-    bl func_080011B0
-    bl func_080016EC
+    bl SyncDispIo
+    bl SyncBgsAndPal
     bl func_08003178
     bl func_080032E0
 .L08015286:
@@ -5361,8 +5361,8 @@ func_0801550C: @ 0x0801550C
     bx r0
     func_end func_0801550C
 
-    thumb_func_start func_0801551C
-func_0801551C: @ 0x0801551C
+    thumb_func_start InitBmBgLayers
+InitBmBgLayers: @ 0x0801551C
     ldr r0, .L08015554 @ =gPlaySt
     ldrb r0, [r0, #0x15]
     cmp r0, #7
@@ -5421,7 +5421,7 @@ func_0801551C: @ 0x0801551C
     bx lr
     .align 2, 0
 .L0801558C: .4byte gDispIo
-    func_end func_0801551C
+    func_end InitBmBgLayers
 
     thumb_func_start ApplySystemObjectsGraphics
 ApplySystemObjectsGraphics: @ 0x08015590
@@ -18074,7 +18074,7 @@ func_0801B250: @ 0x0801B250
 func_0801B270: @ 0x0801B270
     push {lr}
     movs r0, #0x10
-    bl func_08001D54
+    bl NewKeyStSetter
     pop {r0}
     bx r0
     func_end func_0801B270
@@ -21998,7 +21998,7 @@ func_0801D108: @ 0x0801D108
     ldrb r2, [r1]
     orrs r0, r2
     strb r0, [r1]
-    bl func_0801551C
+    bl InitBmBgLayers
     add sp, #4
     pop {r4, r5, r6, r7}
     pop {r0}
@@ -22097,7 +22097,7 @@ func_0801D268: @ 0x0801D268
     ldrb r2, [r1, #4]
     ands r0, r2
     strb r0, [r1, #4]
-    bl func_0801551C
+    bl InitBmBgLayers
     pop {r0}
     bx r0
     .align 2, 0
@@ -22457,7 +22457,7 @@ func_0801D51C: @ 0x0801D51C
     adds r0, #0x4c
     movs r1, #0x10
     strh r1, [r0]
-    bl func_0801551C
+    bl InitBmBgLayers
     ldr r2, .L0801D548 @ =0x030028AC
     ldr r0, .L0801D54C @ =0x0000FFE0
     ldrh r1, [r2]
@@ -23840,7 +23840,7 @@ func_0801DFC0: @ 0x0801DFC0
     bl Proc_Find
     adds r7, r0, #0
     movs r0, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     adds r4, r7, #0
     adds r4, #0x30
     ldrb r2, [r4]
@@ -24475,9 +24475,9 @@ func_0801E4D4: @ 0x0801E4D4
     ldrb r0, [r1]
     strb r0, [r2]
     movs r0, #0x48
-    bl func_08001948
+    bl SetNextVCount
     ldr r0, .L0801E514 @ =func_0801E518
-    bl func_080018D0
+    bl SetOnVMatch
     pop {r0}
     bx r0
     .align 2, 0
@@ -24506,9 +24506,9 @@ func_0801E518: @ 0x0801E518
     ldrb r0, [r1]
     strb r0, [r2]
     movs r0, #0x60
-    bl func_08001948
+    bl SetNextVCount
     ldr r0, .L0801E558 @ =func_0801E55C
-    bl func_080018D0
+    bl SetOnVMatch
     pop {r0}
     bx r0
     .align 2, 0
@@ -24537,9 +24537,9 @@ func_0801E55C: @ 0x0801E55C
     ldrb r0, [r1]
     strb r0, [r2]
     movs r0, #0
-    bl func_08001948
+    bl SetNextVCount
     ldr r0, .L0801E59C @ =func_0801E4D4
-    bl func_080018D0
+    bl SetOnVMatch
     pop {r0}
     bx r0
     .align 2, 0
@@ -25299,9 +25299,9 @@ func_0801EA78: @ 0x0801EA78
     mov r1, ip
     strh r0, [r1, #0x3c]
     movs r0, #0
-    bl func_08001990
+    bl SetVCount
     ldr r0, .L0801EB70 @ =func_0801E4D4
-    bl func_080018D0
+    bl SetOnVMatch
     pop {r3, r4}
     mov r8, r3
     mov sb, r4
@@ -25359,7 +25359,7 @@ func_0801EB74: @ 0x0801EB74
     bne .L0801EBF6
     bl ClearUi
     movs r0, #0
-    bl func_080018D0
+    bl SetOnVMatch
     movs r0, #0
     movs r1, #0
     movs r2, #0
@@ -26619,7 +26619,7 @@ func_0801F570: @ 0x0801F570
     push {r5, r6, r7}
     sub sp, #4
     str r0, [sp]
-    bl func_0801551C
+    bl InitBmBgLayers
     movs r0, #0
     movs r1, #0
     movs r2, #0
@@ -26733,7 +26733,7 @@ func_0801F570: @ 0x0801F570
     mov r0, sl
     movs r1, #1
     bl func_08082440
-    bl func_080020BC
+    bl ColorFadeInit
     movs r3, #1
     rsbs r3, r3, #0
     movs r0, #0
@@ -27280,7 +27280,7 @@ func_0801FAB0: @ 0x0801FAB0
     adds r0, #0x4c
     movs r1, #0xd
     strh r1, [r0]
-    bl func_080020BC
+    bl ColorFadeInit
     ldr r0, .L0801FAD0 @ =0x020228E0
     movs r3, #1
     rsbs r3, r3, #0
@@ -27482,7 +27482,7 @@ func_0801FB78: @ 0x0801FB78
 func_0801FC64: @ 0x0801FC64
     push {r4, r5, lr}
     adds r4, r0, #0
-    bl func_080020BC
+    bl ColorFadeInit
     ldr r5, .L0801FCD4 @ =0x02022920
     adds r0, r5, #0
     movs r1, #6
@@ -27809,7 +27809,7 @@ func_0801FE9C: @ 0x0801FE9C
 func_0801FEE8: @ 0x0801FEE8
     push {r4, lr}
     adds r4, r0, #0
-    bl func_080020BC
+    bl ColorFadeInit
     ldr r0, .L0801FF10 @ =gPal
     movs r3, #2
     rsbs r3, r3, #0
@@ -27875,7 +27875,7 @@ func_0801FF68: @ 0x0801FF68
     push {r4, r5, lr}
     adds r4, r0, #0
     bl ClearUi
-    bl func_080020BC
+    bl ColorFadeInit
     ldr r5, .L08020004 @ =0x02022920
     adds r0, r5, #0
     movs r1, #6
@@ -28314,7 +28314,7 @@ func_0802020C: @ 0x0802020C
     adds r1, r2, #0
     orrs r0, r1
     strh r0, [r4, #0x3c]
-    bl func_080020BC
+    bl ColorFadeInit
     ldr r4, .L08020350 @ =gPal
     adds r0, r4, #0
     movs r1, #0
@@ -28430,7 +28430,7 @@ func_08020394: @ 0x08020394
     thumb_func_start func_080203D0
 func_080203D0: @ 0x080203D0
     push {r4, r5, lr}
-    bl func_080020BC
+    bl ColorFadeInit
     ldr r4, .L08020404 @ =gPal
     movs r5, #1
     rsbs r5, r5, #0
@@ -51717,7 +51717,7 @@ func_0802B678: @ 0x0802B678
     cmp r0, #0
     beq .L0802B6BC
     movs r0, #0xc9
-    bl func_08001CD0
+    bl SetkeyStIgnoredMask
     movs r0, #1
     strb r0, [r4]
 .L0802B6BC:
@@ -52067,7 +52067,7 @@ func_0802B8AC: @ 0x0802B8AC
     cmp r0, #0
     beq .L0802B928
     movs r0, #0xc8
-    bl func_08001CD0
+    bl SetkeyStIgnoredMask
     adds r0, r4, #0
     bl func_0802B870
     b .L0802BA40
@@ -52123,7 +52123,7 @@ func_0802B8AC: @ 0x0802B8AC
     cmp r0, #0x6b
     bne .L0802B99C
     movs r0, #0xc8
-    bl func_08001CD0
+    bl SetkeyStIgnoredMask
     adds r0, r4, #0
     bl func_0802B6F8
     b .L0802BA40
@@ -52185,7 +52185,7 @@ func_0802B8AC: @ 0x0802B8AC
     cmp r0, #0
     beq .L0802BA1C
     movs r0, #0
-    bl func_08001CD0
+    bl SetkeyStIgnoredMask
     b .L0802BA40
     .align 2, 0
 .L0802BA18: .4byte gpKeySt
@@ -55557,15 +55557,15 @@ AllocWeatherParticles: @ 0x0802D424
     .4byte .L0802D454 @ case 5
 .L0802D454:
     movs r0, #0x20
-    bl func_0800322C
+    bl InitOam
     b .L0802D46A
 .L0802D45C:
     movs r0, #0x10
-    bl func_0800322C
+    bl InitOam
     b .L0802D46A
 .L0802D464:
     movs r0, #0
-    bl func_0800322C
+    bl InitOam
 .L0802D46A:
     pop {r0}
     bx r0
@@ -57128,7 +57128,7 @@ StartBattleMap: @ 0x0802E028
     bl GetChapterInfo
     ldrb r0, [r0, #0x12]
     strb r0, [r4, #0x15]
-    bl func_0801551C
+    bl InitBmBgLayers
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl InitMapForChapter
@@ -57195,7 +57195,7 @@ func_0802E0F4: @ 0x0802E0F4
     ldrb r0, [r0, #0x12]
     movs r5, #0
     strb r0, [r4, #0x15]
-    bl func_0801551C
+    bl InitBmBgLayers
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl InitMapForChapter
@@ -121119,19 +121119,19 @@ func_0804CF5C: @ 0x0804CF5C
     movs r1, #0xc0
     lsls r1, r1, #7
     movs r0, #0
-    bl func_08001478
+    bl  SetBgTilemapOffset
     movs r1, #0xd0
     lsls r1, r1, #7
     movs r0, #1
-    bl func_08001478
+    bl  SetBgTilemapOffset
     movs r1, #0xe0
     lsls r1, r1, #7
     movs r0, #2
-    bl func_08001478
+    bl  SetBgTilemapOffset
     movs r1, #0xf0
     lsls r1, r1, #7
     movs r0, #3
-    bl func_08001478
+    bl  SetBgTilemapOffset
     movs r1, #4
     rsbs r1, r1, #0
     adds r0, r1, #0
@@ -125166,7 +125166,7 @@ func_0804F0B0: @ 0x0804F0B0
     movs r2, #0x80
     lsls r2, r2, #1
     bl CpuFastSet
-    bl func_08001070
+    bl DisablePalSync
     ldrh r0, [r4, #0x2c]
     adds r0, #1
     strh r0, [r4, #0x2c]
@@ -125239,7 +125239,7 @@ func_0804F120: @ 0x0804F120
     adds r0, r4, #0
     adds r2, r5, #0
     bl CpuFastSet
-    bl func_08001070
+    bl DisablePalSync
     ldrh r0, [r6, #0x2c]
     adds r0, #1
     strh r0, [r6, #0x2c]
@@ -125293,7 +125293,7 @@ func_0804F178: @ 0x0804F178
     adds r0, r4, #0
     adds r2, r5, #0
     bl CpuFastSet
-    bl func_08001070
+    bl DisablePalSync
     ldrh r0, [r7, #0x2c]
     adds r0, #1
     strh r0, [r7, #0x2c]
@@ -128764,7 +128764,7 @@ func_08050BD4: @ 0x08050BD4
     orrs r0, r1
     strb r0, [r2]
     movs r0, #0
-    bl func_0800322C
+    bl InitOam
     bl LockBmDisplay
     mov r0, sb
     mov r2, r8
@@ -129243,7 +129243,7 @@ func_08051054: @ 0x08051054
     bl func_0804C438
     adds r0, r4, #0
     bl Proc_Break
-    bl func_0801551C
+    bl InitBmBgLayers
     ldr r0, .L080510DC @ =gDispIo
     mov ip, r0
     movs r0, #0x20
@@ -138042,7 +138042,7 @@ func_080555C0: @ 0x080555C0
     push {r6}
     mov r8, r0
     movs r0, #0
-    bl func_0800322C
+    bl InitOam
     ldr r1, .L08055634 @ =0x02017744
     ldr r0, .L08055638 @ =0x0203E00C
     movs r2, #0
@@ -145701,7 +145701,7 @@ func_08059364: @ 0x08059364
     lsls r2, r2, #1
     adds r0, r4, #0
     bl CpuFastSet
-    bl func_08001070
+    bl DisablePalSync
     ldrh r0, [r5, #0x2c]
     adds r0, #1
     strh r0, [r5, #0x2c]
@@ -145733,7 +145733,7 @@ func_080593C4: @ 0x080593C4
     movs r2, #0x80
     lsls r2, r2, #1
     bl CpuFastSet
-    bl func_08001070
+    bl DisablePalSync
     ldrh r0, [r4, #0x2c]
     adds r0, #1
     strh r0, [r4, #0x2c]
@@ -172243,7 +172243,7 @@ func_080667D4: @ 0x080667D4
     adds r0, r4, #0
     adds r2, r5, #0
     bl CpuFastSet
-    bl func_08001070
+    bl DisablePalSync
     ldrh r0, [r7, #0x2c]
     adds r0, #1
     strh r0, [r7, #0x2c]
@@ -172287,7 +172287,7 @@ func_08066844: @ 0x08066844
     adds r0, r4, #0
     adds r2, r5, #0
     bl CpuFastSet
-    bl func_08001070
+    bl DisablePalSync
     ldrh r0, [r6, #0x2c]
     adds r0, #1
     strh r0, [r6, #0x2c]
@@ -172340,7 +172340,7 @@ func_0806689C: @ 0x0806689C
     adds r0, r4, #0
     adds r2, r5, #0
     bl CpuFastSet
-    bl func_08001070
+    bl DisablePalSync
     ldrh r0, [r7, #0x2c]
     adds r0, #1
     strh r0, [r7, #0x2c]
@@ -177662,21 +177662,21 @@ func_08069050: @ 0x08069050
     movs r1, #0xc0
     lsls r1, r1, #7
     movs r0, #0
-    bl func_08001478
+    bl  SetBgTilemapOffset
     movs r1, #0xd0
     lsls r1, r1, #7
     movs r0, #1
-    bl func_08001478
+    bl  SetBgTilemapOffset
     movs r1, #0xa0
     lsls r1, r1, #7
     movs r0, #2
-    bl func_08001478
+    bl  SetBgTilemapOffset
     movs r0, #1
     movs r1, #1
-    bl func_080014DC
+    bl SetBgScreenSize
     movs r0, #2
     movs r1, #1
-    bl func_080014DC
+    bl SetBgScreenSize
     bl func_08069AF4
     ldr r1, .L0806929C @ =0x020200D0
     str r0, [r1]
@@ -178592,21 +178592,21 @@ func_08069980: @ 0x08069980
     movs r1, #0xc0
     lsls r1, r1, #7
     movs r0, #0
-    bl func_08001478
+    bl  SetBgTilemapOffset
     movs r1, #0xd0
     lsls r1, r1, #7
     movs r0, #1
-    bl func_08001478
+    bl  SetBgTilemapOffset
     movs r1, #0xe0
     lsls r1, r1, #7
     movs r0, #2
-    bl func_08001478
+    bl  SetBgTilemapOffset
     movs r0, #1
     movs r1, #0
-    bl func_080014DC
+    bl SetBgScreenSize
     movs r0, #2
     movs r1, #0
-    bl func_080014DC
+    bl SetBgScreenSize
     mov r4, sp
     ldr r2, .L08069A98 @ =0x0203E028
     ldrh r0, [r2]
@@ -182475,7 +182475,7 @@ func_0806B7F8: @ 0x0806B7F8
     push {r4, r5, lr}
     adds r5, r0, #0
     movs r0, #0
-    bl func_0800322C
+    bl InitOam
     bl func_0804CF5C
     bl func_08054024
     bl func_0804C1D0
@@ -188519,7 +188519,7 @@ func_0806E474: @ 0x0806E474
     bl func_0806CE40
     bl ResetTextFont
     bl func_0806F76C
-    bl func_0801551C
+    bl InitBmBgLayers
     bl LoadUiFrameGraphics
     bl ApplySystemObjectsGraphics
     bl IsEventRunning
@@ -214230,7 +214230,7 @@ func_0807A49C: @ 0x0807A49C
 func_0807A4B0: @ 0x0807A4B0
     push {lr}
     movs r0, #0
-    bl func_08001CD0
+    bl SetkeyStIgnoredMask
     pop {r0}
     bx r0
     func_end func_0807A4B0
@@ -214239,7 +214239,7 @@ func_0807A4B0: @ 0x0807A4B0
 func_0807A4BC: @ 0x0807A4BC
     push {lr}
     movs r0, #2
-    bl func_08001D54
+    bl NewKeyStSetter
     pop {r0}
     bx r0
     func_end func_0807A4BC
@@ -220840,8 +220840,8 @@ func_0807D710: @ 0x0807D710
     movs r2, #8
     bl CpuFastSet
     movs r0, #1
-    bl func_080025E4
-    bl func_080020BC
+    bl ColorFadeSetupFromColorToWhite
+    bl ColorFadeInit
     ldr r1, .L0807D768 @ =gFadeComponentStep
     movs r0, #1
     strb r0, [r1, #0x1b]
@@ -228653,7 +228653,7 @@ func_0808140C: @ 0x0808140C
     ldrb r0, [r0, #0xb]
     strb r0, [r1, #1]
     movs r0, #0
-    bl func_080018D0
+    bl SetOnVMatch
     pop {r4}
     pop {r0}
     bx r0
@@ -239130,8 +239130,8 @@ func_08086618: @ 0x08086618
     ldr r1, .L08086638 @ =0x03007FF8
     movs r0, #1
     strh r0, [r1]
-    bl func_080011B0
-    bl func_080016EC
+    bl SyncDispIo
+    bl SyncBgsAndPal
     bl func_08003178
     bl m4aSoundVSync
     bl m4aSoundMain
@@ -239281,7 +239281,7 @@ func_080866FC: @ 0x080866FC
     movs r0, #0
     bl SetOnHBlankA
     strh r4, [r5, #0x38]
-    bl func_080011B0
+    bl SyncDispIo
     str r4, [sp]
     movs r1, #0xc0
     lsls r1, r1, #0x13
@@ -241375,7 +241375,7 @@ func_08087690: @ 0x08087690
     lsls r0, r0, #8
     ands r0, r1
     lsrs r0, r0, #0xe
-    bl func_08002BE8
+    bl GetBgTilemap
     ldr r7, [sp, #0x10]
     lsls r1, r7, #6
     adds r0, r0, r1
@@ -241740,7 +241740,7 @@ func_08087B58: @ 0x08087B58
     lsls r0, r0, #8
     ands r0, r1
     lsrs r0, r0, #0xe
-    bl func_08002BE8
+    bl GetBgTilemap
     adds r1, r4, #0
     adds r1, #0x58
     ldrb r1, [r1]
@@ -245294,7 +245294,7 @@ func_08089794: @ 0x08089794
     orrs r0, r1
     strb r0, [r2, #1]
     movs r0, #0
-    bl func_080018D0
+    bl SetOnVMatch
     movs r0, #0
     bl InitBgs
     bl ResetText
@@ -259717,7 +259717,7 @@ func_08090690: @ 0x08090690
     mov r0, r8
     adds r4, r6, r0
     movs r0, #3
-    bl func_08001400
+    bl GetBgTilemapOffset
     adds r1, r0, #0
     movs r0, #0xc0
     lsls r0, r0, #0x13
@@ -261550,15 +261550,15 @@ func_080913FC: @ 0x080913FC
     movs r0, #0
     bl SetOnHBlankA
     movs r0, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #1
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #2
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     ldr r0, .L080917D4 @ =gPal
@@ -262118,15 +262118,15 @@ func_080919C8: @ 0x080919C8
     adds r6, r0, #0
     bl func_08092AE4
     movs r0, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #1
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #2
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #0xc0
@@ -263511,7 +263511,7 @@ func_08092578: @ 0x08092578
     push {r4, r5, r6, lr}
     adds r6, r0, #0
     movs r0, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     ldr r4, .L080925C8 @ =0x02012A20
@@ -263551,11 +263551,11 @@ func_080925D0: @ 0x080925D0
     sub sp, #4
     adds r6, r0, #0
     movs r0, #1
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #2
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     ldr r0, .L080926E0 @ =gBg0Tm
@@ -267313,15 +267313,15 @@ func_08094350: @ 0x08094350
     orrs r0, r1
     strb r0, [r3, #0x18]
     movs r0, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #1
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #2
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     bl ResetText
@@ -268813,15 +268813,15 @@ func_08094FE4: @ 0x08094FE4
     movs r0, #0xff
     str r0, [r7, #0x34]
     movs r0, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #1
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #2
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r2, #4
@@ -270993,15 +270993,15 @@ func_080962A0: @ 0x080962A0
     ands r4, r6
     strb r4, [r5, #1]
     movs r0, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #1
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #2
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r2, #4
@@ -273471,15 +273471,15 @@ func_080976F0: @ 0x080976F0
     movs r0, #0
     bl InitBgs
     movs r0, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #1
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #2
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r1, #4
@@ -275699,15 +275699,15 @@ func_08098908: @ 0x08098908
     movs r0, #0
     bl InitBgs
     movs r0, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #1
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #2
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r1, #4
@@ -277026,15 +277026,15 @@ func_08099358: @ 0x08099358
     movs r0, #0
     bl InitBgs
     movs r0, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #1
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #2
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r1, #4
@@ -279799,15 +279799,15 @@ func_0809A9A8: @ 0x0809A9A8
     movs r0, #0
     bl InitBgs
     movs r0, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #1
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #2
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r1, #4
@@ -281551,15 +281551,15 @@ func_0809B700: @ 0x0809B700
     movs r0, #0
     bl InitBgs
     movs r0, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #1
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #2
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r1, #4
@@ -282809,15 +282809,15 @@ func_0809C154: @ 0x0809C154
     movs r0, #0
     bl InitBgs
     movs r0, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #1
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #2
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r1, #4
@@ -302940,7 +302940,7 @@ func_080A5C90: @ 0x080A5C90
     movs r2, #0xa0
     movs r3, #0x4c
     bl func_080A9ECC
-    bl func_080011B0
+    bl SyncDispIo
     add sp, #8
     pop {r0}
     bx r0
@@ -308541,7 +308541,7 @@ func_080A8838: @ 0x080A8838
     mov sb, r1
     movs r0, #3
     ands r0, r3
-    bl func_08002BE8
+    bl GetBgTilemap
     str r0, [sp]
     lsls r4, r4, #5
     adds r4, r4, r5
@@ -312668,7 +312668,7 @@ func_080AA4E4: @ 0x080AA4E4
     bl SetBgChrOffset
 .L080AA668:
     ldrb r0, [r7]
-    bl func_08002BE8
+    bl GetBgTilemap
     ldr r1, [r6, #4]
     adds r2, r5, #0
     adds r2, #0x35
@@ -312745,7 +312745,7 @@ func_080AA6E4: @ 0x080AA6E4
     ldr r1, [r1, #0x3c]
     bl SetBgChrOffset
     ldrb r0, [r4]
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #1
@@ -331400,7 +331400,7 @@ func_080B3720: @ 0x080B3720
     adds r0, r3, #0
     bl Proc_Break
     movs r0, #2
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0
     bl TmFill
     movs r0, #4
@@ -351783,7 +351783,7 @@ func_080BD588: @ 0x080BD588
     lsrs r4, r3, #8
     adds r7, #2
     adds r0, r6, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0x1f
     mov r2, r8
     ands r1, r2
@@ -351830,7 +351830,7 @@ func_080BD588: @ 0x080BD588
     adds r4, r0, #0
     lsls r4, r4, #5
     adds r0, r6, #0
-    bl func_08002BE8
+    bl GetBgTilemap
     movs r1, #0x1f
     mov r2, r8
     ands r1, r2

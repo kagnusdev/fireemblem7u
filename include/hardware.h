@@ -178,55 +178,55 @@ struct Keys
 // ... IncGameTime(...)
 // ... FormatTime(...)
 void EnableBgSync(u32 mask);
-// ... func_08001018(...)
-// ... func_08001038(...)
+// ... EnableBgSyncById(...)
+// ... DisableBgSync(...)
 // ... EnablePalSync(...)
-// ... func_08001070(...)
+// ... DisablePalSync(...)
 void ApplyPaletteExt(void const * src, int offset, int length);
 // ... func_080010F4(...)
-// ... func_080011B0(...)
-// ... func_08001348(...)
+// ... SyncDispIo(...)
+// ... GetBgCt(...)
 u32 GetBgChrOffset(int bg);
-// ... func_080013CC(...)
-// ... func_08001400(...)
+// ... GetBgChrId(...)
+// ... GetBgTilemapOffset(...)
 // ... SetBgChrOffset(...)
-// ... func_08001478(...)
-// ... func_080014DC(...)
-// ... func_08001518(...)
-// ... func_0800155C(...)
-// ... func_08001624(...)
-// ... func_080016EC(...)
+// ...  SetBgTilemapOffset(...)
+// ... SetBgScreenSize(...)
+// ... SetBgBpp(...)
+// ... ApplyColorAddition_ClampMax(...)
+// ... ApplyColorAddition_ClampMin(...)
+// ... SyncBgsAndPal(...)
 // ... TmFill(...)
 // ... SetBlankChr(...)
 void SetOnVBlank(void (*func)(void));
-// ... func_080018D0(...)
-// ... func_08001948(...)
-// ... func_08001990(...)
+// ... SetOnVMatch(...)
+// ... SetNextVCount(...)
+// ... SetVCount(...)
 // ... SetMainFunc(...)
 void RunMainFunc(void);
-// ... func_080019F4(...)
+// ... RefreshKeyStFromKeys(...)
 void RefreshKeySt(struct Keys * keys);
-// ... func_08001C1C(...)
+// ... ClearKeySt(...)
 void InitKeySt(struct Keys * keys);
-// ... func_08001CD0(...)
-// ... func_08001CEC(...)
-// ... func_08001D54(...)
+// ... SetkeyStIgnoredMask(...)
+// ... KeyProcMain(...)
+// ... NewKeyStSetter(...)
 void SetBgOffset(fu16 bgid, fu16 x_offset, fu16 y_offset); // ... func_08001E94(...)
 // ... func_08001EC8(...)
 // ... func_08001EFC(...)
 // ... func_08001F3C(...)
 // ... func_08002018(...)
-// ... func_080020BC(...)
+// ... ColorFadeInit(...)
 // ... func_080020F4(...)
 // ... func_08002218(...)
 // ... func_08002338(...)
-// ... func_08002384(...)
-// ... func_080024BC(...)
-// ... func_080025E4(...)
-// ... func_0800271C(...)
-// ... func_08002854(...)
+// ... ColorFadeSetupFromColorToBlack(...)
+// ... ColorFadeSetupFromBlack(...)
+// ... ColorFadeSetupFromColorToWhite(...)
+// ... ColorFadeSetupFromWhite(...)
+// ... ColorFadeTick2(...)
 // ... InitBgs(...)
-// ... func_08002BE8(...)
+// ... GetBgTilemap(...)
 int func_08002C0C(void);
 int func_08002C24(void);
 void func_08002C3C(int arg_0);
@@ -241,7 +241,7 @@ void SoftResetIfKeyCombo(void);
 // ... RefreshOnHBlank(...)
 // ... SetOnHBlankA(...)
 // ... SetOnHBlankB(...)
-// ... func_08002F54(...)
+// ... GetBgFromPtr(...)
 
 extern u8 gBuf[0x2100];
 
@@ -259,7 +259,7 @@ extern u16 gBg3Tm[0x400];
 
 extern void * gBgMapVramTable[4];
 
-extern void (*gMainFunc)(void);
+extern void (*MainFunc)(void);
 
 // existing code prefers gpKeySt, which is a pointer to this
 extern struct Keys gKeysInstance;

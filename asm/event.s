@@ -3847,7 +3847,7 @@ EvtCmd_SetKeyIgnore: @ 0x0800FB68
     push {lr}
     ldr r0, [r0, #0x30]
     ldr r0, [r0, #4]
-    bl func_08001CD0
+    bl SetkeyStIgnoredMask
     movs r0, #0
     pop {r1}
     bx r1
@@ -5916,7 +5916,7 @@ func_08010A9C: @ 0x08010A9C
     ands r0, r1
     cmp r0, #0
     bne .L08010AE8
-    bl func_0801551C
+    bl InitBmBgLayers
 .L08010AE8:
     pop {r4}
     pop {r0}
@@ -6248,7 +6248,7 @@ func_08010D58: @ 0x08010D58
     strb r2, [r0]
     adds r0, #1
     strb r2, [r0]
-    bl func_0801551C
+    bl InitBmBgLayers
     pop {r0}
     bx r0
     .align 2, 0
@@ -6632,7 +6632,7 @@ func_08011054: @ 0x08011054
     strb r2, [r0]
     adds r0, #1
     strb r2, [r0]
-    bl func_0801551C
+    bl InitBmBgLayers
     bl ApplySystemGraphics
     bl InitSystemTextFont
     pop {r0}
@@ -7129,7 +7129,7 @@ func_08011430: @ 0x08011430
     adds r0, r2, #0
     adds r0, #0x46
     strb r1, [r0]
-    bl func_0801551C
+    bl InitBmBgLayers
     pop {r0}
     bx r0
     .align 2, 0
@@ -7633,7 +7633,7 @@ func_080117F4: @ 0x080117F4
     adds r0, r2, #0
     adds r0, #0x46
     strb r1, [r0]
-    bl func_0801551C
+    bl InitBmBgLayers
     pop {r0}
     bx r0
     .align 2, 0

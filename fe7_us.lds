@@ -26,6 +26,9 @@ ProcScr_MoveCamera = 0x08B92E38;
 gMsgTable = 0x08B808AC;
 gActionSt = 0x0203A85C;
 
+gOnHBlankA = 0x03002924;
+gOnHBlankB = 0x03002F38;
+
 gNumMusicPlayers = 9;
 gMaxLines = 0;
 
@@ -38,6 +41,7 @@ SECTIONS
         src/main.o(.text);
         src/interrupt.o(.text);
         src/random.o(.text);
+        src/hardware.o(.text);
         asm/code_1.o(.text);
         src/event.o(.text);
         asm/event.o(.text);
@@ -107,6 +111,7 @@ SECTIONS
         . = ALIGN(4); src/main.o(.rodata);
         . = ALIGN(4); src/interrupt.o(.rodata);
         . = ALIGN(4); src/random.o(.rodata);
+        . = ALIGN(4); src/hardware.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata);
         . = ALIGN(4); src/msg.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_1);
@@ -122,6 +127,7 @@ SECTIONS
 
     .data : ALIGN(4)
     {
+        . = ALIGN(4); src/hardware.o(.data);
         . = ALIGN(4); asm/data.o(.data_0);
         . = ALIGN(4); src/sprite-anim.o(.data);
         . = ALIGN(4); src/game-ctrl.o(.data);
@@ -141,6 +147,7 @@ SECTIONS
     .bss (NOLOAD) : ALIGN(4)
     {
         . = ALIGN(4); src/random.o(.bss);
+        . = ALIGN(4); src/hardware.o(.bss);
         . = 0x000110;
         . = ALIGN(4); src/sprite-anim.o(.bss);
         . = 0x002258;

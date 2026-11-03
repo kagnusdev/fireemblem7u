@@ -1,11 +1,10 @@
     .section ".rodata"
 
-    @ 0C5848 ... 677370
+    @ 0C5CC8 ... 677370
 
-    .incbin "baserom.gba", 0x0C5848, 0x0C5A48 - 0x0C5848
-    .global gSinLut
-gSinLut:
-    .incbin "baserom.gba", 0x0C5A48, 0x193E00 - 0x0C5A48
+    .incbin "baserom.gba", 0x0C5CC8, 0x193E00 - 0x0C5CC8
+    .global rodata_sEnd
+rodata_sEnd:
 
     .section ".rodata_1", "a"
 
