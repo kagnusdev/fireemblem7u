@@ -26,9 +26,6 @@ ProcScr_MoveCamera = 0x08B92E38;
 gMsgTable = 0x08B808AC;
 gActionSt = 0x0203A85C;
 
-gOnHBlankA = 0x03002924;
-gOnHBlankB = 0x03002F38;
-
 gNumMusicPlayers = 9;
 gMaxLines = 0;
 
@@ -43,6 +40,7 @@ SECTIONS
         src/random.o(.text);
         src/hardware.o(.text);
         src/move-data.o(.text);
+        src/oam.o(.text);
         asm/code_1.o(.text);
         src/event.o(.text);
         asm/event.o(.text);
@@ -114,6 +112,7 @@ SECTIONS
         . = ALIGN(4); src/random.o(.rodata);
         . = ALIGN(4); src/hardware.o(.rodata);
         . = ALIGN(4); src/move-data.o(.rodata);
+        . = ALIGN(4); src/oam.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata);
         . = ALIGN(4); src/msg.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_1);
@@ -150,6 +149,7 @@ SECTIONS
     {
         . = ALIGN(4); src/random.o(.bss);
         . = ALIGN(4); src/hardware.o(.bss);
+        . = ALIGN(4); src/oam.o(.bss);
         . = 0x000110;
         . = ALIGN(4); src/sprite-anim.o(.bss);
         . = 0x002258;
@@ -163,7 +163,12 @@ SECTIONS
         . = 0x002860; gOamLoPutIt = .;
         . = 0x002870; gDispIo = .;
         . = 0x0028E0; IntrFuncTable = .;
+        . = 0x00291C; gOamAffinePutId = .;
+        . = 0x002924; gOnHBlankA = .;
+        . = 0x002930; gOam = .;
         . = 0x002F34; gOamHiPutIt = .;
+        . = 0x002F38; gOnHBlankB = .;
+        . = 0x003948; gOamAffinePutIt = .;
         . = 0x003950; IntrMainRam = .;
         . = 0x0041D0; gMutableUnitInfo = .;
         . = 0x0041E0; gWorkingMap = .;

@@ -4991,7 +4991,7 @@ OnVBlank: @ 0x0801524C
     ldr r0, .L08015294 @ =gProcTreeRoots
     ldr r0, [r0]
     bl func_08004690
-    bl func_08003338
+    bl SyncLoOam
     ldr r1, .L08015298 @ =gBmStatus
     movs r0, #0
     ldrsb r0, [r1, r0]
@@ -5002,7 +5002,7 @@ OnVBlank: @ 0x0801524C
     bl SyncDispIo
     bl SyncBgsAndPal
     bl ApplyDataMoves
-    bl func_080032E0
+    bl SyncHiOam
 .L08015286:
     bl m4aSoundMain
     pop {r0}
@@ -55648,7 +55648,7 @@ WeatherInit_Snow: @ 0x0802D488
 func_0802D500: @ 0x0802D500
     push {r4, r5, r6, r7, lr}
     sub sp, #0xc
-    bl func_080032C8
+    bl GetOamSplice
     cmp r0, #0
     beq .L0802D5AA
     bl GetGameTime
@@ -55796,7 +55796,7 @@ func_0802D624: @ 0x0802D624
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
-    bl func_080032C8
+    bl GetOamSplice
     cmp r0, #0
     beq .L0802D68C
     bl GetGameTime
@@ -55907,7 +55907,7 @@ WeatherInit_Sandstorm: @ 0x0802D6A4
     thumb_func_start func_0802D714
 func_0802D714: @ 0x0802D714
     push {r4, r5, lr}
-    bl func_080032C8
+    bl GetOamSplice
     cmp r0, #0
     beq .L0802D758
     bl GetGameTime
@@ -56038,7 +56038,7 @@ WeatherInit_Snowstorm: @ 0x0802D770
     thumb_func_start func_0802D82C
 func_0802D82C: @ 0x0802D82C
     push {r4, r5, r6, r7, lr}
-    bl func_080032C8
+    bl GetOamSplice
     cmp r0, #0
     beq .L0802D88C
     bl GetGameTime
@@ -56480,7 +56480,7 @@ func_0802DB74: @ 0x0802DB74
     mov r6, r8
     push {r6, r7}
     ldr r4, .L0802DC00 @ =0x020027DC
-    bl func_080032C8
+    bl GetOamSplice
     cmp r0, #0
     beq .L0802DBF4
     ldr r0, .L0802DC04 @ =gBmStatus

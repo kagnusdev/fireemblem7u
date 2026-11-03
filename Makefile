@@ -138,3 +138,5 @@ endif
 %/hardware.o:       CFLAGS += -O0
 
 %/move-data.o:      CFLAGS += -O0
+
+%/oam.o:            CFLAGS += -O0
