@@ -135,4 +135,6 @@ endif
 
 %/random.o:         CFLAGS += -O0
 
-%/hardware.o:        CFLAGS += -O0
+%/hardware.o:       CFLAGS += -O0
+
+%/move-data.o:      CFLAGS += -O0

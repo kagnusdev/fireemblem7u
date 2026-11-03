@@ -19,10 +19,10 @@ void RandInit(int seed);
 void RandInitB(int seed);
 u32 RandNextB(void);
 
-// ... func_08002FDC(...)
+// ... ClearMoveList(...)
 // ... RegisterDataMove(...)
 // ... RegisterDataFill(...)
-// ... func_08003178(...)
+// ... ApplyDataMoves(...)
 // ... InitOam(...)
 // ... func_080032C8(...)
 // ... func_080032E0(...)

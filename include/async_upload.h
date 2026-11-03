@@ -26,7 +26,7 @@ struct AsyncUploadEnt
     /* 0A */ u16 mode;
 };
 
-extern struct AsyncUploadInfo gAsyncUploadInfo;
-extern struct AsyncUploadEnt gAsyncUploadList[UPLOAD_LIST_COUNT];
+extern struct AsyncUploadInfo gMoveStats;
+extern struct AsyncUploadEnt gMoveList[UPLOAD_LIST_COUNT];
 
 #endif // ASYNC_UPLOAD_H

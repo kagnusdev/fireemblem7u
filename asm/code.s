@@ -5001,7 +5001,7 @@ OnVBlank: @ 0x0801524C
     strb r0, [r1]
     bl SyncDispIo
     bl SyncBgsAndPal
-    bl func_08003178
+    bl ApplyDataMoves
     bl func_080032E0
 .L08015286:
     bl m4aSoundMain
@@ -239132,7 +239132,7 @@ func_08086618: @ 0x08086618
     strh r0, [r1]
     bl SyncDispIo
     bl SyncBgsAndPal
-    bl func_08003178
+    bl ApplyDataMoves
     bl m4aSoundVSync
     bl m4aSoundMain
     pop {r0}

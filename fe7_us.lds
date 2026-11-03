@@ -42,6 +42,7 @@ SECTIONS
         src/interrupt.o(.text);
         src/random.o(.text);
         src/hardware.o(.text);
+        src/move-data.o(.text);
         asm/code_1.o(.text);
         src/event.o(.text);
         asm/event.o(.text);
@@ -112,6 +113,7 @@ SECTIONS
         . = ALIGN(4); src/interrupt.o(.rodata);
         . = ALIGN(4); src/random.o(.rodata);
         . = ALIGN(4); src/hardware.o(.rodata);
+        . = ALIGN(4); src/move-data.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata);
         . = ALIGN(4); src/msg.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_1);
@@ -186,7 +188,7 @@ SECTIONS
         . = 0x020140; /* begin (before that is ewram overlay) */
 
         . = ALIGN(4); src/hardware.o(ewram_data);
-        . = ALIGN(4); src/async_upload.o(ewram_data);
+        . = ALIGN(4); src/move-data.o(ewram_data);
         . = ALIGN(4); src/audio.o(ewram_data);
         . = ALIGN(4); src/proc.o(ewram_data);
         . = ALIGN(4); src/icon.o(ewram_data);
