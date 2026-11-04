@@ -142,3 +142,5 @@ endif
 %/oam.o:            CFLAGS += -O0
 
 %/sound.o:          CFLAGS += -O0
+
+%/ram-funcs.o:      CFLAGS += -O0
