@@ -1,8 +1,8 @@
     .section ".rodata"
 
-    @ 0C5D20 ... 677370
+    @ 0C5E50 ... 677370
 
-    .incbin "baserom.gba", 0x0C5D20, 0x193E00 - 0x0C5D20
+    .incbin "baserom.gba", 0x0C5E50, 0x193E00 - 0x0C5E50
     .global rodata_sEnd
 rodata_sEnd:
 

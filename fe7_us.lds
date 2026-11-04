@@ -41,6 +41,7 @@ SECTIONS
         src/hardware.o(.text);
         src/move-data.o(.text);
         src/oam.o(.text);
+        src/sound.o(.text);
         asm/code_1.o(.text);
         src/event.o(.text);
         asm/event.o(.text);
@@ -113,6 +114,7 @@ SECTIONS
         . = ALIGN(4); src/hardware.o(.rodata);
         . = ALIGN(4); src/move-data.o(.rodata);
         . = ALIGN(4); src/oam.o(.rodata);
+        . = ALIGN(4); src/sound.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata);
         . = ALIGN(4); src/msg.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_1);
@@ -129,6 +131,7 @@ SECTIONS
     .data : ALIGN(4)
     {
         . = ALIGN(4); src/hardware.o(.data);
+        . = ALIGN(4); src/sound.o(.data);
         . = ALIGN(4); asm/data.o(.data_0);
         . = ALIGN(4); src/sprite-anim.o(.data);
         . = ALIGN(4); src/game-ctrl.o(.data);
@@ -150,6 +153,7 @@ SECTIONS
         . = ALIGN(4); src/random.o(.bss);
         . = ALIGN(4); src/hardware.o(.bss);
         . = ALIGN(4); src/oam.o(.bss);
+        . = ALIGN(4); src/sound.o(.bss);
         . = 0x000110;
         . = ALIGN(4); src/sprite-anim.o(.bss);
         . = 0x002258;
@@ -178,10 +182,19 @@ SECTIONS
         . = 0x004690; gActiveUnit = .;
         . = 0x0046A0; gMapFloodSt = .;
         . = 0x004AE0; *(COMMON.gSoundInfo);
+        . = 0x005A90; gMPlayInfo_SE4 = .;
+        . = 0x005AD0; gMPlayInfo_SE5 = .;
+        . = 0x005B10; gMPlayInfo_BGM1 = .;
         . = 0x005B50;
         . = ALIGN(4); *(COMMON.gMPlayJumpTable);
         . = ALIGN(4); *(COMMON.gCgbChans);
+        . = 0x005CE0; gMPlayInfo_SE6 = .;
+        . = 0x005D20; gMPlayInfo_BGM2 = .;
+        . = 0x005D60; gMPlayInfo_SE1 = .;
+        . = 0x005DA0; gMPlayInfo_SE3 = .;
         . = 0x005DE0; *(COMMON.gMPlayMemAccArea);
+        . = 0x005DF0; gMPlayInfo_SE7 = .;
+        . = 0x005E30; gMPlayInfo_SE2 = .;
         . = 0x005E70;
         . = ALIGN(4); *(COMMON.ReadSramFast);
         . = ALIGN(4); *(COMMON.VerifySramFast);
@@ -194,7 +207,7 @@ SECTIONS
 
         . = ALIGN(4); src/hardware.o(ewram_data);
         . = ALIGN(4); src/move-data.o(ewram_data);
-        . = ALIGN(4); src/audio.o(ewram_data);
+        . = ALIGN(4); src/sound.o(ewram_data);
         . = ALIGN(4); src/proc.o(ewram_data);
         . = ALIGN(4); src/icon.o(ewram_data);
         . = ALIGN(4); src/debug_text.o(ewram_data);

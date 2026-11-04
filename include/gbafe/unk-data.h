@@ -1680,7 +1680,7 @@ extern u8 Img_SysBrownBox[];
 
 // ??? ProcScr_MusicFadeIn
 // ??? ProcScr_MusicVolumeChange
-// ??? gUnk_08BBFCD8
+// ??? ProcScr_Unk_08B85854
 // ??? ProcScr_MusicChange
 // ??? gUnk_08BBFD28
 // ??? gUnk_08BBFD90

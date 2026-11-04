@@ -140,3 +140,5 @@ endif
 %/move-data.o:      CFLAGS += -O0
 
 %/oam.o:            CFLAGS += -O0
+
+%/sound.o:          CFLAGS += -O0

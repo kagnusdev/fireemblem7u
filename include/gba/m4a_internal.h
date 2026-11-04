@@ -404,14 +404,14 @@ void SampleFreqSet(u32 freq);
 void m4aSoundVSyncOn(void);
 void m4aSoundVSyncOff(void);
 
-void MPlayVolumeControl(struct MusicPlayerInfo * mplayInfo, u16 trackBits, u16 volume);
+void m4aMPlayVolumeControl(struct MusicPlayerInfo * mplayInfo, u16 trackBits, u16 volume);
 void m4aMPlayFadeOut(struct MusicPlayerInfo * mplayInfo, u16 speed);
-void m4aMPlayFadeOutPause(struct MusicPlayerInfo * mplayInfo, u16 speed);
-void m4aMPlayFadeInContinue(struct MusicPlayerInfo * mplayInfo, u16 speed);
+void m4aMPlayFadeOutTemporarily(struct MusicPlayerInfo * mplayInfo, u16 speed);
+void m4aMPlayFadeIn(struct MusicPlayerInfo * mplayInfo, u16 speed);
 void m4aMPlayImmInit(struct MusicPlayerInfo * mplayInfo);
-void SoundMode_rev01(u32 mode);
-void MPlayStart_rev01(struct MusicPlayerInfo * mplayInfo, struct SongHeader * songHeader);
-void MPlayStop_rev01(struct MusicPlayerInfo * mplayInfo);
+void m4aSoundMode(u32 mode);
+void m4aMPlayStart(struct MusicPlayerInfo * mplayInfo, struct SongHeader * songHeader);
+void m4aMPlayStop(struct MusicPlayerInfo * mplayInfo);
 
 void ClearModM(struct MusicPlayerTrack *track);
 void m4aMPlayModDepthSet(struct MusicPlayerInfo *mplayInfo, u16 trackBits, u8 modDepth);

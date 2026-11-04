@@ -23,38 +23,38 @@ struct MusicProc {
 };
 
 int GetCurrentBgmSong(void);
-s8 sub_80033D0(void);
-void sub_80033EC(int volume);
+s8 func_080034F4(void);
+void func_08003510(int volume);
 void SetBgmVolume(int volume);
 void FadeBgmOut(int speed);
-void sub_8003550(int speed);
+void FadeBgmOut_2(int speed);
 void Sound_FadeOutSE(int speed);
 void StartBgmCore(int song, struct MusicPlayer * music_player);
 void StartOrChangeBgm(int song, int speed, struct MusicPlayer * music_player);
 void StartBgm(int song, struct MusicPlayer * music_player);
 void StartBgmExt(int song, int speed, struct MusicPlayer * music_player);
 void MusicFi_OnLoop(struct MusicProc * proc);
-void sub_8003858(int song, int duration, struct MusicPlayerInfo * player);
+void StartBgmFadeIn(int song, int duration, struct MusicPlayerInfo * player);
 void OverrideBgm(int song);
-void RestoreBgm(void);
-void sub_8003A68(u16 speed);
+void RestoreBgm_WithFixedSpeed(void);
+void RestoreBgm_WithDynamicSpeed(u16 speed);
 void MakeBgmOverridePersist(void);
 void StartBgmVolumeChange(int volume_from, int volume_to, int duration, ProcPtr parent);
 void MusicVc_OnLoop(struct MusicProc * proc);
 void DelaySong_OnLoop(struct MusicProc * proc);
-void sub_8003D7C(int song, int delay, struct MusicPlayerInfo * player);
+void PlaySongDelayed(int song, int delay, struct MusicPlayerInfo * player);
 void PlaySongCore(int song, struct MusicPlayerInfo * player);
-void sub_8003E48(void);
-void sub_8003E68(int maxchn);
-void sub_8003E9C(int song);
+void func_08003F6C(void);
+void func_08003F8C(int maxchn);
+void func_08003FC0(int song);
 int IsMusicProc2Running(void);
-void sub_8003F28(struct MusicProc * proc);
-void sub_8003F94(struct MusicProc * proc);
+void func_0800404C(struct MusicProc * proc);
+void func_080040B8(struct MusicProc * proc);
 void CallSomeSoundMaybe(int songId, int b, int c, int d, ProcPtr parent);
 bool MusicProc4Exists(void);
-void sub_80040C0(int song);
-void sub_80040F8(void);
-void sub_8004110(void);
+void func_080041E4(int song);
+void func_0800421C(void);
+void func_08004234(void);
 
 struct SoundSt {
     /* 00 */ u8 filler0[2];
@@ -79,7 +79,7 @@ extern struct MusicPlayerInfo gMPlayInfo_SE7;
 
 extern struct ProcCmd ProcScr_MusicFadeIn[];
 extern struct ProcCmd ProcScr_MusicVolumeChange[];
-extern struct ProcCmd gUnk_08BBFCD8[];
+extern struct ProcCmd ProcScr_Unk_08B85854[];
 extern struct ProcCmd ProcScr_MusicChange[];
 
 #define PlaySoundEffect(id) \

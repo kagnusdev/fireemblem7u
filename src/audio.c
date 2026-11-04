@@ -2,4 +2,4 @@
 
 // NOTE: data only
 
-struct BgmStatus EWRAM_DATA gBgmStatus = { 0 };
+// struct BgmStatus EWRAM_DATA gSoundSt = { 0 };

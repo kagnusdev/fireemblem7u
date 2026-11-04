@@ -1,8 +1,8 @@
     .include "asm_prelude.inc"
 
 @ start of utils.s in FE7J
-    thumb_func_start func_08012FE8
-func_08012FE8: @ 0x08012FE8
+    thumb_func_start Interpolate
+Interpolate: @ 0x08012FE8
     push {r4, r5, r6, lr}
     adds r6, r1, #0
     ldr r5, [sp, #0x10]
@@ -109,7 +109,7 @@ func_08012FE8: @ 0x08012FE8
     pop {r4, r5, r6}
     pop {r1}
     bx r1
-    func_end func_08012FE8
+    func_end Interpolate
 
     thumb_func_start func_080130B0
 func_080130B0: @ 0x080130B0
@@ -1763,7 +1763,7 @@ func_08013B74: @ 0x08013B74
     ldrh r0, [r0, #0x2a]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r0, [r7, #0x2c]
     ldrh r3, [r0, #0x28]
@@ -1772,7 +1772,7 @@ func_08013B74: @ 0x08013B74
     movs r0, #0
     adds r1, r6, #0
     adds r2, r4, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     ldr r0, [r7, #0x2c]
     ldrh r3, [r0, #0x28]
@@ -1781,7 +1781,7 @@ func_08013B74: @ 0x08013B74
     movs r0, #0
     mov r1, sb
     mov r2, r8
-    bl func_08012FE8
+    bl Interpolate
     movs r1, #0xf8
     lsls r1, r1, #7
     ands r0, r1
@@ -6808,7 +6808,7 @@ func_08015F94: @ 0x08015F94
     ldrsh r0, [r5, r6]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     movs r0, #0x32
     ldrsh r1, [r5, r0]
@@ -6819,7 +6819,7 @@ func_08015F94: @ 0x08015F94
     ldrsh r0, [r5, r6]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     ldr r1, .L08015FEC @ =gBmStatus
     strh r4, [r1, #0xc]
     strh r0, [r1, #0xe]
@@ -24243,14 +24243,14 @@ func_0801E2DC: @ 0x0801E2DC
     str r6, [sp]
     movs r0, #0
     adds r3, r5, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r4, #0x44]
     str r6, [sp]
     movs r0, #0
     movs r1, #0xc
     movs r2, #0x30
     adds r3, r5, #0
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r4, #0x3e]
     mov r3, r8
     strh r3, [r4, #0x3c]
@@ -24280,7 +24280,7 @@ func_0801E360: @ 0x0801E360
     str r0, [sp]
     movs r0, #0
     movs r1, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [sp, #4]
     movs r2, #0x34
     ldrsh r6, [r7, r2]
@@ -24622,7 +24622,7 @@ func_0801E608: @ 0x0801E608
     movs r0, #0x10
     str r0, [sp]
     movs r0, #2
-    bl func_08012FE8
+    bl Interpolate
     adds r1, r0, #0
     lsls r1, r1, #0x10
     lsrs r1, r1, #0x10
@@ -24673,7 +24673,7 @@ func_0801E66C: @ 0x0801E66C
     str r0, [sp]
     movs r0, #5
     movs r1, #0x24
-    bl func_08012FE8
+    bl Interpolate
     adds r1, r0, #0
     lsls r1, r1, #0x10
     lsrs r1, r1, #0x10
@@ -24977,7 +24977,7 @@ func_0801E8A0: @ 0x0801E8A0
     movs r0, #5
     movs r1, #0x10
     movs r2, #0x3c
-    bl func_08012FE8
+    bl Interpolate
     ldr r3, .L0801E920 @ =gDispIo
     adds r2, r3, #0
     adds r2, #0x2d
@@ -25003,7 +25003,7 @@ func_0801E8A0: @ 0x0801E8A0
     movs r0, #0
     movs r1, #0
     movs r2, #7
-    bl func_08012FE8
+    bl Interpolate
     ldr r2, .L0801E924 @ =gBmStatus
     adds r1, r2, #0
     adds r1, #0x3a
@@ -25045,7 +25045,7 @@ func_0801E928: @ 0x0801E928
     movs r0, #5
     movs r1, #0
     movs r2, #0x3c
-    bl func_08012FE8
+    bl Interpolate
     ldr r3, .L0801E9A4 @ =gDispIo
     adds r2, r3, #0
     adds r2, #0x2d
@@ -25071,7 +25071,7 @@ func_0801E928: @ 0x0801E928
     movs r0, #0
     movs r1, #0
     movs r2, #7
-    bl func_08012FE8
+    bl Interpolate
     ldr r2, .L0801E9A8 @ =gBmStatus
     adds r1, r2, #0
     adds r1, #0x3a
@@ -27097,7 +27097,7 @@ func_0801F950: @ 0x0801F950
     movs r0, #4
     movs r1, #0
     movs r2, #0x78
-    bl func_08012FE8
+    bl Interpolate
     ldr r2, .L0801F9A8 @ =gDispIo
     movs r1, #0x78
     subs r1, r1, r0
@@ -27172,7 +27172,7 @@ func_0801F9D4: @ 0x0801F9D4
     movs r0, #0
     movs r1, #0
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     ldr r3, .L0801FA2C @ =gDispIo
     adds r2, r3, #0
     adds r2, #0x2d
@@ -27820,7 +27820,7 @@ func_0801FEE8: @ 0x0801FEE8
     movs r0, #0xf
     strh r0, [r4]
     movs r0, #1
-    bl func_08003710
+    bl Sound_FadeOutSE
     pop {r4}
     pop {r0}
     bx r0
@@ -29848,7 +29848,7 @@ func_08020EDC: @ 0x08020EDC
     str r4, [sp]
     movs r0, #0
     adds r3, r6, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r5]
     mov r0, r8
     ldr r1, [r0]
@@ -29856,7 +29856,7 @@ func_08020EDC: @ 0x08020EDC
     movs r0, #0
     mov r2, sb
     adds r3, r6, #0
-    bl func_08012FE8
+    bl Interpolate
     mov r1, r8
     str r0, [r1]
     add sp, #4
@@ -59966,7 +59966,7 @@ func_0802F690: @ 0x0802F690
     ldrsh r0, [r5, r4]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     mov r8, r0
     movs r0, #0x3a
     ldrsh r1, [r6, r0]
@@ -59978,7 +59978,7 @@ func_0802F690: @ 0x0802F690
     ldrsh r0, [r5, r4]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r2, r0, #0
     adds r1, r6, #0
     adds r1, #0x40
@@ -63408,7 +63408,7 @@ func_0803115C: @ 0x0803115C
     movs r0, #0x49
     adds r1, r2, #0
     movs r3, #0x18
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     add sp, #4
     pop {r0}
     bx r0
@@ -93719,7 +93719,7 @@ func_0803F950: @ 0x0803F950
     movs r0, #0
     movs r1, #0xf
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     strb r0, [r4]
     ldrb r0, [r5]
     adds r0, #1
@@ -93776,7 +93776,7 @@ func_0803F9BC: @ 0x0803F9BC
     movs r0, #0
     movs r1, #0
     movs r2, #0xf
-    bl func_08012FE8
+    bl Interpolate
     strb r0, [r4]
     ldrb r0, [r5]
     adds r0, #1
@@ -94019,7 +94019,7 @@ func_0803FB64: @ 0x0803FB64
     str r0, [sp]
     movs r0, #4
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r6, #0x30]
 .L0803FBBC:
     ldr r0, [r6, #0x3c]
@@ -99129,14 +99129,14 @@ func_080425E4: @ 0x080425E4
     movs r4, #0x20
     str r4, [sp]
     movs r0, #4
-    bl func_08012FE8
+    bl Interpolate
     adds r6, r0, #0
     ldrb r2, [r5, #1]
     ldr r3, [r7, #0x54]
     str r4, [sp]
     movs r0, #5
     movs r1, #0xa0
-    bl func_08012FE8
+    bl Interpolate
     mov sb, r0
     movs r5, #4
     lsls r6, r6, #0x10
@@ -99225,7 +99225,7 @@ func_08042690: @ 0x08042690
     movs r0, #4
     mov r4, sl
     ldrb r1, [r4]
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     mov r0, sb
     ldrb r1, [r0]
@@ -99234,7 +99234,7 @@ func_08042690: @ 0x08042690
     mov r0, r8
     str r0, [sp]
     movs r0, #4
-    bl func_08012FE8
+    bl Interpolate
     adds r2, r0, #0
     lsls r1, r7, #2
     adds r0, r5, #0
@@ -99725,7 +99725,7 @@ func_08042A90: @ 0x08042A90
     movs r0, #4
     mov r4, sl
     ldrb r2, [r4]
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     ldrb r1, [r7, #1]
     ldr r0, [sp, #4]
@@ -99734,7 +99734,7 @@ func_08042A90: @ 0x08042A90
     mov r0, sb
     str r0, [sp]
     movs r0, #4
-    bl func_08012FE8
+    bl Interpolate
     adds r2, r0, #0
     ldr r0, [r6]
     lsls r4, r4, #0x10
@@ -101948,7 +101948,7 @@ func_08043CC8: @ 0x08043CC8
     movs r0, #5
     movs r2, #0xa0
     lsls r2, r2, #1
-    bl func_08012FE8
+    bl Interpolate
     adds r6, r0, #0
     adds r0, r5, #0
     adds r0, #0x3e
@@ -101973,7 +101973,7 @@ func_08043CC8: @ 0x08043CC8
     movs r0, #0x10
     str r0, [sp]
     movs r0, #4
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
 .L08043D2C:
     mov r0, r8
@@ -102068,7 +102068,7 @@ func_08043DB8: @ 0x08043DB8
     str r0, [sp]
     movs r0, #5
     movs r1, #0xf0
-    bl func_08012FE8
+    bl Interpolate
     adds r6, r0, #0
     adds r0, r5, #0
     adds r0, #0x3e
@@ -102093,7 +102093,7 @@ func_08043DB8: @ 0x08043DB8
     movs r0, #0x10
     str r0, [sp]
     movs r0, #4
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
 .L08043E1A:
     mov r0, r8
@@ -102855,7 +102855,7 @@ func_080443DC: @ 0x080443DC
     movs r0, #1
     movs r1, #0x10
     mov r2, r8
-    bl func_08012FE8
+    bl Interpolate
     mov sl, r0
     ldr r4, .L080444A0 @ =0x080C5A48
     movs r1, #0x80
@@ -102997,7 +102997,7 @@ func_08044518: @ 0x08044518
     movs r4, #0x30
     str r4, [sp]
     movs r0, #5
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     movs r0, #0x2c
     ldrsh r1, [r6, r0]
@@ -103006,7 +103006,7 @@ func_08044518: @ 0x08044518
     ldr r3, [r6, #0x3c]
     str r4, [sp]
     movs r0, #5
-    bl func_08012FE8
+    bl Interpolate
     adds r1, r0, #0
     ldr r2, .L08044574 @ =0x08B905F8
     adds r0, r6, #0
@@ -103135,7 +103135,7 @@ func_08044630: @ 0x08044630
     movs r0, #0xa
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     movs r0, #0
     bl SetTextFont
@@ -103261,7 +103261,7 @@ func_0804470C: @ 0x0804470C
     str r0, [sp]
     movs r0, #1
     movs r1, #0x10
-    bl func_08012FE8
+    bl Interpolate
     mov sl, r0
     ldr r4, .L0804480C @ =0x080C5A48
     ldr r2, .L08044810 @ =0x080C5AC8
@@ -103392,7 +103392,7 @@ func_08044828: @ 0x08044828
     movs r0, #4
     mov r1, r8
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     mov sl, r0
     ldr r4, .L08044928 @ =0x080C5A48
     movs r2, #0x80
@@ -108888,7 +108888,7 @@ func_08047340: @ 0x08047340
     movs r0, #0
     movs r1, #0xa0
     movs r2, #0xc0
-    bl func_08012FE8
+    bl Interpolate
     adds r6, r0, #0
     movs r2, #0x88
     lsls r2, r2, #1
@@ -108899,7 +108899,7 @@ func_08047340: @ 0x08047340
     str r0, [sp]
     movs r0, #1
     movs r1, #0x10
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r4, .L080473D4 @ =0x02001184
     ldr r0, [r4]
@@ -109097,7 +109097,7 @@ func_080474D8: @ 0x080474D8
     movs r0, #4
     movs r1, #0xc0
     movs r2, #0xa0
-    bl func_08012FE8
+    bl Interpolate
     adds r6, r0, #0
     movs r1, #0x88
     lsls r1, r1, #1
@@ -109108,7 +109108,7 @@ func_080474D8: @ 0x080474D8
     str r0, [sp]
     movs r0, #5
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r4, .L0804756C @ =0x02001184
     ldr r0, [r4]
@@ -123628,7 +123628,7 @@ func_0804E3E4: @ 0x0804E3E4
     movs r0, #0
     movs r1, #0x10
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     ldr r3, .L0804E494 @ =gDispIo
     adds r2, r3, #0
     adds r2, #0x3c
@@ -123834,7 +123834,7 @@ func_0804E5DC: @ 0x0804E5DC
     ldrsh r0, [r4, r5]
     str r0, [sp]
     movs r0, #1
-    bl func_08012FE8
+    bl Interpolate
     adds r1, r0, #0
     ldr r5, .L0804E644 @ =0x0201FB00
     str r1, [r5]
@@ -123887,7 +123887,7 @@ func_0804E648: @ 0x0804E648
     ldrsh r0, [r4, r5]
     str r0, [sp]
     movs r0, #4
-    bl func_08012FE8
+    bl Interpolate
     adds r1, r0, #0
     ldr r5, .L0804E6B0 @ =0x0201FB00
     str r1, [r5]
@@ -125274,7 +125274,7 @@ func_0804F178: @ 0x0804F178
     movs r0, #0
     movs r1, #0x10
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r6, r0, #0
     ldr r0, .L0804F1E0 @ =gPal
     ldr r4, .L0804F1E4 @ =0x020165C8
@@ -126614,7 +126614,7 @@ func_0804FBF8: @ 0x0804FBF8
     movs r0, #0
     movs r1, #0
     movs r2, #8
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r0, .L0804FC54 @ =0x0201C784
     ldr r4, .L0804FC58 @ =0x02022920
@@ -126696,7 +126696,7 @@ func_0804FC9C: @ 0x0804FC9C
     movs r0, #0
     movs r1, #8
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     ldr r7, .L0804FD10 @ =0x0201C784
     ldr r6, .L0804FD14 @ =0x02022920
@@ -126838,7 +126838,7 @@ func_0804FDA0: @ 0x0804FDA0
     movs r0, #0
     movs r1, #4
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     bl func_080672C4
     b .L0804FE00
@@ -126853,7 +126853,7 @@ func_0804FDA0: @ 0x0804FDA0
     movs r0, #0
     movs r1, #0
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     movs r2, #0
     ldrsh r0, [r6, r2]
@@ -127049,7 +127049,7 @@ func_0804FF60: @ 0x0804FF60
     movs r0, #0
     movs r1, #0x10
     movs r2, #4
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     bl func_080672C4
     b .L0804FFC0
@@ -127064,7 +127064,7 @@ func_0804FF60: @ 0x0804FF60
     movs r0, #0
     movs r1, #0x10
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     movs r2, #0
     ldrsh r0, [r6, r2]
@@ -128694,7 +128694,7 @@ func_08050BD4: @ 0x08050BD4
     str r0, [sp]
     movs r0, #0
     movs r1, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r6, r0, #0
     movs r0, #0x3a
     ldrsh r2, [r7, r0]
@@ -128705,7 +128705,7 @@ func_08050BD4: @ 0x08050BD4
     str r0, [sp]
     movs r0, #0
     movs r1, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     movs r0, #0x34
     ldrsh r2, [r7, r0]
@@ -128716,7 +128716,7 @@ func_08050BD4: @ 0x08050BD4
     str r0, [sp]
     movs r0, #0
     movs r1, #0xf0
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     movs r0, #0x3c
     ldrsh r2, [r7, r0]
@@ -128727,7 +128727,7 @@ func_08050BD4: @ 0x08050BD4
     str r0, [sp]
     movs r0, #0
     movs r1, #0xa0
-    bl func_08012FE8
+    bl Interpolate
     ldr r1, .L08050CD4 @ =gDispIo
     movs r2, #0x2d
     adds r2, r2, r1
@@ -128915,7 +128915,7 @@ func_08050DC4: @ 0x08050DC4
     movs r0, #0
     movs r1, #4
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     bl func_080672C4
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -128988,7 +128988,7 @@ func_08050E54: @ 0x08050E54
     movs r0, #0
     movs r1, #0x10
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     ldr r0, .L08050EAC @ =0x0203E00A
     movs r1, #0
@@ -129064,7 +129064,7 @@ func_08050ECC: @ 0x08050ECC
     movs r0, #0
     movs r1, #0
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     movs r1, #0
     ldrsh r0, [r7, r1]
@@ -129164,7 +129164,7 @@ func_08050F98: @ 0x08050F98
     movs r0, #0
     movs r1, #0x10
     movs r2, #4
-    bl func_08012FE8
+    bl Interpolate
     bl func_080672C4
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -129390,7 +129390,7 @@ func_08051170: @ 0x08051170
     str r0, [sp]
     movs r0, #0
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r6, r0, #0
     movs r0, #0x3a
     ldrsh r1, [r7, r0]
@@ -129401,7 +129401,7 @@ func_08051170: @ 0x08051170
     str r0, [sp]
     movs r0, #0
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     movs r0, #0x34
     ldrsh r1, [r7, r0]
@@ -129412,7 +129412,7 @@ func_08051170: @ 0x08051170
     str r0, [sp]
     movs r0, #0
     movs r2, #0xf0
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     movs r0, #0x3c
     ldrsh r1, [r7, r0]
@@ -129423,7 +129423,7 @@ func_08051170: @ 0x08051170
     str r0, [sp]
     movs r0, #0
     movs r2, #0xa0
-    bl func_08012FE8
+    bl Interpolate
     ldr r1, .L08051250 @ =gDispIo
     movs r2, #0x2d
     adds r2, r2, r1
@@ -130004,7 +130004,7 @@ func_0805164C: @ 0x0805164C
     ldrsh r0, [r4, r6]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r5, #2]
     movs r0, #0x3a
     ldrsh r1, [r4, r0]
@@ -130022,7 +130022,7 @@ func_0805164C: @ 0x0805164C
     ldrsh r0, [r4, r6]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r5, #2]
     movs r0, #0x3c
     ldrsh r1, [r4, r0]
@@ -130035,7 +130035,7 @@ func_0805164C: @ 0x0805164C
     ldrsh r0, [r4, r6]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r5, #4]
     ldrh r2, [r4, #0x2c]
     movs r0, #0x2c
@@ -130337,7 +130337,7 @@ func_080518E8: @ 0x080518E8
     ldrsh r0, [r4, r6]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     lsls r0, r0, #0x10
     lsrs r7, r0, #0x10
     ldr r0, [r4, #0x4c]
@@ -130364,7 +130364,7 @@ func_080518E8: @ 0x080518E8
     ldrsh r0, [r4, r6]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     lsls r0, r0, #0x10
     lsrs r6, r0, #0x10
     movs r0, #0x3a
@@ -130388,7 +130388,7 @@ func_080518E8: @ 0x080518E8
     ldrsh r0, [r4, r6]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     lsls r0, r0, #0x10
     lsrs r6, r0, #0x10
     movs r0, #0x3a
@@ -130401,7 +130401,7 @@ func_080518E8: @ 0x080518E8
     movs r0, #0
     movs r1, #0x58
 .L080519BC:
-    bl func_08012FE8
+    bl Interpolate
     lsls r0, r0, #0x10
     lsrs r1, r0, #0x10
     add r2, sp, #4
@@ -130442,7 +130442,7 @@ func_080518E8: @ 0x080518E8
     ldrsh r0, [r4, r6]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     lsls r0, r0, #0x10
     lsrs r6, r0, #0x10
     movs r0, #0x3c
@@ -130466,7 +130466,7 @@ func_080518E8: @ 0x080518E8
     ldrsh r0, [r4, r6]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     lsls r0, r0, #0x10
     lsrs r6, r0, #0x10
     movs r0, #0x3c
@@ -130479,7 +130479,7 @@ func_080518E8: @ 0x080518E8
     movs r0, #0
     movs r1, #0x58
 .L08051A5C:
-    bl func_08012FE8
+    bl Interpolate
     lsls r0, r0, #0x10
     lsrs r1, r0, #0x10
     add r2, sp, #4
@@ -130617,7 +130617,7 @@ func_08051B00: @ 0x08051B00
     movs r0, #4
     movs r1, #0
 .L08051B5C:
-    bl func_08012FE8
+    bl Interpolate
     adds r2, r0, #0
     ldr r1, .L08051B7C @ =0x02000038
     movs r3, #0
@@ -130754,7 +130754,7 @@ func_08051C04: @ 0x08051C04
     str r0, [sp]
     movs r0, #1
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     b .L08051C6C
 .L08051C58:
     ldr r2, [r4, #0x48]
@@ -130765,7 +130765,7 @@ func_08051C04: @ 0x08051C04
     str r0, [sp]
     movs r0, #4
     movs r1, #0
-    bl func_08012FE8
+    bl Interpolate
 .L08051C6C:
     lsls r1, r0, #0x10
     lsrs r1, r1, #0x10
@@ -130866,7 +130866,7 @@ func_08051CDC: @ 0x08051CDC
     str r0, [sp]
     movs r0, #1
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     b .L08051D3C
 .L08051D26:
     movs r2, #0x50
@@ -130878,7 +130878,7 @@ func_08051CDC: @ 0x08051CDC
     str r0, [sp]
     movs r0, #4
     movs r1, #0
-    bl func_08012FE8
+    bl Interpolate
 .L08051D3C:
     lsls r2, r0, #0x10
     lsrs r2, r2, #0x10
@@ -138155,7 +138155,7 @@ func_080556BC: @ 0x080556BC
     movs r0, #0
     movs r1, #0x10
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r0, .L08055718 @ =0x020165C8
     ldr r4, .L0805571C @ =gPal
@@ -138252,7 +138252,7 @@ func_08055778: @ 0x08055778
     movs r0, #0
     movs r1, #0
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r0, .L080557D4 @ =0x020165C8
     ldr r4, .L080557D8 @ =gPal
@@ -139302,7 +139302,7 @@ func_08055F50: @ 0x08055F50
     subs r0, r0, r4
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r6, r0, #0
     ldr r0, [r5, #0x4c]
     cmp r0, #1
@@ -139370,7 +139370,7 @@ func_08055F50: @ 0x08055F50
     movs r0, #0
     movs r1, #8
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     ldr r4, .L0805604C @ =gDispIo
     adds r3, r4, #0
     adds r3, #0x3c
@@ -142094,7 +142094,7 @@ func_0805764C: @ 0x0805764C
     str r0, [sp]
     movs r0, #0
     movs r1, #0
-    bl func_08012FE8
+    bl Interpolate
     ldr r4, .L08057684 @ =gDispIo
     strh r0, [r4, #0x20]
     ldr r0, [r6, #0x5c]
@@ -145545,7 +145545,7 @@ func_08059244: @ 0x08059244
     movs r0, #0
     movs r1, #0x10
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r0, .L080592A0 @ =gPal
     ldr r4, .L080592A4 @ =0x020165C8
@@ -145595,7 +145595,7 @@ func_080592A8: @ 0x080592A8
     movs r0, #0
     movs r1, #0x10
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     ldr r2, .L08059318 @ =gDispIo
     mov ip, r2
     mov r3, ip
@@ -145688,7 +145688,7 @@ func_08059364: @ 0x08059364
     movs r0, #0
     movs r1, #0
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     adds r3, r0, #0
     ldr r4, .L080593C0 @ =0x020165C8
     adds r0, r4, #0
@@ -146991,7 +146991,7 @@ func_08059DDC: @ 0x08059DDC
     movs r0, #4
     movs r1, #0
     movs r2, #0x80
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r4, #0x4c]
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -148523,7 +148523,7 @@ func_0805AA28: @ 0x0805AA28
     movs r0, #1
     movs r1, #0x78
     movs r2, #8
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r5, #4]
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -148913,7 +148913,7 @@ func_0805AD44: @ 0x0805AD44
     movs r0, #0
     movs r1, #0
     movs r2, #0x70
-    bl func_08012FE8
+    bl Interpolate
     ldrh r1, [r5, #0x2c]
     adds r1, #1
     strh r1, [r5, #0x2c]
@@ -149004,7 +149004,7 @@ func_0805AE28: @ 0x0805AE28
     movs r0, #0
     movs r1, #0
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r0, .L0805AE84 @ =gPal
     ldr r4, .L0805AE88 @ =0x020165C8
@@ -150282,7 +150282,7 @@ func_0805B87C: @ 0x0805B87C
     ldrsh r0, [r5, r4]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     lsls r4, r4, #0x10
     lsrs r4, r4, #0x10
@@ -150296,7 +150296,7 @@ func_0805B87C: @ 0x0805B87C
     ldrsh r0, [r5, r7]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     strh r4, [r6, #2]
     strh r0, [r6, #4]
     ldrh r0, [r5, #0x2c]
@@ -150412,7 +150412,7 @@ func_0805B9A4: @ 0x0805B9A4
     ldrsh r0, [r4, r7]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     movs r1, #0
     mov r8, r1
     strh r0, [r5, #2]
@@ -150427,7 +150427,7 @@ func_0805B9A4: @ 0x0805B9A4
     ldrsh r0, [r4, r7]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r5, #4]
     strh r0, [r6, #4]
     ldrh r0, [r4, #0x2c]
@@ -150662,7 +150662,7 @@ func_0805BB74: @ 0x0805BB74
     ldrsh r0, [r5, r4]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     lsls r4, r4, #0x10
     lsrs r4, r4, #0x10
@@ -150676,7 +150676,7 @@ func_0805BB74: @ 0x0805BB74
     ldrsh r0, [r5, r7]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     strh r4, [r6, #2]
     strh r0, [r6, #4]
     ldrh r0, [r5, #0x2c]
@@ -152382,7 +152382,7 @@ func_0805C970: @ 0x0805C970
     str r0, [sp]
     movs r0, #0
     movs r1, #0
-    bl func_08012FE8
+    bl Interpolate
     ldr r4, .L0805C9E8 @ =0x080C5A48
     ldr r2, [r6, #0x44]
     lsls r1, r2, #1
@@ -153683,7 +153683,7 @@ func_0805D39C: @ 0x0805D39C
     movs r1, #0x10
     movs r2, #0
 .L0805D3F0:
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r3, .L0805D42C @ =gDispIo
     adds r2, r3, #0
@@ -158142,7 +158142,7 @@ func_0805F7E8: @ 0x0805F7E8
     str r0, [sp]
     movs r0, #0
     movs r1, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r5, #0x44]
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -158599,7 +158599,7 @@ func_0805FB94: @ 0x0805FB94
     movs r0, #4
     movs r1, #0
     movs r2, #0x32
-    bl func_08012FE8
+    bl Interpolate
     ldrh r2, [r4, #0x30]
     movs r3, #0x80
     lsls r3, r3, #2
@@ -158745,7 +158745,7 @@ func_0805FCAC: @ 0x0805FCAC
     movs r0, #1
     movs r1, #0x32
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     ldrh r2, [r5, #0x30]
     movs r3, #0x80
     lsls r3, r3, #3
@@ -158850,7 +158850,7 @@ func_0805FD74: @ 0x0805FD74
     movs r0, #4
     movs r1, #0x80
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r4, #0x4c]
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -159209,7 +159209,7 @@ func_08060064: @ 0x08060064
     ldrsh r0, [r4, r5]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     ldr r1, .L080600AC @ =gDispIo
     strh r0, [r1, #0x20]
     ldrh r0, [r4, #0x2c]
@@ -159477,7 +159477,7 @@ func_08060254: @ 0x08060254
     str r0, [sp]
     movs r0, #4
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r5, #0x44]
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -162204,7 +162204,7 @@ func_080618AC: @ 0x080618AC
     movs r0, #0
     movs r1, #0
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r0, .L08061908 @ =gPal
     ldr r4, .L0806190C @ =0x020165C8
@@ -163286,7 +163286,7 @@ func_08062158: @ 0x08062158
     movs r0, #0
     movs r1, #0
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     ldr r7, .L080621D8 @ =0x020165C8
     ldr r6, .L080621DC @ =gPal
@@ -165879,7 +165879,7 @@ func_08063600: @ 0x08063600
     str r0, [sp]
     movs r0, #0
     movs r1, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r5, #0x44]
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -167018,7 +167018,7 @@ func_08063F3C: @ 0x08063F3C
     str r0, [sp]
     movs r0, #0
     movs r1, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r4, #0x48]
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -167074,7 +167074,7 @@ func_08063FA0: @ 0x08063FA0
     str r0, [sp]
     movs r0, #0
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r4, #0x48]
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -168220,7 +168220,7 @@ func_08064828: @ 0x08064828
     movs r1, #0x10
     movs r2, #0
 .L0806486E:
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r3, .L080648A8 @ =gDispIo
     adds r2, r3, #0
@@ -168928,7 +168928,7 @@ func_08064D74: @ 0x08064D74
     movs r0, #1
     movs r1, #4
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     bl func_080672C4
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -169043,7 +169043,7 @@ func_08064E70: @ 0x08064E70
     ldrsh r0, [r5, r4]
     str r0, [sp]
     movs r0, #4
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     movs r2, #0xa0
     lsls r2, r2, #1
@@ -169054,7 +169054,7 @@ func_08064E70: @ 0x08064E70
     str r0, [sp]
     movs r0, #4
     movs r1, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_08064B38
@@ -169181,7 +169181,7 @@ func_08064F5C: @ 0x08064F5C
     movs r4, #0x10
     str r4, [sp]
     movs r0, #1
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r6, #0x32]
     movs r0, #0x3c
     ldrsh r2, [r6, r0]
@@ -169191,7 +169191,7 @@ func_08064F5C: @ 0x08064F5C
     ldrsh r3, [r5, r0]
     str r4, [sp]
     movs r0, #1
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r6, #0x3a]
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -169371,7 +169371,7 @@ func_08065108: @ 0x08065108
     ldrsh r0, [r5, r6]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r7, r0, #0
     ldr r1, [r5, #0x64]
     ldr r0, [r5, #0x5c]
@@ -169804,7 +169804,7 @@ func_080654D8: @ 0x080654D8
     movs r0, #4
     movs r1, #0x10
     movs r2, #4
-    bl func_08012FE8
+    bl Interpolate
     bl func_080672C4
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -169872,7 +169872,7 @@ func_0806556C: @ 0x0806556C
     movs r0, #1
     movs r1, #0
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r0, .L080655CC @ =0x02020060
     ldr r4, .L080655D0 @ =0x020228E0
@@ -169977,7 +169977,7 @@ func_08065648: @ 0x08065648
     movs r0, #1
     movs r1, #0x10
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r0, .L080656A8 @ =0x02020060
     ldr r4, .L080656AC @ =0x020228E0
@@ -171296,7 +171296,7 @@ func_0806603C: @ 0x0806603C
     movs r0, #4
     movs r1, #0
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r0, .L080660BC @ =0x082E0FEC
     ldr r4, .L080660C0 @ =0x02022920
@@ -171631,7 +171631,7 @@ func_080662F4: @ 0x080662F4
     ldrsh r0, [r4, r6]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r1, r0, #0
     ldr r2, [r4, #0x64]
     ldr r0, [r4, #0x5c]
@@ -172224,7 +172224,7 @@ func_080667D4: @ 0x080667D4
     movs r0, #0
     movs r1, #0
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     adds r6, r0, #0
     ldr r0, .L0806683C @ =gPal
     ldr r4, .L08066840 @ =0x020165C8
@@ -172321,7 +172321,7 @@ func_0806689C: @ 0x0806689C
     movs r0, #0
     movs r1, #0x10
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r6, r0, #0
     ldr r0, .L08066904 @ =gPal
     ldr r4, .L08066908 @ =0x020165C8
@@ -173144,7 +173144,7 @@ func_08066DF8: @ 0x08066DF8
     str r7, [sp]
     movs r0, #0
     mov r3, sl
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     lsls r5, r5, #0x10
     lsrs r5, r5, #0x10
@@ -173153,7 +173153,7 @@ func_08066DF8: @ 0x08066DF8
     adds r1, r6, #0
     adds r2, r4, #0
     mov r3, sl
-    bl func_08012FE8
+    bl Interpolate
     adds r4, r0, #0
     lsls r4, r4, #0x10
     lsrs r4, r4, #0x10
@@ -173162,7 +173162,7 @@ func_08066DF8: @ 0x08066DF8
     mov r1, sb
     mov r2, r8
     mov r3, sl
-    bl func_08012FE8
+    bl Interpolate
     lsls r0, r0, #0x10
     lsrs r0, r0, #0x10
     movs r1, #0xf8
@@ -175549,13 +175549,13 @@ func_080680DC: @ 0x080680DC
     cmp r0, #0
     bne .L08068108
 .L080680FA:
-    bl func_08003C28
+    bl MakeBgmOverridePersist
     b .L0806810C
     .align 2, 0
 .L08068100: .4byte gBmStatus
 .L08068104: .4byte 0x020200A0
 .L08068108:
-    bl func_08003AF8
+    bl RestoreBgm_WithFixedSpeed
 .L0806810C:
     pop {r0}
     bx r0
@@ -176700,7 +176700,7 @@ func_080689CC: @ 0x080689CC
     ldrsh r0, [r5, r4]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r6, r0, #0
     ldr r0, [r5, #0x5c]
     bl func_08054678
@@ -176810,7 +176810,7 @@ func_08068AB4: @ 0x08068AB4
     ldrsh r0, [r5, r6]
     str r0, [sp]
     movs r0, #4
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r4, #0x4c]
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -177991,14 +177991,14 @@ func_08069448: @ 0x08069448
     str r4, [sp]
     movs r0, #0
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     mov r8, r0
     str r4, [sp]
     movs r0, #0
     movs r1, #0
     movs r2, #8
     adds r3, r5, #0
-    bl func_08012FE8
+    bl Interpolate
     mov sl, r0
     ldr r5, .L0806955C @ =0x0202012C
     str r4, [sp]
@@ -178006,7 +178006,7 @@ func_08069448: @ 0x08069448
     movs r1, #0x90
     movs r2, #0
     adds r3, r6, #0
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r5]
     ldr r5, .L08069560 @ =0x0202012E
     str r4, [sp]
@@ -178014,7 +178014,7 @@ func_08069448: @ 0x08069448
     movs r1, #0x90
     movs r2, #0
     mov r3, sb
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r5]
     ldr r0, .L08069564 @ =0x030041C0
     ldr r1, [r0]
@@ -178159,7 +178159,7 @@ func_080695FC: @ 0x080695FC
     str r0, [sp]
     movs r0, #1
     movs r1, #0
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r4]
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -178223,7 +178223,7 @@ func_08069684: @ 0x08069684
     str r0, [sp]
     movs r0, #4
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r4]
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -178498,7 +178498,7 @@ func_080698B8: @ 0x080698B8
     movs r0, #0
     movs r1, #0
     movs r2, #0x90
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r5]
     ldr r5, .L08069970 @ =0x0202012E
     movs r0, #0x2c
@@ -178507,7 +178507,7 @@ func_080698B8: @ 0x080698B8
     movs r0, #0
     movs r1, #0
     movs r2, #0x90
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r5]
     movs r2, #0x50
     rsbs r2, r2, #0
@@ -178516,7 +178516,7 @@ func_080698B8: @ 0x080698B8
     str r4, [sp]
     movs r0, #0
     movs r1, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     movs r0, #0x2c
     ldrsh r3, [r7, r0]
@@ -178524,7 +178524,7 @@ func_080698B8: @ 0x080698B8
     movs r0, #0
     movs r1, #8
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r6, r0, #0
     ldr r0, .L08069974 @ =0x030041C0
     ldr r1, [r0]
@@ -180960,7 +180960,7 @@ func_0806AC08: @ 0x0806AC08
     movs r0, #0
     movs r1, #0x20
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     ldr r2, [r4, #0x60]
     ldr r1, [r4, #0x5c]
     ldrh r1, [r1, #2]
@@ -181140,7 +181140,7 @@ func_0806AD70: @ 0x0806AD70
     ldrsh r0, [r4, r5]
     str r0, [sp]
     movs r0, #1
-    bl func_08012FE8
+    bl Interpolate
     ldr r1, [r4, #0x60]
     strh r0, [r1, #2]
     ldrh r0, [r4, #0x2c]
@@ -182539,7 +182539,7 @@ func_0806B878: @ 0x0806B878
     movs r0, #0
     movs r1, #0x10
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r0, .L0806B8D4 @ =0x020165C8
     ldr r4, .L0806B8D8 @ =gPal
@@ -182631,7 +182631,7 @@ func_0806B928: @ 0x0806B928
     movs r0, #0
     movs r1, #0
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r0, .L0806B984 @ =0x020165C8
     ldr r4, .L0806B988 @ =gPal
@@ -184455,7 +184455,7 @@ func_0806C67C: @ 0x0806C67C
     movs r0, #8
     str r0, [sp]
     movs r0, #5
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r7, #4]
     ldr r1, .L0806C75C @ =0x080C5A48
     adds r0, r1, #0
@@ -195924,7 +195924,7 @@ func_08071D70: @ 0x08071D70
     movs r0, #0
     movs r1, #8
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r7, #4]
     ldr r0, .L08071E44 @ =gDispIo
     adds r1, r0, #0
@@ -197505,7 +197505,7 @@ func_08072A18: @ 0x08072A18
     movs r0, #5
     movs r1, #1
     movs r2, #0xa0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r7, #4]
     ldr r0, [r7]
     ldr r1, [r0, #0x30]
@@ -197629,7 +197629,7 @@ func_08072B10: @ 0x08072B10
     movs r0, #5
     movs r1, #1
     movs r2, #0xa0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r7, #4]
     ldr r0, [r7]
     ldr r1, [r0, #0x30]
@@ -198248,7 +198248,7 @@ func_08072FC0: @ 0x08072FC0
     movs r0, #0
     movs r1, #0x10
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     ldr r1, .L0807305C @ =gDispIo
     adds r2, r1, #0
     adds r1, #0x44
@@ -199269,7 +199269,7 @@ func_080737D8: @ 0x080737D8
     movs r0, #0
     movs r1, #0x10
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     ldr r1, .L08073874 @ =gDispIo
     adds r2, r1, #0
     adds r1, #0x44
@@ -199814,7 +199814,7 @@ func_08073C50: @ 0x08073C50
     movs r0, #5
     movs r1, #1
     movs r2, #0x10
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r7, #4]
     ldr r1, [r7]
     adds r0, r1, #0
@@ -199906,7 +199906,7 @@ func_08073D0C: @ 0x08073D0C
     movs r0, #5
     movs r1, #0x10
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r7, #4]
     ldr r1, [r7]
     adds r0, r1, #0
@@ -202922,7 +202922,7 @@ func_08075448: @ 0x08075448
     ldrh r4, [r0, #0x3e]
     str r4, [sp]
     movs r0, #5
-    bl func_08012FE8
+    bl Interpolate
     lsls r1, r0, #4
     str r1, [r7, #8]
     ldr r0, [r7]
@@ -207055,7 +207055,7 @@ func_080772A0: @ 0x080772A0
     ldr r0, [r7, #0x20]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r7, #0x14]
     adds r0, r7, #0
     adds r0, #8
@@ -207081,7 +207081,7 @@ func_080772A0: @ 0x080772A0
     ldr r0, [r7, #0x20]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r7, #0x18]
     adds r0, r7, #0
     adds r0, #8
@@ -207107,7 +207107,7 @@ func_080772A0: @ 0x080772A0
     ldr r0, [r7, #0x20]
     str r0, [sp]
     movs r0, #0
-    bl func_08012FE8
+    bl Interpolate
     str r0, [r7, #0x1c]
     ldr r0, [r7]
     ldr r2, [r7, #0x14]
@@ -214268,7 +214268,7 @@ func_0807A4DC: @ 0x0807A4DC
     movs r0, #1
     adds r1, r4, #0
     adds r2, r5, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r5, r0, #0
     ldr r0, .L0807A520 @ =0x0841E3B8
     ldr r4, .L0807A524 @ =0x02022AA0
@@ -215368,7 +215368,7 @@ func_0807AD2C: @ 0x0807AD2C
     ldr r0, .L0807AD50 @ =0x08CA756C
     bl Proc_EndEach
     movs r0, #4
-    bl func_08003710
+    bl Sound_FadeOutSE
     pop {r0}
     bx r0
     .align 2, 0
@@ -215388,7 +215388,7 @@ func_0807AD54: @ 0x0807AD54
     ldr r0, .L0807AD78 @ =0x08CA759C
     bl Proc_EndEach
     movs r0, #4
-    bl func_08003710
+    bl Sound_FadeOutSE
     pop {r0}
     bx r0
     .align 2, 0
@@ -215462,7 +215462,7 @@ func_0807AD84: @ 0x0807AD84
     adds r0, r4, #0
     bl Proc_Break
     movs r0, #4
-    bl func_08003710
+    bl Sound_FadeOutSE
 .L0807ADFE:
     pop {r4}
     pop {r0}
@@ -215501,7 +215501,7 @@ func_0807AE30: @ 0x0807AE30
     ands r1, r2
     strh r1, [r0, #0xe]
     movs r0, #4
-    bl func_08003710
+    bl Sound_FadeOutSE
     ldr r0, .L0807AE54 @ =0x08CA75B4
     bl Proc_EndEach
     pop {r0}
@@ -220749,7 +220749,7 @@ func_0807D688: @ 0x0807D688
     ands r0, r1
     strh r0, [r2, #0xc]
     movs r0, #4
-    bl func_08003710
+    bl Sound_FadeOutSE
     pop {r0}
     bx r0
     .align 2, 0
@@ -224410,7 +224410,7 @@ func_0807F1D4: @ 0x0807F1D4
     push {lr}
     movs r0, #0
     movs r1, #0x74
-    bl func_0809F748
+    bl UnlockSoundRoomSong
     pop {r0}
     bx r0
     func_end func_0807F1D4
@@ -227206,7 +227206,7 @@ func_080807F8: @ 0x080807F8
     movs r0, #0x10
     str r0, [sp]
     movs r0, #2
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r4, #6]
     ldrh r0, [r5]
     adds r0, #3
@@ -227332,7 +227332,7 @@ func_080808F0: @ 0x080808F0
     movs r0, #0x10
     str r0, [sp]
     movs r0, #5
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r4, #6]
     ldrh r0, [r5]
     adds r0, #3
@@ -229123,7 +229123,7 @@ func_0808176C: @ 0x0808176C
     str r0, [sp]
     adds r0, r5, #0
     mov r3, ip
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r6, #0x30]
     movs r0, #0x3a
     ldrsh r1, [r6, r0]
@@ -229137,7 +229137,7 @@ func_0808176C: @ 0x0808176C
     str r0, [sp]
     adds r0, r5, #0
     mov r3, ip
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r6, #0x32]
     adds r0, r6, #0
     adds r0, #0x40
@@ -229154,7 +229154,7 @@ func_0808176C: @ 0x0808176C
     str r0, [sp]
     adds r0, r5, #0
     mov r3, ip
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r6, #0x34]
     adds r0, r6, #0
     adds r0, #0x42
@@ -229169,7 +229169,7 @@ func_0808176C: @ 0x0808176C
     ldrsh r0, [r7, r4]
     str r0, [sp]
     adds r0, r5, #0
-    bl func_08012FE8
+    bl Interpolate
     strh r0, [r6, #0x36]
     movs r1, #0x30
     ldrsh r0, [r6, r1]
@@ -233066,7 +233066,7 @@ func_080834E0: @ 0x080834E0
     str r0, [sp]
     adds r0, r5, #0
     mov r3, ip
-    bl func_08012FE8
+    bl Interpolate
     str r0, [sp, #4]
     adds r0, r7, #0
     adds r0, #0x42
@@ -233082,7 +233082,7 @@ func_080834E0: @ 0x080834E0
     ldrsh r0, [r4, r6]
     str r0, [sp]
     adds r0, r5, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r3, r0, #0
     mov r0, r8
     strh r0, [r7, #0x30]
@@ -256038,7 +256038,7 @@ func_0808EA80: @ 0x0808EA80
     movs r0, #0x5e
     adds r1, r2, #0
     movs r3, #0x20
-    bl func_080040F8
+    bl CallSomeSoundMaybe
 .L0808EB1E:
     adds r1, r6, #0
     adds r1, #0x33
@@ -257545,7 +257545,7 @@ func_0808F6B4: @ 0x0808F6B4
     movs r0, #0x49
     adds r1, r2, #0
     movs r3, #0x20
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     add sp, #4
     pop {r0}
     bx r0
@@ -257629,7 +257629,7 @@ func_0808F7A8: @ 0x0808F7A8
     str r0, [sp]
     movs r2, #0
     movs r3, #0x20
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     add sp, #4
     pop {r0}
     bx r0
@@ -269695,7 +269695,7 @@ func_08095878: @ 0x08095878
     movs r0, #0x49
     adds r1, r2, #0
     movs r3, #0x20
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     add sp, #4
     pop {r0}
     bx r0
@@ -269711,7 +269711,7 @@ func_08095894: @ 0x08095894
     str r0, [sp]
     movs r2, #0
     movs r3, #0x10
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     add sp, #4
     pop {r0}
     bx r0
@@ -278885,7 +278885,7 @@ func_0809A280: @ 0x0809A280
     movs r0, #0x5a
     movs r2, #0xc0
     movs r3, #0x18
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     adds r0, r4, #0
     movs r1, #0
     bl Proc_Goto
@@ -280381,7 +280381,7 @@ func_0809AE84: @ 0x0809AE84
     movs r0, #0x5e
     adds r1, r2, #0
     movs r3, #0x20
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     add sp, #4
     pop {r0}
     bx r0
@@ -280398,7 +280398,7 @@ func_0809AEA0: @ 0x0809AEA0
     movs r0, #0x49
     adds r1, r2, #0
     movs r3, #0x20
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     add sp, #4
     pop {r0}
     bx r0
@@ -282394,7 +282394,7 @@ func_0809BE14: @ 0x0809BE14
     movs r0, #0x5a
     movs r2, #0xc0
     movs r3, #0x18
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     b .L0809BE48
 .L0809BE36:
     movs r2, #0x80
@@ -282404,7 +282404,7 @@ func_0809BE14: @ 0x0809BE14
     movs r0, #0x49
     adds r1, r2, #0
     movs r3, #0x18
-    bl func_080040F8
+    bl CallSomeSoundMaybe
 .L0809BE48:
     add sp, #4
     pop {r0}
@@ -285446,7 +285446,7 @@ func_0809D6C8: @ 0x0809D6C8
     movs r0, #0x30
     movs r2, #0x80
     movs r3, #0x10
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     b .L0809D714
 .L0809D704:
     ldrb r0, [r4]
@@ -285455,7 +285455,7 @@ func_0809D6C8: @ 0x0809D6C8
     str r3, [sp]
     adds r1, r2, #0
     movs r3, #0x10
-    bl func_080040F8
+    bl CallSomeSoundMaybe
 .L0809D714:
     add sp, #4
     pop {r4}
@@ -285477,7 +285477,7 @@ func_0809D71C: @ 0x0809D71C
     movs r0, #0x30
     movs r1, #0x80
     movs r3, #0x10
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     b .L0809D74C
 .L0809D73A:
     movs r2, #0x80
@@ -285487,7 +285487,7 @@ func_0809D71C: @ 0x0809D71C
     movs r0, #0x30
     adds r1, r2, #0
     movs r3, #0x10
-    bl func_080040F8
+    bl CallSomeSoundMaybe
 .L0809D74C:
     add sp, #4
     pop {r0}
@@ -289738,8 +289738,8 @@ func_0809F710: @ 0x0809F710
     bx r1
     func_end func_0809F710
 
-    thumb_func_start func_0809F748
-func_0809F748: @ 0x0809F748
+    thumb_func_start UnlockSoundRoomSong
+UnlockSoundRoomSong: @ 0x0809F748
     push {r4, r5, lr}
     sub sp, #0x24
     adds r4, r0, #0
@@ -289774,7 +289774,7 @@ func_0809F748: @ 0x0809F748
     pop {r4, r5}
     pop {r0}
     bx r0
-    func_end func_0809F748
+    func_end UnlockSoundRoomSong
 
     thumb_func_start func_0809F78C
 func_0809F78C: @ 0x0809F78C
@@ -291679,14 +291679,14 @@ func_080A049C: @ 0x080A049C
     bgt .L080A053A
     movs r0, #0
     movs r1, #0x70
-    bl func_0809F748
+    bl UnlockSoundRoomSong
     b .L080A0546
 .L080A053A:
     cmp r5, #3
     bgt .L080A0546
     movs r0, #0
     movs r1, #0x71
-    bl func_0809F748
+    bl UnlockSoundRoomSong
 .L080A0546:
     add sp, #0x64
     pop {r4, r5, r6, r7}
@@ -296538,7 +296538,7 @@ func_080A2A84: @ 0x080A2A84
     str r4, [sp]
     movs r0, #5
     movs r1, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r7, r0, #0
     adds r1, r7, #0
     cmp r7, #0
@@ -296816,7 +296816,7 @@ func_080A2CBC: @ 0x080A2CBC
     str r4, [sp]
     movs r0, #2
     movs r2, #0
-    bl func_08012FE8
+    bl Interpolate
     adds r7, r0, #0
     cmp r7, #0
     bge .L080A2D1A
@@ -300123,7 +300123,7 @@ func_080A45A0: @ 0x080A45A0
     movs r1, #0xc0
 .L080A46F2:
     movs r3, #0x18
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     adds r0, r4, #0
     movs r1, #0xe
     bl Proc_Goto
@@ -301272,7 +301272,7 @@ func_080A4F74: @ 0x080A4F74
     strb r0, [r1]
     movs r0, #0
     movs r1, #0x75
-    bl func_0809F748
+    bl UnlockSoundRoomSong
 .L080A4FD8:
     mov r1, r8
     ldr r0, [r1]
@@ -301288,7 +301288,7 @@ func_080A4F74: @ 0x080A4F74
     strb r0, [r1]
     movs r0, #0
     movs r1, #0x76
-    bl func_0809F748
+    bl UnlockSoundRoomSong
 .L080A4FF8:
     adds r6, #0x14
     subs r7, #1
@@ -313449,7 +313449,7 @@ func_080AAC10: @ 0x080AAC10
     movs r0, #0
     str r0, [sp]
     movs r2, #0
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     add sp, #4
     pop {r0}
     bx r0
@@ -313465,7 +313465,7 @@ func_080AAC2C: @ 0x080AAC2C
     str r1, [sp]
     adds r1, r2, #0
     movs r3, #0x20
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     add sp, #4
     pop {r0}
     bx r0
@@ -313967,7 +313967,7 @@ func_080AAFA0: @ 0x080AAFA0
     movs r0, #0
     movs r2, #0
     movs r3, #0x78
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     adds r4, #0x3f
     movs r0, #1
     strb r0, [r4]
@@ -315408,7 +315408,7 @@ func_080ABAB4: @ 0x080ABAB4
     adds r4, r0, #0
     adds r5, r1, #0
     adds r6, r2, #0
-    bl func_080041C0
+    bl MusicProc4Exists
     lsls r0, r0, #0x18
     asrs r3, r0, #0x18
     cmp r3, #0
@@ -315427,7 +315427,7 @@ func_080ABAB4: @ 0x080ABAB4
     str r3, [sp]
     adds r1, r2, #0
     adds r3, r6, #0
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     movs r0, #1
     b .L080ABAF6
     .align 2, 0
@@ -315446,7 +315446,7 @@ func_080ABB00: @ 0x080ABB00
     push {r4, r5, lr}
     sub sp, #4
     adds r5, r0, #0
-    bl func_080041C0
+    bl MusicProc4Exists
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     cmp r0, #0
@@ -315459,7 +315459,7 @@ func_080ABB00: @ 0x080ABB00
     movs r0, #0
     movs r2, #0
     movs r3, #0x18
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     adds r0, r5, #0
     adds r0, #0x2f
     strb r4, [r0]
@@ -315720,7 +315720,7 @@ func_080ABB60: @ 0x080ABB60
     ands r0, r1
     cmp r0, #0
     beq .L080ABD34
-    bl func_080041C0
+    bl MusicProc4Exists
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080ABD44
@@ -315747,7 +315747,7 @@ func_080ABD4C: @ 0x080ABD4C
     push {r4, lr}
     sub sp, #4
     adds r4, r0, #0
-    bl func_080041C0
+    bl MusicProc4Exists
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     cmp r0, #0
@@ -315757,7 +315757,7 @@ func_080ABD4C: @ 0x080ABD4C
     movs r1, #0
     movs r2, #0xc0
     movs r3, #0x18
-    bl func_080040F8
+    bl CallSomeSoundMaybe
     adds r0, r4, #0
     bl Proc_Break
 .L080ABD72:

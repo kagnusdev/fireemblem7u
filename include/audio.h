@@ -13,6 +13,6 @@ struct BgmStatus
     /* 08 */ u8 unk_08; // not in fe6
 };
 
-extern struct BgmStatus gBgmStatus;
+extern struct BgmStatus gSoundSt;
 
 #endif // AUDIO_H
