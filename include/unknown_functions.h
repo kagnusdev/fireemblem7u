@@ -67,7 +67,7 @@ void InitRamFuncs(void);
 // ... DecodeStringRam(...)
 // ... PutOamHiRam(...)
 // ... PutOamLoRam(...)
-// ... func_080043E0(...)
+// ... MapFloodCoreStepRam(...)
 // ... MapFloodCoreRam(...)
 void InitProcs(void);
 // ... Proc_Start(...)

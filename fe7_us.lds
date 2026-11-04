@@ -42,6 +42,7 @@ SECTIONS
         src/move-data.o(.text);
         src/oam.o(.text);
         src/sound.o(.text);
+        asm/ram-funcs.o(.text);
         asm/code_1.o(.text);
         src/event.o(.text);
         asm/event.o(.text);
