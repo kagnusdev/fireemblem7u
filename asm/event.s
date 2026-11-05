@@ -1756,7 +1756,7 @@ IsEventRunning: @ 0x0800ED20
 func_0800ED34: @ 0x0800ED34
     push {lr}
     ldr r0, .L0800ED48 @ =0x08B90D88
-    bl func_080046C8
+    bl Proc_FindNonBlocked
     cmp r0, #0
     beq .L0800ED42
     movs r0, #1
@@ -1771,11 +1771,11 @@ func_0800ED34: @ 0x0800ED34
 func_0800ED4C: @ 0x0800ED4C
     push {lr}
     movs r0, #6
-    bl func_08004834
+    bl Proc_EndEachMarked
     movs r0, #7
-    bl func_08004834
+    bl Proc_EndEachMarked
     movs r0, #5
-    bl func_08004834
+    bl Proc_EndEachMarked
     bl EndAllMus
     pop {r0}
     bx r0

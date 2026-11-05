@@ -1,8 +1,8 @@
     .section ".data_0", "a"
 
-    @ B858A4 ... B92474
+    @ B8590C ... B92474
 
-    .incbin "baserom.gba", 0xB858A4, 0xB92474 - 0xB858A4
+    .incbin "baserom.gba", 0xB8590C, 0xB92474 - 0xB8590C
 
     .data
 

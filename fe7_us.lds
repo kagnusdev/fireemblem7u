@@ -43,6 +43,7 @@ SECTIONS
         src/oam.o(.text);
         src/sound.o(.text);
         src/ram-funcs.o(.text);
+        src/proc.o(.text);
         asm/code_1.o(.text);
         src/event.o(.text);
         asm/event.o(.text);
@@ -133,6 +134,7 @@ SECTIONS
     {
         . = ALIGN(4); src/hardware.o(.data);
         . = ALIGN(4); src/sound.o(.data);
+        . = ALIGN(4); src/proc.o(.data);
         . = ALIGN(4); asm/data.o(.data_0);
         . = ALIGN(4); src/sprite-anim.o(.data);
         . = ALIGN(4); src/game-ctrl.o(.data);

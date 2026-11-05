@@ -1682,7 +1682,7 @@ extern u8 Img_SysBrownBox[];
 // ??? ProcScr_MusicVolumeChange
 // ??? ProcScr_Unk_08B85854
 // ??? ProcScr_MusicChange
-// ??? gUnk_08BBFD28
+// ??? gUnk_08B858A4
 // ??? gUnk_08BBFD90
 // ??? TextColorLutTable
 // ??? ProcScr_TextPrint

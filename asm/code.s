@@ -4990,7 +4990,7 @@ OnVBlank: @ 0x0801524C
     bl m4aSoundVSync
     ldr r0, .L08015294 @ =gProcTreeRoots
     ldr r0, [r0]
-    bl func_08004690
+    bl Proc_Run
     bl SyncLoOam
     ldr r1, .L08015298 @ =gBmStatus
     movs r0, #0
@@ -5022,22 +5022,22 @@ OnMain: @ 0x0801529C
     bl func_080069B0
     ldr r4, .L080152FC @ =gProcTreeRoots
     ldr r0, [r4, #4]
-    bl func_08004690
+    bl Proc_Run
     bl GetGameLock
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080152C2
     ldr r0, [r4, #8]
-    bl func_08004690
+    bl Proc_Run
 .L080152C2:
     ldr r0, [r4, #0xc]
-    bl func_08004690
+    bl Proc_Run
     ldr r0, [r4, #0x14]
-    bl func_08004690
+    bl Proc_Run
     movs r0, #0
     bl func_08006A64
     ldr r0, [r4, #0x10]
-    bl func_08004690
+    bl Proc_Run
     movs r0, #0xd
     bl func_08006A64
     ldr r1, .L08015300 @ =gBmStatus
@@ -21518,7 +21518,7 @@ func_0801CDBC: @ 0x0801CDBC
     bne .L0801CE34
     ldr r1, .L0801CE30 @ =func_0801CD80
     adds r0, r6, #0
-    bl func_08004C40
+    bl Proc_SetRepeatCb
     b .L0801CE58
     .align 2, 0
 .L0801CE20: .4byte gActiveUnit
@@ -55496,7 +55496,7 @@ LockBmDisplay: @ 0x0802D3B4
     strh r0, [r1]
     bl EnablePalSync
     movs r0, #1
-    bl Proc_LockEachMarked
+    bl Proc_BlockEachMarked
 .L0802D3DC:
     pop {r0}
     bx r0
@@ -55520,7 +55520,7 @@ UnlockBmDisplay: @ 0x0802D3E8
     cmp r0, #0
     bne .L0802D418
     movs r0, #1
-    bl func_0800480C
+    bl Proc_UnblockEachMarked
     ldr r0, .L0802D420 @ =0x08B96158
     bl Proc_Find
     cmp r0, #0
@@ -57478,7 +57478,7 @@ func_0802E37C: @ 0x0802E37C
 func_0802E3B0: @ 0x0802E3B0
     push {lr}
     movs r0, #1
-    bl func_08004834
+    bl Proc_EndEachMarked
     ldr r0, .L0802E3D0 @ =0x08B92AF8
     bl Proc_Find
     ldr r1, [r0, #0x54]
@@ -65878,7 +65878,7 @@ func_080324F0: @ 0x080324F0
     movs r0, #0
     bl func_08015DB0
     ldr r0, .L08032510 @ =0x08B969E4
-    bl func_08004888
+    bl Proc_BreakEach
     pop {r0}
     bx r0
     .align 2, 0
@@ -117403,21 +117403,21 @@ func_0804B328: @ 0x0804B328
     bne .L0804B344
     ldr r0, .L0804B394 @ =gProcTreeRoots
     ldr r0, [r0, #8]
-    bl func_08004690
+    bl Proc_Run
 .L0804B344:
     ldr r4, .L0804B394 @ =gProcTreeRoots
     ldr r0, [r4, #0xc]
-    bl func_08004690
+    bl Proc_Run
     ldr r0, [r4, #0x14]
-    bl func_08004690
+    bl Proc_Run
     movs r0, #0
     bl func_08006A64
     ldr r0, [r4, #4]
-    bl func_08004690
+    bl Proc_Run
     bl func_08006490
     bl func_08053454
     ldr r0, [r4, #0x10]
-    bl func_08004690
+    bl Proc_Run
     ldr r1, .L0804B398 @ =0x02000020
     movs r0, #0
     str r0, [r1]
@@ -128486,22 +128486,22 @@ func_08050A38: @ 0x08050A38
     bl func_080069B0
     ldr r4, .L08050AA0 @ =gProcTreeRoots
     ldr r0, [r4, #4]
-    bl func_08004690
+    bl Proc_Run
     bl GetGameLock
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08050A5E
     ldr r0, [r4, #8]
-    bl func_08004690
+    bl Proc_Run
 .L08050A5E:
     ldr r0, [r4, #0xc]
-    bl func_08004690
+    bl Proc_Run
     ldr r0, [r4, #0x14]
-    bl func_08004690
+    bl Proc_Run
     movs r0, #0
     bl func_08006A64
     ldr r0, [r4, #0x10]
-    bl func_08004690
+    bl Proc_Run
     bl func_08006490
     bl func_08053454
     movs r0, #0xd
@@ -185331,7 +185331,7 @@ LockMus: @ 0x0806CD30
     push {r7, lr}
     mov r7, sp
     movs r0, #4
-    bl Proc_LockEachMarked
+    bl Proc_BlockEachMarked
     pop {r7}
     pop {r0}
     bx r0
@@ -185342,7 +185342,7 @@ ReleaseMus: @ 0x0806CD40
     push {r7, lr}
     mov r7, sp
     movs r0, #4
-    bl func_0800480C
+    bl Proc_UnblockEachMarked
     pop {r7}
     pop {r0}
     bx r0
@@ -220868,7 +220868,7 @@ func_0807D770: @ 0x0807D770
     cmp r1, #0
     bne .L0807D784
     ldr r0, .L0807D788 @ =0x08CBB48C
-    bl func_08004888
+    bl Proc_BreakEach
 .L0807D784:
     pop {r0}
     bx r0
@@ -232273,7 +232273,7 @@ func_08082F50: @ 0x08082F50
 .L08082F64:
     bl func_08082D98
     ldr r0, .L08082F7C @ =0x08CC29E4
-    bl func_08004888
+    bl Proc_BreakEach
     pop {r0}
     bx r0
     .align 2, 0
@@ -233176,7 +233176,7 @@ func_080835EC: @ 0x080835EC
     push {lr}
     bl func_0808460C
     ldr r0, .L080835FC @ =0x08CC2AAC
-    bl func_08004888
+    bl Proc_BreakEach
     pop {r0}
     bx r0
     .align 2, 0
@@ -239238,7 +239238,7 @@ func_080866FC: @ 0x080866FC
     movs r0, #0
     bl InitBgs
     bl m4aSoundInit
-    bl InitProcs
+    bl Proc_Init
     movs r0, #0
     movs r1, #0
     movs r2, #0
@@ -300912,9 +300912,9 @@ func_080A4C94: @ 0x080A4C94
     ldrb r0, [r0]
     bl func_080A649C
     movs r0, #0xc
-    bl func_0800480C
+    bl Proc_UnblockEachMarked
     movs r0, #0xd
-    bl func_0800480C
+    bl Proc_UnblockEachMarked
     movs r0, #3
     bl EnableBgSync
     adds r0, r4, #0
@@ -307074,9 +307074,9 @@ func_080A7C84: @ 0x080A7C84
     movs r1, #8
     bl SetBgOffset
     movs r0, #0xc
-    bl Proc_LockEachMarked
+    bl Proc_BlockEachMarked
     movs r0, #0xd
-    bl Proc_LockEachMarked
+    bl Proc_BlockEachMarked
     ldr r1, .L080A7DB8 @ =0x02000000
     movs r0, #0x64
     strb r0, [r1]
@@ -310048,7 +310048,7 @@ func_080A9338: @ 0x080A9338
     b .L080A9358
 .L080A934A:
     ldr r0, .L080A9360 @ =0x08CE4AB0
-    bl func_08004C5C
+    bl Proc_FindAfter
     adds r1, r0, #0
     cmp r1, #0
     bne .L080A9340
@@ -311455,7 +311455,7 @@ func_080A9DC0: @ 0x080A9DC0
 .L080A9DCE:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_08004C90
+    bl Proc_FindAfterWithParent
     adds r4, r0, #0
     cmp r4, #0
     bne .L080A9DC8

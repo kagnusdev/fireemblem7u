@@ -111,9 +111,9 @@ struct ProcFindIterator {
 #define PROC_TREE_7     ((ProcPtr) 7)
 #define PROC_IS_ROOT(aProc) ((uintptr_t)aProc <= (u32)PROC_TREE_7)
 
-#define ROOT_PROC(treenum) (*(gProcTreeRootArray + (treenum)))
+#define ROOT_PROC(treenum) (*(gProcTreeRoots + (treenum)))
 
-extern struct Proc * gProcTreeRootArray[8];
+extern struct Proc * gProcTreeRoots[8];
 
 void Proc_Init(void);
 ProcPtr Proc_Start(const struct ProcCmd * script, ProcPtr parent);

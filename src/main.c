@@ -42,7 +42,7 @@ void AgbMain(void)
 
     InitRamFuncs();
     SramInit();
-    InitProcs();
+    Proc_Init();
     InitSpriteAnims();
     InitMus();
 
