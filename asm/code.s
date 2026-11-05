@@ -18169,7 +18169,7 @@ func_0801B314: @ 0x0801B314
     bl StartMenu
     movs r0, #2
     movs r1, #0
-    bl func_08004EF8
+    bl DebugInitBg
     movs r0, #1
     pop {r1}
     bx r1
@@ -18573,7 +18573,7 @@ func_0801B61C: @ 0x0801B61C
     movs r0, #1
     rsbs r0, r0, #0
     movs r1, #9
-    bl func_08005280
+    bl SetupDebugFontForOBJ
 .L0801B656:
     movs r0, #0
     pop {r4, r5}
@@ -18940,7 +18940,7 @@ func_0801B924: @ 0x0801B924
     bl func_0802E368
     movs r0, #2
     movs r1, #0
-    bl func_08004EF8
+    bl DebugInitBg
     ldr r0, .L0801B97C @ =0x081C3BA4
     bl func_08009FF4
     ldr r0, .L0801B980 @ =0x08B95890
@@ -104697,7 +104697,7 @@ func_080451FC: @ 0x080451FC
     movs r0, #1
     rsbs r0, r0, #0
     movs r1, #9
-    bl func_08005280
+    bl SetupDebugFontForOBJ
 .L08045282:
     pop {r4}
     pop {r0}
@@ -261507,7 +261507,7 @@ func_080913FC: @ 0x080913FC
     strb r0, [r4, #1]
     ldr r0, .L080917CC @ =0x06017800
     movs r1, #0
-    bl func_08005280
+    bl SetupDebugFontForOBJ
     movs r1, #4
     rsbs r1, r1, #0
     adds r0, r1, #0

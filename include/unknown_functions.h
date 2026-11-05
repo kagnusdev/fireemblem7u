@@ -149,7 +149,7 @@ Proc * Proc_Find(void const * scr);
 // ... PutIcon(...)
 // ... ClearIcon(...)
 // ... PutIconObjImg(...)
-// ... func_08004EF8(...)
+// ... DebugInitBg(...)
 void DebugPutStr(u16 * tm, char const * str);
 // ... func_08004FC0(...)
 // ... func_08004FD4(...)
@@ -163,7 +163,7 @@ void DebugPutStr(u16 * tm, char const * str);
 // ... func_08005134(...)
 // ... func_080051A0(...)
 // ... func_08005218(...)
-// ... func_08005280(...)
+// ... SetupDebugFontForOBJ(...)
 // ... func_0800530C(...)
 // ... func_08005358(...)
 // ... func_0800537C(...)
