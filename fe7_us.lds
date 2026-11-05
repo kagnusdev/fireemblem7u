@@ -44,6 +44,7 @@ SECTIONS
         src/sound.o(.text);
         src/ram-funcs.o(.text);
         src/proc.o(.text);
+        src/icon.o(.text);
         asm/code_1.o(.text);
         src/event.o(.text);
         asm/event.o(.text);

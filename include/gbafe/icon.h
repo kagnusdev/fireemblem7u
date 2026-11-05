@@ -13,8 +13,8 @@ struct IconSt {
 extern u8 const Img_Icons[];
 extern u16 const Pal_Icons[];
 
-extern struct IconSt IconStTable[MAX_ICON_COUNT];
-extern u8 IconDisplayList[MAX_ICON_DISPLAY_COUNT];
+extern struct IconSt gIconStatusTable[MAX_ICON_COUNT];
+extern u8 gIconDisplayList[MAX_ICON_DISPLAY_COUNT];
 
 void InitIcons(void);
 void ClearIcons(void);

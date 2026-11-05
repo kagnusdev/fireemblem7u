@@ -119515,7 +119515,7 @@ func_0804C1D0: @ 0x0804C1D0
     bl GetItemIcon
     movs r1, #0xee
     lsls r1, r1, #1
-    bl ApplyIconObjImg
+    bl PutIconObjImg
     ldr r0, .L0804C430 @ =0x0203E098
     ldr r0, [r0]
     adds r0, #0x4a
@@ -119523,7 +119523,7 @@ func_0804C1D0: @ 0x0804C1D0
     bl GetItemIcon
     movs r1, #0xef
     lsls r1, r1, #1
-    bl ApplyIconObjImg
+    bl PutIconObjImg
     ldr r0, .L0804C434 @ =0x0819431C
     movs r1, #0x80
     lsls r1, r1, #2
@@ -181871,7 +181871,7 @@ func_0806B1A4: @ 0x0806B1A4
     bl GetItemIcon
 .L0806B380:
     movs r1, #0x40
-    bl ApplyIconObjImg
+    bl PutIconObjImg
     b .L0806B39A
 .L0806B388:
     movs r0, #1
@@ -181880,7 +181880,7 @@ func_0806B1A4: @ 0x0806B1A4
     mov r0, sb
     adds r0, #0x70
     movs r1, #0x40
-    bl ApplyIconObjImg
+    bl PutIconObjImg
 .L0806B39A:
     ldr r0, .L0806B404 @ =0x08BDCD4C
     movs r1, #0x96

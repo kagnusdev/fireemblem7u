@@ -148,7 +148,7 @@ Proc * Proc_Find(void const * scr);
 // ... GetIconChr(...)
 // ... PutIcon(...)
 // ... ClearIcon(...)
-// ... ApplyIconObjImg(...)
+// ... PutIconObjImg(...)
 // ... func_08004EF8(...)
 void DebugPutStr(u16 * tm, char const * str);
 // ... func_08004FC0(...)
