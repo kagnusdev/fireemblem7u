@@ -10,13 +10,26 @@ Img_Icons:
     .incbin "baserom.gba", 0x0C5EA4, 0x0CBEA4 - 0x0C5EA4
     .global Pal_Icons
 Pal_Icons:
-    .incbin "baserom.gba", 0x0CBEA4, 0x193E00 - 0x0CBEA4
+    .incbin "baserom.gba", 0x0CBEA4, 0x193DA0 - 0x0CBEA4
+
+    .global gUnk_08193DA0
+gUnk_08193DA0:
+    .incbin "baserom.gba", 0x193DA0, 0x193E00 - 0x193DA0
+
     .global rodata_sEnd
 rodata_sEnd:
 
     .section ".rodata_1", "a"
 
-    .incbin "baserom.gba", 0x193E20, 0x677370 - 0x193E20
+    .incbin "baserom.gba", 0x193E20, 0x194674 - 0x193E20
+
+    .global Pal_Text
+Pal_Text:
+    .incbin "baserom.gba", 0x194674, 0x194734 - 0x194674
+
+    .global Pal_GreenTextColors
+Pal_GreenTextColors:
+    .incbin "baserom.gba", 0x194734, 0x677370 - 0x194734
 
     .section ".rodata_2", "a"
 

@@ -25,7 +25,7 @@ extern u8 Img_NilsInDragonsGate[]; // img
 extern u8 Tsa_NilsInDragonsGate[]; // tsa
 extern u16 Pal_NilsInDragonsGate[]; // pal
 // ??? gUnk_0818F8E4
-// ??? gUnk_0818F8F8
+// ??? gUnk_08193DA0
 // ??? gUnk_0818F8FC
 // ??? gUnk_0818F904
 // ??? gUnk_0818F920

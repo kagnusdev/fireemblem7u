@@ -52,9 +52,10 @@ struct TextPrintProc {
     /* 36 */ s8 char_per_tick;
 };
 
-enum langauge_type {
+enum language_type {
     LANG_JAPANESE,
     LANG_ENGLISH,
+    LANG_UNK_5 = 5,
 };
 
 enum text_glyph_type {
@@ -175,6 +176,7 @@ void Text_InsertDrawString(struct Text * text, int x, int color, const char * st
 void Text_InsertDrawNumberOrBlank(struct Text * text, int x, int color, int number);
 void Text_DrawStringAscii(struct Text * text, char const * str);
 char const * Text_DrawCharacterAscii(struct Text * text, char const * str);
+char const *func_08005BD0(char const *str, int *out_width);
 int GetStringTextLenAscii(char const * str);
 void nullsub_23(void);
 void InitSpriteTextFont(struct Font * font, u8 * draw_dest, int palid);
@@ -210,14 +212,14 @@ void PutNumber2DigitExt(u16 * tm, int color, int number, int id_zero);
 
 extern struct Font gDefaultFont;
 extern struct Font * gActiveFont;
-extern struct SpecialCharSt sSpecialCharStList[];
+extern struct SpecialCharSt gSpecialCharList[];
 
 extern struct ProcCmd ProcScr_TextPrint[];
 extern struct ProcCmd ProcScr_GreenTextColor[];
 extern u16 const Pal_GreenTextColors[];
 extern struct Glyph const * const TextGlyphs_Special[];
 
-extern char const gUnk_0818F8F8[];
+extern char const gUnk_08193DA0[];
 extern char const gUnk_0818F8FC[];
 extern struct Glyph const * const TextGlyphs_System[];
 extern struct Glyph const * const TextGlyphs_Talk[];

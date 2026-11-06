@@ -3270,7 +3270,7 @@ func_08014634: @ 0x08014634
     adds r1, r4, #0
     bl InitText
     adds r0, r6, #0
-    bl func_080055FC
+    bl GetStringTextLen
     lsls r4, r4, #3
     subs r4, r4, r0
     subs r4, #1
@@ -3288,7 +3288,7 @@ func_08014634: @ 0x08014634
     bl Text_DrawString
     adds r0, r5, #0
     mov r1, sb
-    bl func_08005590
+    bl PutText
     movs r0, #1
     bl EnableBgSync
     adds r0, r5, #0
@@ -3310,7 +3310,7 @@ func_08014698: @ 0x08014698
     adds r5, r2, #0
     ldr r4, .L080146D8 @ =0x03000430
     adds r0, r5, #0
-    bl func_080055FC
+    bl GetStringTextLen
     adds r1, r0, #7
     cmp r1, #0
     bge .L080146B0
@@ -3327,7 +3327,7 @@ func_08014698: @ 0x08014698
     bl Text_DrawString
     adds r0, r4, #0
     adds r1, r7, #0
-    bl func_08005590
+    bl PutText
     adds r0, r4, #0
     pop {r4, r5, r6, r7}
     pop {r1}
@@ -4484,7 +4484,7 @@ func_08014EA8: @ 0x08014EA8
     mov r8, r3
     ldr r4, [sp, #0x18]
     mov r0, r8
-    bl func_080055FC
+    bl GetStringTextLen
     adds r1, r0, #0
     lsls r4, r4, #3
     subs r4, r4, r1
@@ -4501,7 +4501,7 @@ func_08014EA8: @ 0x08014EA8
     adds r5, r5, r0
     adds r0, r6, #0
     adds r1, r5, #0
-    bl func_08005590
+    bl PutText
     pop {r3, r4}
     mov r8, r3
     mov sb, r4
@@ -7519,7 +7519,7 @@ func_08016470: @ 0x08016470
     adds r0, r5, #0
     movs r1, #0
     adds r2, r3, #0
-    bl func_08005588
+    bl Text_SetParams
     movs r0, #0xff
     ands r0, r6
     lsls r1, r0, #3
@@ -7538,7 +7538,7 @@ func_08016470: @ 0x08016470
     bl Text_DrawString
     adds r1, r7, #4
     adds r0, r5, #0
-    bl func_08005590
+    bl PutText
     adds r3, r7, #0
     adds r3, #0x16
     movs r5, #1
@@ -7557,7 +7557,7 @@ func_08016470: @ 0x08016470
 .L080164DE:
     adds r0, r3, #0
     adds r1, r5, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     cmp r6, #0
     bne .L080164F4
     movs r1, #1
@@ -7597,7 +7597,7 @@ func_0801650C: @ 0x0801650C
     adds r0, r4, #0
     movs r1, #0
     adds r2, r3, #0
-    bl func_08005588
+    bl Text_SetParams
     movs r0, #0xff
     mov r1, r8
     ands r0, r1
@@ -7617,7 +7617,7 @@ func_0801650C: @ 0x0801650C
     bl Text_DrawString
     adds r1, r7, #4
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r3, #0x14
     adds r3, r3, r7
     mov ip, r3
@@ -7636,7 +7636,7 @@ func_0801650C: @ 0x0801650C
     movs r2, #0xff
 .L0801657C:
     mov r0, ip
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r3, r7, #0
     adds r3, #0x1a
     movs r1, #1
@@ -7652,7 +7652,7 @@ func_0801650C: @ 0x0801650C
     ldrb r2, [r5, #0x14]
 .L0801659A:
     adds r0, r3, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r7, #0
     adds r0, #0x16
     movs r1, #0
@@ -7661,7 +7661,7 @@ func_0801650C: @ 0x0801650C
     movs r1, #1
 .L080165AC:
     movs r2, #0x16
-    bl func_0800615C
+    bl PutSpecialChar
     mov r0, r8
     cmp r0, #0
     bne .L080165C4
@@ -7712,12 +7712,12 @@ func_080165DC: @ 0x080165DC
     bl Text_DrawString
     adds r1, r7, #4
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #0x16
     adds r0, r0, r7
     mov r8, r0
     adds r0, r4, #0
-    bl func_08005584
+    bl Text_GetColor
     adds r3, r0, #0
     ldr r0, [r5, #8]
     movs r1, #8
@@ -7729,7 +7729,7 @@ func_080165DC: @ 0x080165DC
 .L08016638:
     mov r0, r8
     adds r1, r3, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     cmp r6, #0
     bne .L08016650
     movs r1, #1
@@ -7792,7 +7792,7 @@ func_08016668: @ 0x08016668
     adds r0, #0x18
     adds r1, r4, #0
     movs r2, #0x16
-    bl func_0800615C
+    bl PutSpecialChar
     movs r4, #1
     cmp r6, #1
     beq .L080166CA
@@ -7811,7 +7811,7 @@ func_08016668: @ 0x08016668
 .L080166DE:
     adds r0, r1, #0
     adds r1, r4, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r1, r7, #0
     adds r1, #0x1c
     ldr r0, [r5, #8]
@@ -7823,10 +7823,10 @@ func_08016668: @ 0x08016668
 .L080166F6:
     adds r0, r1, #0
     adds r1, r4, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r1, r7, #4
     mov r0, r8
-    bl func_08005590
+    bl PutText
     mov r0, sb
     cmp r0, #0
     bne .L08016718
@@ -18120,7 +18120,7 @@ func_0801B280: @ 0x0801B280
     adds r4, r4, r0
     add r0, sp, #4
     adds r1, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #3
     bl EnableBgSync
     add sp, #0xc
@@ -18327,7 +18327,7 @@ func_0801B3E8: @ 0x0801B3E8
     ldr r0, .L0801B46C @ =gBg0Tm
     adds r1, r1, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     pop {r4, r5, r6}
     pop {r1}
     bx r1
@@ -18418,7 +18418,7 @@ func_0801B470: @ 0x0801B470
     ldr r0, .L0801B524 @ =gBg0Tm
     adds r1, r1, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
 .L0801B512:
     movs r0, #0
     pop {r4, r5, r6, r7}
@@ -18533,7 +18533,7 @@ func_0801B598: @ 0x0801B598
     ldr r0, .L0801B618 @ =gBg0Tm
     adds r1, r1, r0
     adds r0, r5, #0
-    bl func_08005590
+    bl PutText
     movs r0, #0
     add sp, #8
     pop {r4, r5, r6}
@@ -18639,7 +18639,7 @@ func_0801B66C: @ 0x0801B66C
     ldr r0, .L0801B6F4 @ =gBg0Tm
     adds r1, r1, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #0
     add sp, #0x1c
     pop {r4, r5, r6}
@@ -18774,7 +18774,7 @@ func_0801B7A4: @ 0x0801B7A4
     ldr r0, .L0801B810 @ =gBg0Tm
     adds r1, r1, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #0
     pop {r4, r5}
     pop {r1}
@@ -19472,7 +19472,7 @@ func_0801BCE4: @ 0x0801BCE4
     ldr r0, .L0801BD60 @ =gBg0Tm
     adds r1, r1, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #0
     add sp, #8
     pop {r4, r5}
@@ -19622,7 +19622,7 @@ func_0801BDDC: @ 0x0801BDDC
     ldr r0, .L0801BE80 @ =gBg0Tm
     adds r1, r1, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #0
     add sp, #0xc
     pop {r4, r5, r6}
@@ -19821,7 +19821,7 @@ func_0801BF54: @ 0x0801BF54
     lsls r1, r1, #1
     add r1, r8
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r1, #0x2c
     ldrsh r0, [r5, r1]
     lsls r0, r0, #5
@@ -19867,7 +19867,7 @@ func_0801BF54: @ 0x0801BF54
     lsls r1, r1, #1
     add r1, r8
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
 .L0801C05A:
     movs r0, #1
     bl EnableBgSync
@@ -23773,15 +23773,15 @@ StartEquipInfoWindow: @ 0x0801DEFC
     adds r0, r4, #0
     adds r0, #0x34
     movs r1, #0xc
-    bl func_0800549C
+    bl InitTextDb
     adds r0, r4, #0
     adds r0, #0x3c
     movs r1, #0xc
-    bl func_0800549C
+    bl InitTextDb
     adds r0, r4, #0
     adds r0, #0x44
     movs r1, #0xc
-    bl func_0800549C
+    bl InitTextDb
     ldrb r1, [r5]
     movs r0, #1
     bl ApplyIconPalette
@@ -23946,7 +23946,7 @@ func_0801DFC0: @ 0x0801DFC0
     adds r3, r4, #0
     bl Text_InsertDrawString
     adds r0, r4, #0
-    bl func_0800570C
+    bl GetStringLineEnd
     adds r4, r0, #0
     ldrb r0, [r4]
     cmp r0, #0
@@ -23979,16 +23979,16 @@ func_0801DFC0: @ 0x0801DFC0
     strh r1, [r0]
     adds r0, r6, #0
     adds r1, r7, #0
-    bl func_08005590
+    bl PutText
     mov r0, r8
     mov r1, sb
-    bl func_08005590
+    bl PutText
     ldr r2, [sp, #4]
     movs r3, #0xa1
     lsls r3, r3, #1
     adds r1, r2, r3
     mov r0, sl
-    bl func_08005590
+    bl PutText
     b .L0801E294
     .align 2, 0
 .L0801E114: .4byte 0x0203A3F0
@@ -24129,7 +24129,7 @@ func_0801DFC0: @ 0x0801DFC0
     lsls r1, r1, #1
     ldr r4, .L0801E2C8 @ =gBg0Tm
     adds r1, r1, r4
-    bl func_08005590
+    bl PutText
     adds r0, r7, #0
     adds r0, #0x3c
     ldrb r1, [r6]
@@ -24140,7 +24140,7 @@ func_0801DFC0: @ 0x0801DFC0
     adds r1, r2, r1
     lsls r1, r1, #1
     adds r1, r1, r4
-    bl func_08005590
+    bl PutText
     adds r0, r7, #0
     adds r0, #0x44
     ldrb r1, [r6]
@@ -24151,7 +24151,7 @@ func_0801DFC0: @ 0x0801DFC0
     adds r1, r5, r1
     lsls r1, r1, #1
     adds r1, r1, r4
-    bl func_08005590
+    bl PutText
     ldr r4, [sp, #4]
     adds r4, #0x4e
     mov r3, sl
@@ -26040,7 +26040,7 @@ func_0801F100: @ 0x0801F100
     adds r5, r1, #0
     adds r6, r2, #0
     adds r0, r6, #0
-    bl func_080055FC
+    bl GetStringTextLen
     adds r2, r0, #0
     cmp r5, #0
     blt .L0801F118
@@ -26090,7 +26090,7 @@ func_0801F100: @ 0x0801F100
     movs r0, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L0801F18C @ =0x08B938EC
     adds r1, r7, #0
     bl Proc_StartBlocking
@@ -26148,7 +26148,7 @@ func_0801F190: @ 0x0801F190
     add r0, sp, #4
     bl Text_DrawString
     add r0, sp, #4
-    bl func_08005570
+    bl Text_GetCursor
     adds r1, r0, #7
     cmp r1, #0
     bge .L0801F1FE
@@ -26171,7 +26171,7 @@ func_0801F190: @ 0x0801F190
     bl Text_DrawString
 .L0801F224:
     add r0, sp, #4
-    bl func_08005570
+    bl Text_GetCursor
     adds r2, r0, #0
     adds r2, #0x18
     movs r0, #0xf0
@@ -26197,7 +26197,7 @@ func_0801F190: @ 0x0801F190
     ldr r5, .L0801F290 @ =0x02022EA2
     adds r1, r1, r5
     add r0, sp, #4
-    bl func_08005590
+    bl PutText
     adds r4, #1
     adds r4, r6, r4
     lsls r4, r4, #1
@@ -34262,7 +34262,7 @@ func_08023044: @ 0x08023044
     ldr r0, [r0]
     ldrh r0, [r0]
     bl DecodeMsg
-    bl func_080055FC
+    bl GetStringTextLen
     movs r4, #0x38
     subs r4, r4, r0
     lsrs r0, r4, #0x1f
@@ -34281,7 +34281,7 @@ func_08023044: @ 0x08023044
     adds r1, r5, #0
     movs r2, #0
     adds r3, r4, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r5, #0x80
     ldrb r0, [r6, #0xd]
     bl GetUnit
@@ -35082,7 +35082,7 @@ func_0802367C: @ 0x0802367C
     ldr r0, .L080236BC @ =gBg0Tm
     adds r1, r1, r0
     adds r0, r5, #0
-    bl func_08005590
+    bl PutText
     movs r0, #0
     pop {r4, r5}
     pop {r1}
@@ -50375,7 +50375,7 @@ func_0802ABB4: @ 0x0802ABB4
     ldrh r0, [r0]
     bl DecodeMsg
     adds r7, r0, #0
-    bl func_080055FC
+    bl GetStringTextLen
     movs r4, #0x30
     subs r0, r4, r0
     lsrs r1, r0, #0x1f
@@ -50387,14 +50387,14 @@ func_0802ABB4: @ 0x0802ABB4
     movs r0, #0
     adds r1, r5, #0
     movs r2, #0
-    bl func_08005AD4
+    bl PutDrawText
     mov r2, r8
     ldr r0, [r2, #0x30]
     ldr r0, [r0]
     ldrh r0, [r0]
     bl DecodeMsg
     adds r7, r0, #0
-    bl func_080055FC
+    bl GetStringTextLen
     subs r4, r4, r0
     lsrs r0, r4, #0x1f
     adds r4, r4, r0
@@ -50405,7 +50405,7 @@ func_0802ABB4: @ 0x0802ABB4
     movs r0, #0
     adds r1, r5, #0
     movs r2, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #1
     bl EnableBgSync
     add sp, #8
@@ -50543,7 +50543,7 @@ func_0802AD6C: @ 0x0802AD6C
 .L0802AD7E:
     adds r0, r4, #0
     movs r1, #7
-    bl func_0800549C
+    bl InitTextDb
     adds r4, #8
     adds r5, #1
     cmp r5, #4
@@ -64107,7 +64107,7 @@ func_0803168C: @ 0x0803168C
     adds r4, r0, #0
     adds r0, #0x30
     movs r1, #6
-    bl func_0800549C
+    bl InitTextDb
     bl ClearIcons
     movs r0, #4
     bl ApplyIconPalettes
@@ -64127,7 +64127,7 @@ func_080316B8: @ 0x080316B8
     ldr r0, [r0]
     ldrh r0, [r0]
     bl DecodeMsg
-    bl func_080055FC
+    bl GetStringTextLen
     cmp r0, #0x27
     bgt .L080316DE
     adds r2, r4, #0
@@ -64280,7 +64280,7 @@ func_08031700: @ 0x08031700
     ldr r0, .L0803182C @ =gBg0Tm
     adds r1, r1, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #3
     bl EnableBgSync
     adds r0, r5, #0
@@ -64590,7 +64590,7 @@ func_08031A74: @ 0x08031A74
 .L08031A80:
     adds r0, r4, #0
     movs r1, #7
-    bl func_0800549C
+    bl InitTextDb
     adds r4, #8
     subs r5, #1
     cmp r5, #0
@@ -64649,7 +64649,7 @@ func_08031A98: @ 0x08031A98
     ldr r0, .L08031B0C @ =gBg0Tm
     adds r1, r1, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     b .L08031B94
     .align 2, 0
 .L08031B08: .4byte 0x0000126D
@@ -64691,13 +64691,13 @@ func_08031A98: @ 0x08031A98
     bl Text_DrawString
     adds r0, r5, #0
     mov r1, r8
-    bl func_08005590
+    bl PutText
     adds r0, r4, #0
     bl GetItemUses
     adds r2, r0, #0
     adds r0, r7, #0
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r4, #0
     bl GetItemIcon
     adds r1, r0, #0
@@ -64801,7 +64801,7 @@ func_08031BA8: @ 0x08031BA8
     mov r8, r0
     add r1, r8
     adds r0, r7, #0
-    bl func_08005590
+    bl PutText
     ldr r1, [sp, #0x14]
     lsls r0, r1, #1
     mov r1, r8
@@ -64817,7 +64817,7 @@ func_08031BA8: @ 0x08031BA8
     adds r2, r0, #0
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     ldr r4, [sp, #0x1c]
     adds r4, #1
     ldr r1, [sp, #0x10]
@@ -64929,13 +64929,13 @@ func_08031CBC: @ 0x08031CBC
     mov r8, r2
     add r1, r8
     adds r0, r7, #0
-    bl func_08005590
+    bl PutText
     ldr r1, [sp, #0x14]
     lsls r0, r1, #1
     add r0, r8
     adds r1, r5, #0
     movs r2, #0x16
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r6, #0
     bl IsItemRepairable
     lsls r0, r0, #0x18
@@ -64954,7 +64954,7 @@ func_08031CBC: @ 0x08031CBC
     adds r2, r0, #0
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     mov r4, sl
     adds r4, #0xe
     add r4, sb
@@ -64965,7 +64965,7 @@ func_08031CBC: @ 0x08031CBC
     adds r2, r0, #0
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     mov r4, sl
     adds r4, #1
     add r4, sb
@@ -65014,7 +65014,7 @@ func_08031DFC: @ 0x08031DFC
     bl func_0803168C
     adds r0, #0x38
     movs r1, #8
-    bl func_0800549C
+    bl InitTextDb
     pop {r0}
     bx r0
     func_end func_08031DFC
@@ -65047,7 +65047,7 @@ func_08031E10: @ 0x08031E10
     adds r4, r4, r0
     adds r0, r5, #0
     adds r1, r4, #0
-    bl func_08005590
+    bl PutText
     add sp, #8
     pop {r4, r5, r6}
     pop {r0}
@@ -65063,11 +65063,11 @@ func_08031E5C: @ 0x08031E5C
     adds r4, r0, #0
     adds r0, #0x38
     movs r1, #8
-    bl func_0800549C
+    bl InitTextDb
     adds r4, #0x40
     adds r0, r4, #0
     movs r1, #8
-    bl func_0800549C
+    bl InitTextDb
     pop {r4}
     pop {r0}
     bx r0
@@ -65106,7 +65106,7 @@ func_08031E7C: @ 0x08031E7C
     mov sb, r0
     add r1, sb
     adds r0, r6, #0
-    bl func_08005590
+    bl PutText
     adds r5, #0x40
     adds r0, r5, #0
     mov r1, r8
@@ -65116,7 +65116,7 @@ func_08031E7C: @ 0x08031E7C
     add r4, sb
     adds r0, r5, #0
     adds r1, r4, #0
-    bl func_08005590
+    bl PutText
     add sp, #8
     pop {r3, r4}
     mov r8, r3
@@ -65134,7 +65134,7 @@ func_08031EF0: @ 0x08031EF0
     bl func_0803168C
     adds r0, #0x38
     movs r1, #8
-    bl func_0800549C
+    bl InitTextDb
     pop {r0}
     bx r0
     func_end func_08031EF0
@@ -65173,7 +65173,7 @@ func_08031F04: @ 0x08031F04
     adds r4, r4, r0
     adds r0, r5, #0
     adds r1, r4, #0
-    bl func_08005590
+    bl PutText
     add sp, #8
     pop {r4, r5, r6}
     pop {r0}
@@ -65189,11 +65189,11 @@ func_08031F5C: @ 0x08031F5C
     adds r4, r0, #0
     adds r0, #0x38
     movs r1, #8
-    bl func_0800549C
+    bl InitTextDb
     adds r4, #0x40
     adds r0, r4, #0
     movs r1, #8
-    bl func_0800549C
+    bl InitTextDb
     pop {r4}
     pop {r0}
     bx r0
@@ -65239,7 +65239,7 @@ func_08031F7C: @ 0x08031F7C
     ldr r6, .L08031FF8 @ =gBg0Tm
     adds r1, r1, r6
     mov r0, r8
-    bl func_08005590
+    bl PutText
     adds r5, #0x40
     adds r0, r5, #0
     mov r1, sb
@@ -65249,7 +65249,7 @@ func_08031F7C: @ 0x08031F7C
     adds r4, r4, r6
     adds r0, r5, #0
     adds r1, r4, #0
-    bl func_08005590
+    bl PutText
     add sp, #8
     pop {r3, r4}
     mov r8, r3
@@ -65270,13 +65270,13 @@ func_08031FFC: @ 0x08031FFC
     str r0, [r4]
     adds r0, #0x38
     movs r1, #8
-    bl func_0800549C
+    bl InitTextDb
     adds r0, r5, #0
     bl func_0803168C
     str r0, [r4, #4]
     adds r0, #0x38
     movs r1, #8
-    bl func_0800549C
+    bl InitTextDb
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -65348,7 +65348,7 @@ func_08032064: @ 0x08032064
     ldr r2, .L08032114 @ =gBg0Tm
     mov sb, r2
     add r1, sb
-    bl func_08005590
+    bl PutText
     ldr r0, [r5]
     adds r1, r4, #1
     movs r2, #3
@@ -65371,7 +65371,7 @@ func_08032064: @ 0x08032064
     adds r1, r4, r2
     lsls r1, r1, #1
     add r1, sb
-    bl func_08005590
+    bl PutText
     adds r4, #4
     lsls r4, r4, #3
     movs r0, #0
@@ -65434,7 +65434,7 @@ func_0803211C: @ 0x0803211C
     ldr r2, .L080321D8 @ =gBg0Tm
     mov r8, r2
     add r1, r8
-    bl func_08005590
+    bl PutText
     ldr r0, [r5]
     adds r1, r4, #1
     movs r2, #3
@@ -65458,7 +65458,7 @@ func_0803211C: @ 0x0803211C
     adds r1, r4, r2
     lsls r1, r1, #1
     add r1, r8
-    bl func_08005590
+    bl PutText
     adds r4, #4
     lsls r4, r4, #3
     movs r0, #0
@@ -65548,7 +65548,7 @@ func_08032218: @ 0x08032218
     lsls r1, r1, #1
     ldr r6, .L080322D4 @ =gBg0Tm
     adds r1, r1, r6
-    bl func_08005590
+    bl PutText
     ldr r0, [r5, #4]
     mov r1, sl
     str r1, [sp]
@@ -65568,7 +65568,7 @@ func_08032218: @ 0x08032218
     adds r1, r4, r2
     lsls r1, r1, #1
     adds r1, r1, r6
-    bl func_08005590
+    bl PutText
     adds r1, r4, #1
     mov r0, r8
     movs r2, #9
@@ -65671,7 +65671,7 @@ func_08032340: @ 0x08032340
     bl InitSpriteText
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     adds r0, r4, #0
     movs r1, #0
     bl Text_SetColor
@@ -65697,17 +65697,17 @@ func_08032340: @ 0x08032340
     bl Text_DrawCharacter
     adds r5, r0, #0
     adds r0, r4, #0
-    bl func_08005570
+    bl Text_GetCursor
     cmp r0, #0xe0
     ble .L080323DA
     subs r5, #1
     adds r4, #8
     adds r0, r5, #0
     mov r1, sp
-    bl func_08005658
+    bl GetCharTextLen
     adds r0, r7, #0
     adds r0, #0x48
-    bl func_08005570
+    bl Text_GetCursor
     adds r1, r0, #0
     ldr r0, [sp]
     subs r1, r1, r0
@@ -65720,7 +65720,7 @@ func_08032340: @ 0x08032340
     bhi .L080323A4
 .L080323E0:
     ldr r0, [r7, #0x2c]
-    bl func_080055FC
+    bl GetStringTextLen
     adds r0, #0x10
     asrs r0, r0, #5
     adds r1, r0, #1
@@ -67914,7 +67914,7 @@ func_08033460: @ 0x08033460
     mov r1, r8
     movs r2, #0
     adds r3, r5, #0
-    bl func_08005AD4
+    bl PutDrawText
     add sp, #8
     pop {r3}
     mov r8, r3
@@ -67947,7 +67947,7 @@ func_080334A4: @ 0x080334A4
     mov r1, r8
     movs r2, #0
     adds r3, r5, #0
-    bl func_08005AD4
+    bl PutDrawText
     add sp, #8
     pop {r3}
     mov r8, r3
@@ -68244,7 +68244,7 @@ func_08033668: @ 0x08033668
     ldr r0, .L08033738 @ =0x02003300
     movs r1, #2
     movs r2, #0xff
-    bl func_08006204
+    bl PutNumberTwoChr
     b .L0803374A
     .align 2, 0
 .L08033730: .4byte 0x0203A470
@@ -68256,13 +68256,13 @@ func_08033668: @ 0x08033668
     lsls r2, r2, #0x18
     asrs r2, r2, #0x18
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
 .L0803374A:
     ldr r5, .L080337B8 @ =0x02003380
     adds r0, r5, #0
     movs r1, #2
     adds r2, r4, #0
-    bl func_08006204
+    bl PutNumberTwoChr
     adds r0, r5, #0
     adds r0, #0x80
     ldr r4, .L080337BC @ =0x0203A470
@@ -68271,7 +68271,7 @@ func_08033668: @ 0x08033668
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
     movs r1, #0x80
     lsls r1, r1, #1
     adds r0, r5, r1
@@ -68280,7 +68280,7 @@ func_08033668: @ 0x08033668
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
     ldr r2, .L080337C0 @ =0x0203A3F0
     adds r0, r2, #0
     adds r0, #0x5a
@@ -68305,7 +68305,7 @@ func_08033668: @ 0x08033668
     subs r0, #0x74
     movs r1, #2
     movs r2, #0xff
-    bl func_08006204
+    bl PutNumberTwoChr
     b .L080337D2
     .align 2, 0
 .L080337B4: .4byte 0x02003300
@@ -68318,13 +68318,13 @@ func_08033668: @ 0x08033668
     movs r2, #0
     ldrsb r2, [r1, r2]
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
 .L080337D2:
     ldr r5, .L08033874 @ =0x0200338C
     adds r0, r5, #0
     movs r1, #2
     adds r2, r4, #0
-    bl func_08006204
+    bl PutNumberTwoChr
     adds r0, r5, #0
     adds r0, #0x80
     ldr r6, .L08033878 @ =0x0203A3F0
@@ -68333,7 +68333,7 @@ func_08033668: @ 0x08033668
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
     movs r1, #0x80
     lsls r1, r1, #1
     adds r0, r5, r1
@@ -68342,28 +68342,28 @@ func_08033668: @ 0x08033668
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
     adds r0, r5, #0
     subs r0, #0x88
     movs r1, #3
     movs r2, #0x22
     movs r3, #0x23
-    bl func_080063AC
+    bl PutTwoSpecialChar
     ldr r4, .L0803387C @ =0x02002FDC
     adds r1, r5, #0
     subs r1, #0xa
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     adds r0, r4, #0
     adds r0, #8
     adds r1, r5, #0
     adds r1, #0x76
-    bl func_08005590
+    bl PutText
     adds r4, #0x10
     adds r1, r5, #0
     adds r1, #0xf6
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #0xbf
     lsls r0, r0, #1
     adds r4, r5, r0
@@ -68458,7 +68458,7 @@ func_08033888: @ 0x08033888
     adds r0, #0xc4
     movs r1, #2
     movs r2, #0xff
-    bl func_08006204
+    bl PutNumberTwoChr
     b .L08033938
     .align 2, 0
 .L0803390C: .4byte 0x0200373C
@@ -68475,7 +68475,7 @@ func_08033888: @ 0x08033888
     lsls r2, r2, #0x18
     asrs r2, r2, #0x18
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
 .L08033938:
     ldr r5, .L080339B8 @ =0x02003380
     ldr r4, .L080339BC @ =0x0203A470
@@ -68485,7 +68485,7 @@ func_08033888: @ 0x08033888
     ldrsh r2, [r0, r3]
     adds r0, r5, #0
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
     adds r0, r5, #0
     adds r0, #0x80
     adds r1, r4, #0
@@ -68493,7 +68493,7 @@ func_08033888: @ 0x08033888
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
     movs r1, #0x80
     lsls r1, r1, #1
     adds r0, r5, r1
@@ -68502,7 +68502,7 @@ func_08033888: @ 0x08033888
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
     movs r1, #0xc0
     lsls r1, r1, #1
     adds r0, r5, r1
@@ -68511,7 +68511,7 @@ func_08033888: @ 0x08033888
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
     movs r1, #0x80
     lsls r1, r1, #2
     adds r0, r5, r1
@@ -68520,7 +68520,7 @@ func_08033888: @ 0x08033888
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
     ldr r0, .L080339C0 @ =0x0203A3F0
     adds r1, r0, #0
     adds r1, #0x72
@@ -68532,7 +68532,7 @@ func_08033888: @ 0x08033888
     subs r0, #0x74
     movs r1, #2
     movs r2, #0xff
-    bl func_08006204
+    bl PutNumberTwoChr
     b .L080339D2
     .align 2, 0
 .L080339B8: .4byte 0x02003380
@@ -68544,7 +68544,7 @@ func_08033888: @ 0x08033888
     movs r2, #0
     ldrsb r2, [r1, r2]
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
 .L080339D2:
     ldr r5, .L08033ABC @ =0x0200338C
     ldr r6, .L08033AC0 @ =0x0203A3F0
@@ -68554,7 +68554,7 @@ func_08033888: @ 0x08033888
     ldrsh r2, [r0, r1]
     adds r0, r5, #0
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
     adds r0, r5, #0
     adds r0, #0x80
     adds r1, r6, #0
@@ -68562,7 +68562,7 @@ func_08033888: @ 0x08033888
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
     movs r1, #0x80
     lsls r1, r1, #1
     adds r0, r5, r1
@@ -68571,7 +68571,7 @@ func_08033888: @ 0x08033888
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
     movs r1, #0xc0
     lsls r1, r1, #1
     adds r0, r5, r1
@@ -68580,7 +68580,7 @@ func_08033888: @ 0x08033888
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
     movs r1, #0x80
     lsls r1, r1, #2
     adds r0, r5, r1
@@ -68589,40 +68589,40 @@ func_08033888: @ 0x08033888
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_08006204
+    bl PutNumberTwoChr
     adds r0, r5, #0
     subs r0, #0x88
     movs r1, #3
     movs r2, #0x22
     movs r3, #0x23
-    bl func_080063AC
+    bl PutTwoSpecialChar
     ldr r4, .L08033AC4 @ =0x02002FF4
     adds r1, r5, #0
     subs r1, #0xa
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     adds r0, r4, #0
     adds r0, #8
     adds r1, r5, #0
     adds r1, #0x76
-    bl func_08005590
+    bl PutText
     adds r0, r4, #0
     subs r0, #0x10
     adds r1, r5, #0
     adds r1, #0xf6
-    bl func_08005590
+    bl PutText
     adds r0, r4, #0
     subs r0, #8
     movs r2, #0xbb
     lsls r2, r2, #1
     adds r1, r5, r2
-    bl func_08005590
+    bl PutText
     adds r0, r4, #0
     adds r0, #0x10
     movs r3, #0xfb
     lsls r3, r3, #1
     adds r1, r5, r3
-    bl func_08005590
+    bl PutText
     ldr r0, .L08033AC8 @ =0x0000027E
     adds r4, r5, r0
     ldr r0, .L08033ACC @ =0x0203A470
@@ -68794,15 +68794,15 @@ func_08033B98: @ 0x08033B98
     adds r0, r5, #0
     adds r0, #0x38
     movs r1, #6
-    bl func_0800549C
+    bl InitTextDb
     adds r0, r5, #0
     adds r0, #0x40
     movs r1, #6
-    bl func_0800549C
+    bl InitTextDb
     adds r0, r5, #0
     adds r0, #0x48
     movs r1, #7
-    bl func_0800549C
+    bl InitTextDb
     ldr r2, .L08033C24 @ =0x0000FFFF
     movs r0, #1
     movs r1, #0
@@ -90074,7 +90074,7 @@ func_0803DC8C: @ 0x0803DC8C
     ldr r0, .L0803DCBC @ =0x02023C62
     adds r1, r1, r0
     adds r0, r5, #0
-    bl func_08005590
+    bl PutText
     b .L0803DCE6
     .align 2, 0
 .L0803DCB8: .4byte 0x0203DC08
@@ -90092,7 +90092,7 @@ func_0803DC8C: @ 0x0803DC8C
     ldr r0, .L0803DCEC @ =0x02023C62
     adds r1, r1, r0
     adds r0, r5, #0
-    bl func_08005590
+    bl PutText
     movs r0, #4
     bl EnableBgSync
 .L0803DCE6:
@@ -90604,7 +90604,7 @@ func_0803E040: @ 0x0803E040
     adds r5, r5, r0
     mov r0, sb
     adds r1, r5, #0
-    bl func_08005590
+    bl PutText
     pop {r3, r4}
     mov r8, r3
     mov sb, r4
@@ -90701,7 +90701,7 @@ func_0803E0D4: @ 0x0803E0D4
     mov r0, r8
     str r2, [sp]
     str r3, [sp, #4]
-    bl func_08005590
+    bl PutText
     movs r0, #8
     add r8, r0
     adds r5, #8
@@ -92469,7 +92469,7 @@ func_0803EF60: @ 0x0803EF60
     ldr r0, .L0803EFC0 @ =0x02022C7E
     adds r1, r1, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #1
     bl EnableBgSync
     pop {r4, r5}
@@ -92824,7 +92824,7 @@ func_0803F1A8: @ 0x0803F1A8
     lsls r1, r1, #6
     ldr r2, .L0803F290 @ =gBg1Tm
     adds r1, r1, r2
-    bl func_08005590
+    bl PutText
     ldr r6, [sp]
     cmp r6, #4
     ble .L0803F1C2
@@ -92871,7 +92871,7 @@ func_0803F294: @ 0x0803F294
 .L0803F2C6:
     ldr r0, .L0803F2DC @ =0x0203DC18
     ldr r1, .L0803F2E0 @ =0x02022DB8
-    bl func_08005590
+    bl PutText
     movs r0, #1
     bl EnableBgSync
     pop {r4, r5, r6}
@@ -93813,7 +93813,7 @@ func_0803FA00: @ 0x0803FA00
     bl Text_DrawString
     ldr r1, .L0803FA38 @ =0x02022F76
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #1
     bl EnableBgSync
     pop {r4}
@@ -94415,7 +94415,7 @@ func_0803FEAC: @ 0x0803FEAC
     ldr r0, .L0803FF04 @ =0x0203D9AD
     adds r4, r6, r0
     adds r0, r4, #0
-    bl func_080055FC
+    bl GetStringTextLen
     adds r1, r0, #0
     movs r0, #0x48
     subs r0, r0, r1
@@ -94569,7 +94569,7 @@ func_0803FF80: @ 0x0803FF80
     bl InitSpriteText
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     adds r4, #8
     subs r5, #1
     cmp r5, #0
@@ -96641,7 +96641,7 @@ func_08041104: @ 0x08041104
     bl Text_DrawString
     ldr r1, .L08041164 @ =0x02023F72
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     ldr r0, .L08041168 @ =0x08B98BAC
     adds r1, r5, #0
     bl Proc_Start
@@ -96724,7 +96724,7 @@ func_0804116C: @ 0x0804116C
     ldr r1, .L080412B0 @ =0x02022C6C
     adds r1, r7, r1
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     mov r0, sp
     adds r0, r0, r5
     adds r0, #8
@@ -97590,7 +97590,7 @@ func_08041880: @ 0x08041880
     adds r4, r4, r0
     adds r0, r5, #0
     adds r1, r4, #0
-    bl func_08005590
+    bl PutText
     ldrb r0, [r7]
     lsls r1, r0, #0x1b
     lsrs r1, r1, #0x1f
@@ -97730,7 +97730,7 @@ func_08041920: @ 0x08041920
     bl Text_InsertDrawString
     ldr r1, .L08041B34 @ =0x02022DAA
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     ldr r0, .L08041B38 @ =0x000003C2
     movs r1, #1
     bl func_0803DC8C
@@ -98116,7 +98116,7 @@ func_08041C5C: @ 0x08041C5C
     bl Text_InsertDrawString
     ldr r1, .L08041EC8 @ =0x02022DAA
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     ldr r0, .L08041ECC @ =0x0203DB68
     bl func_080A1F2C
     bl func_08041880
@@ -98506,7 +98506,7 @@ func_0804203C: @ 0x0804203C
     ldr r0, .L080420EC @ =gBg0Tm
     adds r1, r1, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     adds r6, #8
     adds r5, #4
     adds r7, #1
@@ -98633,7 +98633,7 @@ func_080420F0: @ 0x080420F0
     ldr r1, .L0804228C @ =0x02022C6C
     adds r1, r6, r1
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     mov r0, sp
     adds r0, r0, r7
     adds r0, #8
@@ -100204,7 +100204,7 @@ func_08042E70: @ 0x08042E70
     bl Text_InsertDrawString
     ldr r1, .L08042EB4 @ =0x02022F7E
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     pop {r4, r5, r6}
     pop {r0}
     bx r0
@@ -100395,7 +100395,7 @@ func_08043010: @ 0x08043010
     movs r0, #0x7e
     bl m4aSongNumStart
 .L08043032:
-    bl func_08005A80
+    bl InitTalkTextFont
     ldr r0, .L0804305C @ =0x08B98AEC
     ldr r0, [r0]
     ldrb r0, [r0, #6]
@@ -100739,7 +100739,7 @@ func_080431E0: @ 0x080431E0
     bl Text_InsertDrawString
     ldr r1, .L080433CC @ =0x020230EE
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #0xb
     bl EnableBgSync
     movs r0, #0
@@ -101396,7 +101396,7 @@ func_08043828: @ 0x08043828
     ldr r7, .L08043878 @ =0x00001186
     adds r0, r7, #0
     bl DecodeMsg
-    bl func_080055FC
+    bl GetStringTextLen
     adds r5, r0, #0
     cmp r4, #0
     beq .L08043864
@@ -101433,7 +101433,7 @@ func_08043828: @ 0x08043828
     adds r0, r0, r1
     ldrh r0, [r0]
     bl DecodeMsg
-    bl func_080055FC
+    bl GetStringTextLen
     subs r0, #1
     str r0, [sp, #4]
     adds r5, r5, r0
@@ -101444,13 +101444,13 @@ func_08043828: @ 0x08043828
     str r0, [sp, #0x14]
     ldrh r0, [r0]
     bl DecodeMsg
-    bl func_080055FC
+    bl GetStringTextLen
     subs r0, #1
     str r0, [sp, #8]
     adds r5, r5, r0
     ldr r0, .L08043974 @ =0x00001185
     bl DecodeMsg
-    bl func_080055FC
+    bl GetStringTextLen
     str r0, [sp, #0xc]
     adds r5, r5, r0
     movs r4, #1
@@ -101459,7 +101459,7 @@ func_08043828: @ 0x08043828
     beq .L080438EA
     ldr r0, .L08043978 @ =0x00001188
     bl DecodeMsg
-    bl func_080055FC
+    bl GetStringTextLen
     adds r5, r5, r0
 .L080438EA:
     ldr r2, [sp, #0x10]
@@ -101546,7 +101546,7 @@ func_0804397C: @ 0x0804397C
     bl func_08043828
     ldrh r0, [r5]
     bl DecodeMsg
-    bl func_080055FC
+    bl GetStringTextLen
     movs r1, #0x46
     subs r1, r1, r0
     lsrs r0, r1, #0x1f
@@ -101667,7 +101667,7 @@ func_08043A14: @ 0x08043A14
     bl InitSpriteText
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     mov r1, sb
     adds r0, r5, r1
     ldrb r2, [r0]
@@ -101694,7 +101694,7 @@ func_08043A14: @ 0x08043A14
     bl InitSpriteText
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     adds r0, r4, #0
     bl func_080439D0
     movs r0, #0
@@ -102582,7 +102582,7 @@ func_0804419C: @ 0x0804419C
     adds r0, r0, r1
     movs r1, #2
     ldr r2, [sp, #0x10]
-    bl func_080061D8
+    bl PutNumber
     pop {r4, r5, r6}
     pop {r0}
     bx r0
@@ -102653,7 +102653,7 @@ func_080441F0: @ 0x080441F0
     adds r4, r4, r0
     adds r0, r6, #0
     movs r1, #4
-    bl func_0800549C
+    bl InitTextDb
     ldrb r1, [r7]
     ldrb r2, [r7, #1]
     lsls r0, r5, #2
@@ -103058,7 +103058,7 @@ func_0804457C: @ 0x0804457C
     adds r4, r4, r0
     adds r0, r5, #0
     adds r1, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #1
     bl EnableBgSync
     pop {r3}
@@ -103529,7 +103529,7 @@ func_08044940: @ 0x08044940
     bl InitSpriteText
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     movs r0, #0
     bl SetTextFont
     movs r1, #0
@@ -103593,7 +103593,7 @@ func_08044940: @ 0x08044940
     strb r1, [r0]
     adds r0, #8
     movs r1, #4
-    bl func_0800549C
+    bl InitTextDb
     movs r0, #1
     add sl, r0
     b .L08044A44
@@ -103610,7 +103610,7 @@ func_08044940: @ 0x08044940
 .L08044A3C:
     mov r0, sp
     movs r1, #4
-    bl func_0800549C
+    bl InitTextDb
 .L08044A44:
     movs r1, #1
     add r8, r1
@@ -115522,7 +115522,7 @@ func_0804A4E0: @ 0x0804A4E0
     ldr r0, .L0804A5DC @ =gBg0Tm
     adds r1, r1, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
 .L0804A5B2:
     adds r7, #1
     mov r0, r8
@@ -121373,7 +121373,7 @@ func_0804D1D4: @ 0x0804D1D4
     movs r2, #0xa0
     movs r3, #2
     bl InitTextFont
-    bl func_08005AC0
+    bl SetTextDrawNoClear
     ldr r0, .L0804D220 @ =0x081D88B4
     ldr r1, .L0804D224 @ =0x06001000
     bl LZ77UnComp16bit
@@ -177149,7 +177149,7 @@ func_08068B28: @ 0x08068B28
     movs r1, #3
     bl InitText
     adds r0, r5, #0
-    bl func_080055FC
+    bl GetStringTextLen
     adds r1, r0, #0
     movs r0, #0x10
     subs r0, r0, r1
@@ -177174,7 +177174,7 @@ func_08068B28: @ 0x08068B28
     ldr r0, .L08068EA4 @ =gBg2Tm
     adds r1, r1, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     adds r7, #1
     cmp r7, #7
     ble .L08068D2A
@@ -177206,7 +177206,7 @@ func_08068B28: @ 0x08068B28
     ldr r6, .L08068EB0 @ =0x02023C66
     adds r1, r1, r6
     adds r0, r5, #0
-    bl func_08005590
+    bl PutText
     adds r7, #1
     cmp r7, #7
     ble .L08068DBC
@@ -177227,7 +177227,7 @@ func_08068B28: @ 0x08068B28
     lsls r0, r0, #1
     adds r1, r6, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     adds r4, #8
     adds r0, r4, #0
     movs r1, #3
@@ -177245,7 +177245,7 @@ func_08068B28: @ 0x08068B28
     lsls r0, r0, #1
     adds r1, r6, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     adds r4, #8
     adds r0, r4, #0
     movs r1, #2
@@ -177264,7 +177264,7 @@ func_08068B28: @ 0x08068B28
     lsls r0, r0, #1
     adds r1, r6, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     pop {r3}
     mov r8, r3
     pop {r4, r5, r6, r7}
@@ -177311,7 +177311,7 @@ func_08068EC0: @ 0x08068EC0
     ldr r0, .L08068F14 @ =0x02023C66
     adds r1, r1, r0
     adds r0, r5, #0
-    bl func_08005590
+    bl PutText
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -177338,7 +177338,7 @@ func_08068F18: @ 0x08068F18
     bl Text_DrawString
     ldr r1, .L08068F4C @ =0x02023E24
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     pop {r4}
     pop {r0}
     bx r0
@@ -177366,7 +177366,7 @@ func_08068F50: @ 0x08068F50
     bl Text_DrawNumber
     ldr r1, .L08068F8C @ =0x02023E3A
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     pop {r4}
     pop {r0}
     bx r0
@@ -181695,7 +181695,7 @@ func_0806B1A4: @ 0x0806B1A4
     lsls r2, r2, #1
     movs r3, #1
     bl InitTextFont
-    bl func_08005AC0
+    bl SetTextDrawNoClear
     ldr r0, .L0806B218 @ =0x081DB6E4
     ldr r1, .L0806B21C @ =0x02022880
     movs r2, #8
@@ -181709,7 +181709,7 @@ func_0806B1A4: @ 0x0806B1A4
     lsls r0, r0, #3
     bl DecodeMsg
     adds r5, r0, #0
-    bl func_080055FC
+    bl GetStringTextLen
     adds r4, r0, #0
     adds r4, #0x10
     b .L0806B268
@@ -181732,13 +181732,13 @@ func_0806B1A4: @ 0x0806B1A4
     movs r1, #1
     bl GetItemNameWithArticle
     adds r5, r0, #0
-    bl func_080055FC
+    bl GetStringTextLen
     adds r4, r0, #0
     adds r4, #0x10
     ldr r0, .L0806B250 @ =0x00000751
     bl DecodeMsg
     adds r5, r0, #0
-    bl func_080055FC
+    bl GetStringTextLen
     adds r0, r0, r4
     adds r4, r0, #4
     b .L0806B268
@@ -181748,7 +181748,7 @@ func_0806B1A4: @ 0x0806B1A4
     ldr r0, .L0806B2AC @ =0x0000075A
     bl DecodeMsg
     adds r5, r0, #0
-    bl func_080055FC
+    bl GetStringTextLen
     adds r1, r0, #2
     str r1, [sp, #4]
     adds r4, r0, #0
@@ -192692,7 +192692,7 @@ func_08070324: @ 0x08070324
     adds r1, r2, #0
     adds r2, r3, #0
     movs r3, #0x18
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #1
     bl EnableBgSync
     b .L08070778
@@ -192750,7 +192750,7 @@ func_08070324: @ 0x08070324
     lsls r1, r2, #3
     ldr r2, .L080704E0 @ =0x02022CEE
     adds r1, r1, r2
-    bl func_08005590
+    bl PutText
     movs r0, #1
     bl EnableBgSync
     b .L08070778
@@ -192808,7 +192808,7 @@ func_08070324: @ 0x08070324
     lsls r1, r2, #3
     ldr r2, .L0807055C @ =0x02022CF4
     adds r1, r1, r2
-    bl func_08005590
+    bl PutText
     movs r0, #1
     bl EnableBgSync
     b .L08070778
@@ -192871,7 +192871,7 @@ func_08070324: @ 0x08070324
     adds r1, r2, #0
     adds r2, r3, #0
     movs r3, #0x18
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #1
     bl EnableBgSync
     b .L08070778
@@ -192940,7 +192940,7 @@ func_08070324: @ 0x08070324
     adds r1, r2, #0
     adds r2, r3, #0
     movs r3, #0x18
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #1
     bl EnableBgSync
     b .L08070778
@@ -193059,7 +193059,7 @@ func_08070324: @ 0x08070324
     ldr r4, [r3]
     str r4, [sp, #4]
     movs r3, #0x10
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #1
     bl EnableBgSync
     b .L08070778
@@ -193522,7 +193522,7 @@ func_08070980: @ 0x08070980
     adds r1, r1, r2
     ldrb r2, [r1]
     adds r1, r2, #0
-    bl func_0800549C
+    bl InitTextDb
     ldr r1, [r7]
     adds r0, r1, #0
     adds r1, #0x64
@@ -200503,7 +200503,7 @@ func_0807416C: @ 0x0807416C
     adds r0, r5, #0
     movs r1, #2
     adds r2, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     add sp, #0x14
     pop {r4, r5, r6, r7}
     pop {r0}
@@ -217267,7 +217267,7 @@ func_0807BBF8: @ 0x0807BBF8
     bl InitText
     ldr r1, .L0807BC78 @ =0x020246AA
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #0xa0
     adds r1, r6, #0
     bl GetStringTextCenteredPos
@@ -219210,13 +219210,13 @@ func_0807CB3C: @ 0x0807CB3C
     movs r0, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r0, r4, #0
     adds r0, #0x28
     movs r2, #8
     ldrsb r2, [r5, r2]
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     ldr r0, .L0807CBE0 @ =0x000012CF
     bl DecodeMsg
     adds r4, #0x2a
@@ -219227,7 +219227,7 @@ func_0807CB3C: @ 0x0807CB3C
     adds r1, r4, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r1, r6, #0
     adds r1, #0x4c
     movs r0, #0x78
@@ -225520,7 +225520,7 @@ func_0807FA2C: @ 0x0807FA2C
 func_0807FA38: @ 0x0807FA38
     push {lr}
     ldr r0, .L0807FA44 @ =0x08CC1C74
-    bl func_080054C4
+    bl InitTextList
     pop {r0}
     bx r0
     .align 2, 0
@@ -225547,12 +225547,12 @@ func_0807FA48: @ 0x0807FA48
     str r4, [sp]
     str r0, [sp, #4]
     adds r0, r5, #0
-    bl func_08005AD4
+    bl PutDrawText
     b .L0807FA7A
 .L0807FA72:
     ldr r0, [r6]
     ldr r1, [r6, #4]
-    bl func_08005590
+    bl PutText
 .L0807FA7A:
     adds r6, #0x10
 .L0807FA7C:
@@ -225603,7 +225603,7 @@ func_0807FA8C: @ 0x0807FA8C
     str r5, [sp, #4]
     movs r2, #0
     adds r3, r6, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, [r7, #0xc]
     ldr r0, [r0, #4]
     ldrh r0, [r0]
@@ -225617,29 +225617,29 @@ func_0807FA8C: @ 0x0807FA8C
     adds r0, r2, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L0807FB7C @ =0x000003C2
     add r0, r8
     movs r1, #3
     movs r2, #0x24
     movs r3, #0x25
-    bl func_080063AC
+    bl PutTwoSpecialChar
     ldr r0, .L0807FB80 @ =0x000003CA
     add r0, r8
     movs r1, #3
     movs r2, #0x1f
-    bl func_0800615C
+    bl PutSpecialChar
     ldr r0, .L0807FB84 @ =0x00000442
     add r0, r8
     movs r1, #3
     movs r2, #0x22
     movs r3, #0x23
-    bl func_080063AC
+    bl PutTwoSpecialChar
     ldr r0, .L0807FB88 @ =0x0000044A
     add r0, r8
     movs r1, #3
     movs r2, #0x16
-    bl func_0800615C
+    bl PutSpecialChar
     movs r0, #0xf2
     lsls r0, r0, #2
     add r0, r8
@@ -225647,13 +225647,13 @@ func_0807FA8C: @ 0x0807FA8C
     movs r2, #8
     ldrsb r2, [r1, r2]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     ldr r0, .L0807FB8C @ =0x000003CE
     add r0, r8
     ldr r1, [r7, #0xc]
     ldrb r2, [r1, #9]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     ldr r0, [r7, #0xc]
     bl GetUnitCurrentHp
     cmp r0, #0x63
@@ -225663,7 +225663,7 @@ func_0807FA8C: @ 0x0807FA8C
     movs r1, #2
     movs r2, #0x14
     movs r3, #0x14
-    bl func_080063AC
+    bl PutTwoSpecialChar
     b .L0807FBAA
     .align 2, 0
 .L0807FB70: .4byte 0x0200310C
@@ -225684,7 +225684,7 @@ func_0807FA8C: @ 0x0807FA8C
     adds r2, r0, #0
     adds r0, r4, #0
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
 .L0807FBAA:
     ldr r5, .L0807FBC4 @ =0x0200310C
     ldr r0, [r5, #0xc]
@@ -225695,7 +225695,7 @@ func_0807FA8C: @ 0x0807FA8C
     movs r1, #2
     movs r2, #0x14
     movs r3, #0x14
-    bl func_080063AC
+    bl PutTwoSpecialChar
     b .L0807FBDE
     .align 2, 0
 .L0807FBC4: .4byte 0x0200310C
@@ -225707,7 +225707,7 @@ func_0807FA8C: @ 0x0807FA8C
     adds r2, r0, #0
     adds r0, r4, #0
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
 .L0807FBDE:
     add sp, #8
     pop {r3}
@@ -225806,7 +225806,7 @@ func_0807FBF0: @ 0x0807FBF0
     ldr r4, .L0807FD1C @ =0x020035BE
     adds r0, r5, #0
     adds r1, r4, #0
-    bl func_08005590
+    bl PutText
     adds r0, r6, #0
     bl func_080AAD00
     lsls r0, r0, #1
@@ -225814,7 +225814,7 @@ func_0807FBF0: @ 0x0807FBF0
     adds r0, r0, r1
     movs r1, #2
     adds r2, r6, #0
-    bl func_080061D8
+    bl PutNumber
     adds r0, r7, #0
     bl func_080AAD00
     lsls r0, r0, #1
@@ -225823,7 +225823,7 @@ func_0807FBF0: @ 0x0807FBF0
     adds r0, r0, r1
     movs r1, #2
     adds r2, r7, #0
-    bl func_080061D8
+    bl PutNumber
     mov r0, r8
     bl func_080AAD00
     lsls r0, r0, #1
@@ -225831,7 +225831,7 @@ func_0807FBF0: @ 0x0807FBF0
     adds r0, r0, r4
     movs r1, #2
     mov r2, r8
-    bl func_080061D8
+    bl PutNumber
     ldr r0, .L0807FD20 @ =0x02003FBC
     ldr r1, .L0807FD24 @ =0x083FD5C4
     movs r2, #0x83
@@ -225883,13 +225883,13 @@ DrawStatWithBar: @ 0x0807FD28
     movs r1, #4
 .L0807FD56:
     adds r2, r7, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r1, r6, #1
     add r1, r8
     lsls r1, r1, #1
     adds r1, r1, r4
     mov r0, sb
-    bl func_08006240
+    bl PutNumberBonus
     cmp r5, #0x1e
     ble .L0807FD74
     movs r5, #0x1e
@@ -225987,7 +225987,7 @@ func_0807FDF0: @ 0x0807FDF0
     adds r0, r3, #0
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     b .L0807FE76
     .align 2, 0
 .L0807FE40: .4byte 0x083FCA4C
@@ -226008,7 +226008,7 @@ func_0807FDF0: @ 0x0807FDF0
     adds r0, r2, #0
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
 .L0807FE76:
     ldr r6, .L08080050 @ =0x0200310C
     ldr r0, [r6, #0xc]
@@ -226185,7 +226185,7 @@ func_0807FDF0: @ 0x0807FDF0
     adds r2, r0, #0
     adds r0, r4, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     adds r4, #2
     ldr r0, [r6, #0xc]
     ldr r1, [r0]
@@ -226251,7 +226251,7 @@ func_0807FDF0: @ 0x0807FDF0
     ldr r0, .L080800AC @ =0x0200351C
     lsrs r2, r2, #4
     movs r1, #0
-    bl func_08006234
+    bl PutNumberSmall
 .L08080088:
     ldr r4, .L080800B0 @ =0x02003496
     ldr r0, [r5, #0xc]
@@ -226372,7 +226372,7 @@ func_080800B4: @ 0x080800B4
     adds r0, r0, r1
     movs r1, #0
     movs r2, #0x1f
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r4, #2
     lsls r0, r0, #6
     ldr r1, .L08080254 @ =0x02003C3E
@@ -226393,7 +226393,7 @@ func_080800B4: @ 0x080800B4
     ldrsh r2, [r0, r1]
     adds r0, r6, #0
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r6, #0
     adds r0, #0x80
     adds r1, r4, #0
@@ -226401,7 +226401,7 @@ func_080800B4: @ 0x080800B4
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r6, #0
     adds r0, #0xe
     adds r1, r4, #0
@@ -226409,7 +226409,7 @@ func_080800B4: @ 0x080800B4
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r6, #0
     adds r0, #0x8e
     adds r1, r4, #0
@@ -226417,13 +226417,13 @@ func_080800B4: @ 0x080800B4
     movs r3, #0
     ldrsh r2, [r1, r3]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r5, #0
     bl GetItemRangeString
     adds r5, r0, #0
     adds r4, r7, #0
     adds r4, #0xb8
-    bl func_080055FC
+    bl GetStringTextLen
     movs r1, #0x2f
     subs r1, r1, r0
     adds r0, r4, #0
@@ -226541,7 +226541,7 @@ func_08080270: @ 0x08080270
     ldr r0, [sp, #0x10]
     ldr r2, [sp, #0xc]
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r5, #2
     cmp r7, #3
     bne .L08080316
@@ -226560,7 +226560,7 @@ func_08080270: @ 0x08080270
     adds r2, r0, #0
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800615C
+    bl PutSpecialChar
     ldr r1, [sp, #8]
     adds r1, #2
     str r1, [sp, #8]
@@ -226627,7 +226627,7 @@ func_08080360: @ 0x08080360
     adds r2, r0, #0
     adds r0, r4, #0
     adds r1, r7, #0
-    bl func_0800615C
+    bl PutSpecialChar
     add r2, sp, #0x10
     adds r0, r5, #0
     add r1, sp, #0xc
@@ -229483,7 +229483,7 @@ func_080819C8: @ 0x080819C8
     bl DecodeMsg
     add r2, sp, #4
     mov r1, sp
-    bl func_080056C4
+    bl GetStringTextBox
     movs r0, #0
     bl SetTextFontGlyphs
     ldr r1, [sp]
@@ -229557,7 +229557,7 @@ func_08081A94: @ 0x08081A94
     bl DecodeMsg
     add r2, sp, #4
     mov r1, sp
-    bl func_080056C4
+    bl GetStringTextBox
     movs r0, #0
     bl SetTextFontGlyphs
     adds r0, r5, #0
@@ -232232,7 +232232,7 @@ func_08082E80: @ 0x08082E80
     bl DecodeMsg
     add r2, sp, #4
     mov r1, sp
-    bl func_080056C4
+    bl GetStringTextBox
     movs r0, #0
     bl SetTextFontGlyphs
     ldr r1, [sp]
@@ -233395,7 +233395,7 @@ func_080836D8: @ 0x080836D8
 .L08083780:
     adds r0, r3, #0
     mov r1, sp
-    bl func_08005658
+    bl GetCharTextLen
     adds r3, r0, #0
     ldr r0, [sp]
     adds r5, r5, r0
@@ -233462,7 +233462,7 @@ func_08083798: @ 0x08083798
 .L080837F0:
     adds r0, r4, #0
     mov r1, sp
-    bl func_08005658
+    bl GetCharTextLen
     adds r4, r0, #0
     ldr r0, [sp]
     adds r5, r5, r0
@@ -235181,7 +235181,7 @@ func_0808460C: @ 0x0808460C
     ldr r1, .L080846A0 @ =0x0203E70C
     adds r0, r0, r1
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     adds r4, #1
 .L0808467A:
     bl GetBoxTalkFlags
@@ -236562,14 +236562,14 @@ func_08085110: @ 0x08085110
     adds r0, r4, #0
     adds r1, r5, #0
     movs r2, #5
-    bl func_08005588
+    bl Text_SetParams
     adds r0, r4, #0
     adds r1, r6, #0
     bl Text_DrawString
     mov r1, sb
     adds r1, #0x4a
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     mov r0, r8
     bl func_08018BF4
     adds r2, r0, #0
@@ -236796,7 +236796,7 @@ func_08085290: @ 0x08085290
     adds r0, r5, #0
     adds r1, r6, #0
     movs r2, #5
-    bl func_08005588
+    bl Text_SetParams
     adds r0, r5, #0
     mov r1, sb
     bl Text_DrawString
@@ -236817,7 +236817,7 @@ func_08085290: @ 0x08085290
     ldr r6, .L080853EC @ =gBg0Tm
     adds r1, r1, r6
     adds r0, r5, #0
-    bl func_08005590
+    bl PutText
     adds r1, r4, #3
     lsls r0, r1, #5
     adds r0, #1
@@ -236994,14 +236994,14 @@ func_08085478: @ 0x08085478
     adds r0, r4, #0
     adds r1, r6, #0
     movs r2, #0
-    bl func_08005588
+    bl Text_SetParams
     adds r0, r4, #0
     adds r1, r5, #0
     bl Text_DrawString
     mov r1, r8
     adds r1, #0x82
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r6, #0x81
     lsls r6, r6, #1
     add r6, r8
@@ -237167,7 +237167,7 @@ func_08085644: @ 0x08085644
     adds r0, r2, #0
     adds r0, #0x2c
     movs r1, #4
-    bl func_0800549C
+    bl InitTextDb
     pop {r0}
     bx r0
     func_end func_08085644
@@ -237342,7 +237342,7 @@ func_080857B4: @ 0x080857B4
     adds r0, r4, #0
     adds r0, #0x2c
     movs r1, #6
-    bl func_0800549C
+    bl InitTextDb
     movs r1, #0
     str r1, [r4, #0x58]
     adds r0, r4, #0
@@ -237588,7 +237588,7 @@ func_080859B4: @ 0x080859B4
     adds r4, r0, #0
     adds r0, #0x2c
     movs r1, #6
-    bl func_0800549C
+    bl InitTextDb
     adds r0, r4, #0
     adds r0, #0x4b
     movs r1, #0
@@ -238056,7 +238056,7 @@ func_08085D48: @ 0x08085D48
     adds r0, #0x2c
     adds r1, r6, #0
     adds r1, #0x42
-    bl func_08005590
+    bl PutText
 .L08085D8C:
     ldrh r5, [r5]
     cmp r5, #1
@@ -238070,12 +238070,12 @@ func_08085D48: @ 0x08085D48
     adds r0, #0x2c
     adds r1, r6, #0
     adds r1, #0x42
-    bl func_08005590
+    bl PutText
     adds r0, r4, #0
     adds r0, #0x34
     adds r1, r6, #0
     adds r1, #0xc2
-    bl func_08005590
+    bl PutText
 .L08085DB6:
     pop {r4, r5, r6, r7}
     pop {r0}
@@ -239172,7 +239172,7 @@ func_08086668: @ 0x08086668
     sub sp, #0x7c
     add r5, sp, #0x18
     bl ResetText
-    bl func_08005A80
+    bl InitTalkTextFont
     add r7, sp, #8
     add r0, sp, #0x10
     mov r8, r0
@@ -239207,17 +239207,17 @@ func_08086668: @ 0x08086668
     ldr r4, .L080866F8 @ =0x02022DE8
     mov r0, sp
     adds r1, r4, #0
-    bl func_08005590
+    bl PutText
     adds r1, r4, #0
     adds r1, #0xc0
     adds r0, r7, #0
-    bl func_08005590
+    bl PutText
     movs r0, #0xa0
     lsls r0, r0, #1
     adds r4, r4, r0
     mov r0, r8
     adds r1, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #1
     bl EnableBgSync
     add sp, #0x7c
@@ -239571,7 +239571,7 @@ func_08086960: @ 0x08086960
 .L08086982:
     adds r0, r1, #0
     mov r1, sp
-    bl func_08005658
+    bl GetCharTextLen
     adds r1, r0, #0
     b .L08086970
 .L0808698E:
@@ -239889,7 +239889,7 @@ func_08086C10: @ 0x08086C10
     bl SetTextFontGlyphs
     adds r0, r5, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     cmp r4, #0
     bne .L08086C40
     b .L08086D78
@@ -240168,13 +240168,13 @@ func_08086EA8: @ 0x08086EA8
     ldr r1, .L08086EE8 @ =gPlaySt
     ldrh r2, [r1, #0x10]
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     adds r4, #0x96
     bl GetGold
     adds r2, r0, #0
     adds r0, r4, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     movs r0, #1
     bl EnableBgSync
     pop {r4}
@@ -240192,7 +240192,7 @@ func_08086EEC: @ 0x08086EEC
     push {r7}
     adds r6, r0, #0
     ldr r0, .L08086F48 @ =0x08CC2E88
-    bl func_080054C4
+    bl InitTextList
     adds r0, r6, #0
     bl func_08086E60
     adds r0, r6, #0
@@ -240210,7 +240210,7 @@ func_08086EEC: @ 0x08086EEC
     ldrb r2, [r0]
     adds r0, r4, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     ldr r0, .L08086F50 @ =gPlaySt
     ldrb r0, [r0, #0xd]
     cmp r0, #0
@@ -240219,12 +240219,12 @@ func_08086EEC: @ 0x08086EEC
     adds r0, #0xa
     movs r1, #2
     movs r2, #0x14
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r4, #0
     adds r0, #0xc
     movs r1, #2
     movs r2, #0x14
-    bl func_0800615C
+    bl PutSpecialChar
     b .L08086F64
     .align 2, 0
 .L08086F48: .4byte 0x08CC2E88
@@ -240237,7 +240237,7 @@ func_08086EEC: @ 0x08086EEC
     adds r1, #0x30
     ldrb r2, [r1]
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
 .L08086F64:
     adds r7, r6, #0
     adds r7, #0x2c
@@ -240287,12 +240287,12 @@ func_08086EEC: @ 0x08086EEC
     ldr r4, .L08086FEC @ =0x02022E62
     mov r0, r8
     adds r1, r4, #0
-    bl func_08005590
+    bl PutText
     mov r0, r8
     adds r0, #8
     adds r4, #0x80
     adds r1, r4, #0
-    bl func_08005590
+    bl PutText
     b .L08086FF8
     .align 2, 0
 .L08086FE4: .4byte gPlaySt
@@ -240301,7 +240301,7 @@ func_08086EEC: @ 0x08086EEC
 .L08086FF0:
     ldr r1, .L08087024 @ =0x02022EA2
     mov r0, r8
-    bl func_08005590
+    bl PutText
 .L08086FF8:
     adds r1, r6, #0
     adds r1, #0x2b
@@ -240312,7 +240312,7 @@ func_08086EEC: @ 0x08086EEC
     ldrb r2, [r1]
     adds r2, #1
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
 .L0808700E:
     bl func_08086EA8
     movs r0, #1
@@ -240790,7 +240790,7 @@ func_080872B4: @ 0x080872B4
     adds r0, r4, #0
     movs r1, #2
     movs r3, #0
-    bl func_080062B8
+    bl PutTime
     movs r0, #1
     bl EnableBgSync
     ldrb r7, [r7]
@@ -241075,11 +241075,11 @@ func_080875A8: @ 0x080875A8
     bl InitSpriteText
     adds r0, r5, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     movs r0, #0
     bl SetTextFontGlyphs
     adds r0, r6, #0
-    bl func_080055FC
+    bl GetStringTextLen
     adds r1, r0, #0
     cmp r1, #0x30
     ble .L08087634
@@ -242036,7 +242036,7 @@ func_08087D90: @ 0x08087D90
     adds r0, r0, r1
     ldr r0, [r0]
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     adds r4, #1
     adds r0, r5, #0
     adds r0, #0x5c
@@ -242154,7 +242154,7 @@ func_08087E2C: @ 0x08087E2C
 .L08087E88:
     adds r0, r4, #0
     mov r1, sp
-    bl func_08005658
+    bl GetCharTextLen
     adds r4, r0, #0
     ldr r0, [sp]
     adds r6, r6, r0
@@ -242353,7 +242353,7 @@ func_08087EFC: @ 0x08087EFC
 .L08088056:
     adds r0, r4, #0
     mov r1, sp
-    bl func_08005658
+    bl GetCharTextLen
     adds r4, r0, #0
     ldr r0, [sp]
     adds r5, r5, r0
@@ -243931,7 +243931,7 @@ func_08088CD4: @ 0x08088CD4
     bl Text_DrawString
     adds r0, r5, #0
     ldr r1, .L08088D64 @ =0x02023CC8
-    bl func_08005590
+    bl PutText
     b .L08088D72
     .align 2, 0
 .L08088D64: .4byte 0x02023CC8
@@ -244473,7 +244473,7 @@ func_08089148: @ 0x08089148
     bl Proc_End
     ldr r0, [r4, #0x44]
     bl Proc_End
-    bl func_08006018
+    bl EndGreenText
     ldr r2, .L08089188 @ =gDispIo
     movs r0, #0x21
     rsbs r0, r0, #0
@@ -245451,7 +245451,7 @@ func_08089794: @ 0x08089794
     bl InitText
     adds r0, r5, #0
     movs r1, #7
-    bl func_0800549C
+    bl InitTextDb
     adds r0, r6, #0
     adds r0, #8
     adds r0, r7, r0
@@ -245534,7 +245534,7 @@ func_08089794: @ 0x08089794
     bl Text_DrawString
     ldr r1, .L08089A18 @ =0x02023DA6
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     ldr r1, .L08089A1C @ =0x0200E66C
     movs r2, #0xff
     adds r0, r1, #0
@@ -247136,7 +247136,7 @@ func_0808A61C: @ 0x0808A61C
     beq .L0808A67E
     bl Proc_End
 .L0808A67E:
-    bl func_08006018
+    bl EndGreenText
     ldr r0, .L0808A6CC @ =gBg0Tm
     movs r1, #0
     bl TmFill
@@ -247903,7 +247903,7 @@ func_0808ABC4: @ 0x0808ABC4
 .L0808AC6C:
     ldr r0, .L0808AC8C @ =0x0200D658
     mov r1, sb
-    bl func_08005590
+    bl PutText
 .L0808AC74:
     movs r0, #4
     bl EnableBgSync
@@ -247933,16 +247933,16 @@ func_0808AC90: @ 0x0808AC90
     adds r0, r4, #0
     movs r1, #2
     adds r2, r5, #0
-    bl func_080061D8
+    bl PutNumber
     adds r0, r4, #2
     movs r1, #0
     movs r2, #0x16
-    bl func_0800615C
+    bl PutSpecialChar
     adds r4, #4
     adds r0, r4, #0
     movs r1, #2
     adds r2, r6, #0
-    bl func_080061D8
+    bl PutNumber
     b .L0808ACDE
     .align 2, 0
 .L0808ACC8: .4byte 0x02023CD4
@@ -248072,7 +248072,7 @@ func_0808AD00: @ 0x0808AD00
     add r1, sl
     adds r1, #6
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
 .L0808ADDA:
     ldr r4, [sp, #0x2c]
     lsls r5, r4, #1
@@ -248146,7 +248146,7 @@ func_0808AD00: @ 0x0808AD00
     str r3, [sp]
     str r2, [sp, #4]
     movs r2, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r4, #8
     adds r5, r5, r4
     mov r4, sb
@@ -248171,7 +248171,7 @@ func_0808AD00: @ 0x0808AD00
     adds r0, r5, #0
     adds r2, r4, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     b .L0808AF2A
     .align 2, 0
 .L0808AEC0: .4byte 0x0200CBF0
@@ -248193,7 +248193,7 @@ func_0808AD00: @ 0x0808AD00
     adds r0, r5, #0
     adds r2, r4, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r4, r7, #0
     adds r4, #0x1e
     mov r1, r8
@@ -248270,7 +248270,7 @@ func_0808AD00: @ 0x0808AD00
     adds r0, r5, #0
     movs r2, #4
     movs r3, #8
-    bl func_08005AD4
+    bl PutDrawText
     b .L0808B5B6
     .align 2, 0
 .L0808AF9C: .4byte 0x00001275
@@ -248285,7 +248285,7 @@ func_0808AD00: @ 0x0808AD00
     adds r0, r5, #0
     movs r2, #1
     movs r3, #4
-    bl func_08005AD4
+    bl PutDrawText
     b .L0808B5B6
     .align 2, 0
 .L0808AFBC: .4byte 0x00001276
@@ -248315,7 +248315,7 @@ func_0808AD00: @ 0x0808AD00
     str r3, [sp, #4]
     mov r2, r8
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r3, r4, #0
     adds r3, #0x22
     movs r1, #2
@@ -248329,7 +248329,7 @@ func_0808AD00: @ 0x0808AD00
     movs r2, #8
     ldrsb r2, [r0, r2]
     adds r0, r3, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r3, r4, #0
     adds r3, #0x28
     movs r1, #2
@@ -248342,7 +248342,7 @@ func_0808AD00: @ 0x0808AD00
     ldr r0, [r0]
     ldrb r2, [r0, #9]
     adds r0, r3, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r5, r4, #0
     adds r5, #0x2e
     movs r7, #2
@@ -248357,12 +248357,12 @@ func_0808AD00: @ 0x0808AD00
     adds r2, r0, #0
     adds r0, r5, #0
     adds r1, r7, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r4, #0
     adds r0, #0x30
     mov r1, r8
     movs r2, #0x16
-    bl func_0800615C
+    bl PutSpecialChar
     adds r4, #0x34
     movs r5, #2
     mov r0, sb
@@ -248376,7 +248376,7 @@ func_0808AD00: @ 0x0808AD00
     adds r2, r0, #0
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     b .L0808B5B6
     .align 2, 0
 .L0808B07C: .4byte 0x0200CBF0
@@ -248405,7 +248405,7 @@ func_0808AD00: @ 0x0808AD00
     adds r2, r0, #0
     mov r0, r8
     adds r1, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r7, r5, #0
     adds r7, #0x18
     ldr r0, [r4]
@@ -248423,7 +248423,7 @@ func_0808AD00: @ 0x0808AD00
     adds r2, r0, #0
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r7, r5, #0
     adds r7, #0x1e
     ldr r0, [r4]
@@ -248441,7 +248441,7 @@ func_0808AD00: @ 0x0808AD00
     adds r2, r0, #0
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r7, r5, #0
     adds r7, #0x24
     ldr r0, [r4]
@@ -248456,7 +248456,7 @@ func_0808AD00: @ 0x0808AD00
     adds r2, r0, #0
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r7, r5, #0
     adds r7, #0x2a
     ldr r0, [r4]
@@ -248474,7 +248474,7 @@ func_0808AD00: @ 0x0808AD00
     adds r2, r0, #0
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r7, r5, #0
     adds r7, #0x30
     ldr r0, [r4]
@@ -248492,7 +248492,7 @@ func_0808AD00: @ 0x0808AD00
     adds r2, r0, #0
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     ldr r0, [r4]
     ldr r0, [r0]
     bl func_08026B24
@@ -248505,7 +248505,7 @@ func_0808AD00: @ 0x0808AD00
     adds r0, #0x34
     movs r1, #2
     movs r2, #0x14
-    bl func_0800615C
+    bl PutSpecialChar
     b .L0808B5B6
     .align 2, 0
 .L0808B190: .4byte 0x0200CBF0
@@ -248544,7 +248544,7 @@ func_0808AD00: @ 0x0808AD00
     str r5, [sp]
     str r3, [sp, #4]
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     b .L0808B254
     .align 2, 0
 .L0808B1E4: .4byte 0x0200CBF0
@@ -248572,7 +248572,7 @@ func_0808AD00: @ 0x0808AD00
     movs r3, #0
     str r3, [sp]
     str r5, [sp, #4]
-    bl func_08005AD4
+    bl PutDrawText
     adds r4, #0x10
     ldr r0, [r7]
     ldr r0, [r0]
@@ -248610,7 +248610,7 @@ func_0808AD00: @ 0x0808AD00
     movs r6, #4
     ldrsh r2, [r0, r6]
     adds r0, r3, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r3, r5, #0
     adds r3, #0x2c
     movs r1, #2
@@ -248623,7 +248623,7 @@ func_0808AD00: @ 0x0808AD00
     movs r6, #6
     ldrsh r2, [r0, r6]
     adds r0, r3, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r1, r5, #0
     adds r1, #0x34
     movs r3, #2
@@ -248637,7 +248637,7 @@ func_0808AD00: @ 0x0808AD00
     ldrsh r2, [r0, r4]
     adds r0, r1, #0
     adds r1, r3, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     b .L0808B5B6
     .align 2, 0
 .L0808B2B0: .4byte 0x0200D5A8
@@ -248671,7 +248671,7 @@ func_0808AD00: @ 0x0808AD00
     movs r3, #0
     str r3, [sp]
     str r5, [sp, #4]
-    bl func_08005AD4
+    bl PutDrawText
     b .L0808B328
     .align 2, 0
 .L0808B2F8: .4byte 0x0200CBF0
@@ -248694,7 +248694,7 @@ func_0808AD00: @ 0x0808AD00
     str r5, [sp]
     str r3, [sp, #4]
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
 .L0808B328:
     mov r8, r4
     ldr r7, [sp, #0x54]
@@ -248720,7 +248720,7 @@ func_0808AD00: @ 0x0808AD00
     asrs r0, r0, #0x18
     adds r2, r2, r0
     adds r0, r3, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r3, r7, #0
     adds r3, #0x1a
     movs r5, #2
@@ -248744,7 +248744,7 @@ func_0808AD00: @ 0x0808AD00
     adds r2, r2, r0
     adds r0, r3, #0
     adds r1, r5, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r5, r7, #0
     adds r5, #0x20
     movs r6, #2
@@ -248759,7 +248759,7 @@ func_0808AD00: @ 0x0808AD00
     adds r2, r0, #0
     adds r0, r5, #0
     adds r1, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     ldr r0, [r4]
     ldr r0, [r0]
     bl func_08018CF0
@@ -248779,7 +248779,7 @@ func_0808AD00: @ 0x0808AD00
     movs r3, #0
     str r3, [sp]
     str r4, [sp, #4]
-    bl func_08005AD4
+    bl PutDrawText
     b .L0808B5B6
     .align 2, 0
 .L0808B3D8: .4byte 0x0000127D
@@ -248823,7 +248823,7 @@ func_0808AD00: @ 0x0808AD00
     adds r0, #8
     ldr r2, [r0]
     adds r0, r3, #0
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r6, #1
     lsls r0, r0, #0x18
     lsrs r6, r0, #0x18
@@ -248917,7 +248917,7 @@ func_0808AD00: @ 0x0808AD00
     mov r3, r8
     lsrs r2, r3, #0x1f
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     b .L0808B546
     .align 2, 0
 .L0808B500: .4byte 0x0200CBF0
@@ -248949,7 +248949,7 @@ func_0808AD00: @ 0x0808AD00
     str r3, [sp, #4]
     movs r2, #1
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
 .L0808B546:
     adds r0, r4, #1
     lsls r0, r0, #0x18
@@ -249002,7 +249002,7 @@ func_0808AD00: @ 0x0808AD00
     str r3, [sp, #4]
     lsrs r2, r6, #0x1f
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r0, r4, #1
     lsls r0, r0, #0x18
     lsrs r4, r0, #0x18
@@ -255270,7 +255270,7 @@ func_0808E488: @ 0x0808E488
     bl SetTextFontGlyphs
     adds r0, r5, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     ldr r0, .L0808E508 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
@@ -255412,7 +255412,7 @@ func_0808E5C8: @ 0x0808E5C8
     ldr r1, .L0808E5F8 @ =0x02023C7C
     adds r1, r5, r1
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     adds r5, #0x80
     adds r4, #8
     adds r6, #1
@@ -255900,7 +255900,7 @@ func_0808E9A8: @ 0x0808E9A8
     str r0, [sp, #4]
     adds r0, r5, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r5, #8
     adds r6, #0x80
 .L0808EA0A:
@@ -256908,7 +256908,7 @@ func_0808F0A4: @ 0x0808F0A4
     adds r1, r5, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L0808F304 @ =0x0000113E
     bl DecodeMsg
     adds r1, r5, #0
@@ -256918,7 +256918,7 @@ func_0808F0A4: @ 0x0808F0A4
     movs r0, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L0808F308 @ =0x00001146
     bl DecodeMsg
     movs r2, #0x80
@@ -256929,7 +256929,7 @@ func_0808F0A4: @ 0x0808F0A4
     movs r0, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L0808F30C @ =0x00001141
     bl DecodeMsg
     movs r2, #0xc0
@@ -256940,7 +256940,7 @@ func_0808F0A4: @ 0x0808F0A4
     movs r0, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #0x8a
     lsls r0, r0, #5
     bl DecodeMsg
@@ -256952,7 +256952,7 @@ func_0808F0A4: @ 0x0808F0A4
     movs r0, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L0808F310 @ =0x08404BBC
     movs r1, #0xf0
     lsls r1, r1, #1
@@ -258082,24 +258082,24 @@ func_0808FABC: @ 0x0808FABC
     adds r0, r4, #0
     movs r1, #2
     adds r2, r7, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r4, #0
     adds r0, #0x80
     movs r1, #2
     adds r2, r5, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     movs r1, #0x80
     lsls r1, r1, #1
     adds r0, r4, r1
     movs r1, #2
     adds r2, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     movs r1, #0xc0
     lsls r1, r1, #1
     adds r0, r4, r1
     movs r1, #2
     mov r2, r8
-    bl func_080061E4
+    bl PutNumberOrBlank
     movs r0, #1
     bl EnableBgSync
     pop {r3}
@@ -258799,7 +258799,7 @@ func_0808FFF0: @ 0x0808FFF0
     str r3, [sp]
     str r0, [sp, #4]
     adds r0, r5, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r6, #0x40
     adds r7, #1
     mov r0, r8
@@ -259474,7 +259474,7 @@ func_08090540: @ 0x08090540
     bl Text_DrawString
     adds r0, r4, #0
     mov r1, r8
-    bl func_08005590
+    bl PutText
     pop {r3}
     mov r8, r3
     pop {r4, r5, r6, r7}
@@ -261418,19 +261418,19 @@ func_0809138C: @ 0x0809138C
     ldr r0, .L080913D0 @ =0x02012A90
     ldr r4, .L080913D4 @ =0x020230C6
     adds r1, r4, #0
-    bl func_08005590
+    bl PutText
     adds r5, r4, #0
     adds r5, #0x12
     bl GetGold
     adds r2, r0, #0
     adds r0, r5, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     adds r4, #0x14
     adds r0, r4, #0
     movs r1, #3
     movs r2, #0x1e
-    bl func_0800615C
+    bl PutSpecialChar
     movs r0, #0
     movs r1, #0x88
     movs r2, #0x8b
@@ -261603,11 +261603,11 @@ func_080913FC: @ 0x080913FC
     ldr r4, .L080917E0 @ =0x02012A70
     adds r0, r4, #0
     movs r1, #8
-    bl func_0800549C
+    bl InitTextDb
     adds r0, r4, #0
     adds r0, #8
     movs r1, #8
-    bl func_0800549C
+    bl InitTextDb
     ldr r0, .L080917E4 @ =0x02012A80
     movs r1, #8
     bl InitText
@@ -261963,7 +261963,7 @@ func_08091868: @ 0x08091868
     adds r1, r5, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     add sp, #8
     pop {r4, r5}
     pop {r0}
@@ -262781,7 +262781,7 @@ func_08091F04: @ 0x08091F04
     adds r1, r6, #0
     adds r1, #0x40
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     mov r0, r8
     bl func_080912EC
     movs r4, #0
@@ -262829,13 +262829,13 @@ func_08091F04: @ 0x08091F04
     adds r1, r6, #0
     adds r1, #0xc0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     adds r4, #8
     movs r0, #0xa0
     lsls r0, r0, #1
     adds r1, r6, r0
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     pop {r3, r4}
     mov r8, r3
     mov sb, r4
@@ -262916,35 +262916,35 @@ func_08092010: @ 0x08092010
     str r4, [sp, #4]
     adds r0, r5, #0
     movs r2, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r0, r7, #0
     adds r0, #0x8a
     movs r1, #3
     movs r2, #0x24
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r7, #0
     adds r0, #0x8c
     movs r1, #3
     movs r2, #0x25
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r7, #0
     adds r0, #0x92
     movs r1, #3
     movs r2, #0x1d
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r7, #0
     adds r0, #0x90
     mov r1, r8
     movs r2, #8
     ldrsb r2, [r1, r2]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r7, #0
     adds r0, #0x96
     mov r1, r8
     ldrb r2, [r1, #9]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     movs r0, #7
     bl EnableBgSync
     add sp, #8
@@ -264126,7 +264126,7 @@ func_080929D0: @ 0x080929D0
     bl PutIcon
     adds r0, r6, #0
     ldr r1, [sp, #0xc]
-    bl func_08005590
+    bl PutText
     movs r4, #1
     cmp r7, #0
     bne .L08092AA6
@@ -264137,7 +264137,7 @@ func_080929D0: @ 0x080929D0
     adds r2, r0, #0
     ldr r0, [sp, #8]
     adds r1, r4, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r6, #8
     ldr r0, [sp, #8]
     adds r0, #0x80
@@ -264304,7 +264304,7 @@ func_08092B6C: @ 0x08092B6C
     ldr r0, .L08092C30 @ =gBg2Tm
     adds r1, r1, r0
     adds r0, r6, #0
-    bl func_08005590
+    bl PutText
 .L08092C08:
     adds r6, #8
     movs r0, #1
@@ -264814,7 +264814,7 @@ func_08092F50: @ 0x08092F50
     adds r0, r4, #0
     adds r2, r6, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
 .L08092FEA:
     movs r0, #7
     add sb, r0
@@ -265238,30 +265238,30 @@ func_080932F4: @ 0x080932F4
     mov r0, r8
     movs r2, #0
     adds r3, r6, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r0, r4, #0
     movs r1, #3
     movs r2, #0x24
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r4, #2
     movs r1, #3
     movs r2, #0x25
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r4, #0
     adds r0, #8
     movs r1, #3
     movs r2, #0x1d
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r4, #6
     movs r2, #8
     ldrsb r2, [r5, r2]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r4, #0xc
     ldrb r2, [r5, #9]
     adds r0, r4, #0
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     movs r0, #1
     bl EnableBgSync
     add sp, #8
@@ -265358,7 +265358,7 @@ func_080933C4: @ 0x080933C4
     adds r0, r5, #0
     adds r2, r6, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r0, r7, #0
     adds r1, r4, #0
     bl IsItemDisplayUseable
@@ -265373,7 +265373,7 @@ func_080933C4: @ 0x080933C4
     adds r2, r0, #0
     mov r0, sl
     adds r1, r5, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     movs r0, #0x80
     add sl, r0
     add sb, r0
@@ -265422,12 +265422,12 @@ func_080934BC: @ 0x080934BC
     adds r0, r5, #0
     movs r2, #0
     movs r3, #0x28
-    bl func_08005AD4
+    bl PutDrawText
 .L080934E8:
     adds r0, r5, #0
     movs r1, #2
     movs r2, #3
-    bl func_08005518
+    bl ClearTextPart
     ldr r0, .L080935A0 @ =0x00001271
     bl DecodeMsg
     ldr r7, .L0809359C @ =0x02022CBC
@@ -265438,7 +265438,7 @@ func_080934BC: @ 0x080934BC
     adds r1, r7, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r4, r6, #0
     adds r4, #0x29
     adds r6, #0x2a
@@ -265461,7 +265461,7 @@ func_080934BC: @ 0x080934BC
     bl Text_DrawNumber
     adds r0, r5, #0
     adds r1, r7, #0
-    bl func_08005590
+    bl PutText
     adds r0, r7, #0
     adds r0, #0x16
     movs r1, #4
@@ -265478,12 +265478,12 @@ func_080934BC: @ 0x080934BC
     movs r1, #4
 .L0809355E:
     ldrb r2, [r4]
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r7, #0
     adds r0, #0x1a
     movs r1, #0
     movs r2, #0x16
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r7, #0
     adds r0, #0x1e
     movs r1, #2
@@ -265494,7 +265494,7 @@ func_080934BC: @ 0x080934BC
     movs r1, #4
 .L08093580:
     ldrb r2, [r6]
-    bl func_080061E4
+    bl PutNumberOrBlank
     movs r0, #1
     bl EnableBgSync
     add sp, #8
@@ -265745,7 +265745,7 @@ func_08093734: @ 0x08093734
     str r4, [sp, #4]
     adds r0, r5, #0
     movs r2, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #1
     bl EnableBgSync
 .L08093780:
@@ -267191,7 +267191,7 @@ func_08094230: @ 0x08094230
     mov r0, sb
     ldr r1, [sp, #0x14]
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     mov r4, r8
     adds r4, #0x16
     movs r7, #1
@@ -267204,7 +267204,7 @@ func_08094230: @ 0x08094230
     adds r2, r0, #0
     adds r0, r4, #0
     adds r1, r7, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r6, #0
     bl GetItemIcon
     adds r1, r0, #0
@@ -267355,10 +267355,10 @@ func_08094350: @ 0x08094350
 .L08094416:
     adds r0, r5, #0
     movs r1, #7
-    bl func_0800549C
+    bl InitTextDb
     adds r0, r6, #0
     movs r1, #7
-    bl func_0800549C
+    bl InitTextDb
     adds r6, #8
     adds r5, #8
     subs r4, #1
@@ -267442,7 +267442,7 @@ func_08094350: @ 0x08094350
     ldrh r0, [r0]
     bl DecodeMsg
     adds r7, r0, #0
-    bl func_080055FC
+    bl GetStringTextLen
     adds r3, r0, #0
     movs r4, #0x30
     subs r3, r4, r3
@@ -267457,14 +267457,14 @@ func_08094350: @ 0x08094350
     movs r0, #0
     mov r1, sb
     movs r2, #0
-    bl func_08005AD4
+    bl PutDrawText
     mov r1, r8
     ldr r0, [r1, #0x30]
     ldr r0, [r0]
     ldrh r0, [r0]
     bl DecodeMsg
     adds r7, r0, #0
-    bl func_080055FC
+    bl GetStringTextLen
     subs r4, r4, r0
     lsrs r0, r4, #0x1f
     adds r4, r4, r0
@@ -267476,7 +267476,7 @@ func_08094350: @ 0x08094350
     movs r0, #0
     movs r2, #0
     adds r3, r4, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #0x91
     lsls r0, r0, #2
     add r0, sb
@@ -268132,7 +268132,7 @@ func_08094A20: @ 0x08094A20
     adds r1, r5, #0
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     mov r0, r8
     bl UnitKnowsMagic
     lsls r0, r0, #0x18
@@ -268150,7 +268150,7 @@ func_08094A20: @ 0x08094A20
     adds r0, r2, #0
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     b .L08094AB4
     .align 2, 0
 .L08094A88: .4byte 0x020129A8
@@ -268169,7 +268169,7 @@ func_08094A20: @ 0x08094A20
     adds r0, r2, #0
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
 .L08094AB4:
     ldr r0, .L08094BAC @ =0x000010FB
     bl DecodeMsg
@@ -268183,7 +268183,7 @@ func_08094A20: @ 0x08094A20
     adds r1, r7, #0
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L08094BB4 @ =0x000010FC
     bl DecodeMsg
     adds r2, r6, #0
@@ -268195,7 +268195,7 @@ func_08094A20: @ 0x08094A20
     adds r0, r2, #0
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L08094BB8 @ =0x000010FD
     bl DecodeMsg
     adds r2, r6, #0
@@ -268207,7 +268207,7 @@ func_08094A20: @ 0x08094A20
     adds r0, r2, #0
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L08094BBC @ =0x000010FE
     bl DecodeMsg
     adds r2, r6, #0
@@ -268219,7 +268219,7 @@ func_08094A20: @ 0x08094A20
     adds r0, r2, #0
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L08094BC0 @ =0x000010FF
     bl DecodeMsg
     adds r2, r6, #0
@@ -268231,7 +268231,7 @@ func_08094A20: @ 0x08094A20
     adds r0, r2, #0
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L08094BC4 @ =0x00001107
     bl DecodeMsg
     adds r2, r6, #0
@@ -268243,7 +268243,7 @@ func_08094A20: @ 0x08094A20
     adds r0, r2, #0
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     mov r1, r8
     ldr r0, [r1, #4]
     ldrh r0, [r0]
@@ -268259,17 +268259,17 @@ func_08094A20: @ 0x08094A20
     str r5, [sp]
     str r4, [sp, #4]
     movs r2, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r1, .L08094BCC @ =0xFFFFFE02
     adds r0, r7, r1
     movs r1, #3
     movs r2, #0x24
-    bl func_0800615C
+    bl PutSpecialChar
     ldr r2, .L08094BD0 @ =0xFFFFFE04
     adds r0, r7, r2
     movs r1, #3
     movs r2, #0x25
-    bl func_0800615C
+    bl PutSpecialChar
     add sp, #8
     pop {r3}
     mov r8, r3
@@ -268519,7 +268519,7 @@ func_08094D74: @ 0x08094D74
     adds r2, r0, #0
     adds r0, r6, #0
     adds r1, r5, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     ldr r5, .L08094EEC @ =0x02023E0A
     adds r0, r4, #0
     bl GetUnitPower
@@ -268537,7 +268537,7 @@ func_08094D74: @ 0x08094D74
     adds r2, r0, #0
     adds r0, r5, #0
     adds r1, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r7, r5, #0
     adds r7, #0x80
     adds r0, r4, #0
@@ -268556,7 +268556,7 @@ func_08094D74: @ 0x08094D74
     adds r2, r0, #0
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     movs r0, #0x80
     lsls r0, r0, #1
     adds r7, r5, r0
@@ -268576,7 +268576,7 @@ func_08094D74: @ 0x08094D74
     adds r2, r0, #0
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r7, r5, #0
     subs r7, #0x74
     adds r0, r4, #0
@@ -268591,7 +268591,7 @@ func_08094D74: @ 0x08094D74
     adds r2, r0, #0
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r7, r5, #0
     adds r7, #0xc
     adds r0, r4, #0
@@ -268610,7 +268610,7 @@ func_08094D74: @ 0x08094D74
     adds r2, r0, #0
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r7, r5, #0
     adds r7, #0x8c
     adds r0, r4, #0
@@ -268629,7 +268629,7 @@ func_08094D74: @ 0x08094D74
     adds r2, r0, #0
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     movs r1, #0x86
     lsls r1, r1, #1
     adds r6, r5, r1
@@ -268653,13 +268653,13 @@ func_08094D74: @ 0x08094D74
 .L08094ECA:
     adds r0, r6, #0
     adds r2, r3, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     ldr r2, .L08094EF0 @ =0xFFFFFE80
     adds r0, r5, r2
     movs r2, #8
     ldrsb r2, [r4, r2]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     movs r0, #4
     bl EnableBgSync
     pop {r4, r5, r6, r7}
@@ -268875,7 +268875,7 @@ func_08094FE4: @ 0x08094FE4
 .L080950B8:
     adds r0, r4, #0
     movs r1, #7
-    bl func_0800549C
+    bl InitTextDb
     adds r4, #8
     movs r0, #1
     rsbs r0, r0, #0
@@ -268978,7 +268978,7 @@ func_08094FE4: @ 0x08094FE4
     ldrh r0, [r0]
     bl DecodeMsg
     adds r4, r0, #0
-    bl func_080055FC
+    bl GetStringTextLen
     movs r3, #0x30
     subs r3, r3, r0
     lsrs r0, r3, #0x1f
@@ -268990,7 +268990,7 @@ func_08094FE4: @ 0x08094FE4
     movs r0, #0
     ldr r1, .L08095310 @ =gBg0Tm
     movs r2, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r0, r7, #0
     bl func_080A89B4
     adds r0, r7, #0
@@ -269315,7 +269315,7 @@ func_0809546C: @ 0x0809546C
     adds r1, r5, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r0, r4, #0
     bl ClearText
     ldr r0, .L080954E4 @ =0x000010EE
@@ -269327,7 +269327,7 @@ func_0809546C: @ 0x0809546C
     adds r1, r5, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L080954E8 @ =0x000010EF
     bl DecodeMsg
     str r6, [sp]
@@ -269336,7 +269336,7 @@ func_0809546C: @ 0x0809546C
     adds r1, r5, #0
     movs r2, #0
     movs r3, #0x20
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #4
     bl EnableBgSync
     add sp, #8
@@ -269749,7 +269749,7 @@ func_080958C8: @ 0x080958C8
     bl GetItemIcon
     mov r8, r0
     mov r0, sl
-    bl func_080055FC
+    bl GetStringTextLen
     mov sb, r0
     mov r1, sb
     adds r1, #7
@@ -269810,7 +269810,7 @@ func_080958C8: @ 0x080958C8
     adds r0, r4, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #4
     bl EnableBgSync
     lsls r0, r5, #3
@@ -270240,7 +270240,7 @@ func_08095CA8: @ 0x08095CA8
     mov r1, sl
     adds r1, #6
     ldr r0, [sp]
-    bl func_08005590
+    bl PutText
     b .L08095DA6
     .align 2, 0
 .L08095CF4: .4byte 0x02012466
@@ -270300,7 +270300,7 @@ func_08095CA8: @ 0x08095CA8
     adds r1, r5, #6
     add r1, sl
     mov r0, r8
-    bl func_08005590
+    bl PutText
     adds r5, #0x18
     mov r1, sl
     adds r4, r1, r5
@@ -270315,7 +270315,7 @@ func_08095CA8: @ 0x08095CA8
     adds r2, r0, #0
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r6, #1
     ldr r0, [sp, #4]
     adds r0, #7
@@ -270451,7 +270451,7 @@ func_08095E24: @ 0x08095E24
     bl PutIcon
     adds r1, r4, #6
     adds r0, r7, #0
-    bl func_08005590
+    bl PutText
     adds r4, #0x18
     movs r5, #1
     mov r1, r8
@@ -270464,7 +270464,7 @@ func_08095E24: @ 0x08095E24
     adds r2, r0, #0
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
 .L08095EC4:
     pop {r3, r4}
     mov r8, r3
@@ -270628,7 +270628,7 @@ func_08095FCC: @ 0x08095FCC
     adds r4, #0x90
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     adds r7, r4, #0
     movs r4, #0
     cmp r5, #0x64
@@ -270693,7 +270693,7 @@ func_08096054: @ 0x08096054
     adds r0, r4, #0
     movs r2, #0
     movs r3, #2
-    bl func_08005AD4
+    bl PutDrawText
     adds r1, r6, #0
     subs r1, #0x26
     movs r2, #0x9c
@@ -270712,7 +270712,7 @@ func_08096054: @ 0x08096054
     adds r1, r6, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r5, r6, #0
     adds r5, #0xa
     bl func_08090C48
@@ -270729,17 +270729,17 @@ func_08096054: @ 0x08096054
     lsrs r2, r2, #0x18
     adds r0, r5, #0
     adds r1, r4, #0
-    bl func_080061D8
+    bl PutNumber
     adds r0, r6, #0
     adds r0, #0xc
     movs r1, #0
     movs r2, #0x16
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r6, #0
     adds r0, #0x12
     movs r1, #2
     movs r2, #0x64
-    bl func_080061D8
+    bl PutNumber
     movs r0, #1
     bl EnableBgSync
     add sp, #8
@@ -271229,7 +271229,7 @@ func_08096370: @ 0x08096370
 .L08096508:
     adds r0, r4, #0
     movs r1, #7
-    bl func_0800549C
+    bl InitTextDb
     adds r4, #8
     subs r5, #1
     cmp r5, #0
@@ -273281,7 +273281,7 @@ func_08097554: @ 0x08097554
     adds r1, r4, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #1
     bl EnableBgSync
     add sp, #8
@@ -273355,7 +273355,7 @@ func_0809759C: @ 0x0809759C
     movs r2, #3
 .L0809761C:
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     b .L0809764C
     .align 2, 0
 .L08097624: .4byte 0x020117E4
@@ -273373,7 +273373,7 @@ func_0809759C: @ 0x0809759C
     mov r1, r8
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
 .L0809764C:
     movs r0, #1
     bl EnableBgSync
@@ -273648,7 +273648,7 @@ func_080976F0: @ 0x080976F0
 .L080978AA:
     adds r0, r4, #0
     movs r1, #7
-    bl func_0800549C
+    bl InitTextDb
     adds r4, #8
     subs r5, #1
     cmp r5, #0
@@ -273802,7 +273802,7 @@ func_080976F0: @ 0x080976F0
     adds r0, r5, #0
     ldr r1, .L08097A68 @ =gBg0Tm
     movs r2, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r0, r7, #0
     bl func_0809759C
     add sp, #8
@@ -275400,7 +275400,7 @@ func_08098660: @ 0x08098660
     bl SetTextFontGlyphs
     adds r0, r5, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     movs r0, #0x93
     lsls r0, r0, #5
     bl DecodeMsg
@@ -275572,17 +275572,17 @@ func_080987E4: @ 0x080987E4
     adds r0, #0xa
     movs r1, #1
     movs r2, #0x14
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r6, #0
     adds r0, #0xc
     movs r1, #1
     movs r2, #0x14
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r6, #0
     adds r0, #0xe
     movs r1, #1
     movs r2, #0x14
-    bl func_0800615C
+    bl PutSpecialChar
     b .L0809884C
     .align 2, 0
 .L0809883C: .4byte 0x02022F48
@@ -275591,12 +275591,12 @@ func_080987E4: @ 0x080987E4
     adds r0, #0xc
     movs r1, #2
     adds r2, r5, #0
-    bl func_080061D8
+    bl PutNumber
 .L0809884C:
     ldr r0, .L08098864 @ =0x02022F56
     movs r1, #3
     movs r2, #0x1e
-    bl func_0800615C
+    bl PutSpecialChar
 .L08098856:
     movs r0, #1
     bl EnableBgSync
@@ -275622,12 +275622,12 @@ func_08098868: @ 0x08098868
     adds r2, r0, #0
     adds r0, r5, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     adds r4, #0x10
     adds r0, r4, #0
     movs r1, #3
     movs r2, #0x1e
-    bl func_0800615C
+    bl PutSpecialChar
     movs r0, #1
     bl EnableBgSync
     pop {r4, r5}
@@ -275659,7 +275659,7 @@ func_080988A8: @ 0x080988A8
     str r0, [sp, #4]
     adds r0, r3, #0
     movs r3, #2
-    bl func_08005AD4
+    bl PutDrawText
     subs r4, #0x26
     movs r2, #0x9c
     lsls r2, r2, #2
@@ -277389,7 +277389,7 @@ func_08099628: @ 0x08099628
     str r0, [sp, #4]
     adds r0, r3, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r5, #0x80
     adds r6, #1
     cmp r6, #4
@@ -278042,7 +278042,7 @@ func_08099B6C: @ 0x08099B6C
     adds r0, r4, #0
     adds r1, r7, #0
     adds r2, r6, #0
-    bl func_0800615C
+    bl PutSpecialChar
     adds r4, #2
     subs r5, #1
     cmp r5, #0
@@ -278096,7 +278096,7 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #0x40
     adds r0, r0, r7
     mov sb, r0
@@ -278137,7 +278137,7 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r4, #0x80
     subs r6, #1
     cmp r6, #0
@@ -278154,19 +278154,19 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r3, #0xf9
     lsls r3, r3, #1
     adds r0, r5, r3
     ldr r2, [r7, #0x58]
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     movs r1, #0xfa
     lsls r1, r1, #1
     adds r0, r5, r1
     movs r1, #3
     movs r2, #0x1e
-    bl func_0800615C
+    bl PutSpecialChar
     ldr r0, .L08099D58 @ =0x000012C5
     bl DecodeMsg
     ldr r2, .L08099D5C @ =0x0000025E
@@ -278176,38 +278176,38 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r3, .L08099D60 @ =0x0000026A
     adds r0, r5, r3
     movs r1, #0
     movs r2, #0x20
-    bl func_0800615C
+    bl PutSpecialChar
     movs r1, #0x9c
     lsls r1, r1, #2
     adds r0, r5, r1
     movs r1, #0
     movs r2, #0x20
-    bl func_0800615C
+    bl PutSpecialChar
     movs r2, #0x9a
     lsls r2, r2, #2
     adds r0, r5, r2
     mov r3, sb
     ldrb r2, [r3]
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     ldr r1, .L08099D64 @ =0x0000026E
     adds r0, r5, r1
     ldr r3, [sp, #0x14]
     ldrb r2, [r3]
     movs r1, #2
-    bl func_080063CC
+    bl PutNumber2Digit
     movs r1, #0x9d
     lsls r1, r1, #2
     adds r0, r5, r1
     ldr r3, [sp, #0x18]
     ldrb r2, [r3]
     movs r1, #2
-    bl func_080063CC
+    bl PutNumber2Digit
     ldr r0, .L08099D68 @ =0x000012C6
     bl DecodeMsg
     adds r1, r5, #0
@@ -278217,7 +278217,7 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r0, r5, #0
     adds r0, #0x58
     ldr r2, .L08099D6C @ =0x08CC51AC
@@ -278227,7 +278227,7 @@ func_08099BA4: @ 0x08099BA4
     adds r1, r1, r2
     ldr r2, [r1]
     movs r1, #4
-    bl func_0800615C
+    bl PutSpecialChar
     mov r1, sl
     ldrb r0, [r1]
     cmp r0, #0
@@ -278241,7 +278241,7 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     b .L08099D8C
     .align 2, 0
 .L08099D44: .4byte gBg2Tm
@@ -278266,14 +278266,14 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #3
     movs r3, #4
-    bl func_08005AD4
+    bl PutDrawText
 .L08099D8C:
     ldr r4, .L08099DE8 @ =0x02023CD0
     ldr r3, [sp, #8]
     ldrb r2, [r3]
     adds r0, r4, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     ldr r0, .L08099DEC @ =0x000012C8
     bl DecodeMsg
     adds r1, r4, #2
@@ -278283,7 +278283,7 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r6, [sp, #0x10]
     ldrb r0, [r6]
     cmp r0, #0
@@ -278298,14 +278298,14 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r0, r4, #0
     adds r0, #0xc8
     adds r1, r7, #0
     adds r1, #0x3a
     ldrb r2, [r1]
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     b .L08099F86
     .align 2, 0
 .L08099DE4: .4byte 0x000012BB
@@ -278343,7 +278343,7 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r6, #0
     adds r7, #0x3d
     mov sl, r7
@@ -278365,7 +278365,7 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #1
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r3, #3
     mov r8, r3
     str r3, [sp]
@@ -278390,7 +278390,7 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #1
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     mov r0, r8
     str r0, [sp]
     movs r0, #0x16
@@ -278407,7 +278407,7 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #1
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     mov r3, r8
     str r3, [sp]
     movs r0, #0x16
@@ -278425,7 +278425,7 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #1
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #1
     str r0, [sp]
     movs r0, #0xe
@@ -278446,7 +278446,7 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #1
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     b .L08099F58
     .align 2, 0
 .L08099F20: .4byte 0x08CC51C4
@@ -278467,7 +278467,7 @@ func_08099BA4: @ 0x08099BA4
     movs r0, #0
     movs r2, #1
     movs r3, #4
-    bl func_08005AD4
+    bl PutDrawText
 .L08099F58:
     movs r4, #5
     str r4, [sp]
@@ -279762,7 +279762,7 @@ func_0809A924: @ 0x0809A924
     bl SetTextFontGlyphs
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     movs r0, #0x60
     adds r1, r6, #0
     bl GetStringTextCenteredPos
@@ -281377,7 +281377,7 @@ func_0809B568: @ 0x0809B568
     bl Text_InsertDrawString
     ldr r1, .L0809B5EC @ =0x02023108
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     movs r0, #1
     bl EnableBgSync
     pop {r4, r5, r6}
@@ -282539,7 +282539,7 @@ func_0809BE80: @ 0x0809BE80
     ldr r0, .L0809BF74 @ =gBg2Tm
     adds r1, r1, r0
     adds r0, r5, #0
-    bl func_08005590
+    bl PutText
 .L0809BF4E:
     adds r5, #8
     adds r6, #1
@@ -282696,7 +282696,7 @@ func_0809C044: @ 0x0809C044
     adds r1, r6, #0
     movs r2, #4
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     subs r0, r6, #4
     ldr r2, .L0809C124 @ =0x081C3AC0
     ldr r5, .L0809C128 @ =gPlaySt
@@ -282728,7 +282728,7 @@ func_0809C044: @ 0x0809C044
     str r2, [sp]
     str r7, [sp, #4]
     movs r2, #4
-    bl func_08005AD4
+    bl PutDrawText
     adds r5, #0x2c
     ldrb r5, [r5]
     lsls r0, r5, #0x1f
@@ -282749,7 +282749,7 @@ func_0809C044: @ 0x0809C044
     adds r0, r4, #0
     adds r1, r6, #0
     movs r2, #4
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #0
     bl SetTextFont
     movs r0, #4
@@ -283409,7 +283409,7 @@ func_0809C654: @ 0x0809C654
     adds r0, r4, #0
     movs r1, #1
     movs r2, #0x14
-    bl func_0800615C
+    bl PutSpecialChar
     adds r4, #2
     adds r5, #1
     cmp r5, #4
@@ -283426,7 +283426,7 @@ func_0809C654: @ 0x0809C654
     adds r0, r4, #0
     movs r1, #1
     movs r2, #0x14
-    bl func_0800615C
+    bl PutSpecialChar
     adds r4, #2
     adds r5, #1
     cmp r5, #1
@@ -283443,7 +283443,7 @@ func_0809C654: @ 0x0809C654
     adds r0, r4, #0
     movs r1, #1
     movs r2, #0x14
-    bl func_0800615C
+    bl PutSpecialChar
     adds r4, #2
     adds r5, #1
     cmp r5, #2
@@ -283495,7 +283495,7 @@ func_0809C654: @ 0x0809C654
     movs r0, #0
     adds r2, r7, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r5, #0xc
     adds r4, r4, r5
     mov r1, sb
@@ -283552,7 +283552,7 @@ func_0809C654: @ 0x0809C654
     ldm r1!, {r2}
     adds r1, r7, #0
     str r3, [sp, #0x20]
-    bl func_0800615C
+    bl PutSpecialChar
     adds r4, #2
     adds r5, #1
     ldr r3, [sp, #0x20]
@@ -283566,7 +283566,7 @@ func_0809C654: @ 0x0809C654
     adds r0, r0, r1
     movs r1, #1
     movs r2, #0x14
-    bl func_0800615C
+    bl PutSpecialChar
     b .L0809C830
     .align 2, 0
 .L0809C7E8: .4byte gBg2Tm
@@ -283602,7 +283602,7 @@ func_0809C654: @ 0x0809C654
     subs r3, #4
     ldm r3!, {r2}
     adds r1, r7, #0
-    bl func_0800615C
+    bl PutSpecialChar
     adds r4, #2
     adds r5, #1
     cmp r5, #2
@@ -283643,7 +283643,7 @@ func_0809C844: @ 0x0809C844
     bl SetTextFontGlyphs
     adds r0, r6, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     ldr r4, .L0809C91C @ =0x08BDCE4C
     ldr r0, [r5, #0x2c]
     bl func_0809B0E4
@@ -286709,7 +286709,7 @@ func_0809E094: @ 0x0809E094
     adds r0, r1, r6
     bl ClearText
     movs r5, #2
-    bl func_08005A80
+    bl InitTalkTextFont
     movs r4, #0
     ldr r7, [sp, #0x14]
 .L0809E0D6:
@@ -286739,7 +286739,7 @@ func_0809E094: @ 0x0809E094
     add r1, r8
     movs r2, #1
     adds r3, r5, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r5, #0xb
     adds r4, #1
     adds r0, r4, #0
@@ -286792,20 +286792,20 @@ func_0809E15C: @ 0x0809E15C
     ldr r5, .L0809E258 @ =0x020144E0
     ldrb r2, [r5]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r7, #6
     mov r8, r0
     adds r0, r4, r0
     ldrb r2, [r5, #2]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     movs r1, #0x14
     adds r1, r1, r7
     mov sl, r1
     adds r0, r4, r1
     ldrb r2, [r5, #0xb]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     movs r0, #0x1e
     adds r0, r0, r7
     mov sb, r0
@@ -286813,74 +286813,74 @@ func_0809E15C: @ 0x0809E15C
     ldrb r2, [r5, #0xa]
     adds r0, r4, #0
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r4, r6, #2
     lsls r4, r4, #6
     adds r0, r4, r7
     ldrb r2, [r5, #3]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     add r8, r4
     ldrb r2, [r5, #4]
     mov r0, r8
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     movs r1, #0xc
     adds r1, r1, r7
     mov r8, r1
     adds r0, r4, r1
     ldrb r2, [r5, #5]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r7, #0
     adds r0, #0x12
     adds r0, r4, r0
     ldrb r2, [r5, #6]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r7, #0
     adds r0, #0x18
     adds r0, r4, r0
     ldrb r2, [r5, #7]
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     add sb, r4
     ldrb r2, [r5, #9]
     mov r0, sb
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r7, #0
     adds r0, #0x24
     adds r4, r4, r0
     ldrb r2, [r5, #8]
     adds r0, r4, #0
     movs r1, #2
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r6, #4
     lsls r6, r6, #6
     add r8, r6
     ldr r2, [r5, #0x10]
     mov r0, r8
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     add sl, r6
     ldrh r2, [r5, #0xc]
     mov r0, sl
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     adds r0, r7, #0
     adds r0, #0x1a
     adds r0, r6, r0
     ldrb r2, [r5, #0xe]
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     adds r0, r7, #0
     adds r0, #0x20
     adds r6, r6, r0
     ldrb r2, [r5, #0xf]
     adds r0, r6, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     pop {r3, r4, r5}
     mov r8, r3
     mov sb, r4
@@ -303286,7 +303286,7 @@ func_080A5F18: @ 0x080A5F18
     bl Text_DrawString
     ldr r1, .L080A5F78 @ =0x020238AE
     adds r0, r4, #0
-    bl func_08005590
+    bl PutText
     b .L080A5F88
     .align 2, 0
 .L080A5F6C: .4byte 0x02000044
@@ -304391,7 +304391,7 @@ func_080A6748: @ 0x080A6748
     bl InitSpriteText
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     adds r4, #8
     subs r5, #1
     cmp r5, #0
@@ -305245,7 +305245,7 @@ func_080A6E2C: @ 0x080A6E2C
     adds r4, #0x20
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     movs r0, #0
     bl SetTextFont
     movs r0, #2
@@ -305628,7 +305628,7 @@ func_080A715C: @ 0x080A715C
     adds r4, #0x20
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     movs r0, #0
     bl SetTextFont
     movs r0, #2
@@ -305906,7 +305906,7 @@ func_080A73AC: @ 0x080A73AC
     adds r4, #0x20
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     movs r0, #0
     bl SetTextFont
     movs r0, #2
@@ -306214,7 +306214,7 @@ func_080A75F0: @ 0x080A75F0
     adds r1, r4, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     mov r1, r8
     ldr r0, [r1, #0x2c]
     bl DecodeMsg
@@ -306227,7 +306227,7 @@ func_080A75F0: @ 0x080A75F0
     adds r1, r4, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #2
     bl EnableBgSync
     add sp, #8
@@ -306279,7 +306279,7 @@ func_080A7668: @ 0x080A7668
     adds r1, r6, #0
     movs r2, #2
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r5, #8
     adds r4, r4, r5
     ldr r0, [r4]
@@ -306292,7 +306292,7 @@ func_080A7668: @ 0x080A7668
     adds r1, r6, #0
     movs r2, #2
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #2
     bl EnableBgSync
     add sp, #8
@@ -306340,7 +306340,7 @@ func_080A76F8: @ 0x080A76F8
     str r3, [sp, #4]
     adds r0, r5, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     movs r0, #2
     bl EnableBgSync
     adds r0, r4, #0
@@ -306398,7 +306398,7 @@ func_080A76F8: @ 0x080A76F8
     str r3, [sp, #4]
     adds r0, r4, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
 .L080A77AA:
     add sp, #8
     pop {r4, r5, r6, r7}
@@ -311412,7 +311412,7 @@ func_080A9D1C: @ 0x080A9D1C
     bl InitSpriteText
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     adds r4, #8
     subs r5, #1
     cmp r5, #0
@@ -313410,7 +313410,7 @@ func_080AABD0: @ 0x080AABD0
     adds r6, r1, #0
     ldr r0, [r5]
     mov r1, sp
-    bl func_08005658
+    bl GetCharTextLen
     adds r4, r0, #0
     ldr r1, [r5]
     subs r4, r4, r1
@@ -314947,7 +314947,7 @@ func_080AB654: @ 0x080AB654
     movs r1, #1
     movs r2, #0x14
     movs r3, #0x14
-    bl func_080063AC
+    bl PutTwoSpecialChar
     b .L080AB730
     .align 2, 0
 .L080AB6C4: .4byte 0x08CE4D28
@@ -314976,7 +314976,7 @@ func_080AB654: @ 0x080AB654
     adds r0, r0, r1
     adds r2, r4, #1
     adds r1, r5, #0
-    bl func_080061D8
+    bl PutNumber
     b .L080AB730
     .align 2, 0
 .L080AB700: .4byte gBg2Tm
@@ -315002,7 +315002,7 @@ func_080AB654: @ 0x080AB654
     adds r0, r0, r1
     adds r2, r4, #1
     adds r1, r5, #0
-    bl func_080063CC
+    bl PutNumber2Digit
 .L080AB730:
     adds r4, #1
     adds r0, r7, #0
@@ -315042,11 +315042,11 @@ func_080AB75C: @ 0x080AB75C
 .L080AB76E:
     ldrb r2, [r1]
     adds r1, r3, #0
-    bl func_080061D8
+    bl PutNumber
     ldr r0, .L080AB788 @ =0x0201EA90
     adds r1, r4, #0
     adds r1, #8
-    bl func_08005590
+    bl PutText
     pop {r4}
     pop {r0}
     bx r0
@@ -316545,7 +316545,7 @@ func_080AC384: @ 0x080AC384
     adds r4, #0x18
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     movs r0, #0xa0
     adds r1, r5, #0
     bl GetStringTextCenteredPos
@@ -317810,7 +317810,7 @@ func_080ACCF4: @ 0x080ACCF4
     mov r0, r8
     ldr r2, [sp, #0xc]
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     mov r0, sl
     adds r0, #0x16
     adds r5, r4, r0
@@ -317824,7 +317824,7 @@ func_080ACCF4: @ 0x080ACCF4
     adds r2, r0, #0
     adds r0, r5, #0
     adds r1, r4, #0
-    bl func_080061E4
+    bl PutNumberOrBlank
     adds r0, r7, #0
     bl GetItemIcon
     adds r1, r0, #0
@@ -317845,7 +317845,7 @@ func_080ACCF4: @ 0x080ACCF4
     mov r0, r8
     ldr r2, [sp, #0xc]
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r0, r7, #0
     bl GetItemIcon
     adds r1, r0, #0
@@ -317996,12 +317996,12 @@ func_080ACF08: @ 0x080ACF08
     adds r2, r0, #0
     adds r0, r4, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     adds r4, #2
     adds r0, r4, #0
     movs r1, #3
     movs r2, #0x1e
-    bl func_0800615C
+    bl PutSpecialChar
     movs r0, #3
     bl EnableBgSync
     add sp, #4
@@ -318776,7 +318776,7 @@ func_080AD49C: @ 0x080AD49C
     adds r0, r6, #0
     movs r1, #0
     adds r2, r7, #0
-    bl func_08005588
+    bl Text_SetParams
     ldr r0, .L080AD5BC @ =0x0000125A
     bl DecodeMsg
     adds r1, r0, #0
@@ -318800,7 +318800,7 @@ func_080AD49C: @ 0x080AD49C
     adds r0, r6, #0
     movs r1, #0
     adds r2, r7, #0
-    bl func_08005588
+    bl Text_SetParams
     ldr r0, [r4]
     ldrh r0, [r0]
     bl DecodeMsg
@@ -318826,7 +318826,7 @@ func_080AD49C: @ 0x080AD49C
     strb r1, [r0]
     adds r0, r6, #0
     mov r1, sl
-    bl func_08005590
+    bl PutText
     movs r1, #1
     cmp r7, #0
     bne .L080AD616
@@ -318834,7 +318834,7 @@ func_080AD49C: @ 0x080AD49C
 .L080AD616:
     ldr r0, [sp, #8]
     adds r2, r5, #0
-    bl func_080061D8
+    bl PutNumber
     adds r6, #8
     ldr r3, [sp, #8]
     adds r3, #0x80
@@ -319159,7 +319159,7 @@ func_080AD820: @ 0x080AD820
     adds r0, r5, #0
     movs r1, #0
     movs r2, #0
-    bl func_08005588
+    bl Text_SetParams
     adds r0, r5, #0
     movs r1, #0
     bl Text_SetCursor
@@ -319172,10 +319172,10 @@ func_080AD820: @ 0x080AD820
     bl GetItemNameWithArticle
     mov r8, r0
     adds r0, r7, #0
-    bl func_080055FC
+    bl GetStringTextLen
     adds r4, r0, #0
     mov r0, r8
-    bl func_080055FC
+    bl GetStringTextLen
     adds r0, r4, r0
     adds r4, r0, #7
     cmp r4, #0
@@ -319204,7 +319204,7 @@ func_080AD820: @ 0x080AD820
     add r0, sl
     adds r1, r1, r0
     adds r0, r5, #0
-    bl func_08005590
+    bl PutText
     adds r4, #5
     adds r4, r6, r4
     lsls r4, r4, #1
@@ -319407,7 +319407,7 @@ func_080ADA90: @ 0x080ADA90
 func_080ADADC: @ 0x080ADADC
     push {r4, lr}
     adds r4, r0, #0
-    bl func_08006018
+    bl EndGreenText
     adds r0, r4, #0
     bl func_080A9DC0
     movs r0, #0
@@ -319695,7 +319695,7 @@ func_080ADCC4: @ 0x080ADCC4
     str r3, [sp, #4]
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     add sp, #8
     pop {r4, r5, r6}
     pop {r0}
@@ -319752,7 +319752,7 @@ func_080ADD34: @ 0x080ADD34
     adds r1, r5, #0
     movs r2, #0
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     add sp, #8
     pop {r3, r4}
     mov r8, r3
@@ -319859,7 +319859,7 @@ func_080ADDB4: @ 0x080ADDB4
     lsls r1, r1, #1
     ldr r2, .L080ADE8C @ =gBg2Tm
     adds r1, r1, r2
-    bl func_08005590
+    bl PutText
     add sp, #0xc
     pop {r3, r4, r5}
     mov r8, r3
@@ -323664,13 +323664,13 @@ func_080AF99C: @ 0x080AF99C
     ldr r0, .L080AFD7C @ =0x0200FB68
     adds r0, r4, r0
     mov r1, r8
-    bl func_08005590
+    bl PutText
     ldr r1, [sp, #0x38]
     adds r0, r1, r7
     ldrb r2, [r0]
     mov r0, sl
     movs r1, #0
-    bl func_080061D8
+    bl PutNumber
     movs r2, #0x80
     add sl, r2
     add r8, r2
@@ -327312,7 +327312,7 @@ func_080B1844: @ 0x080B1844
     ldr r0, [r7]
     movs r1, #3
     movs r2, #0x1e
-    bl func_0800615C
+    bl PutSpecialChar
     add sp, #4
     pop {r7}
     pop {r0}
@@ -327372,7 +327372,7 @@ func_080B18B0: @ 0x080B18B0
     adds r2, r0, #0
     ldr r0, [r7]
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     movs r0, #1
     bl EnableBgSync
     add sp, #4
@@ -327444,7 +327444,7 @@ func_080B18E8: @ 0x080B18E8
     lsls r2, r1, #1
     ldr r3, .L080B1978 @ =0x02023C6E
     adds r1, r2, r3
-    bl func_080055E0
+    bl PutBlankText
     ldr r0, [r7, #4]
     adds r1, r0, #1
     str r1, [r7, #4]
@@ -327685,7 +327685,7 @@ func_080B1AD8: @ 0x080B1AD8
     lsls r2, r1, #1
     ldr r3, .L080B1B60 @ =0x02023C6E
     adds r1, r2, r3
-    bl func_080055E0
+    bl PutBlankText
     ldr r0, [r7, #4]
     adds r1, r0, #1
     str r1, [r7, #4]
@@ -327867,7 +327867,7 @@ func_080B1C70: @ 0x080B1C70
 .L080B1CBA:
     ldr r2, [r7, #0x10]
     adds r0, r4, #0
-    bl func_080061D8
+    bl PutNumber
     add sp, #0x14
     pop {r4, r7}
     pop {r0}
@@ -327910,7 +327910,7 @@ func_080B1CCC: @ 0x080B1CCC
     lsrs r2, r1, #0x10
     adds r0, r4, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     b .L080B1D32
 .L080B1D1E:
     ldr r1, .L080B1D3C @ =0x0000127E
@@ -330161,7 +330161,7 @@ func_080B2DF8: @ 0x080B2DF8
     movs r2, #8
     ldrsb r2, [r3, r2]
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     ldr r4, .L080B2EA4 @ =0x02022F70
     ldr r0, .L080B2EA0 @ =0x0203A7F4
     ldr r1, [r0, #4]
@@ -338642,7 +338642,7 @@ func_080B6DE4: @ 0x080B6DE4
     bl InitSpriteText
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     adds r4, #8
     subs r5, #1
     cmp r5, #0
@@ -338669,7 +338669,7 @@ func_080B6E28: @ 0x080B6E28
 .L080B6E38:
     adds r0, r5, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     adds r5, #8
     subs r4, #1
     cmp r4, #0
@@ -338695,7 +338695,7 @@ func_080B6E58: @ 0x080B6E58
     adds r5, r5, r4
     adds r0, r5, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     movs r0, #0
     bl SetTextFont
     pop {r4, r5}
@@ -338727,7 +338727,7 @@ func_080B6E84: @ 0x080B6E84
 .L080B6EA4:
     adds r0, r1, #0
     mov r1, sp
-    bl func_08005658
+    bl GetCharTextLen
     adds r1, r0, #0
     ldr r0, [sp]
     adds r4, r4, r0
@@ -338990,7 +338990,7 @@ func_080B70B4: @ 0x080B70B4
     bl SetTextFontGlyphs
     adds r0, r7, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     adds r0, r7, #0
     movs r1, #1
     bl Text_SetColor
@@ -341848,7 +341848,7 @@ func_080B8654: @ 0x080B8654
     movs r2, #0
     str r2, [sp]
     str r6, [sp, #4]
-    bl func_08005AD4
+    bl PutDrawText
     b .L080B8828
     .align 2, 0
 .L080B8708: .4byte 0x00001078
@@ -341872,7 +341872,7 @@ func_080B8654: @ 0x080B8654
     str r4, [sp]
     str r6, [sp, #4]
     movs r2, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L080B885C @ =0x000012AB
     bl DecodeMsg
     adds r2, r0, #0
@@ -341884,7 +341884,7 @@ func_080B8654: @ 0x080B8654
     str r2, [sp, #4]
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L080B8860 @ =0x000012AC
     bl DecodeMsg
     adds r2, r0, #0
@@ -341896,7 +341896,7 @@ func_080B8654: @ 0x080B8654
     str r2, [sp, #4]
     movs r2, #3
     movs r3, #0x20
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L080B8864 @ =0x000012AD
     bl DecodeMsg
     adds r2, r0, #0
@@ -341908,7 +341908,7 @@ func_080B8654: @ 0x080B8654
     str r2, [sp, #4]
     movs r2, #3
     movs r3, #0x40
-    bl func_08005AD4
+    bl PutDrawText
     mov r1, r8
     ldrh r0, [r1, #0x3c]
     bl func_080AAD00
@@ -341920,7 +341920,7 @@ func_080B8654: @ 0x080B8654
     ldrh r2, [r4, #0x3c]
     adds r0, r1, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     adds r4, #0x40
     ldrh r0, [r4]
     bl func_080AAD00
@@ -341931,7 +341931,7 @@ func_080B8654: @ 0x080B8654
     ldrh r2, [r4]
     adds r0, r1, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     adds r4, #4
     ldrh r0, [r4]
     bl func_080AAD00
@@ -341942,7 +341942,7 @@ func_080B8654: @ 0x080B8654
     ldrh r2, [r4]
     adds r0, r1, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     ldr r2, .L080B8868 @ =0x08BDCE4C
     mov r1, r8
     ldr r0, [r1, #0x38]
@@ -342117,7 +342117,7 @@ func_080B88E0: @ 0x080B88E0
     mov r8, r2
     str r2, [sp]
     str r5, [sp, #4]
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L080B8B64 @ =0x000012AB
     bl DecodeMsg
     adds r2, r0, #0
@@ -342131,7 +342131,7 @@ func_080B88E0: @ 0x080B88E0
     str r2, [sp, #4]
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L080B8B6C @ =0x000012AC
     mov sl, r0
     bl DecodeMsg
@@ -342145,7 +342145,7 @@ func_080B88E0: @ 0x080B88E0
     str r2, [sp, #4]
     movs r2, #3
     movs r3, #0x20
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L080B8B70 @ =0x000012AD
     mov sb, r0
     bl DecodeMsg
@@ -342159,7 +342159,7 @@ func_080B88E0: @ 0x080B88E0
     str r2, [sp, #4]
     movs r2, #3
     movs r3, #0x40
-    bl func_08005AD4
+    bl PutDrawText
     ldrh r0, [r7, #0x3c]
     bl func_080AAD00
     lsls r0, r0, #1
@@ -342169,7 +342169,7 @@ func_080B88E0: @ 0x080B88E0
     ldrh r2, [r7, #0x3c]
     adds r0, r1, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     adds r5, r7, #0
     adds r5, #0x40
     ldrh r0, [r5]
@@ -342182,7 +342182,7 @@ func_080B88E0: @ 0x080B88E0
     ldrh r2, [r5]
     adds r0, r1, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     adds r5, #4
     ldrh r0, [r5]
     bl func_080AAD00
@@ -342194,7 +342194,7 @@ func_080B88E0: @ 0x080B88E0
     ldrh r2, [r5]
     adds r0, r1, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     ldr r0, [r7, #0x38]
     ldrb r0, [r0, #2]
     bl func_080B7EB0
@@ -342213,7 +342213,7 @@ func_080B88E0: @ 0x080B88E0
     str r2, [sp]
     str r5, [sp, #4]
     movs r2, #0
-    bl func_08005AD4
+    bl PutDrawText
     ldr r0, .L080B8B64 @ =0x000012AB
     bl DecodeMsg
     adds r2, r0, #0
@@ -342226,7 +342226,7 @@ func_080B88E0: @ 0x080B88E0
     str r2, [sp, #4]
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     mov r0, sl
     bl DecodeMsg
     adds r2, r0, #0
@@ -342239,7 +342239,7 @@ func_080B88E0: @ 0x080B88E0
     str r2, [sp, #4]
     movs r2, #3
     movs r3, #0x20
-    bl func_08005AD4
+    bl PutDrawText
     mov r0, sb
     bl DecodeMsg
     adds r2, r0, #0
@@ -342252,7 +342252,7 @@ func_080B88E0: @ 0x080B88E0
     str r2, [sp, #4]
     movs r2, #3
     movs r3, #0x40
-    bl func_08005AD4
+    bl PutDrawText
     ldrh r0, [r7, #0x3e]
     bl func_080AAD00
     lsls r0, r0, #1
@@ -342262,7 +342262,7 @@ func_080B88E0: @ 0x080B88E0
     ldrh r2, [r7, #0x3e]
     adds r0, r1, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     adds r5, r7, #0
     adds r5, #0x42
     ldrh r0, [r5]
@@ -342274,7 +342274,7 @@ func_080B88E0: @ 0x080B88E0
     ldrh r2, [r5]
     adds r0, r1, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     adds r5, #4
     ldrh r0, [r5]
     bl func_080AAD00
@@ -342285,7 +342285,7 @@ func_080B88E0: @ 0x080B88E0
     ldrh r2, [r5]
     adds r0, r1, #0
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     mov r0, r8
     str r0, [r7, #0x34]
     ldr r2, .L080B8B80 @ =gDispIo
@@ -342541,7 +342541,7 @@ func_080B8CAC: @ 0x080B8CAC
     adds r0, r0, r4
     ldr r1, .L080B8D14 @ =0x02022C64
     adds r1, r7, r1
-    bl func_08005590
+    bl PutText
     adds r7, #0x80
     adds r5, #1
     cmp r5, #4
@@ -343414,7 +343414,7 @@ func_080B9340: @ 0x080B9340
     str r2, [sp, #4]
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r0, r5, #0
     adds r0, #0x17
     lsls r0, r0, #1
@@ -343422,7 +343422,7 @@ func_080B9340: @ 0x080B9340
     adds r0, r0, r1
     movs r1, #2
     adds r2, r4, #0
-    bl func_080061D8
+    bl PutNumber
     mov r2, sb
     ldr r0, [r2]
     adds r0, #0x90
@@ -343431,7 +343431,7 @@ func_080B9340: @ 0x080B9340
     lsls r1, r1, #1
     ldr r3, .L080B93FC @ =gBg1Tm
     adds r1, r1, r3
-    bl func_08005590
+    bl PutText
     movs r0, #0
     b .L080B9638
     .align 2, 0
@@ -343493,7 +343493,7 @@ func_080B9340: @ 0x080B9340
     str r2, [sp, #4]
     movs r2, #3
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     adds r4, r7, #0
     b .L080B9542
     .align 2, 0
@@ -343509,7 +343509,7 @@ func_080B9340: @ 0x080B9340
     ldr r2, .L080B94EC @ =gBg1Tm
     mov sb, r2
     add r1, sb
-    bl func_08005590
+    bl PutText
     movs r7, #0
     adds r5, r4, #0
     mov r3, r8
@@ -343524,7 +343524,7 @@ func_080B9340: @ 0x080B9340
     add r0, sb
     movs r1, #2
     mov r2, r8
-    bl func_080061D8
+    bl PutNumber
     cmp r6, #0x19
     bne .L080B94F4
     ldr r0, .L080B94F0 @ =0x00001189
@@ -343545,7 +343545,7 @@ func_080B9340: @ 0x080B9340
     str r3, [sp, #4]
     movs r2, #2
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     b .L080B9542
     .align 2, 0
 .L080B94E8: .4byte 0x08CEEBA4
@@ -343588,7 +343588,7 @@ func_080B9340: @ 0x080B9340
     str r3, [sp, #4]
     movs r2, #2
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
 .L080B9542:
     cmp r6, #0x2f
     bgt .L080B956C
@@ -343648,7 +343648,7 @@ func_080B9340: @ 0x080B9340
     str r2, [sp]
     str r3, [sp, #4]
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
     b .L080B960E
     .align 2, 0
 .L080B95C0: .4byte gPlaySt
@@ -343685,7 +343685,7 @@ func_080B9340: @ 0x080B9340
     str r2, [sp]
     str r3, [sp, #4]
     movs r3, #0
-    bl func_08005AD4
+    bl PutDrawText
 .L080B960E:
     adds r0, r5, #0
     adds r0, #0x14
@@ -343695,7 +343695,7 @@ func_080B9340: @ 0x080B9340
     adds r0, r0, r4
     movs r1, #2
     adds r2, r7, #0
-    bl func_080061D8
+    bl PutNumber
     ldr r0, .L080B964C @ =0x08CEEBA4
     ldr r0, [r0]
     adds r0, #0x90
@@ -343704,7 +343704,7 @@ func_080B9340: @ 0x080B9340
     adds r1, #3
     lsls r1, r1, #1
     adds r1, r1, r4
-    bl func_08005590
+    bl PutText
 .L080B9636:
     ldr r0, [sp, #0xc]
 .L080B9638:
@@ -344462,29 +344462,29 @@ func_080B9B38: @ 0x080B9B38
     add r1, sp, #8
     ldrh r2, [r1]
     movs r1, #2
-    bl func_080061D8
+    bl PutNumber
     adds r0, r4, #0
     adds r0, #0xc
     movs r1, #2
     movs r2, #0x20
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r4, #0
     adds r0, #0x10
     mov r7, sb
     ldrh r2, [r7]
     movs r1, #2
-    bl func_080063CC
+    bl PutNumber2Digit
     adds r0, r4, #0
     adds r0, #0x12
     movs r1, #2
     movs r2, #0x20
-    bl func_0800615C
+    bl PutSpecialChar
     adds r0, r4, #0
     adds r0, #0x16
     mov r1, sl
     ldrh r2, [r1]
     movs r1, #2
-    bl func_080063CC
+    bl PutNumber2Digit
     movs r4, #0
     adds r3, r5, #0
     adds r3, #0x4c

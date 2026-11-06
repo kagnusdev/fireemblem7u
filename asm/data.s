@@ -2,7 +2,31 @@
 
     @ B8590C ... B92474
 
-    .incbin "baserom.gba", 0xB8590C, 0xB92474 - 0xB8590C
+    .incbin "baserom.gba", 0xB8590C, 0xB8610C - 0xB8590C
+
+    .global TextColorLutTable
+TextColorLutTable:
+    .incbin "baserom.gba", 0xB8610C, 0xB86140 - 0xB8610C
+
+    .global ProcScr_TextPrint
+ProcScr_TextPrint:
+    .incbin "baserom.gba", 0xB86140, 0xB86150 - 0xB86140
+
+    .global ProcScr_GreenTextColor
+ProcScr_GreenTextColor:
+    .incbin "baserom.gba", 0xB86150, 0xB896B0 - 0xB86150
+
+    .global TextGlyphs_System
+TextGlyphs_System:
+    .incbin "baserom.gba", 0xB896B0, 0xB8B5B0 - 0xB896B0
+
+    .global TextGlyphs_Talk
+TextGlyphs_Talk:
+    .incbin "baserom.gba", 0xB8B5B0, 0xB901B0 - 0xB8B5B0
+
+    .global TextGlyphs_Special
+TextGlyphs_Special:
+    .incbin "baserom.gba", 0xB901B0, 0xB92474 - 0xB901B0
 
     .data
 

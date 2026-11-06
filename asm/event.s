@@ -5426,7 +5426,7 @@ func_08010690: @ 0x08010690
     adds r1, r1, r2
     bl Decompress
     mov r0, sl
-    bl func_080055FC
+    bl GetStringTextLen
     adds r6, r0, #0
     cmp r6, #0
     bge .L0801070C
@@ -5465,7 +5465,7 @@ func_08010690: @ 0x08010690
     bl InitSpriteText
     adds r0, r4, #0
     movs r1, #0
-    bl func_08005CF8
+    bl SpriteText_DrawBackgroundExt
     movs r0, #0
     bl SetTextFontGlyphs
     adds r0, r5, #3
