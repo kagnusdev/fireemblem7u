@@ -117271,7 +117271,7 @@ func_0804B214: @ 0x0804B214
     thumb_func_start func_0804B218
 func_0804B218: @ 0x0804B218
     push {r4, lr}
-    bl func_08006508
+    bl AnimClearAll
     ldr r4, .L0804B260 @ =0x02000064
     ldr r0, .L0804B264 @ =0x08B9A9BC
     movs r1, #3
@@ -117414,7 +117414,7 @@ func_0804B328: @ 0x0804B328
     bl func_08006A64
     ldr r0, [r4, #4]
     bl Proc_Run
-    bl func_08006490
+    bl AnimUpdateAll
     bl func_08053454
     ldr r0, [r4, #0x10]
     bl Proc_Run
@@ -118162,7 +118162,7 @@ func_0804B858: @ 0x0804B858
 .L0804B910:
     bl ArenaContinueBattle
     bl func_08052C9C
-    bl func_08006508
+    bl AnimClearAll
     bl func_08054024
     bl func_08054248
     strh r4, [r6, #0x2c]
@@ -120180,7 +120180,7 @@ func_0804C550: @ 0x0804C550
     cmp r0, #0
     bne .L0804C8AC
     add r0, sp, #8
-    bl func_0800667C
+    bl AnimDisplay
 .L0804C8AC:
     movs r4, #0
     str r4, [sp, #0x24]
@@ -120240,7 +120240,7 @@ func_0804C550: @ 0x0804C550
     cmp r0, #0
     bne .L0804C928
     add r0, sp, #8
-    bl func_0800667C
+    bl AnimDisplay
 .L0804C928:
     ldr r4, [sp, #0xf8]
     ldr r0, .L0804CA18 @ =0xFFD80000
@@ -120340,7 +120340,7 @@ func_0804C550: @ 0x0804C550
     add r1, sp, #0xe8
     ldrh r1, [r1]
     strh r1, [r0, #0xc]
-    bl func_0800667C
+    bl AnimDisplay
 .L0804C9E6:
     lsls r1, r7, #0x10
     asrs r1, r1, #0x10
@@ -120387,7 +120387,7 @@ func_0804C550: @ 0x0804C550
     strh r0, [r2, #8]
     adds r0, r2, #0
     strh r3, [r0, #0xc]
-    bl func_0800667C
+    bl AnimDisplay
 .L0804CA4C:
     ldr r2, [sp, #0x100]
     ldr r3, .L0804CB44 @ =0xFFD80000
@@ -120493,7 +120493,7 @@ func_0804C550: @ 0x0804C550
     add r1, sp, #0xf0
     ldrh r1, [r1]
     strh r1, [r0, #0xc]
-    bl func_0800667C
+    bl AnimDisplay
 .L0804CB16:
     lsls r1, r7, #0x10
     asrs r1, r1, #0x10
@@ -120539,7 +120539,7 @@ func_0804C550: @ 0x0804C550
     strh r0, [r2, #8]
     adds r0, r2, #0
     strh r3, [r0, #0xc]
-    bl func_0800667C
+    bl AnimDisplay
 .L0804CB78:
     ldr r2, [sp, #0xd8]
     cmp r2, #1
@@ -120573,7 +120573,7 @@ func_0804C550: @ 0x0804C550
     strh r0, [r1, #4]
     adds r0, r1, #0
     strh r4, [r0, #0xc]
-    bl func_0800667C
+    bl AnimDisplay
     str r4, [sp, #0x24]
     ldr r0, .L0804CD40 @ =0x08B9AA8C
     str r0, [sp, #0x44]
@@ -120594,7 +120594,7 @@ func_0804C550: @ 0x0804C550
     strh r0, [r1, #4]
     adds r0, r1, #0
     strh r4, [r0, #0xc]
-    bl func_0800667C
+    bl AnimDisplay
 .L0804CBE8:
     mov r0, sb
     ldr r4, [r0, #0x50]
@@ -120620,7 +120620,7 @@ func_0804C550: @ 0x0804C550
     strh r0, [r1, #4]
     adds r0, r1, #0
     strh r4, [r0, #0xc]
-    bl func_0800667C
+    bl AnimDisplay
     str r4, [sp, #0x24]
     ldr r0, .L0804CD4C @ =0x08B9AAC8
     str r0, [sp, #0x44]
@@ -120641,7 +120641,7 @@ func_0804C550: @ 0x0804C550
     strh r0, [r1, #4]
     adds r0, r1, #0
     strh r4, [r0, #0xc]
-    bl func_0800667C
+    bl AnimDisplay
 .L0804CC48:
     mov r0, sb
     ldr r4, [r0, #0x4c]
@@ -120675,7 +120675,7 @@ func_0804C550: @ 0x0804C550
     adds r0, r1, #0
     strh r5, [r0, #4]
     strh r4, [r0, #0xc]
-    bl func_0800667C
+    bl AnimDisplay
 .L0804CC8E:
     ldr r0, .L0804CD58 @ =0x08B9AB04
     str r0, [sp, #0x44]
@@ -120694,7 +120694,7 @@ func_0804C550: @ 0x0804C550
     adds r0, r1, #0
     strh r5, [r0, #4]
     strh r4, [r0, #0xc]
-    bl func_0800667C
+    bl AnimDisplay
 .L0804CCB4:
     mov r0, sb
     ldr r4, [r0, #0x50]
@@ -120728,7 +120728,7 @@ func_0804C550: @ 0x0804C550
     adds r0, r1, #0
     strh r5, [r0, #4]
     strh r4, [r0, #0xc]
-    bl func_0800667C
+    bl AnimDisplay
 .L0804CCFA:
     ldr r0, .L0804CD58 @ =0x08B9AB04
     str r0, [sp, #0x44]
@@ -120747,7 +120747,7 @@ func_0804C550: @ 0x0804C550
     adds r0, r1, #0
     strh r5, [r0, #4]
     strh r4, [r0, #0xc]
-    bl func_0800667C
+    bl AnimDisplay
 .L0804CD20:
     add sp, #0x120
     pop {r3, r4, r5}
@@ -123520,7 +123520,7 @@ func_0804E36C: @ 0x0804E36C
     movs r0, #0xa
     strh r0, [r4, #0xa]
     strh r0, [r5, #0xa]
-    bl func_080065F8
+    bl AnimSort
     ldr r2, .L0804E3D8 @ =gDispIo
     adds r1, r2, #0
     adds r1, #0x3c
@@ -124561,7 +124561,7 @@ func_0804EAA8: @ 0x0804EAA8
     ldr r0, .L0804EBD0 @ =0x08B9CAF8
 .L0804EBAA:
     movs r1, #5
-    bl func_08006594
+    bl AnimCreate
     adds r1, r0, #0
     lsls r0, r4, #0x10
     asrs r0, r0, #0x10
@@ -124713,7 +124713,7 @@ func_0804EC88: @ 0x0804EC88
     ldr r0, [r7, #0x64]
     cmp r0, #0
     beq .L0804ED0A
-    bl func_08006650
+    bl AnimDelete
     ldr r0, .L0804EDA0 @ =0x0201FAD0
     bl func_08055320
 .L0804ED0A:
@@ -127680,7 +127680,7 @@ func_0805041C: @ 0x0805041C
     ldr r0, [sp, #0x14]
 .L08050458:
     movs r1, #0x78
-    bl func_08006594
+    bl AnimCreate
     adds r1, r0, #0
     movs r0, #0xa1
     lsls r0, r0, #6
@@ -128424,7 +128424,7 @@ func_080509A4: @ 0x080509A4
     b .L080509F4
 .L080509C2:
     bl func_0804B1AC
-    bl func_08006508
+    bl AnimClearAll
     bl func_0804D43C
     ldr r1, .L080509F8 @ =0x02017744
     str r0, [r1]
@@ -128502,7 +128502,7 @@ func_08050A38: @ 0x08050A38
     bl func_08006A64
     ldr r0, [r4, #0x10]
     bl Proc_Run
-    bl func_08006490
+    bl AnimUpdateAll
     bl func_08053454
     movs r0, #0xd
     bl func_08006A64
@@ -129208,7 +129208,7 @@ func_08050FF4: @ 0x08050FF4
     adds r0, #8
     strh r0, [r4, #0x3c]
     strh r0, [r4, #0x3a]
-    bl func_08006508
+    bl AnimClearAll
     movs r0, #1
     bl func_080516E8
     movs r0, #1
@@ -129685,7 +129685,7 @@ func_08051274: @ 0x08051274
     adds r0, r6, r0
     ldr r0, [r0]
     movs r1, #0x64
-    bl func_08006594
+    bl AnimCreate
     adds r2, r0, #0
     str r2, [r5, #0x5c]
     movs r0, #0x90
@@ -129775,7 +129775,7 @@ func_08051274: @ 0x08051274
     adds r0, r6, r0
     ldr r0, [r0]
     movs r1, #0x64
-    bl func_08006594
+    bl AnimCreate
     adds r2, r0, #0
     str r2, [r5, #0x5c]
     movs r0, #0x90
@@ -129868,7 +129868,7 @@ func_08051274: @ 0x08051274
     adds r0, r6, r0
     ldr r0, [r0]
     movs r1, #0x64
-    bl func_08006594
+    bl AnimCreate
     adds r2, r0, #0
     str r2, [r5, #0x5c]
     movs r0, #0x90
@@ -129931,7 +129931,7 @@ func_08051274: @ 0x08051274
     adds r0, r6, r0
     ldr r0, [r0]
     movs r1, #0x64
-    bl func_08006594
+    bl AnimCreate
     adds r2, r0, #0
     str r2, [r5, #0x5c]
     movs r0, #0x90
@@ -129986,7 +129986,7 @@ func_0805164C: @ 0x0805164C
     cmp r1, r0
     blt .L0805166E
     adds r0, r5, #0
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
     b .L080516DE
@@ -130417,7 +130417,7 @@ func_080518E8: @ 0x080518E8
     strh r1, [r5, #8]
     str r0, [r5, #0x1c]
     adds r0, r5, #0
-    bl func_0800667C
+    bl AnimDisplay
 .L080519E2:
     ldr r1, [r4, #0x50]
     cmp r1, #1
@@ -130495,7 +130495,7 @@ func_080518E8: @ 0x080518E8
     strh r1, [r5, #8]
     str r0, [r5, #0x1c]
     adds r0, r5, #0
-    bl func_0800667C
+    bl AnimDisplay
 .L08051A82:
     movs r3, #0xd3
     lsls r3, r3, #2
@@ -134590,7 +134590,7 @@ func_08053460: @ 0x08053460
     strh r0, [r7, #8]
     movs r0, #0x8c
     strh r0, [r7, #0xa]
-    bl func_080065F8
+    bl AnimSort
     b .L08053D06
     .align 2, 0
 .L08053A94: .4byte 0x0000FFFE
@@ -135716,7 +135716,7 @@ func_08054330: @ 0x08054330
     ldr r0, .L08054460 @ =0x08B9B28C
 .L08054398:
     adds r1, r6, #0
-    bl func_08006594
+    bl AnimCreate
     adds r2, r0, #0
     ldr r1, .L08054450 @ =0x02000028
     ldr r0, .L08054464 @ =0x0201FB00
@@ -135758,7 +135758,7 @@ func_08054330: @ 0x08054330
     ldr r0, .L08054460 @ =0x08B9B28C
 .L080543EC:
     mov r1, sb
-    bl func_08006594
+    bl AnimCreate
     adds r2, r0, #0
     ldr r1, .L08054450 @ =0x02000028
     ldr r0, .L08054464 @ =0x0201FB00
@@ -135856,7 +135856,7 @@ func_08054474: @ 0x08054474
     ldr r0, .L08054580 @ =0x08B9B28C
 .L080544C6:
     adds r1, r4, #0
-    bl func_08006594
+    bl AnimCreate
     adds r2, r0, #0
     ldr r1, .L08054570 @ =0x02000028
     ldr r0, .L08054584 @ =0x0201FB00
@@ -135897,7 +135897,7 @@ func_08054474: @ 0x08054474
     ldr r0, .L08054580 @ =0x08B9B28C
 .L08054518:
     adds r1, r7, #0
-    bl func_08006594
+    bl AnimCreate
     adds r2, r0, #0
     ldr r1, .L08054570 @ =0x02000028
     ldr r0, .L08054584 @ =0x0201FB00
@@ -136041,7 +136041,7 @@ func_08054594: @ 0x08054594
     ldr r0, .L08054660 @ =0x020041C8
     adds r1, r1, r0
     str r1, [r4, #0x30]
-    bl func_080065F8
+    bl AnimSort
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
@@ -136708,7 +136708,7 @@ func_08054AF0: @ 0x08054AF0
     str r0, [r1]
     mov r1, r8
     adds r0, r7, #0
-    bl func_08006594
+    bl AnimCreate
     adds r2, r0, #0
     ldr r0, [r5, #0x24]
     str r0, [r2, #0x30]
@@ -136744,7 +136744,7 @@ func_08054AF0: @ 0x08054AF0
     str r5, [r2, #0x44]
     ldr r1, [sp]
     mov r0, sl
-    bl func_08006594
+    bl AnimCreate
     adds r2, r0, #0
     ldr r0, [r5, #0x24]
     str r0, [r2, #0x30]
@@ -137101,7 +137101,7 @@ func_08054E88: @ 0x08054E88
     movs r1, #4
     bl Proc_Start
     str r0, [r4]
-    bl func_08006508
+    bl AnimClearAll
     pop {r4}
     pop {r0}
     bx r0
@@ -137125,7 +137125,7 @@ func_08054EA8: @ 0x08054EA8
     thumb_func_start func_08054EBC
 func_08054EBC: @ 0x08054EBC
     push {lr}
-    bl func_08006490
+    bl AnimUpdateAll
     pop {r0}
     bx r0
     func_end func_08054EBC
@@ -137156,9 +137156,9 @@ func_08054EF0: @ 0x08054EF0
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x14]
-    bl func_08006650
+    bl AnimDelete
     ldr r0, [r4, #0x18]
-    bl func_08006650
+    bl AnimDelete
     movs r0, #0
     str r0, [r4, #0x14]
     str r0, [r4, #0x18]
@@ -137997,7 +137997,7 @@ func_0805555C: @ 0x0805555C
 func_08055570: @ 0x08055570
     push {lr}
     bl func_0804B1AC
-    bl func_08006508
+    bl AnimClearAll
     bl func_0804D43C
     ldr r1, .L08055590 @ =0x02017744
     str r0, [r1]
@@ -138013,7 +138013,7 @@ func_08055570: @ 0x08055570
     thumb_func_start func_08055594
 func_08055594: @ 0x08055594
     push {lr}
-    bl func_08006508
+    bl AnimClearAll
     bl func_08055734
     ldr r0, .L080555A8 @ =func_08050A38
     bl SetMainFunc
@@ -140118,7 +140118,7 @@ func_080565D0: @ 0x080565D0
     subs r0, #1
     str r0, [r1]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r0, .L08056614 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -140247,7 +140247,7 @@ func_080566D4: @ 0x080566D4
     ldr r0, [r4, #0x64]
     bl Proc_End
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L08056706:
@@ -140519,7 +140519,7 @@ func_08056908: @ 0x08056908
     subs r1, #1
     str r1, [r0]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L0805692E:
@@ -141113,7 +141113,7 @@ func_08056E4C: @ 0x08056E4C
     subs r1, #1
     str r1, [r0]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L08056E72:
@@ -141444,7 +141444,7 @@ func_08057108: @ 0x08057108
     cmp r0, r1
     ble .L08057130
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L08057138 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -141813,7 +141813,7 @@ func_0805740C: @ 0x0805740C
     cmp r0, #0xa
     ble .L08057432
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L08057438 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -142424,7 +142424,7 @@ func_08057904: @ 0x08057904
     cmp r0, r1
     ble .L0805792C
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L08057934 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -142668,7 +142668,7 @@ func_08057AD0: @ 0x08057AD0
     cmp r0, r1
     ble .L08057B26
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L08057B2C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -142978,7 +142978,7 @@ func_08057D84: @ 0x08057D84
     subs r1, #1
     str r1, [r2]
     ldr r0, [r0, #0x60]
-    bl func_08006650
+    bl AnimDelete
     pop {r0}
     bx r0
     .align 2, 0
@@ -143304,7 +143304,7 @@ func_08058010: @ 0x08058010
     subs r1, #1
     str r1, [r0]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L08058038:
@@ -143667,7 +143667,7 @@ func_08058310: @ 0x08058310
     cmp r0, #0x32
     ble .L08058336
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L0805833C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -144046,7 +144046,7 @@ func_08058614: @ 0x08058614
     cmp r0, #0x32
     ble .L08058652
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L08058658 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -144411,7 +144411,7 @@ func_08058920: @ 0x08058920
     cmp r0, #0x28
     ble .L08058946
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L0805894C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -144879,7 +144879,7 @@ func_08058CF8: @ 0x08058CF8
     cmp r0, #0x33
     ble .L08058D1E
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L08058D24 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -144994,7 +144994,7 @@ func_08058DA0: @ 0x08058DA0
     strb r0, [r1]
     ldr r0, .L08058E38 @ =0x08BB9228
     movs r1, #0x78
-    bl func_08006594
+    bl AnimCreate
     str r0, [r7, #0x60]
     movs r1, #0xa1
     lsls r1, r1, #6
@@ -145127,7 +145127,7 @@ func_08058EF8: @ 0x08058EF8
     subs r0, #1
     str r0, [r1]
     adds r0, r3, #0
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
     b .L08058FA8
@@ -145471,7 +145471,7 @@ func_080591C8: @ 0x080591C8
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L080591E8 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -146196,7 +146196,7 @@ func_0805978C: @ 0x0805978C
     subs r1, #1
     str r1, [r2]
     ldr r0, [r0, #0x60]
-    bl func_08006650
+    bl AnimDelete
     pop {r0}
     bx r0
     .align 2, 0
@@ -146299,7 +146299,7 @@ func_08059858: @ 0x08059858
     strh r0, [r1, #6]
     movs r0, #0x14
     strh r0, [r1, #0xa]
-    bl func_080065F8
+    bl AnimSort
     movs r0, #0x27
     strh r0, [r4, #0x2c]
     adds r0, r4, #0
@@ -147717,7 +147717,7 @@ func_0805A36C: @ 0x0805A36C
 func_0805A3D8: @ 0x0805A3D8
     push {lr}
     ldr r0, [r0, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L0805A3EC @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -148460,7 +148460,7 @@ func_0805A928: @ 0x0805A928
     ldr r0, .L0805AA08 @ =0x08BD2458
 .L0805A9EA:
     movs r1, #0x78
-    bl func_08006594
+    bl AnimCreate
     adds r1, r0, #0
     str r1, [r7, #0x60]
 .L0805A9F4:
@@ -148508,7 +148508,7 @@ func_0805AA28: @ 0x0805AA28
     subs r0, #1
     str r0, [r1]
     adds r0, r5, #0
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
     b .L0805AA74
@@ -148840,7 +148840,7 @@ func_0805AC1C: @ 0x0805AC1C
     ldr r0, .L0805AD1C @ =0x08BD24D0
 .L0805ACFE:
     movs r1, #0x78
-    bl func_08006594
+    bl AnimCreate
     adds r1, r0, #0
     str r1, [r7, #0x60]
 .L0805AD08:
@@ -148897,7 +148897,7 @@ func_0805AD44: @ 0x0805AD44
     subs r0, #1
     str r0, [r1]
     adds r0, r6, #0
-    bl func_08006650
+    bl AnimDelete
     adds r0, r5, #0
     bl Proc_Break
     b .L0805ADE4
@@ -149513,7 +149513,7 @@ func_0805B260: @ 0x0805B260
     cmp r0, #0x2c
     bne .L0805B286
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L0805B28C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -150219,7 +150219,7 @@ func_0805B798: @ 0x0805B798
     ldr r0, .L0805B860 @ =0x08BD17C0
 .L0805B842:
     movs r1, #0x78
-    bl func_08006594
+    bl AnimCreate
     adds r1, r0, #0
     str r1, [r4, #0x60]
     cmp r1, #0
@@ -150265,7 +150265,7 @@ func_0805B87C: @ 0x0805B87C
     subs r0, #1
     str r0, [r1]
     adds r0, r6, #0
-    bl func_08006650
+    bl AnimDelete
     adds r0, r5, #0
     bl Proc_Break
     b .L0805B8EC
@@ -150454,9 +150454,9 @@ func_0805B9A4: @ 0x0805B9A4
     cmp r0, r1
     ble .L0805BA34
     adds r0, r6, #0
-    bl func_08006650
+    bl AnimDelete
     adds r0, r5, #0
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L0805BA44 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -150599,7 +150599,7 @@ func_0805BACC: @ 0x0805BACC
     ldr r0, .L0805BB58 @ =0x08BD185C
 .L0805BB3A:
     movs r1, #0x78
-    bl func_08006594
+    bl AnimCreate
     adds r1, r0, #0
     str r1, [r5, #0x60]
     cmp r1, #0
@@ -150645,7 +150645,7 @@ func_0805BB74: @ 0x0805BB74
     subs r0, #1
     str r0, [r1]
     adds r0, r6, #0
-    bl func_08006650
+    bl AnimDelete
     adds r0, r5, #0
     bl Proc_Break
     b .L0805BBE4
@@ -151200,7 +151200,7 @@ func_0805C010: @ 0x0805C010
     subs r1, #1
     str r1, [r2]
     ldr r0, [r0, #0x60]
-    bl func_08006650
+    bl AnimDelete
     pop {r0}
     bx r0
     .align 2, 0
@@ -151476,7 +151476,7 @@ func_0805C238: @ 0x0805C238
     subs r1, #1
     str r1, [r2]
     ldr r0, [r0, #0x60]
-    bl func_08006650
+    bl AnimDelete
     pop {r0}
     bx r0
     .align 2, 0
@@ -151991,7 +151991,7 @@ func_0805C644: @ 0x0805C644
     subs r1, #1
     str r1, [r0]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L0805C66C:
@@ -152345,7 +152345,7 @@ func_0805C8F0: @ 0x0805C8F0
     ldr r0, .L0805C96C @ =0x08BBB594
 .L0805C946:
     movs r1, #0x78
-    bl func_08006594
+    bl AnimCreate
     adds r1, r0, #0
     str r1, [r5, #0x60]
 .L0805C950:
@@ -152418,7 +152418,7 @@ func_0805C970: @ 0x0805C970
     subs r1, #1
     str r1, [r0]
     ldr r0, [r6, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r6, #0
     bl Proc_Break
 .L0805C9DE:
@@ -153823,7 +153823,7 @@ func_0805D4F4: @ 0x0805D4F4
     subs r1, #1
     str r1, [r0]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L0805D51C:
@@ -153880,7 +153880,7 @@ func_0805D55C: @ 0x0805D55C
     subs r1, #1
     str r1, [r0]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L0805D584:
@@ -154048,7 +154048,7 @@ func_0805D6A4: @ 0x0805D6A4
     subs r1, #1
     str r1, [r0]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L0805D6CC:
@@ -155295,7 +155295,7 @@ func_0805E090: @ 0x0805E090
 func_0805E0E8: @ 0x0805E0E8
     push {lr}
     ldr r0, [r0, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L0805E0FC @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -156364,7 +156364,7 @@ func_0805E968: @ 0x0805E968
     orrs r0, r1
     strh r0, [r2, #8]
     mov r0, sp
-    bl func_0800667C
+    bl AnimDisplay
     ldrh r0, [r4, #0x2c]
     adds r0, #1
     strh r0, [r4, #0x2c]
@@ -156446,7 +156446,7 @@ func_0805EA34: @ 0x0805EA34
     subs r1, #1
     str r1, [r2]
     ldr r0, [r0, #0x60]
-    bl func_08006650
+    bl AnimDelete
     pop {r0}
     bx r0
     .align 2, 0
@@ -157020,7 +157020,7 @@ func_0805EEB8: @ 0x0805EEB8
 func_0805EEF8: @ 0x0805EEF8
     push {lr}
     ldr r0, [r0, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L0805EF0C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -158797,7 +158797,7 @@ func_0805FCAC: @ 0x0805FCAC
     subs r1, #1
     str r1, [r0]
     ldr r0, [r5, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r5, #0
     bl Proc_Break
 .L0805FD34:
@@ -160757,7 +160757,7 @@ func_08060CC8: @ 0x08060CC8
     subs r1, #1
     str r1, [r0]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L08060CF0:
@@ -160827,7 +160827,7 @@ func_08060D70: @ 0x08060D70
     subs r1, #1
     str r1, [r2]
     ldr r0, [r0, #0x60]
-    bl func_08006650
+    bl AnimDelete
     pop {r0}
     bx r0
     .align 2, 0
@@ -162152,7 +162152,7 @@ func_08061840: @ 0x08061840
     subs r1, #1
     str r1, [r0]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L08061868:
@@ -162891,7 +162891,7 @@ func_08061DE8: @ 0x08061DE8
 func_08061E58: @ 0x08061E58
     push {lr}
     ldr r0, [r0, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L08061E6C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -162937,7 +162937,7 @@ func_08061E70: @ 0x08061E70
     strh r1, [r0, #8]
     movs r1, #0x14
     strh r1, [r0, #0xa]
-    bl func_080065F8
+    bl AnimSort
     add sp, #4
     pop {r4, r5}
     pop {r0}
@@ -162953,7 +162953,7 @@ func_08061E70: @ 0x08061E70
 func_08061ED4: @ 0x08061ED4
     push {lr}
     ldr r0, [r0, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L08061EE8 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -164346,7 +164346,7 @@ func_080629A0: @ 0x080629A0
     movs r0, #0
     strh r0, [r4, #0x2c]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L080629C2:
@@ -164515,7 +164515,7 @@ func_08062AF4: @ 0x08062AF4
     subs r0, #1
     str r0, [r1]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
     pop {r4}
@@ -164643,7 +164643,7 @@ func_08062BF4: @ 0x08062BF4
     subs r0, #1
     str r0, [r1]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
     pop {r4}
@@ -165088,7 +165088,7 @@ func_08062FEC: @ 0x08062FEC
     subs r1, #1
     str r1, [r0]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L08063012:
@@ -165209,7 +165209,7 @@ func_080630D8: @ 0x080630D8
     subs r1, #1
     str r1, [r0]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L080630FE:
@@ -165440,7 +165440,7 @@ func_08063284: @ 0x08063284
     cmp r1, r0
     ble .L080632C8
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L080632D0 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -165520,7 +165520,7 @@ func_08063348: @ 0x08063348
     cmp r0, r1
     ble .L08063370
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r1, .L08063378 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -166220,7 +166220,7 @@ func_080637D4: @ 0x080637D4
     strh r0, [r4, #8]
     movs r0, #0x64
     strh r0, [r4, #0xa]
-    bl func_080065F8
+    bl AnimSort
     adds r0, r7, #0
     bl func_08054678
     cmp r0, #0
@@ -166292,7 +166292,7 @@ func_08063984: @ 0x08063984
     bl func_08054678
     bl func_08054884
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r0, [r4, #0x5c]
     bl func_08054678
     ldr r1, .L080639C4 @ =0x02000010
@@ -166555,7 +166555,7 @@ func_08063B48: @ 0x08063B48
     strh r0, [r4, #8]
     movs r0, #0x64
     strh r0, [r4, #0xa]
-    bl func_080065F8
+    bl AnimSort
     adds r0, r7, #0
     bl func_08054678
     cmp r0, #0
@@ -166606,7 +166606,7 @@ func_08063BF4: @ 0x08063BF4
     bl func_08054678
     bl func_08054884
     ldr r0, [r6, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r0, [r6, #0x5c]
     bl func_08054678
     ldr r1, .L08063C68 @ =0x02000010
@@ -167261,7 +167261,7 @@ func_080640D4: @ 0x080640D4
     adds r0, r6, #0
 .L080640F6:
     movs r1, #0x78
-    bl func_08006594
+    bl AnimCreate
     adds r2, r0, #0
     mov r1, r8
     ldrh r1, [r1, #0x10]
@@ -167641,7 +167641,7 @@ func_080643D8: @ 0x080643D8
     cmp r0, #0x32
     ble .L080643F6
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L080643F6:
@@ -167922,7 +167922,7 @@ func_08064614: @ 0x08064614
     cmp r0, #0x32
     ble .L08064632
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L08064632:
@@ -168311,7 +168311,7 @@ func_08064910: @ 0x08064910
     cmp r0, r1
     bne .L08064930
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L08064930:
@@ -170042,7 +170042,7 @@ func_080656BC: @ 0x080656BC
     bl func_080505F0
     ldr r0, .L08065718 @ =0x08BDAC58
     movs r1, #0x14
-    bl func_08006594
+    bl AnimCreate
     movs r2, #0
     movs r1, #0xa1
     lsls r1, r1, #6
@@ -170083,7 +170083,7 @@ func_0806571C: @ 0x0806571C
     cmp r0, #1
     bne .L08065740
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L08065740:
@@ -170135,7 +170135,7 @@ func_08065748: @ 0x08065748
 func_0806579C: @ 0x0806579C
     push {lr}
     ldr r0, [r0, #0x60]
-    bl func_08006650
+    bl AnimDelete
     pop {r0}
     bx r0
     func_end func_0806579C
@@ -170269,7 +170269,7 @@ func_0806584C: @ 0x0806584C
 func_080658A0: @ 0x080658A0
     push {lr}
     ldr r0, [r0, #0x60]
-    bl func_08006650
+    bl AnimDelete
     pop {r0}
     bx r0
     func_end func_080658A0
@@ -173915,7 +173915,7 @@ func_0806734C: @ 0x0806734C
     strh r0, [r1, #4]
     mov r0, sp
     strh r3, [r0, #0xc]
-    bl func_0800667C
+    bl AnimDisplay
 .L080673FE:
     add sp, #0x48
     pop {r4, r5}
@@ -176399,7 +176399,7 @@ func_08068788: @ 0x08068788
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
     pop {r4}
@@ -176627,7 +176627,7 @@ func_0806892C: @ 0x0806892C
     orrs r0, r1
     strh r0, [r2, #8]
     mov r0, sp
-    bl func_0800667C
+    bl AnimDisplay
     ldrh r0, [r4, #0x2c]
     adds r0, #1
     strh r0, [r4, #0x2c]
@@ -179373,7 +179373,7 @@ func_08069F60: @ 0x08069F60
 func_08069FC0: @ 0x08069FC0
     push {lr}
     ldr r0, [r0, #0x64]
-    bl func_08006650
+    bl AnimDelete
     pop {r0}
     bx r0
     func_end func_08069FC0
@@ -180635,7 +180635,7 @@ func_0806A954: @ 0x0806A954
     cmp r0, r1
     ble .L0806A974
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L0806A974:
@@ -180980,9 +180980,9 @@ func_0806AC08: @ 0x0806AC08
     cmp r0, r1
     ble .L0806AC58
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     ldr r0, [r4, #0x64]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L0806AC58:
@@ -181077,7 +181077,7 @@ func_0806AC60: @ 0x0806AC60
     ldr r1, [r4, #0x60]
     movs r0, #0x78
     strh r0, [r1, #0xa]
-    bl func_080065F8
+    bl AnimSort
     ldr r0, [r4, #0x5c]
     ldrh r1, [r0, #2]
     adds r1, #0x10
@@ -181092,7 +181092,7 @@ func_0806AC60: @ 0x0806AC60
     ldr r1, [r4, #0x60]
     movs r0, #0x14
     strh r0, [r1, #0xa]
-    bl func_080065F8
+    bl AnimSort
     ldr r0, [r4, #0x5c]
     ldrh r1, [r0, #2]
     subs r1, #0xc
@@ -181177,7 +181177,7 @@ func_0806ADB8: @ 0x0806ADB8
     cmp r0, r1
     ble .L0806ADD8
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     adds r0, r4, #0
     bl Proc_Break
 .L0806ADD8:
@@ -181884,7 +181884,7 @@ func_0806B1A4: @ 0x0806B1A4
 .L0806B39A:
     ldr r0, .L0806B404 @ =0x08BDCD4C
     movs r1, #0x96
-    bl func_08006594
+    bl AnimCreate
     ldr r2, [sp]
     str r0, [r2, #0x60]
     movs r4, #0
@@ -182153,7 +182153,7 @@ func_0806B594: @ 0x0806B594
     cmp r0, r1
     ble .L0806B5C6
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     bl func_08050018
     adds r0, r4, #0
     bl Proc_Break
@@ -182205,7 +182205,7 @@ func_0806B5F4: @ 0x0806B5F4
     cmp r0, r1
     ble .L0806B626
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     bl func_08050018
     adds r0, r4, #0
     bl Proc_Break
@@ -182257,7 +182257,7 @@ func_0806B654: @ 0x0806B654
     cmp r0, r1
     ble .L0806B686
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     bl func_08050018
     adds r0, r4, #0
     bl Proc_Break
@@ -182311,7 +182311,7 @@ func_0806B6B4: @ 0x0806B6B4
     movs r0, #0
     strh r0, [r4, #0x2c]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     bl func_08050018
     adds r0, r4, #0
     bl Proc_Break
@@ -182399,7 +182399,7 @@ func_0806B750: @ 0x0806B750
     movs r0, #0
     strh r0, [r4, #0x2c]
     ldr r0, [r4, #0x60]
-    bl func_08006650
+    bl AnimDelete
     bl func_08050018
     adds r0, r4, #0
     bl Proc_Break
@@ -182432,7 +182432,7 @@ func_0806B78C: @ 0x0806B78C
 func_0806B7A8: @ 0x0806B7A8
     push {lr}
     bl func_0804B1AC
-    bl func_08006508
+    bl AnimClearAll
     bl func_0804D43C
     ldr r1, .L0806B7C8 @ =0x02017744
     str r0, [r1]
@@ -182448,7 +182448,7 @@ func_0806B7A8: @ 0x0806B7A8
     thumb_func_start func_0806B7CC
 func_0806B7CC: @ 0x0806B7CC
     push {lr}
-    bl func_08006508
+    bl AnimClearAll
     bl func_0806B8E8
     ldr r0, .L0806B7E0 @ =func_08050A38
     bl SetMainFunc

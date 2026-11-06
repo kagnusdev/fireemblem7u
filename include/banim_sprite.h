@@ -40,7 +40,7 @@ struct BanimSprite
     /* 44 */ void const * unk_44;
 };
 
-extern struct BanimSprite gBanimSprites[BANIM_SPRITE_COUNT];
-extern struct BanimSprite * gHeadBanimSprite;
+extern struct BanimSprite sAnimPool[BANIM_SPRITE_COUNT];
+extern struct BanimSprite * sFirstAnim;
 
 #endif // BANIM_SPRITE_H

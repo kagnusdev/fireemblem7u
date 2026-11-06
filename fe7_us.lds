@@ -47,6 +47,7 @@ SECTIONS
         src/icon.o(.text);
         asm/debug-text.o(.text);
         src/text.o(.text);
+        src/anime.o(.text);
         asm/code_1.o(.text);
         src/event.o(.text);
         asm/event.o(.text);
@@ -225,7 +226,7 @@ SECTIONS
         . = ALIGN(4); src/icon.o(ewram_data);
         . = ALIGN(4); src/debug_text.o(ewram_data);
         . = ALIGN(4); src/text.o(ewram_data);
-        . = ALIGN(4); src/banim_sprite.o(ewram_data);
+        . = ALIGN(4); src/anime.o(ewram_data);
         . = ALIGN(4); src/sprite.o(ewram_data);
         . = ALIGN(4); src/face.o(ewram_data);
         . = ALIGN(4); src/event.o(ewram_data);
