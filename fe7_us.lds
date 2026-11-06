@@ -48,6 +48,7 @@ SECTIONS
         asm/debug-text.o(.text);
         src/text.o(.text);
         src/anime.o(.text);
+        src/sprite.o(.text);
         asm/code_1.o(.text);
         src/event.o(.text);
         asm/event.o(.text);
@@ -140,6 +141,8 @@ SECTIONS
         . = ALIGN(4); src/sound.o(.data);
         . = ALIGN(4); src/proc.o(.data);
         . = ALIGN(4); asm/data.o(.data_0);
+        . = ALIGN(4); src/sprite.o(.data);
+        . = ALIGN(4); asm/data.o(.data_0_1);
         . = ALIGN(4); src/sprite-anim.o(.data);
         . = ALIGN(4); src/game-ctrl.o(.data);
         . = ALIGN(4); src/msg.o(.data);
@@ -188,6 +191,7 @@ SECTIONS
         . = 0x003948; gOamAffinePutIt = .;
         . = 0x003950; IntrMainRam = .;
         . = 0x004150; MapFloodCoreStepRamFunc = .;
+        . = 0x004190; gSpriteAllocIt = .;
         . = 0x0041D0; gMutableUnitInfo = .;
         . = 0x0041E0; gWorkingMap = .;
         . = 0x0041F0; gMapFloodSquareBufB = .;

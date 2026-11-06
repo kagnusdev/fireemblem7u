@@ -26,7 +26,11 @@ TextGlyphs_Talk:
 
     .global TextGlyphs_Special
 TextGlyphs_Special:
-    .incbin "baserom.gba", 0xB901B0, 0xB92474 - 0xB901B0
+    .incbin "baserom.gba", 0xB901B0, 0xB905B0 - 0xB901B0
+
+
+    .section ".data_0_1", "a"
+    .incbin "baserom.gba", 0xB90658, 0xB92474 - 0xB90658
 
     .data
 

@@ -10,9 +10,13 @@ struct SpriteEntry {
     /* 0C */ u16 const * object;
 };
 
+#define OAM_COUNT 0x80
+#define SPRITE_COUNT OAM_COUNT
+#define SPRITE_LAYER_COUNT 0x10
+
 extern struct SpriteEntry * gSpriteAllocIt;
-extern struct SpriteEntry EWRAM_DATA SpritePool[0x80];
-extern struct SpriteEntry EWRAM_DATA SpriteLayers[0x10];
+extern struct SpriteEntry EWRAM_DATA gSpriteList[SPRITE_COUNT];
+extern struct SpriteEntry EWRAM_DATA gSpriteLayers[SPRITE_LAYER_COUNT];
 
 extern u16 CONST_DATA Sprite_8x8[];
 extern u16 CONST_DATA Sprite_16x16[];
