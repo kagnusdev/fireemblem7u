@@ -270,5 +270,5 @@ extern u16 Sprite_MapCursorStretched[];
 extern u16 * sMapCursorSpriteLut[];
 extern u16 * gSysUpArrowSpriteLut[];
 extern u16 * gSysDownArrowSpriteLut[];
-extern struct ProcCmd ProcScr_CamMove[];
+extern struct ProcCmd ProcScr_MoveCamera[];
 extern struct ProcCmd ProcScr_UnkMapCursor[];

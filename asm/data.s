@@ -30,13 +30,19 @@ TextGlyphs_Special:
 
 
     .section ".data_0_1", "a"
-    .incbin "baserom.gba", 0xB90658, 0xB92474 - 0xB90658
+    .incbin "baserom.gba", 0xB909B8, 0xB92474 - 0xB909B8
+    .global data_0_1End
+data_0_1End:
 
     .data
 
     @ B928BC ... CF0CD0
 
-    .incbin "baserom.gba", 0xB928BC, 0xCC1B1C - 0xB928BC
+    .incbin "baserom.gba", 0xB928BC, 0xC96584 - 0xB928BC
+
+    .global FaceInfoTable
+FaceInfoTable:
+    .incbin "baserom.gba", 0xC96584, 0xCC1B1C - 0xC96584
 
     .global gUnk_08CC1B1C
 gUnk_08CC1B1C:

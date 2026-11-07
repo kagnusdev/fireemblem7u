@@ -49,6 +49,7 @@ SECTIONS
         src/text.o(.text);
         src/anime.o(.text);
         src/sprite.o(.text);
+        src/face.o(.text);
         asm/code_1.o(.text);
         src/event.o(.text);
         asm/event.o(.text);
@@ -123,6 +124,8 @@ SECTIONS
         . = ALIGN(4); src/oam.o(.rodata);
         . = ALIGN(4); src/sound.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata);
+        . = ALIGN(4); src/face.o(.rodata);
+        . = ALIGN(4); asm/rodata.o(.rodata_0);
         . = ALIGN(4); src/msg.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_1);
         . = ALIGN(4); src/m4a.o(.rodata);
@@ -142,6 +145,7 @@ SECTIONS
         . = ALIGN(4); src/proc.o(.data);
         . = ALIGN(4); asm/data.o(.data_0);
         . = ALIGN(4); src/sprite.o(.data);
+        . = ALIGN(4); src/face.o(.data);
         . = ALIGN(4); asm/data.o(.data_0_1);
         . = ALIGN(4); src/sprite-anim.o(.data);
         . = ALIGN(4); src/game-ctrl.o(.data);
@@ -192,6 +196,7 @@ SECTIONS
         . = 0x003950; IntrMainRam = .;
         . = 0x004150; MapFloodCoreStepRamFunc = .;
         . = 0x004190; gSpriteAllocIt = .;
+        . = 0x0041C0; gFaces = .;
         . = 0x0041D0; gMutableUnitInfo = .;
         . = 0x0041E0; gWorkingMap = .;
         . = 0x0041F0; gMapFloodSquareBufB = .;

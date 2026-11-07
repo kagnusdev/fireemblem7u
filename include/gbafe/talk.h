@@ -103,8 +103,8 @@ struct ProcTalkAdvance {
     s16 timer;
 };
 
-// ??? sub_8007C10
-// ??? sub_8007C48
+// ??? func_08007D80
+// ??? func_08007DB8
 // ??? sub_8007C64
 void InitTalk(int chr, int lines, bool unpack_bubble);
 // ??? InitSpriteTalk

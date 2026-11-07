@@ -18480,7 +18480,7 @@ func_0801B580: @ 0x0801B580
     push {lr}
     bl func_0804A424
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     bl ClearUi
     movs r0, #1
     pop {r1}
@@ -19042,9 +19042,9 @@ func_0801B990: @ 0x0801B990
 func_0801BA10: @ 0x0801BA10
     push {lr}
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     movs r0, #1
-    bl func_08006D50
+    bl EndFaceById
     ldr r2, .L0801BA4C @ =gDispIo
     movs r0, #2
     rsbs r0, r0, #0
@@ -22964,7 +22964,7 @@ HandleGiveUnitItem: @ 0x0801D8B0
     bl StartFace
     movs r0, #0
     movs r1, #5
-    bl func_08007A64
+    bl SetFaceBlinkControlById
     adds r0, r6, #0
     adds r1, r4, #0
     movs r2, #0xf
@@ -31388,7 +31388,7 @@ StartFightBallistaReview: @ 0x08021A98
     bl StartFace
     movs r0, #0
     movs r1, #5
-    bl func_08007A64
+    bl SetFaceBlinkControlById
     ldr r1, [r4]
     adds r0, r5, #0
     movs r2, #0xf
@@ -31423,7 +31423,7 @@ StartFightItemReview: @ 0x08021AE4
     bl StartFace
     movs r0, #0
     movs r1, #5
-    bl func_08007A64
+    bl SetFaceBlinkControlById
     ldr r1, [r4]
     adds r0, r5, #0
     movs r2, #0xf
@@ -32240,7 +32240,7 @@ func_08022094: @ 0x08022094
     bl StartFace
     movs r0, #0
     movs r1, #5
-    bl func_08007A64
+    bl SetFaceBlinkControlById
     ldr r1, [r4]
     adds r0, r5, #0
     movs r2, #0xf
@@ -32326,7 +32326,7 @@ func_0802219C: @ 0x0802219C
     bl StartFace
     movs r0, #0
     movs r1, #5
-    bl func_08007A64
+    bl SetFaceBlinkControlById
     ldr r1, [r4]
     adds r0, r5, #0
     movs r2, #0xf
@@ -32627,7 +32627,7 @@ func_08022404: @ 0x08022404
     bl StartFace
     movs r0, #0
     movs r1, #5
-    bl func_08007A64
+    bl SetFaceBlinkControlById
     ldr r1, [r4]
     adds r0, r5, #0
     movs r2, #0xf
@@ -32693,7 +32693,7 @@ func_0802245C: @ 0x0802245C
     bl StartFace
     movs r0, #0
     movs r1, #5
-    bl func_08007A64
+    bl SetFaceBlinkControlById
     ldr r1, [r6]
     adds r0, r4, #0
     movs r2, #0xf
@@ -32711,7 +32711,7 @@ func_0802245C: @ 0x0802245C
 .L080224FC:
     bl ClearUi
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     ldr r0, .L08022528 @ =0x08B95AAC
     ldr r2, .L0802252C @ =gBmStatus
     movs r3, #0x1c
@@ -32971,7 +32971,7 @@ func_080226F0: @ 0x080226F0
     adds r0, r4, #0
     bl func_080223EC
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     adds r0, r4, #0
     adds r1, r5, #0
     bl UnitActionMenu_Trade_Select
@@ -33318,7 +33318,7 @@ func_08022984: @ 0x08022984
     bl StartFace
     movs r0, #0
     movs r1, #5
-    bl func_08007A64
+    bl SetFaceBlinkControlById
     ldr r1, [r4]
     adds r0, r5, #0
     movs r2, #0xf
@@ -34291,7 +34291,7 @@ func_08023044: @ 0x08023044
     lsls r2, r2, #2
     adds r0, r5, #0
     movs r3, #5
-    bl func_080072D0
+    bl PutFace80x72_Core
     movs r0, #0
     add sp, #8
     pop {r4, r5, r6}
@@ -42670,7 +42670,7 @@ func_080270FC: @ 0x080270FC
     adds r4, r1, #0
     bl ClearUi
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     adds r0, r4, #0
     bl GetItemIid
     subs r0, #0x4a
@@ -43836,7 +43836,7 @@ func_08027A88: @ 0x08027A88
     bl StartFace
     movs r0, #0
     movs r1, #5
-    bl func_08007A64
+    bl SetFaceBlinkControlById
     movs r0, #0x17
     add sp, #4
     pop {r4, r5}
@@ -50985,10 +50985,10 @@ func_0802B094: @ 0x0802B094
     bl StartFace
     movs r0, #0
     movs r1, #5
-    bl func_08007A64
+    bl SetFaceBlinkControlById
     movs r0, #1
     movs r1, #5
-    bl func_08007A64
+    bl SetFaceBlinkControlById
     movs r0, #3
     bl EnableBgSync
     add sp, #4
@@ -51413,9 +51413,9 @@ func_0802B40C: @ 0x0802B40C
 func_0802B458: @ 0x0802B458
     push {lr}
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     movs r0, #1
-    bl func_08006D50
+    bl EndFaceById
     pop {r0}
     bx r0
     func_end func_0802B458
@@ -93962,7 +93962,7 @@ func_0803FB38: @ 0x0803FB38
     lsls r3, r3, #1
     adds r1, r1, r3
     adds r2, #0xa
-    bl func_08006FC4
+    bl UnpackFaceChibiSprGraphics
     movs r0, #0
     str r0, [r4, #0x3c]
     subs r0, #0x26
@@ -96627,7 +96627,7 @@ func_08041104: @ 0x08041104
     bl func_08047B34
     bl func_080490B4
     movs r0, #3
-    bl func_08006D50
+    bl EndFaceById
     ldr r4, .L0804115C @ =0x0203D960
     adds r0, r4, #0
     bl ClearText
@@ -99786,7 +99786,7 @@ func_08042B44: @ 0x08042B44
     ldm r0!, {r2, r3}
     stm r1!, {r2, r3}
     movs r0, #3
-    bl func_08006D50
+    bl EndFaceById
     adds r5, r6, #0
     adds r5, #0x2c
     movs r4, #4
@@ -115677,7 +115677,7 @@ func_0804A63C: @ 0x0804A63C
     cmp r0, #0
     beq .L0804A6DE
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
 .L0804A6DE:
     movs r0, #0x80
     ands r0, r4
@@ -116709,7 +116709,7 @@ func_0804ADAC: @ 0x0804ADAC
     cmp r0, #0
     beq .L0804AE40
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
 .L0804AE40:
     movs r0, #1
     ands r0, r5
@@ -178696,7 +178696,7 @@ func_08069980: @ 0x08069980
     orrs r0, r1
     strb r0, [r3, #0x18]
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     adds r0, r5, #0
     bl Proc_Break
     add sp, #0x2c
@@ -214896,7 +214896,7 @@ func_0807A98C: @ 0x0807A98C
 func_0807A9BC: @ 0x0807A9BC
     push {lr}
     ldr r0, [r0, #0x14]
-    bl func_08090CD4
+    bl TryLockProc
     pop {r0}
     bx r0
     func_end func_0807A9BC
@@ -214905,7 +214905,7 @@ func_0807A9BC: @ 0x0807A9BC
 func_0807A9C8: @ 0x0807A9C8
     push {lr}
     ldr r0, [r0, #0x14]
-    bl func_08090CE4
+    bl TryUnlockProc
     pop {r0}
     bx r0
     func_end func_0807A9C8
@@ -215738,7 +215738,7 @@ func_0807AFA0: @ 0x0807AFA0
     adds r0, #0x4c
     strh r5, [r0]
     ldr r0, [r4, #0x14]
-    bl func_08090CD4
+    bl TryLockProc
     adds r4, #0x64
     movs r0, #1
     strh r0, [r4]
@@ -215866,7 +215866,7 @@ func_0807B0D4: @ 0x0807B0D4
     orrs r2, r0
     strb r2, [r5, #0x18]
     ldr r0, [r4, #0x14]
-    bl func_08090CE4
+    bl TryUnlockProc
     adds r4, #0x64
     movs r0, #2
     strh r0, [r4]
@@ -228378,9 +228378,9 @@ func_0808119C: @ 0x0808119C
     str r0, [sp]
     adds r0, r6, #0
     adds r2, r4, #0
-    bl func_080074C4
+    bl PutFace80x72
     adds r0, r4, #0
-    bl func_08006B20
+    bl GetFaceInfo
     ldr r0, [r0]
     cmp r0, #0
     beq .L08081204
@@ -234027,12 +234027,12 @@ func_08083C44: @ 0x08083C44
     cmp r1, #0
     beq .L08083C64
     movs r0, #0
-    bl func_08006DA0
+    bl GetFaceDispById
     movs r1, #0x11
     rsbs r1, r1, #0
     ands r1, r0
     movs r0, #0
-    bl func_08006D84
+    bl SetFaceDispById
 .L08083C64:
     pop {r0}
     bx r0
@@ -234047,11 +234047,11 @@ func_08083C68: @ 0x08083C68
     cmp r1, #0
     beq .L08083C86
     movs r0, #0
-    bl func_08006DA0
+    bl GetFaceDispById
     movs r1, #0x10
     orrs r1, r0
     movs r0, #0
-    bl func_08006D84
+    bl SetFaceDispById
 .L08083C86:
     pop {r0}
     bx r0
@@ -236589,7 +236589,7 @@ func_08085110: @ 0x08085110
     adds r0, r2, #0
     movs r2, #0xf0
     movs r3, #4
-    bl func_08006F80
+    bl PutFaceChibi
     mov r0, sb
     adds r0, #0xca
     str r0, [r7, #0x40]
@@ -240013,7 +240013,7 @@ func_08086C10: @ 0x08086C10
     movs r3, #0
     str r3, [sp]
     movs r3, #4
-    bl func_08006F80
+    bl PutFaceChibi
     movs r0, #0
     bl func_08086994
     b .L08086DC4
@@ -241624,12 +241624,12 @@ func_08087A7C: @ 0x08087A7C
     adds r4, r0, #0
     bl func_08087D90
     movs r0, #0
-    bl func_08006DA0
+    bl GetFaceDispById
     movs r1, #0x11
     rsbs r1, r1, #0
     ands r1, r0
     movs r0, #0
-    bl func_08006D84
+    bl SetFaceDispById
     bl func_08088A7C
     bl func_080874D8
     movs r1, #1
@@ -241766,12 +241766,12 @@ func_08087B98: @ 0x08087B98
     push {r4, lr}
     adds r4, r0, #0
     movs r0, #0
-    bl func_08006DA0
+    bl GetFaceDispById
     movs r1, #0x11
     rsbs r1, r1, #0
     ands r1, r0
     movs r0, #0
-    bl func_08006D84
+    bl SetFaceDispById
     adds r0, r4, #0
     bl func_08087B58
     movs r0, #0
@@ -242835,14 +242835,14 @@ func_08088380: @ 0x08088380
     ldr r0, [r6, #0x30]
     bl SetTextFont
     movs r0, #0
-    bl func_08006DA0
+    bl GetFaceDispById
     movs r1, #0x10
     orrs r0, r1
     lsls r0, r0, #0x10
     lsrs r7, r0, #0x10
     movs r0, #0
     movs r1, #3
-    bl func_08007A64
+    bl SetFaceBlinkControlById
     movs r2, #0
     mov sb, r2
     cmp sb, sl
@@ -243364,7 +243364,7 @@ func_08088380: @ 0x08088380
     bl SetTextFont
     movs r0, #0
     adds r1, r7, #0
-    bl func_08006D84
+    bl SetFaceDispById
 .L0808891E:
     add sp, #0x10
     pop {r3, r4, r5}
@@ -260469,8 +260469,8 @@ func_08090C94: @ 0x08090C94
 .L08090CD0: .4byte gDispIo
     func_end func_08090C94
 
-    thumb_func_start func_08090CD4
-func_08090CD4: @ 0x08090CD4
+    thumb_func_start TryLockProc
+TryLockProc: @ 0x08090CD4
     cmp r0, #0
     beq .L08090CE2
     adds r1, r0, #0
@@ -260480,10 +260480,10 @@ func_08090CD4: @ 0x08090CD4
     strb r0, [r1]
 .L08090CE2:
     bx lr
-    func_end func_08090CD4
+    func_end TryLockProc
 
-    thumb_func_start func_08090CE4
-func_08090CE4: @ 0x08090CE4
+    thumb_func_start TryUnlockProc
+TryUnlockProc: @ 0x08090CE4
     cmp r0, #0
     beq .L08090CF6
     adds r1, r0, #0
@@ -260495,7 +260495,7 @@ func_08090CE4: @ 0x08090CE4
     strb r0, [r1]
 .L08090CF6:
     bx lr
-    func_end func_08090CE4
+    func_end TryUnlockProc
 
     thumb_func_start func_08090CF8
 func_08090CF8: @ 0x08090CF8
@@ -262897,7 +262897,7 @@ func_08092010: @ 0x08092010
     str r6, [sp]
     adds r1, r7, #0
     movs r3, #2
-    bl func_08006F80
+    bl PutFaceChibi
     ldr r5, .L08092108 @ =0x02012A98
     adds r0, r5, #0
     bl ClearText
@@ -263941,7 +263941,7 @@ func_080928EC: @ 0x080928EC
     cmp r0, #0
     beq .L0809292A
     adds r0, r4, #0
-    bl func_08006D50
+    bl EndFaceById
 .L0809292A:
     cmp r6, #0
     beq .L0809296C
@@ -263956,7 +263956,7 @@ func_080928EC: @ 0x080928EC
     mov r0, sb
     str r0, [sp]
     adds r0, r4, #0
-    bl func_08007BCC
+    bl StartBmFace
     b .L0809296C
     .align 2, 0
 .L0809294C: .4byte 0x08CC4448
@@ -263972,7 +263972,7 @@ func_080928EC: @ 0x080928EC
     bl func_08007CF0
     adds r0, r4, #0
     mov r1, sb
-    bl func_08006D84
+    bl SetFaceDispById
 .L0809296C:
     lsls r1, r4, #2
     adds r0, r5, #0
@@ -265216,7 +265216,7 @@ func_080932F4: @ 0x080932F4
     mov sb, r3
     str r3, [sp]
     movs r3, #2
-    bl func_08006F80
+    bl PutFaceChibi
     ldr r0, .L080933B0 @ =0x02012B38
     mov r8, r0
     bl ClearText
@@ -267410,7 +267410,7 @@ func_08094350: @ 0x08094350
     movs r0, #0
     movs r2, #0x40
     adds r3, r4, #0
-    bl func_08007BCC
+    bl StartBmFace
     mov r3, r8
     ldr r0, [r3, #0x30]
     bl GetUnitFid
@@ -267420,7 +267420,7 @@ func_08094350: @ 0x08094350
     movs r0, #1
     movs r2, #0xae
     adds r3, r4, #0
-    bl func_08007BCC
+    bl StartBmFace
     movs r6, #0
     str r6, [sp]
     movs r0, #1
@@ -267976,9 +267976,9 @@ func_08094930: @ 0x08094930
     push {lr}
     bl func_0808E46C
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     movs r0, #1
-    bl func_08006D50
+    bl EndFaceById
     pop {r0}
     bx r0
     func_end func_08094930
@@ -268940,7 +268940,7 @@ func_08094FE4: @ 0x08094FE4
     str r0, [sp]
     movs r0, #0
     movs r2, #0x40
-    bl func_08007BCC
+    bl StartBmFace
     movs r0, #0xc0
     lsls r0, r0, #7
     movs r1, #5
@@ -269289,9 +269289,9 @@ func_08095454: @ 0x08095454
     push {lr}
     bl func_0808E46C
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     movs r0, #1
-    bl func_08006D50
+    bl EndFaceById
     pop {r0}
     bx r0
     func_end func_08095454
@@ -270702,7 +270702,7 @@ func_08096054: @ 0x08096054
     str r0, [sp]
     movs r0, #0x4a
     movs r3, #2
-    bl func_08006F80
+    bl PutFaceChibi
     ldr r0, .L0809610C @ =0x00001270
     bl DecodeMsg
     adds r4, #8
@@ -273732,7 +273732,7 @@ func_080976F0: @ 0x080976F0
     str r0, [sp]
     movs r0, #0
     movs r2, #0x40
-    bl func_08007BCC
+    bl StartBmFace
     ldr r0, [r7, #0x2c]
     ldr r0, [r0]
     ldrh r0, [r0]
@@ -273844,7 +273844,7 @@ func_08097A6C: @ 0x08097A6C
     adds r0, r4, #0
     bl func_080A9DC0
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     bl func_0808E46C
     pop {r4}
     pop {r0}
@@ -275668,7 +275668,7 @@ func_080988A8: @ 0x080988A8
     movs r0, #0x4a
     adds r1, r4, #0
     movs r3, #2
-    bl func_08006F80
+    bl PutFaceChibi
     movs r0, #1
     bl EnableBgSync
     add sp, #8
@@ -275779,7 +275779,7 @@ func_08098908: @ 0x08098908
     movs r0, #0
     movs r2, #0x44
     movs r3, #0x4a
-    bl func_08007BCC
+    bl StartBmFace
     mov r0, sb
     bl func_080A89B4
     mov r0, sb
@@ -276443,7 +276443,7 @@ func_08098F54: @ 0x08098F54
     bl func_080A9D08
     bl func_0808E46C
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     movs r0, #0
     bl SetOnHBlankA
     pop {r0}
@@ -276734,7 +276734,7 @@ func_08099174: @ 0x08099174
     bl func_080A9DC0
     bl func_0808E46C
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     movs r0, #0
     bl SetOnHBlankA
     pop {r4}
@@ -277681,7 +277681,7 @@ func_080998B4: @ 0x080998B4
     bl func_080A9DC0
     bl func_0808E46C
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     movs r0, #0
     bl SetOnHBlankA
     pop {r4}
@@ -278789,7 +278789,7 @@ func_0809A024: @ 0x0809A024
     movs r0, #7
     bl EnableBgSync
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     bl func_08087D44
     ldrb r0, [r4]
     cmp r0, #0
@@ -279004,7 +279004,7 @@ func_0809A378: @ 0x0809A378
     movs r4, #0
     strh r0, [r6]
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     ldr r2, .L0809A3F8 @ =0x08BDCE4C
     subs r1, r7, #1
     movs r0, #0x34
@@ -280185,7 +280185,7 @@ func_0809ACFC: @ 0x0809ACFC
     bl func_080A9DC0
     bl func_0808E46C
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     movs r0, #0
     bl SetOnHBlankA
     pop {r4}
@@ -281767,7 +281767,7 @@ func_0809B700: @ 0x0809B700
     movs r0, #0
     movs r1, #0x41
     movs r2, #0x38
-    bl func_08007BCC
+    bl StartBmFace
     movs r0, #0x28
     movs r1, #0
     movs r2, #1
@@ -281895,7 +281895,7 @@ func_0809BA24: @ 0x0809BA24
     bl func_080A9DC0
     bl func_0808E46C
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     movs r0, #0
     bl SetOnHBlankA
     pop {r4}
@@ -283083,7 +283083,7 @@ func_0809C3F4: @ 0x0809C3F4
     bl func_080A9DC0
     bl func_0808E46C
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     movs r0, #0
     bl SetOnHBlankA
     pop {r4}
@@ -284289,7 +284289,7 @@ func_0809CC30: @ 0x0809CC30
     adds r0, r0, r4
     ldrh r4, [r0, #6]
     adds r0, r4, #0
-    bl func_0800721C
+    bl ShouldFaceBeRaised
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0809CDD0
@@ -284303,7 +284303,7 @@ func_0809CC30: @ 0x0809CC30
     adds r1, r4, #0
     movs r2, #0x38
     movs r3, #0
-    bl func_08007BCC
+    bl StartBmFace
     b .L0809CDE8
     .align 2, 0
 .L0809CDB4: .4byte gDispIo
@@ -284324,7 +284324,7 @@ func_0809CC30: @ 0x0809CC30
     adds r1, r4, #0
     movs r2, #0x38
     movs r3, #8
-    bl func_08007BCC
+    bl StartBmFace
 .L0809CDE8:
     ldr r0, .L0809CE20 @ =0x0840EDB8
     ldr r1, .L0809CE24 @ =0x06017000
@@ -285242,7 +285242,7 @@ func_0809D4D4: @ 0x0809D4D4
     adds r0, r0, r4
     ldrh r4, [r0, #6]
     adds r0, r4, #0
-    bl func_0800721C
+    bl ShouldFaceBeRaised
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0809D598
@@ -285257,7 +285257,7 @@ func_0809D4D4: @ 0x0809D4D4
     adds r1, r4, #0
     movs r2, #0x38
     movs r3, #0
-    bl func_08007BCC
+    bl StartBmFace
     b .L0809D5B0
     .align 2, 0
 .L0809D584: .4byte gBg0Tm
@@ -285276,7 +285276,7 @@ func_0809D4D4: @ 0x0809D4D4
     adds r1, r4, #0
     movs r2, #0x38
     movs r3, #8
-    bl func_08007BCC
+    bl StartBmFace
 .L0809D5B0:
     adds r0, r5, #0
     bl func_0809CAB8
@@ -285410,7 +285410,7 @@ func_0809D6A8: @ 0x0809D6A8
     bl func_080A9DC0
     bl func_0808E46C
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     ldr r0, [r4, #0x2c]
     bl func_0809BF78
     pop {r4}
@@ -306427,9 +306427,9 @@ func_080A77C0: @ 0x080A77C0
     movs r0, #0
     movs r2, #0xcc
     movs r3, #0x48
-    bl func_08007BCC
+    bl StartBmFace
     adds r4, r0, #0
-    bl func_0800751C
+    bl StartFaceFadeIn
     adds r0, r4, #0
     add sp, #0x10
     pop {r4, r5}
@@ -308260,7 +308260,7 @@ func_080A8624: @ 0x080A8624
     bl func_080A75CC
     bl func_08054EA8
     movs r0, #0
-    bl func_08006D50
+    bl EndFaceById
     adds r4, #0x42
     movs r0, #1
     ldrb r4, [r4]
@@ -333308,7 +333308,7 @@ func_080B4510: @ 0x080B4510
     cmp r0, sb
     bne .L080B4598
     adds r0, r6, #0
-    bl func_08006D50
+    bl EndFaceById
     ldr r0, [r7, #0x40]
     adds r0, r0, r4
     adds r0, #0x34
@@ -333350,11 +333350,11 @@ func_080B4510: @ 0x080B4510
     cmp r0, #1
     bne .L080B45EC
     adds r0, r4, #0
-    bl func_08006D9C
+    bl GetFaceDisp
     ldr r1, .L080B460C @ =0xFFFFFBFF
     ands r1, r0
     adds r0, r4, #0
-    bl func_08006D68
+    bl SetFaceDisp
     ldr r0, [r7, #0x40]
     adds r0, r0, r5
     adds r0, #0x34
@@ -334403,7 +334403,7 @@ func_080B4D4C: @ 0x080B4D4C
     adds r0, r7, #0
     mov r1, sb
     movs r3, #0x28
-    bl func_08007BCC
+    bl StartBmFace
     adds r2, r0, #0
     str r2, [r5, #4]
     movs r1, #0xc0
@@ -334450,7 +334450,7 @@ func_080B4D4C: @ 0x080B4D4C
     strb r0, [r1]
     adds r0, r7, #0
     movs r1, #5
-    bl func_08007A64
+    bl SetFaceBlinkControlById
     movs r6, #0
     movs r0, #1
     strb r0, [r5, #8]
@@ -334539,12 +334539,12 @@ func_080B4E88: @ 0x080B4E88
     cmp r0, #0
     bne .L080B4F28
     adds r0, r4, #0
-    bl func_08006D9C
+    bl GetFaceDisp
     movs r1, #0x80
     lsls r1, r1, #3
     orrs r1, r0
     adds r0, r4, #0
-    bl func_08006D68
+    bl SetFaceDisp
     movs r0, #0xff
     lsls r0, r0, #8
     mov r2, sb
@@ -341958,7 +341958,7 @@ func_080B8654: @ 0x080B8654
     str r0, [sp]
     movs r0, #0
     movs r3, #0x38
-    bl func_08007BCC
+    bl StartBmFace
     mov r4, r8
     ldr r0, [r4, #0x2c]
     ldr r0, [r0, #0xc]
@@ -342318,7 +342318,7 @@ func_080B88E0: @ 0x080B88E0
     str r0, [sp]
     movs r0, #0
     movs r3, #0x30
-    bl func_08007BCC
+    bl StartBmFace
     ldr r0, [r7, #0x38]
     ldrb r0, [r0, #2]
     subs r0, #1
@@ -342331,7 +342331,7 @@ func_080B88E0: @ 0x080B88E0
     str r0, [sp]
     movs r0, #1
     movs r3, #0x30
-    bl func_08007BCC
+    bl StartBmFace
     add sp, #8
     pop {r3, r4, r5}
     mov r8, r3

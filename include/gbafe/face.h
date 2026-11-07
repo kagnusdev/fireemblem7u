@@ -183,10 +183,10 @@ void SetFaceBlinkControlById(int slot, int blink);
 int GetFaceBlinkInterval(struct FaceEyeProc * proc);
 void SetFaceEyeState(struct FaceProc * proc, int state);
 void SetFaceEyeStateById(int slot, int state);
-// Face_0800798C
-// sub_8007A00
+// func_08007AFC
+// func_08007B70
 struct FaceProc * StartBmFace(int slot, int fid, int x, int y, int disp);
-// sub_8007B80
+// func_08007CF0
 
 struct UnkFaceProc
 {
@@ -197,10 +197,10 @@ struct UnkFaceProc
     /* 34 */ int fid;
 };
 
-// sub_8007B94
-// sub_8007BB8
-// sub_8007C10
-void sub_8007C48(struct FaceProc * parent, int face_id);
+// func_08007D04
+// func_08007D28
+// func_08007D80
+void func_08007DB8(struct FaceProc * parent, int face_id);
 // sub_8007C64
 
 extern struct FaceVramEnt CONST_DATA DefaultFaceConfig[FACE_SLOT_COUNT];

@@ -3016,7 +3016,7 @@ func_0800F5B4: @ 0x0800F5B4
     cmp r1, #0
     beq .L0800F5D8
     adds r0, r2, #0
-    bl func_08006D50
+    bl EndFaceById
     b .L0800F5F8
 .L0800F5D8:
     cmp r3, #0
@@ -3057,7 +3057,7 @@ func_0800F60C: @ 0x0800F60C
     push {lr}
     movs r1, #0x2a
     ldrsh r0, [r0, r1]
-    bl func_08006D50
+    bl EndFaceById
     pop {r0}
     bx r0
     func_end func_0800F60C

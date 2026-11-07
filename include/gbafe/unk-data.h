@@ -57,8 +57,8 @@ extern u16 gUnk_081902C8[];
 // ??? gUnk_08190BFC
 // ??? gUnk_08191054
 // ??? gUnk_08191074
-extern const u8 Tsa_Unk_081911D4[];
-extern const u8 Tsa_Unk_0819128C[];
+extern const u8 Tsa_Unk_08195680[];
+extern const u8 Tsa_Unk_08195738[];
 // ??? gUnk_08191410
 // ??? gUnk_08191700
 // ??? gUnk_08191720
