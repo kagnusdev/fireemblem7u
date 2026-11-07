@@ -50,6 +50,7 @@ SECTIONS
         src/anime.o(.text);
         src/sprite.o(.text);
         src/face.o(.text);
+        src/talk.o(.text);
         asm/code_1.o(.text);
         src/event.o(.text);
         asm/event.o(.text);
@@ -125,7 +126,7 @@ SECTIONS
         . = ALIGN(4); src/sound.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata);
         . = ALIGN(4); src/face.o(.rodata);
-        . = ALIGN(4); asm/rodata.o(.rodata_0);
+        . = ALIGN(4); src/talk.o(.rodata);
         . = ALIGN(4); src/msg.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_1);
         . = ALIGN(4); src/m4a.o(.rodata);
@@ -146,6 +147,7 @@ SECTIONS
         . = ALIGN(4); asm/data.o(.data_0);
         . = ALIGN(4); src/sprite.o(.data);
         . = ALIGN(4); src/face.o(.data);
+        . = ALIGN(4); src/talk.o(.data);
         . = ALIGN(4); asm/data.o(.data_0_1);
         . = ALIGN(4); src/sprite-anim.o(.data);
         . = ALIGN(4); src/game-ctrl.o(.data);
@@ -168,6 +170,7 @@ SECTIONS
         . = ALIGN(4); src/hardware.o(.bss);
         . = ALIGN(4); src/oam.o(.bss);
         . = ALIGN(4); src/sound.o(.bss);
+        . = ALIGN(4); src/talk.o(.bss);
         . = 0x000110;
         . = ALIGN(4); src/sprite-anim.o(.bss);
         . = 0x002258;

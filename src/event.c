@@ -2396,7 +2396,7 @@ int EvtCmd_GotoIfyDifficulty(struct EventProc * proc)
 
 int EvtCmd_GotoIfnTalkYes(struct EventProc * proc)
 {
-    if (GetTalkResult() != TALK_RESULT_YES)
+    if (GetTalkChoiceResult() != TALK_RESULT_YES)
     {
         return EventGotoLabel(proc, proc->script[1]);
     }
@@ -2408,7 +2408,7 @@ int EvtCmd_GotoIfnTalkYes2(struct EventProc * proc)
 {
     // BUG: This is probably meant to check for TALK_RESULT_NO
 
-    if (GetTalkResult() != TALK_RESULT_YES)
+    if (GetTalkChoiceResult() != TALK_RESULT_YES)
     {
         return EventGotoLabel(proc, proc->script[1]);
     }

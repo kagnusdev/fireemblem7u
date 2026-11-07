@@ -316,7 +316,7 @@ void ClearTalk(void);
 bool IsEventRunning();
 // sub_800EC40
 // sub_800EC58
-void sub_800EC74();
+void func_0800ED68();
 void sub_800EC84(int);
 // CallMapSupportEvent
 // sub_800ECB8
@@ -338,7 +338,7 @@ void sub_800EC84(int);
 // sub_800EF34
 // sub_800EF50
 // sub_800EF78
-void sub_800EF98();
+void func_0800F08C();
 int GetChapterAllyUnitCount(void);
 // sub_800EFD4
 // sub_800F070

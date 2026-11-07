@@ -201,7 +201,7 @@ struct UnkFaceProc
 // func_08007D28
 // func_08007D80
 void func_08007DB8(struct FaceProc * parent, int face_id);
-// sub_8007C64
+// func_08007DD4
 
 extern struct FaceVramEnt CONST_DATA DefaultFaceConfig[FACE_SLOT_COUNT];
 extern u16 CONST_DATA Sprite_Face64x80[];

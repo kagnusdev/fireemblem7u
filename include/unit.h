@@ -331,7 +331,7 @@ struct Unit * GetUnitByPid(int pid);
 // ... GetUnitDefense(...)
 // ... GetUnitResistance(...)
 // ... GetUnitLuck(...)
-// ... GetUnitFid(...)
+// ... GetUnitPortraitId(...)
 // ... func_08018BF4(...)
 // ... func_08018C20(...)
 // ... func_08018C38(...)

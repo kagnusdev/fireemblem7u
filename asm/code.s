@@ -3954,8 +3954,8 @@ func_08014B0C: @ 0x08014B0C
     bx r0
     func_end func_08014B0C
 
-    thumb_func_start func_08014B34
-func_08014B34: @ 0x08014B34
+    thumb_func_start CallDelayed
+CallDelayed: @ 0x08014B34
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
@@ -3969,7 +3969,7 @@ func_08014B34: @ 0x08014B34
     bx r0
     .align 2, 0
 .L08014B4C: .4byte 0x08B92A08
-    func_end func_08014B34
+    func_end CallDelayed
 
     thumb_func_start func_08014B50
 func_08014B50: @ 0x08014B50
@@ -12962,8 +12962,8 @@ GetUnitLuck: @ 0x08018BB8
     bx r1
     func_end GetUnitLuck
 
-    thumb_func_start GetUnitFid
-GetUnitFid: @ 0x08018BD8
+    thumb_func_start GetUnitPortraitId
+GetUnitPortraitId: @ 0x08018BD8
     adds r2, r0, #0
     ldr r1, [r2]
     ldrh r0, [r1, #6]
@@ -12979,7 +12979,7 @@ GetUnitFid: @ 0x08018BD8
     ldrh r0, [r1, #8]
 .L08018BF0:
     bx lr
-    func_end GetUnitFid
+    func_end GetUnitPortraitId
 
     thumb_func_start func_08018BF4
 func_08018BF4: @ 0x08018BF4
@@ -18942,7 +18942,7 @@ func_0801B924: @ 0x0801B924
     movs r1, #0
     bl DebugInitBg
     ldr r0, .L0801B97C @ =0x081C3BA4
-    bl func_08009FF4
+    bl SetTalkUnkStr
     ldr r0, .L0801B980 @ =0x08B95890
     bl StartMenu
     ldr r4, .L0801B984 @ =gBmStatus
@@ -22954,7 +22954,7 @@ HandleGiveUnitItem: @ 0x0801D8B0
     ldr r0, .L0801D91C @ =gBmStatus
     strh r5, [r0, #0x2c]
     adds r0, r4, #0
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     movs r0, #2
     str r0, [sp]
@@ -22996,7 +22996,7 @@ HandleGiveUnitItem: @ 0x0801D8B0
     bl func_08032560
 .L0801D934:
     movs r0, #2
-    bl func_08009FDC
+    bl SetTalkChoiceResult
     ldr r0, .L0801D94C @ =0x08B9369C
     adds r1, r6, #0
     bl Proc_StartBlocking
@@ -23133,7 +23133,7 @@ func_0801DA14: @ 0x0801DA14
     movs r0, #0
     bl func_08082528
     movs r0, #2
-    bl func_08009FDC
+    bl SetTalkChoiceResult
     adds r0, r4, #0
     bl GetItemAttributes
     movs r1, #0x10
@@ -23187,7 +23187,7 @@ func_0801DA94: @ 0x0801DA94
     movs r0, #0
     bl func_08082528
     movs r0, #2
-    bl func_08009FDC
+    bl SetTalkChoiceResult
     adds r0, r4, #0
     bl GetItemAttributes
     movs r1, #0x10
@@ -23232,7 +23232,7 @@ func_0801DA94: @ 0x0801DA94
     thumb_func_start func_0801DB0C
 func_0801DB0C: @ 0x0801DB0C
     push {r4, lr}
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     beq .L0801DB1A
     movs r0, #0
@@ -30790,7 +30790,7 @@ func_08021610: @ 0x08021610
 func_08021614: @ 0x08021614
     push {r4, lr}
     adds r4, r0, #0
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     beq .L08021628
     adds r0, r4, #0
@@ -31378,7 +31378,7 @@ StartFightBallistaReview: @ 0x08021A98
     adds r5, r0, #0
     ldr r4, .L08021AE0 @ =gActiveUnit
     ldr r0, [r4]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     movs r0, #2
     str r0, [sp]
@@ -31413,7 +31413,7 @@ StartFightItemReview: @ 0x08021AE4
     adds r5, r0, #0
     ldr r4, .L08021B30 @ =gActiveUnit
     ldr r0, [r4]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     movs r0, #2
     str r0, [sp]
@@ -32230,7 +32230,7 @@ func_08022094: @ 0x08022094
     adds r5, r0, #0
     ldr r4, .L08022164 @ =gActiveUnit
     ldr r0, [r4]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     movs r0, #2
     str r0, [sp]
@@ -32316,7 +32316,7 @@ func_0802219C: @ 0x0802219C
     adds r5, r0, #0
     ldr r4, .L080221F4 @ =gActiveUnit
     ldr r0, [r4]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     movs r0, #2
     str r0, [sp]
@@ -32617,7 +32617,7 @@ func_08022404: @ 0x08022404
     adds r5, r0, #0
     ldr r4, .L08022458 @ =gActiveUnit
     ldr r0, [r4]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     movs r0, #2
     str r0, [sp]
@@ -32683,7 +32683,7 @@ func_0802245C: @ 0x0802245C
     bl StartMenu
     adds r4, r0, #0
     ldr r0, [r6]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     movs r0, #2
     str r0, [sp]
@@ -33308,7 +33308,7 @@ func_08022984: @ 0x08022984
     adds r5, r0, #0
     ldr r4, .L080229D8 @ =gActiveUnit
     ldr r0, [r4]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     movs r0, #2
     str r0, [sp]
@@ -34285,7 +34285,7 @@ func_08023044: @ 0x08023044
     adds r5, #0x80
     ldrb r0, [r6, #0xd]
     bl GetUnit
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     movs r2, #0x80
     lsls r2, r2, #2
@@ -43826,7 +43826,7 @@ func_08027A88: @ 0x08027A88
     bl StartEquipInfoWindow
     ldrb r0, [r5, #0xd]
     bl GetUnit
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     movs r0, #2
     str r0, [sp]
@@ -50965,7 +50965,7 @@ func_0802B094: @ 0x0802B094
     adds r0, r5, #0
     bl func_0802ADA0
     ldr r0, [r5, #0x2c]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     subs r4, #4
     movs r0, #3
@@ -50975,7 +50975,7 @@ func_0802B094: @ 0x0802B094
     adds r3, r4, #0
     bl StartFace
     ldr r0, [r5, #0x30]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     movs r0, #2
     str r0, [sp]
@@ -51036,7 +51036,7 @@ func_0802B134: @ 0x0802B134
     movs r2, #2
     ldrsh r1, [r1, r2]
     lsls r1, r1, #3
-    bl func_08049F58
+    bl PutUiHand
     b .L0802B216
     .align 2, 0
 .L0802B16C: .4byte 0x08B942B8
@@ -51061,7 +51061,7 @@ func_0802B134: @ 0x0802B134
     movs r5, #2
     ldrsh r1, [r1, r5]
     lsls r1, r1, #3
-    bl func_08049F58
+    bl PutUiHand
     ldr r0, .L0802B1CC @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
@@ -51204,7 +51204,7 @@ func_0802B288: @ 0x0802B288
     movs r3, #2
     ldrsh r1, [r1, r3]
     lsls r1, r1, #3
-    bl func_08049F58
+    bl PutUiHand
     adds r2, r5, #0
     adds r2, #0x44
     adds r0, r5, #0
@@ -51247,7 +51247,7 @@ func_0802B288: @ 0x0802B288
     movs r3, #2
     ldrsh r1, [r1, r3]
     lsls r1, r1, #3
-    bl func_08049F58
+    bl PutUiHand
     adds r0, r5, #0
     adds r0, #0x44
     adds r2, r5, #0
@@ -51574,7 +51574,7 @@ func_0802B514: @ 0x0802B514
     movs r2, #2
     ldrsh r1, [r1, r2]
     lsls r1, r1, #3
-    bl func_08049F58
+    bl PutUiHand
     adds r0, r4, #0
     adds r0, #0x45
     ldrb r0, [r0]
@@ -51656,7 +51656,7 @@ func_0802B5E8: @ 0x0802B5E8
     movs r3, #2
     ldrsh r1, [r1, r3]
     lsls r1, r1, #3
-    bl func_08049F58
+    bl PutUiHand
     movs r0, #0
     ldrsb r0, [r5, r0]
     cmp r0, #0
@@ -91781,7 +91781,7 @@ func_0803E930: @ 0x0803E930
     lsls r1, r1, #4
     adds r1, #0x28
     movs r0, #0x50
-    bl func_08049F58
+    bl PutUiHand
     ldr r0, [r7, #0x38]
     lsls r0, r0, #0x18
     lsrs r0, r0, #0x18
@@ -91799,7 +91799,7 @@ func_0803E930: @ 0x0803E930
     lsls r1, r1, #4
     adds r1, #0x28
     movs r0, #0x50
-    bl func_08049F58
+    bl PutUiHand
     ldr r0, .L0803EA78 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #1
@@ -92532,7 +92532,7 @@ func_0803EFC4: @ 0x0803EFC4
     ldr r1, [r4, #0x58]
     lsls r1, r1, #3
     adds r1, #0x20
-    bl func_08049F58
+    bl PutUiHand
     ldr r0, .L0803F068 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
@@ -93872,7 +93872,7 @@ func_0803FA3C: @ 0x0803FA3C
     lsls r0, r0, #3
     adds r0, #0x50
     movs r1, #0x60
-    bl func_08049F58
+    bl PutUiHand
     ldr r0, .L0803FACC @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
@@ -95270,7 +95270,7 @@ func_080405BC: @ 0x080405BC
     adds r1, r5, #0
     mov r2, r8
     adds r3, r6, #0
-    bl func_08007F78
+    bl StartTalkExt
     movs r0, #1
     bl func_080080F4
     movs r0, #1
@@ -97242,7 +97242,7 @@ func_08041610: @ 0x08041610
     lsls r1, r1, #5
     adds r1, #0x28
     movs r0, #0x18
-    bl func_08049F58
+    bl PutUiHand
     ldr r0, [r6, #0x48]
     cmp r5, r0
     beq .L0804164A
@@ -100080,7 +100080,7 @@ func_08042DB0: @ 0x08042DB0
     push {r4, r5, lr}
     sub sp, #4
     adds r5, r0, #0
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     bne .L08042DC8
     ldr r1, .L08042DC4 @ =0x0203DC98
@@ -100545,7 +100545,7 @@ func_08043130: @ 0x08043130
 func_08043154: @ 0x08043154
     push {r4, lr}
     adds r4, r0, #0
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     beq .L08043168
     adds r0, r4, #0
@@ -100561,7 +100561,7 @@ func_08043154: @ 0x08043154
 func_08043170: @ 0x08043170
     push {r4, lr}
     adds r4, r0, #0
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     bne .L08043192
     bl func_0809E5AC
@@ -101901,7 +101901,7 @@ func_08043C0C: @ 0x08043C0C
     movs r2, #0
     ldrsh r1, [r1, r2]
     adds r1, #8
-    bl func_08049F58
+    bl PutUiHand
     ldr r0, [r6, #0x50]
     cmp r0, #1
     bne .L08043CAE
@@ -102278,7 +102278,7 @@ func_08043F50: @ 0x08043F50
     muls r0, r1, r0
     adds r0, #0x28
     movs r1, #0x60
-    bl func_08049F58
+    bl PutUiHand
     ldr r0, .L08043FAC @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
@@ -108248,7 +108248,7 @@ func_08046E7C: @ 0x08046E7C
     thumb_func_start func_08046E90
 func_08046E90: @ 0x08046E90
     push {lr}
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     adds r1, r0, #0
     cmp r1, #1
     bne .L08046EA8
@@ -111642,7 +111642,7 @@ func_08048834: @ 0x08048834
     ldrsh r0, [r5, r2]
     movs r2, #0x30
     ldrsh r1, [r5, r2]
-    bl func_08049F58
+    bl PutUiHand
     movs r0, #0xc0
     movs r1, #0x10
     bl func_08047AB0
@@ -114676,8 +114676,8 @@ func_08049CE4: @ 0x08049CE4
 .L08049F54: .4byte gBg0Tm
     func_end func_08049CE4
 
-    thumb_func_start func_08049F58
-func_08049F58: @ 0x08049F58
+    thumb_func_start PutUiHand
+PutUiHand: @ 0x08049F58
     push {r4, r5, r6, r7, lr}
     sub sp, #4
     adds r5, r0, #0
@@ -114728,7 +114728,7 @@ func_08049F58: @ 0x08049F58
 .L08049FBC: .4byte 0x0203DCEC
 .L08049FC0: .4byte 0x08B9A868
 .L08049FC4: .4byte 0x08B9A860
-    func_end func_08049F58
+    func_end PutUiHand
 
     thumb_func_start func_08049FC8
 func_08049FC8: @ 0x08049FC8
@@ -115712,7 +115712,7 @@ func_0804A63C: @ 0x0804A63C
     bl func_0804AB58
     ldr r0, [sp]
     ldr r1, [sp, #4]
-    bl func_08049F58
+    bl PutUiHand
 .L0804A726:
     add sp, #8
     pop {r4, r5, r6}
@@ -116040,7 +116040,7 @@ func_0804A954: @ 0x0804A954
     bl func_0804AB58
     ldr r0, [sp]
     ldr r1, [sp, #4]
-    bl func_08049F58
+    bl PutUiHand
     ldr r0, .L0804A99C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x81
@@ -117234,8 +117234,8 @@ func_0804B1D8: @ 0x0804B1D8
 .L0804B1E8: .4byte 0x0203E004
     func_end func_0804B1D8
 
-    thumb_func_start func_0804B1EC
-func_0804B1EC: @ 0x0804B1EC
+    thumb_func_start IsBattleDeamonActive
+IsBattleDeamonActive: @ 0x0804B1EC
     ldr r0, .L0804B1F8 @ =0x0203E000
     ldr r0, [r0]
     cmp r0, #1
@@ -117248,7 +117248,7 @@ func_0804B1EC: @ 0x0804B1EC
     movs r0, #1
 .L0804B1FE:
     bx lr
-    func_end func_0804B1EC
+    func_end IsBattleDeamonActive
 
     thumb_func_start func_0804B200
 func_0804B200: @ 0x0804B200
@@ -203269,7 +203269,7 @@ func_080756CC: @ 0x080756CC
     ldr r1, .L08075704 @ =func_08075798
     adds r0, r1, #0
     movs r1, #9
-    bl func_08014B34
+    bl CallDelayed
     b .L08075712
     .align 2, 0
 .L08075700: .4byte 0x0203E0FC
@@ -203278,7 +203278,7 @@ func_080756CC: @ 0x080756CC
     ldr r1, .L08075790 @ =func_080757DC
     adds r0, r1, #0
     movs r1, #0xc
-    bl func_08014B34
+    bl CallDelayed
 .L08075712:
     ldr r0, .L08075794 @ =0x0203E0FC
     ldr r2, .L08075794 @ =0x0203E0FC
@@ -214038,7 +214038,7 @@ func_0807A388: @ 0x0807A388
     thumb_func_start func_0807A3A4
 func_0807A3A4: @ 0x0807A3A4
     push {lr}
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     movs r1, #0
     cmp r0, #1
     bne .L0807A3B2
@@ -218901,7 +218901,7 @@ func_0807C8FC: @ 0x0807C8FC
     adds r1, #0x46
     movs r0, #0x10
     strb r0, [r1]
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     bne .L0807C966
     movs r4, #1
@@ -221163,7 +221163,7 @@ func_0807D954: @ 0x0807D954
     bl StartSpriteAnimProc
     ldr r0, .L0807D9C8 @ =func_0807D944
     movs r1, #1
-    bl func_08014B34
+    bl CallDelayed
 .L0807D9AA:
     add sp, #8
     pop {r4, r5, r6}
@@ -221680,7 +221680,7 @@ func_0807DC5C: @ 0x0807DC5C
     movs r0, #0xa
     movs r1, #0xe
     movs r3, #0
-    bl func_08007F78
+    bl StartTalkExt
     movs r0, #1
     bl func_080080F4
     movs r0, #1
@@ -228355,7 +228355,7 @@ func_0808119C: @ 0x0808119C
     adds r6, r0, #0
     ldr r5, .L080811F8 @ =0x0200310C
     ldr r0, [r5, #0xc]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r4, r0, #0
     ldr r0, [r5, #0xc]
     ldr r0, [r0, #0xc]
@@ -229668,7 +229668,7 @@ func_08081BB4: @ 0x08081BB4
     lsls r1, r1, #3
     ldrb r2, [r2, #0x11]
     adds r1, r2, r1
-    bl func_08049F58
+    bl PutUiHand
     ldr r6, .L08081C50 @ =gpKeySt
     ldr r1, [r6]
     movs r0, #0x40
@@ -232740,7 +232740,7 @@ func_08083254: @ 0x08083254
     adds r1, r6, #0
     bl Decompress
 .L08083294:
-    bl ResetTalkFlags
+    bl ClearAllTalkFlags
     bl GetBoxTalkFlags
     movs r1, #1
     ands r1, r0
@@ -241872,7 +241872,7 @@ func_08087BFC: @ 0x08087BFC
     movs r0, #0x80
     lsls r0, r0, #7
     bl SetCgFlags
-    bl ResetTalkFlags
+    bl ClearAllTalkFlags
     ldr r0, .L08087D38 @ =0x0203E738
     str r0, [r4, #0x30]
     adds r3, r4, #0
@@ -243632,7 +243632,7 @@ func_08088AA8: @ 0x08088AA8
     movs r1, #0x2a
     ldrsh r0, [r4, r1]
 .L08088B00:
-    bl func_08009FDC
+    bl SetTalkChoiceResult
     adds r0, r4, #0
     bl Proc_Break
     b .L08088B7A
@@ -243691,7 +243691,7 @@ func_08088AA8: @ 0x08088AA8
     subs r0, #4
     movs r2, #0x2e
     ldrsh r1, [r4, r2]
-    bl func_08049F58
+    bl PutUiHand
 .L08088B7A:
     pop {r4, r5, r6}
     pop {r0}
@@ -244736,7 +244736,7 @@ func_0808927C: @ 0x0808927C
     ldrb r1, [r1]
     lsls r1, r1, #4
     adds r1, #0x28
-    bl func_08049F58
+    bl PutUiHand
     b .L0808939A
     .align 2, 0
 .L0808936C: .4byte 0x000020B8
@@ -262889,7 +262889,7 @@ func_08092010: @ 0x08092010
     cmp r4, #7
     ble .L0809203A
     mov r0, r8
-    bl GetUnitFid
+    bl GetUnitPortraitId
     ldr r7, .L08092104 @ =0x02022D66
     movs r2, #0x9c
     lsls r2, r2, #2
@@ -263946,7 +263946,7 @@ func_080928EC: @ 0x080928EC
     cmp r6, #0
     beq .L0809296C
     adds r0, r6, #0
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     lsls r2, r7, #0x10
     asrs r2, r2, #0x10
@@ -265207,7 +265207,7 @@ func_080932F4: @ 0x080932F4
     movs r3, #0
     bl TmFillRect_thm
     adds r0, r5, #0
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r4, #0
     subs r1, #0x88
     movs r2, #0x9c
@@ -267401,7 +267401,7 @@ func_08094350: @ 0x08094350
     mov r2, r8
     str r0, [r2, #0x3c]
     ldr r0, [r2, #0x2c]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     movs r4, #4
     rsbs r4, r4, #0
@@ -267413,7 +267413,7 @@ func_08094350: @ 0x08094350
     bl StartBmFace
     mov r3, r8
     ldr r0, [r3, #0x30]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     ldr r0, .L08094618 @ =0x00000202
     str r0, [sp]
@@ -268721,7 +268721,7 @@ func_08094EF4: @ 0x08094EF4
     ldr r2, .L08094F74 @ =0x02022FBE
     mov r0, sp
     movs r3, #3
-    bl func_0800A00C
+    bl PrintStringToTexts
     b .L08094FA2
     .align 2, 0
 .L08094F70: .4byte 0x0840F3E4
@@ -268742,7 +268742,7 @@ func_08094EF4: @ 0x08094EF4
     ldr r2, .L08094FB0 @ =0x02022FBE
     mov r0, sp
     movs r3, #3
-    bl func_0800A00C
+    bl PrintStringToTexts
 .L08094FA2:
     movs r0, #1
     bl EnableBgSync
@@ -268932,7 +268932,7 @@ func_08094FE4: @ 0x08094FE4
     movs r1, #0
     bl func_08094BD4
     ldr r0, [r7, #0x2c]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     movs r3, #4
     rsbs r3, r3, #0
@@ -273724,7 +273724,7 @@ func_080976F0: @ 0x080976F0
     adds r1, r7, #0
     bl func_080A92F8
     ldr r0, [r7, #0x2c]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     movs r3, #4
     rsbs r3, r3, #0
@@ -275772,7 +275772,7 @@ func_08098908: @ 0x08098908
     bl EnableBgSync
     mov r1, sb
     ldr r0, [r1, #0x2c]
-    bl GetUnitFid
+    bl GetUnitPortraitId
     adds r1, r0, #0
     ldr r0, .L08098B64 @ =0x00000503
     str r0, [sp]
@@ -280230,7 +280230,7 @@ func_0809AD20: @ 0x0809AD20
 func_0809AD64: @ 0x0809AD64
     push {r4, r5, lr}
     adds r5, r0, #0
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     bne .L0809ADB2
     bl func_080992A0
@@ -280276,7 +280276,7 @@ func_0809AD64: @ 0x0809AD64
 func_0809ADC0: @ 0x0809ADC0
     push {r4, lr}
     adds r4, r0, #0
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     bne .L0809ADD6
     adds r0, r4, #0
@@ -302803,7 +302803,7 @@ func_080A5818: @ 0x080A5818
     lsls r0, r0, #3
     adds r0, #0x34
     movs r1, #0x88
-    bl func_08049F58
+    bl PutUiHand
     mov r1, r8
     ldr r0, [r1, #0x14]
     adds r0, #0x2c
@@ -304740,7 +304740,7 @@ func_080A6A54: @ 0x080A6A54
     movs r0, #0x70
     bl SetBoxTalkFlags
     movs r0, #1
-    bl func_08009FDC
+    bl SetTalkChoiceResult
     add sp, #8
     pop {r4}
     pop {r0}
@@ -304754,17 +304754,17 @@ func_080A6A54: @ 0x080A6A54
 func_080A6A90: @ 0x080A6A90
     push {r4, lr}
     adds r4, r0, #0
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     bne .L080A6AA4
     adds r0, r4, #0
     movs r1, #2
     bl Proc_Goto
 .L080A6AA4:
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #2
     beq .L080A6AB4
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #0
     bne .L080A6ABC
 .L080A6AB4:
@@ -304795,7 +304795,7 @@ func_080A6AC4: @ 0x080A6AC4
     movs r0, #0xf0
     bl SetBoxTalkFlags
     movs r0, #1
-    bl func_08009FDC
+    bl SetTalkChoiceResult
     add sp, #8
     pop {r4}
     pop {r0}
@@ -304809,10 +304809,10 @@ func_080A6AC4: @ 0x080A6AC4
 func_080A6B00: @ 0x080A6B00
     push {r4, lr}
     adds r4, r0, #0
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #2
     beq .L080A6B14
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #0
     bne .L080A6B1C
 .L080A6B14:
@@ -304820,7 +304820,7 @@ func_080A6B00: @ 0x080A6B00
     movs r1, #2
     bl Proc_Goto
 .L080A6B1C:
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     bne .L080A6B2C
     adds r0, r4, #0
@@ -305101,7 +305101,7 @@ func_080A6CD0: @ 0x080A6CD0
     movs r0, #0xf0
     bl SetBoxTalkFlags
     movs r0, #2
-    bl func_08009FDC
+    bl SetTalkChoiceResult
 .L080A6D52:
     add sp, #8
     pop {r4}
@@ -305117,10 +305117,10 @@ func_080A6CD0: @ 0x080A6CD0
 func_080A6D68: @ 0x080A6D68
     push {r4, lr}
     adds r4, r0, #0
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #2
     beq .L080A6D7C
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #0
     bne .L080A6D92
 .L080A6D7C:
@@ -310176,7 +310176,7 @@ func_080A943C: @ 0x080A943C
     adds r4, r0, #0
     ldr r0, [r4, #0x2c]
     ldr r1, [r4, #0x30]
-    bl func_08049F58
+    bl PutUiHand
     adds r0, r4, #0
     adds r0, #0x35
     ldrb r0, [r0]
@@ -319940,7 +319940,7 @@ func_080ADEA8: @ 0x080ADEA8
     ldrb r0, [r0, #8]
     subs r0, #2
     adds r1, r4, #0
-    bl func_08049F58
+    bl PutUiHand
     ldr r1, [r6]
     movs r2, #0x34
     ldrsh r0, [r1, r2]
@@ -324611,7 +324611,7 @@ func_080B034C: @ 0x080B034C
     ldr r3, [r7, #4]
     movs r0, #8
     movs r1, #2
-    bl func_08007F78
+    bl StartTalkExt
     movs r0, #0
     bl func_080080F4
     movs r0, #1
@@ -324983,7 +324983,7 @@ func_080B062C: @ 0x080B062C
     sub sp, #4
     mov r7, sp
     str r0, [r7]
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     beq .L080B0656
     cmp r0, #1
@@ -325323,7 +325323,7 @@ func_080B0808: @ 0x080B0808
     subs r2, #0x48
     subs r1, r0, r2
     movs r0, #0x38
-    bl func_08049F58
+    bl PutUiHand
     ldr r1, [r7]
     adds r0, r1, #0
     adds r1, #0x62
@@ -325503,7 +325503,7 @@ func_080B0808: @ 0x080B0808
 .L080B0A48:
     ldr r1, [r7, #8]
     adds r0, r1, #0
-    bl func_08009FE8
+    bl SetTalkNumber
     movs r0, #0x24
     ldr r1, [r7]
     bl func_080B034C
@@ -325556,7 +325556,7 @@ func_080B0AAC: @ 0x080B0AAC
     sub sp, #4
     mov r7, sp
     str r0, [r7]
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     beq .L080B0ACC
     cmp r0, #1
@@ -325644,7 +325644,7 @@ func_080B0B50: @ 0x080B0B50
     sub sp, #4
     mov r7, sp
     str r0, [r7]
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     beq .L080B0B70
     cmp r0, #1
@@ -325905,7 +325905,7 @@ func_080B0C9C: @ 0x080B0C9C
     subs r2, #0x48
     subs r1, r0, r2
     movs r0, #0x38
-    bl func_08049F58
+    bl PutUiHand
     ldr r1, [r7]
     adds r0, r1, #0
     adds r1, #0x62
@@ -326097,7 +326097,7 @@ func_080B0C9C: @ 0x080B0C9C
     lsls r2, r0, #0x10
     lsrs r1, r2, #0x10
     adds r0, r1, #0
-    bl func_08009FE8
+    bl SetTalkNumber
     movs r0, #0x24
     ldr r1, [r7]
     bl func_080B034C
@@ -326150,7 +326150,7 @@ func_080B0F1C: @ 0x080B0F1C
     sub sp, #8
     mov r7, sp
     str r0, [r7]
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     beq .L080B0F3C
     cmp r0, #1
@@ -326458,7 +326458,7 @@ func_080B10AC: @ 0x080B10AC
     subs r2, #0x48
     subs r1, r0, r2
     movs r0, #0x38
-    bl func_08049F58
+    bl PutUiHand
     ldr r1, [r7]
     adds r0, r1, #0
     adds r1, #0x62
@@ -329722,7 +329722,7 @@ func_080B2AC0: @ 0x080B2AC0
     bl ArenaGetMatchupGoldValue
     adds r1, r0, #0
     adds r0, r1, #0
-    bl func_08009FE8
+    bl SetTalkNumber
     movs r0, #0x41
     ldr r1, [r7]
     bl func_080B2DAC
@@ -329738,7 +329738,7 @@ func_080B2AE4: @ 0x080B2AE4
     sub sp, #4
     mov r7, sp
     str r0, [r7]
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     beq .L080B2B16
     cmp r0, #1
@@ -329980,7 +329980,7 @@ func_080B2C90: @ 0x080B2C90
     adds r1, r0, #0
     lsls r2, r1, #1
     adds r0, r2, #0
-    bl func_08009FE8
+    bl SetTalkNumber
     movs r0, #0x45
     ldr r1, [r7]
     bl func_080B2DAC
@@ -330113,7 +330113,7 @@ func_080B2DAC: @ 0x080B2DAC
     ldr r3, [r7, #4]
     movs r0, #8
     movs r1, #2
-    bl func_08007F78
+    bl StartTalkExt
     movs r0, #0
     bl func_080080F4
     movs r0, #1
@@ -330294,7 +330294,7 @@ func_080B2F40: @ 0x080B2F40
     sub sp, #4
     mov r7, sp
     str r0, [r7]
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #1
     beq .L080B2F60
     cmp r0, #1
@@ -334699,7 +334699,7 @@ func_080B4FE4: @ 0x080B4FE4
     lsls r0, r0, #2
     movs r1, #2
     movs r2, #2
-    bl func_08007E98
+    bl InitSpriteTalk
     ldr r0, .L080B502C @ =0x02000815
     ldrb r0, [r0]
     lsrs r1, r0, #3
@@ -340635,7 +340635,7 @@ func_080B7D0C: @ 0x080B7D0C
 func_080B7D88: @ 0x080B7D88
     push {r4, lr}
     adds r4, r0, #0
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #2
     bne .L080B7D9E
     adds r0, r4, #0
@@ -340711,7 +340711,7 @@ func_080B7DAC: @ 0x080B7DAC
     thumb_func_start func_080B7E20
 func_080B7E20: @ 0x080B7E20
     push {lr}
-    bl GetTalkResult
+    bl GetTalkChoiceResult
     cmp r0, #2
     bne .L080B7E32
     movs r0, #5

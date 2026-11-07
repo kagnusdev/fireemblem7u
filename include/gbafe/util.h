@@ -140,9 +140,9 @@ void WaitForFade(ProcPtr proc);
 // ??? sub_80148E4
 // ??? sub_8014900
 // ??? sub_8014970
-void sub_80149B4(ProcPtr proc, int arg_1);
+void StartTemporaryLock(ProcPtr proc, int arg_1);
 // ??? sub_80149D0
-u8 sub_80149EC(int number, char * buf);
+u8 func_08014590(int number, char * buf);
 // ??? sub_8014AB0
 // ??? sub_8014B14
 // ??? sub_8014B58

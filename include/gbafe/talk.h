@@ -56,7 +56,7 @@ struct TalkSt
     /* 0F */ s8 speak_talk_face;
     /* 10 */ u8 speak_width;
     /* 11 */ u8 active_talk_face;
-    /* 12 */ bool8 instant_print;
+    /* 12 */ s8 instant_print;
     /* 13 */ s8 print_delay;
     /* 14 */ s8 print_clock;
     /* 15 */ u8 put_lines;
@@ -105,11 +105,11 @@ struct ProcTalkAdvance {
 
 // ??? func_08007D80
 // ??? func_08007DB8
-// ??? sub_8007C64
+// ??? func_08007DD4
 void InitTalk(int chr, int lines, bool unpack_bubble);
 // ??? InitSpriteTalk
-// ??? sub_8007DE0
-void sub_8007DF4();
+// ??? func_08007F50
+void func_08007F64();
 // ??? StartTalkExt
 // ??? StartTalkMsg
 // ??? StartTalkMsgExt
@@ -118,64 +118,64 @@ void sub_8007DF4();
 // ??? SetTalkLines
 // ??? ClearAllTalkFlags
 // ??? SetTalkFlag
-// ??? sub_8007F38
-// ??? sub_8007F44
-// ??? sub_8007F58
-// ??? sub_8007F68
-// ??? sub_8007F84
-// ??? sub_8007FC0
-// ??? sub_8008074
-// ??? sub_80080A8
-bool sub_800821C(ProcPtr proc);
-bool sub_8008308(ProcPtr proc);
+// ??? SetTalkFunc
+// ??? ClearTalkFlag
+// ??? CheckTalkFlag
+// ??? func_080080D8
+// ??? func_080080F4
+// ??? TalkSkipListener_OnIdle
+// ??? func_080081E4
+// ??? func_08008218
+bool func_0800838C(ProcPtr proc);
+bool func_08008478(ProcPtr proc);
 // ??? LockTalk
 // ??? IsTalkLocked
 // ??? ResumeTalk
-// ??? sub_800837C
+// ??? func_080084EC
 // ??? TalkToggleInvertedPalette
 int TalkInterpret(ProcPtr proc);
-void sub_8008CB8(int);
-void sub_8008CC4(ProcPtr proc);
-// ??? sub_8008DA8
-// ??? sub_8008DC8
-void sub_8008DFC(int talk_face, int toBack);
-void sub_8008E58(int talkFaceFrom, int talkFaceTo);
-bool sub_8008EB0();
-void sub_8008ECC(int talkFaceFrom, int talkFaceTo, bool isSwap);
-// ??? sub_8008F24
-// ??? sub_8008F80
-// ??? sub_8009080
-// ??? sub_800909C
-// ??? sub_80090C0
+void func_08008E28(int);
+void func_08008E34(ProcPtr proc);
+// ??? func_08008F18
+// ??? func_08008F38
+void func_08008F6C(int talk_face, int toBack);
+void func_08008FC8(int talkFaceFrom, int talkFaceTo);
+bool func_08009020();
+void func_0800903C(int talkFaceFrom, int talkFaceTo, bool isSwap);
+// ??? TalkFaceMove_OnInit
+// ??? TalkFaceMove_OnIdle
+// ??? func_080091F0
+// ??? TalkPause_OnIdle
+// ??? TalkWaitForInput_OnIdle
 // ??? nullsub_24
-void sub_800914C(struct Proc * parent, int x, int y);
-// ??? sub_8009178
-// ??? sub_80091AC
-// ??? sub_8009218
-void sub_800925C(struct TalkChoiceEnt const * choices, struct Text * text, u16 * tm, int defaultChoice, int color, struct Proc * parent);
-// ??? sub_8009310
-// ??? sub_8009418
-// ??? sub_8009458
-// ??? sub_800954C
-// ??? sub_8009564
-void sub_8009598();
-int sub_80095D4(int cmd);
-void sub_80095E4();
-void sub_8009628();
-void sub_800968C();
-// ??? sub_80096E0
-void sub_800981C();
-// ??? sub_8009834
-void sub_80098A0(int x, int y, int width, int height);
-void sub_8009920(int bg, int x, int y, int kind);
-void sub_8009AA8(int id, int x, int y, int width, int height);
+void func_080092BC(struct Proc * parent, int x, int y);
+// ??? func_080092E8
+// ??? func_0800931C
+// ??? func_08009388
+void func_080093CC(struct TalkChoiceEnt const * choices, struct Text * text, u16 * tm, int defaultChoice, int color, struct Proc * parent);
+// ??? func_08009480
+// ??? func_08009588
+// ??? func_080095C8
+// ??? func_080096BC
+// ??? func_080096D4
+void func_08009708();
+int func_08009744(int cmd);
+void ClearTalkBubble();
+void func_08009798();
+void func_080097FC();
+// ??? func_08009850
+void func_0800998C();
+// ??? func_080099A4
+void func_08009A10(int x, int y, int width, int height);
+void func_08009A90(int bg, int x, int y, int kind);
+void func_08009C18(int id, int x, int y, int width, int height);
 // ??? nullsub_25
-// ??? sub_8009BE8
-// ??? sub_8009C58
-// ??? sub_8009C8C
-void sub_8009D0C(int talk_face, struct Proc* parent);
-bool sub_8009D70();
-int sub_8009D94(int talk_face);
+// ??? func_08009D58
+// ??? func_08009DC8
+// ??? func_08009DFC
+void func_08009E7C(int talk_face, struct Proc* parent);
+bool func_08009EE0();
+int func_08009F04(int talk_face);
 // ??? SetTalkFaceDisp
 void SetTalkFaceMouthMove(int face);
 void SetTalkFaceNoMouthMove(int face);
@@ -187,11 +187,11 @@ void SetTalkNumber(int number);
 // ??? SetTalkUnkStr
 // ??? PrintStringToTexts
 // ??? TalkPutSpriteText_OnIdle
-// ??? sub_8009F8C
-// ??? sub_8009F98
-int sub_8009FAC(char const * str, bool isBubbleOpen);
-// ??? sub_800A378
-// ??? sub_800A390
+// ??? func_0800A0FC
+// ??? func_0800A108
+int func_0800A11C(char const * str, bool isBubbleOpen);
+// ??? func_0800A4E8
+// ??? func_0800A4EC
 // ??? sub_800A3A4
 // ??? StartTalkDebug
 // ??? sub_800A3B8
@@ -206,25 +206,25 @@ void TalkAdvance_Loop(struct ProcTalkAdvance * proc);
 
 extern struct ProcCmd gUnk_08BFFB30[];
 extern struct TalkSt * CONST_DATA sTalkSt;
-extern struct ProcCmd gUnk_08BFFB6C[];
+extern struct ProcCmd gUnk_08B909BC[];
 extern struct ProcCmd ProcScr_Talk[];
-extern struct ProcCmd gUnk_08BFFBB4[];
-extern struct ProcCmd gUnk_08BFFBBC[];
-extern struct ProcCmd gUnk_08BFFBDC[];
-extern struct ProcCmd gUnk_08BFFBFC[];
-extern u16 const * CONST_DATA gUnk_08BFFC3C[];
-extern struct ProcCmd gUnk_08BFFC7C[];
-extern struct TalkChoiceEnt CONST_DATA gUnk_08BFFC9C[];
-extern struct TalkChoiceEnt CONST_DATA gUnk_08BFFCAC[];
-extern struct ProcCmd gUnk_08BFFCBC[];
-extern struct ProcCmd gUnk_08BFFCD4[];
-extern struct ProcCmd gUnk_08BFFCFC[];
-extern int CONST_DATA gUnk_08BFFD2C[];
-extern struct ProcCmd gUnk_08BFFD3C[];
-extern struct ProcCmd gUnk_08BFFD4C[];
-extern int CONST_DATA gUnk_08BFFD7C[];
-extern u16 gUnk_08BFFD9C[];
-extern u16 gUnk_08BFFDB6[];
+extern struct ProcCmd gUnk_08B90A04[];
+extern struct ProcCmd gUnk_08B90A0C[];
+extern struct ProcCmd gUnk_08B90A2C[];
+extern struct ProcCmd gUnk_08B90A4C[];
+extern u16 const * CONST_DATA gUnk_08B90A8C[];
+extern struct ProcCmd gUnk_08B90ACC[];
+extern struct TalkChoiceEnt CONST_DATA gUnk_08B90AEC[];
+extern struct TalkChoiceEnt CONST_DATA gUnk_08B90AFC[];
+extern struct ProcCmd gUnk_08B90B0C[];
+extern struct ProcCmd gUnk_08B90B24[];
+extern struct ProcCmd gUnk_08B90B4C[];
+extern int CONST_DATA gUnk_08B90B7C[];
+extern struct ProcCmd gUnk_08B90B8C[];
+extern struct ProcCmd gUnk_08B90B9C[];
+extern int CONST_DATA gUnk_08B90BCC[];
+extern u16 gUnk_08B90BEC[];
+extern u16 gUnk_08B90C06[];
 extern struct ProcCmd gUnk_08BFFE18[];
 extern struct ProcCmd ProcScr_TalkAdvanceDeamon[];
 extern struct ProcCmd ProcScr_TalkAdvance[];

@@ -27,13 +27,6 @@ gUnk_08193DA0:
     .global rodata_sEnd
 rodata_sEnd:
 
-    .section ".rodata_0", "a"
-
-    .incbin "baserom.gba", 0x193DDC, 0x193E00 - 0x193DDC
-
-    .global rodata_s_0End
-rodata_s_0End:
-
     .section ".rodata_1", "a"
 
     .incbin "baserom.gba", 0x193E20, 0x194674 - 0x193E20
@@ -44,7 +37,15 @@ Pal_Text:
 
     .global Pal_GreenTextColors
 Pal_GreenTextColors:
-    .incbin "baserom.gba", 0x194734, 0x195680 - 0x194734
+    .incbin "baserom.gba", 0x194734, 0x194754 - 0x194734
+
+    .global gUnk_08194754
+gUnk_08194754:
+    .incbin "baserom.gba", 0x194754, 0x194774 - 0x194754
+
+    .global gUnk_08194774
+gUnk_08194774:
+    .incbin "baserom.gba", 0x194774, 0x195680 - 0x194774
 
     .global Tsa_Unk_08195680
 Tsa_Unk_08195680:
@@ -52,7 +53,35 @@ Tsa_Unk_08195680:
 
     .global Tsa_Unk_08195738
 Tsa_Unk_08195738:
-    .incbin "baserom.gba", 0x195738, 0x677370 - 0x195738
+    .incbin "baserom.gba", 0x195738, 0x3FBD34 - 0x195738
+
+    .global gUnk_083FBD34
+gUnk_083FBD34:
+    .incbin "baserom.gba", 0x3FBD34, 0x3FBDDC - 0x3FBD34
+
+    .global gUnk_083FBDDC
+gUnk_083FBDDC:
+    .incbin "baserom.gba", 0x3FBDDC, 0x3FBE80 - 0x3FBDDC
+
+    .global gUnk_083FBE80
+gUnk_083FBE80:
+    .incbin "baserom.gba", 0x3FBE80, 0x3FBEDC - 0x3FBE80
+
+    .global gUnk_083FBEDC
+gUnk_083FBEDC:
+    .incbin "baserom.gba", 0x3FBEDC, 0x3FBF30 - 0x3FBEDC
+
+    .global gUnk_083FBF30
+gUnk_083FBF30:
+    .incbin "baserom.gba", 0x3FBF30, 0x3FBF80 - 0x3FBF30
+
+    .global gUnk_083FBF80
+gUnk_083FBF80:
+    .incbin "baserom.gba", 0x3FBF80, 0x3FBFD0 - 0x3FBF80
+
+    .global gUnk_083FBFD0
+gUnk_083FBFD0:
+    .incbin "baserom.gba", 0x3FBFD0, 0x677370 - 0x3FBFD0
 
     .section ".rodata_2", "a"
 
