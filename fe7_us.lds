@@ -66,6 +66,7 @@ SECTIONS
         src/sprite-anim.o(.text);
         src/game-ctrl.o(.text);
         src/msg.o(.text);
+        asm/utils.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
