@@ -56,6 +56,13 @@ SECTIONS
         asm/event-engine.o(.text);
         src/eventscr.o(.text);
         asm/eventscr.o(.text);
+        asm/eventscr-080101CC.o(.text);
+        asm/eventscr_snowstorm.o(.text);
+        asm/eventscr_thunder.o(.text);
+        asm/eventscr_niniandisp.o(.text);
+        asm/eventscr_screenflash.o(.text);
+        asm/eventscr_fade.o(.text);
+        asm/eventscr_spriteanim.o(.text);
         src/sprite-anim.o(.text);
         src/game-ctrl.o(.text);
         src/msg.o(.text);
