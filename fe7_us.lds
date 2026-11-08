@@ -68,6 +68,7 @@ SECTIONS
         src/msg.o(.text);
         asm/utils.o(.text);
         src/bm.o(.text);
+        asm/items.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
