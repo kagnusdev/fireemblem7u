@@ -53,8 +53,8 @@ SECTIONS
         src/talk.o(.text);
         src/talk-advance.o(.text);
         asm/code_1.o(.text);
-        src/event.o(.text);
-        asm/event.o(.text);
+        src/eventscr.o(.text);
+        asm/eventscr.o(.text);
         src/sprite-anim.o(.text);
         src/game-ctrl.o(.text);
         src/msg.o(.text);
@@ -244,7 +244,7 @@ SECTIONS
         . = ALIGN(4); src/anime.o(ewram_data);
         . = ALIGN(4); src/sprite.o(ewram_data);
         . = ALIGN(4); src/face.o(ewram_data);
-        . = ALIGN(4); src/event.o(ewram_data);
+        . = ALIGN(4); src/eventscr.o(ewram_data);
         . = ALIGN(4); src/msg.o(ewram_data);
         . = ALIGN(4); src/util.o(ewram_data);
         . = ALIGN(4); src/bm.o(ewram_data);
