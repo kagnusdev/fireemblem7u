@@ -66,7 +66,7 @@ enum event_func_ret_idx {
 #define LO8(half) (((half) & 0x00FF) >> 0)
 #define HI8(half) (((half) & 0xFF00) >> 8)
 
-// sub_800A604
+// func_0800A608
 void LoadUnitCore(struct UnitDefinition const * def, struct EventProc * proc);
 // sub_800A70C
 // sub_800A720
@@ -624,7 +624,7 @@ int sub_80125EC(struct EventProc * proc);
 
 extern struct UnitDefinition sEventLoadUnitBuf;
 
-extern u32 CONST_DATA gUnk_08BFFE88;
+extern u32 CONST_DATA gUnk_08B90C98;
 // ??? gUnk_08BFFE8C
 // ??? gUnk_08BFFE90
 // ??? gUnk_08BFFEF0
