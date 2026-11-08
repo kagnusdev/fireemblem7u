@@ -53,7 +53,7 @@ SECTIONS
         src/talk.o(.text);
         src/talk-advance.o(.text);
         src/event.o(.text);
-        asm/code_1.o(.text);
+        asm/event-engine.o(.text);
         src/eventscr.o(.text);
         asm/eventscr.o(.text);
         src/sprite-anim.o(.text);
