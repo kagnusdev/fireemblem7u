@@ -105,10 +105,18 @@ gUnk_08B90BEC:
 
     .global gUnk_08B90C06
 gUnk_08B90C06:
-    .incbin "baserom.gba", 0xB90C06, 0xB92474 - 0xB90C06
+    .incbin "baserom.gba", 0xB90C06, 0xB90C68 - 0xB90C06
 
     .global data_0_1End
 data_0_1End:
+
+
+    .section ".data_0_2", "a"
+
+.incbin "baserom.gba", 0xB90C98, 0xB92474 - 0xB90C98
+    .global data_0_2End
+data_0_2End:
+
 
     .data
 

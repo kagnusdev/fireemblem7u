@@ -51,6 +51,7 @@ SECTIONS
         src/sprite.o(.text);
         src/face.o(.text);
         src/talk.o(.text);
+        src/talk-advance.o(.text);
         asm/code_1.o(.text);
         src/event.o(.text);
         asm/event.o(.text);
@@ -149,6 +150,8 @@ SECTIONS
         . = ALIGN(4); src/face.o(.data);
         . = ALIGN(4); src/talk.o(.data);
         . = ALIGN(4); asm/data.o(.data_0_1);
+        . = ALIGN(4); src/talk-advance.o(.data);
+        . = ALIGN(4); asm/data.o(.data_0_2);
         . = ALIGN(4); src/sprite-anim.o(.data);
         . = ALIGN(4); src/game-ctrl.o(.data);
         . = ALIGN(4); src/msg.o(.data);
