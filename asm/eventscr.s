@@ -696,7 +696,7 @@ EvtCmd_SetMap: @ 0x0800E5B4
     ldr r0, [r0, #8]
     lsls r0, r0, #4
     bl GetCameraCenteredX
-    ldr r5, .L0800E600 @ =gBmStatus
+    ldr r5, .L0800E600 @ =gBmSt
     strh r0, [r5, #0xc]
     ldr r0, [r4, #0x30]
     ldr r0, [r0, #0xc]
@@ -712,7 +712,7 @@ EvtCmd_SetMap: @ 0x0800E5B4
     bx r1
     .align 2, 0
 .L0800E5FC: .4byte gPlaySt
-.L0800E600: .4byte gBmStatus
+.L0800E600: .4byte gBmSt
     func_end EvtCmd_SetMap
 
     thumb_func_start EvtCmd_SetMapId

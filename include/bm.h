@@ -93,12 +93,12 @@ struct PlayStatus
     /* 44 */ STRUCT_PAD(0x44, 0x48);
 };
 
-extern struct BmStatus gBmStatus;
+extern struct BmStatus gBmSt;
 extern struct PlayStatus gPlaySt;
 
-extern struct Vec2i gLastCoordMapCursorDrawn;
-extern u32 gLastTimeMapCursorDrawn;
+extern struct Vec2i sLastCoordMapCursorDrawn;
+extern u32 sLastTimeMapCursorDrawn;
 
-extern i8 gCameraAnimTable[0x100];
+extern i8 sCameraAnimTable[0x100];
 
 #endif // BM_H

@@ -444,7 +444,7 @@ const s8* GetUnitMovementCost(struct Unit *unit);
 // GetClassSMSId
 // UpdatePrevDeployStates
 // sub_8018C78
-void sub_8018CC4(void);
+void func_080188D4(void);
 // sub_8018D70
 int GetUnitCurrentHp(struct Unit *unit);
 int GetUnitMaxHp(struct Unit *unit);

@@ -206,7 +206,7 @@ func_08011624: @ 0x08011624
     str r4, [r6, #0x30]
     ldr r0, [r6, #0x3c]
     lsls r0, r0, #4
-    ldr r2, .L0801172C @ =gBmStatus
+    ldr r2, .L0801172C @ =gBmSt
     movs r3, #0xc
     ldrsh r1, [r2, r3]
     subs r0, r0, r1
@@ -324,7 +324,7 @@ func_08011624: @ 0x08011624
     pop {r0}
     bx r0
     .align 2, 0
-.L0801172C: .4byte gBmStatus
+.L0801172C: .4byte gBmSt
 .L08011730: .4byte 0x000001FF
 .L08011734: .4byte gSinLut
 .L08011738: .4byte 0x081AA8B8
@@ -355,7 +355,7 @@ func_0801175C: @ 0x0801175C
     adds r5, r0, #0
     ldr r2, [r5, #0x3c]
     lsls r2, r2, #4
-    ldr r4, .L080117A8 @ =gBmStatus
+    ldr r4, .L080117A8 @ =gBmSt
     movs r1, #0xc
     ldrsh r0, [r4, r1]
     subs r2, r2, r0
@@ -387,7 +387,7 @@ func_0801175C: @ 0x0801175C
     pop {r0}
     bx r0
     .align 2, 0
-.L080117A8: .4byte gBmStatus
+.L080117A8: .4byte gBmSt
 .L080117AC: .4byte 0x08B92168
     func_end func_0801175C
 

@@ -2,11 +2,11 @@
 
 // NOTE: data only
 
-struct Vec2i EWRAM_DATA gMapSize = { 0 };
+struct Vec2i EWRAM_DATA gBmMapSize = { 0 };
 
 u8 ** EWRAM_DATA gMapUnit = NULL;
 u8 ** EWRAM_DATA gMapTerrain = NULL;
-u8 ** EWRAM_DATA gMapMovement = NULL;
+u8 ** EWRAM_DATA gBmMapMovement = NULL;
 u8 ** EWRAM_DATA gMapRange = NULL;
 u8 ** EWRAM_DATA gMapFog = NULL;
 u8 ** EWRAM_DATA gMapHidden = NULL;

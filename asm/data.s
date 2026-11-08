@@ -118,11 +118,86 @@ data_0_1End:
 data_0_2End:
 
 
+    .section ".data_0_3", "a"
+
+    @ B928BC ... B92AF8
+    .incbin "baserom.gba", 0xB928BC, 0xB92AF8 - 0xB928BC
+
     .data
 
-    @ B928BC ... CF0CD0
+    @ B92E70 ... CF0CD0
+    .global dataStart
+dataStart:
+    .incbin "baserom.gba", 0xB92E70, 0xB93374 - 0xB92E70
 
-    .incbin "baserom.gba", 0xB928BC, 0xC96584 - 0xB928BC
+    .global ProcScr_PlayerPhase
+ProcScr_PlayerPhase:
+    .incbin "baserom.gba", 0xB93374, 0xB9356C - 0xB93374
+
+gUnk_08B9356C:
+    .incbin "baserom.gba", 0xB9356C, 0xB93664 - 0xB9356C
+
+    .global ProcUnk_08B93664
+ProcUnk_08B93664:
+    .incbin "baserom.gba", 0xB93664, 0xB9367C - 0xB93664
+
+gUnk_08B9367C:
+    .incbin "baserom.gba", 0xB9367C, 0xB937AC - 0xB9367C
+
+    .global ProcScr_BmMain_08B937AC
+ProcScr_BmMain_08B937AC:
+    .incbin "baserom.gba", 0xB937AC, 0xB937F4 - 0xB937AC
+
+gUnk_08B937F4:
+    .incbin "baserom.gba", 0xB937F4, 0xB93934 - 0xB937F4
+
+    .global ProcScr_ChapterIntrofx
+ProcScr_ChapterIntrofx:
+    .incbin "baserom.gba", 0xB93934, 0xB93ADC - 0xB93934
+
+    .global ProcScr_BmMain_08B93ADC
+ProcScr_BmMain_08B93ADC:
+    .incbin "baserom.gba", 0xB93ADC, 0xB93B04 - 0xB93ADC
+
+gUnk_B93B04:
+    .incbin "baserom.gba", 0xB93B04, 0xB94578 - 0xB93B04
+
+    .global ProcScr_UpdateTraps
+ProcScr_UpdateTraps:
+    .incbin "baserom.gba", 0xB94578, 0xB945C8 - 0xB94578
+
+gUnk_08B945C8:
+    .incbin "baserom.gba", 0xB945C8, 0xB96460 - 0xB945C8
+
+    .global ProcScr_SALLYCURSOR
+ProcScr_SALLYCURSOR:
+    .incbin "baserom.gba", 0xB96460, 0xB96998 - 0xB96460
+
+gUnk_08B96998:
+    .incbin "baserom.gba", 0xB96998, 0xB96BAC - 0xB96998
+
+    .global ProcScr_BmMain_08B96BAC
+ProcScr_BmMain_08B96BAC:
+    .incbin "baserom.gba", 0xB96BAC, 0xB96C0C - 0xB96BAC
+
+    .global ProcScr_BmMain_08B96C0C
+ProcScr_BmMain_08B96C0C:
+    .incbin "baserom.gba", 0xB96C0C, 0xB96C74 - 0xB96C0C
+
+    .global ProcScr_BmMain_08B96C74
+ProcScr_BmMain_08B96C74:
+    .incbin "baserom.gba", 0xB96C74, 0xB96CCC - 0xB96C74
+
+gUnk_08B96CCC:
+    .incbin "baserom.gba", 0xB96CCC, 0xB96E80 - 0xB96CCC
+
+    .global ProcScr_AiPhase
+ProcScr_AiPhase:
+    .incbin "baserom.gba", 0xB96E80, 0xB96EA8 - 0xB96E80
+
+    .global ProcUnk_08B96EA8
+ProcUnk_08B96EA8:
+    .incbin "baserom.gba", 0xB96EA8, 0xC96584 - 0xB96EA8
 
     .global FaceInfoTable
 FaceInfoTable:

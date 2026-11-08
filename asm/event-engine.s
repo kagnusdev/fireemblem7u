@@ -554,7 +554,7 @@ func_0800AA4C: @ 0x0800AA4C
     movs r3, #0
     bl InitTextFont
     bl ClearIcons
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     ldr r3, .L0800AAB8 @ =gDispIo
     adds r1, r3, #0
     adds r1, #0x3c
@@ -1447,7 +1447,7 @@ func_0800B0F0: @ 0x0800B0F0
     thumb_func_start func_0800B104
 func_0800B104: @ 0x0800B104
     push {lr}
-    bl ReleaseGame
+    bl UnlockGame
     pop {r0}
     bx r0
     func_end func_0800B104
@@ -1464,7 +1464,7 @@ func_0800B110: @ 0x0800B110
     movs r0, #0
     bl SetTextFont
     bl InitSystemTextFont
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
 .L0800B12C:
     pop {r0}
     bx r0

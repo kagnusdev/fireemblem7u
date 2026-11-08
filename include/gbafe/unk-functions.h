@@ -51,7 +51,7 @@ int sub_802D1E8(struct Unit * unit, int slot);
 /* util.h */
 /* bm.h */
 
-void nullsub_38(void);
+void func_0801B24C(void);
 
 void DecayTraps(void);
 

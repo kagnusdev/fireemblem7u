@@ -29,7 +29,15 @@ rodata_sEnd:
 
     .section ".rodata_1", "a"
 
-    .incbin "baserom.gba", 0x193E20, 0x194674 - 0x193E20
+    .incbin "baserom.gba", 0x193E20, 0x193E90 - 0x193E20
+
+    .global Gfx_MiscUiGraphics
+Gfx_MiscUiGraphics:
+    .incbin "baserom.gba", 0x193E90, 0x19431C - 0x193E90
+
+    .global Pal_MiscUiGraphics
+Pal_MiscUiGraphics:
+    .incbin "baserom.gba", 0x19431C, 0x194674 - 0x19431C
 
     .global Pal_Text
 Pal_Text:

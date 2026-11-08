@@ -1,1871 +1,5 @@
     .include "asm_prelude.inc"
 
-    thumb_func_start OnVBlank
-OnVBlank: @ 0x0801524C
-    push {lr}
-    ldr r1, .L08015290 @ =0x03007FF8
-    movs r0, #1
-    strh r0, [r1]
-    bl IncGameTime
-    bl m4aSoundVSync
-    ldr r0, .L08015294 @ =gProcTreeRoots
-    ldr r0, [r0]
-    bl Proc_Run
-    bl SyncLoOam
-    ldr r1, .L08015298 @ =gBmStatus
-    movs r0, #0
-    ldrsb r0, [r1, r0]
-    cmp r0, #0
-    beq .L08015286
-    movs r0, #0
-    strb r0, [r1]
-    bl SyncDispIo
-    bl SyncBgsAndPal
-    bl ApplyDataMoves
-    bl SyncHiOam
-.L08015286:
-    bl m4aSoundMain
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08015290: .4byte 0x03007FF8
-.L08015294: .4byte gProcTreeRoots
-.L08015298: .4byte gBmStatus
-    func_end OnVBlank
-
-    thumb_func_start OnMain
-OnMain: @ 0x0801529C
-    push {r4, lr}
-    ldr r0, .L080152F8 @ =gpKeySt
-    ldr r0, [r0]
-    bl RefreshKeySt
-    bl ClearSprites
-    ldr r4, .L080152FC @ =gProcTreeRoots
-    ldr r0, [r4, #4]
-    bl Proc_Run
-    bl GetGameLock
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .L080152C2
-    ldr r0, [r4, #8]
-    bl Proc_Run
-.L080152C2:
-    ldr r0, [r4, #0xc]
-    bl Proc_Run
-    ldr r0, [r4, #0x14]
-    bl Proc_Run
-    movs r0, #0
-    bl PutSpriteLayerOam
-    ldr r0, [r4, #0x10]
-    bl Proc_Run
-    movs r0, #0xd
-    bl PutSpriteLayerOam
-    ldr r1, .L08015300 @ =gBmStatus
-    movs r0, #1
-    strb r0, [r1]
-    ldr r0, .L08015304 @ =0x04000006
-    ldrh r0, [r0]
-    strh r0, [r1, #6]
-    bl VBlankIntrWait
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L080152F8: .4byte gpKeySt
-.L080152FC: .4byte gProcTreeRoots
-.L08015300: .4byte gBmStatus
-.L08015304: .4byte 0x04000006
-    func_end OnMain
-
-    thumb_func_start LockGame
-LockGame: @ 0x08015308
-    ldr r1, .L08015314 @ =gBmStatus
-    ldrb r0, [r1, #1]
-    adds r0, #1
-    strb r0, [r1, #1]
-    bx lr
-    .align 2, 0
-.L08015314: .4byte gBmStatus
-    func_end LockGame
-
-    thumb_func_start ReleaseGame
-ReleaseGame: @ 0x08015318
-    ldr r1, .L08015324 @ =gBmStatus
-    ldrb r0, [r1, #1]
-    subs r0, #1
-    strb r0, [r1, #1]
-    bx lr
-    .align 2, 0
-.L08015324: .4byte gBmStatus
-    func_end ReleaseGame
-
-    thumb_func_start GetGameLock
-GetGameLock: @ 0x08015328
-    ldr r0, .L08015330 @ =gBmStatus
-    ldrb r0, [r0, #1]
-    bx lr
-    .align 2, 0
-.L08015330: .4byte gBmStatus
-    func_end GetGameLock
-
-    thumb_func_start func_08015334
-func_08015334: @ 0x08015334
-    push {lr}
-    ldr r2, .L08015348 @ =gPlaySt
-    ldrb r0, [r2, #0xf]
-    cmp r0, #0x40
-    beq .L0801535E
-    cmp r0, #0x40
-    bgt .L0801534C
-    cmp r0, #0
-    beq .L08015352
-    b .L08015372
-    .align 2, 0
-.L08015348: .4byte gPlaySt
-.L0801534C:
-    cmp r0, #0x80
-    beq .L08015358
-    b .L08015372
-.L08015352:
-    movs r0, #0x80
-    strb r0, [r2, #0xf]
-    b .L08015372
-.L08015358:
-    movs r0, #0x40
-    strb r0, [r2, #0xf]
-    b .L08015372
-.L0801535E:
-    movs r0, #0
-    strb r0, [r2, #0xf]
-    ldrh r1, [r2, #0x10]
-    ldr r0, .L08015378 @ =0x000003E6
-    cmp r1, r0
-    bhi .L0801536E
-    adds r0, r1, #1
-    strh r0, [r2, #0x10]
-.L0801536E:
-    bl func_08026898
-.L08015372:
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08015378: .4byte 0x000003E6
-    func_end func_08015334
-
-    thumb_func_start func_0801537C
-func_0801537C: @ 0x0801537C
-    push {lr}
-    ldr r0, .L08015398 @ =gPlaySt
-    ldrb r0, [r0, #0xe]
-    lsls r0, r0, #0x18
-    asrs r0, r0, #0x18
-    bl func_080315BC
-    ldr r0, [r0, #0x38]
-    bl StartEvent
-    movs r0, #0
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08015398: .4byte gPlaySt
-    func_end func_0801537C
-
-    thumb_func_start func_0801539C
-func_0801539C: @ 0x0801539C
-    push {lr}
-    bl func_08018268
-    bl RefreshUnitSprites
-    bl func_08015334
-    bl func_08078988
-    lsls r0, r0, #0x18
-    asrs r0, r0, #0x18
-    cmp r0, #1
-    beq .L080153BA
-    movs r0, #1
-    b .L080153C0
-.L080153BA:
-    bl func_080789B8
-    movs r0, #0
-.L080153C0:
-    pop {r1}
-    bx r1
-    func_end func_0801539C
-
-    thumb_func_start func_080153C4
-func_080153C4: @ 0x080153C4
-    push {lr}
-    bl func_08079104
-    lsls r0, r0, #0x18
-    asrs r0, r0, #0x18
-    cmp r0, #1
-    beq .L080153D6
-    movs r0, #1
-    b .L080153DC
-.L080153D6:
-    bl func_080790C4
-    movs r0, #0
-.L080153DC:
-    pop {r1}
-    bx r1
-    func_end func_080153C4
-
-    thumb_func_start func_080153E0
-func_080153E0: @ 0x080153E0
-    push {r4, lr}
-    adds r4, r0, #0
-    ldr r0, .L080153F8 @ =gPlaySt
-    ldrb r0, [r0, #0xf]
-    cmp r0, #0x40
-    beq .L0801541C
-    cmp r0, #0x40
-    bgt .L080153FC
-    cmp r0, #0
-    beq .L08015402
-    b .L08015424
-    .align 2, 0
-.L080153F8: .4byte gPlaySt
-.L080153FC:
-    cmp r0, #0x80
-    beq .L0801540C
-    b .L08015424
-.L08015402:
-    ldr r0, .L08015408 @ =0x08B93374
-    b .L0801540E
-    .align 2, 0
-.L08015408: .4byte 0x08B93374
-.L0801540C:
-    ldr r0, .L08015418 @ =0x08B96E80
-.L0801540E:
-    adds r1, r4, #0
-    bl Proc_StartBlocking
-    b .L08015424
-    .align 2, 0
-.L08015418: .4byte 0x08B96E80
-.L0801541C:
-    ldr r0, .L08015430 @ =0x08B96E80
-    adds r1, r4, #0
-    bl Proc_StartBlocking
-.L08015424:
-    adds r0, r4, #0
-    bl Proc_Break
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08015430: .4byte 0x08B96E80
-    func_end func_080153E0
-
-    thumb_func_start func_08015434
-func_08015434: @ 0x08015434
-    push {r4, lr}
-    adds r4, r0, #0
-    ldr r0, .L08015454 @ =0x08B93374
-    adds r1, r4, #0
-    bl Proc_StartBlocking
-    movs r1, #7
-    bl Proc_Goto
-    adds r0, r4, #0
-    bl Proc_Break
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08015454: .4byte 0x08B93374
-    func_end func_08015434
-
-    thumb_func_start func_08015458
-func_08015458: @ 0x08015458
-    push {lr}
-    adds r1, r0, #0
-    ldr r0, .L08015474 @ =gPlaySt
-    ldrb r0, [r0, #0xf]
-    cmp r0, #0x40
-    bne .L0801547C
-    ldr r0, .L08015478 @ =0x08B94578
-    bl Proc_StartBlocking
-    bl func_0802C24C
-    movs r0, #0
-    b .L0801547E
-    .align 2, 0
-.L08015474: .4byte gPlaySt
-.L08015478: .4byte 0x08B94578
-.L0801547C:
-    movs r0, #1
-.L0801547E:
-    pop {r1}
-    bx r1
-    func_end func_08015458
-
-    thumb_func_start func_08015484
-func_08015484: @ 0x08015484
-    push {lr}
-    ldr r1, .L08015498 @ =gActionSt
-    movs r0, #9
-    strb r0, [r1, #0x16]
-    movs r0, #3
-    bl func_080A1100
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08015498: .4byte gActionSt
-    func_end func_08015484
-
-    thumb_func_start func_0801549C
-func_0801549C: @ 0x0801549C
-    push {r4, lr}
-    adds r4, r0, #0
-    ldr r0, .L080154C0 @ =gPlaySt
-    ldrb r0, [r0, #0xe]
-    lsls r0, r0, #0x18
-    asrs r0, r0, #0x18
-    bl GetChapterInfo
-    ldrb r0, [r0, #0xd]
-    cmp r0, #0
-    bne .L080154BA
-    adds r0, r4, #0
-    movs r1, #9
-    bl Proc_Goto
-.L080154BA:
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L080154C0: .4byte gPlaySt
-    func_end func_0801549C
-
-    thumb_func_start func_080154C4
-func_080154C4: @ 0x080154C4
-    push {lr}
-    adds r1, r0, #0
-    ldr r0, .L080154F4 @ =gPlaySt
-    ldrb r0, [r0, #0xe]
-    cmp r0, #0x2f
-    bne .L080154FC
-    ldr r2, .L080154F8 @ =gDispIo
-    adds r1, r2, #0
-    adds r1, #0x3c
-    movs r0, #0xc0
-    ldrb r3, [r1]
-    orrs r0, r3
-    strb r0, [r1]
-    adds r0, r2, #0
-    adds r0, #0x44
-    movs r1, #0
-    strb r1, [r0]
-    adds r0, #1
-    strb r1, [r0]
-    adds r1, r2, #0
-    adds r1, #0x46
-    movs r0, #0x10
-    strb r0, [r1]
-    b .L08015502
-    .align 2, 0
-.L080154F4: .4byte gPlaySt
-.L080154F8: .4byte gDispIo
-.L080154FC:
-    ldr r0, .L08015508 @ =0x08B93934
-    bl Proc_StartBlocking
-.L08015502:
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08015508: .4byte 0x08B93934
-    func_end func_080154C4
-
-    thumb_func_start func_0801550C
-func_0801550C: @ 0x0801550C
-    push {lr}
-    bl func_0807A834
-    movs r0, #0x91
-    bl ClearFlag
-    pop {r0}
-    bx r0
-    func_end func_0801550C
-
-    thumb_func_start InitBmBgLayers
-InitBmBgLayers: @ 0x0801551C
-    ldr r0, .L08015554 @ =gPlaySt
-    ldrb r0, [r0, #0x15]
-    cmp r0, #7
-    bne .L0801555C
-    ldr r3, .L08015558 @ =gDispIo
-    movs r2, #4
-    rsbs r2, r2, #0
-    adds r0, r2, #0
-    ldrb r1, [r3, #0xc]
-    ands r0, r1
-    strb r0, [r3, #0xc]
-    adds r0, r2, #0
-    ldrb r1, [r3, #0x10]
-    ands r0, r1
-    movs r1, #1
-    orrs r0, r1
-    strb r0, [r3, #0x10]
-    adds r0, r2, #0
-    ldrb r1, [r3, #0x14]
-    ands r0, r1
-    movs r1, #2
-    orrs r0, r1
-    strb r0, [r3, #0x14]
-    ldrb r0, [r3, #0x18]
-    ands r2, r0
-    orrs r2, r1
-    strb r2, [r3, #0x18]
-    b .L08015588
-    .align 2, 0
-.L08015554: .4byte gPlaySt
-.L08015558: .4byte gDispIo
-.L0801555C:
-    ldr r3, .L0801558C @ =gDispIo
-    movs r1, #4
-    rsbs r1, r1, #0
-    adds r0, r1, #0
-    ldrb r2, [r3, #0xc]
-    ands r0, r2
-    strb r0, [r3, #0xc]
-    adds r0, r1, #0
-    ldrb r2, [r3, #0x10]
-    ands r0, r2
-    movs r2, #1
-    orrs r0, r2
-    strb r0, [r3, #0x10]
-    ldrb r0, [r3, #0x14]
-    ands r1, r0
-    movs r0, #2
-    orrs r1, r0
-    strb r1, [r3, #0x14]
-    movs r0, #3
-    ldrb r1, [r3, #0x18]
-    orrs r0, r1
-    strb r0, [r3, #0x18]
-.L08015588:
-    bx lr
-    .align 2, 0
-.L0801558C: .4byte gDispIo
-    func_end InitBmBgLayers
-
-    thumb_func_start ApplySystemObjectsGraphics
-ApplySystemObjectsGraphics: @ 0x08015590
-    push {r4, lr}
-    ldr r0, .L080155BC @ =0x08193E90
-    ldr r4, .L080155C0 @ =gBuf
-    adds r1, r4, #0
-    bl Decompress
-    ldr r1, .L080155C4 @ =0x06010000
-    adds r0, r4, #0
-    movs r2, #0x12
-    movs r3, #4
-    bl Copy2dChr
-    ldr r0, .L080155C8 @ =0x0819431C
-    movs r1, #0x80
-    lsls r1, r1, #2
-    movs r2, #0x40
-    bl ApplyPaletteExt
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L080155BC: .4byte 0x08193E90
-.L080155C0: .4byte gBuf
-.L080155C4: .4byte 0x06010000
-.L080155C8: .4byte 0x0819431C
-    func_end ApplySystemObjectsGraphics
-
-    thumb_func_start ApplySystemGraphics
-ApplySystemGraphics: @ 0x080155CC
-    push {lr}
-    bl ResetText
-    bl LoadUiFrameGraphics
-    bl InitFaces
-    bl InitIcons
-    movs r0, #4
-    bl ApplyIconPalettes
-    bl ApplySystemObjectsGraphics
-    pop {r0}
-    bx r0
-    func_end ApplySystemGraphics
-
-    thumb_func_start func_080155EC
-func_080155EC: @ 0x080155EC
-    push {r4, r5, r6, r7, lr}
-    lsls r0, r0, #0x10
-    lsrs r1, r0, #0x10
-    mov ip, r1
-    lsrs r7, r0, #0x14
-    movs r0, #0xf
-    ands r7, r0
-    ldr r3, .L080156EC @ =gBmStatus
-    ldr r4, .L080156F0 @ =0x08B92D28
-    lsls r2, r7, #1
-    adds r0, r2, r4
-    movs r1, #0
-    ldrsb r1, [r0, r1]
-    ldrh r0, [r3, #0x14]
-    adds r1, r0, r1
-    lsls r1, r1, #0x10
-    adds r0, r4, #1
-    adds r2, r2, r0
-    movs r0, #0
-    ldrsb r0, [r2, r0]
-    ldrh r2, [r3, #0x16]
-    adds r0, r2, r0
-    lsls r0, r0, #0x10
-    lsrs r6, r1, #0x10
-    orrs r6, r0
-    movs r0, #2
-    ldrb r1, [r3, #4]
-    ands r0, r1
-    adds r5, r3, #0
-    cmp r0, #0
-    beq .L0801566A
-    movs r2, #0x16
-    ldrsh r0, [r5, r2]
-    ldr r1, .L080156F4 @ =gMapMovement
-    ldr r2, [r1]
-    lsls r0, r0, #2
-    adds r0, r0, r2
-    movs r3, #0x14
-    ldrsh r1, [r5, r3]
-    ldr r0, [r0]
-    adds r0, r0, r1
-    ldrb r0, [r0]
-    cmp r0, #0x77
-    bhi .L0801566A
-    asrs r0, r6, #0x10
-    lsls r0, r0, #2
-    adds r0, r0, r2
-    lsls r1, r6, #0x10
-    asrs r1, r1, #0x10
-    ldr r0, [r0]
-    adds r0, r0, r1
-    ldrb r0, [r0]
-    cmp r0, #0x77
-    bls .L0801566A
-    movs r0, #0xf0
-    ldr r1, .L080156F8 @ =gpKeySt
-    ldr r2, [r1]
-    mov r1, ip
-    ands r1, r0
-    ldrh r2, [r2, #8]
-    ands r0, r2
-    cmp r1, r0
-    bne .L0801570E
-.L0801566A:
-    lsls r0, r6, #0x10
-    asrs r1, r0, #0x10
-    cmp r1, #0
-    blt .L08015694
-    ldr r0, .L080156FC @ =gMapSize
-    movs r2, #0
-    ldrsh r0, [r0, r2]
-    cmp r1, r0
-    bge .L08015694
-    lsls r0, r7, #1
-    adds r0, r0, r4
-    ldrb r0, [r0]
-    lsls r0, r0, #0x18
-    asrs r0, r0, #0x18
-    lsls r0, r0, #4
-    ldrh r3, [r5, #0x1c]
-    adds r0, r3, r0
-    strh r0, [r5, #0x1c]
-    ldrh r0, [r5, #0x14]
-    strh r0, [r5, #0x18]
-    strh r6, [r5, #0x14]
-.L08015694:
-    asrs r2, r6, #0x10
-    adds r1, r2, #0
-    cmp r1, #0
-    blt .L080156C0
-    ldr r0, .L080156FC @ =gMapSize
-    movs r3, #2
-    ldrsh r0, [r0, r3]
-    cmp r1, r0
-    bge .L080156C0
-    lsls r0, r7, #1
-    adds r1, r4, #1
-    adds r0, r0, r1
-    ldrb r0, [r0]
-    lsls r0, r0, #0x18
-    asrs r0, r0, #0x18
-    lsls r0, r0, #4
-    ldrh r1, [r5, #0x1e]
-    adds r0, r1, r0
-    strh r0, [r5, #0x1e]
-    ldrh r0, [r5, #0x16]
-    strh r0, [r5, #0x1a]
-    strh r2, [r5, #0x16]
-.L080156C0:
-    ldrb r1, [r5, #4]
-    movs r0, #4
-    ands r0, r1
-    cmp r0, #0
-    bne .L08015708
-    ldr r1, [r5, #0x14]
-    ldr r0, [r5, #0x18]
-    cmp r1, r0
-    beq .L0801570E
-    ldr r0, .L08015700 @ =gPlaySt
-    adds r0, #0x41
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1e
-    cmp r0, #0
-    blt .L080156E4
-    ldr r0, .L08015704 @ =0x00000385
-    bl m4aSongNumStart
-.L080156E4:
-    movs r0, #4
-    ldrb r2, [r5, #4]
-    orrs r0, r2
-    b .L0801570C
-    .align 2, 0
-.L080156EC: .4byte gBmStatus
-.L080156F0: .4byte 0x08B92D28
-.L080156F4: .4byte gMapMovement
-.L080156F8: .4byte gpKeySt
-.L080156FC: .4byte gMapSize
-.L08015700: .4byte gPlaySt
-.L08015704: .4byte 0x00000385
-.L08015708:
-    movs r0, #0xfb
-    ands r0, r1
-.L0801570C:
-    strb r0, [r5, #4]
-.L0801570E:
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    func_end func_080155EC
-
-    thumb_func_start func_08015714
-func_08015714: @ 0x08015714
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    ldr r2, .L08015764 @ =gBmStatus
-    ldrh r3, [r2, #0x20]
-    movs r0, #0x20
-    ldrsh r1, [r2, r0]
-    movs r5, #0x1c
-    ldrsh r0, [r2, r5]
-    cmp r1, r0
-    bge .L0801572C
-    adds r0, r3, r4
-    strh r0, [r2, #0x20]
-.L0801572C:
-    ldrh r3, [r2, #0x20]
-    movs r0, #0x20
-    ldrsh r1, [r2, r0]
-    movs r5, #0x1c
-    ldrsh r0, [r2, r5]
-    cmp r1, r0
-    ble .L0801573E
-    subs r0, r3, r4
-    strh r0, [r2, #0x20]
-.L0801573E:
-    ldrh r3, [r2, #0x22]
-    movs r1, #0x22
-    ldrsh r0, [r2, r1]
-    movs r5, #0x1e
-    ldrsh r1, [r2, r5]
-    cmp r0, r1
-    bge .L08015750
-    adds r0, r3, r4
-    strh r0, [r2, #0x22]
-.L08015750:
-    ldrh r3, [r2, #0x22]
-    movs r5, #0x22
-    ldrsh r0, [r2, r5]
-    cmp r0, r1
-    ble .L0801575E
-    subs r0, r3, r4
-    strh r0, [r2, #0x22]
-.L0801575E:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08015764: .4byte gBmStatus
-    func_end func_08015714
-
-    thumb_func_start func_08015768
-func_08015768: @ 0x08015768
-    push {r4, r5, r6, lr}
-    adds r4, r0, #0
-    movs r6, #0
-    ldr r2, .L08015790 @ =gBmStatus
-    movs r0, #0x20
-    ldrsh r1, [r2, r0]
-    movs r3, #0x22
-    ldrsh r5, [r2, r3]
-    movs r3, #0xc
-    ldrsh r0, [r2, r3]
-    adds r0, #0x30
-    cmp r0, r1
-    ble .L080157AC
-    adds r0, r1, #0
-    subs r0, #0x30
-    cmp r0, #0
-    bge .L08015794
-    strh r6, [r2, #0xc]
-    b .L080157AC
-    .align 2, 0
-.L08015790: .4byte gBmStatus
-.L08015794:
-    movs r6, #1
-    ldrh r3, [r2, #0xc]
-    subs r0, r3, r4
-    strh r0, [r2, #0xc]
-    rsbs r0, r4, #0
-    adds r3, r2, #0
-    adds r3, #0x36
-    strb r0, [r3]
-    movs r0, #0xf
-    ldrh r3, [r2, #0xc]
-    ands r0, r3
-    strh r0, [r2, #0x32]
-.L080157AC:
-    movs r3, #0xc
-    ldrsh r0, [r2, r3]
-    adds r0, #0xb0
-    cmp r0, r1
-    bge .L080157DC
-    subs r1, #0xb0
-    movs r3, #0x28
-    ldrsh r0, [r2, r3]
-    cmp r1, r0
-    ble .L080157C6
-    ldrh r0, [r2, #0x28]
-    strh r0, [r2, #0xc]
-    b .L080157DC
-.L080157C6:
-    movs r6, #1
-    ldrh r1, [r2, #0xc]
-    adds r0, r1, r4
-    strh r0, [r2, #0xc]
-    adds r0, r2, #0
-    adds r0, #0x36
-    strb r4, [r0]
-    movs r0, #0xf
-    ldrh r3, [r2, #0xc]
-    ands r0, r3
-    strh r0, [r2, #0x32]
-.L080157DC:
-    movs r1, #0xe
-    ldrsh r0, [r2, r1]
-    adds r0, #0x20
-    cmp r0, r5
-    ble .L0801580C
-    adds r0, r5, #0
-    subs r0, #0x20
-    cmp r0, #0
-    bge .L080157F4
-    movs r0, #0
-    strh r0, [r2, #0xe]
-    b .L0801580C
-.L080157F4:
-    movs r6, #1
-    ldrh r3, [r2, #0xe]
-    subs r0, r3, r4
-    strh r0, [r2, #0xe]
-    rsbs r0, r4, #0
-    adds r1, r2, #0
-    adds r1, #0x37
-    strb r0, [r1]
-    movs r0, #0xf
-    ldrh r1, [r2, #0xe]
-    ands r0, r1
-    strh r0, [r2, #0x34]
-.L0801580C:
-    movs r3, #0xe
-    ldrsh r0, [r2, r3]
-    adds r0, #0x70
-    cmp r0, r5
-    bge .L0801583E
-    adds r1, r5, #0
-    subs r1, #0x70
-    movs r3, #0x2a
-    ldrsh r0, [r2, r3]
-    cmp r1, r0
-    ble .L08015828
-    ldrh r0, [r2, #0x2a]
-    strh r0, [r2, #0xe]
-    b .L0801583E
-.L08015828:
-    movs r6, #1
-    ldrh r1, [r2, #0xe]
-    adds r0, r1, r4
-    strh r0, [r2, #0xe]
-    adds r0, r2, #0
-    adds r0, #0x37
-    strb r4, [r0]
-    movs r0, #0xf
-    ldrh r3, [r2, #0xe]
-    ands r0, r3
-    strh r0, [r2, #0x34]
-.L0801583E:
-    cmp r6, #0
-    bne .L0801588C
-    adds r3, r2, #0
-    ldrh r1, [r3, #0x32]
-    movs r4, #0x32
-    ldrsh r0, [r3, r4]
-    cmp r0, #0
-    beq .L08015868
-    adds r4, r3, #0
-    adds r4, #0x36
-    movs r0, #0
-    ldrsb r0, [r4, r0]
-    adds r0, r1, r0
-    movs r1, #0xf
-    ands r0, r1
-    strh r0, [r3, #0x32]
-    movs r0, #0
-    ldrsb r0, [r4, r0]
-    ldrh r1, [r3, #0xc]
-    adds r0, r1, r0
-    strh r0, [r3, #0xc]
-.L08015868:
-    ldrh r1, [r2, #0x34]
-    movs r3, #0x34
-    ldrsh r0, [r2, r3]
-    cmp r0, #0
-    beq .L0801588C
-    adds r3, r2, #0
-    adds r3, #0x37
-    movs r0, #0
-    ldrsb r0, [r3, r0]
-    adds r0, r1, r0
-    movs r1, #0xf
-    ands r0, r1
-    strh r0, [r2, #0x34]
-    movs r0, #0
-    ldrsb r0, [r3, r0]
-    ldrh r4, [r2, #0xe]
-    adds r0, r4, r0
-    strh r0, [r2, #0xe]
-.L0801588C:
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    func_end func_08015768
-
-    thumb_func_start GetCameraAdjustedX
-GetCameraAdjustedX: @ 0x08015894
-    push {r4, lr}
-    adds r3, r0, #0
-    ldr r0, .L080158D4 @ =gBmStatus
-    movs r1, #0xc
-    ldrsh r2, [r0, r1]
-    adds r1, r2, #0
-    adds r1, #0x30
-    adds r4, r0, #0
-    cmp r1, r3
-    ble .L080158B2
-    adds r2, r3, #0
-    subs r2, #0x30
-    cmp r2, #0
-    bge .L080158B2
-    movs r2, #0
-.L080158B2:
-    movs r1, #0xc
-    ldrsh r0, [r4, r1]
-    adds r0, #0xb0
-    cmp r0, r3
-    bge .L080158CA
-    movs r1, #0x28
-    ldrsh r0, [r4, r1]
-    adds r2, r3, #0
-    subs r2, #0xb0
-    cmp r2, r0
-    ble .L080158CA
-    adds r2, r0, #0
-.L080158CA:
-    lsls r0, r2, #0x10
-    lsrs r0, r0, #0x10
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L080158D4: .4byte gBmStatus
-    func_end GetCameraAdjustedX
-
-    thumb_func_start GetCameraAdjustedY
-GetCameraAdjustedY: @ 0x080158D8
-    push {r4, lr}
-    adds r3, r0, #0
-    ldr r0, .L08015918 @ =gBmStatus
-    movs r1, #0xe
-    ldrsh r2, [r0, r1]
-    adds r1, r2, #0
-    adds r1, #0x20
-    adds r4, r0, #0
-    cmp r1, r3
-    ble .L080158F6
-    adds r2, r3, #0
-    subs r2, #0x20
-    cmp r2, #0
-    bge .L080158F6
-    movs r2, #0
-.L080158F6:
-    movs r1, #0xe
-    ldrsh r0, [r4, r1]
-    adds r0, #0x70
-    cmp r0, r3
-    bge .L0801590E
-    movs r1, #0x2a
-    ldrsh r0, [r4, r1]
-    adds r2, r3, #0
-    subs r2, #0x70
-    cmp r2, r0
-    ble .L0801590E
-    adds r2, r0, #0
-.L0801590E:
-    lsls r0, r2, #0x10
-    lsrs r0, r0, #0x10
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08015918: .4byte gBmStatus
-    func_end GetCameraAdjustedY
-
-    thumb_func_start GetCameraCenteredX
-GetCameraCenteredX: @ 0x0801591C
-    adds r1, r0, #0
-    subs r1, #0x78
-    cmp r1, #0
-    bge .L08015926
-    movs r1, #0
-.L08015926:
-    ldr r0, .L08015940 @ =gBmStatus
-    movs r2, #0x28
-    ldrsh r0, [r0, r2]
-    cmp r1, r0
-    ble .L08015932
-    adds r1, r0, #0
-.L08015932:
-    movs r2, #0x10
-    rsbs r2, r2, #0
-    adds r0, r2, #0
-    ands r1, r0
-    lsls r0, r1, #0x10
-    lsrs r0, r0, #0x10
-    bx lr
-    .align 2, 0
-.L08015940: .4byte gBmStatus
-    func_end GetCameraCenteredX
-
-    thumb_func_start GetCameraCenteredY
-GetCameraCenteredY: @ 0x08015944
-    adds r1, r0, #0
-    subs r1, #0x50
-    cmp r1, #0
-    bge .L0801594E
-    movs r1, #0
-.L0801594E:
-    ldr r0, .L08015968 @ =gBmStatus
-    movs r2, #0x2a
-    ldrsh r0, [r0, r2]
-    cmp r1, r0
-    ble .L0801595A
-    adds r1, r0, #0
-.L0801595A:
-    movs r2, #0x10
-    rsbs r2, r2, #0
-    adds r0, r2, #0
-    ands r1, r0
-    lsls r0, r1, #0x10
-    lsrs r0, r0, #0x10
-    bx lr
-    .align 2, 0
-.L08015968: .4byte gBmStatus
-    func_end GetCameraCenteredY
-
-    thumb_func_start PutMapCursor
-PutMapCursor: @ 0x0801596C
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    sub sp, #4
-    adds r6, r0, #0
-    adds r7, r1, #0
-    adds r5, r2, #0
-    movs r0, #0
-    mov sb, r0
-    mov r8, r0
-    bl GetGameTime
-    lsrs r4, r0, #1
-    movs r0, #0xf
-    ands r4, r0
-    cmp r5, #4
-    bhi .L08015A26
-    lsls r0, r5, #2
-    ldr r1, .L0801599C @ =.L080159A0
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.L0801599C: .4byte .L080159A0
-.L080159A0: @ jump table
-    .4byte .L080159B4 @ case 0
-    .4byte .L080159B4 @ case 1
-    .4byte .L080159C4 @ case 2
-    .4byte .L08015A0C @ case 3
-    .4byte .L08015A1C @ case 4
-.L080159B4:
-    movs r1, #2
-    mov sb, r1
-    ldr r1, .L080159C0 @ =0x08B92DB0
-    lsls r0, r4, #2
-    adds r0, r0, r1
-    b .L08015A22
-    .align 2, 0
-.L080159C0: .4byte 0x08B92DB0
-.L080159C4:
-    bl GetGameTime
-    subs r0, #1
-    ldr r5, .L08015A00 @ =gLastTimeMapCursorDrawn
-    ldr r1, [r5]
-    cmp r0, r1
-    bne .L080159E4
-    ldr r0, .L08015A04 @ =gLastCoordMapCursorDrawn
-    movs r2, #0
-    ldrsh r1, [r0, r2]
-    adds r1, r6, r1
-    asrs r6, r1, #1
-    movs r1, #2
-    ldrsh r0, [r0, r1]
-    adds r0, r7, r0
-    asrs r7, r0, #1
-.L080159E4:
-    movs r2, #0x24
-    mov sb, r2
-    ldr r1, .L08015A08 @ =0x08B92DB0
-    lsls r0, r4, #2
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov r8, r0
-    ldr r0, .L08015A04 @ =gLastCoordMapCursorDrawn
-    strh r6, [r0]
-    strh r7, [r0, #2]
-    bl GetGameTime
-    str r0, [r5]
-    b .L08015A26
-    .align 2, 0
-.L08015A00: .4byte gLastTimeMapCursorDrawn
-.L08015A04: .4byte gLastCoordMapCursorDrawn
-.L08015A08: .4byte 0x08B92DB0
-.L08015A0C:
-    movs r0, #2
-    mov sb, r0
-    ldr r1, .L08015A18 @ =0x08B92D96
-    mov r8, r1
-    b .L08015A26
-    .align 2, 0
-.L08015A18: .4byte 0x08B92D96
-.L08015A1C:
-    movs r2, #0x24
-    mov sb, r2
-    ldr r0, .L08015A54 @ =0x08B92DB0
-.L08015A22:
-    ldr r0, [r0]
-    mov r8, r0
-.L08015A26:
-    ldr r0, .L08015A58 @ =gBmStatus
-    movs r2, #0xc
-    ldrsh r1, [r0, r2]
-    subs r6, r6, r1
-    movs r1, #0xe
-    ldrsh r0, [r0, r1]
-    subs r7, r7, r0
-    mov r2, sb
-    str r2, [sp]
-    movs r0, #4
-    adds r1, r6, #0
-    adds r2, r7, #0
-    mov r3, r8
-    bl PutSprite
-    add sp, #4
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08015A54: .4byte 0x08B92DB0
-.L08015A58: .4byte gBmStatus
-    func_end PutMapCursor
-
-    thumb_func_start func_08015A5C
-func_08015A5C: @ 0x08015A5C
-    push {r4, r5, lr}
-    sub sp, #4
-    adds r4, r0, #0
-    adds r5, r1, #0
-    bl GetGameTime
-    lsrs r0, r0, #1
-    movs r1, #0xf
-    ands r0, r1
-    movs r2, #2
-    ldr r1, .L08015A8C @ =0x08B92DB0
-    lsls r0, r0, #2
-    adds r0, r0, r1
-    ldr r3, [r0]
-    str r2, [sp]
-    movs r0, #4
-    adds r1, r4, #0
-    adds r2, r5, #0
-    bl PutSprite
-    add sp, #4
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08015A8C: .4byte 0x08B92DB0
-    func_end func_08015A5C
-
-    thumb_func_start SetMapCursorPosition
-SetMapCursorPosition: @ 0x08015A90
-    ldr r2, .L08015AA4 @ =gBmStatus
-    strh r0, [r2, #0x14]
-    strh r1, [r2, #0x16]
-    lsls r0, r0, #4
-    strh r0, [r2, #0x1c]
-    lsls r1, r1, #4
-    strh r1, [r2, #0x1e]
-    strh r0, [r2, #0x20]
-    strh r1, [r2, #0x22]
-    bx lr
-    .align 2, 0
-.L08015AA4: .4byte gBmStatus
-    func_end SetMapCursorPosition
-
-    thumb_func_start func_08015AA8
-func_08015AA8: @ 0x08015AA8
-    push {r4, r5, r6, lr}
-    sub sp, #4
-    adds r5, r0, #0
-    adds r6, r1, #0
-    lsls r4, r2, #0x18
-    lsrs r4, r4, #0x18
-    bl GetGameTime
-    lsrs r0, r0, #3
-    movs r1, #3
-    bl __umodsi3
-    cmp r4, #0
-    beq .L08015ACC
-    ldr r1, .L08015AC8 @ =0x08B92E2C
-    b .L08015ACE
-    .align 2, 0
-.L08015AC8: .4byte 0x08B92E2C
-.L08015ACC:
-    ldr r1, .L08015AEC @ =0x08B92E20
-.L08015ACE:
-    lsls r0, r0, #2
-    adds r0, r0, r1
-    ldr r3, [r0]
-    movs r0, #0
-    str r0, [sp]
-    movs r0, #4
-    adds r1, r5, #0
-    adds r2, r6, #0
-    bl PutSprite
-    add sp, #4
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08015AEC: .4byte 0x08B92E20
-    func_end func_08015AA8
-
-    thumb_func_start func_08015AF0
-func_08015AF0: @ 0x08015AF0
-    push {r4, r5, r6, lr}
-    mov ip, r0
-    movs r5, #1
-    movs r1, #0x2c
-    ldrsh r2, [r0, r1]
-    movs r3, #0x30
-    ldrsh r0, [r0, r3]
-    subs r1, r2, r0
-    cmp r1, #0
-    bge .L08015B06
-    subs r1, r0, r2
-.L08015B06:
-    mov r4, ip
-    movs r0, #0x2e
-    ldrsh r3, [r4, r0]
-    movs r2, #0x32
-    ldrsh r0, [r4, r2]
-    subs r2, r3, r0
-    cmp r2, #0
-    bge .L08015B18
-    subs r2, r0, r3
-.L08015B18:
-    cmp r1, r2
-    ble .L08015B28
-    mov r0, ip
-    adds r0, #0x40
-    strb r5, [r0]
-    mov r3, ip
-    strh r1, [r3, #0x38]
-    b .L08015B34
-.L08015B28:
-    mov r1, ip
-    adds r1, #0x40
-    movs r0, #0
-    strb r0, [r1]
-    mov r4, ip
-    strh r2, [r4, #0x38]
-.L08015B34:
-    mov r0, ip
-    movs r1, #0x38
-    ldrsh r3, [r0, r1]
-    movs r4, #0
-    lsls r0, r5, #0x18
-    asrs r0, r0, #0x19
-    subs r0, r3, r0
-    ldr r6, .L08015B4C @ =gCameraAnimTable
-    cmp r0, #0
-    bge .L08015B50
-    strb r3, [r6]
-    b .L08015B76
-    .align 2, 0
-.L08015B4C: .4byte gCameraAnimTable
-.L08015B50:
-    lsls r1, r5, #0x18
-    asrs r2, r1, #0x18
-    asrs r1, r1, #0x19
-    subs r3, r3, r1
-    adds r0, r4, r6
-    strb r1, [r0]
-    cmp r2, #0xf
-    bgt .L08015B66
-    adds r0, r2, #1
-    lsls r0, r0, #0x18
-    lsrs r5, r0, #0x18
-.L08015B66:
-    adds r4, #1
-    lsls r0, r5, #0x18
-    asrs r0, r0, #0x19
-    subs r0, r3, r0
-    cmp r0, #0
-    bge .L08015B50
-    adds r0, r4, r6
-    strb r3, [r0]
-.L08015B76:
-    mov r2, ip
-    str r4, [r2, #0x3c]
-    ldrh r0, [r2, #0x38]
-    strh r0, [r2, #0x3a]
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    func_end func_08015AF0
-
-    thumb_func_start func_08015B84
-func_08015B84: @ 0x08015B84
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    ldr r1, [r5, #0x3c]
-    cmp r1, #0
-    bne .L08015BA4
-    ldr r0, .L08015BA0 @ =gBmStatus
-    ldrh r1, [r0, #0xc]
-    strh r1, [r5, #0x2c]
-    ldrh r0, [r0, #0xe]
-    strh r0, [r5, #0x2e]
-    adds r0, r5, #0
-    bl Proc_End
-    b .L08015BF6
-    .align 2, 0
-.L08015BA0: .4byte gBmStatus
-.L08015BA4:
-    ldr r0, .L08015BFC @ =gCameraAnimTable
-    adds r0, r1, r0
-    ldrb r0, [r0]
-    lsls r0, r0, #0x18
-    asrs r0, r0, #0x18
-    ldrh r2, [r5, #0x3a]
-    subs r0, r2, r0
-    strh r0, [r5, #0x3a]
-    subs r0, r1, #1
-    str r0, [r5, #0x3c]
-    ldr r4, .L08015C00 @ =gBmStatus
-    movs r1, #0x30
-    ldrsh r0, [r5, r1]
-    movs r2, #0x2c
-    ldrsh r1, [r5, r2]
-    subs r0, r0, r1
-    movs r2, #0x3a
-    ldrsh r1, [r5, r2]
-    muls r0, r1, r0
-    movs r2, #0x38
-    ldrsh r1, [r5, r2]
-    bl __divsi3
-    ldrh r1, [r5, #0x2c]
-    adds r0, r1, r0
-    strh r0, [r4, #0xc]
-    movs r2, #0x32
-    ldrsh r0, [r5, r2]
-    movs r2, #0x2e
-    ldrsh r1, [r5, r2]
-    subs r0, r0, r1
-    movs r2, #0x3a
-    ldrsh r1, [r5, r2]
-    muls r0, r1, r0
-    movs r2, #0x38
-    ldrsh r1, [r5, r2]
-    bl __divsi3
-    ldrh r5, [r5, #0x2e]
-    adds r0, r5, r0
-    strh r0, [r4, #0xe]
-.L08015BF6:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08015BFC: .4byte gCameraAnimTable
-.L08015C00: .4byte gBmStatus
-    func_end func_08015B84
-
-    thumb_func_start GetCameraAdjustedCenter
-GetCameraAdjustedCenter: @ 0x08015C04
-    push {r4, r5, lr}
-    adds r4, r2, #0
-    subs r0, #7
-    str r0, [r4]
-    subs r1, #5
-    str r1, [r3]
-    ldr r0, [r4]
-    cmp r0, #0
-    bge .L08015C1A
-    movs r0, #0
-    str r0, [r4]
-.L08015C1A:
-    ldr r0, [r3]
-    cmp r0, #0
-    bge .L08015C24
-    movs r0, #0
-    str r0, [r3]
-.L08015C24:
-    ldr r1, [r4]
-    adds r1, #8
-    ldr r5, .L08015C54 @ =gMapSize
-    movs r0, #0
-    ldrsh r2, [r5, r0]
-    subs r0, r2, #1
-    cmp r1, r0
-    ble .L08015C38
-    subs r0, #0xe
-    str r0, [r4]
-.L08015C38:
-    ldr r0, [r3]
-    adds r0, #4
-    movs r1, #2
-    ldrsh r2, [r5, r1]
-    subs r1, r2, #1
-    cmp r0, r1
-    ble .L08015C4C
-    adds r0, r2, #0
-    subs r0, #0xa
-    str r0, [r3]
-.L08015C4C:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08015C54: .4byte gMapSize
-    func_end GetCameraAdjustedCenter
-
-    thumb_func_start CameraMoveWatchPositionCenter
-CameraMoveWatchPositionCenter: @ 0x08015C58
-    push {r4, r5, r6, r7, lr}
-    sub sp, #8
-    adds r5, r0, #0
-    adds r6, r1, #0
-    adds r7, r2, #0
-    add r3, sp, #4
-    adds r0, r6, #0
-    adds r1, r7, #0
-    mov r2, sp
-    bl GetCameraAdjustedCenter
-    ldr r1, [sp]
-    lsls r1, r1, #4
-    str r1, [sp]
-    ldr r0, [sp, #4]
-    lsls r2, r0, #4
-    str r2, [sp, #4]
-    ldr r3, .L08015C9C @ =gBmStatus
-    movs r4, #0xc
-    ldrsh r0, [r3, r4]
-    cmp r1, r0
-    bne .L08015C8C
-    movs r1, #0xe
-    ldrsh r0, [r3, r1]
-    cmp r2, r0
-    beq .L08015C98
-.L08015C8C:
-    ldr r4, .L08015CA0 @ =ProcScr_MoveCamera
-    adds r0, r4, #0
-    bl Proc_Find
-    cmp r0, #0
-    beq .L08015CA4
-.L08015C98:
-    movs r0, #0
-    b .L08015CD4
-    .align 2, 0
-.L08015C9C: .4byte gBmStatus
-.L08015CA0: .4byte ProcScr_MoveCamera
-.L08015CA4:
-    cmp r5, #0
-    beq .L08015CB2
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl Proc_StartBlocking
-    b .L08015CBA
-.L08015CB2:
-    adds r0, r4, #0
-    movs r1, #3
-    bl Proc_Start
-.L08015CBA:
-    adds r2, r0, #0
-    ldr r1, .L08015CDC @ =gBmStatus
-    ldrh r0, [r1, #0xc]
-    strh r0, [r2, #0x30]
-    ldrh r0, [r1, #0xe]
-    strh r0, [r2, #0x32]
-    ldr r0, [sp]
-    strh r0, [r2, #0x2c]
-    ldr r0, [sp, #4]
-    strh r0, [r2, #0x2e]
-    strh r6, [r2, #0x34]
-    strh r7, [r2, #0x36]
-    movs r0, #1
-.L08015CD4:
-    add sp, #8
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08015CDC: .4byte gBmStatus
-    func_end CameraMoveWatchPositionCenter
-
-    thumb_func_start CameraMoveWatchPosition
-CameraMoveWatchPosition: @ 0x08015CE0
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    adds r5, r0, #0
-    mov r8, r1
-    mov sb, r2
-    lsls r0, r1, #4
-    bl GetCameraAdjustedX
-    lsls r0, r0, #0x10
-    lsrs r7, r0, #0x10
-    mov r1, sb
-    lsls r0, r1, #4
-    bl GetCameraAdjustedY
-    lsls r0, r0, #0x10
-    lsrs r6, r0, #0x10
-    ldr r1, .L08015D28 @ =gBmStatus
-    movs r2, #0xc
-    ldrsh r0, [r1, r2]
-    cmp r7, r0
-    bne .L08015D16
-    movs r2, #0xe
-    ldrsh r0, [r1, r2]
-    cmp r6, r0
-    beq .L08015D22
-.L08015D16:
-    ldr r4, .L08015D2C @ =ProcScr_MoveCamera
-    adds r0, r4, #0
-    bl Proc_Find
-    cmp r0, #0
-    beq .L08015D30
-.L08015D22:
-    movs r0, #0
-    b .L08015D60
-    .align 2, 0
-.L08015D28: .4byte gBmStatus
-.L08015D2C: .4byte ProcScr_MoveCamera
-.L08015D30:
-    cmp r5, #0
-    beq .L08015D3E
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl Proc_StartBlocking
-    b .L08015D46
-.L08015D3E:
-    adds r0, r4, #0
-    movs r1, #3
-    bl Proc_Start
-.L08015D46:
-    adds r2, r0, #0
-    ldr r0, .L08015D6C @ =gBmStatus
-    ldrh r1, [r0, #0xc]
-    strh r1, [r2, #0x30]
-    ldrh r0, [r0, #0xe]
-    strh r0, [r2, #0x32]
-    strh r7, [r2, #0x2c]
-    strh r6, [r2, #0x2e]
-    mov r0, r8
-    strh r0, [r2, #0x34]
-    mov r1, sb
-    strh r1, [r2, #0x36]
-    movs r0, #1
-.L08015D60:
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08015D6C: .4byte gBmStatus
-    func_end CameraMoveWatchPosition
-
-    thumb_func_start func_08015D70
-func_08015D70: @ 0x08015D70
-    push {r4, r5, lr}
-    adds r5, r1, #0
-    lsls r0, r0, #4
-    bl GetCameraAdjustedX
-    adds r4, r0, #0
-    lsls r4, r4, #0x10
-    lsrs r4, r4, #0x10
-    lsls r5, r5, #4
-    adds r0, r5, #0
-    bl GetCameraAdjustedY
-    lsls r0, r0, #0x10
-    lsrs r2, r0, #0x10
-    ldr r1, .L08015DA4 @ =gBmStatus
-    movs r3, #0xc
-    ldrsh r0, [r1, r3]
-    cmp r4, r0
-    bne .L08015DA8
-    movs r3, #0xe
-    ldrsh r0, [r1, r3]
-    cmp r2, r0
-    bne .L08015DA8
-    movs r0, #0
-    b .L08015DAA
-    .align 2, 0
-.L08015DA4: .4byte gBmStatus
-.L08015DA8:
-    movs r0, #1
-.L08015DAA:
-    pop {r4, r5}
-    pop {r1}
-    bx r1
-    func_end func_08015D70
-
-    thumb_func_start func_08015DB0
-func_08015DB0: @ 0x08015DB0
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    ldr r0, .L08015DD4 @ =gBmStatus
-    movs r2, #0xe
-    ldrsh r1, [r0, r2]
-    movs r2, #0x2a
-    ldrsh r0, [r0, r2]
-    cmp r1, r0
-    ble .L08015DCE
-    ldr r4, .L08015DD8 @ =ProcScr_MoveCamera
-    adds r0, r4, #0
-    bl Proc_Find
-    cmp r0, #0
-    beq .L08015DDC
-.L08015DCE:
-    movs r0, #0
-    b .L08015E08
-    .align 2, 0
-.L08015DD4: .4byte gBmStatus
-.L08015DD8: .4byte ProcScr_MoveCamera
-.L08015DDC:
-    cmp r5, #0
-    beq .L08015DEA
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl Proc_StartBlocking
-    b .L08015DF2
-.L08015DEA:
-    adds r0, r4, #0
-    movs r1, #3
-    bl Proc_Start
-.L08015DF2:
-    adds r2, r0, #0
-    ldr r1, .L08015E10 @ =gBmStatus
-    ldrh r0, [r1, #0xc]
-    strh r0, [r2, #0x30]
-    ldrh r0, [r1, #0xe]
-    strh r0, [r2, #0x32]
-    ldrh r0, [r1, #0xc]
-    strh r0, [r2, #0x2c]
-    ldrh r0, [r1, #0x2a]
-    strh r0, [r2, #0x2e]
-    movs r0, #1
-.L08015E08:
-    pop {r4, r5}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08015E10: .4byte gBmStatus
-    func_end func_08015DB0
-
-    thumb_func_start func_08015E14
-func_08015E14: @ 0x08015E14
-    push {r4, r5, r6, r7, lr}
-    adds r7, r0, #0
-    movs r1, #0x2c
-    ldrsh r0, [r7, r1]
-    movs r2, #0x30
-    ldrsh r1, [r7, r2]
-    subs r0, r0, r1
-    ldr r4, [r7, #0x34]
-    muls r0, r4, r0
-    ldr r5, [r7, #0x38]
-    adds r1, r5, #0
-    bl __divsi3
-    adds r6, r0, #0
-    movs r1, #0x2e
-    ldrsh r0, [r7, r1]
-    movs r2, #0x32
-    ldrsh r1, [r7, r2]
-    subs r0, r0, r1
-    muls r0, r4, r0
-    adds r1, r5, #0
-    bl __divsi3
-    adds r1, r0, #0
-    adds r0, r6, #0
-    movs r2, #0
-    bl PutMapCursor
-    ldr r0, [r7, #0x34]
-    subs r0, #1
-    str r0, [r7, #0x34]
-    cmp r0, #0
-    bge .L08015E5C
-    adds r0, r7, #0
-    bl Proc_Break
-.L08015E5C:
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    func_end func_08015E14
-
-    thumb_func_start func_08015E64
-func_08015E64: @ 0x08015E64
-    push {r4, r5, r6, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    adds r6, r2, #0
-    ldr r0, .L08015E94 @ =0x08B92E60
-    movs r1, #3
-    bl Proc_Start
-    ldr r2, .L08015E98 @ =gBmStatus
-    ldrh r3, [r2, #0x14]
-    lsls r1, r3, #4
-    strh r1, [r0, #0x2c]
-    ldrh r2, [r2, #0x16]
-    lsls r1, r2, #4
-    strh r1, [r0, #0x2e]
-    lsls r4, r4, #4
-    strh r4, [r0, #0x30]
-    lsls r5, r5, #4
-    strh r5, [r0, #0x32]
-    str r6, [r0, #0x38]
-    str r6, [r0, #0x34]
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08015E94: .4byte 0x08B92E60
-.L08015E98: .4byte gBmStatus
-    func_end func_08015E64
-
-    thumb_func_start GetMapBgmSong
-GetMapBgmSong: @ 0x08015E9C
-    push {r4, r5, r6, r7, lr}
-    ldr r0, .L08015ED0 @ =gPlaySt
-    movs r1, #0
-    ldrb r0, [r0, #0x1b]
-    cmp r0, #3
-    bne .L08015EAA
-    movs r1, #3
-.L08015EAA:
-    adds r4, r1, #0
-    movs r0, #4
-    bl GetFlag
-    lsls r0, r0, #0x18
-    movs r1, #6
-    cmp r0, #0
-    bne .L08015EBC
-    adds r1, r4, #0
-.L08015EBC:
-    adds r7, r1, #0
-    movs r0, #4
-    bl GetFlag
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .L08015ED4
-    adds r1, r4, #1
-    b .L08015ED6
-    .align 2, 0
-.L08015ED0: .4byte gPlaySt
-.L08015ED4:
-    movs r1, #7
-.L08015ED6:
-    adds r6, r1, #0
-    movs r0, #4
-    bl GetFlag
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .L08015EE8
-    adds r4, #2
-    b .L08015EEA
-.L08015EE8:
-    movs r4, #6
-.L08015EEA:
-    ldr r5, .L08015EFC @ =gPlaySt
-    ldrb r0, [r5, #0xf]
-    cmp r0, #0x40
-    beq .L08015F16
-    cmp r0, #0x40
-    bgt .L08015F00
-    cmp r0, #0
-    beq .L08015F28
-    b .L08015F78
-    .align 2, 0
-.L08015EFC: .4byte gPlaySt
-.L08015F00:
-    cmp r0, #0x80
-    bne .L08015F78
-    movs r0, #0xe
-    ldrsb r0, [r5, r0]
-    bl GetChapterInfo
-    lsls r1, r6, #1
-    adds r0, #0x16
-    adds r0, r0, r1
-    ldrh r0, [r0]
-    b .L08015F78
-.L08015F16:
-    movs r0, #0xe
-    ldrsb r0, [r5, r0]
-    bl GetChapterInfo
-    lsls r1, r4, #1
-    adds r0, #0x16
-    adds r0, r0, r1
-    ldrh r0, [r0]
-    b .L08015F78
-.L08015F28:
-    movs r0, #0xe
-    ldrsb r0, [r5, r0]
-    bl GetChapterInfo
-    adds r0, #0x8a
-    ldrb r0, [r0]
-    lsls r0, r0, #0x18
-    asrs r0, r0, #0x18
-    cmp r0, #0
-    beq .L08015F64
-    ldr r1, .L08015F60 @ =0x0001000C
-    movs r0, #0x80
-    bl func_08023874
-    adds r4, r0, #0
-    movs r0, #0xe
-    ldrsb r0, [r5, r0]
-    bl GetChapterInfo
-    adds r0, #0x8a
-    ldrb r0, [r0]
-    lsls r0, r0, #0x18
-    asrs r0, r0, #0x18
-    cmp r4, r0
-    bgt .L08015F64
-    movs r0, #9
-    b .L08015F78
-    .align 2, 0
-.L08015F60: .4byte 0x0001000C
-.L08015F64:
-    ldr r0, .L08015F80 @ =gPlaySt
-    ldrb r0, [r0, #0xe]
-    lsls r0, r0, #0x18
-    asrs r0, r0, #0x18
-    bl GetChapterInfo
-    lsls r1, r7, #1
-    adds r0, #0x16
-    adds r0, r0, r1
-    ldrh r0, [r0]
-.L08015F78:
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08015F80: .4byte gPlaySt
-    func_end GetMapBgmSong
-
-    thumb_func_start StartMapSongBgm
-StartMapSongBgm: @ 0x08015F84
-    push {lr}
-    bl GetMapBgmSong
-    movs r1, #0
-    bl StartBgm
-    pop {r0}
-    bx r0
-    func_end StartMapSongBgm
-
-    thumb_func_start func_08015F94
-func_08015F94: @ 0x08015F94
-    push {r4, r5, r6, lr}
-    sub sp, #4
-    adds r5, r0, #0
-    movs r0, #0x30
-    ldrsh r1, [r5, r0]
-    movs r4, #0x2c
-    ldrsh r2, [r5, r4]
-    ldr r3, [r5, #0x3c]
-    movs r6, #0x3a
-    ldrsh r0, [r5, r6]
-    str r0, [sp]
-    movs r0, #0
-    bl Interpolate
-    adds r4, r0, #0
-    movs r0, #0x32
-    ldrsh r1, [r5, r0]
-    movs r6, #0x2e
-    ldrsh r2, [r5, r6]
-    ldr r3, [r5, #0x3c]
-    movs r6, #0x3a
-    ldrsh r0, [r5, r6]
-    str r0, [sp]
-    movs r0, #0
-    bl Interpolate
-    ldr r1, .L08015FEC @ =gBmStatus
-    strh r4, [r1, #0xc]
-    strh r0, [r1, #0xe]
-    ldr r0, [r5, #0x3c]
-    adds r0, #1
-    str r0, [r5, #0x3c]
-    movs r2, #0x3a
-    ldrsh r1, [r5, r2]
-    cmp r0, r1
-    blt .L08015FE2
-    adds r0, r5, #0
-    bl Proc_End
-.L08015FE2:
-    add sp, #4
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08015FEC: .4byte gBmStatus
-    func_end func_08015F94
-
-    thumb_func_start func_08015FF0
-func_08015FF0: @ 0x08015FF0
-    bx lr
-    func_end func_08015FF0
-
     thumb_func_start func_08015FF4
 func_08015FF4: @ 0x08015FF4
     push {r4, r5, r6, r7, lr}
@@ -1887,7 +21,7 @@ func_08015FF4: @ 0x08015FF4
     bl Proc_Start
 .L08016018:
     adds r3, r0, #0
-    ldr r1, .L0801603C @ =gBmStatus
+    ldr r1, .L0801603C @ =gBmSt
     ldrh r0, [r1, #0xc]
     movs r2, #0
     strh r0, [r3, #0x30]
@@ -1904,7 +38,7 @@ func_08015FF4: @ 0x08015FF4
     bx r0
     .align 2, 0
 .L08016038: .4byte 0x08B92E70
-.L0801603C: .4byte gBmStatus
+.L0801603C: .4byte gBmSt
     func_end func_08015FF4
 
     thumb_func_start GetItemHpBonus
@@ -6340,14 +4474,14 @@ func_08017F6C: @ 0x08017F6C
     adds r0, r0, r1
     movs r1, #0
     strb r1, [r0]
-    ldr r0, .L08018084 @ =gMapSize
+    ldr r0, .L08018084 @ =gBmMapSize
     movs r3, #2
     ldrsh r0, [r0, r3]
     subs r6, r0, #1
     cmp r6, #0
     blt .L080180B6
 .L08017FE2:
-    ldr r0, .L08018084 @ =gMapSize
+    ldr r0, .L08018084 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
@@ -6358,7 +4492,7 @@ func_08017F6C: @ 0x08017F6C
     blt .L080180B0
     lsls r7, r6, #2
 .L08017FF6:
-    ldr r0, .L08018088 @ =gMapMovement
+    ldr r0, .L08018088 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r7, r0
     ldr r0, [r0]
@@ -6425,8 +4559,8 @@ func_08017F6C: @ 0x08017F6C
 .L08018078: .4byte 0x08BE3C16
 .L0801807C: .4byte gActiveUnit
 .L08018080: .4byte gMapUnit
-.L08018084: .4byte gMapSize
-.L08018088: .4byte gMapMovement
+.L08018084: .4byte gBmMapSize
+.L08018088: .4byte gBmMapMovement
 .L0801808C: .4byte gMapHidden
 .L08018090: .4byte gMapTerrain
 .L08018094:
@@ -6499,7 +4633,7 @@ UnitBeginAction: @ 0x080180EC
     strb r2, [r0, #0xc]
     strb r5, [r0, #0x11]
     strb r5, [r0, #0x10]
-    ldr r0, .L0801815C @ =gBmStatus
+    ldr r0, .L0801815C @ =gBmSt
     adds r1, r0, #0
     adds r1, #0x3d
     strb r5, [r1]
@@ -6531,7 +4665,7 @@ UnitBeginAction: @ 0x080180EC
 .L08018150: .4byte gActiveUnitId
 .L08018154: .4byte gActiveUnitMoveOrigin
 .L08018158: .4byte gActionSt
-.L0801815C: .4byte gBmStatus
+.L0801815C: .4byte gBmSt
 .L08018160: .4byte gMapUnit
     func_end UnitBeginAction
 
@@ -6554,7 +4688,7 @@ UnitBeginReMoveAction: @ 0x08018164
     strh r0, [r1, #2]
     ldr r0, .L080181C4 @ =gActionSt
     strb r5, [r0, #0x11]
-    ldr r0, .L080181C8 @ =gBmStatus
+    ldr r0, .L080181C8 @ =gBmSt
     adds r0, #0x3d
     strb r5, [r0]
     bl func_08029D6C
@@ -6582,7 +4716,7 @@ UnitBeginReMoveAction: @ 0x08018164
 .L080181BC: .4byte gActiveUnitId
 .L080181C0: .4byte gActiveUnitMoveOrigin
 .L080181C4: .4byte gActionSt
-.L080181C8: .4byte gBmStatus
+.L080181C8: .4byte gBmSt
 .L080181CC: .4byte gMapUnit
     func_end UnitBeginReMoveAction
 
@@ -6663,8 +4797,8 @@ func_080181D0: @ 0x080181D0
 .L08018264: .4byte gActionSt
     func_end func_080181D0
 
-    thumb_func_start func_08018268
-func_08018268: @ 0x08018268
+    thumb_func_start ClearActiveFactionGrayedStates
+ClearActiveFactionGrayedStates: @ 0x08018268
     push {r4, r5, r6, lr}
     ldr r0, .L080182F0 @ =gPlaySt
     ldrb r0, [r0, #0xf]
@@ -6743,10 +4877,10 @@ func_08018268: @ 0x08018268
 .L080182F4: .4byte 0x08B92EB0
 .L080182F8: .4byte 0x0001000E
 .L080182FC: .4byte 0xFFFFFBBD
-    func_end func_08018268
+    func_end ClearActiveFactionGrayedStates
 
-    thumb_func_start func_08018300
-func_08018300: @ 0x08018300
+    thumb_func_start TickActiveFactionTurn
+TickActiveFactionTurn: @ 0x08018300
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
@@ -6866,7 +5000,7 @@ func_08018300: @ 0x08018300
 .L080183E8: .4byte 0x08B92EB0
 .L080183EC: .4byte 0x0001002C
 .L080183F0: .4byte gPlaySt
-    func_end func_08018300
+    func_end TickActiveFactionTurn
 
     thumb_func_start func_080183F4
 func_080183F4: @ 0x080183F4
@@ -8260,7 +6394,7 @@ InitMapForChapter: @ 0x08018D88
     bl ApplyChapterMapGraphics
     ldr r0, .L08018E44 @ =gMapUnitBuf
     ldr r6, .L08018E48 @ =gMapUnit
-    ldr r4, .L08018E4C @ =gMapSize
+    ldr r4, .L08018E4C @ =gBmMapSize
     movs r1, #0
     ldrsh r2, [r4, r1]
     movs r7, #2
@@ -8276,7 +6410,7 @@ InitMapForChapter: @ 0x08018D88
     adds r1, r5, #0
     bl MapInit
     ldr r0, .L08018E58 @ =0x03000440
-    ldr r1, .L08018E5C @ =gMapMovement
+    ldr r1, .L08018E5C @ =gBmMapMovement
     movs r3, #0
     ldrsh r2, [r4, r3]
     movs r7, #2
@@ -8332,11 +6466,11 @@ InitMapForChapter: @ 0x08018D88
 .L08018E40: .4byte 0x02001000
 .L08018E44: .4byte gMapUnitBuf
 .L08018E48: .4byte gMapUnit
-.L08018E4C: .4byte gMapSize
+.L08018E4C: .4byte gBmMapSize
 .L08018E50: .4byte gMapTerrainBuf
 .L08018E54: .4byte gMapTerrain
 .L08018E58: .4byte 0x03000440
-.L08018E5C: .4byte gMapMovement
+.L08018E5C: .4byte gBmMapMovement
 .L08018E60: .4byte 0x03000BF8
 .L08018E64: .4byte gMapRange
 .L08018E68: .4byte gMapFogBuf
@@ -8356,7 +6490,7 @@ InitChapterPreviewMap: @ 0x08018E84
     bl UnpackRawMap
     ldr r0, .L08018ED8 @ =gMapUnitBuf
     ldr r6, .L08018EDC @ =gMapUnit
-    ldr r4, .L08018EE0 @ =gMapSize
+    ldr r4, .L08018EE0 @ =gBmMapSize
     movs r1, #0
     ldrsh r2, [r4, r1]
     movs r1, #2
@@ -8386,7 +6520,7 @@ InitChapterPreviewMap: @ 0x08018E84
 .L08018ED4: .4byte 0x02001000
 .L08018ED8: .4byte gMapUnitBuf
 .L08018EDC: .4byte gMapUnit
-.L08018EE0: .4byte gMapSize
+.L08018EE0: .4byte gBmMapSize
 .L08018EE4: .4byte gMapTerrainBuf
 .L08018EE8: .4byte gMapTerrain
     func_end InitChapterPreviewMap
@@ -8399,7 +6533,7 @@ ApplyAutoWaterShadows: @ 0x08018EEC
     mov r5, r8
     push {r5, r6, r7}
     movs r6, #0
-    ldr r1, .L08018FC4 @ =gMapSize
+    ldr r1, .L08018FC4 @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r1, r2]
     mov sb, r1
@@ -8514,7 +6648,7 @@ ApplyAutoWaterShadows: @ 0x08018EEC
     beq .L08018FDA
     b .L08019014
     .align 2, 0
-.L08018FC4: .4byte gMapSize
+.L08018FC4: .4byte gBmMapSize
 .L08018FC8: .4byte 0x08B932B4
 .L08018FCC: .4byte gMapTerrain
 .L08018FD0:
@@ -8647,7 +6781,7 @@ MapFill: @ 0x080190AC
     sub sp, #4
     adds r5, r0, #0
     adds r3, r1, #0
-    ldr r0, .L08019104 @ =gMapSize
+    ldr r0, .L08019104 @ =gBmMapSize
     movs r2, #2
     ldrsh r1, [r0, r2]
     adds r1, #4
@@ -8687,7 +6821,7 @@ MapFill: @ 0x080190AC
     pop {r0}
     bx r0
     .align 2, 0
-.L08019104: .4byte gMapSize
+.L08019104: .4byte gBmMapSize
     func_end MapFill
 
     thumb_func_start func_08019108
@@ -8697,7 +6831,7 @@ func_08019108: @ 0x08019108
     lsrs r3, r1, #0x18
     adds r6, r0, #0
     movs r4, #0
-    ldr r0, .L08019170 @ =gMapSize
+    ldr r0, .L08019170 @ =gBmMapSize
     movs r2, #2
     ldrsh r1, [r0, r2]
     adds r7, r0, #0
@@ -8748,7 +6882,7 @@ func_08019108: @ 0x08019108
     pop {r0}
     bx r0
     .align 2, 0
-.L08019170: .4byte gMapSize
+.L08019170: .4byte gBmMapSize
     func_end func_08019108
 
     thumb_func_start UnpackRawMap
@@ -8760,7 +6894,7 @@ UnpackRawMap: @ 0x08019174
     bl GetChapterMap
     adds r1, r4, #0
     bl Decompress
-    ldr r5, .L080191C4 @ =gMapSize
+    ldr r5, .L080191C4 @ =gBmMapSize
     ldrb r0, [r4]
     strh r0, [r5]
     ldrb r0, [r4, #1]
@@ -8774,7 +6908,7 @@ UnpackRawMap: @ 0x08019174
     ldr r0, [r0]
     ldr r1, .L080191CC @ =gTilesetInfo
     bl Decompress
-    ldr r1, .L080191D0 @ =gBmStatus
+    ldr r1, .L080191D0 @ =gBmSt
     movs r2, #0
     ldrsh r0, [r5, r2]
     lsls r0, r0, #4
@@ -8789,10 +6923,10 @@ UnpackRawMap: @ 0x08019174
     pop {r0}
     bx r0
     .align 2, 0
-.L080191C4: .4byte gMapSize
+.L080191C4: .4byte gBmMapSize
 .L080191C8: .4byte 0x08C9C9C8
 .L080191CC: .4byte gTilesetInfo
-.L080191D0: .4byte gBmStatus
+.L080191D0: .4byte gBmSt
     func_end UnpackRawMap
 
     thumb_func_start ApplyChapterMapGraphics
@@ -8879,7 +7013,7 @@ InitMetatilesMap: @ 0x0801926C
     ldr r0, [r3]
     mov sb, r0
     ldr r5, .L08019324 @ =0x02001000
-    ldr r1, .L08019328 @ =gMapSize
+    ldr r1, .L08019328 @ =gBmMapSize
     ldrh r0, [r1, #2]
     adds r0, #1
     strh r0, [r1, #2]
@@ -8969,7 +7103,7 @@ InitMetatilesMap: @ 0x0801926C
     .align 2, 0
 .L08019320: .4byte 0x08B932B4
 .L08019324: .4byte 0x02001000
-.L08019328: .4byte gMapSize
+.L08019328: .4byte gBmMapSize
     func_end InitMetatilesMap
 
     thumb_func_start RefreshTerrainMap
@@ -8980,7 +7114,7 @@ RefreshTerrainMap: @ 0x0801932C
     mov r5, r8
     push {r5, r6, r7}
     movs r1, #0
-    ldr r0, .L080193AC @ =gMapSize
+    ldr r0, .L080193AC @ =gBmMapSize
     mov sb, r0
     movs r2, #2
     ldrsh r0, [r0, r2]
@@ -9042,7 +7176,7 @@ RefreshTerrainMap: @ 0x0801932C
     pop {r0}
     bx r0
     .align 2, 0
-.L080193AC: .4byte gMapSize
+.L080193AC: .4byte gBmMapSize
 .L080193B0: .4byte 0x08B932B4
 .L080193B4: .4byte gMapTerrain
 .L080193B8: .4byte 0x08B932B0
@@ -9147,7 +7281,7 @@ PutLimitViewSquare: @ 0x08019454
     bne .L0801946E
     bl func_08019450
 .L0801946E:
-    ldr r0, .L08019490 @ =gMapMovement
+    ldr r0, .L08019490 @ =gBmMapMovement
     ldr r0, [r0]
     lsls r2, r5, #2
     adds r0, r2, r0
@@ -9165,7 +7299,7 @@ PutLimitViewSquare: @ 0x08019454
     ldr r2, .L08019494 @ =0x00004281
     b .L080194D2
     .align 2, 0
-.L08019490: .4byte gMapMovement
+.L08019490: .4byte gBmMapMovement
 .L08019494: .4byte 0x00004281
 .L08019498:
     ldr r0, .L080194BC @ =gMapRange
@@ -9228,7 +7362,7 @@ PutLimitViewSquare: @ 0x08019454
 RenderMap: @ 0x08019504
     push {r4, r5, r6, r7, lr}
     sub sp, #4
-    ldr r0, .L08019578 @ =gBmStatus
+    ldr r0, .L08019578 @ =gBmSt
     ldrh r2, [r0, #0xc]
     lsls r1, r2, #0x10
     asrs r1, r1, #0x14
@@ -9284,7 +7418,7 @@ RenderMap: @ 0x08019504
     pop {r0}
     bx r0
     .align 2, 0
-.L08019578: .4byte gBmStatus
+.L08019578: .4byte gBmSt
 .L0801957C: .4byte gBg3Tm
 .L08019580: .4byte gDispIo
     func_end RenderMap
@@ -9297,7 +7431,7 @@ RenderMapForFade: @ 0x08019584
     lsls r1, r1, #8
     movs r0, #2
     bl SetBgChrOffset
-    ldr r1, .L080195E8 @ =gBmStatus
+    ldr r1, .L080195E8 @ =gBmSt
     ldrh r2, [r1, #0xc]
     lsls r0, r2, #0x10
     asrs r0, r0, #0x14
@@ -9340,14 +7474,14 @@ RenderMapForFade: @ 0x08019584
     pop {r0}
     bx r0
     .align 2, 0
-.L080195E8: .4byte gBmStatus
+.L080195E8: .4byte gBmSt
 .L080195EC: .4byte gBg2Tm
     func_end RenderMapForFade
 
     thumb_func_start UpdateRenderMap
 UpdateRenderMap: @ 0x080195F0
     push {r4, r5, lr}
-    ldr r2, .L08019620 @ =gBmStatus
+    ldr r2, .L08019620 @ =gBmSt
     ldrh r4, [r2, #0xc]
     movs r0, #0xc
     ldrsh r3, [r2, r0]
@@ -9370,7 +7504,7 @@ UpdateRenderMap: @ 0x080195F0
     bl RenderMapColumn
     b .L08019634
     .align 2, 0
-.L08019620: .4byte gBmStatus
+.L08019620: .4byte gBmSt
 .L08019624:
     eors r0, r4
     movs r1, #0x10
@@ -9380,7 +7514,7 @@ UpdateRenderMap: @ 0x080195F0
     movs r0, #0
     bl RenderMapColumn
 .L08019634:
-    ldr r2, .L08019664 @ =gBmStatus
+    ldr r2, .L08019664 @ =gBmSt
     ldrh r4, [r2, #0xe]
     movs r5, #0xe
     ldrsh r3, [r2, r5]
@@ -9403,7 +7537,7 @@ UpdateRenderMap: @ 0x080195F0
     bl RenderMapLine
     b .L08019678
     .align 2, 0
-.L08019664: .4byte gBmStatus
+.L08019664: .4byte gBmSt
 .L08019668:
     eors r0, r4
     movs r1, #0x10
@@ -9413,7 +7547,7 @@ UpdateRenderMap: @ 0x080195F0
     movs r0, #0
     bl RenderMapLine
 .L08019678:
-    ldr r4, .L080196CC @ =gBmStatus
+    ldr r4, .L080196CC @ =gBmSt
     ldr r0, [r4, #0xc]
     str r0, [r4, #0x10]
     ldrh r5, [r4, #0x24]
@@ -9454,7 +7588,7 @@ UpdateRenderMap: @ 0x080195F0
     pop {r0}
     bx r0
     .align 2, 0
-.L080196CC: .4byte gBmStatus
+.L080196CC: .4byte gBmSt
     func_end UpdateRenderMap
 
     thumb_func_start RenderMapColumn
@@ -9467,7 +7601,7 @@ RenderMapColumn: @ 0x080196D0
     sub sp, #4
     lsls r0, r0, #0x10
     lsrs r0, r0, #0x10
-    ldr r4, .L08019744 @ =gBmStatus
+    ldr r4, .L08019744 @ =gBmSt
     ldrh r1, [r4, #0xc]
     lsls r3, r1, #0x10
     asrs r3, r3, #0x14
@@ -9516,7 +7650,7 @@ RenderMapColumn: @ 0x080196D0
     bl EnableBgSync
     b .L08019782
     .align 2, 0
-.L08019744: .4byte gBmStatus
+.L08019744: .4byte gBmSt
 .L08019748: .4byte gBg3Tm
 .L0801974C:
     movs r6, #0xa
@@ -9568,7 +7702,7 @@ RenderMapLine: @ 0x0801979C
     sub sp, #4
     lsls r0, r0, #0x10
     lsrs r0, r0, #0x10
-    ldr r4, .L08019810 @ =gBmStatus
+    ldr r4, .L08019810 @ =gBmSt
     ldrh r1, [r4, #0xc]
     lsls r2, r1, #0x10
     asrs r2, r2, #0x14
@@ -9617,7 +7751,7 @@ RenderMapLine: @ 0x0801979C
     bl EnableBgSync
     b .L08019850
     .align 2, 0
-.L08019810: .4byte gBmStatus
+.L08019810: .4byte gBmSt
 .L08019814: .4byte gBg3Tm
 .L08019818:
     movs r6, #0xf
@@ -10092,7 +8226,7 @@ MapFloodUnit: @ 0x08019BA0
     adds r4, r0, #0
     bl GetUnitMovementCost
     bl SetWorkingMoveTable
-    ldr r0, .L08019BD8 @ =gMapMovement
+    ldr r0, .L08019BD8 @ =gBmMapMovement
     ldr r1, [r0]
     ldr r0, .L08019BDC @ =gWorkingMap
     str r1, [r0]
@@ -10114,7 +8248,7 @@ MapFloodUnit: @ 0x08019BA0
     pop {r0}
     bx r0
     .align 2, 0
-.L08019BD8: .4byte gMapMovement
+.L08019BD8: .4byte gBmMapMovement
 .L08019BDC: .4byte gWorkingMap
     func_end MapFloodUnit
 
@@ -10126,7 +8260,7 @@ MapFloodUnitMovement: @ 0x08019BE0
     lsrs r4, r4, #0x18
     bl GetUnitMovementCost
     bl SetWorkingMoveTable
-    ldr r0, .L08019C14 @ =gMapMovement
+    ldr r0, .L08019C14 @ =gBmMapMovement
     ldr r1, [r0]
     ldr r0, .L08019C18 @ =gWorkingMap
     str r1, [r0]
@@ -10144,7 +8278,7 @@ MapFloodUnitMovement: @ 0x08019BE0
     pop {r0}
     bx r0
     .align 2, 0
-.L08019C14: .4byte gMapMovement
+.L08019C14: .4byte gBmMapMovement
 .L08019C18: .4byte gWorkingMap
     func_end MapFloodUnitMovement
 
@@ -10154,7 +8288,7 @@ MapFloodUnitExtended: @ 0x08019C1C
     adds r4, r0, #0
     bl GetUnitMovementCost
     bl SetWorkingMoveTable
-    ldr r0, .L08019C48 @ =gMapMovement
+    ldr r0, .L08019C48 @ =gBmMapMovement
     ldr r1, [r0]
     ldr r0, .L08019C4C @ =gWorkingMap
     str r1, [r0]
@@ -10169,7 +8303,7 @@ MapFloodUnitExtended: @ 0x08019C1C
     pop {r0}
     bx r0
     .align 2, 0
-.L08019C48: .4byte gMapMovement
+.L08019C48: .4byte gBmMapMovement
 .L08019C4C: .4byte gWorkingMap
     func_end MapFloodUnitExtended
 
@@ -10204,7 +8338,7 @@ MapFloodExtended: @ 0x08019C80
     adds r5, r1, #0
     adds r0, r2, #0
     bl SetWorkingMoveTable
-    ldr r0, .L08019CA8 @ =gMapMovement
+    ldr r0, .L08019CA8 @ =gBmMapMovement
     ldr r1, [r0]
     ldr r0, .L08019CAC @ =gWorkingMap
     str r1, [r0]
@@ -10217,7 +8351,7 @@ MapFloodExtended: @ 0x08019C80
     pop {r0}
     bx r0
     .align 2, 0
-.L08019CA8: .4byte gMapMovement
+.L08019CA8: .4byte gBmMapMovement
 .L08019CAC: .4byte gWorkingMap
     func_end MapFloodExtended
 
@@ -10477,7 +8611,7 @@ BuildBestMoveScript: @ 0x08019E5C
     mov sl, r7
     mov r8, r2
 .L08019E96:
-    ldr r0, .L08019EB0 @ =gMapSize
+    ldr r0, .L08019EB0 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r0, #1
@@ -10489,7 +8623,7 @@ BuildBestMoveScript: @ 0x08019E5C
     b .L08019EBE
     .align 2, 0
 .L08019EAC: .4byte gWorkingMap
-.L08019EB0: .4byte gMapSize
+.L08019EB0: .4byte gBmMapSize
 .L08019EB4:
     ldr r0, [r1]
     add r0, r8
@@ -10513,7 +8647,7 @@ BuildBestMoveScript: @ 0x08019E5C
     ldrb r0, [r0]
 .L08019ED8:
     strb r0, [r4, #1]
-    ldr r2, .L08019EF0 @ =gMapSize
+    ldr r2, .L08019EF0 @ =gBmMapSize
     movs r3, #2
     ldrsh r0, [r2, r3]
     subs r0, #1
@@ -10524,7 +8658,7 @@ BuildBestMoveScript: @ 0x08019E5C
     orrs r0, r7
     b .L08019EFE
     .align 2, 0
-.L08019EF0: .4byte gMapSize
+.L08019EF0: .4byte gBmMapSize
 .L08019EF4:
     ldr r0, [r1]
     add r0, r8
@@ -10830,7 +8964,7 @@ func_0801A0FC: @ 0x0801A0FC
     mov r6, sb
     mov r5, r8
     push {r5, r6, r7}
-    ldr r1, .L0801A1DC @ =gMapSize
+    ldr r1, .L0801A1DC @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r1, r2]
     subs r4, r0, #1
@@ -10852,7 +8986,7 @@ func_0801A0FC: @ 0x0801A0FC
     lsls r5, r4, #2
     mov r6, sl
 .L0801A12E:
-    ldr r1, .L0801A1E4 @ =gMapMovement
+    ldr r1, .L0801A1E4 @ =gBmMapMovement
     ldr r0, [r1]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -10874,7 +9008,7 @@ func_0801A0FC: @ 0x0801A0FC
     beq .L0801A158
     strb r2, [r1]
 .L0801A158:
-    ldr r7, .L0801A1E4 @ =gMapMovement
+    ldr r7, .L0801A1E4 @ =gBmMapMovement
     ldr r0, [r7]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -10892,7 +9026,7 @@ func_0801A0FC: @ 0x0801A0FC
     ldrb r0, [r6, #0xb]
     strb r0, [r1, #1]
 .L0801A17A:
-    ldr r1, .L0801A1E4 @ =gMapMovement
+    ldr r1, .L0801A1E4 @ =gBmMapMovement
     ldr r0, [r1]
     adds r0, r5, r0
     subs r0, #4
@@ -10907,7 +9041,7 @@ func_0801A0FC: @ 0x0801A0FC
     ldrb r0, [r6, #0xb]
     strb r0, [r1]
 .L0801A196:
-    ldr r2, .L0801A1E4 @ =gMapMovement
+    ldr r2, .L0801A1E4 @ =gBmMapMovement
     ldr r0, [r2]
     adds r0, r5, r0
     ldr r0, [r0, #4]
@@ -10945,9 +9079,9 @@ func_0801A0FC: @ 0x0801A0FC
     pop {r0}
     bx r0
     .align 2, 0
-.L0801A1DC: .4byte gMapSize
+.L0801A1DC: .4byte gBmMapSize
 .L0801A1E0: .4byte gMapFloodSt
-.L0801A1E4: .4byte gMapMovement
+.L0801A1E4: .4byte gBmMapMovement
     func_end func_0801A0FC
 
     thumb_func_start func_0801A1E8
@@ -10957,7 +9091,7 @@ func_0801A1E8: @ 0x0801A1E8
     mov r6, sb
     mov r5, r8
     push {r5, r6, r7}
-    ldr r1, .L0801A2C8 @ =gMapSize
+    ldr r1, .L0801A2C8 @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r1, r2]
     subs r4, r0, #1
@@ -11072,7 +9206,7 @@ func_0801A1E8: @ 0x0801A1E8
     pop {r0}
     bx r0
     .align 2, 0
-.L0801A2C8: .4byte gMapSize
+.L0801A2C8: .4byte gBmMapSize
 .L0801A2CC: .4byte gMapFloodSt
 .L0801A2D0: .4byte gWorkingMap
     func_end func_0801A1E8
@@ -11094,7 +9228,7 @@ MapAddInRange: @ 0x0801A2D4
     adds r0, r4, r5
     cmp r4, r0
     bgt .L0801A354
-    ldr r1, .L0801A3D0 @ =gMapSize
+    ldr r1, .L0801A3D0 @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r1, r2]
     cmp r4, r0
@@ -11110,7 +9244,7 @@ MapAddInRange: @ 0x0801A2D4
     movs r1, #0
 .L0801A30C:
     adds r3, r1, r0
-    ldr r2, .L0801A3D0 @ =gMapSize
+    ldr r2, .L0801A3D0 @ =gBmMapSize
     movs r6, #0
     ldrsh r0, [r2, r6]
     cmp r3, r0
@@ -11143,7 +9277,7 @@ MapAddInRange: @ 0x0801A2D4
     adds r4, r7, #0
     cmp r4, r6
     bgt .L0801A354
-    ldr r2, .L0801A3D0 @ =gMapSize
+    ldr r2, .L0801A3D0 @ =gBmMapSize
     movs r6, #2
     ldrsh r0, [r2, r6]
     cmp r4, r0
@@ -11161,7 +9295,7 @@ MapAddInRange: @ 0x0801A2D4
     blt .L0801A3BE
     cmp r4, #0
     blt .L0801A3BE
-    ldr r2, .L0801A3D0 @ =gMapSize
+    ldr r2, .L0801A3D0 @ =gBmMapSize
     mov ip, r2
     ldr r6, .L0801A3D4 @ =gWorkingMap
     mov sb, r6
@@ -11217,7 +9351,7 @@ MapAddInRange: @ 0x0801A2D4
     pop {r0}
     bx r0
     .align 2, 0
-.L0801A3D0: .4byte gMapSize
+.L0801A3D0: .4byte gBmMapSize
 .L0801A3D4: .4byte gWorkingMap
     func_end MapAddInRange
 
@@ -11238,7 +9372,7 @@ func_0801A3D8: @ 0x0801A3D8
     adds r0, r3, r5
     cmp r3, r0
     bgt .L0801A454
-    ldr r4, .L0801A4CC @ =gMapSize
+    ldr r4, .L0801A4CC @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r4, r1]
     cmp r3, r0
@@ -11254,7 +9388,7 @@ func_0801A3D8: @ 0x0801A3D8
     movs r1, #0
 .L0801A410:
     adds r2, r1, r0
-    ldr r4, .L0801A4CC @ =gMapSize
+    ldr r4, .L0801A4CC @ =gBmMapSize
     movs r6, #0
     ldrsh r0, [r4, r6]
     cmp r2, r0
@@ -11285,7 +9419,7 @@ func_0801A3D8: @ 0x0801A3D8
     adds r3, r7, #0
     cmp r3, ip
     bgt .L0801A454
-    ldr r4, .L0801A4CC @ =gMapSize
+    ldr r4, .L0801A4CC @ =gBmMapSize
     movs r6, #2
     ldrsh r0, [r4, r6]
     cmp r3, r0
@@ -11303,7 +9437,7 @@ func_0801A3D8: @ 0x0801A3D8
     blt .L0801A4BC
     cmp r3, #0
     blt .L0801A4BC
-    ldr r2, .L0801A4CC @ =gMapSize
+    ldr r2, .L0801A4CC @ =gBmMapSize
     mov ip, r2
     ldr r4, .L0801A4D0 @ =gWorkingMap
     mov sb, r4
@@ -11358,7 +9492,7 @@ func_0801A3D8: @ 0x0801A3D8
     pop {r0}
     bx r0
     .align 2, 0
-.L0801A4CC: .4byte gMapSize
+.L0801A4CC: .4byte gBmMapSize
 .L0801A4D0: .4byte gWorkingMap
     func_end func_0801A3D8
 
@@ -11403,7 +9537,7 @@ func_0801A4D4: @ 0x0801A4D4
     .4byte .L0801AB72 @ case 13
     .4byte .L0801AAEC @ case 14
 .L0801A53C:
-    ldr r0, .L0801A5C8 @ =gMapSize
+    ldr r0, .L0801A5C8 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r6, r0, #1
@@ -11411,7 +9545,7 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A54A
     b .L0801AB72
 .L0801A54A:
-    ldr r0, .L0801A5C8 @ =gMapSize
+    ldr r0, .L0801A5C8 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r0, #1
@@ -11425,7 +9559,7 @@ func_0801A4D4: @ 0x0801A4D4
     lsls r0, r6, #0x10
     asrs r6, r0, #0x10
 .L0801A564:
-    ldr r0, .L0801A5CC @ =gMapMovement
+    ldr r0, .L0801A5CC @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -11476,12 +9610,12 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A54A
     b .L0801AB72
     .align 2, 0
-.L0801A5C8: .4byte gMapSize
-.L0801A5CC: .4byte gMapMovement
+.L0801A5C8: .4byte gBmMapSize
+.L0801A5CC: .4byte gBmMapMovement
 .L0801A5D0: .4byte gMapUnit
 .L0801A5D4: .4byte gMapOther
 .L0801A5D8:
-    ldr r0, .L0801A664 @ =gMapSize
+    ldr r0, .L0801A664 @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r0, r2]
     subs r6, r0, #1
@@ -11489,7 +9623,7 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A5E6
     b .L0801AB72
 .L0801A5E6:
-    ldr r0, .L0801A664 @ =gMapSize
+    ldr r0, .L0801A664 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r0, #1
@@ -11502,7 +9636,7 @@ func_0801A4D4: @ 0x0801A4D4
     lsls r0, r6, #0x10
     asrs r6, r0, #0x10
 .L0801A5FE:
-    ldr r0, .L0801A668 @ =gMapMovement
+    ldr r0, .L0801A668 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -11553,12 +9687,12 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A5E6
     b .L0801AB72
     .align 2, 0
-.L0801A664: .4byte gMapSize
-.L0801A668: .4byte gMapMovement
+.L0801A664: .4byte gBmMapSize
+.L0801A668: .4byte gBmMapMovement
 .L0801A66C: .4byte gMapUnit
 .L0801A670: .4byte gMapOther
 .L0801A674:
-    ldr r0, .L0801A700 @ =gMapSize
+    ldr r0, .L0801A700 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r6, r0, #1
@@ -11566,7 +9700,7 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A682
     b .L0801AB72
 .L0801A682:
-    ldr r0, .L0801A700 @ =gMapSize
+    ldr r0, .L0801A700 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r0, #1
@@ -11580,7 +9714,7 @@ func_0801A4D4: @ 0x0801A4D4
     lsls r0, r6, #0x10
     asrs r6, r0, #0x10
 .L0801A69C:
-    ldr r0, .L0801A704 @ =gMapMovement
+    ldr r0, .L0801A704 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -11631,12 +9765,12 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A682
     b .L0801AB72
     .align 2, 0
-.L0801A700: .4byte gMapSize
-.L0801A704: .4byte gMapMovement
+.L0801A700: .4byte gBmMapSize
+.L0801A704: .4byte gBmMapMovement
 .L0801A708: .4byte gMapUnit
 .L0801A70C: .4byte gMapOther
 .L0801A710:
-    ldr r0, .L0801A79C @ =gMapSize
+    ldr r0, .L0801A79C @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r0, r2]
     subs r6, r0, #1
@@ -11644,7 +9778,7 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A71E
     b .L0801AB72
 .L0801A71E:
-    ldr r0, .L0801A79C @ =gMapSize
+    ldr r0, .L0801A79C @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r0, #1
@@ -11657,7 +9791,7 @@ func_0801A4D4: @ 0x0801A4D4
     lsls r0, r6, #0x10
     asrs r6, r0, #0x10
 .L0801A736:
-    ldr r0, .L0801A7A0 @ =gMapMovement
+    ldr r0, .L0801A7A0 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -11708,12 +9842,12 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A71E
     b .L0801AB72
     .align 2, 0
-.L0801A79C: .4byte gMapSize
-.L0801A7A0: .4byte gMapMovement
+.L0801A79C: .4byte gBmMapSize
+.L0801A7A0: .4byte gBmMapMovement
 .L0801A7A4: .4byte gMapUnit
 .L0801A7A8: .4byte gMapOther
 .L0801A7AC:
-    ldr r0, .L0801A838 @ =gMapSize
+    ldr r0, .L0801A838 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r6, r0, #1
@@ -11721,7 +9855,7 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A7BA
     b .L0801AB72
 .L0801A7BA:
-    ldr r0, .L0801A838 @ =gMapSize
+    ldr r0, .L0801A838 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r0, #1
@@ -11735,7 +9869,7 @@ func_0801A4D4: @ 0x0801A4D4
     lsls r0, r6, #0x10
     asrs r6, r0, #0x10
 .L0801A7D4:
-    ldr r0, .L0801A83C @ =gMapMovement
+    ldr r0, .L0801A83C @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -11786,12 +9920,12 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A7BA
     b .L0801AB72
     .align 2, 0
-.L0801A838: .4byte gMapSize
-.L0801A83C: .4byte gMapMovement
+.L0801A838: .4byte gBmMapSize
+.L0801A83C: .4byte gBmMapMovement
 .L0801A840: .4byte gMapUnit
 .L0801A844: .4byte gMapOther
 .L0801A848:
-    ldr r0, .L0801A8D4 @ =gMapSize
+    ldr r0, .L0801A8D4 @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r0, r2]
     subs r6, r0, #1
@@ -11799,7 +9933,7 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A856
     b .L0801AB72
 .L0801A856:
-    ldr r0, .L0801A8D4 @ =gMapSize
+    ldr r0, .L0801A8D4 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r0, #1
@@ -11812,7 +9946,7 @@ func_0801A4D4: @ 0x0801A4D4
     lsls r0, r6, #0x10
     asrs r6, r0, #0x10
 .L0801A86E:
-    ldr r0, .L0801A8D8 @ =gMapMovement
+    ldr r0, .L0801A8D8 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -11863,12 +9997,12 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A856
     b .L0801AB72
     .align 2, 0
-.L0801A8D4: .4byte gMapSize
-.L0801A8D8: .4byte gMapMovement
+.L0801A8D4: .4byte gBmMapSize
+.L0801A8D8: .4byte gBmMapMovement
 .L0801A8DC: .4byte gMapUnit
 .L0801A8E0: .4byte gMapOther
 .L0801A8E4:
-    ldr r0, .L0801A970 @ =gMapSize
+    ldr r0, .L0801A970 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r6, r0, #1
@@ -11876,7 +10010,7 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A8F2
     b .L0801AB72
 .L0801A8F2:
-    ldr r0, .L0801A970 @ =gMapSize
+    ldr r0, .L0801A970 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r0, #1
@@ -11890,7 +10024,7 @@ func_0801A4D4: @ 0x0801A4D4
     lsls r0, r6, #0x10
     asrs r6, r0, #0x10
 .L0801A90C:
-    ldr r0, .L0801A974 @ =gMapMovement
+    ldr r0, .L0801A974 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -11941,12 +10075,12 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A8F2
     b .L0801AB72
     .align 2, 0
-.L0801A970: .4byte gMapSize
-.L0801A974: .4byte gMapMovement
+.L0801A970: .4byte gBmMapSize
+.L0801A974: .4byte gBmMapMovement
 .L0801A978: .4byte gMapUnit
 .L0801A97C: .4byte gMapOther
 .L0801A980:
-    ldr r0, .L0801AA24 @ =gMapSize
+    ldr r0, .L0801AA24 @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r0, r2]
     subs r6, r0, #1
@@ -11954,7 +10088,7 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A98E
     b .L0801AB72
 .L0801A98E:
-    ldr r0, .L0801AA24 @ =gMapSize
+    ldr r0, .L0801AA24 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r0, #1
@@ -11967,7 +10101,7 @@ func_0801A4D4: @ 0x0801A4D4
     lsls r0, r6, #0x10
     asrs r5, r0, #0x10
 .L0801A9A6:
-    ldr r0, .L0801AA28 @ =gMapMovement
+    ldr r0, .L0801AA28 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r7, r0
     ldr r0, [r0]
@@ -12029,12 +10163,12 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801A98E
     b .L0801AB72
     .align 2, 0
-.L0801AA24: .4byte gMapSize
-.L0801AA28: .4byte gMapMovement
+.L0801AA24: .4byte gBmMapSize
+.L0801AA28: .4byte gBmMapMovement
 .L0801AA2C: .4byte gMapUnit
 .L0801AA30: .4byte gMapOther
 .L0801AA34:
-    ldr r0, .L0801AADC @ =gMapSize
+    ldr r0, .L0801AADC @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r6, r0, #1
@@ -12042,7 +10176,7 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801AA42
     b .L0801AB72
 .L0801AA42:
-    ldr r0, .L0801AADC @ =gMapSize
+    ldr r0, .L0801AADC @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r0, #1
@@ -12056,7 +10190,7 @@ func_0801A4D4: @ 0x0801A4D4
     lsls r0, r6, #0x10
     asrs r5, r0, #0x10
 .L0801AA5C:
-    ldr r0, .L0801AAE0 @ =gMapMovement
+    ldr r0, .L0801AAE0 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r7, r0
     ldr r0, [r0]
@@ -12118,19 +10252,19 @@ func_0801A4D4: @ 0x0801A4D4
     bge .L0801AA42
     b .L0801AB72
     .align 2, 0
-.L0801AADC: .4byte gMapSize
-.L0801AAE0: .4byte gMapMovement
+.L0801AADC: .4byte gBmMapSize
+.L0801AAE0: .4byte gBmMapMovement
 .L0801AAE4: .4byte gMapUnit
 .L0801AAE8: .4byte gMapOther
 .L0801AAEC:
-    ldr r0, .L0801AC4C @ =gMapSize
+    ldr r0, .L0801AC4C @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r0, r2]
     subs r6, r0, #1
     cmp r6, #0
     blt .L0801AB72
 .L0801AAF8:
-    ldr r0, .L0801AC4C @ =gMapSize
+    ldr r0, .L0801AC4C @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r0, #1
@@ -12143,7 +10277,7 @@ func_0801A4D4: @ 0x0801A4D4
     lsls r0, r6, #0x10
     asrs r6, r0, #0x10
 .L0801AB10:
-    ldr r0, .L0801AC50 @ =gMapMovement
+    ldr r0, .L0801AC50 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -12203,14 +10337,14 @@ func_0801A4D4: @ 0x0801A4D4
     ands r0, r1
     cmp r0, #0
     beq .L0801AC34
-    ldr r0, .L0801AC4C @ =gMapSize
+    ldr r0, .L0801AC4C @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r0, r2]
     subs r6, r0, #1
     cmp r6, #0
     blt .L0801AC34
 .L0801AB92:
-    ldr r0, .L0801AC4C @ =gMapSize
+    ldr r0, .L0801AC4C @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r0, #1
@@ -12225,7 +10359,7 @@ func_0801A4D4: @ 0x0801A4D4
     asrs r0, r0, #0x10
     mov sl, r0
 .L0801ABAE:
-    ldr r0, .L0801AC50 @ =gMapMovement
+    ldr r0, .L0801AC50 @ =gBmMapMovement
     ldr r0, [r0]
     add r0, sb
     ldr r0, [r0]
@@ -12290,7 +10424,7 @@ func_0801A4D4: @ 0x0801A4D4
     cmp r6, #0
     bge .L0801AB92
 .L0801AC34:
-    ldr r2, .L0801AC50 @ =gMapMovement
+    ldr r2, .L0801AC50 @ =gBmMapMovement
     ldr r1, [r2]
     ldr r0, .L0801AC5C @ =gWorkingMap
     str r1, [r0]
@@ -12303,8 +10437,8 @@ func_0801A4D4: @ 0x0801A4D4
     pop {r0}
     bx r0
     .align 2, 0
-.L0801AC4C: .4byte gMapSize
-.L0801AC50: .4byte gMapMovement
+.L0801AC4C: .4byte gBmMapSize
+.L0801AC50: .4byte gBmMapMovement
 .L0801AC54: .4byte gMapUnit
 .L0801AC58: .4byte gMapOther
 .L0801AC5C: .4byte gWorkingMap
@@ -12524,7 +10658,7 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
 .L0801AE3E:
     b .L0801AFEA
 .L0801AE40:
-    ldr r0, .L0801AEC0 @ =gMapSize
+    ldr r0, .L0801AEC0 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r1, r0, #1
@@ -12532,7 +10666,7 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
     bge .L0801AE4E
     b .L0801AFEA
 .L0801AE4E:
-    ldr r0, .L0801AEC0 @ =gMapSize
+    ldr r0, .L0801AEC0 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r5, r0, #1
@@ -12544,7 +10678,7 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
     lsls r0, r1, #0x10
     asrs r7, r0, #0x10
 .L0801AE64:
-    ldr r0, .L0801AEC4 @ =gMapMovement
+    ldr r0, .L0801AEC4 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r6, r0
     ldr r0, [r0]
@@ -12591,12 +10725,12 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
     bge .L0801AE4E
     b .L0801AFEA
     .align 2, 0
-.L0801AEC0: .4byte gMapSize
-.L0801AEC4: .4byte gMapMovement
+.L0801AEC0: .4byte gBmMapSize
+.L0801AEC4: .4byte gBmMapMovement
 .L0801AEC8: .4byte gMapUnit
 .L0801AECC: .4byte gMapOther
 .L0801AED0:
-    ldr r0, .L0801AF50 @ =gMapSize
+    ldr r0, .L0801AF50 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r1, r0, #1
@@ -12604,7 +10738,7 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
     bge .L0801AEDE
     b .L0801AFEA
 .L0801AEDE:
-    ldr r0, .L0801AF50 @ =gMapSize
+    ldr r0, .L0801AF50 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r5, r0, #1
@@ -12616,7 +10750,7 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
     lsls r0, r1, #0x10
     asrs r7, r0, #0x10
 .L0801AEF4:
-    ldr r0, .L0801AF54 @ =gMapMovement
+    ldr r0, .L0801AF54 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r6, r0
     ldr r0, [r0]
@@ -12663,12 +10797,12 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
     bge .L0801AEDE
     b .L0801AFEA
     .align 2, 0
-.L0801AF50: .4byte gMapSize
-.L0801AF54: .4byte gMapMovement
+.L0801AF50: .4byte gBmMapSize
+.L0801AF54: .4byte gBmMapMovement
 .L0801AF58: .4byte gMapUnit
 .L0801AF5C: .4byte gMapOther
 .L0801AF60:
-    ldr r0, .L0801AFF8 @ =gMapSize
+    ldr r0, .L0801AFF8 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r1, r0, #1
@@ -12678,7 +10812,7 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
     asrs r0, r0, #0x10
     mov sl, r0
 .L0801AF72:
-    ldr r0, .L0801AFF8 @ =gMapSize
+    ldr r0, .L0801AFF8 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r5, r0, #1
@@ -12693,7 +10827,7 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
     lsls r0, r0, #0x10
     mov sb, r0
 .L0801AF8E:
-    ldr r0, .L0801AFFC @ =gMapMovement
+    ldr r0, .L0801AFFC @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r6, r0
     ldr r0, [r0]
@@ -12748,8 +10882,8 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
     pop {r0}
     bx r0
     .align 2, 0
-.L0801AFF8: .4byte gMapSize
-.L0801AFFC: .4byte gMapMovement
+.L0801AFF8: .4byte gBmMapSize
+.L0801AFFC: .4byte gBmMapMovement
 .L0801B000: .4byte gMapUnit
 .L0801B004: .4byte gMapOther
     func_end BuildUnitCompleteStaffRange
@@ -13965,7 +12099,7 @@ func_0801B924: @ 0x0801B924
     bl SetTalkUnkStr
     ldr r0, .L0801B980 @ =0x08B95890
     bl StartMenu
-    ldr r4, .L0801B984 @ =gBmStatus
+    ldr r4, .L0801B984 @ =gBmSt
     movs r1, #0x40
     ldrb r2, [r4, #4]
     orrs r1, r2
@@ -13988,7 +12122,7 @@ func_0801B924: @ 0x0801B924
 .L0801B978: .4byte OnVBlank
 .L0801B97C: .4byte 0x081C3BA4
 .L0801B980: .4byte 0x08B95890
-.L0801B984: .4byte gBmStatus
+.L0801B984: .4byte gBmSt
 .L0801B988: .4byte 0x0600B000
 .L0801B98C: .4byte 0x02023CA0
     func_end func_0801B924
@@ -14333,7 +12467,7 @@ func_0801BC1C: @ 0x0801BC1C
     cmp r1, #1
     bne .L0801BC30
     movs r0, #4
-    bl func_080A1100
+    bl WriteSuspendSave
     movs r0, #0x17
     b .L0801BC32
 .L0801BC30:
@@ -15056,7 +13190,7 @@ func_0801C17C: @ 0x0801C17C
     movs r0, #0
     strb r0, [r1, #0x16]
     movs r0, #3
-    bl func_080A1100
+    bl WriteSuspendSave
     pop {r0}
     bx r0
     .align 2, 0
@@ -15074,33 +13208,33 @@ HandlePlayerMapCursor: @ 0x0801C194
     adds r3, r1, #0
     cmp r0, #0
     beq .L0801C1D4
-    ldr r0, .L0801C1CC @ =gBmStatus
+    ldr r0, .L0801C1CC @ =gBmSt
     ldr r0, [r0, #0x20]
     ldr r1, .L0801C1D0 @ =0x00070007
     ands r0, r1
     cmp r0, #0
     bne .L0801C1D4
     ldrh r0, [r2, #0x10]
-    bl func_080155EC
+    bl HandleMapCursorInput
     movs r0, #8
-    bl func_08015714
+    bl HandleMoveMapCursor
     movs r0, #8
-    bl func_08015768
+    bl HandleMoveCameraWithMapCursor
     b .L0801C1E8
     .align 2, 0
 .L0801C1C8: .4byte gpKeySt
-.L0801C1CC: .4byte gBmStatus
+.L0801C1CC: .4byte gBmSt
 .L0801C1D0: .4byte 0x00070007
 .L0801C1D4:
     ldr r0, [r3]
     ldrh r0, [r0, #6]
-    bl func_080155EC
+    bl HandleMapCursorInput
     movs r0, #4
-    bl func_08015714
+    bl HandleMoveMapCursor
     movs r0, #4
-    bl func_08015768
+    bl HandleMoveCameraWithMapCursor
 .L0801C1E8:
-    ldr r0, .L0801C20C @ =gBmStatus
+    ldr r0, .L0801C20C @ =gBmSt
     ldrh r1, [r0, #0x20]
     ldrh r2, [r0, #0x22]
     orrs r1, r2
@@ -15119,7 +13253,7 @@ HandlePlayerMapCursor: @ 0x0801C194
     pop {r0}
     bx r0
     .align 2, 0
-.L0801C20C: .4byte gBmStatus
+.L0801C20C: .4byte gBmSt
 .L0801C210: .4byte gpKeySt
 .L0801C214: .4byte 0x0000FCF4
     func_end HandlePlayerMapCursor
@@ -15156,7 +13290,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     ands r0, r1
     cmp r0, #0
     beq .L0801C280
-    ldr r1, .L0801C274 @ =gBmStatus
+    ldr r1, .L0801C274 @ =gBmSt
     movs r2, #0x14
     ldrsh r0, [r1, r2]
     movs r3, #0x16
@@ -15175,7 +13309,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     b .L0801C498
     .align 2, 0
 .L0801C270: .4byte gpKeySt
-.L0801C274: .4byte gBmStatus
+.L0801C274: .4byte gBmSt
 .L0801C278: .4byte gPlaySt
 .L0801C27C: .4byte 0x0000038B
 .L0801C280:
@@ -15192,7 +13326,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     ands r0, r1
     cmp r0, #0
     beq .L0801C304
-    ldr r4, .L0801C2FC @ =gBmStatus
+    ldr r4, .L0801C2FC @ =gBmSt
     movs r1, #0x16
     ldrsh r0, [r4, r1]
     ldr r5, .L0801C300 @ =gMapUnit
@@ -15233,7 +13367,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     bl Proc_Goto
     b .L0801C4C4
     .align 2, 0
-.L0801C2FC: .4byte gBmStatus
+.L0801C2FC: .4byte gBmSt
 .L0801C300: .4byte gMapUnit
 .L0801C304:
     ldr r0, .L0801C344 @ =gpKeySt
@@ -15243,7 +13377,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     ands r0, r1
     cmp r0, #0
     beq .L0801C3CC
-    ldr r5, .L0801C348 @ =gBmStatus
+    ldr r5, .L0801C348 @ =gBmSt
     movs r3, #0x16
     ldrsh r0, [r5, r3]
     ldr r1, .L0801C34C @ =gMapUnit
@@ -15267,7 +13401,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     b .L0801C3CC
     .align 2, 0
 .L0801C344: .4byte gpKeySt
-.L0801C348: .4byte gBmStatus
+.L0801C348: .4byte gBmSt
 .L0801C34C: .4byte gMapUnit
 .L0801C350:
     cmp r0, #0
@@ -15342,7 +13476,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     ands r0, r2
     cmp r0, #0
     bne .L0801C43C
-    ldr r2, .L0801C434 @ =gBmStatus
+    ldr r2, .L0801C434 @ =gBmSt
     movs r1, #0x16
     ldrsh r0, [r2, r1]
     ldr r1, .L0801C438 @ =gMapUnit
@@ -15369,7 +13503,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     .align 2, 0
 .L0801C42C: .4byte gpKeySt
 .L0801C430: .4byte gPlaySt
-.L0801C434: .4byte gBmStatus
+.L0801C434: .4byte gBmSt
 .L0801C438: .4byte gMapUnit
 .L0801C43C:
     ldr r1, [r1]
@@ -15383,7 +13517,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     ands r0, r1
     cmp r0, #0
     bne .L0801C498
-    ldr r2, .L0801C490 @ =gBmStatus
+    ldr r2, .L0801C490 @ =gBmSt
     movs r3, #0x16
     ldrsh r0, [r2, r3]
     ldr r1, .L0801C494 @ =gMapUnit
@@ -15411,11 +13545,11 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     bl Proc_Goto
     b .L0801C4C4
     .align 2, 0
-.L0801C490: .4byte gBmStatus
+.L0801C490: .4byte gBmSt
 .L0801C494: .4byte gMapUnit
 .L0801C498:
     bl func_08025FA8
-    ldr r1, .L0801C4CC @ =gBmStatus
+    ldr r1, .L0801C4CC @ =gBmSt
     movs r0, #0x20
     ldrsh r4, [r1, r0]
     movs r2, #0x22
@@ -15439,7 +13573,7 @@ PlayerPhase_IdleLoop: @ 0x0801C234
     pop {r0}
     bx r0
     .align 2, 0
-.L0801C4CC: .4byte gBmStatus
+.L0801C4CC: .4byte gBmSt
     func_end PlayerPhase_IdleLoop
 
     thumb_func_start func_0801C4D0
@@ -15498,7 +13632,7 @@ func_0801C4D0: @ 0x0801C4D0
 .L0801C548:
     cmp r0, #3
     bne .L0801C570
-    ldr r0, .L0801C564 @ =gBmStatus
+    ldr r0, .L0801C564 @ =gBmSt
     adds r0, #0x3e
     ldrb r0, [r0]
     ands r4, r0
@@ -15510,7 +13644,7 @@ func_0801C4D0: @ 0x0801C4D0
     movs r4, #5
     b .L0801C570
     .align 2, 0
-.L0801C564: .4byte gBmStatus
+.L0801C564: .4byte gBmSt
 .L0801C568:
     ldr r0, [r5]
     bl func_0801A4D4
@@ -15555,7 +13689,7 @@ func_0801C57C: @ 0x0801C57C
 .L0801C5B8:
     bl SetAutoMuDefaultFacing
     bl func_08078FC8
-    ldr r5, .L0801C610 @ =gBmStatus
+    ldr r5, .L0801C610 @ =gBmSt
     movs r0, #2
     ldrb r2, [r5, #4]
     orrs r0, r2
@@ -15590,7 +13724,7 @@ func_0801C57C: @ 0x0801C57C
     .align 2, 0
 .L0801C608: .4byte gActiveUnit
 .L0801C60C: .4byte gPlaySt
-.L0801C610: .4byte gBmStatus
+.L0801C610: .4byte gBmSt
 .L0801C614: .4byte 0x00000389
 .L0801C618:
     movs r0, #1
@@ -15614,7 +13748,7 @@ func_0801C624: @ 0x0801C624
     lsls r0, r0, #2
     bl m4aSongNumStart
 .L0801C63A:
-    ldr r1, .L0801C654 @ =gBmStatus
+    ldr r1, .L0801C654 @ =gBmSt
     movs r0, #0xfd
     ldrb r2, [r1, #4]
     ands r0, r2
@@ -15626,14 +13760,14 @@ func_0801C624: @ 0x0801C624
     bx r0
     .align 2, 0
 .L0801C650: .4byte gPlaySt
-.L0801C654: .4byte gBmStatus
+.L0801C654: .4byte gBmSt
 .L0801C658: .4byte gActiveUnit
     func_end func_0801C624
 
     thumb_func_start func_0801C65C
 func_0801C65C: @ 0x0801C65C
     push {r4, r5, r6, lr}
-    ldr r4, .L0801C6B0 @ =gBmStatus
+    ldr r4, .L0801C6B0 @ =gBmSt
     adds r5, r4, #0
     adds r5, #0x3e
     movs r6, #1
@@ -15641,7 +13775,7 @@ func_0801C65C: @ 0x0801C65C
     ldrb r1, [r5]
     ands r0, r1
     bl func_0801B008
-    ldr r0, .L0801C6B4 @ =gMapMovement
+    ldr r0, .L0801C6B4 @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -15671,8 +13805,8 @@ func_0801C65C: @ 0x0801C65C
     bl func_0801D2A0
     b .L0801C6C2
     .align 2, 0
-.L0801C6B0: .4byte gBmStatus
-.L0801C6B4: .4byte gMapMovement
+.L0801C6B0: .4byte gBmSt
+.L0801C6B4: .4byte gBmMapMovement
 .L0801C6B8: .4byte gPlaySt
 .L0801C6BC:
     movs r0, #3
@@ -15732,7 +13866,7 @@ func_0801C6C8: @ 0x0801C6C8
     movs r4, #6
     b .L0801C78E
 .L0801C72C:
-    ldr r1, .L0801C768 @ =gBmStatus
+    ldr r1, .L0801C768 @ =gBmSt
     movs r2, #0x14
     ldrsh r0, [r1, r2]
     movs r3, #0x16
@@ -15762,7 +13896,7 @@ func_0801C6C8: @ 0x0801C6C8
     movs r4, #0
     b .L0801C78E
     .align 2, 0
-.L0801C768: .4byte gBmStatus
+.L0801C768: .4byte gBmSt
 .L0801C76C: .4byte gpKeySt
 .L0801C770: .4byte gActiveUnit
 .L0801C774:
@@ -15822,7 +13956,7 @@ func_0801C6C8: @ 0x0801C6C8
     movs r3, #2
     ldrsh r2, [r0, r3]
     adds r0, r5, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     bl func_0801D2D4
     adds r0, r5, #0
     bl Proc_Break
@@ -15852,14 +13986,14 @@ func_0801C6C8: @ 0x0801C6C8
     movs r3, #2
     ldrsh r2, [r4, r3]
     adds r0, r5, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     movs r1, #0
     ldrsh r0, [r4, r1]
     movs r2, #2
     ldrsh r1, [r4, r2]
     bl SetMapCursorPosition
 .L0801C83A:
-    ldr r1, .L0801C874 @ =gBmStatus
+    ldr r1, .L0801C874 @ =gBmSt
     movs r0, #0xf7
     ldrb r3, [r1, #4]
     ands r0, r3
@@ -15883,7 +14017,7 @@ func_0801C6C8: @ 0x0801C6C8
     .align 2, 0
 .L0801C86C: .4byte gActiveUnit
 .L0801C870: .4byte gActiveUnitMoveOrigin
-.L0801C874: .4byte gBmStatus
+.L0801C874: .4byte gBmSt
 .L0801C878: .4byte gPlaySt
 .L0801C87C: .4byte 0x0000038B
 .L0801C880:
@@ -15891,7 +14025,7 @@ func_0801C6C8: @ 0x0801C6C8
     bl Proc_Find
     cmp r0, #0
     bne .L0801C974
-    ldr r2, .L0801C8EC @ =gBmStatus
+    ldr r2, .L0801C8EC @ =gBmSt
     movs r1, #0x16
     ldrsh r0, [r2, r1]
     ldr r1, .L0801C8F0 @ =gMapUnit
@@ -15933,7 +14067,7 @@ func_0801C6C8: @ 0x0801C6C8
     b .L0801C994
     .align 2, 0
 .L0801C8E8: .4byte 0x08B90D88
-.L0801C8EC: .4byte gBmStatus
+.L0801C8EC: .4byte gBmSt
 .L0801C8F0: .4byte gMapUnit
 .L0801C8F4: .4byte gActiveUnitMoveOrigin
 .L0801C8F8: .4byte gActiveUnit
@@ -15948,7 +14082,7 @@ func_0801C6C8: @ 0x0801C6C8
     movs r3, #2
     ldrsh r2, [r4, r3]
     adds r0, r5, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     movs r1, #0
     ldrsh r0, [r4, r1]
     movs r2, #2
@@ -15969,7 +14103,7 @@ func_0801C6C8: @ 0x0801C6C8
 .L0801C93C: .4byte gPlaySt
 .L0801C940: .4byte 0x0000038B
 .L0801C944:
-    ldr r4, .L0801C968 @ =gBmStatus
+    ldr r4, .L0801C968 @ =gBmSt
     adds r1, r4, #0
     adds r1, #0x3e
     ldrb r0, [r1]
@@ -15986,7 +14120,7 @@ func_0801C6C8: @ 0x0801C6C8
     bl Proc_Goto
     b .L0801C974
     .align 2, 0
-.L0801C968: .4byte gBmStatus
+.L0801C968: .4byte gBmSt
 .L0801C96C:
     adds r0, r5, #0
     movs r1, #0xb
@@ -15999,7 +14133,7 @@ func_0801C6C8: @ 0x0801C6C8
     bne .L0801C984
     bl func_0803030C
 .L0801C984:
-    ldr r1, .L0801C9A0 @ =gBmStatus
+    ldr r1, .L0801C9A0 @ =gBmSt
     movs r3, #0x20
     ldrsh r0, [r1, r3]
     movs r2, #0x22
@@ -16012,7 +14146,7 @@ func_0801C6C8: @ 0x0801C6C8
     bx r0
     .align 2, 0
 .L0801C99C: .4byte gActiveUnit
-.L0801C9A0: .4byte gBmStatus
+.L0801C9A0: .4byte gBmSt
     func_end func_0801C6C8
 
     thumb_func_start func_0801C9A4
@@ -16099,7 +14233,7 @@ func_0801CA38: @ 0x0801CA38
     ldrsb r2, [r0, r2]
     adds r0, r6, #0
     adds r1, r5, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     lsls r0, r0, #0x18
     movs r1, #0x80
     lsls r1, r1, #0x11
@@ -16152,7 +14286,7 @@ func_0801CA38: @ 0x0801CA38
     .4byte .L0801CB4C @ case 30
     .4byte .L0801CB4C @ case 31
 .L0801CB00:
-    ldr r0, .L0801CB14 @ =gBmStatus
+    ldr r0, .L0801CB14 @ =gBmSt
     adds r0, #0x3d
     ldrb r0, [r0]
     cmp r0, #0
@@ -16162,7 +14296,7 @@ func_0801CA38: @ 0x0801CA38
     strb r0, [r1, #0x11]
     b .L0801CB68
     .align 2, 0
-.L0801CB14: .4byte gBmStatus
+.L0801CB14: .4byte gBmSt
 .L0801CB18: .4byte gActionSt
 .L0801CB1C:
     adds r0, r6, #0
@@ -16170,28 +14304,28 @@ func_0801CA38: @ 0x0801CA38
     movs r0, #1
     b .L0801CB88
 .L0801CB26:
-    ldr r0, .L0801CB30 @ =gBmStatus
+    ldr r0, .L0801CB30 @ =gBmSt
     adds r0, #0x3d
     movs r1, #2
     b .L0801CB52
     .align 2, 0
-.L0801CB30: .4byte gBmStatus
+.L0801CB30: .4byte gBmSt
 .L0801CB34:
-    ldr r0, .L0801CB3C @ =gBmStatus
+    ldr r0, .L0801CB3C @ =gBmSt
     adds r0, #0x3d
     movs r1, #4
     b .L0801CB52
     .align 2, 0
-.L0801CB3C: .4byte gBmStatus
+.L0801CB3C: .4byte gBmSt
 .L0801CB40:
-    ldr r0, .L0801CB48 @ =gBmStatus
+    ldr r0, .L0801CB48 @ =gBmSt
     adds r0, #0x3d
     movs r1, #1
     b .L0801CB52
     .align 2, 0
-.L0801CB48: .4byte gBmStatus
+.L0801CB48: .4byte gBmSt
 .L0801CB4C:
-    ldr r0, .L0801CB64 @ =gBmStatus
+    ldr r0, .L0801CB64 @ =gBmSt
     adds r0, #0x3d
     movs r1, #8
 .L0801CB52:
@@ -16204,13 +14338,13 @@ func_0801CA38: @ 0x0801CA38
     movs r0, #1
     b .L0801CB88
     .align 2, 0
-.L0801CB64: .4byte gBmStatus
+.L0801CB64: .4byte gBmSt
 .L0801CB68:
     ldr r1, .L0801CB90 @ =gActionSt
     ldrb r0, [r1, #0x11]
     cmp r0, #1
     beq .L0801CB84
-    ldr r0, .L0801CB94 @ =gBmStatus
+    ldr r0, .L0801CB94 @ =gBmSt
     adds r0, #0x3c
     ldrb r0, [r0]
     cmp r0, #0
@@ -16218,7 +14352,7 @@ func_0801CA38: @ 0x0801CA38
     movs r0, #1
     strb r0, [r1, #0x16]
     movs r0, #3
-    bl func_080A1100
+    bl WriteSuspendSave
 .L0801CB84:
     lsls r0, r5, #0x18
     asrs r0, r0, #0x18
@@ -16228,7 +14362,7 @@ func_0801CA38: @ 0x0801CA38
     bx r1
     .align 2, 0
 .L0801CB90: .4byte gActionSt
-.L0801CB94: .4byte gBmStatus
+.L0801CB94: .4byte gBmSt
     func_end func_0801CA38
 
     thumb_func_start func_0801CB98
@@ -16345,7 +14479,7 @@ func_0801CC68: @ 0x0801CC68
     ldrb r2, [r2, #0x11]
     lsls r2, r2, #0x18
     asrs r2, r2, #0x18
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     movs r1, #0
     lsls r0, r0, #0x18
     cmp r0, #0
@@ -16398,7 +14532,7 @@ func_0801CC90: @ 0x0801CC90
     asrs r1, r1, #0x18
     bl SetMapCursorPosition
     ldr r2, .L0801CD14 @ =gPlaySt
-    ldr r1, .L0801CD18 @ =gBmStatus
+    ldr r1, .L0801CD18 @ =gBmSt
     ldrh r0, [r1, #0x14]
     strb r0, [r2, #0x12]
     ldrh r0, [r1, #0x16]
@@ -16415,7 +14549,7 @@ func_0801CC90: @ 0x0801CC90
 .L0801CD0C: .4byte gActionSt
 .L0801CD10: .4byte gActiveUnit
 .L0801CD14: .4byte gPlaySt
-.L0801CD18: .4byte gBmStatus
+.L0801CD18: .4byte gBmSt
 .L0801CD1C:
     bl func_08078FAC
     lsls r0, r0, #0x18
@@ -16470,7 +14604,7 @@ func_0801CD80: @ 0x0801CD80
     cmp r0, #0x1b
     beq .L0801CDA2
     ldr r0, .L0801CDB4 @ =0x08B95AAC
-    ldr r2, .L0801CDB8 @ =gBmStatus
+    ldr r2, .L0801CDB8 @ =gBmSt
     movs r3, #0x1c
     ldrsh r1, [r2, r3]
     movs r3, #0xc
@@ -16488,7 +14622,7 @@ func_0801CD80: @ 0x0801CD80
     .align 2, 0
 .L0801CDB0: .4byte gActionSt
 .L0801CDB4: .4byte 0x08B95AAC
-.L0801CDB8: .4byte gBmStatus
+.L0801CDB8: .4byte gBmSt
     func_end func_0801CD80
 
     thumb_func_start func_0801CDBC
@@ -16514,12 +14648,12 @@ func_0801CDBC: @ 0x0801CDBC
     ldrb r0, [r5, #0x11]
     cmp r0, #0
     bne .L0801CE06
-    ldr r0, .L0801CE28 @ =gBmStatus
+    ldr r0, .L0801CE28 @ =gBmSt
     adds r0, #0x3d
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801CE06
-    ldr r0, .L0801CE2C @ =gMapMovement
+    ldr r0, .L0801CE2C @ =gBmMapMovement
     ldr r1, [r0]
     ldrb r2, [r5, #0xf]
     lsls r0, r2, #2
@@ -16543,8 +14677,8 @@ func_0801CDBC: @ 0x0801CDBC
     .align 2, 0
 .L0801CE20: .4byte gActiveUnit
 .L0801CE24: .4byte gActionSt
-.L0801CE28: .4byte gBmStatus
-.L0801CE2C: .4byte gMapMovement
+.L0801CE28: .4byte gBmSt
+.L0801CE2C: .4byte gBmMapMovement
 .L0801CE30: .4byte func_0801CD80
 .L0801CE34:
     ldr r0, .L0801CE60 @ =gActionSt
@@ -16552,7 +14686,7 @@ func_0801CDBC: @ 0x0801CDBC
     cmp r0, #0x1b
     beq .L0801CE52
     ldr r0, .L0801CE64 @ =0x08B95AAC
-    ldr r2, .L0801CE68 @ =gBmStatus
+    ldr r2, .L0801CE68 @ =gBmSt
     movs r3, #0x1c
     ldrsh r1, [r2, r3]
     movs r3, #0xc
@@ -16571,7 +14705,7 @@ func_0801CDBC: @ 0x0801CDBC
     .align 2, 0
 .L0801CE60: .4byte gActionSt
 .L0801CE64: .4byte 0x08B95AAC
-.L0801CE68: .4byte gBmStatus
+.L0801CE68: .4byte gBmSt
     func_end func_0801CDBC
 
     thumb_func_start GetPlayerSelectKind
@@ -16582,7 +14716,7 @@ GetPlayerSelectKind: @ 0x0801CE6C
     ldrb r2, [r0, #0xf]
     cmp r4, #0
     beq .L0801CEA6
-    ldr r1, .L0801CE9C @ =gBmStatus
+    ldr r1, .L0801CE9C @ =gBmSt
     movs r0, #0x10
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -16598,7 +14732,7 @@ GetPlayerSelectKind: @ 0x0801CE6C
     b .L0801CEEE
     .align 2, 0
 .L0801CE98: .4byte gPlaySt
-.L0801CE9C: .4byte gBmStatus
+.L0801CE9C: .4byte gBmSt
 .L0801CEA0:
     movs r2, #0
 .L0801CEA2:
@@ -16665,7 +14799,7 @@ func_0801CEF4: @ 0x0801CEF4
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801CF52
-    ldr r0, .L0801CF5C @ =gMapMovement
+    ldr r0, .L0801CF5C @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r1, r0
     ldr r0, [r0]
@@ -16705,7 +14839,7 @@ func_0801CEF4: @ 0x0801CEF4
     b .L0801CF6A
     .align 2, 0
 .L0801CF58: .4byte gMapUnit
-.L0801CF5C: .4byte gMapMovement
+.L0801CF5C: .4byte gBmMapMovement
 .L0801CF60: .4byte gActiveUnit
 .L0801CF64: .4byte gActiveUnitMoveOrigin
 .L0801CF68:
@@ -16861,7 +14995,7 @@ func_0801D078: @ 0x0801D078
     adds r0, r5, #0
     movs r2, #0x80
     bl RegisterDataMove
-    ldr r1, .L0801D0A8 @ =gBmStatus
+    ldr r1, .L0801D0A8 @ =gBmSt
     movs r0, #1
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -16875,7 +15009,7 @@ func_0801D078: @ 0x0801D078
     .align 2, 0
 .L0801D0A0: .4byte 0x083FDC9C
 .L0801D0A4: .4byte 0x06005080
-.L0801D0A8: .4byte gBmStatus
+.L0801D0A8: .4byte gBmSt
 .L0801D0AC:
     ldr r1, .L0801D0C4 @ =0x06005000
     adds r0, r5, #0
@@ -16939,7 +15073,7 @@ func_0801D108: @ 0x0801D108
     movs r1, #0x7f
     ands r0, r1
     strb r0, [r2, #1]
-    ldr r4, .L0801D1D4 @ =gBmStatus
+    ldr r4, .L0801D1D4 @ =gBmSt
     movs r0, #1
     ldrb r2, [r4, #4]
     orrs r0, r2
@@ -17025,7 +15159,7 @@ func_0801D108: @ 0x0801D108
     bx r0
     .align 2, 0
 .L0801D1D0: .4byte gDispIo
-.L0801D1D4: .4byte gBmStatus
+.L0801D1D4: .4byte gBmSt
 .L0801D1D8: .4byte gBg2Tm
 .L0801D1DC: .4byte 0x0000FFE0
 .L0801D1E0: .4byte 0x0000E0FF
@@ -17112,7 +15246,7 @@ func_0801D268: @ 0x0801D268
     movs r0, #4
     bl EnableBgSync
 .L0801D284:
-    ldr r1, .L0801D29C @ =gBmStatus
+    ldr r1, .L0801D29C @ =gBmSt
     movs r0, #0xfc
     ldrb r2, [r1, #4]
     ands r0, r2
@@ -17122,7 +15256,7 @@ func_0801D268: @ 0x0801D268
     bx r0
     .align 2, 0
 .L0801D298: .4byte gBg2Tm
-.L0801D29C: .4byte gBmStatus
+.L0801D29C: .4byte gBmSt
     func_end func_0801D268
 
     thumb_func_start func_0801D2A0
@@ -17204,7 +15338,7 @@ func_0801D2E4: @ 0x0801D2E4
     ldrsb r1, [r4, r1]
     movs r2, #0x11
     ldrsb r2, [r4, r2]
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     movs r0, #0x10
     ldrsb r0, [r4, r0]
     movs r1, #0x11
@@ -17585,7 +15719,7 @@ func_0801D5EC: @ 0x0801D5EC
     ldrsh r0, [r4, r1]
     cmp r0, #0
     beq .L0801D602
-    bl ReleaseGame
+    bl UnlockGame
 .L0801D602:
     pop {r4}
     pop {r0}
@@ -17782,7 +15916,7 @@ func_0801D708: @ 0x0801D708
     cmp r2, #0
     blt .L0801D772
     adds r0, r5, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     ldr r0, [sp]
     ldr r1, [sp, #4]
     bl SetMapCursorPosition
@@ -17808,7 +15942,7 @@ func_0801D77C: @ 0x0801D77C
     adds r0, r6, #0
     adds r1, r4, #0
     adds r2, r5, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     adds r0, r4, #0
     adds r1, r5, #0
     bl SetMapCursorPosition
@@ -17860,14 +15994,14 @@ func_0801D7F4: @ 0x0801D7F4
     adds r4, r0, #0
     bl func_0803279C
     bl func_0801E2CC
-    ldr r0, .L0801D80C @ =gBmStatus
+    ldr r0, .L0801D80C @ =gBmSt
     ldrh r0, [r0, #0x2e]
     cmp r0, #0
     beq .L0801D810
     movs r0, #0
     b .L0801D81A
     .align 2, 0
-.L0801D80C: .4byte gBmStatus
+.L0801D80C: .4byte gBmSt
 .L0801D810:
     adds r0, r4, #0
     movs r1, #0x63
@@ -17893,13 +16027,13 @@ func_0801D820: @ 0x0801D820
     thumb_func_start func_0801D830
 func_0801D830: @ 0x0801D830
     push {lr}
-    ldr r0, .L0801D840 @ =gBmStatus
+    ldr r0, .L0801D840 @ =gBmSt
     ldrh r0, [r0, #0x2e]
     bl func_0802E790
     pop {r1}
     bx r1
     .align 2, 0
-.L0801D840: .4byte gBmStatus
+.L0801D840: .4byte gBmSt
     func_end func_0801D830
 
     thumb_func_start func_0801D844
@@ -17971,7 +16105,7 @@ HandleGiveUnitItem: @ 0x0801D8B0
     bne .L0801D942
     ldr r0, .L0801D918 @ =gActiveUnit
     str r4, [r0]
-    ldr r0, .L0801D91C @ =gBmStatus
+    ldr r0, .L0801D91C @ =gBmSt
     strh r5, [r0, #0x2c]
     adds r0, r4, #0
     bl GetUnitPortraitId
@@ -18005,7 +16139,7 @@ HandleGiveUnitItem: @ 0x0801D8B0
     b .L0801D934
     .align 2, 0
 .L0801D918: .4byte gActiveUnit
-.L0801D91C: .4byte gBmStatus
+.L0801D91C: .4byte gBmSt
 .L0801D920: .4byte 0x00000727
 .L0801D924:
     movs r0, #0xe5
@@ -18041,7 +16175,7 @@ func_0801D950: @ 0x0801D950
 func_0801D95C: @ 0x0801D95C
     push {r4, r5, r6, lr}
     adds r4, r1, #0
-    ldr r0, .L0801D998 @ =gBmStatus
+    ldr r0, .L0801D998 @ =gBmSt
     ldrh r6, [r0, #0x2c]
     adds r5, r4, #0
     adds r5, #0x34
@@ -18066,7 +16200,7 @@ func_0801D95C: @ 0x0801D95C
     pop {r1}
     bx r1
     .align 2, 0
-.L0801D998: .4byte gBmStatus
+.L0801D998: .4byte gBmSt
 .L0801D99C: .4byte gBg0Tm
     func_end func_0801D95C
 
@@ -18098,7 +16232,7 @@ func_0801D9A0: @ 0x0801D9A0
     ldrsb r1, [r4, r1]
     bl func_08018D50
     ldr r0, [r5]
-    ldr r1, .L0801D9F0 @ =gBmStatus
+    ldr r1, .L0801D9F0 @ =gBmSt
     ldrh r1, [r1, #0x2c]
     bl UnitAddItem
     movs r0, #0x37
@@ -18108,13 +16242,13 @@ func_0801D9A0: @ 0x0801D9A0
     .align 2, 0
 .L0801D9E8: .4byte gActiveUnit
 .L0801D9EC: .4byte gActionSt
-.L0801D9F0: .4byte gBmStatus
+.L0801D9F0: .4byte gBmSt
     func_end func_0801D9A0
 
     thumb_func_start func_0801D9F4
 func_0801D9F4: @ 0x0801D9F4
     push {r4, lr}
-    ldr r4, .L0801DA0C @ =gBmStatus
+    ldr r4, .L0801DA0C @ =gBmSt
     ldrh r0, [r4, #0x2c]
     bl func_0802E790
     ldr r1, .L0801DA10 @ =gActionSt
@@ -18125,7 +16259,7 @@ func_0801D9F4: @ 0x0801D9F4
     pop {r1}
     bx r1
     .align 2, 0
-.L0801DA0C: .4byte gBmStatus
+.L0801DA0C: .4byte gBmSt
 .L0801DA10: .4byte gActionSt
     func_end func_0801D9F4
 
@@ -18196,7 +16330,7 @@ func_0801DA94: @ 0x0801DA94
     push {r4, r5, r6, lr}
     adds r6, r0, #0
     adds r5, r1, #0
-    ldr r0, .L0801DADC @ =gBmStatus
+    ldr r0, .L0801DADC @ =gBmSt
     ldrh r4, [r0, #0x2c]
     ldr r1, .L0801DAE0 @ =gActionSt
     strh r4, [r1, #6]
@@ -18226,7 +16360,7 @@ func_0801DA94: @ 0x0801DA94
     bl StartBoxTalk
     b .L0801DAFE
     .align 2, 0
-.L0801DADC: .4byte gBmStatus
+.L0801DADC: .4byte gBmSt
 .L0801DAE0: .4byte gActionSt
 .L0801DAE4: .4byte 0x00000762
 .L0801DAE8:
@@ -18271,7 +16405,7 @@ func_0801DB0C: @ 0x0801DB0C
     ldrh r1, [r1, #8]
     bl func_08018D50
     ldr r0, [r4]
-    ldr r1, .L0801DB54 @ =gBmStatus
+    ldr r1, .L0801DB54 @ =gBmSt
     ldrh r1, [r1, #0x2c]
     bl UnitAddItem
 .L0801DB3E:
@@ -18284,7 +16418,7 @@ func_0801DB0C: @ 0x0801DB0C
 .L0801DB48: .4byte gpKeySt
 .L0801DB4C: .4byte gActionSt
 .L0801DB50: .4byte gActiveUnit
-.L0801DB54: .4byte gBmStatus
+.L0801DB54: .4byte gBmSt
     func_end func_0801DB0C
 
     thumb_func_start SetVisionWithFade
@@ -18347,7 +16481,7 @@ func_0801DBC4: @ 0x0801DBC4
     push {r6, r7}
     mov sb, r0
     mov r8, r1
-    ldr r6, .L0801DC90 @ =gMapMovement
+    ldr r6, .L0801DC90 @ =gBmMapMovement
     ldr r0, [r6]
     movs r1, #1
     rsbs r1, r1, #0
@@ -18376,7 +16510,7 @@ func_0801DBC4: @ 0x0801DBC4
     ldrb r0, [r0, #0xd]
     cmp r0, #0
     bne .L0801DCA8
-    ldr r0, .L0801DC9C @ =gMapSize
+    ldr r0, .L0801DC9C @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r3, r0, #1
@@ -18385,14 +16519,14 @@ func_0801DBC4: @ 0x0801DBC4
     bge .L0801DC24
     b .L0801DD2C
 .L0801DC24:
-    ldr r0, .L0801DC9C @ =gMapSize
+    ldr r0, .L0801DC9C @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
     subs r7, r3, #1
     cmp r4, #0
     blt .L0801DC86
-    ldr r6, .L0801DC90 @ =gMapMovement
+    ldr r6, .L0801DC90 @ =gBmMapMovement
     lsls r5, r3, #2
 .L0801DC36:
     ldr r0, [r6]
@@ -18419,7 +16553,7 @@ func_0801DBC4: @ 0x0801DBC4
     ldr r0, [r0]
     adds r0, r0, r4
     ldrb r0, [r0]
-    ldr r2, .L0801DC90 @ =gMapMovement
+    ldr r2, .L0801DC90 @ =gBmMapMovement
     cmp r0, #0
     beq .L0801DC80
 .L0801DC6E:
@@ -18431,7 +16565,7 @@ func_0801DBC4: @ 0x0801DBC4
     rsbs r2, r2, #0
     adds r1, r2, #0
     strb r1, [r0]
-    ldr r2, .L0801DC90 @ =gMapMovement
+    ldr r2, .L0801DC90 @ =gBmMapMovement
 .L0801DC80:
     subs r4, #1
     cmp r4, #0
@@ -18442,14 +16576,14 @@ func_0801DBC4: @ 0x0801DBC4
     bge .L0801DC24
     b .L0801DD2C
     .align 2, 0
-.L0801DC90: .4byte gMapMovement
+.L0801DC90: .4byte gBmMapMovement
 .L0801DC94: .4byte gMapRange
 .L0801DC98: .4byte gPlaySt
-.L0801DC9C: .4byte gMapSize
+.L0801DC9C: .4byte gBmMapSize
 .L0801DCA0: .4byte gMapTerrain
 .L0801DCA4: .4byte gMapUnit
 .L0801DCA8:
-    ldr r0, .L0801DD58 @ =gMapSize
+    ldr r0, .L0801DD58 @ =gBmMapSize
     movs r3, #2
     ldrsh r0, [r0, r3]
     subs r3, r0, #1
@@ -18457,7 +16591,7 @@ func_0801DBC4: @ 0x0801DBC4
     cmp r3, #0
     blt .L0801DD2C
 .L0801DCB6:
-    ldr r0, .L0801DD58 @ =gMapSize
+    ldr r0, .L0801DD58 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -18498,11 +16632,11 @@ func_0801DBC4: @ 0x0801DBC4
     ldr r0, [r0]
     adds r0, r0, r4
     ldrb r0, [r0]
-    ldr r2, .L0801DD68 @ =gMapMovement
+    ldr r2, .L0801DD68 @ =gBmMapMovement
     cmp r0, #0
     bne .L0801DD20
 .L0801DD0E:
-    ldr r2, .L0801DD68 @ =gMapMovement
+    ldr r2, .L0801DD68 @ =gBmMapMovement
     ldr r0, [r2]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -18542,11 +16676,11 @@ func_0801DBC4: @ 0x0801DBC4
     pop {r0}
     bx r0
     .align 2, 0
-.L0801DD58: .4byte gMapSize
+.L0801DD58: .4byte gBmMapSize
 .L0801DD5C: .4byte gMapTerrain
 .L0801DD60: .4byte gMapUnit
 .L0801DD64: .4byte gMapFog
-.L0801DD68: .4byte gMapMovement
+.L0801DD68: .4byte gBmMapMovement
     func_end func_0801DBC4
 
     thumb_func_start func_0801DD6C
@@ -18594,7 +16728,7 @@ func_0801DD6C: @ 0x0801DD6C
     adds r1, #3
     lsls r1, r1, #3
     movs r2, #0
-    bl func_08015AA8
+    bl PutSysArrow
 .L0801DDC2:
     mov r0, r8
     movs r2, #0
@@ -18614,7 +16748,7 @@ func_0801DD6C: @ 0x0801DD6C
     adds r1, #3
     lsls r1, r1, #3
     movs r2, #1
-    bl func_08015AA8
+    bl PutSysArrow
 .L0801DDEA:
     adds r7, r6, #0
     adds r7, #0x60
@@ -18638,7 +16772,7 @@ func_0801DD6C: @ 0x0801DD6C
     adds r1, #5
     lsls r1, r1, #3
     movs r2, #0
-    bl func_08015AA8
+    bl PutSysArrow
 .L0801DE1A:
     movs r0, #0
     ldrsh r1, [r7, r0]
@@ -18658,7 +16792,7 @@ func_0801DD6C: @ 0x0801DD6C
     adds r1, #5
     lsls r1, r1, #3
     movs r2, #1
-    bl func_08015AA8
+    bl PutSysArrow
 .L0801DE42:
     adds r7, r6, #0
     adds r7, #0x66
@@ -18682,7 +16816,7 @@ func_0801DD6C: @ 0x0801DD6C
     adds r1, #3
     lsls r1, r1, #3
     movs r2, #0
-    bl func_08015AA8
+    bl PutSysArrow
 .L0801DE72:
     movs r0, #0
     ldrsh r1, [r7, r0]
@@ -18702,7 +16836,7 @@ func_0801DD6C: @ 0x0801DD6C
     adds r1, #3
     lsls r1, r1, #3
     movs r2, #1
-    bl func_08015AA8
+    bl PutSysArrow
 .L0801DE9A:
     adds r6, #0x62
     adds r5, #0x62
@@ -18723,7 +16857,7 @@ func_0801DD6C: @ 0x0801DD6C
     adds r1, #5
     lsls r1, r1, #3
     movs r2, #0
-    bl func_08015AA8
+    bl PutSysArrow
 .L0801DEC4:
     movs r3, #0
     ldrsh r1, [r6, r3]
@@ -18742,7 +16876,7 @@ func_0801DD6C: @ 0x0801DD6C
     adds r1, #5
     lsls r1, r1, #3
     movs r2, #1
-    bl func_08015AA8
+    bl PutSysArrow
 .L0801DEEA:
     pop {r3}
     mov r8, r3
@@ -18914,11 +17048,11 @@ func_0801DFC0: @ 0x0801DFC0
     ldrh r4, [r0]
     b .L0801E05C
 .L0801E04C:
-    ldr r0, .L0801E054 @ =gBmStatus
+    ldr r0, .L0801E054 @ =gBmSt
     ldrh r4, [r0, #0x2c]
     b .L0801E05C
     .align 2, 0
-.L0801E054: .4byte gBmStatus
+.L0801E054: .4byte gBmSt
 .L0801E058:
     adds r4, r5, #0
     movs r5, #8
@@ -19347,7 +17481,7 @@ func_0801E360: @ 0x0801E360
     mov r1, sl
     subs r4, r0, r1
     add sb, r5
-    ldr r1, .L0801E454 @ =gBmStatus
+    ldr r1, .L0801E454 @ =gBmSt
     movs r2, #0xc
     ldrsh r0, [r1, r2]
     mov r2, sb
@@ -19402,7 +17536,7 @@ func_0801E360: @ 0x0801E360
     bx r0
     .align 2, 0
 .L0801E450: .4byte gSinLut
-.L0801E454: .4byte gBmStatus
+.L0801E454: .4byte gBmSt
 .L0801E458: .4byte 0x08B905B8
     func_end func_0801E360
 
@@ -19485,7 +17619,7 @@ func_0801E4D4: @ 0x0801E4D4
     adds r0, r2, #0
     strh r0, [r1]
     ldr r2, .L0801E50C @ =0x04000052
-    ldr r1, .L0801E510 @ =gBmStatus
+    ldr r1, .L0801E510 @ =gBmSt
     adds r0, r1, #0
     adds r0, #0x3a
     ldrb r0, [r0]
@@ -19504,7 +17638,7 @@ func_0801E4D4: @ 0x0801E4D4
 .L0801E504: .4byte 0x04000050
 .L0801E508: .4byte 0x00003C42
 .L0801E50C: .4byte 0x04000052
-.L0801E510: .4byte gBmStatus
+.L0801E510: .4byte gBmSt
 .L0801E514: .4byte func_0801E518
     func_end func_0801E4D4
 
@@ -19516,7 +17650,7 @@ func_0801E518: @ 0x0801E518
     adds r0, r2, #0
     strh r0, [r1]
     ldr r2, .L0801E550 @ =0x04000052
-    ldr r1, .L0801E554 @ =gBmStatus
+    ldr r1, .L0801E554 @ =gBmSt
     adds r0, r1, #0
     adds r0, #0x38
     ldrb r0, [r0]
@@ -19535,7 +17669,7 @@ func_0801E518: @ 0x0801E518
 .L0801E548: .4byte 0x04000050
 .L0801E54C: .4byte 0x00003E41
 .L0801E550: .4byte 0x04000052
-.L0801E554: .4byte gBmStatus
+.L0801E554: .4byte gBmSt
 .L0801E558: .4byte func_0801E55C
     func_end func_0801E518
 
@@ -19547,7 +17681,7 @@ func_0801E55C: @ 0x0801E55C
     adds r0, r2, #0
     strh r0, [r1]
     ldr r2, .L0801E594 @ =0x04000052
-    ldr r1, .L0801E598 @ =gBmStatus
+    ldr r1, .L0801E598 @ =gBmSt
     adds r0, r1, #0
     adds r0, #0x3a
     ldrb r0, [r0]
@@ -19566,7 +17700,7 @@ func_0801E55C: @ 0x0801E55C
 .L0801E58C: .4byte 0x04000050
 .L0801E590: .4byte 0x00003C42
 .L0801E594: .4byte 0x04000052
-.L0801E598: .4byte gBmStatus
+.L0801E598: .4byte gBmSt
 .L0801E59C: .4byte func_0801E4D4
     func_end func_0801E55C
 
@@ -19599,7 +17733,7 @@ func_0801E5C8: @ 0x0801E5C8
     adds r5, r0, #0
     bl GetCurrentBgmSong
     adds r4, r0, #0
-    bl GetMapBgmSong
+    bl GetActiveMapSong
     cmp r4, r0
     beq .L0801E5E0
     movs r0, #4
@@ -19649,7 +17783,7 @@ func_0801E608: @ 0x0801E608
     movs r0, #0
     movs r2, #0
     bl SetBgOffset
-    ldr r0, .L0801E668 @ =gBmStatus
+    ldr r0, .L0801E668 @ =gBmSt
     adds r2, r0, #0
     adds r2, #0x38
     ldrb r1, [r2]
@@ -19675,7 +17809,7 @@ func_0801E608: @ 0x0801E608
     pop {r0}
     bx r0
     .align 2, 0
-.L0801E668: .4byte gBmStatus
+.L0801E668: .4byte gBmSt
     func_end func_0801E608
 
     thumb_func_start func_0801E66C
@@ -19700,7 +17834,7 @@ func_0801E66C: @ 0x0801E66C
     movs r0, #0
     movs r2, #0
     bl SetBgOffset
-    ldr r0, .L0801E6CC @ =gBmStatus
+    ldr r0, .L0801E6CC @ =gBmSt
     adds r2, r0, #0
     adds r2, #0x38
     ldrb r1, [r2]
@@ -19726,7 +17860,7 @@ func_0801E66C: @ 0x0801E66C
     pop {r0}
     bx r0
     .align 2, 0
-.L0801E6CC: .4byte gBmStatus
+.L0801E6CC: .4byte gBmSt
     func_end func_0801E66C
 
     thumb_func_start func_0801E6D0
@@ -20024,7 +18158,7 @@ func_0801E8A0: @ 0x0801E8A0
     movs r1, #0
     movs r2, #7
     bl Interpolate
-    ldr r2, .L0801E924 @ =gBmStatus
+    ldr r2, .L0801E924 @ =gBmSt
     adds r1, r2, #0
     adds r1, #0x3a
     strb r0, [r1]
@@ -20048,7 +18182,7 @@ func_0801E8A0: @ 0x0801E8A0
     bx r0
     .align 2, 0
 .L0801E920: .4byte gDispIo
-.L0801E924: .4byte gBmStatus
+.L0801E924: .4byte gBmSt
     func_end func_0801E8A0
 
     thumb_func_start func_0801E928
@@ -20092,7 +18226,7 @@ func_0801E928: @ 0x0801E928
     movs r1, #0
     movs r2, #7
     bl Interpolate
-    ldr r2, .L0801E9A8 @ =gBmStatus
+    ldr r2, .L0801E9A8 @ =gBmSt
     adds r1, r2, #0
     adds r1, #0x3a
     strb r0, [r1]
@@ -20115,7 +18249,7 @@ func_0801E928: @ 0x0801E928
     bx r0
     .align 2, 0
 .L0801E9A4: .4byte gDispIo
-.L0801E9A8: .4byte gBmStatus
+.L0801E9A8: .4byte gBmSt
     func_end func_0801E928
 
     thumb_func_start func_0801E9AC
@@ -20277,7 +18411,7 @@ func_0801EA78: @ 0x0801EA78
     mov r1, r8
     orrs r0, r1
     strb r0, [r7]
-    ldr r1, .L0801EB64 @ =gBmStatus
+    ldr r1, .L0801EB64 @ =gBmSt
     adds r0, r1, #0
     adds r0, #0x3a
     strb r6, [r0]
@@ -20330,7 +18464,7 @@ func_0801EA78: @ 0x0801EA78
     bx r0
     .align 2, 0
 .L0801EB60: .4byte gDispIo
-.L0801EB64: .4byte gBmStatus
+.L0801EB64: .4byte gBmSt
 .L0801EB68: .4byte 0x0000FFE0
 .L0801EB6C: .4byte 0x0000E0FF
 .L0801EB70: .4byte func_0801E4D4
@@ -20350,7 +18484,7 @@ func_0801EB74: @ 0x0801EB74
     movs r1, #0x40
     orrs r0, r1
     strb r0, [r2]
-    ldr r0, .L0801EC00 @ =gBmStatus
+    ldr r0, .L0801EC00 @ =gBmSt
     adds r1, r0, #0
     adds r1, #0x3a
     ldrb r2, [r1]
@@ -20400,7 +18534,7 @@ func_0801EB74: @ 0x0801EB74
     bx r0
     .align 2, 0
 .L0801EBFC: .4byte gDispIo
-.L0801EC00: .4byte gBmStatus
+.L0801EC00: .4byte gBmSt
 .L0801EC04: .4byte 0x08B9372C
 .L0801EC08: .4byte 0x08B9376C
 .L0801EC0C: .4byte 0x08B9378C
@@ -20492,7 +18626,7 @@ func_0801EC44: @ 0x0801EC44
     bl ApplyPaletteExt
     ldr r4, [r5, #0x2c]
     lsls r4, r4, #4
-    ldr r1, .L0801ED00 @ =gBmStatus
+    ldr r1, .L0801ED00 @ =gBmSt
     movs r3, #0xc
     ldrsh r0, [r1, r3]
     subs r0, #8
@@ -20524,7 +18658,7 @@ func_0801EC44: @ 0x0801EC44
 .L0801ECF4: .4byte 0x08196624
 .L0801ECF8: .4byte 0x06014800
 .L0801ECFC: .4byte 0x081973F4
-.L0801ED00: .4byte gBmStatus
+.L0801ED00: .4byte gBmSt
     func_end func_0801EC44
 
     thumb_func_start func_0801ED04
@@ -20563,7 +18697,7 @@ func_0801ED34: @ 0x0801ED34
     bl Decompress
     ldr r4, [r5, #0x2c]
     lsls r4, r4, #4
-    ldr r1, .L0801ED88 @ =gBmStatus
+    ldr r1, .L0801ED88 @ =gBmSt
     movs r2, #0xc
     ldrsh r0, [r1, r2]
     subs r0, #8
@@ -20593,7 +18727,7 @@ func_0801ED34: @ 0x0801ED34
     .align 2, 0
 .L0801ED80: .4byte 0x08197CC8
 .L0801ED84: .4byte 0x06014800
-.L0801ED88: .4byte gBmStatus
+.L0801ED88: .4byte gBmSt
 .L0801ED8C: .4byte 0x08198184
     func_end func_0801ED34
 
@@ -20652,7 +18786,7 @@ func_0801EDF0: @ 0x0801EDF0
     adds r5, r0, #0
     ldr r1, [r5, #0x2c]
     lsls r1, r1, #4
-    ldr r3, .L0801EE4C @ =gBmStatus
+    ldr r3, .L0801EE4C @ =gBmSt
     movs r2, #0xc
     ldrsh r0, [r3, r2]
     subs r0, #8
@@ -20692,7 +18826,7 @@ func_0801EDF0: @ 0x0801EDF0
     beq .L0801EE70
     b .L0801EE7C
     .align 2, 0
-.L0801EE4C: .4byte gBmStatus
+.L0801EE4C: .4byte gBmSt
 .L0801EE50: .4byte 0x000001FF
 .L0801EE54: .4byte 0x083EDA80
 .L0801EE58:
@@ -20781,7 +18915,7 @@ func_0801EEDC: @ 0x0801EEDC
     bl ApplyPaletteExt
     ldr r4, [r5, #0x2c]
     lsls r4, r4, #4
-    ldr r0, .L0801EF40 @ =gBmStatus
+    ldr r0, .L0801EF40 @ =gBmSt
     movs r1, #0xc
     ldrsh r0, [r0, r1]
     subs r0, #8
@@ -20802,7 +18936,7 @@ func_0801EEDC: @ 0x0801EEDC
     ldr r1, [r5, #0x2c]
     adds r0, r5, #0
     movs r2, #0x1f
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     add sp, #8
     pop {r4, r5}
     pop {r0}
@@ -20811,7 +18945,7 @@ func_0801EEDC: @ 0x0801EEDC
 .L0801EF34: .4byte 0x08197434
 .L0801EF38: .4byte 0x06014800
 .L0801EF3C: .4byte 0x08197414
-.L0801EF40: .4byte gBmStatus
+.L0801EF40: .4byte gBmSt
 .L0801EF44: .4byte 0x0819770C
     func_end func_0801EEDC
 
@@ -20847,7 +18981,7 @@ func_0801EF64: @ 0x0801EF64
     adds r2, r0, r2
     adds r0, r5, #0
     adds r1, r4, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     str r4, [r5, #0x34]
     pop {r4, r5}
     pop {r0}
@@ -20869,7 +19003,7 @@ func_0801EF90: @ 0x0801EF90
     beq .L0801EFB0
     movs r2, #0xbe
 .L0801EFB0:
-    ldr r0, .L0801EFC8 @ =gBmStatus
+    ldr r0, .L0801EFC8 @ =gBmSt
     movs r1, #0xc
     ldrsh r0, [r0, r1]
     ldr r1, [r4, #0x34]
@@ -20880,7 +19014,7 @@ func_0801EF90: @ 0x0801EF90
     pop {r0}
     bx r0
     .align 2, 0
-.L0801EFC8: .4byte gBmStatus
+.L0801EFC8: .4byte gBmSt
     func_end func_0801EF90
 
     thumb_func_start func_0801EFCC
@@ -20930,7 +19064,7 @@ func_0801F008: @ 0x0801F008
     bl ApplyPaletteExt
     ldr r4, [r5, #0x2c]
     lsls r4, r4, #4
-    ldr r1, .L0801F074 @ =gBmStatus
+    ldr r1, .L0801F074 @ =gBmSt
     movs r2, #0xc
     ldrsh r0, [r1, r2]
     subs r0, #8
@@ -20964,7 +19098,7 @@ func_0801F008: @ 0x0801F008
 .L0801F068: .4byte 0x08198FA4
 .L0801F06C: .4byte 0x06014800
 .L0801F070: .4byte 0x08199438
-.L0801F074: .4byte gBmStatus
+.L0801F074: .4byte gBmSt
 .L0801F078: .4byte 0x08199224
     func_end func_0801F008
 
@@ -22384,13 +20518,13 @@ func_0801FB40: @ 0x0801FB40
 
     thumb_func_start func_0801FB68
 func_0801FB68: @ 0x0801FB68
-    ldr r1, .L0801FB74 @ =gBmStatus
+    ldr r1, .L0801FB74 @ =gBmSt
     movs r0, #0xa0
     lsls r0, r0, #2
     strh r0, [r1, #0xe]
     bx lr
     .align 2, 0
-.L0801FB74: .4byte gBmStatus
+.L0801FB74: .4byte gBmSt
     func_end func_0801FB68
 
     thumb_func_start func_0801FB78
@@ -22469,7 +20603,7 @@ func_0801FB78: @ 0x0801FB78
     movs r1, #0xf8
     lsls r1, r1, #1
     ands r0, r1
-    ldr r5, .L0801FC60 @ =gBmStatus
+    ldr r5, .L0801FC60 @ =gBmSt
     strh r0, [r5, #0xc]
     movs r0, #0xe
     ldrsb r0, [r4, r0]
@@ -22495,7 +20629,7 @@ func_0801FB78: @ 0x0801FB78
 .L0801FC54: .4byte 0x0000E0FF
 .L0801FC58: .4byte gBg2Tm
 .L0801FC5C: .4byte gPlaySt
-.L0801FC60: .4byte gBmStatus
+.L0801FC60: .4byte gBmSt
     func_end func_0801FB78
 
     thumb_func_start func_0801FC64
@@ -23743,7 +21877,7 @@ func_0802061C: @ 0x0802061C
     adds r1, r3, #0
     bl Proc_StartBlocking
     lsls r0, r4, #4
-    ldr r2, .L08020664 @ =gBmStatus
+    ldr r2, .L08020664 @ =gBmSt
     movs r3, #0xc
     ldrsh r1, [r2, r3]
     subs r0, r0, r1
@@ -23768,7 +21902,7 @@ func_0802061C: @ 0x0802061C
     bx r0
     .align 2, 0
 .L08020660: .4byte 0x08B93B74
-.L08020664: .4byte gBmStatus
+.L08020664: .4byte gBmSt
     func_end func_0802061C
 
     thumb_func_start func_08020668
@@ -23977,7 +22111,7 @@ func_080207DC: @ 0x080207DC
     adds r1, r6, #0
     bl Proc_StartBlocking
     lsls r0, r4, #4
-    ldr r2, .L08020844 @ =gBmStatus
+    ldr r2, .L08020844 @ =gBmSt
     movs r3, #0xc
     ldrsh r1, [r2, r3]
     subs r0, r0, r1
@@ -24005,7 +22139,7 @@ func_080207DC: @ 0x080207DC
 .L08020838: .4byte 0x0203A3D8
 .L0802083C: .4byte gActionSt
 .L08020840: .4byte 0x08B93B94
-.L08020844: .4byte gBmStatus
+.L08020844: .4byte gBmSt
     func_end func_080207DC
 
     thumb_func_start WarpEffect_Init
@@ -24241,7 +22375,7 @@ StartWarpEffect_080209F4: @ 0x080209F4
     adds r0, #0x66
     strh r5, [r0]
     lsls r0, r7, #4
-    ldr r2, .L08020A60 @ =gBmStatus
+    ldr r2, .L08020A60 @ =gBmSt
     movs r3, #0xc
     ldrsh r1, [r2, r3]
     subs r0, r0, r1
@@ -24268,7 +22402,7 @@ StartWarpEffect_080209F4: @ 0x080209F4
     bx r0
     .align 2, 0
 .L08020A5C: .4byte 0x08B93C54
-.L08020A60: .4byte gBmStatus
+.L08020A60: .4byte gBmSt
     func_end StartWarpEffect_080209F4
 
     thumb_func_start StartWarpEffect_08020A64
@@ -24492,7 +22626,7 @@ func_08020C14: @ 0x08020C14
     movs r1, #3
     bl Proc_Start
     lsls r0, r4, #4
-    ldr r2, .L08020C58 @ =gBmStatus
+    ldr r2, .L08020C58 @ =gBmSt
     movs r3, #0xc
     ldrsh r1, [r2, r3]
     subs r0, r0, r1
@@ -24517,7 +22651,7 @@ func_08020C14: @ 0x08020C14
     bx r0
     .align 2, 0
 .L08020C54: .4byte 0x08B93C7C
-.L08020C58: .4byte gBmStatus
+.L08020C58: .4byte gBmSt
     func_end func_08020C14
 
     thumb_func_start func_08020C5C
@@ -25392,7 +23526,7 @@ func_080212F8: @ 0x080212F8
     adds r5, r1, #0
     adds r6, r2, #0
     lsls r0, r5, #4
-    ldr r2, .L0802135C @ =gBmStatus
+    ldr r2, .L0802135C @ =gBmSt
     movs r3, #0xc
     ldrsh r1, [r2, r3]
     subs r0, r0, r1
@@ -25431,7 +23565,7 @@ func_080212F8: @ 0x080212F8
     pop {r0}
     bx r0
     .align 2, 0
-.L0802135C: .4byte gBmStatus
+.L0802135C: .4byte gBmSt
 .L08021360: .4byte 0x081C3368
 .L08021364: .4byte 0x06013000
 .L08021368: .4byte 0x081C3570
@@ -25774,7 +23908,7 @@ func_080215D4: @ 0x080215D4
     ldr r0, .L080215F4 @ =gActiveUnit
     movs r1, #0
     str r1, [r0]
-    ldr r0, .L080215F8 @ =gBmStatus
+    ldr r0, .L080215F8 @ =gBmSt
     adds r0, #0x3e
     strb r1, [r0]
     ldr r0, .L080215FC @ =0x08B93374
@@ -25786,7 +23920,7 @@ func_080215D4: @ 0x080215D4
     bx r1
     .align 2, 0
 .L080215F4: .4byte gActiveUnit
-.L080215F8: .4byte gBmStatus
+.L080215F8: .4byte gBmSt
 .L080215FC: .4byte 0x08B93374
     func_end func_080215D4
 
@@ -25857,7 +23991,7 @@ func_08021654: @ 0x08021654
     bl ResetTextFont
     bl func_0801D2D4
     ldr r0, .L080216A4 @ =0x08B95AAC
-    ldr r2, .L080216A8 @ =gBmStatus
+    ldr r2, .L080216A8 @ =gBmSt
     movs r3, #0x1c
     ldrsh r1, [r2, r3]
     movs r3, #0xc
@@ -25873,14 +24007,14 @@ func_08021654: @ 0x08021654
     ldrb r2, [r2, #0x11]
     lsls r2, r2, #0x18
     asrs r2, r2, #0x18
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     movs r0, #0x19
     pop {r1}
     bx r1
     .align 2, 0
 .L080216A0: .4byte gBg2Tm
 .L080216A4: .4byte 0x08B95AAC
-.L080216A8: .4byte gBmStatus
+.L080216A8: .4byte gBmSt
 .L080216AC: .4byte gActiveUnit
     func_end func_08021654
 
@@ -25895,7 +24029,7 @@ func_080216B0: @ 0x080216B0
     ldrb r1, [r1, #0x11]
     lsls r1, r1, #0x18
     asrs r1, r1, #0x18
-    bl func_08015D70
+    bl IsCameraNotWatchingPosition
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08021702
@@ -25908,7 +24042,7 @@ func_080216B0: @ 0x080216B0
     bl GetCameraAdjustedY
     lsls r0, r0, #0x10
     lsrs r0, r0, #0x10
-    ldr r2, .L08021710 @ =gBmStatus
+    ldr r2, .L08021710 @ =gBmSt
     movs r3, #0x2a
     ldrsh r1, [r2, r3]
     cmp r0, r1
@@ -25923,7 +24057,7 @@ func_080216B0: @ 0x080216B0
     ldrsb r1, [r0, r1]
     adds r0, r6, #0
     adds r2, r4, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
 .L08021702:
     pop {r4, r5, r6}
     pop {r0}
@@ -25931,14 +24065,14 @@ func_080216B0: @ 0x080216B0
     .align 2, 0
 .L08021708: .4byte gActiveUnit
 .L0802170C: .4byte ProcScr_MoveCamera
-.L08021710: .4byte gBmStatus
+.L08021710: .4byte gBmSt
     func_end func_080216B0
 
     thumb_func_start func_08021714
 func_08021714: @ 0x08021714
     push {lr}
     ldr r0, .L08021730 @ =0x08B95AAC
-    ldr r2, .L08021734 @ =gBmStatus
+    ldr r2, .L08021734 @ =gBmSt
     movs r3, #0x1c
     ldrsh r1, [r2, r3]
     movs r3, #0xc
@@ -25951,7 +24085,7 @@ func_08021714: @ 0x08021714
     bx r0
     .align 2, 0
 .L08021730: .4byte 0x08B95AAC
-.L08021734: .4byte gBmStatus
+.L08021734: .4byte gBmSt
     func_end func_08021714
 
     thumb_func_start func_08021738
@@ -25986,7 +24120,7 @@ func_0802176C: @ 0x0802176C
     bl EnableBgSync
     bl ResetTextFont
     ldr r0, .L080217A4 @ =0x08B95AAC
-    ldr r2, .L080217A8 @ =gBmStatus
+    ldr r2, .L080217A8 @ =gBmSt
     movs r3, #0x1c
     ldrsh r1, [r2, r3]
     movs r3, #0xc
@@ -26002,7 +24136,7 @@ func_0802176C: @ 0x0802176C
     .align 2, 0
 .L080217A0: .4byte gBg2Tm
 .L080217A4: .4byte 0x08B95AAC
-.L080217A8: .4byte gBmStatus
+.L080217A8: .4byte gBmSt
     func_end func_0802176C
 
     thumb_func_start func_080217AC
@@ -26147,7 +24281,7 @@ func_08021898: @ 0x08021898
     ands r0, r2
     cmp r0, #0
     bne .L080218D8
-    ldr r1, .L080218D4 @ =gBmStatus
+    ldr r1, .L080218D4 @ =gBmSt
     adds r1, #0x3d
     movs r0, #1
     ldrb r1, [r1]
@@ -26167,7 +24301,7 @@ func_08021898: @ 0x08021898
     b .L080218DA
     .align 2, 0
 .L080218D0: .4byte gActiveUnit
-.L080218D4: .4byte gBmStatus
+.L080218D4: .4byte gBmSt
 .L080218D8:
     movs r0, #3
 .L080218DA:
@@ -26201,7 +24335,7 @@ func_08021900: @ 0x08021900
     ands r0, r2
     cmp r0, #0
     bne .L08021940
-    ldr r1, .L0802193C @ =gBmStatus
+    ldr r1, .L0802193C @ =gBmSt
     adds r1, #0x3d
     movs r0, #1
     ldrb r1, [r1]
@@ -26221,7 +24355,7 @@ func_08021900: @ 0x08021900
     b .L08021942
     .align 2, 0
 .L08021938: .4byte gActiveUnit
-.L0802193C: .4byte gBmStatus
+.L0802193C: .4byte gBmSt
 .L08021940:
     movs r0, #3
 .L08021942:
@@ -26463,7 +24597,7 @@ StartFightItemReview: @ 0x08021AE4
     thumb_func_start func_08021B34
 func_08021B34: @ 0x08021B34
     push {r4, r5, lr}
-    ldr r0, .L08021B70 @ =gMapMovement
+    ldr r0, .L08021B70 @ =gBmMapMovement
     ldr r0, [r0]
     movs r5, #1
     rsbs r5, r5, #0
@@ -26490,7 +24624,7 @@ func_08021B34: @ 0x08021B34
     bl func_0801B19C
     b .L08021B8C
     .align 2, 0
-.L08021B70: .4byte gMapMovement
+.L08021B70: .4byte gBmMapMovement
 .L08021B74: .4byte gMapRange
 .L08021B78: .4byte gActiveUnit
 .L08021B7C:
@@ -26636,7 +24770,7 @@ func_08021C88: @ 0x08021C88
     movs r0, #0
     ldrsb r0, [r5, r0]
     bl func_0801DFC0
-    ldr r0, .L08021CD0 @ =gMapMovement
+    ldr r0, .L08021CD0 @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -26660,7 +24794,7 @@ func_08021C88: @ 0x08021C88
     pop {r1}
     bx r1
     .align 2, 0
-.L08021CD0: .4byte gMapMovement
+.L08021CD0: .4byte gBmMapMovement
 .L08021CD4: .4byte gMapRange
 .L08021CD8: .4byte gActiveUnit
     func_end func_08021C88
@@ -26720,7 +24854,7 @@ func_08021D28: @ 0x08021D28
     movs r2, #0x11
     ldrsb r2, [r0, r2]
     movs r0, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     pop {r0}
     bx r0
     .align 2, 0
@@ -26841,7 +24975,7 @@ AnyMenu_Trade_Available: @ 0x08021E10
     ands r0, r1
     cmp r0, #0
     bne .L08021E5C
-    ldr r1, .L08021E58 @ =gBmStatus
+    ldr r1, .L08021E58 @ =gBmSt
     adds r1, #0x3d
     movs r0, #2
     ldrb r1, [r1]
@@ -26867,7 +25001,7 @@ AnyMenu_Trade_Available: @ 0x08021E10
     b .L08021E5E
     .align 2, 0
 .L08021E54: .4byte gActiveUnit
-.L08021E58: .4byte gBmStatus
+.L08021E58: .4byte gBmSt
 .L08021E5C:
     movs r0, #3
 .L08021E5E:
@@ -27132,7 +25266,7 @@ func_0802201C: @ 0x0802201C
     ands r0, r1
     cmp r0, #0
     beq .L08022050
-    ldr r1, .L0802204C @ =gBmStatus
+    ldr r1, .L0802204C @ =gBmSt
     movs r0, #0x9e
     strh r0, [r1, #0x2c]
     adds r0, r3, #0
@@ -27142,7 +25276,7 @@ func_0802201C: @ 0x0802201C
     b .L08022052
     .align 2, 0
 .L08022048: .4byte gActiveUnit
-.L0802204C: .4byte gBmStatus
+.L0802204C: .4byte gBmSt
 .L08022050:
     movs r0, #3
 .L08022052:
@@ -27165,7 +25299,7 @@ func_08022058: @ 0x08022058
     ands r0, r1
     cmp r0, #0
     beq .L0802208C
-    ldr r1, .L08022088 @ =gBmStatus
+    ldr r1, .L08022088 @ =gBmSt
     movs r0, #0x9d
     strh r0, [r1, #0x2c]
     adds r0, r3, #0
@@ -27175,7 +25309,7 @@ func_08022058: @ 0x08022058
     b .L0802208E
     .align 2, 0
 .L08022084: .4byte gActiveUnit
-.L08022088: .4byte gBmStatus
+.L08022088: .4byte gBmSt
 .L0802208C:
     movs r0, #3
 .L0802208E:
@@ -27733,7 +25867,7 @@ func_0802245C: @ 0x0802245C
     movs r0, #0
     bl EndFaceById
     ldr r0, .L08022528 @ =0x08B95AAC
-    ldr r2, .L0802252C @ =gBmStatus
+    ldr r2, .L0802252C @ =gBmSt
     movs r3, #0x1c
     ldrsh r1, [r2, r3]
     movs r3, #0xc
@@ -27750,7 +25884,7 @@ func_0802245C: @ 0x0802245C
     bx r1
     .align 2, 0
 .L08022528: .4byte 0x08B95AAC
-.L0802252C: .4byte gBmStatus
+.L0802252C: .4byte gBmSt
     func_end func_0802245C
 
     thumb_func_start func_08022530
@@ -27983,7 +26117,7 @@ func_080226F0: @ 0x080226F0
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    ldr r0, .L0802271C @ =gBmStatus
+    ldr r0, .L0802271C @ =gBmSt
     ldr r1, .L08022720 @ =gActionSt
     ldrb r1, [r1, #0x12]
     adds r0, #0x3f
@@ -28000,7 +26134,7 @@ func_080226F0: @ 0x080226F0
     pop {r1}
     bx r1
     .align 2, 0
-.L0802271C: .4byte gBmStatus
+.L0802271C: .4byte gBmSt
 .L08022720: .4byte gActionSt
     func_end func_080226F0
 
@@ -28192,7 +26326,7 @@ func_08022884: @ 0x08022884
     push {r4, r5, r6, lr}
     mov r6, r8
     push {r6}
-    ldr r0, .L08022900 @ =gMapMovement
+    ldr r0, .L08022900 @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -28243,7 +26377,7 @@ func_08022884: @ 0x08022884
     pop {r1}
     bx r1
     .align 2, 0
-.L08022900: .4byte gMapMovement
+.L08022900: .4byte gBmMapMovement
 .L08022904: .4byte gMapRange
 .L08022908: .4byte gActiveUnit
     func_end func_08022884
@@ -28372,7 +26506,7 @@ func_080229F0: @ 0x080229F0
     adds r1, r4, #0
     bl GetUnitItemUseReach
     adds r6, r0, #0
-    ldr r0, .L08022A30 @ =gMapMovement
+    ldr r0, .L08022A30 @ =gBmMapMovement
     ldr r0, [r0]
     adds r1, r4, #0
     bl MapFill
@@ -28391,7 +26525,7 @@ func_080229F0: @ 0x080229F0
     bx r1
     .align 2, 0
 .L08022A2C: .4byte gActiveUnit
-.L08022A30: .4byte gMapMovement
+.L08022A30: .4byte gBmMapMovement
 .L08022A34: .4byte gMapRange
     func_end func_080229F0
 
@@ -28488,7 +26622,7 @@ func_08022AC8: @ 0x08022AC8
     movs r0, #0
     ldrsb r0, [r4, r0]
     bl func_0801DFC0
-    ldr r0, .L08022B14 @ =gMapMovement
+    ldr r0, .L08022B14 @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -28508,7 +26642,7 @@ func_08022AC8: @ 0x08022AC8
     bx r1
     .align 2, 0
 .L08022B10: .4byte gActiveUnit
-.L08022B14: .4byte gMapMovement
+.L08022B14: .4byte gBmMapMovement
 .L08022B18: .4byte gMapRange
     func_end func_08022AC8
 
@@ -28816,7 +26950,7 @@ func_08022D20: @ 0x08022D20
     ands r0, r1
     cmp r0, #0
     bne .L08022DAC
-    ldr r1, .L08022D9C @ =gBmStatus
+    ldr r1, .L08022D9C @ =gBmSt
     adds r1, #0x3d
     movs r0, #4
     ldrb r1, [r1]
@@ -28868,7 +27002,7 @@ func_08022D20: @ 0x08022D20
     b .L08022DAC
     .align 2, 0
 .L08022D98: .4byte gActiveUnit
-.L08022D9C: .4byte gBmStatus
+.L08022D9C: .4byte gBmSt
 .L08022DA0:
     subs r0, r2, r4
     adds r0, r1, r0
@@ -29450,13 +27584,13 @@ func_080231B8: @ 0x080231B8
     movs r2, #0x2c
     ldrsh r1, [r1, r2]
     lsls r1, r1, #3
-    ldr r2, .L080231E0 @ =gBmStatus
+    ldr r2, .L080231E0 @ =gBmSt
     ldrh r2, [r2, #0x2c]
     bl func_0808198C
     movs r0, #0
     b .L08023204
     .align 2, 0
-.L080231E0: .4byte gBmStatus
+.L080231E0: .4byte gBmSt
 .L080231E4:
     movs r2, #0x2a
     ldrsh r0, [r1, r2]
@@ -29841,7 +27975,7 @@ func_08023498: @ 0x08023498
     ands r0, r1
     cmp r0, #0
     bne .L080234EC
-    ldr r1, .L080234E8 @ =gBmStatus
+    ldr r1, .L080234E8 @ =gBmSt
     adds r1, #0x3d
     movs r0, #8
     ldrb r1, [r1]
@@ -29862,7 +27996,7 @@ func_08023498: @ 0x08023498
     b .L080234EE
     .align 2, 0
 .L080234E4: .4byte gActiveUnit
-.L080234E8: .4byte gBmStatus
+.L080234E8: .4byte gBmSt
 .L080234EC:
     movs r0, #3
 .L080234EE:
@@ -29901,7 +28035,7 @@ func_08023520: @ 0x08023520
     ands r0, r1
     cmp r0, #0
     beq .L0802354C
-    ldr r1, .L08023548 @ =gBmStatus
+    ldr r1, .L08023548 @ =gBmSt
     adds r1, #0x3d
     movs r0, #8
     ldrb r1, [r1]
@@ -29912,7 +28046,7 @@ func_08023520: @ 0x08023520
     b .L0802354E
     .align 2, 0
 .L08023544: .4byte gActiveUnit
-.L08023548: .4byte gBmStatus
+.L08023548: .4byte gBmSt
 .L0802354C:
     movs r0, #3
 .L0802354E:
@@ -30084,7 +28218,7 @@ func_0802367C: @ 0x0802367C
     adds r4, r1, #0
     adds r5, r4, #0
     adds r5, #0x34
-    ldr r0, .L080236B8 @ =gBmStatus
+    ldr r0, .L080236B8 @ =gBmSt
     ldrh r0, [r0, #0x2c]
     bl GetItemName
     adds r3, r0, #0
@@ -30108,7 +28242,7 @@ func_0802367C: @ 0x0802367C
     pop {r1}
     bx r1
     .align 2, 0
-.L080236B8: .4byte gBmStatus
+.L080236B8: .4byte gBmSt
 .L080236BC: .4byte gBg0Tm
     func_end func_0802367C
 
@@ -30269,11 +28403,11 @@ func_080237C8: @ 0x080237C8
     ldrsb r0, [r2, r0]
     cmp r0, #0
     bne .L080237E4
-    ldr r0, .L080237E0 @ =gBmStatus
+    ldr r0, .L080237E0 @ =gBmSt
     ldrh r2, [r0, #0x2c]
     b .L080237F6
     .align 2, 0
-.L080237E0: .4byte gBmStatus
+.L080237E0: .4byte gBmSt
 .L080237E4:
     ldr r0, .L0802380C @ =gActiveUnit
     ldr r1, [r0]
@@ -30354,8 +28488,8 @@ func_08023810: @ 0x08023810
 .L08023870: .4byte 0x000100AE
     func_end func_08023810
 
-    thumb_func_start func_08023874
-func_08023874: @ 0x08023874
+    thumb_func_start CountFactionUnitsWithoutFlags
+CountFactionUnitsWithoutFlags: @ 0x08023874
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
     adds r7, r1, #0
@@ -30387,7 +28521,7 @@ func_08023874: @ 0x08023874
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    func_end func_08023874
+    func_end CountFactionUnitsWithoutFlags
 
     thumb_func_start AreUnitIdsAllied
 AreUnitIdsAllied: @ 0x080238B0
@@ -30490,14 +28624,14 @@ func_08023928: @ 0x08023928
 func_08023944: @ 0x08023944
     push {r4, r5, r6, r7, lr}
     adds r7, r0, #0
-    ldr r0, .L080239A4 @ =gMapSize
+    ldr r0, .L080239A4 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r1, r0, #1
     cmp r1, #0
     blt .L0802399C
 .L08023954:
-    ldr r0, .L080239A4 @ =gMapSize
+    ldr r0, .L080239A4 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -30506,7 +28640,7 @@ func_08023944: @ 0x08023944
     blt .L08023996
     lsls r5, r1, #2
 .L08023964:
-    ldr r0, .L080239A8 @ =gMapMovement
+    ldr r0, .L080239A8 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -30539,8 +28673,8 @@ func_08023944: @ 0x08023944
     pop {r0}
     bx r0
     .align 2, 0
-.L080239A4: .4byte gMapSize
-.L080239A8: .4byte gMapMovement
+.L080239A4: .4byte gBmMapSize
+.L080239A8: .4byte gBmMapMovement
 .L080239AC: .4byte gMapUnit
     func_end func_08023944
 
@@ -30548,14 +28682,14 @@ func_08023944: @ 0x08023944
 func_080239B0: @ 0x080239B0
     push {r4, r5, r6, r7, lr}
     adds r7, r0, #0
-    ldr r0, .L08023A10 @ =gMapSize
+    ldr r0, .L08023A10 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r1, r0, #1
     cmp r1, #0
     blt .L08023A08
 .L080239C0:
-    ldr r0, .L08023A10 @ =gMapSize
+    ldr r0, .L08023A10 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -30597,7 +28731,7 @@ func_080239B0: @ 0x080239B0
     pop {r0}
     bx r0
     .align 2, 0
-.L08023A10: .4byte gMapSize
+.L08023A10: .4byte gBmMapSize
 .L08023A14: .4byte gMapRange
 .L08023A18: .4byte gMapUnit
     func_end func_080239B0
@@ -30606,14 +28740,14 @@ func_080239B0: @ 0x080239B0
 func_08023A1C: @ 0x08023A1C
     push {r4, r5, r6, r7, lr}
     adds r7, r0, #0
-    ldr r0, .L08023A6C @ =gMapSize
+    ldr r0, .L08023A6C @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
     cmp r5, #0
     blt .L08023A64
 .L08023A2C:
-    ldr r0, .L08023A6C @ =gMapSize
+    ldr r0, .L08023A6C @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -30648,7 +28782,7 @@ func_08023A1C: @ 0x08023A1C
     pop {r0}
     bx r0
     .align 2, 0
-.L08023A6C: .4byte gMapSize
+.L08023A6C: .4byte gBmMapSize
 .L08023A70: .4byte gMapRange
     func_end func_08023A1C
 
@@ -33017,7 +31151,7 @@ ApplyUnitSpritePalettes: @ 0x08024C98
     lsls r1, r1, #2
     movs r2, #0x80
     bl ApplyPaletteExt
-    ldr r1, .L08024CC4 @ =gBmStatus
+    ldr r1, .L08024CC4 @ =gBmSt
     movs r0, #0x40
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -33031,7 +31165,7 @@ ApplyUnitSpritePalettes: @ 0x08024C98
     b .L08024CD8
     .align 2, 0
 .L08024CC0: .4byte 0x08194594
-.L08024CC4: .4byte gBmStatus
+.L08024CC4: .4byte gBmSt
 .L08024CC8: .4byte 0x08194614
 .L08024CCC:
     ldr r0, .L08024CDC @ =0x08194634
@@ -34645,7 +32779,7 @@ func_08025910: @ 0x08025910
     movs r3, #0
     movs r0, #4
     ldrsh r1, [r6, r0]
-    ldr r2, .L08025988 @ =gBmStatus
+    ldr r2, .L08025988 @ =gBmSt
     movs r4, #0xc
     ldrsh r0, [r2, r4]
     subs r4, r1, r0
@@ -34698,7 +32832,7 @@ func_08025910: @ 0x08025910
     mov pc, r0
     .align 2, 0
 .L08025984: .4byte 0x02039F1C
-.L08025988: .4byte gBmStatus
+.L08025988: .4byte gBmSt
 .L0802598C: .4byte .L08025990
 .L08025990: @ jump table
     .4byte .L080259A8 @ case 0
@@ -34879,7 +33013,7 @@ func_08025A9C: @ 0x08025A9C
     cmp r0, #0x22
     beq .L08025B32
     lsls r1, r5, #4
-    ldr r2, .L08025B44 @ =gBmStatus
+    ldr r2, .L08025B44 @ =gBmSt
     movs r3, #0xc
     ldrsh r0, [r2, r3]
     subs r3, r1, r0
@@ -34917,7 +33051,7 @@ func_08025A9C: @ 0x08025A9C
 .L08025B38: .4byte gPlaySt
 .L08025B3C: .4byte gMapFog
 .L08025B40: .4byte gMapTerrain
-.L08025B44: .4byte gBmStatus
+.L08025B44: .4byte gBmSt
 .L08025B48: .4byte 0x00000107
 .L08025B4C: .4byte 0x08B905B0
 .L08025B50: .4byte 0x00000C51
@@ -34973,7 +33107,7 @@ func_08025B54: @ 0x08025B54
     bl __umodsi3
     mov sb, r0
     movs r0, #0x91
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08025BD4
@@ -35042,7 +33176,7 @@ func_08025B54: @ 0x08025B54
     movs r1, #0x10
     ldrsb r1, [r4, r1]
     lsls r1, r1, #4
-    ldr r2, .L08025CA4 @ =gBmStatus
+    ldr r2, .L08025CA4 @ =gBmSt
     movs r3, #0xc
     ldrsh r0, [r2, r3]
     subs r3, r1, r0
@@ -35080,13 +33214,13 @@ func_08025B54: @ 0x08025B54
     ldr r5, [sp, #0xc]
     b .L08025D94
     .align 2, 0
-.L08025CA4: .4byte gBmStatus
+.L08025CA4: .4byte gBmSt
 .L08025CA8: .4byte 0x08B94114
 .L08025CAC:
     movs r1, #0x10
     ldrsb r1, [r4, r1]
     lsls r1, r1, #4
-    ldr r2, .L08025CF8 @ =gBmStatus
+    ldr r2, .L08025CF8 @ =gBmSt
     movs r3, #0xc
     ldrsh r0, [r2, r3]
     subs r3, r1, r0
@@ -35124,13 +33258,13 @@ func_08025B54: @ 0x08025B54
     mov r5, sb
     b .L08025D94
     .align 2, 0
-.L08025CF8: .4byte gBmStatus
+.L08025CF8: .4byte gBmSt
 .L08025CFC: .4byte 0x08B94074
 .L08025D00:
     movs r1, #0x10
     ldrsb r1, [r4, r1]
     lsls r1, r1, #4
-    ldr r2, .L08025D44 @ =gBmStatus
+    ldr r2, .L08025D44 @ =gBmSt
     movs r3, #0xc
     ldrsh r0, [r2, r3]
     subs r3, r1, r0
@@ -35162,14 +33296,14 @@ func_08025B54: @ 0x08025B54
     ldr r5, [sp, #0x10]
     b .L08025D94
     .align 2, 0
-.L08025D44: .4byte gBmStatus
+.L08025D44: .4byte gBmSt
 .L08025D48: .4byte 0x00000202
 .L08025D4C: .4byte 0x08B93FD0
 .L08025D50:
     movs r1, #0x10
     ldrsb r1, [r4, r1]
     lsls r1, r1, #4
-    ldr r2, .L08025DA4 @ =gBmStatus
+    ldr r2, .L08025DA4 @ =gBmSt
     movs r3, #0xc
     ldrsh r0, [r2, r3]
     subs r3, r1, r0
@@ -35208,7 +33342,7 @@ func_08025B54: @ 0x08025B54
     bl PutOamHiRam
     b .L08025DFE
     .align 2, 0
-.L08025DA4: .4byte gBmStatus
+.L08025DA4: .4byte gBmSt
 .L08025DA8: .4byte 0x00000201
 .L08025DAC: .4byte 0x08B94034
 .L08025DB0:
@@ -35221,7 +33355,7 @@ func_08025B54: @ 0x08025B54
     movs r1, #0x10
     ldrsb r1, [r4, r1]
     lsls r1, r1, #4
-    ldr r2, .L08025E70 @ =gBmStatus
+    ldr r2, .L08025E70 @ =gBmSt
     movs r3, #0xc
     ldrsh r0, [r2, r3]
     subs r3, r1, r0
@@ -35264,7 +33398,7 @@ func_08025B54: @ 0x08025B54
     movs r1, #0x10
     ldrsb r1, [r4, r1]
     lsls r1, r1, #4
-    ldr r2, .L08025E70 @ =gBmStatus
+    ldr r2, .L08025E70 @ =gBmSt
     movs r3, #0xc
     ldrsh r0, [r2, r3]
     subs r3, r1, r0
@@ -35311,7 +33445,7 @@ func_08025B54: @ 0x08025B54
     bl PutOamHiRam
     b .L08025F56
     .align 2, 0
-.L08025E70: .4byte gBmStatus
+.L08025E70: .4byte gBmSt
 .L08025E74: .4byte 0x000001FF
 .L08025E78: .4byte 0x08B94144
 .L08025E7C: .4byte 0x00000209
@@ -35337,7 +33471,7 @@ func_08025B54: @ 0x08025B54
     movs r1, #0x10
     ldrsb r1, [r4, r1]
     lsls r1, r1, #4
-    ldr r2, .L08025EF4 @ =gBmStatus
+    ldr r2, .L08025EF4 @ =gBmSt
     movs r3, #0xc
     ldrsh r0, [r2, r3]
     subs r3, r1, r0
@@ -35371,7 +33505,7 @@ func_08025B54: @ 0x08025B54
     bl PutOamHiRam
     b .L08025F56
     .align 2, 0
-.L08025EF4: .4byte gBmStatus
+.L08025EF4: .4byte gBmSt
 .L08025EF8: .4byte 0x00000209
 .L08025EFC: .4byte 0x000001FF
 .L08025F00: .4byte 0x00000107
@@ -35384,7 +33518,7 @@ func_08025B54: @ 0x08025B54
     movs r1, #0x10
     ldrsb r1, [r4, r1]
     lsls r1, r1, #4
-    ldr r2, .L08025F74 @ =gBmStatus
+    ldr r2, .L08025F74 @ =gBmSt
     movs r3, #0xc
     ldrsh r0, [r2, r3]
     subs r3, r1, r0
@@ -35432,7 +33566,7 @@ func_08025B54: @ 0x08025B54
     pop {r0}
     bx r0
     .align 2, 0
-.L08025F74: .4byte gBmStatus
+.L08025F74: .4byte gBmSt
 .L08025F78: .4byte 0x00000209
 .L08025F7C: .4byte 0x000001FF
 .L08025F80: .4byte 0x00000107
@@ -35442,12 +33576,12 @@ func_08025B54: @ 0x08025B54
 
     thumb_func_start func_08025F8C
 func_08025F8C: @ 0x08025F8C
-    ldr r1, .L08025F94 @ =gBmStatus
+    ldr r1, .L08025F94 @ =gBmSt
     ldr r0, .L08025F98 @ =0x0000FFFF
     strh r0, [r1, #0x18]
     bx lr
     .align 2, 0
-.L08025F94: .4byte gBmStatus
+.L08025F94: .4byte gBmSt
 .L08025F98: .4byte 0x0000FFFF
     func_end func_08025F8C
 
@@ -35464,7 +33598,7 @@ func_08025F9C: @ 0x08025F9C
     thumb_func_start func_08025FA8
 func_08025FA8: @ 0x08025FA8
     push {r4, lr}
-    ldr r2, .L0802600C @ =gBmStatus
+    ldr r2, .L0802600C @ =gBmSt
     movs r1, #0x16
     ldrsh r0, [r2, r1]
     ldr r1, .L08026010 @ =gMapUnit
@@ -35511,11 +33645,11 @@ func_08025FA8: @ 0x08025FA8
     bl HideUnitSprite
     b .L08026052
     .align 2, 0
-.L0802600C: .4byte gBmStatus
+.L0802600C: .4byte gBmSt
 .L08026010: .4byte gMapUnit
 .L08026014: .4byte 0x0203A3D4
 .L08026018:
-    ldr r2, .L08026058 @ =gBmStatus
+    ldr r2, .L08026058 @ =gBmSt
     ldr r1, [r2, #0x18]
     ldr r0, [r2, #0x14]
     cmp r1, r0
@@ -35546,7 +33680,7 @@ func_08025FA8: @ 0x08025FA8
     pop {r0}
     bx r0
     .align 2, 0
-.L08026058: .4byte gBmStatus
+.L08026058: .4byte gBmSt
 .L0802605C: .4byte 0x0203A3D4
 .L08026060: .4byte gMapUnit
     func_end func_08025FA8
@@ -36683,8 +34817,8 @@ ClearUnitSupports: @ 0x08026844
     bx r0
     func_end ClearUnitSupports
 
-    thumb_func_start func_08026898
-func_08026898: @ 0x08026898
+    thumb_func_start DoTurnSupportExp
+DoTurnSupportExp: @ 0x08026898
     push {r4, r5, r6, r7, lr}
     mov r7, sb
     mov r6, r8
@@ -36812,7 +34946,7 @@ func_08026898: @ 0x08026898
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    func_end func_08026898
+    func_end DoTurnSupportExp
 
     thumb_func_start func_08026990
 func_08026990: @ 0x08026990
@@ -36929,7 +35063,7 @@ func_08026A18: @ 0x08026A18
     adds r5, r0, #0
     cmp r5, #0
     beq .L08026ADC
-    ldr r1, .L08026B1C @ =gBmStatus
+    ldr r1, .L08026B1C @ =gBmSt
     movs r0, #0x40
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -37026,7 +35160,7 @@ func_08026A18: @ 0x08026A18
     pop {r1}
     bx r1
     .align 2, 0
-.L08026B1C: .4byte gBmStatus
+.L08026B1C: .4byte gBmSt
 .L08026B20: .4byte 0x0001002C
     func_end func_08026A18
 
@@ -38373,7 +36507,7 @@ func_08027680: @ 0x08027680
 func_08027698: @ 0x08027698
     push {r4, lr}
     bl _call_via_r1
-    ldr r0, .L080276C8 @ =gMapMovement
+    ldr r0, .L080276C8 @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -38391,7 +36525,7 @@ func_08027698: @ 0x08027698
     pop {r0}
     bx r0
     .align 2, 0
-.L080276C8: .4byte gMapMovement
+.L080276C8: .4byte gBmMapMovement
 .L080276CC: .4byte 0x08B95BD8
 .L080276D0: .4byte func_08027680
 .L080276D4: .4byte 0x0000072C
@@ -38402,7 +36536,7 @@ func_080276D8: @ 0x080276D8
     push {r4, r5, lr}
     adds r5, r2, #0
     bl _call_via_r1
-    ldr r0, .L0802770C @ =gMapMovement
+    ldr r0, .L0802770C @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -38420,7 +36554,7 @@ func_080276D8: @ 0x080276D8
     pop {r0}
     bx r0
     .align 2, 0
-.L0802770C: .4byte gMapMovement
+.L0802770C: .4byte gBmMapMovement
 .L08027710: .4byte 0x08B95BD8
 .L08027714: .4byte func_08027680
     func_end func_080276D8
@@ -38447,7 +36581,7 @@ func_08027718: @ 0x08027718
     ldrsb r2, [r0, r2]
     adds r0, r6, #0
     adds r1, r4, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     bl func_0801D2D4
     ldr r0, .L080277C0 @ =gActiveUnit
     ldr r4, [r0]
@@ -38456,7 +36590,7 @@ func_08027718: @ 0x08027718
     adds r1, r0, #0
     adds r0, r4, #0
     bl func_0801DBC4
-    ldr r1, .L080277C4 @ =gBmStatus
+    ldr r1, .L080277C4 @ =gBmSt
     movs r0, #0xfd
     ldrb r2, [r1, #4]
     ands r0, r2
@@ -38497,7 +36631,7 @@ func_08027718: @ 0x08027718
 .L080277B8: .4byte 0x00000725
 .L080277BC: .4byte gActionSt
 .L080277C0: .4byte gActiveUnit
-.L080277C4: .4byte gBmStatus
+.L080277C4: .4byte gBmSt
 .L080277C8: .4byte 0x08196228
     func_end func_08027718
 
@@ -38505,10 +36639,10 @@ func_08027718: @ 0x08027718
 func_080277CC: @ 0x080277CC
     push {r4, r5, r6, lr}
     adds r5, r0, #0
-    ldr r4, .L08027844 @ =gBmStatus
+    ldr r4, .L08027844 @ =gBmSt
     movs r1, #0x16
     ldrsh r0, [r4, r1]
-    ldr r1, .L08027848 @ =gMapMovement
+    ldr r1, .L08027848 @ =gBmMapMovement
     ldr r1, [r1]
     lsls r0, r0, #2
     adds r0, r0, r1
@@ -38557,8 +36691,8 @@ func_080277CC: @ 0x080277CC
     bl m4aSongNumStart
     b .L080278F0
     .align 2, 0
-.L08027844: .4byte gBmStatus
-.L08027848: .4byte gMapMovement
+.L08027844: .4byte gBmSt
+.L08027848: .4byte gBmMapMovement
 .L0802784C: .4byte gpKeySt
 .L08027850: .4byte gActionSt
 .L08027854: .4byte gActiveUnit
@@ -38619,7 +36753,7 @@ func_080277CC: @ 0x080277CC
     bl SetSpriteAnimId
 .L080278D0:
     ldr r0, [r5, #0x54]
-    ldr r3, .L08027908 @ =gBmStatus
+    ldr r3, .L08027908 @ =gBmSt
     movs r5, #0x20
     ldrsh r1, [r3, r5]
     movs r5, #0xc
@@ -38642,7 +36776,7 @@ func_080277CC: @ 0x080277CC
 .L080278FC: .4byte gpKeySt
 .L08027900: .4byte gBg2Tm
 .L08027904: .4byte 0x0000038B
-.L08027908: .4byte gBmStatus
+.L08027908: .4byte gBmSt
     func_end func_080277CC
 
     thumb_func_start func_0802790C
@@ -38666,7 +36800,7 @@ func_0802790C: @ 0x0802790C
     movs r2, #0x11
     ldrsb r2, [r0, r2]
     adds r0, r5, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -38734,7 +36868,7 @@ func_08027990: @ 0x08027990
 func_080279B8: @ 0x080279B8
     push {r4, lr}
     bl func_08024908
-    ldr r0, .L080279FC @ =gMapMovement
+    ldr r0, .L080279FC @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -38761,7 +36895,7 @@ func_080279B8: @ 0x080279B8
     pop {r0}
     bx r0
     .align 2, 0
-.L080279FC: .4byte gMapMovement
+.L080279FC: .4byte gBmMapMovement
 .L08027A00: .4byte 0x08B95BD8
 .L08027A04: .4byte func_08027990
 .L08027A08: .4byte 0x0000072B
@@ -38791,7 +36925,7 @@ func_08027A30: @ 0x08027A30
     push {r4, r5, lr}
     adds r5, r2, #0
     bl _call_via_r1
-    ldr r0, .L08027A74 @ =gMapMovement
+    ldr r0, .L08027A74 @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -38818,7 +36952,7 @@ func_08027A30: @ 0x08027A30
     pop {r0}
     bx r0
     .align 2, 0
-.L08027A74: .4byte gMapMovement
+.L08027A74: .4byte gBmMapMovement
 .L08027A78: .4byte 0x08B95BB8
 .L08027A7C: .4byte func_08027A14
 .L08027A80: .4byte gPlaySt
@@ -38871,7 +37005,7 @@ func_08027A88: @ 0x08027A88
 func_08027AE8: @ 0x08027AE8
     push {r4, lr}
     bl func_080249C8
-    ldr r0, .L08027B28 @ =gMapMovement
+    ldr r0, .L08027B28 @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -38897,7 +37031,7 @@ func_08027AE8: @ 0x08027AE8
     pop {r0}
     bx r0
     .align 2, 0
-.L08027B28: .4byte gMapMovement
+.L08027B28: .4byte gBmMapMovement
 .L08027B2C: .4byte 0x08B95C58
 .L08027B30: .4byte 0x0000072E
 .L08027B34: .4byte gPlaySt
@@ -39112,7 +37246,7 @@ func_08027C14: @ 0x08027C14
 func_08027CBC: @ 0x08027CBC
     push {r4, lr}
     bl _call_via_r1
-    ldr r0, .L08027CEC @ =gMapMovement
+    ldr r0, .L08027CEC @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -39129,7 +37263,7 @@ func_08027CBC: @ 0x08027CBC
     pop {r0}
     bx r0
     .align 2, 0
-.L08027CEC: .4byte gMapMovement
+.L08027CEC: .4byte gBmMapMovement
 .L08027CF0: .4byte 0x08B95B78
 .L08027CF4: .4byte 0x0000072A
     func_end func_08027CBC
@@ -39138,7 +37272,7 @@ func_08027CBC: @ 0x08027CBC
 func_08027CF8: @ 0x08027CF8
     push {r4, lr}
     bl _call_via_r1
-    ldr r0, .L08027D28 @ =gMapMovement
+    ldr r0, .L08027D28 @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -39155,7 +37289,7 @@ func_08027CF8: @ 0x08027CF8
     pop {r0}
     bx r0
     .align 2, 0
-.L08027D28: .4byte gMapMovement
+.L08027D28: .4byte gBmMapMovement
 .L08027D2C: .4byte 0x08B95B58
 .L08027D30: .4byte 0x0000072D
     func_end func_08027CF8
@@ -39190,7 +37324,7 @@ func_08027D40: @ 0x08027D40
 func_08027D64: @ 0x08027D64
     push {r4, lr}
     bl func_080246E0
-    ldr r0, .L08027D94 @ =gMapMovement
+    ldr r0, .L08027D94 @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -39207,7 +37341,7 @@ func_08027D64: @ 0x08027D64
     pop {r0}
     bx r0
     .align 2, 0
-.L08027D94: .4byte gMapMovement
+.L08027D94: .4byte gBmMapMovement
 .L08027D98: .4byte 0x08B95B38
 .L08027D9C: .4byte 0x0000072F
     func_end func_08027D64
@@ -39242,7 +37376,7 @@ func_08027DAC: @ 0x08027DAC
 func_08027DD0: @ 0x08027DD0
     push {r4, lr}
     bl _call_via_r1
-    ldr r0, .L08027E00 @ =gMapMovement
+    ldr r0, .L08027E00 @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -39259,7 +37393,7 @@ func_08027DD0: @ 0x08027DD0
     pop {r0}
     bx r0
     .align 2, 0
-.L08027E00: .4byte gMapMovement
+.L08027E00: .4byte gBmMapMovement
 .L08027E04: .4byte 0x08B95B18
 .L08027E08: .4byte 0x00000731
     func_end func_08027DD0
@@ -39367,7 +37501,7 @@ func_08027E9C: @ 0x08027E9C
 func_08027EC8: @ 0x08027EC8
     push {r4, r5, lr}
     adds r5, r0, #0
-    ldr r1, .L08027F14 @ =gBmStatus
+    ldr r1, .L08027F14 @ =gBmSt
     movs r0, #1
     ldrb r2, [r1, #4]
     orrs r0, r2
@@ -39384,7 +37518,7 @@ func_08027EC8: @ 0x08027EC8
     ldrb r1, [r1, #0x11]
     lsls r1, r1, #0x18
     asrs r1, r1, #0x18
-    bl func_08015D70
+    bl IsCameraNotWatchingPosition
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08027F0C
@@ -39394,13 +37528,13 @@ func_08027EC8: @ 0x08027EC8
     movs r2, #0x11
     ldrsb r2, [r0, r2]
     adds r0, r5, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
 .L08027F0C:
     pop {r4, r5}
     pop {r0}
     bx r0
     .align 2, 0
-.L08027F14: .4byte gBmStatus
+.L08027F14: .4byte gBmSt
 .L08027F18: .4byte 0x00000735
 .L08027F1C: .4byte gActiveUnit
     func_end func_08027EC8
@@ -39409,7 +37543,7 @@ func_08027EC8: @ 0x08027EC8
 func_08027F20: @ 0x08027F20
     push {r4, r5, r6, lr}
     adds r6, r0, #0
-    ldr r5, .L08027F80 @ =gBmStatus
+    ldr r5, .L08027F80 @ =gBmSt
     movs r0, #0x14
     ldrsh r2, [r5, r0]
     movs r1, #0x16
@@ -39452,7 +37586,7 @@ func_08027F20: @ 0x08027F20
     bl func_0802764C
     b .L08027FF6
     .align 2, 0
-.L08027F80: .4byte gBmStatus
+.L08027F80: .4byte gBmSt
 .L08027F84: .4byte gMapRange
 .L08027F88: .4byte gpKeySt
 .L08027F8C: .4byte gPlaySt
@@ -39494,7 +37628,7 @@ func_08027F20: @ 0x08027F20
     ldr r0, .L08028008 @ =0x0000038B
     bl m4aSongNumStart
 .L08027FE6:
-    ldr r1, .L0802800C @ =gBmStatus
+    ldr r1, .L0802800C @ =gBmSt
     movs r2, #0x20
     ldrsh r0, [r1, r2]
     movs r2, #0x22
@@ -39510,7 +37644,7 @@ func_08027F20: @ 0x08027F20
 .L08028000: .4byte gpKeySt
 .L08028004: .4byte gBg2Tm
 .L08028008: .4byte 0x0000038B
-.L0802800C: .4byte gBmStatus
+.L0802800C: .4byte gBmSt
     func_end func_08027F20
 
     thumb_func_start func_08028010
@@ -40487,7 +38621,7 @@ SetBattleUnitWeapon: @ 0x0802877C
     adds r2, #0x51
     movs r0, #0xff
     strb r0, [r2]
-    ldr r0, .L0802882C @ =gBmStatus
+    ldr r0, .L0802882C @ =gBmSt
     ldrh r0, [r0, #0x2c]
     adds r1, r5, #0
     adds r1, #0x48
@@ -40496,7 +38630,7 @@ SetBattleUnitWeapon: @ 0x0802877C
     adds r4, r1, #0
     b .L080288AE
     .align 2, 0
-.L0802882C: .4byte gBmStatus
+.L0802882C: .4byte gBmSt
 .L08028830:
     adds r3, r5, #0
     adds r3, #0x51
@@ -40996,7 +39130,7 @@ ComputeBattleUnitHitRate: @ 0x08028BA0
     ldrb r0, [r3, #0x1b]
     cmp r0, #1
     beq .L08028C3C
-    ldr r1, .L08028C48 @ =gBmStatus
+    ldr r1, .L08028C48 @ =gBmSt
     movs r0, #0x40
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -41044,7 +39178,7 @@ ComputeBattleUnitHitRate: @ 0x08028BA0
     bx r0
     .align 2, 0
 .L08028C44: .4byte gPlaySt
-.L08028C48: .4byte gBmStatus
+.L08028C48: .4byte gBmSt
 .L08028C4C: .4byte 0x081C3AC0
     func_end ComputeBattleUnitHitRate
 
@@ -41078,7 +39212,7 @@ ComputeBattleUnitAvoidRate: @ 0x08028C50
     ldrb r0, [r3, #0x1b]
     cmp r0, #1
     beq .L08028CDC
-    ldr r1, .L08028CF8 @ =gBmStatus
+    ldr r1, .L08028CF8 @ =gBmSt
     movs r0, #0x40
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -41135,7 +39269,7 @@ ComputeBattleUnitAvoidRate: @ 0x08028C50
     bx r0
     .align 2, 0
 .L08028CF4: .4byte gPlaySt
-.L08028CF8: .4byte gBmStatus
+.L08028CF8: .4byte gBmSt
 .L08028CFC: .4byte 0x081C3AC0
     func_end ComputeBattleUnitAvoidRate
 
@@ -41236,7 +39370,7 @@ func_08028D74: @ 0x08028D74
     ldrb r0, [r2, #0x1b]
     cmp r0, #1
     beq .L08028DD0
-    ldr r1, .L08028DEC @ =gBmStatus
+    ldr r1, .L08028DEC @ =gBmSt
     movs r0, #0x40
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -41273,7 +39407,7 @@ func_08028D74: @ 0x08028D74
     b .L08028DF2
     .align 2, 0
 .L08028DE8: .4byte gPlaySt
-.L08028DEC: .4byte gBmStatus
+.L08028DEC: .4byte gBmSt
 .L08028DF0:
     adds r4, #1
 .L08028DF2:
@@ -42422,7 +40556,7 @@ GetAutoleveledStatIncrease: @ 0x08029604
     thumb_func_start CanBattleUnitGainExp
 CanBattleUnitGainExp: @ 0x08029634
     adds r2, r0, #0
-    ldr r1, .L08029658 @ =gBmStatus
+    ldr r1, .L08029658 @ =gBmSt
     movs r0, #0x40
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -42440,7 +40574,7 @@ CanBattleUnitGainExp: @ 0x08029634
     movs r0, #1
     b .L0802965E
     .align 2, 0
-.L08029658: .4byte gBmStatus
+.L08029658: .4byte gBmSt
 .L0802965C:
     movs r0, #0
 .L0802965E:
@@ -43086,7 +41220,7 @@ GetBattleUnitUpdatedWeaponExp: @ 0x08029AFC
     ands r0, r1
     cmp r0, #0
     bne .L08029B58
-    ldr r1, .L08029B64 @ =gBmStatus
+    ldr r1, .L08029B64 @ =gBmSt
     movs r0, #0x40
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -43121,7 +41255,7 @@ GetBattleUnitUpdatedWeaponExp: @ 0x08029AFC
     b .L08029BE0
     .align 2, 0
 .L08029B60: .4byte gPlaySt
-.L08029B64: .4byte gBmStatus
+.L08029B64: .4byte gBmSt
 .L08029B68: .4byte 0x0203A3D8
 .L08029B6C:
     adds r4, r7, #0
@@ -44698,7 +42832,7 @@ func_0802A6E0: @ 0x0802A6E0
     mov sb, r0
     ldr r1, [r0, #4]
     mov r8, r1
-    ldr r0, .L0802A7B4 @ =gBmStatus
+    ldr r0, .L0802A7B4 @ =gBmSt
     adds r0, #0x3c
     ldrb r0, [r0]
     str r0, [sp]
@@ -44744,7 +42878,7 @@ func_0802A6E0: @ 0x0802A6E0
     mov r1, sl
     strb r0, [r1, #0x16]
     movs r0, #3
-    bl func_080A1100
+    bl WriteSuspendSave
     adds r0, r5, #0
     bl SetBattleUnitTerrainBonusesAuto
     adds r0, r4, #0
@@ -44784,7 +42918,7 @@ func_0802A6E0: @ 0x0802A6E0
     b .L0802A7D0
     .align 2, 0
 .L0802A7B0: .4byte 0x0203A7F4
-.L0802A7B4: .4byte gBmStatus
+.L0802A7B4: .4byte gBmSt
 .L0802A7B8: .4byte 0x0203A3D8
 .L0802A7BC: .4byte 0x0203A3F0
 .L0802A7C0: .4byte 0x0203A470
@@ -46393,7 +44527,7 @@ func_0802B3BC: @ 0x0802B3BC
 func_0802B40C: @ 0x0802B40C
     push {r4, r5, lr}
     adds r4, r0, #0
-    ldr r0, .L0802B44C @ =gBmStatus
+    ldr r0, .L0802B44C @ =gBmSt
     adds r5, r0, #0
     adds r5, #0x3f
     movs r0, #0
@@ -46420,7 +44554,7 @@ func_0802B40C: @ 0x0802B40C
     movs r0, #0
     b .L0802B452
     .align 2, 0
-.L0802B44C: .4byte gBmStatus
+.L0802B44C: .4byte gBmSt
 .L0802B450:
     movs r0, #1
 .L0802B452:
@@ -47465,14 +45599,14 @@ func_0802BBA8: @ 0x0802BBA8
     thumb_func_start func_0802BBB8
 func_0802BBB8: @ 0x0802BBB8
     push {r4, r5, r6, lr}
-    ldr r0, .L0802BBEC @ =gMapSize
+    ldr r0, .L0802BBEC @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
     cmp r5, #0
     blt .L0802BC38
 .L0802BBC6:
-    ldr r0, .L0802BBEC @ =gMapSize
+    ldr r0, .L0802BBEC @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -47493,7 +45627,7 @@ func_0802BBB8: @ 0x0802BBB8
     beq .L0802BC20
     b .L0802BC2C
     .align 2, 0
-.L0802BBEC: .4byte gMapSize
+.L0802BBEC: .4byte gBmMapSize
 .L0802BBF0: .4byte gMapTerrain
 .L0802BBF4:
     subs r0, r1, #4
@@ -47934,7 +46068,7 @@ func_0802BEC0: @ 0x0802BEC0
 .L0802BEE8:
     adds r4, #1
 .L0802BEEA:
-    ldr r0, .L0802BF00 @ =gMapSize
+    ldr r0, .L0802BF00 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     cmp r4, r0
@@ -47944,7 +46078,7 @@ func_0802BEC0: @ 0x0802BEC0
     bx r0
     .align 2, 0
 .L0802BEFC: .4byte gMapUnit
-.L0802BF00: .4byte gMapSize
+.L0802BF00: .4byte gBmMapSize
     func_end func_0802BEC0
 
     thumb_func_start func_0802BF04
@@ -48427,8 +46561,8 @@ func_0802C21C: @ 0x0802C21C
 .L0802C248: .4byte gMapTerrain
     func_end func_0802C21C
 
-    thumb_func_start func_0802C24C
-func_0802C24C: @ 0x0802C24C
+    thumb_func_start DecayTraps
+DecayTraps: @ 0x0802C24C
     push {r4, lr}
     ldr r4, .L0802C254 @ =0x0203A518
     b .L0802C28E
@@ -48471,7 +46605,7 @@ func_0802C24C: @ 0x0802C24C
     pop {r4}
     pop {r0}
     bx r0
-    func_end func_0802C24C
+    func_end DecayTraps
 
     thumb_func_start func_0802C29C
 func_0802C29C: @ 0x0802C29C
@@ -48697,14 +46831,14 @@ GetRescueStaffTargetPosition: @ 0x0802C42C
     adds r0, r0, r1
     movs r1, #0xff
     strb r1, [r0]
-    ldr r0, .L0802C4F8 @ =gMapSize
+    ldr r0, .L0802C4F8 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
     cmp r5, #0
     blt .L0802C528
 .L0802C476:
-    ldr r0, .L0802C4F8 @ =gMapSize
+    ldr r0, .L0802C4F8 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -48714,7 +46848,7 @@ GetRescueStaffTargetPosition: @ 0x0802C42C
     blt .L0802C522
     lsls r6, r5, #2
 .L0802C488:
-    ldr r0, .L0802C4FC @ =gMapMovement
+    ldr r0, .L0802C4FC @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r6, r0
     ldr r0, [r0]
@@ -48768,8 +46902,8 @@ GetRescueStaffTargetPosition: @ 0x0802C42C
     .align 2, 0
 .L0802C4F0: .4byte 0x0000270F
 .L0802C4F4: .4byte gMapUnit
-.L0802C4F8: .4byte gMapSize
-.L0802C4FC: .4byte gMapMovement
+.L0802C4F8: .4byte gBmMapSize
+.L0802C4FC: .4byte gBmMapMovement
 .L0802C500: .4byte gMapHidden
 .L0802C504: .4byte gMapTerrain
 .L0802C508:
@@ -48822,14 +46956,14 @@ GetRescueStaffTargetPosition: @ 0x0802C42C
     adds r0, r0, r1
     movs r1, #0xff
     strb r1, [r0]
-    ldr r0, .L0802C644 @ =gMapSize
+    ldr r0, .L0802C644 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
     cmp r5, #0
     blt .L0802C602
 .L0802C56E:
-    ldr r0, .L0802C644 @ =gMapSize
+    ldr r0, .L0802C644 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -48839,7 +46973,7 @@ GetRescueStaffTargetPosition: @ 0x0802C42C
     blt .L0802C5FC
     lsls r6, r5, #2
 .L0802C580:
-    ldr r0, .L0802C648 @ =gMapMovement
+    ldr r0, .L0802C648 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r6, r0
     ldr r0, [r0]
@@ -48940,8 +47074,8 @@ GetRescueStaffTargetPosition: @ 0x0802C42C
 .L0802C638: .4byte 0x0000270F
 .L0802C63C: .4byte 0x08BE3C16
 .L0802C640: .4byte gMapUnit
-.L0802C644: .4byte gMapSize
-.L0802C648: .4byte gMapMovement
+.L0802C644: .4byte gBmMapSize
+.L0802C648: .4byte gBmMapMovement
 .L0802C64C: .4byte gMapHidden
 .L0802C650: .4byte gMapTerrain
     func_end GetRescueStaffTargetPosition
@@ -50477,14 +48611,14 @@ func_0802D380: @ 0x0802D380
     bl Proc_Start
     bl func_0802D324
     bl WeatherInit
-    ldr r1, .L0802D3A0 @ =gBmStatus
+    ldr r1, .L0802D3A0 @ =gBmSt
     movs r0, #0
     strb r0, [r1, #2]
     pop {r0}
     bx r0
     .align 2, 0
 .L0802D39C: .4byte 0x08B96158
-.L0802D3A0: .4byte gBmStatus
+.L0802D3A0: .4byte gBmSt
     func_end func_0802D380
 
     thumb_func_start func_0802D3A4
@@ -50501,7 +48635,7 @@ func_0802D3A4: @ 0x0802D3A4
     thumb_func_start LockBmDisplay
 LockBmDisplay: @ 0x0802D3B4
     push {lr}
-    ldr r1, .L0802D3E0 @ =gBmStatus
+    ldr r1, .L0802D3E0 @ =gBmSt
     ldrb r0, [r1, #2]
     adds r0, #1
     strb r0, [r1, #2]
@@ -50521,14 +48655,14 @@ LockBmDisplay: @ 0x0802D3B4
     pop {r0}
     bx r0
     .align 2, 0
-.L0802D3E0: .4byte gBmStatus
+.L0802D3E0: .4byte gBmSt
 .L0802D3E4: .4byte gPal
     func_end LockBmDisplay
 
     thumb_func_start UnlockBmDisplay
 UnlockBmDisplay: @ 0x0802D3E8
     push {lr}
-    ldr r1, .L0802D41C @ =gBmStatus
+    ldr r1, .L0802D41C @ =gBmSt
     ldrb r2, [r1, #2]
     movs r0, #2
     ldrsb r0, [r1, r0]
@@ -50551,7 +48685,7 @@ UnlockBmDisplay: @ 0x0802D3E8
     pop {r0}
     bx r0
     .align 2, 0
-.L0802D41C: .4byte gBmStatus
+.L0802D41C: .4byte gBmSt
 .L0802D420: .4byte 0x08B96158
     func_end UnlockBmDisplay
 
@@ -50680,7 +48814,7 @@ func_0802D500: @ 0x0802D500
     ldr r0, .L0802D5B4 @ =0x020027DC
     adds r4, r1, r0
     mov r2, sp
-    ldr r3, .L0802D5B8 @ =gBmStatus
+    ldr r3, .L0802D5B8 @ =gBmSt
     movs r0, #0xc
     ldrsh r1, [r3, r0]
     lsls r0, r1, #1
@@ -50758,7 +48892,7 @@ func_0802D500: @ 0x0802D500
     bx r0
     .align 2, 0
 .L0802D5B4: .4byte 0x020027DC
-.L0802D5B8: .4byte gBmStatus
+.L0802D5B8: .4byte gBmSt
 .L0802D5BC: .4byte 0x08B905B0
     func_end func_0802D500
 
@@ -50827,7 +48961,7 @@ func_0802D624: @ 0x0802D624
     lsls r1, r1, #7
     ldr r0, .L0802D698 @ =0x020027DC
     adds r4, r1, r0
-    ldr r7, .L0802D69C @ =gBmStatus
+    ldr r7, .L0802D69C @ =gBmSt
     movs r6, #0xff
     movs r5, #0x1f
     ldr r0, .L0802D6A0 @ =0x08B96208
@@ -50871,7 +49005,7 @@ func_0802D624: @ 0x0802D624
     bx r0
     .align 2, 0
 .L0802D698: .4byte 0x020027DC
-.L0802D69C: .4byte gBmStatus
+.L0802D69C: .4byte gBmSt
 .L0802D6A0: .4byte 0x08B96208
     func_end func_0802D624
 
@@ -51069,7 +49203,7 @@ func_0802D82C: @ 0x0802D82C
     lsls r1, r1, #7
     ldr r0, .L0802D894 @ =0x020027DC
     adds r4, r1, r0
-    ldr r7, .L0802D898 @ =gBmStatus
+    ldr r7, .L0802D898 @ =gBmSt
     movs r6, #0xff
     movs r5, #0x1f
 .L0802D84E:
@@ -51109,7 +49243,7 @@ func_0802D82C: @ 0x0802D82C
     bx r0
     .align 2, 0
 .L0802D894: .4byte 0x020027DC
-.L0802D898: .4byte gBmStatus
+.L0802D898: .4byte gBmSt
 .L0802D89C: .4byte 0x00001018
 .L0802D8A0: .4byte 0x08B905C0
     func_end func_0802D82C
@@ -51125,7 +49259,7 @@ func_0802D8A4: @ 0x0802D8A4
     bls .L0802D8B4
     movs r3, #0
 .L0802D8B4:
-    ldr r0, .L0802D8DC @ =gBmStatus
+    ldr r0, .L0802D8DC @ =gBmSt
     movs r1, #0xe
     ldrsh r0, [r0, r1]
     lsrs r1, r0, #0x1f
@@ -51144,7 +49278,7 @@ func_0802D8A4: @ 0x0802D8A4
     b .L0802D8F2
     .align 2, 0
 .L0802D8D8: .4byte 0x04000006
-.L0802D8DC: .4byte gBmStatus
+.L0802D8DC: .4byte gBmSt
 .L0802D8E0: .4byte 0x0000013F
 .L0802D8E4:
     movs r2, #0xa0
@@ -51503,7 +49637,7 @@ func_0802DB74: @ 0x0802DB74
     bl GetOamSplice
     cmp r0, #0
     beq .L0802DBF4
-    ldr r0, .L0802DC04 @ =gBmStatus
+    ldr r0, .L0802DC04 @ =gBmSt
     mov r8, r0
     movs r1, #0xff
     mov sb, r1
@@ -51570,7 +49704,7 @@ func_0802DB74: @ 0x0802DB74
     bx r0
     .align 2, 0
 .L0802DC00: .4byte 0x020027DC
-.L0802DC04: .4byte gBmStatus
+.L0802DC04: .4byte gBmSt
 .L0802DC08: .4byte 0x08B905B0
     func_end func_0802DB74
 
@@ -51728,7 +49862,7 @@ func_0802DCB0: @ 0x0802DCB0
 func_0802DD2C: @ 0x0802DD2C
     push {lr}
     sub sp, #4
-    ldr r0, .L0802DD54 @ =gBmStatus
+    ldr r0, .L0802DD54 @ =gBmSt
     movs r1, #0xe
     ldrsh r0, [r0, r1]
     movs r1, #5
@@ -51745,7 +49879,7 @@ func_0802DD2C: @ 0x0802DD2C
     pop {r0}
     bx r0
     .align 2, 0
-.L0802DD54: .4byte gBmStatus
+.L0802DD54: .4byte gBmSt
 .L0802DD58: .4byte 0x08B96214
 .L0802DD5C: .4byte 0x0000AC12
     func_end func_0802DD2C
@@ -52094,7 +50228,7 @@ InitPlayConfig: @ 0x0802DF20
 func_0802DFFC: @ 0x0802DFFC
     push {r4, r5, lr}
     sub sp, #4
-    ldr r4, .L0802E020 @ =gBmStatus
+    ldr r4, .L0802E020 @ =gBmSt
     movs r5, #1
     ldrsb r5, [r4, r5]
     mov r1, sp
@@ -52110,7 +50244,7 @@ func_0802DFFC: @ 0x0802DFFC
     pop {r0}
     bx r0
     .align 2, 0
-.L0802E020: .4byte gBmStatus
+.L0802E020: .4byte gBmSt
 .L0802E024: .4byte 0x01000020
     func_end func_0802DFFC
 
@@ -52276,7 +50410,7 @@ ResumeChapterFromSuspend: @ 0x0802E190
     movs r0, #0xe
     ldrsb r0, [r4, r0]
     bl InitMapForChapter
-    ldr r4, .L0802E210 @ =gBmStatus
+    ldr r4, .L0802E210 @ =gBmSt
     adds r1, r4, #0
     adds r1, #0x3c
     movs r0, #1
@@ -52307,7 +50441,7 @@ ResumeChapterFromSuspend: @ 0x0802E190
 .L0802E204: .4byte OnMain
 .L0802E208: .4byte OnVBlank
 .L0802E20C: .4byte gPlaySt
-.L0802E210: .4byte gBmStatus
+.L0802E210: .4byte gBmSt
 .L0802E214: .4byte gActionSt
 .L0802E218: .4byte .L0802E21C
 .L0802E21C: @ jump table
@@ -53005,7 +51139,7 @@ func_0802E770: @ 0x0802E770
 func_0802E790: @ 0x0802E790
     push {r4, lr}
     adds r4, r0, #0
-    ldr r1, .L0802E7AC @ =gBmStatus
+    ldr r1, .L0802E7AC @ =gBmSt
     movs r0, #0
     strh r0, [r1, #0x2e]
     movs r3, #0
@@ -53018,7 +51152,7 @@ func_0802E790: @ 0x0802E790
     adds r0, r3, #0
     b .L0802E7C2
     .align 2, 0
-.L0802E7AC: .4byte gBmStatus
+.L0802E7AC: .4byte gBmSt
 .L0802E7B0: .4byte 0x0203A720
 .L0802E7B4:
     adds r2, #2
@@ -54292,7 +52426,7 @@ ArenaSetResult: @ 0x0802F0EC
     thumb_func_start ArenaContinueBattle
 ArenaContinueBattle: @ 0x0802F0F8
     push {r4, r5, lr}
-    ldr r0, .L0802F144 @ =gBmStatus
+    ldr r0, .L0802F144 @ =gBmSt
     adds r0, #0x3c
     ldrb r5, [r0]
     ldr r1, .L0802F148 @ =gActionSt
@@ -54302,7 +52436,7 @@ ArenaContinueBattle: @ 0x0802F0F8
     movs r0, #4
     strb r0, [r1, #0x16]
     movs r0, #3
-    bl func_080A1100
+    bl WriteSuspendSave
     bl BattleUnwind
     movs r0, #0x13
     ldrsb r0, [r4, r0]
@@ -54327,7 +52461,7 @@ ArenaContinueBattle: @ 0x0802F0F8
     pop {r0}
     bx r0
     .align 2, 0
-.L0802F144: .4byte gBmStatus
+.L0802F144: .4byte gBmSt
 .L0802F148: .4byte gActionSt
 .L0802F14C: .4byte 0x0203A470
 .L0802F150: .4byte 0x0203A7F4
@@ -55017,7 +53151,7 @@ func_0802F690: @ 0x0802F690
     ldrh r0, [r0]
     adds r0, r1, r0
     strh r0, [r3]
-    ldr r1, .L0802F734 @ =gBmStatus
+    ldr r1, .L0802F734 @ =gBmSt
     movs r3, #0xc
     ldrsh r0, [r1, r3]
     mov r3, r8
@@ -55047,7 +53181,7 @@ func_0802F690: @ 0x0802F690
     pop {r0}
     bx r0
     .align 2, 0
-.L0802F734: .4byte gBmStatus
+.L0802F734: .4byte gBmSt
     func_end func_0802F690
 
     thumb_func_start func_0802F738
@@ -55364,7 +53498,7 @@ func_0802F960: @ 0x0802F960
     thumb_func_start func_0802F9A4
 func_0802F9A4: @ 0x0802F9A4
     push {r4, lr}
-    bl GetMapBgmSong
+    bl GetActiveMapSong
     adds r4, r0, #0
     bl GetCurrentBgmSong
     cmp r0, r4
@@ -55990,7 +54124,7 @@ func_0802FE4C: @ 0x0802FE4C
     movs r0, #1
     bl func_0802FACC
     bl func_0802FE08
-    ldr r1, .L0802FE70 @ =gBmStatus
+    ldr r1, .L0802FE70 @ =gBmSt
     movs r2, #0x14
     ldrsh r0, [r1, r2]
     movs r2, #0x16
@@ -56001,7 +54135,7 @@ func_0802FE4C: @ 0x0802FE4C
     pop {r0}
     bx r0
     .align 2, 0
-.L0802FE70: .4byte gBmStatus
+.L0802FE70: .4byte gBmSt
 .L0802FE74: .4byte gWorkingMoveScript
     func_end func_0802FE4C
 
@@ -56145,7 +54279,7 @@ func_0802FF80: @ 0x0802FF80
     ldr r2, [r7]
     adds r0, r2, #0
     adds r0, #0x29
-    ldr r5, .L08030008 @ =gBmStatus
+    ldr r5, .L08030008 @ =gBmSt
     movs r1, #0
     ldrsb r1, [r0, r1]
     movs r3, #0x14
@@ -56165,7 +54299,7 @@ func_0802FF80: @ 0x0802FF80
     ldrh r0, [r5, #0x14]
     ldrh r1, [r5, #0x16]
     bl func_0802FAB8
-    ldr r0, .L0803000C @ =gMapMovement
+    ldr r0, .L0803000C @ =gBmMapMovement
     ldr r0, [r0]
     bl func_0801B190
     movs r3, #0x16
@@ -56206,8 +54340,8 @@ func_0802FF80: @ 0x0802FF80
     b .L0803012C
     .align 2, 0
 .L08030004: .4byte 0x08B96444
-.L08030008: .4byte gBmStatus
-.L0803000C: .4byte gMapMovement
+.L08030008: .4byte gBmSt
+.L0803000C: .4byte gBmMapMovement
 .L08030010: .4byte gWorkingMap
 .L08030014:
     ldr r4, [r7]
@@ -56273,7 +54407,7 @@ func_0802FF80: @ 0x0802FF80
     cmp r0, #1
     bne .L080300A8
 .L08030090:
-    ldr r1, .L080300A4 @ =gBmStatus
+    ldr r1, .L080300A4 @ =gBmSt
     movs r0, #0x14
     ldrsb r0, [r1, r0]
     ldrb r1, [r1, #0x16]
@@ -56282,7 +54416,7 @@ func_0802FF80: @ 0x0802FF80
     bl func_0802FB70
     b .L0803012C
     .align 2, 0
-.L080300A4: .4byte gBmStatus
+.L080300A4: .4byte gBmSt
 .L080300A8:
     ldr r0, .L08030100 @ =0x08B96444
     ldr r0, [r0]
@@ -56305,7 +54439,7 @@ func_0802FF80: @ 0x0802FF80
     ldr r0, [r0]
     bl func_0801B190
     bl func_0802FE08
-    ldr r2, .L08030108 @ =gBmStatus
+    ldr r2, .L08030108 @ =gBmSt
     movs r3, #0x16
     ldrsh r4, [r2, r3]
     ldr r0, .L0803010C @ =gWorkingMap
@@ -56327,7 +54461,7 @@ func_0802FF80: @ 0x0802FF80
     .align 2, 0
 .L08030100: .4byte 0x08B96444
 .L08030104: .4byte gMapOther
-.L08030108: .4byte gBmStatus
+.L08030108: .4byte gBmSt
 .L0803010C: .4byte gWorkingMap
 .L08030110:
     ldr r2, .L08030134 @ =gWorkingMoveScript
@@ -56482,7 +54616,7 @@ func_0803020C: @ 0x0803020C
     lsrs r3, r3, #0x18
     lsls r1, r1, #0x10
     asrs r1, r1, #0x10
-    ldr r2, .L08030244 @ =gBmStatus
+    ldr r2, .L08030244 @ =gBmSt
     movs r6, #0xe
     ldrsh r0, [r2, r6]
     subs r1, r1, r0
@@ -56502,7 +54636,7 @@ func_0803020C: @ 0x0803020C
     movs r0, #1
     b .L0803024A
     .align 2, 0
-.L08030244: .4byte gBmStatus
+.L08030244: .4byte gBmSt
 .L08030248:
     movs r0, #0
 .L0803024A:
@@ -56572,7 +54706,7 @@ func_08030250: @ 0x08030250
     adds r4, r4, r1
     add r4, sb
     ldrh r3, [r4]
-    ldr r0, .L08030304 @ =gBmStatus
+    ldr r0, .L08030304 @ =gBmSt
     movs r2, #0xc
     ldrsh r1, [r0, r2]
     subs r1, r7, r1
@@ -56600,7 +54734,7 @@ func_08030250: @ 0x08030250
     .align 2, 0
 .L080302FC: .4byte 0x08B96444
 .L08030300: .4byte 0x08B96410
-.L08030304: .4byte gBmStatus
+.L08030304: .4byte gBmSt
 .L08030308: .4byte 0x08B905B8
     func_end func_08030250
 
@@ -56654,7 +54788,7 @@ func_0803034C: @ 0x0803034C
     ldr r0, [r5]
     movs r1, #0
     bl MapFill
-    ldr r0, .L080303A4 @ =gMapMovement
+    ldr r0, .L080303A4 @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -56688,7 +54822,7 @@ func_0803034C: @ 0x0803034C
     bx r0
     .align 2, 0
 .L080303A0: .4byte gMapRange
-.L080303A4: .4byte gMapMovement
+.L080303A4: .4byte gBmMapMovement
     func_end func_0803034C
 
     thumb_func_start func_080303A8
@@ -56716,7 +54850,7 @@ func_080303C8: @ 0x080303C8
     adds r5, r0, #0
     movs r0, #2
     str r0, [r5, #0x58]
-    ldr r4, .L080303FC @ =gBmStatus
+    ldr r4, .L080303FC @ =gBmSt
     movs r1, #0x14
     ldrsh r0, [r4, r1]
     movs r2, #0x16
@@ -56735,7 +54869,7 @@ func_080303C8: @ 0x080303C8
     pop {r0}
     bx r0
     .align 2, 0
-.L080303FC: .4byte gBmStatus
+.L080303FC: .4byte gBmSt
     func_end func_080303C8
 
     thumb_func_start func_08030400
@@ -56885,7 +55019,7 @@ func_080304D0: @ 0x080304D0
     ldrb r2, [r0]
     adds r0, r6, #0
     adds r1, r5, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     pop {r4, r5, r6}
     pop {r0}
     bx r0
@@ -57205,7 +55339,7 @@ func_0803079C: @ 0x0803079C
     movs r1, #2
     str r1, [r0, #0x34]
     str r2, [r0, #0x38]
-    ldr r1, .L080307C0 @ =gMapSize
+    ldr r1, .L080307C0 @ =gBmMapSize
     movs r2, #0
     ldrsh r1, [r1, r2]
     lsls r1, r1, #3
@@ -57214,7 +55348,7 @@ func_0803079C: @ 0x0803079C
     strh r1, [r0]
     bx lr
     .align 2, 0
-.L080307C0: .4byte gMapSize
+.L080307C0: .4byte gBmMapSize
     func_end func_0803079C
 
     thumb_func_start func_080307C4
@@ -57223,7 +55357,7 @@ func_080307C4: @ 0x080307C4
     str r1, [r0, #0x34]
     movs r1, #2
     str r1, [r0, #0x38]
-    ldr r1, .L080307DC @ =gMapSize
+    ldr r1, .L080307DC @ =gBmMapSize
     movs r2, #2
     ldrsh r1, [r1, r2]
     lsls r1, r1, #3
@@ -57232,7 +55366,7 @@ func_080307C4: @ 0x080307C4
     strh r1, [r0]
     bx lr
     .align 2, 0
-.L080307DC: .4byte gMapSize
+.L080307DC: .4byte gBmMapSize
     func_end func_080307C4
 
     thumb_func_start func_080307E0
@@ -57242,7 +55376,7 @@ func_080307E0: @ 0x080307E0
     str r1, [r0, #0x34]
     movs r1, #0
     str r1, [r0, #0x38]
-    ldr r1, .L080307FC @ =gMapSize
+    ldr r1, .L080307FC @ =gBmMapSize
     movs r2, #0
     ldrsh r1, [r1, r2]
     lsls r1, r1, #3
@@ -57251,7 +55385,7 @@ func_080307E0: @ 0x080307E0
     strh r1, [r0]
     bx lr
     .align 2, 0
-.L080307FC: .4byte gMapSize
+.L080307FC: .4byte gBmMapSize
     func_end func_080307E0
 
     thumb_func_start func_08030800
@@ -57260,7 +55394,7 @@ func_08030800: @ 0x08030800
     str r1, [r0, #0x34]
     subs r1, #2
     str r1, [r0, #0x38]
-    ldr r1, .L08030818 @ =gMapSize
+    ldr r1, .L08030818 @ =gBmMapSize
     movs r2, #2
     ldrsh r1, [r1, r2]
     lsls r1, r1, #3
@@ -57269,7 +55403,7 @@ func_08030800: @ 0x08030800
     strh r1, [r0]
     bx lr
     .align 2, 0
-.L08030818: .4byte gMapSize
+.L08030818: .4byte gBmMapSize
     func_end func_08030800
 
     thumb_func_start func_0803081C
@@ -57318,7 +55452,7 @@ func_0803081C: @ 0x0803081C
     ldr r0, [r3, #0x38]
     adds r0, r5, r0
     str r0, [r3, #0x30]
-    ldr r1, .L08030898 @ =gBmStatus
+    ldr r1, .L08030898 @ =gBmSt
     strh r2, [r1, #0xc]
     strh r0, [r1, #0xe]
     adds r1, r3, #0
@@ -57336,7 +55470,7 @@ func_0803081C: @ 0x0803081C
     pop {r0}
     bx r0
     .align 2, 0
-.L08030898: .4byte gBmStatus
+.L08030898: .4byte gBmSt
     func_end func_0803081C
 
     thumb_func_start func_0803089C
@@ -57371,7 +55505,7 @@ func_0803089C: @ 0x0803089C
 .L080308DA:
     movs r0, #0
     bl GetCameraCenteredX
-    ldr r4, .L0803090C @ =gBmStatus
+    ldr r4, .L0803090C @ =gBmSt
     strh r0, [r4, #0xc]
     movs r0, #0
     bl GetCameraCenteredY
@@ -57391,7 +55525,7 @@ func_0803089C: @ 0x0803089C
     pop {r0}
     bx r0
     .align 2, 0
-.L0803090C: .4byte gBmStatus
+.L0803090C: .4byte gBmSt
     func_end func_0803089C
 
     thumb_func_start func_08030910
@@ -57414,7 +55548,7 @@ func_08030910: @ 0x08030910
     movs r1, #0
     bl SetMapCursorPosition
 .L08030938:
-    ldr r4, .L08030958 @ =gBmStatus
+    ldr r4, .L08030958 @ =gBmSt
     movs r1, #0x14
     ldrsh r0, [r4, r1]
     lsls r0, r0, #4
@@ -57429,7 +55563,7 @@ func_08030910: @ 0x08030910
     pop {r0}
     bx r0
     .align 2, 0
-.L08030958: .4byte gBmStatus
+.L08030958: .4byte gBmSt
     func_end func_08030910
 
     thumb_func_start func_0803095C
@@ -57448,7 +55582,7 @@ func_0803095C: @ 0x0803095C
     adds r0, r4, #0
     bl Proc_Break
 .L0803097A:
-    ldr r1, .L08030990 @ =gBmStatus
+    ldr r1, .L08030990 @ =gBmSt
     movs r2, #0x20
     ldrsh r0, [r1, r2]
     movs r2, #0x22
@@ -57459,7 +55593,7 @@ func_0803095C: @ 0x0803095C
     pop {r0}
     bx r0
     .align 2, 0
-.L08030990: .4byte gBmStatus
+.L08030990: .4byte gBmSt
     func_end func_0803095C
 
     thumb_func_start func_08030994
@@ -57482,7 +55616,7 @@ func_08030994: @ 0x08030994
     adds r3, r1, #0
     cmp r0, #0
     beq .L080309F0
-    ldr r1, .L080309E4 @ =gBmStatus
+    ldr r1, .L080309E4 @ =gBmSt
     movs r2, #0x14
     ldrsh r0, [r1, r2]
     movs r3, #0x16
@@ -57501,7 +55635,7 @@ func_08030994: @ 0x08030994
     b .L08030BF4
     .align 2, 0
 .L080309E0: .4byte gpKeySt
-.L080309E4: .4byte gBmStatus
+.L080309E4: .4byte gBmSt
 .L080309E8: .4byte gPlaySt
 .L080309EC: .4byte 0x0000038B
 .L080309F0:
@@ -57510,7 +55644,7 @@ func_08030994: @ 0x08030994
     ands r0, r2
     cmp r0, #0
     beq .L08030A54
-    ldr r4, .L08030A4C @ =gBmStatus
+    ldr r4, .L08030A4C @ =gBmSt
     movs r1, #0x16
     ldrsh r0, [r4, r1]
     ldr r6, .L08030A50 @ =gMapUnit
@@ -57546,7 +55680,7 @@ func_08030994: @ 0x08030994
     bl Proc_Goto
     b .L08030C04
     .align 2, 0
-.L08030A4C: .4byte gBmStatus
+.L08030A4C: .4byte gBmSt
 .L08030A50: .4byte gMapUnit
 .L08030A54:
     ldr r0, [r3]
@@ -57557,7 +55691,7 @@ func_08030994: @ 0x08030994
     beq .L08030A88
     bl func_08085C7C
     ldr r4, .L08030A80 @ =gPlaySt
-    ldr r1, .L08030A84 @ =gBmStatus
+    ldr r1, .L08030A84 @ =gBmSt
     ldrh r0, [r1, #0x14]
     strb r0, [r4, #0x12]
     ldrh r0, [r1, #0x16]
@@ -57571,7 +55705,7 @@ func_08030994: @ 0x08030994
     b .L08030B50
     .align 2, 0
 .L08030A80: .4byte gPlaySt
-.L08030A84: .4byte gBmStatus
+.L08030A84: .4byte gBmSt
 .L08030A88:
     movs r0, #1
     ands r0, r1
@@ -57579,7 +55713,7 @@ func_08030994: @ 0x08030994
     bne .L08030A92
     b .L08030BD0
 .L08030A92:
-    ldr r2, .L08030AC4 @ =gBmStatus
+    ldr r2, .L08030AC4 @ =gBmSt
     movs r3, #0x16
     ldrsh r0, [r2, r3]
     ldr r1, .L08030AC8 @ =gMapUnit
@@ -57604,7 +55738,7 @@ func_08030994: @ 0x08030994
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.L08030AC4: .4byte gBmStatus
+.L08030AC4: .4byte gBmSt
 .L08030AC8: .4byte gMapUnit
 .L08030ACC: .4byte .L08030AD0
 .L08030AD0: @ jump table
@@ -57616,7 +55750,7 @@ func_08030994: @ 0x08030994
 .L08030AE4:
     bl func_08085C7C
     ldr r3, .L08030B30 @ =gPlaySt
-    ldr r2, .L08030B34 @ =gBmStatus
+    ldr r2, .L08030B34 @ =gBmSt
     ldrh r0, [r2, #0x14]
     strb r0, [r3, #0x12]
     ldrh r0, [r2, #0x16]
@@ -57651,7 +55785,7 @@ func_08030994: @ 0x08030994
     b .L08030C04
     .align 2, 0
 .L08030B30: .4byte gPlaySt
-.L08030B34: .4byte gBmStatus
+.L08030B34: .4byte gBmSt
 .L08030B38: .4byte gMapTerrain
 .L08030B3C: .4byte 0x0000038A
 .L08030B40:
@@ -57740,7 +55874,7 @@ func_08030994: @ 0x08030994
     .align 2, 0
 .L08030BF0: .4byte gpKeySt
 .L08030BF4:
-    ldr r1, .L08030C0C @ =gBmStatus
+    ldr r1, .L08030C0C @ =gBmSt
     movs r2, #0x20
     ldrsh r0, [r1, r2]
     movs r3, #0x22
@@ -57752,7 +55886,7 @@ func_08030994: @ 0x08030994
     pop {r0}
     bx r0
     .align 2, 0
-.L08030C0C: .4byte gBmStatus
+.L08030C0C: .4byte gBmSt
     func_end func_08030994
 
     thumb_func_start func_08030C10
@@ -57787,7 +55921,7 @@ func_08030C28: @ 0x08030C28
     adds r1, #0x4a
     movs r0, #2
     strh r0, [r1]
-    ldr r1, .L08030C98 @ =gBmStatus
+    ldr r1, .L08030C98 @ =gBmSt
     movs r2, #0x14
     ldrsh r0, [r1, r2]
     str r0, [r5, #0x3c]
@@ -57806,7 +55940,7 @@ func_08030C28: @ 0x08030C28
     movs r2, #0x11
     ldrsb r2, [r0, r2]
     adds r0, r5, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     ldr r0, .L08030CA4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
@@ -57821,7 +55955,7 @@ func_08030C28: @ 0x08030C28
     bx r0
     .align 2, 0
 .L08030C94: .4byte 0x08196228
-.L08030C98: .4byte gBmStatus
+.L08030C98: .4byte gBmSt
 .L08030C9C: .4byte 0x00000726
 .L08030CA0: .4byte gActiveUnit
 .L08030CA4: .4byte gPlaySt
@@ -57833,7 +55967,7 @@ func_08030CAC: @ 0x08030CAC
     push {r4, r5, r6, r7, lr}
     sub sp, #4
     adds r4, r0, #0
-    ldr r6, .L08030D44 @ =gBmStatus
+    ldr r6, .L08030D44 @ =gBmSt
     movs r0, #0x16
     ldrsh r1, [r6, r0]
     ldr r0, .L08030D48 @ =gMapRange
@@ -57902,7 +56036,7 @@ func_08030CAC: @ 0x08030CAC
     bl func_0803279C
     b .L08030DEE
     .align 2, 0
-.L08030D44: .4byte gBmStatus
+.L08030D44: .4byte gBmSt
 .L08030D48: .4byte gMapRange
 .L08030D4C: .4byte gMapUnit
 .L08030D50: .4byte 0x08B905B8
@@ -57963,7 +56097,7 @@ func_08030CAC: @ 0x08030CAC
     bl SetSpriteAnimId
 .L08030DCE:
     ldr r0, [r4, #0x54]
-    ldr r3, .L08030DF8 @ =gBmStatus
+    ldr r3, .L08030DF8 @ =gBmSt
     movs r2, #0x20
     ldrsh r1, [r3, r2]
     movs r4, #0xc
@@ -57983,7 +56117,7 @@ func_08030CAC: @ 0x08030CAC
     pop {r0}
     bx r0
     .align 2, 0
-.L08030DF8: .4byte gBmStatus
+.L08030DF8: .4byte gBmSt
     func_end func_08030CAC
 
     thumb_func_start func_08030DFC
@@ -58004,7 +56138,7 @@ func_08030DFC: @ 0x08030DFC
     movs r2, #0x11
     ldrsb r2, [r0, r2]
     adds r0, r5, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -58018,7 +56152,7 @@ func_08030E2C: @ 0x08030E2C
     adds r7, r0, #0
     ldr r0, .L08030E68 @ =gActiveUnit
     ldr r5, [r0]
-    ldr r6, .L08030E6C @ =gBmStatus
+    ldr r6, .L08030E6C @ =gBmSt
     movs r1, #0x16
     ldrsh r0, [r6, r1]
     ldr r1, .L08030E70 @ =gMapUnit
@@ -58044,7 +56178,7 @@ func_08030E2C: @ 0x08030E2C
     b .L08030E94
     .align 2, 0
 .L08030E68: .4byte gActiveUnit
-.L08030E6C: .4byte gBmStatus
+.L08030E6C: .4byte gBmSt
 .L08030E70: .4byte gMapUnit
 .L08030E74:
     movs r2, #0x10
@@ -58131,11 +56265,11 @@ func_08030EFC: @ 0x08030EFC
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
-    bl func_080315BC
+    bl GetChapterEventInfo
     ldr r0, [r0, #8]
     str r0, [sp]
     mov r1, sp
-    ldr r2, .L08030F38 @ =gBmStatus
+    ldr r2, .L08030F38 @ =gBmSt
     ldrh r0, [r2, #0x14]
     strb r0, [r1, #0x18]
     ldrh r0, [r2, #0x16]
@@ -58152,7 +56286,7 @@ func_08030EFC: @ 0x08030EFC
     b .L08030F4E
     .align 2, 0
 .L08030F34: .4byte gPlaySt
-.L08030F38: .4byte gBmStatus
+.L08030F38: .4byte gBmSt
 .L08030F3C:
     ldr r1, [sp, #4]
     movs r0, #0
@@ -58188,7 +56322,7 @@ func_08030F54: @ 0x08030F54
     rsbs r1, r1, #0
     ands r0, r1
     str r0, [r2, #0xc]
-    ldr r1, .L08030FB8 @ =gBmStatus
+    ldr r1, .L08030FB8 @ =gBmSt
     movs r0, #0xf7
     ldrb r2, [r1, #4]
     ands r0, r2
@@ -58212,7 +56346,7 @@ func_08030F54: @ 0x08030F54
     .align 2, 0
 .L08030FB0: .4byte gpKeySt
 .L08030FB4: .4byte gActiveUnit
-.L08030FB8: .4byte gBmStatus
+.L08030FB8: .4byte gBmSt
 .L08030FBC: .4byte gPlaySt
 .L08030FC0: .4byte 0x0000038B
 .L08030FC4:
@@ -58221,7 +56355,7 @@ func_08030F54: @ 0x08030F54
     ands r0, r1
     cmp r0, #0
     beq .L08031018
-    ldr r2, .L08031074 @ =gBmStatus
+    ldr r2, .L08031074 @ =gBmSt
     movs r3, #0x16
     ldrsh r0, [r2, r3]
     ldr r1, .L08031078 @ =gMapUnit
@@ -58273,7 +56407,7 @@ func_08030F54: @ 0x08030F54
     movs r3, #2
     ldrsh r2, [r4, r3]
     adds r0, r5, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     movs r1, #0
     ldrsh r0, [r4, r1]
     movs r2, #2
@@ -58288,7 +56422,7 @@ func_08030F54: @ 0x08030F54
     ldr r0, .L0803108C @ =0x0000038B
     bl m4aSongNumStart
 .L0803105E:
-    ldr r1, .L08031074 @ =gBmStatus
+    ldr r1, .L08031074 @ =gBmSt
     movs r3, #0x20
     ldrsh r0, [r1, r3]
     movs r2, #0x22
@@ -58300,7 +56434,7 @@ func_08030F54: @ 0x08030F54
     pop {r0}
     bx r0
     .align 2, 0
-.L08031074: .4byte gBmStatus
+.L08031074: .4byte gBmSt
 .L08031078: .4byte gMapUnit
 .L0803107C: .4byte gActiveUnitMoveOrigin
 .L08031080: .4byte gActiveUnit
@@ -58443,7 +56577,7 @@ func_0803117C: @ 0x0803117C
     ands r0, r1
     cmp r0, #0
     beq .L080311CA
-    ldr r1, .L080311D4 @ =gBmStatus
+    ldr r1, .L080311D4 @ =gBmSt
     movs r0, #0x40
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -58479,7 +56613,7 @@ func_0803117C: @ 0x0803117C
     bx r0
     .align 2, 0
 .L080311D0: .4byte gPlaySt
-.L080311D4: .4byte gBmStatus
+.L080311D4: .4byte gBmSt
 .L080311D8: .4byte gBuf
 .L080311DC: .4byte 0x0001000C
     func_end func_0803117C
@@ -58525,7 +56659,7 @@ func_080311E0: @ 0x080311E0
     bl func_0803117C
     ldr r0, .L0803124C @ =0x08B96460
     bl Proc_EndEach
-    ldr r2, .L08031250 @ =gBmStatus
+    ldr r2, .L08031250 @ =gBmSt
     movs r1, #0xef
     adds r0, r1, #0
     ldrb r3, [r2, #4]
@@ -58540,7 +56674,7 @@ func_080311E0: @ 0x080311E0
     bx r0
     .align 2, 0
 .L0803124C: .4byte 0x08B96460
-.L08031250: .4byte gBmStatus
+.L08031250: .4byte gBmSt
 .L08031254: .4byte gPlaySt
     func_end func_080311E0
 
@@ -58576,14 +56710,14 @@ func_08031270: @ 0x08031270
     movs r0, #1
     b .L080312F0
 .L0803128C:
-    ldr r0, .L080312F8 @ =gMapSize
+    ldr r0, .L080312F8 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
     cmp r5, #0
     blt .L080312EE
 .L08031298:
-    ldr r0, .L080312F8 @ =gMapSize
+    ldr r0, .L080312F8 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -58592,7 +56726,7 @@ func_08031270: @ 0x08031270
     lsls r6, r5, #2
     lsls r7, r5, #0x18
 .L080312A8:
-    ldr r0, .L080312FC @ =gMapMovement
+    ldr r0, .L080312FC @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r6, r0
     ldr r0, [r0]
@@ -58636,8 +56770,8 @@ func_08031270: @ 0x08031270
     pop {r1}
     bx r1
     .align 2, 0
-.L080312F8: .4byte gMapSize
-.L080312FC: .4byte gMapMovement
+.L080312F8: .4byte gBmMapSize
+.L080312FC: .4byte gBmMapMovement
 .L08031300: .4byte gMapTerrain
     func_end func_08031270
 
@@ -58663,14 +56797,14 @@ func_08031304: @ 0x08031304
     movs r0, #1
     b .L08031374
 .L0803132C:
-    ldr r0, .L0803137C @ =gMapSize
+    ldr r0, .L0803137C @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
     cmp r5, #0
     blt .L08031372
 .L08031338:
-    ldr r0, .L0803137C @ =gMapSize
+    ldr r0, .L0803137C @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -58678,7 +56812,7 @@ func_08031304: @ 0x08031304
     blt .L0803136C
     lsls r6, r5, #0x18
 .L08031346:
-    ldr r0, .L08031380 @ =gMapMovement
+    ldr r0, .L08031380 @ =gBmMapMovement
     ldr r1, [r0]
     lsls r0, r5, #2
     adds r0, r0, r1
@@ -58708,8 +56842,8 @@ func_08031304: @ 0x08031304
     pop {r1}
     bx r1
     .align 2, 0
-.L0803137C: .4byte gMapSize
-.L08031380: .4byte gMapMovement
+.L0803137C: .4byte gBmMapSize
+.L08031380: .4byte gBmMapMovement
     func_end func_08031304
 
     thumb_func_start func_08031384
@@ -58835,7 +56969,7 @@ func_08031444: @ 0x08031444
     thumb_func_start func_08031470
 func_08031470: @ 0x08031470
     push {r4, lr}
-    ldr r4, .L080314A4 @ =gMapMovement
+    ldr r4, .L080314A4 @ =gBmMapMovement
     ldr r0, [r4]
     movs r1, #1
     rsbs r1, r1, #0
@@ -58858,7 +56992,7 @@ func_08031470: @ 0x08031470
     pop {r1}
     bx r1
     .align 2, 0
-.L080314A4: .4byte gMapMovement
+.L080314A4: .4byte gBmMapMovement
 .L080314A8: .4byte gActiveUnit
     func_end func_08031470
 
@@ -58898,14 +57032,14 @@ func_080314AC: @ 0x080314AC
     movs r0, #0
     movs r1, #0
     bl BeginTargetList
-    ldr r0, .L08031568 @ =gMapSize
+    ldr r0, .L08031568 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r6, r0, #1
     cmp r6, #0
     blt .L0803155A
 .L08031502:
-    ldr r0, .L08031568 @ =gMapSize
+    ldr r0, .L08031568 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -58914,7 +57048,7 @@ func_080314AC: @ 0x080314AC
     blt .L08031554
     lsls r5, r6, #2
 .L08031512:
-    ldr r0, .L0803156C @ =gMapMovement
+    ldr r0, .L0803156C @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -58958,8 +57092,8 @@ func_080314AC: @ 0x080314AC
     .align 2, 0
 .L08031560: .4byte gMapOther
 .L08031564: .4byte gActionSt
-.L08031568: .4byte gMapSize
-.L0803156C: .4byte gMapMovement
+.L08031568: .4byte gBmMapSize
+.L0803156C: .4byte gBmMapMovement
 .L08031570: .4byte gMapUnit
     func_end func_080314AC
 
@@ -59006,8 +57140,8 @@ GetChapterMapChanges: @ 0x080315A0
 .L080315B8: .4byte 0x08C9C9C8
     func_end GetChapterMapChanges
 
-    thumb_func_start func_080315BC
-func_080315BC: @ 0x080315BC
+    thumb_func_start GetChapterEventInfo
+GetChapterEventInfo: @ 0x080315BC
     push {r4, lr}
     ldr r4, .L080315D4 @ =0x08C9C9C8
     bl GetChapterInfo
@@ -59021,7 +57155,7 @@ func_080315BC: @ 0x080315BC
     bx r1
     .align 2, 0
 .L080315D4: .4byte 0x08C9C9C8
-    func_end func_080315BC
+    func_end GetChapterEventInfo
 
     thumb_func_start func_080315D8
 func_080315D8: @ 0x080315D8
@@ -59329,7 +57463,7 @@ func_08031830: @ 0x08031830
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     lsls r0, r0, #4
-    ldr r1, .L0803184C @ =gBmStatus
+    ldr r1, .L0803184C @ =gBmSt
     movs r3, #0xc
     ldrsh r1, [r1, r3]
     subs r0, r0, r1
@@ -59338,7 +57472,7 @@ func_08031830: @ 0x08031830
     movs r0, #0
     b .L08031854
     .align 2, 0
-.L0803184C: .4byte gBmStatus
+.L0803184C: .4byte gBmSt
 .L08031850:
     movs r0, #0x1e
     subs r0, r0, r2
@@ -60790,7 +58924,7 @@ func_0803240C: @ 0x0803240C
     ldr r0, .L08032464 @ =0x08B969C2
     subs r1, #0x80
     adds r1, r1, r0
-    ldr r0, .L08032468 @ =gBmStatus
+    ldr r0, .L08032468 @ =gBmSt
     adds r0, #0x38
     ldrb r1, [r1]
     ldrb r0, [r0]
@@ -60808,14 +58942,14 @@ func_0803240C: @ 0x0803240C
     bx lr
     .align 2, 0
 .L08032464: .4byte 0x08B969C2
-.L08032468: .4byte gBmStatus
+.L08032468: .4byte gBmSt
 .L0803246C: .4byte 0x04000050
     func_end func_0803240C
 
     thumb_func_start func_08032470
 func_08032470: @ 0x08032470
     push {lr}
-    ldr r0, .L08032484 @ =gBmStatus
+    ldr r0, .L08032484 @ =gBmSt
     adds r0, #0x38
     movs r1, #8
     strb r1, [r0]
@@ -60824,13 +58958,13 @@ func_08032470: @ 0x08032470
     pop {r0}
     bx r0
     .align 2, 0
-.L08032484: .4byte gBmStatus
+.L08032484: .4byte gBmSt
 .L08032488: .4byte func_0803240C
     func_end func_08032470
 
     thumb_func_start func_0803248C
 func_0803248C: @ 0x0803248C
-    ldr r0, .L080324A0 @ =gBmStatus
+    ldr r0, .L080324A0 @ =gBmSt
     adds r1, r0, #0
     adds r1, #0x38
     ldrb r0, [r1]
@@ -60841,14 +58975,14 @@ func_0803248C: @ 0x0803248C
 .L0803249C:
     bx lr
     .align 2, 0
-.L080324A0: .4byte gBmStatus
+.L080324A0: .4byte gBmSt
     func_end func_0803248C
 
     thumb_func_start func_080324A4
 func_080324A4: @ 0x080324A4
     push {r4, lr}
     adds r4, r0, #0
-    ldr r1, .L080324CC @ =gBmStatus
+    ldr r1, .L080324CC @ =gBmSt
     adds r1, #0x38
     ldrb r0, [r1]
     adds r0, #1
@@ -60866,7 +59000,7 @@ func_080324A4: @ 0x080324A4
     pop {r0}
     bx r0
     .align 2, 0
-.L080324CC: .4byte gBmStatus
+.L080324CC: .4byte gBmSt
     func_end func_080324A4
 
     thumb_func_start func_080324D0
@@ -60891,18 +59025,18 @@ func_080324D0: @ 0x080324D0
     thumb_func_start func_080324F0
 func_080324F0: @ 0x080324F0
     push {lr}
-    ldr r0, .L0803250C @ =gBmStatus
+    ldr r0, .L0803250C @ =gBmSt
     ldrh r1, [r0, #0x2a]
     subs r1, #0x10
     strh r1, [r0, #0x2a]
     movs r0, #0
-    bl func_08015DB0
+    bl CameraMove_8015DB0
     ldr r0, .L08032510 @ =0x08B969E4
     bl Proc_BreakEach
     pop {r0}
     bx r0
     .align 2, 0
-.L0803250C: .4byte gBmStatus
+.L0803250C: .4byte gBmSt
 .L08032510: .4byte 0x08B969E4
     func_end func_080324F0
 
@@ -60966,7 +59100,7 @@ func_08032560: @ 0x08032560
     str r4, [r0, #0x2c]
     bl func_08032340
     bl func_08019B40
-    ldr r1, .L0803259C @ =gBmStatus
+    ldr r1, .L0803259C @ =gBmSt
     ldrh r0, [r1, #0x2a]
     adds r0, #0x10
     strh r0, [r1, #0x2a]
@@ -60977,7 +59111,7 @@ func_08032560: @ 0x08032560
     .align 2, 0
 .L08032594: .4byte gPlaySt
 .L08032598: .4byte 0x08B96A14
-.L0803259C: .4byte gBmStatus
+.L0803259C: .4byte gBmSt
     func_end func_08032560
 
     thumb_func_start func_080325A0
@@ -61214,7 +59348,7 @@ func_08032770: @ 0x08032770
     str r1, [r0, #0x2c]
     bl func_08032340
     bl func_08019B40
-    ldr r1, .L08032798 @ =gBmStatus
+    ldr r1, .L08032798 @ =gBmSt
     ldrh r0, [r1, #0x2a]
     adds r0, #0x10
     strh r0, [r1, #0x2a]
@@ -61222,7 +59356,7 @@ func_08032770: @ 0x08032770
     bx r0
     .align 2, 0
 .L08032794: .4byte 0x08B96A54
-.L08032798: .4byte gBmStatus
+.L08032798: .4byte gBmSt
     func_end func_08032770
 
     thumb_func_start func_0803279C
@@ -61544,7 +59678,7 @@ func_080329C8: @ 0x080329C8
     movs r2, #0x10
     ldrsb r2, [r4, r2]
     lsls r2, r2, #4
-    ldr r1, .L08032A40 @ =gBmStatus
+    ldr r1, .L08032A40 @ =gBmSt
     movs r3, #0xc
     ldrsh r0, [r1, r3]
     subs r2, r2, r0
@@ -61571,7 +59705,7 @@ func_080329C8: @ 0x080329C8
     bl Proc_Goto
     b .L08032A5A
     .align 2, 0
-.L08032A40: .4byte gBmStatus
+.L08032A40: .4byte gBmSt
 .L08032A44:
     adds r0, r4, #0
     bl StartMu
@@ -61637,7 +59771,7 @@ func_08032A60: @ 0x08032A60
     thumb_func_start func_08032AC8
 func_08032AC8: @ 0x08032AC8
     push {r4, lr}
-    ldr r1, .L08032AF8 @ =gBmStatus
+    ldr r1, .L08032AF8 @ =gBmSt
     ldr r0, .L08032AFC @ =gActiveUnit
     ldr r0, [r0]
     movs r4, #0x10
@@ -61658,7 +59792,7 @@ func_08032AC8: @ 0x08032AC8
     pop {r0}
     bx r0
     .align 2, 0
-.L08032AF8: .4byte gBmStatus
+.L08032AF8: .4byte gBmSt
 .L08032AFC: .4byte gActiveUnit
     func_end func_08032AC8
 
@@ -61757,7 +59891,7 @@ func_08032BAC: @ 0x08032BAC
     movs r1, #0x10
     ldrsb r1, [r4, r1]
     lsls r1, r1, #4
-    ldr r3, .L08032C00 @ =gBmStatus
+    ldr r3, .L08032C00 @ =gBmSt
     movs r2, #0xc
     ldrsh r0, [r3, r2]
     subs r1, r1, r0
@@ -61789,7 +59923,7 @@ func_08032BAC: @ 0x08032BAC
     bx r0
     .align 2, 0
 .L08032BFC: .4byte gActiveUnit
-.L08032C00: .4byte gBmStatus
+.L08032C00: .4byte gBmSt
     func_end func_08032BAC
 
     thumb_func_start func_08032C04
@@ -62193,7 +60327,7 @@ func_08032ED0: @ 0x08032ED0
     movs r2, #1
     ldrsb r2, [r0, r2]
     adds r0, r4, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     pop {r4}
     pop {r0}
     bx r0
@@ -62572,7 +60706,7 @@ func_080331B0: @ 0x080331B0
     lsls r2, r2, #0x18
     asrs r2, r2, #0x18
     adds r0, r4, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
 .L080331DA:
     pop {r4}
     pop {r0}
@@ -62773,7 +60907,7 @@ func_08033354: @ 0x08033354
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     lsls r0, r0, #4
-    ldr r1, .L08033374 @ =gBmStatus
+    ldr r1, .L08033374 @ =gBmSt
     movs r2, #0xc
     ldrsh r1, [r1, r2]
     subs r0, r0, r1
@@ -62783,7 +60917,7 @@ func_08033354: @ 0x08033354
     b .L08033384
     .align 2, 0
 .L08033370: .4byte 0x0203A470
-.L08033374: .4byte gBmStatus
+.L08033374: .4byte gBmSt
 .L08033378:
     cmp r0, #0x70
     bgt .L08033380
@@ -63966,7 +62100,7 @@ func_08033CB4: @ 0x08033CB4
     movs r2, #1
 .L08033D12:
     adds r0, r3, #0
-    bl func_08015AA8
+    bl PutSysArrow
 .L08033D18:
     cmp r6, #0
     beq .L08033D48
@@ -63991,7 +62125,7 @@ func_08033CB4: @ 0x08033CB4
     movs r2, #1
 .L08033D42:
     adds r0, r3, #0
-    bl func_08015AA8
+    bl PutSysArrow
 .L08033D48:
     pop {r4, r5, r6}
     pop {r0}
@@ -64509,7 +62643,7 @@ StartFightPreview: @ 0x080340FC
 .L0803414A:
     strb r0, [r1]
 .L0803414C:
-    ldr r0, .L08034160 @ =gMapMovement
+    ldr r0, .L08034160 @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -64519,7 +62653,7 @@ StartFightPreview: @ 0x080340FC
     pop {r0}
     bx r0
     .align 2, 0
-.L08034160: .4byte gMapMovement
+.L08034160: .4byte gBmMapMovement
     func_end StartFightPreview
 
     thumb_func_start func_08034164
@@ -65049,7 +63183,7 @@ func_08034520: @ 0x08034520
     strb r0, [r1, #0x16]
     strb r0, [r1, #0x11]
     movs r0, #3
-    bl func_080A1100
+    bl WriteSuspendSave
     bl GetBattleAnimKind
     cmp r0, #1
     bne .L0803455E
@@ -66164,7 +64298,7 @@ func_08034CFC: @ 0x08034CFC
 .L08034D20:
     strb r0, [r1, #0x16]
     movs r0, #3
-    bl func_080A1100
+    bl WriteSuspendSave
     pop {r0}
     bx r0
     .align 2, 0
@@ -66747,7 +64881,7 @@ func_08035124: @ 0x08035124
 .L08035176:
     adds r0, r4, #0
     adds r2, r5, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     b .L080351B8
     .align 2, 0
 .L08035180: .4byte gPlaySt
@@ -66763,7 +64897,7 @@ func_08035124: @ 0x08035124
     ldrb r1, [r3, #2]
     ldrb r2, [r3, #3]
     adds r0, r4, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     b .L080351B8
 .L080351A6:
     ldr r0, .L080351C0 @ =gActiveUnit
@@ -66773,7 +64907,7 @@ func_08035124: @ 0x08035124
     movs r2, #0x11
     ldrsb r2, [r0, r2]
     adds r0, r4, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
 .L080351B8:
     pop {r4, r5, r6}
     pop {r0}
@@ -66793,7 +64927,7 @@ func_080351C4: @ 0x080351C4
     bl HideUnitSprite
     ldr r0, [r6]
     bl MapFloodUnit
-    ldr r0, .L0803522C @ =gMapMovement
+    ldr r0, .L0803522C @ =gBmMapMovement
     ldr r0, [r0]
     bl func_0801B190
     ldr r4, .L08035230 @ =0x0203A97C
@@ -66828,7 +64962,7 @@ func_080351C4: @ 0x080351C4
     bx r0
     .align 2, 0
 .L08035228: .4byte gActiveUnit
-.L0803522C: .4byte gMapMovement
+.L0803522C: .4byte gBmMapMovement
 .L08035230: .4byte 0x0203A97C
 .L08035234: .4byte gWorkingMoveScript
 .L08035238: .4byte gActionSt
@@ -67313,7 +65447,7 @@ func_08035524: @ 0x08035524
     mov r0, r8
     adds r1, r6, #0
     adds r2, r5, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     lsls r0, r6, #4
     lsls r1, r5, #4
     movs r2, #2
@@ -67888,7 +66022,7 @@ func_08035A38: @ 0x08035A38
     bl MapFloodRange_Unitless
     ldr r2, .L08035A7C @ =0x0000FFFF
     str r2, [sp, #0xc]
-    ldr r0, .L08035A80 @ =gMapSize
+    ldr r0, .L08035A80 @ =gBmMapSize
     ldrh r0, [r0, #2]
     subs r0, #1
     lsls r0, r0, #0x10
@@ -67896,9 +66030,9 @@ func_08035A38: @ 0x08035A38
     .align 2, 0
 .L08035A78: .4byte gActiveUnit
 .L08035A7C: .4byte 0x0000FFFF
-.L08035A80: .4byte gMapSize
+.L08035A80: .4byte gBmMapSize
 .L08035A84:
-    ldr r0, .L08035B20 @ =gMapSize
+    ldr r0, .L08035B20 @ =gBmMapSize
     ldrh r0, [r0]
     subs r0, #1
     lsls r0, r0, #0x10
@@ -67979,7 +66113,7 @@ func_08035A38: @ 0x08035A38
     movs r0, #0
     b .L08035B44
     .align 2, 0
-.L08035B20: .4byte gMapSize
+.L08035B20: .4byte gBmMapSize
 .L08035B24: .4byte gMapRange
 .L08035B28: .4byte gMapUnit
 .L08035B2C: .4byte gActiveUnitId
@@ -68031,7 +66165,7 @@ func_08035B54: @ 0x08035B54
     bl func_0803BF60
     ldr r2, .L08035B98 @ =0x0000FFFF
     str r2, [sp, #0xc]
-    ldr r0, .L08035B9C @ =gMapSize
+    ldr r0, .L08035B9C @ =gBmMapSize
     ldrh r0, [r0, #2]
     subs r0, #1
     lsls r0, r0, #0x10
@@ -68039,9 +66173,9 @@ func_08035B54: @ 0x08035B54
     .align 2, 0
 .L08035B94: .4byte gActiveUnit
 .L08035B98: .4byte 0x0000FFFF
-.L08035B9C: .4byte gMapSize
+.L08035B9C: .4byte gBmMapSize
 .L08035BA0:
-    ldr r0, .L08035C3C @ =gMapSize
+    ldr r0, .L08035C3C @ =gBmMapSize
     ldrh r0, [r0]
     subs r0, #1
     lsls r0, r0, #0x10
@@ -68122,7 +66256,7 @@ func_08035B54: @ 0x08035B54
     movs r0, #0
     b .L08035C60
     .align 2, 0
-.L08035C3C: .4byte gMapSize
+.L08035C3C: .4byte gBmMapSize
 .L08035C40: .4byte gMapRange
 .L08035C44: .4byte gMapUnit
 .L08035C48: .4byte gActiveUnitId
@@ -68161,7 +66295,7 @@ func_08035C70: @ 0x08035C70
     ldr r0, [r0]
     bl MapFloodUnit
     ldr r3, .L08035C98 @ =0x0000FFFF
-    ldr r0, .L08035C9C @ =gMapSize
+    ldr r0, .L08035C9C @ =gBmMapSize
     ldrh r0, [r0, #2]
     subs r0, #1
     lsls r0, r0, #0x10
@@ -68169,9 +66303,9 @@ func_08035C70: @ 0x08035C70
     .align 2, 0
 .L08035C94: .4byte gActiveUnit
 .L08035C98: .4byte 0x0000FFFF
-.L08035C9C: .4byte gMapSize
+.L08035C9C: .4byte gBmMapSize
 .L08035CA0:
-    ldr r0, .L08035D40 @ =gMapSize
+    ldr r0, .L08035D40 @ =gBmMapSize
     ldrh r0, [r0]
     subs r0, #1
     lsls r0, r0, #0x10
@@ -68183,7 +66317,7 @@ func_08035C70: @ 0x08035C70
     adds r2, r7, #0
     asrs r6, r7, #0xe
 .L08035CB6:
-    ldr r0, .L08035D44 @ =gMapMovement
+    ldr r0, .L08035D44 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r6, r0
     asrs r1, r4, #0x10
@@ -68254,8 +66388,8 @@ func_08035C70: @ 0x08035C70
     pop {r0}
     bx r0
     .align 2, 0
-.L08035D40: .4byte gMapSize
-.L08035D44: .4byte gMapMovement
+.L08035D40: .4byte gBmMapSize
+.L08035D44: .4byte gBmMapMovement
 .L08035D48: .4byte gMapUnit
 .L08035D4C: .4byte 0xFFFF0000
     func_end func_08035C70
@@ -68422,14 +66556,14 @@ func_08035E44: @ 0x08035E44
     adds r7, r2, #0
     movs r0, #0xff
     mov sb, r0
-    ldr r0, .L08035F20 @ =gMapSize
+    ldr r0, .L08035F20 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
     cmp r5, #0
     blt .L08035F16
 .L08035E66:
-    ldr r0, .L08035F20 @ =gMapSize
+    ldr r0, .L08035F20 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -68526,7 +66660,7 @@ func_08035E44: @ 0x08035E44
     movs r0, #0
     b .L08035F36
     .align 2, 0
-.L08035F20: .4byte gMapSize
+.L08035F20: .4byte gBmMapSize
 .L08035F24: .4byte gMapRange
 .L08035F28: .4byte gMapTerrain
 .L08035F2C: .4byte gMapUnit
@@ -68605,7 +66739,7 @@ func_08035FA0: @ 0x08035FA0
     mov sb, r2
     movs r0, #0xff
     str r0, [sp, #8]
-    ldr r0, .L080360BC @ =gMapSize
+    ldr r0, .L080360BC @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r6, r0, #1
@@ -68613,7 +66747,7 @@ func_08035FA0: @ 0x08035FA0
     blt .L080360B0
     mov r8, sp
 .L08035FC4:
-    ldr r0, .L080360BC @ =gMapSize
+    ldr r0, .L080360BC @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r5, r0, #1
@@ -68739,7 +66873,7 @@ func_08035FA0: @ 0x08035FA0
     movs r0, #0
     b .L080360D6
     .align 2, 0
-.L080360BC: .4byte gMapSize
+.L080360BC: .4byte gBmMapSize
 .L080360C0: .4byte gMapRange
 .L080360C4: .4byte gMapTerrain
 .L080360C8: .4byte gMapUnit
@@ -68772,7 +66906,7 @@ func_080360E8: @ 0x080360E8
     str r0, [sp, #4]
     movs r1, #0
     str r1, [sp, #8]
-    ldr r0, .L0803615C @ =gMapSize
+    ldr r0, .L0803615C @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r0, r2]
     subs r7, r0, #1
@@ -68785,7 +66919,7 @@ func_080360E8: @ 0x080360E8
     ands r0, r4
     str r0, [sp, #0xc]
 .L08036116:
-    ldr r0, .L0803615C @ =gMapSize
+    ldr r0, .L0803615C @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r6, r0, #1
@@ -68823,7 +66957,7 @@ func_080360E8: @ 0x080360E8
     beq .L08036198
     b .L080362C0
     .align 2, 0
-.L0803615C: .4byte gMapSize
+.L0803615C: .4byte gBmMapSize
 .L08036160: .4byte gMapRange
 .L08036164: .4byte gMapTerrain
 .L08036168:
@@ -68868,7 +67002,7 @@ func_080360E8: @ 0x080360E8
     strh r6, [r5]
     mov r4, sp
     strh r7, [r4, #2]
-    ldr r0, .L08036228 @ =gMapMovement
+    ldr r0, .L08036228 @ =gBmMapMovement
     ldr r0, [r0]
     add r0, sb
     ldr r2, [r0]
@@ -68927,7 +67061,7 @@ func_080360E8: @ 0x080360E8
     strh r0, [r4, #2]
     b .L08036308
     .align 2, 0
-.L08036228: .4byte gMapMovement
+.L08036228: .4byte gBmMapMovement
 .L0803622C: .4byte gActiveUnit
 .L08036230: .4byte gMapUnit
 .L08036234:
@@ -69057,7 +67191,7 @@ func_0803631C: @ 0x0803631C
     mov r7, r8
     push {r7}
     movs r4, #0
-    ldr r1, .L08036384 @ =gMapSize
+    ldr r1, .L08036384 @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r1, r2]
     subs r2, r0, #1
@@ -69111,7 +67245,7 @@ func_0803631C: @ 0x0803631C
     pop {r1}
     bx r1
     .align 2, 0
-.L08036384: .4byte gMapSize
+.L08036384: .4byte gBmMapSize
 .L08036388: .4byte gMapRange
 .L0803638C: .4byte gMapUnit
     func_end func_0803631C
@@ -69120,14 +67254,14 @@ func_0803631C: @ 0x0803631C
 func_08036390: @ 0x08036390
     push {r4, r5, r6, r7, lr}
     movs r6, #0
-    ldr r0, .L080363FC @ =gMapSize
+    ldr r0, .L080363FC @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r1, r0, #1
     cmp r1, #0
     blt .L080363F2
 .L080363A0:
-    ldr r0, .L080363FC @ =gMapSize
+    ldr r0, .L080363FC @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -69176,7 +67310,7 @@ func_08036390: @ 0x08036390
     pop {r1}
     bx r1
     .align 2, 0
-.L080363FC: .4byte gMapSize
+.L080363FC: .4byte gBmMapSize
 .L08036400: .4byte gMapRange
 .L08036404: .4byte gMapUnit
 .L08036408: .4byte gActiveUnitId
@@ -69186,14 +67320,14 @@ func_08036390: @ 0x08036390
 func_0803640C: @ 0x0803640C
     push {r4, r5, r6, r7, lr}
     movs r6, #0
-    ldr r0, .L08036478 @ =gMapSize
+    ldr r0, .L08036478 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r1, r0, #1
     cmp r1, #0
     blt .L08036470
 .L0803641C:
-    ldr r0, .L08036478 @ =gMapSize
+    ldr r0, .L08036478 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -69243,7 +67377,7 @@ func_0803640C: @ 0x0803640C
     pop {r1}
     bx r1
     .align 2, 0
-.L08036478: .4byte gMapSize
+.L08036478: .4byte gBmMapSize
 .L0803647C: .4byte gMapRange
 .L08036480: .4byte gMapUnit
 .L08036484: .4byte gActiveUnitId
@@ -69270,7 +67404,7 @@ func_08036488: @ 0x08036488
     lsls r0, r3, #0x10
     asrs r0, r0, #0x10
     mov ip, r0
-    ldr r5, .L0803650C @ =gMapSize
+    ldr r5, .L0803650C @ =gBmMapSize
     lsls r0, r1, #0x10
     asrs r7, r0, #0x10
     mov sb, r2
@@ -69319,7 +67453,7 @@ func_08036488: @ 0x08036488
     .align 2, 0
 .L08036504: .4byte 0x08B97034
 .L08036508: .4byte 0x0000270F
-.L0803650C: .4byte gMapSize
+.L0803650C: .4byte gBmMapSize
 .L08036510: .4byte gMapUnit
     func_end func_08036488
 
@@ -69344,7 +67478,7 @@ func_08036514: @ 0x08036514
     lsls r0, r3, #0x10
     asrs r0, r0, #0x10
     mov r8, r0
-    ldr r5, .L080365A4 @ =gMapSize
+    ldr r5, .L080365A4 @ =gBmMapSize
     lsls r0, r1, #0x10
     asrs r7, r0, #0x10
     mov sb, r2
@@ -69398,7 +67532,7 @@ func_08036514: @ 0x08036514
     .align 2, 0
 .L0803659C: .4byte 0x08B97034
 .L080365A0: .4byte 0x0000270F
-.L080365A4: .4byte gMapSize
+.L080365A4: .4byte gBmMapSize
 .L080365A8: .4byte gMapUnit
 .L080365AC: .4byte gActiveUnitId
     func_end func_08036514
@@ -69424,7 +67558,7 @@ func_080365B0: @ 0x080365B0
     lsls r0, r3, #0x10
     asrs r0, r0, #0x10
     mov r8, r0
-    ldr r5, .L08036644 @ =gMapSize
+    ldr r5, .L08036644 @ =gBmMapSize
     lsls r0, r1, #0x10
     asrs r7, r0, #0x10
     mov sb, r2
@@ -69479,7 +67613,7 @@ func_080365B0: @ 0x080365B0
     .align 2, 0
 .L0803663C: .4byte 0x08B97034
 .L08036640: .4byte 0x0000270F
-.L08036644: .4byte gMapSize
+.L08036644: .4byte gBmMapSize
 .L08036648: .4byte gMapUnit
 .L0803664C: .4byte gActiveUnitId
     func_end func_080365B0
@@ -69499,14 +67633,14 @@ AiMakeMoveRangeMapsForUnitAndWeapon: @ 0x08036650
     ldr r0, [r0]
     movs r1, #0
     bl MapFill
-    ldr r0, .L080366E8 @ =gMapSize
+    ldr r0, .L080366E8 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r7, r0, #1
     cmp r7, #0
     blt .L080366D4
 .L0803667A:
-    ldr r0, .L080366E8 @ =gMapSize
+    ldr r0, .L080366E8 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r6, r0, #1
@@ -69517,7 +67651,7 @@ AiMakeMoveRangeMapsForUnitAndWeapon: @ 0x08036650
     lsls r1, r7, #0x10
     mov r8, r1
 .L0803668E:
-    ldr r0, .L080366EC @ =gMapMovement
+    ldr r0, .L080366EC @ =gBmMapMovement
     ldr r1, [r0]
     lsls r0, r7, #2
     adds r0, r0, r1
@@ -69561,8 +67695,8 @@ AiMakeMoveRangeMapsForUnitAndWeapon: @ 0x08036650
     bx r0
     .align 2, 0
 .L080366E4: .4byte gMapRange
-.L080366E8: .4byte gMapSize
-.L080366EC: .4byte gMapMovement
+.L080366E8: .4byte gBmMapSize
+.L080366EC: .4byte gBmMapMovement
     func_end AiMakeMoveRangeMapsForUnitAndWeapon
 
     thumb_func_start func_080366F0
@@ -69585,14 +67719,14 @@ func_080366F0: @ 0x080366F0
     ldr r0, [r0]
     movs r1, #0
     bl MapFill
-    ldr r0, .L08036768 @ =gMapSize
+    ldr r0, .L08036768 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
     cmp r5, #0
     blt .L0803675C
 .L08036724:
-    ldr r0, .L08036768 @ =gMapSize
+    ldr r0, .L08036768 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -69600,7 +67734,7 @@ func_080366F0: @ 0x080366F0
     cmp r4, #0
     blt .L08036756
 .L08036732:
-    ldr r0, .L0803676C @ =gMapMovement
+    ldr r0, .L0803676C @ =gBmMapMovement
     ldr r1, [r0]
     lsls r0, r5, #2
     adds r0, r0, r1
@@ -69628,8 +67762,8 @@ func_080366F0: @ 0x080366F0
     bx r0
     .align 2, 0
 .L08036764: .4byte gMapRange
-.L08036768: .4byte gMapSize
-.L0803676C: .4byte gMapMovement
+.L08036768: .4byte gBmMapSize
+.L0803676C: .4byte gBmMapMovement
     func_end func_080366F0
 
     thumb_func_start func_08036770
@@ -69647,14 +67781,14 @@ func_08036770: @ 0x08036770
     ldr r0, [r0]
     movs r1, #0
     bl MapFill
-    ldr r0, .L08036808 @ =gMapSize
+    ldr r0, .L08036808 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r7, r0, #1
     cmp r7, #0
     blt .L080367F4
 .L0803679A:
-    ldr r0, .L08036808 @ =gMapSize
+    ldr r0, .L08036808 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r6, r0, #1
@@ -69665,7 +67799,7 @@ func_08036770: @ 0x08036770
     lsls r1, r7, #0x10
     mov r8, r1
 .L080367AE:
-    ldr r0, .L0803680C @ =gMapMovement
+    ldr r0, .L0803680C @ =gBmMapMovement
     ldr r1, [r0]
     lsls r0, r7, #2
     adds r0, r0, r1
@@ -69709,8 +67843,8 @@ func_08036770: @ 0x08036770
     bx r0
     .align 2, 0
 .L08036804: .4byte gMapRange
-.L08036808: .4byte gMapSize
-.L0803680C: .4byte gMapMovement
+.L08036808: .4byte gBmMapSize
+.L0803680C: .4byte gBmMapMovement
     func_end func_08036770
 
     thumb_func_start func_08036810
@@ -69868,7 +68002,7 @@ func_08036900: @ 0x08036900
     ands r0, r1
     cmp r0, #0
     beq .L0803694C
-    ldr r4, .L08036948 @ =gMapMovement
+    ldr r4, .L08036948 @ =gBmMapMovement
     ldr r0, [r4]
     movs r1, #1
     rsbs r1, r1, #0
@@ -69887,19 +68021,19 @@ func_08036900: @ 0x08036900
     b .L08036952
     .align 2, 0
 .L08036944: .4byte 0x0203A8EC
-.L08036948: .4byte gMapMovement
+.L08036948: .4byte gBmMapMovement
 .L0803694C:
     adds r0, r5, #0
     bl MapFloodUnit
 .L08036952:
-    ldr r1, .L080369D0 @ =gMapSize
+    ldr r1, .L080369D0 @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r1, r2]
     subs r5, r0, #1
     cmp r5, #0
     blt .L080369C6
 .L0803695E:
-    ldr r1, .L080369D0 @ =gMapSize
+    ldr r1, .L080369D0 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r1, r2]
     subs r3, r0, #1
@@ -69908,7 +68042,7 @@ func_08036900: @ 0x08036900
     cmp r3, #0
     blt .L080369C0
     lsls r4, r5, #2
-    ldr r1, .L080369D4 @ =gMapMovement
+    ldr r1, .L080369D4 @ =gBmMapMovement
     mov ip, r1
     ldr r7, .L080369D8 @ =gMapUnit
     ldr r6, .L080369DC @ =gActiveUnitId
@@ -69962,8 +68096,8 @@ func_08036900: @ 0x08036900
     movs r0, #0
     b .L080369E6
     .align 2, 0
-.L080369D0: .4byte gMapSize
-.L080369D4: .4byte gMapMovement
+.L080369D0: .4byte gBmMapSize
+.L080369D4: .4byte gBmMapMovement
 .L080369D8: .4byte gMapUnit
 .L080369DC: .4byte gActiveUnitId
 .L080369E0: .4byte gMapOther
@@ -70206,7 +68340,7 @@ func_08036B00: @ 0x08036B00
     mov sb, r0
     ldr r1, .L08036BCC @ =0x0000FFFF
     str r1, [sp, #0x10]
-    ldr r0, .L08036BD0 @ =gMapSize
+    ldr r0, .L08036BD0 @ =gBmMapSize
     ldrh r0, [r0, #2]
     subs r0, #1
     lsls r0, r0, #0x10
@@ -70215,9 +68349,9 @@ func_08036B00: @ 0x08036B00
 .L08036BC4: .4byte gActiveUnit
 .L08036BC8: .4byte gMapRange
 .L08036BCC: .4byte 0x0000FFFF
-.L08036BD0: .4byte gMapSize
+.L08036BD0: .4byte gBmMapSize
 .L08036BD4:
-    ldr r0, .L08036CC8 @ =gMapSize
+    ldr r0, .L08036CC8 @ =gBmMapSize
     ldrh r0, [r0]
     subs r0, #1
     lsls r0, r0, #0x10
@@ -70229,7 +68363,7 @@ func_08036B00: @ 0x08036B00
     asrs r0, r7, #0xe
     mov r8, r0
 .L08036BEA:
-    ldr r0, .L08036CCC @ =gMapMovement
+    ldr r0, .L08036CCC @ =gBmMapMovement
     ldr r0, [r0]
     add r0, r8
     asrs r3, r1, #0x10
@@ -70345,8 +68479,8 @@ func_08036B00: @ 0x08036B00
     pop {r0}
     bx r0
     .align 2, 0
-.L08036CC8: .4byte gMapSize
-.L08036CCC: .4byte gMapMovement
+.L08036CC8: .4byte gBmMapSize
+.L08036CCC: .4byte gBmMapMovement
 .L08036CD0: .4byte gMapUnit
 .L08036CD4: .4byte gActiveUnitId
 .L08036CD8: .4byte gActiveUnit
@@ -70448,7 +68582,7 @@ func_08036CEC: @ 0x08036CEC
     mov sb, r0
     ldr r1, .L08036DB8 @ =0x0000FFFF
     str r1, [sp, #0x10]
-    ldr r0, .L08036DBC @ =gMapSize
+    ldr r0, .L08036DBC @ =gBmMapSize
     ldrh r0, [r0, #2]
     subs r0, #1
     lsls r0, r0, #0x10
@@ -70457,9 +68591,9 @@ func_08036CEC: @ 0x08036CEC
 .L08036DB0: .4byte gActiveUnit
 .L08036DB4: .4byte gMapRange
 .L08036DB8: .4byte 0x0000FFFF
-.L08036DBC: .4byte gMapSize
+.L08036DBC: .4byte gBmMapSize
 .L08036DC0:
-    ldr r0, .L08036EB4 @ =gMapSize
+    ldr r0, .L08036EB4 @ =gBmMapSize
     ldrh r0, [r0]
     subs r0, #1
     lsls r0, r0, #0x10
@@ -70471,7 +68605,7 @@ func_08036CEC: @ 0x08036CEC
     asrs r0, r7, #0xe
     mov r8, r0
 .L08036DD6:
-    ldr r0, .L08036EB8 @ =gMapMovement
+    ldr r0, .L08036EB8 @ =gBmMapMovement
     ldr r0, [r0]
     add r0, r8
     asrs r3, r1, #0x10
@@ -70587,8 +68721,8 @@ func_08036CEC: @ 0x08036CEC
     pop {r0}
     bx r0
     .align 2, 0
-.L08036EB4: .4byte gMapSize
-.L08036EB8: .4byte gMapMovement
+.L08036EB4: .4byte gBmMapSize
+.L08036EB8: .4byte gBmMapMovement
 .L08036EBC: .4byte gMapUnit
 .L08036EC0: .4byte gActiveUnitId
 .L08036EC4: .4byte gActiveUnit
@@ -70659,16 +68793,16 @@ AiGetUnitClosestValidPosition: @ 0x08036ED8
     str r2, [sp]
     ldr r0, .L08036F60 @ =0x0000FFFF
     strh r0, [r6]
-    ldr r1, .L08036F64 @ =gMapSize
+    ldr r1, .L08036F64 @ =gBmMapSize
     ldrh r0, [r1, #2]
     subs r0, #1
     lsls r0, r0, #0x10
     b .L08036FFE
     .align 2, 0
 .L08036F60: .4byte 0x0000FFFF
-.L08036F64: .4byte gMapSize
+.L08036F64: .4byte gBmMapSize
 .L08036F68:
-    ldr r4, .L08037014 @ =gMapSize
+    ldr r4, .L08037014 @ =gBmMapSize
     ldrh r0, [r4]
     subs r0, #1
     lsls r0, r0, #0x10
@@ -70679,7 +68813,7 @@ AiGetUnitClosestValidPosition: @ 0x08036ED8
     cmp r1, #0
     blt .L08036FF8
     asrs r3, r7, #0xe
-    ldr r0, .L08037018 @ =gMapMovement
+    ldr r0, .L08037018 @ =gBmMapMovement
     str r0, [sp, #4]
     ldr r2, .L0803701C @ =gMapUnit
     mov sl, r2
@@ -70759,8 +68893,8 @@ AiGetUnitClosestValidPosition: @ 0x08036ED8
     movs r0, #0
     b .L08037032
     .align 2, 0
-.L08037014: .4byte gMapSize
-.L08037018: .4byte gMapMovement
+.L08037014: .4byte gBmMapSize
+.L08037018: .4byte gBmMapMovement
 .L0803701C: .4byte gMapUnit
 .L08037020: .4byte gMapOther
 .L08037024: .4byte gMapHidden
@@ -71140,7 +69274,7 @@ func_080372AC: @ 0x080372AC
     adds r6, r0, #0
     movs r0, #0
     mov r8, r0
-    ldr r0, .L08037344 @ =gMapMovement
+    ldr r0, .L08037344 @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #0
     bl MapFill
@@ -71151,14 +69285,14 @@ func_080372AC: @ 0x080372AC
     movs r2, #1
     movs r3, #8
     bl func_0801B19C
-    ldr r0, .L08037348 @ =gMapSize
+    ldr r0, .L08037348 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r1, r0, #1
     cmp r1, #0
     blt .L08037332
 .L080372DE:
-    ldr r0, .L08037348 @ =gMapSize
+    ldr r0, .L08037348 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -71167,7 +69301,7 @@ func_080372AC: @ 0x080372AC
     blt .L0803732C
     lsls r5, r1, #2
 .L080372EE:
-    ldr r0, .L08037344 @ =gMapMovement
+    ldr r0, .L08037344 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -71213,8 +69347,8 @@ func_080372AC: @ 0x080372AC
     pop {r0}
     bx r0
     .align 2, 0
-.L08037344: .4byte gMapMovement
-.L08037348: .4byte gMapSize
+.L08037344: .4byte gBmMapMovement
+.L08037348: .4byte gBmMapSize
 .L0803734C: .4byte gMapUnit
     func_end func_080372AC
 
@@ -71255,14 +69389,14 @@ func_08037380: @ 0x08037380
     mov r8, r0
     movs r0, #0
     mov sb, r0
-    ldr r0, .L08037434 @ =gMapSize
+    ldr r0, .L08037434 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r6, r0, #1
     cmp r6, #0
     blt .L0803742A
 .L0803739C:
-    ldr r0, .L08037434 @ =gMapSize
+    ldr r0, .L08037434 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
@@ -71272,7 +69406,7 @@ func_08037380: @ 0x08037380
     blt .L08037424
     lsls r7, r6, #2
 .L080373AE:
-    ldr r0, .L08037438 @ =gMapMovement
+    ldr r0, .L08037438 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r7, r0
     ldr r0, [r0]
@@ -71342,8 +69476,8 @@ func_08037380: @ 0x08037380
     movs r0, #0
     b .L08037452
     .align 2, 0
-.L08037434: .4byte gMapSize
-.L08037438: .4byte gMapMovement
+.L08037434: .4byte gBmMapSize
+.L08037438: .4byte gBmMapMovement
 .L0803743C: .4byte gMapRange
 .L08037440: .4byte gMapUnit
 .L08037444: .4byte gActiveUnitId
@@ -71410,14 +69544,14 @@ func_080374AC: @ 0x080374AC
     mov r7, r8
     push {r7}
     movs r7, #0
-    ldr r0, .L08037538 @ =gMapSize
+    ldr r0, .L08037538 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r1, r0, #1
     cmp r1, #0
     blt .L0803752C
 .L080374C0:
-    ldr r0, .L08037538 @ =gMapSize
+    ldr r0, .L08037538 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -71480,7 +69614,7 @@ func_080374AC: @ 0x080374AC
     pop {r1}
     bx r1
     .align 2, 0
-.L08037538: .4byte gMapSize
+.L08037538: .4byte gBmMapSize
 .L0803753C: .4byte gMapRange
 .L08037540: .4byte gMapUnit
 .L08037544: .4byte gActiveUnitId
@@ -72972,7 +71106,7 @@ func_08038054: @ 0x08038054
     adds r1, r5, #0
     bl func_08039344
     adds r4, r4, r0
-    ldr r0, .L0803809C @ =gMapMovement
+    ldr r0, .L0803809C @ =gBmMapMovement
     ldr r0, [r0]
     lsls r5, r5, #2
     adds r0, r5, r0
@@ -72997,7 +71131,7 @@ func_08038054: @ 0x08038054
     pop {r1}
     bx r1
     .align 2, 0
-.L0803809C: .4byte gMapMovement
+.L0803809C: .4byte gBmMapMovement
 .L080380A0: .4byte gMapOther
 .L080380A4: .4byte 0x7FFFFFFF
     func_end func_08038054
@@ -73065,14 +71199,14 @@ func_080380A8: @ 0x080380A8
     asrs r1, r2, #0x10
     adds r2, r4, #0
     bl func_0801B19C
-    ldr r0, .L080381F4 @ =gMapSize
+    ldr r0, .L080381F4 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r6, r0, #1
     cmp r6, #0
     blt .L080381B8
 .L08038138:
-    ldr r0, .L080381F4 @ =gMapSize
+    ldr r0, .L080381F4 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r5, r0, #1
@@ -73082,7 +71216,7 @@ func_080380A8: @ 0x080380A8
     blt .L080381B2
     lsls r7, r6, #2
 .L0803814A:
-    ldr r0, .L080381F8 @ =gMapMovement
+    ldr r0, .L080381F8 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r7, r0
     ldr r0, [r0]
@@ -73168,8 +71302,8 @@ func_080380A8: @ 0x080380A8
     .align 2, 0
 .L080381EC: .4byte gActiveUnit
 .L080381F0: .4byte gMapRange
-.L080381F4: .4byte gMapSize
-.L080381F8: .4byte gMapMovement
+.L080381F4: .4byte gBmMapSize
+.L080381F8: .4byte gBmMapMovement
 .L080381FC: .4byte gMapUnit
 .L08038200: .4byte gActiveUnitId
 .L08038204:
@@ -73198,14 +71332,14 @@ func_08038218: @ 0x08038218
     adds r7, r2, #0
     movs r0, #0xff
     mov sb, r0
-    ldr r0, .L080382F4 @ =gMapSize
+    ldr r0, .L080382F4 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
     cmp r5, #0
     blt .L080382EA
 .L0803823A:
-    ldr r0, .L080382F4 @ =gMapSize
+    ldr r0, .L080382F4 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -73302,7 +71436,7 @@ func_08038218: @ 0x08038218
     movs r0, #0
     b .L0803830A
     .align 2, 0
-.L080382F4: .4byte gMapSize
+.L080382F4: .4byte gBmMapSize
 .L080382F8: .4byte gMapRange
 .L080382FC: .4byte gMapTerrain
 .L08038300: .4byte gMapUnit
@@ -73639,7 +71773,7 @@ func_08038558: @ 0x08038558
     ands r1, r2
     cmp r1, #0
     beq .L080385C8
-    ldr r4, .L080385C4 @ =gMapMovement
+    ldr r4, .L080385C4 @ =gBmMapMovement
     ldr r0, [r4]
     movs r1, #1
     rsbs r1, r1, #0
@@ -73671,7 +71805,7 @@ func_08038558: @ 0x08038558
     b .L0803865E
     .align 2, 0
 .L080385C0: .4byte gActiveUnit
-.L080385C4: .4byte gMapMovement
+.L080385C4: .4byte gBmMapMovement
 .L080385C8:
     ldr r0, [r3]
     ldr r1, [r3, #4]
@@ -73704,7 +71838,7 @@ func_08038558: @ 0x08038558
     ands r0, r1
     cmp r0, #0
     beq .L08038640
-    ldr r4, .L08038638 @ =gMapMovement
+    ldr r4, .L08038638 @ =gBmMapMovement
     ldr r0, [r4]
     movs r1, #1
     rsbs r1, r1, #0
@@ -73725,7 +71859,7 @@ func_08038558: @ 0x08038558
     b .L08038648
     .align 2, 0
 .L08038634: .4byte 0x0203A8EC
-.L08038638: .4byte gMapMovement
+.L08038638: .4byte gBmMapMovement
 .L0803863C: .4byte gActiveUnit
 .L08038640:
     ldr r0, .L080387A4 @ =gActiveUnit
@@ -73930,7 +72064,7 @@ func_080387B0: @ 0x080387B0
     mov r8, r2
     cmp r0, #0
     beq .L08038814
-    ldr r4, .L08038958 @ =gMapMovement
+    ldr r4, .L08038958 @ =gBmMapMovement
     ldr r0, [r4]
     movs r1, #1
     rsbs r1, r1, #0
@@ -74118,7 +72252,7 @@ func_080387B0: @ 0x080387B0
     bx r1
     .align 2, 0
 .L08038954: .4byte gActiveUnit
-.L08038958: .4byte gMapMovement
+.L08038958: .4byte gBmMapMovement
 .L0803895C: .4byte gMapRange
 .L08038960: .4byte 0x00010025
     func_end func_080387B0
@@ -74180,7 +72314,7 @@ func_080389B8: @ 0x080389B8
     mov sl, r2
     bl GetUnitMovementCost
     bl SetWorkingMoveTable
-    ldr r0, .L08038A70 @ =gMapMovement
+    ldr r0, .L08038A70 @ =gBmMapMovement
     ldr r0, [r0]
     bl func_0801B190
     movs r0, #0x10
@@ -74195,14 +72329,14 @@ func_080389B8: @ 0x080389B8
     ldr r0, [r0]
     movs r1, #0
     bl MapFill
-    ldr r0, .L08038A78 @ =gMapSize
+    ldr r0, .L08038A78 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r7, r0, #1
     cmp r7, #0
     blt .L08038A62
 .L08038A08:
-    ldr r0, .L08038A78 @ =gMapSize
+    ldr r0, .L08038A78 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r6, r0, #1
@@ -74213,7 +72347,7 @@ func_080389B8: @ 0x080389B8
     lsls r1, r7, #0x10
     mov r8, r1
 .L08038A1C:
-    ldr r0, .L08038A70 @ =gMapMovement
+    ldr r0, .L08038A70 @ =gBmMapMovement
     ldr r1, [r0]
     lsls r0, r7, #2
     adds r0, r0, r1
@@ -74256,9 +72390,9 @@ func_080389B8: @ 0x080389B8
     pop {r0}
     bx r0
     .align 2, 0
-.L08038A70: .4byte gMapMovement
+.L08038A70: .4byte gBmMapMovement
 .L08038A74: .4byte gMapRange
-.L08038A78: .4byte gMapSize
+.L08038A78: .4byte gBmMapSize
     func_end func_080389B8
 
     thumb_func_start func_08038A7C
@@ -74278,14 +72412,14 @@ func_08038A7C: @ 0x08038A7C
     adds r0, r4, #0
     movs r2, #3
     bl memcpy
-    ldr r0, .L08038AF4 @ =gMapSize
+    ldr r0, .L08038AF4 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r7, r0, #1
     cmp r7, #0
     blt .L08038B18
 .L08038AA8:
-    ldr r0, .L08038AF4 @ =gMapSize
+    ldr r0, .L08038AF4 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -74293,7 +72427,7 @@ func_08038A7C: @ 0x08038A7C
     mov sb, r3
     cmp r4, #0
     blt .L08038B12
-    ldr r2, .L08038AF8 @ =gMapMovement
+    ldr r2, .L08038AF8 @ =gBmMapMovement
     lsls r6, r7, #2
 .L08038ABC:
     ldr r0, [r2]
@@ -74322,8 +72456,8 @@ func_08038A7C: @ 0x08038A7C
     b .L08038B0C
     .align 2, 0
 .L08038AF0: .4byte 0x081D3B64
-.L08038AF4: .4byte gMapSize
-.L08038AF8: .4byte gMapMovement
+.L08038AF4: .4byte gBmMapSize
+.L08038AF8: .4byte gBmMapMovement
 .L08038AFC:
     ldr r0, [r2]
     adds r0, r6, r0
@@ -74452,7 +72586,7 @@ func_08038BEC: @ 0x08038BEC
     push {r4, lr}
     adds r3, r0, #0
     adds r4, r1, #0
-    ldr r1, .L08038C24 @ =gMapMovement
+    ldr r1, .L08038C24 @ =gBmMapMovement
     ldr r0, [r1]
     lsls r2, r4, #2
     adds r0, r2, r0
@@ -74479,7 +72613,7 @@ func_08038BEC: @ 0x08038BEC
     movs r0, #0xff
     b .L08038C3C
     .align 2, 0
-.L08038C24: .4byte gMapMovement
+.L08038C24: .4byte gBmMapMovement
 .L08038C28: .4byte gMapUnit
 .L08038C2C: .4byte gActiveUnitId
 .L08038C30:
@@ -74509,15 +72643,15 @@ func_08038C44: @ 0x08038C44
     str r1, [sp, #0x14]
     movs r2, #0
     str r2, [sp, #0x18]
-    ldr r0, .L08038C68 @ =gMapSize
+    ldr r0, .L08038C68 @ =gBmMapSize
     movs r3, #2
     ldrsh r0, [r0, r3]
     subs r0, #1
     b .L08038D40
     .align 2, 0
-.L08038C68: .4byte gMapSize
+.L08038C68: .4byte gBmMapSize
 .L08038C6C:
-    ldr r0, .L08038D50 @ =gMapSize
+    ldr r0, .L08038D50 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
@@ -74529,7 +72663,7 @@ func_08038C44: @ 0x08038C44
     mov r3, r8
     lsls r7, r3, #2
 .L08038C82:
-    ldr r0, .L08038D54 @ =gMapMovement
+    ldr r0, .L08038D54 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r7, r0
     ldr r0, [r0]
@@ -74631,8 +72765,8 @@ func_08038C44: @ 0x08038C44
     movs r0, #0
     b .L08038D90
     .align 2, 0
-.L08038D50: .4byte gMapSize
-.L08038D54: .4byte gMapMovement
+.L08038D50: .4byte gBmMapSize
+.L08038D54: .4byte gBmMapMovement
 .L08038D58: .4byte gMapUnit
 .L08038D5C: .4byte gActiveUnitId
 .L08038D60: .4byte func_08038BEC
@@ -74678,14 +72812,14 @@ func_08038DA4: @ 0x08038DA4
     sub sp, #4
     adds r7, r0, #0
     movs r3, #0
-    ldr r0, .L08038E40 @ =gMapSize
+    ldr r0, .L08038E40 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
     cmp r5, #0
     blt .L08038E2E
 .L08038DBC:
-    ldr r0, .L08038E40 @ =gMapSize
+    ldr r0, .L08038E40 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -74695,7 +72829,7 @@ func_08038DA4: @ 0x08038DA4
     blt .L08038E28
     lsls r6, r5, #2
 .L08038DCE:
-    ldr r0, .L08038E44 @ =gMapMovement
+    ldr r0, .L08038E44 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r6, r0
     ldr r0, [r0]
@@ -74754,8 +72888,8 @@ func_08038DA4: @ 0x08038DA4
     asrs r0, r0, #0x18
     b .L08038E56
     .align 2, 0
-.L08038E40: .4byte gMapSize
-.L08038E44: .4byte gMapMovement
+.L08038E40: .4byte gBmMapSize
+.L08038E44: .4byte gBmMapMovement
 .L08038E48: .4byte gMapRange
 .L08038E4C: .4byte gMapUnit
 .L08038E50: .4byte gActiveUnitId
@@ -74782,14 +72916,14 @@ func_08038E64: @ 0x08038E64
     lsrs r1, r1, #0x10
     mov sb, r1
     movs r3, #0
-    ldr r0, .L08038F14 @ =gMapSize
+    ldr r0, .L08038F14 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
     cmp r5, #0
     blt .L08038F04
 .L08038E84:
-    ldr r0, .L08038F14 @ =gMapSize
+    ldr r0, .L08038F14 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -74799,7 +72933,7 @@ func_08038E64: @ 0x08038E64
     blt .L08038EFE
     lsls r6, r5, #2
 .L08038E96:
-    ldr r0, .L08038F18 @ =gMapMovement
+    ldr r0, .L08038F18 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r6, r0
     ldr r0, [r0]
@@ -74865,8 +72999,8 @@ func_08038E64: @ 0x08038E64
     asrs r0, r0, #0x18
     b .L08038F2A
     .align 2, 0
-.L08038F14: .4byte gMapSize
-.L08038F18: .4byte gMapMovement
+.L08038F14: .4byte gBmMapSize
+.L08038F18: .4byte gBmMapMovement
 .L08038F1C: .4byte gMapRange
 .L08038F20: .4byte gMapUnit
 .L08038F24: .4byte gActiveUnitId
@@ -74902,7 +73036,7 @@ func_08038F38: @ 0x08038F38
     adds r1, r5, #0
     bl func_08039344
     adds r4, r4, r0
-    ldr r0, .L08038F94 @ =gMapMovement
+    ldr r0, .L08038F94 @ =gBmMapMovement
     ldr r0, [r0]
     lsls r5, r5, #2
     adds r0, r5, r0
@@ -74927,7 +73061,7 @@ func_08038F38: @ 0x08038F38
     pop {r1}
     bx r1
     .align 2, 0
-.L08038F94: .4byte gMapMovement
+.L08038F94: .4byte gBmMapMovement
 .L08038F98: .4byte gMapOther
 .L08038F9C: .4byte 0x7FFFFFFF
     func_end func_08038F38
@@ -75081,7 +73215,7 @@ func_08039094: @ 0x08039094
     beq .L08039108
     ldr r0, .L08039128 @ =0x0203A3F0
     mov sb, r0
-    ldr r1, .L0803912C @ =gMapSize
+    ldr r1, .L0803912C @ =gBmMapSize
     mov r8, r1
 .L080390AE:
     mov r3, sb
@@ -75148,7 +73282,7 @@ func_08039094: @ 0x08039094
     .align 2, 0
 .L08039124: .4byte 0x08B989FC
 .L08039128: .4byte 0x0203A3F0
-.L0803912C: .4byte gMapSize
+.L0803912C: .4byte gBmMapSize
 .L08039130: .4byte gMapUnit
 .L08039134: .4byte 0x030013C0
     func_end func_08039094
@@ -75607,14 +73741,14 @@ AiFillDangerMap: @ 0x080393E8
     adds r0, r6, #0
     mov r1, r8
     bl AiMakeMoveRangeMapsForUnitAndWeapon
-    ldr r0, .L08039504 @ =gMapSize
+    ldr r0, .L08039504 @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r0, r2]
     subs r1, r0, #1
     cmp r1, #0
     blt .L080394E4
 .L0803949A:
-    ldr r0, .L08039504 @ =gMapSize
+    ldr r0, .L08039504 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -75668,7 +73802,7 @@ AiFillDangerMap: @ 0x080393E8
 .L080394F8: .4byte 0x0001000D
 .L080394FC: .4byte gActiveUnitId
 .L08039500: .4byte gActiveUnit
-.L08039504: .4byte gMapSize
+.L08039504: .4byte gBmMapSize
 .L08039508: .4byte gMapRange
 .L0803950C: .4byte gMapOther
     func_end AiFillDangerMap
@@ -75735,7 +73869,7 @@ func_08039534: @ 0x08039534
     adds r0, r2, #0
     movs r1, #0x7c
     bl MapFloodUnitMovement
-    ldr r0, .L08039600 @ =gMapSize
+    ldr r0, .L08039600 @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r0, r2]
     subs r7, r0, #1
@@ -75743,7 +73877,7 @@ func_08039534: @ 0x08039534
     bge .L0803958A
     b .L080396A6
 .L0803958A:
-    ldr r0, .L08039600 @ =gMapSize
+    ldr r0, .L08039600 @ =gBmMapSize
     movs r3, #0
     ldrsh r0, [r0, r3]
     subs r4, r0, #1
@@ -75755,7 +73889,7 @@ func_08039534: @ 0x08039534
 .L0803959C:
     lsls r5, r7, #2
 .L0803959E:
-    ldr r0, .L08039604 @ =gMapMovement
+    ldr r0, .L08039604 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -75800,8 +73934,8 @@ func_08039534: @ 0x08039534
     .align 2, 0
 .L080395F8: .4byte 0x00002710
 .L080395FC: .4byte gActiveUnit
-.L08039600: .4byte gMapSize
-.L08039604: .4byte gMapMovement
+.L08039600: .4byte gBmMapSize
+.L08039604: .4byte gBmMapMovement
 .L08039608: .4byte gMapTerrain
 .L0803960C: .4byte 0x08B98AC4
 .L08039610: .4byte gMapUnit
@@ -75854,7 +73988,7 @@ func_08039534: @ 0x08039534
     ldr r0, [sp]
     cmp r2, r0
     bgt .L08039696
-    ldr r0, .L080396EC @ =gMapMovement
+    ldr r0, .L080396EC @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -75914,7 +74048,7 @@ func_08039534: @ 0x08039534
     .align 2, 0
 .L080396E4: .4byte gMapUnit
 .L080396E8: .4byte gActiveUnitId
-.L080396EC: .4byte gMapMovement
+.L080396EC: .4byte gBmMapMovement
 .L080396F0:
     movs r0, #0
 .L080396F2:
@@ -76151,7 +74285,7 @@ func_08039894: @ 0x08039894
     cmp r4, #0
     beq .L08039930
     ldrb r5, [r4, #1]
-    ldr r0, .L08039908 @ =gMapMovement
+    ldr r0, .L08039908 @ =gBmMapMovement
     ldr r1, [r0]
     lsls r0, r5, #2
     adds r0, r0, r1
@@ -76193,7 +74327,7 @@ func_08039894: @ 0x08039894
     b .L08039932
     .align 2, 0
 .L08039904: .4byte gActiveUnit
-.L08039908: .4byte gMapMovement
+.L08039908: .4byte gBmMapMovement
 .L0803990C: .4byte 0x0203A97C
 .L08039910:
     movs r0, #0
@@ -76263,7 +74397,7 @@ func_0803993C: @ 0x0803993C
     ldrb r0, [r1]
     cmp r0, #0xff
     beq .L080399B4
-    ldr r0, .L080399C0 @ =gMapMovement
+    ldr r0, .L080399C0 @ =gBmMapMovement
     ldr r3, [r0]
     adds r2, r1, #0
 .L0803998E:
@@ -76295,7 +74429,7 @@ func_0803993C: @ 0x0803993C
     bx r1
     .align 2, 0
 .L080399BC: .4byte 0x08B971C0
-.L080399C0: .4byte gMapMovement
+.L080399C0: .4byte gBmMapMovement
     func_end func_0803993C
 
     thumb_func_start func_080399C4
@@ -76521,7 +74655,7 @@ func_08039B04: @ 0x08039B04
     beq .L08039C22
     adds r0, r5, #0
     bl MapFloodUnit
-    ldr r4, .L08039C50 @ =gMapMovement
+    ldr r4, .L08039C50 @ =gBmMapMovement
     ldr r1, [r4]
     ldr r7, [sp, #8]
     lsls r0, r7, #2
@@ -76558,7 +74692,7 @@ func_08039B04: @ 0x08039B04
     ldr r1, [sp, #0x10]
     strh r0, [r1]
 .L08039BC6:
-    ldr r1, .L08039C54 @ =gMapSize
+    ldr r1, .L08039C54 @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r1, r2]
     subs r2, r0, #1
@@ -76631,8 +74765,8 @@ func_08039B04: @ 0x08039B04
     .align 2, 0
 .L08039C48: .4byte gMapOther
 .L08039C4C: .4byte gActiveUnitId
-.L08039C50: .4byte gMapMovement
-.L08039C54: .4byte gMapSize
+.L08039C50: .4byte gBmMapMovement
+.L08039C54: .4byte gBmMapSize
     func_end func_08039B04
 
     thumb_func_start func_08039C58
@@ -76879,7 +75013,7 @@ func_08039DD8: @ 0x08039DD8
     ands r0, r1
     cmp r0, #0
     beq .L08039EB4
-    ldr r0, .L08039EBC @ =gMapMovement
+    ldr r0, .L08039EBC @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #1
     rsbs r1, r1, #0
@@ -76889,14 +75023,14 @@ func_08039DD8: @ 0x08039DD8
     movs r2, #1
     movs r3, #1
     bl MapAddInRange
-    ldr r0, .L08039EC0 @ =gMapSize
+    ldr r0, .L08039EC0 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r1, r0, #1
     cmp r1, #0
     blt .L08039EAE
 .L08039E28:
-    ldr r0, .L08039EC0 @ =gMapSize
+    ldr r0, .L08039EC0 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -76905,7 +75039,7 @@ func_08039DD8: @ 0x08039DD8
     blt .L08039EA8
     lsls r5, r1, #2
 .L08039E38:
-    ldr r0, .L08039EBC @ =gMapMovement
+    ldr r0, .L08039EBC @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -76973,8 +75107,8 @@ func_08039DD8: @ 0x08039DD8
     b .L08039EEA
     .align 2, 0
 .L08039EB8: .4byte gActiveUnit
-.L08039EBC: .4byte gMapMovement
-.L08039EC0: .4byte gMapSize
+.L08039EBC: .4byte gBmMapMovement
+.L08039EC0: .4byte gBmMapSize
 .L08039EC4: .4byte gMapUnit
 .L08039EC8: .4byte gActiveUnitId
 .L08039ECC:
@@ -77019,7 +75153,7 @@ func_08039EFC: @ 0x08039EFC
     ands r0, r1
     cmp r0, #0
     beq .L08039F4C
-    ldr r4, .L08039F54 @ =gMapMovement
+    ldr r4, .L08039F54 @ =gBmMapMovement
     ldr r0, [r4]
     movs r5, #1
     rsbs r5, r5, #0
@@ -77047,7 +75181,7 @@ func_08039EFC: @ 0x08039EFC
     b .L08039F5A
     .align 2, 0
 .L08039F50: .4byte gActiveUnit
-.L08039F54: .4byte gMapMovement
+.L08039F54: .4byte gBmMapMovement
 .L08039F58:
     movs r0, #1
 .L08039F5A:
@@ -77099,7 +75233,7 @@ func_08039F60: @ 0x08039F60
     .align 2, 0
 .L08039FB4: .4byte gActiveUnit
 .L08039FB8:
-    ldr r0, .L0803A080 @ =gMapMovement
+    ldr r0, .L0803A080 @ =gBmMapMovement
     ldr r0, [r0]
     movs r1, #0
     bl MapFill
@@ -77125,14 +75259,14 @@ func_08039F60: @ 0x08039F60
     adds r1, r5, #0
     adds r2, r4, #0
     bl func_0801B19C
-    ldr r0, .L0803A084 @ =gMapSize
+    ldr r0, .L0803A084 @ =gBmMapSize
     movs r3, #2
     ldrsh r0, [r0, r3]
     subs r7, r0, #1
     cmp r7, #0
     blt .L0803A06E
 .L0803A000:
-    ldr r0, .L0803A084 @ =gMapSize
+    ldr r0, .L0803A084 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -77140,7 +75274,7 @@ func_08039F60: @ 0x08039F60
     blt .L0803A068
     lsls r6, r7, #2
 .L0803A00E:
-    ldr r0, .L0803A080 @ =gMapMovement
+    ldr r0, .L0803A080 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r6, r0
     ldr r0, [r0]
@@ -77199,8 +75333,8 @@ func_08039F60: @ 0x08039F60
     pop {r1}
     bx r1
     .align 2, 0
-.L0803A080: .4byte gMapMovement
-.L0803A084: .4byte gMapSize
+.L0803A080: .4byte gBmMapMovement
+.L0803A084: .4byte gBmMapSize
 .L0803A088: .4byte gMapUnit
 .L0803A08C: .4byte gActiveUnitId
     func_end func_08039F60
@@ -77268,14 +75402,14 @@ func_0803A0C0: @ 0x0803A0C0
     ldr r0, [r4]
     adds r1, r5, #0
     bl func_080389B8
-    ldr r0, .L0803A15C @ =gMapSize
+    ldr r0, .L0803A15C @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
     cmp r5, #0
     blt .L0803A1DA
 .L0803A10E:
-    ldr r0, .L0803A15C @ =gMapSize
+    ldr r0, .L0803A15C @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -77315,7 +75449,7 @@ func_0803A0C0: @ 0x0803A0C0
     b .L0803A1DA
     .align 2, 0
 .L0803A158: .4byte gActiveUnit
-.L0803A15C: .4byte gMapSize
+.L0803A15C: .4byte gBmMapSize
 .L0803A160: .4byte gMapRange
 .L0803A164:
     ldr r4, .L0803A1F4 @ =gActiveUnit
@@ -77334,14 +75468,14 @@ func_0803A0C0: @ 0x0803A0C0
     adds r2, r5, #0
     movs r3, #0
     bl BeginMapFlood
-    ldr r0, .L0803A1FC @ =gMapSize
+    ldr r0, .L0803A1FC @ =gBmMapSize
     movs r3, #2
     ldrsh r0, [r0, r3]
     subs r5, r0, #1
     cmp r5, #0
     blt .L0803A1DA
 .L0803A198:
-    ldr r0, .L0803A1FC @ =gMapSize
+    ldr r0, .L0803A1FC @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -77392,7 +75526,7 @@ func_0803A0C0: @ 0x0803A0C0
     .align 2, 0
 .L0803A1F4: .4byte gActiveUnit
 .L0803A1F8: .4byte gMapRange
-.L0803A1FC: .4byte gMapSize
+.L0803A1FC: .4byte gBmMapSize
 .L0803A200: .4byte 0x0203A8EC
     func_end func_0803A0C0
 
@@ -77520,14 +75654,14 @@ func_0803A204: @ 0x0803A204
     rsbs r0, r0, #0
     bl func_0801B148
 .L0803A306:
-    ldr r1, .L0803A360 @ =gMapSize
+    ldr r1, .L0803A360 @ =gBmMapSize
     movs r2, #2
     ldrsh r0, [r1, r2]
     subs r5, r0, #1
     cmp r5, #0
     blt .L0803A39A
 .L0803A312:
-    ldr r1, .L0803A360 @ =gMapSize
+    ldr r1, .L0803A360 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r1, r2]
     subs r3, r0, #1
@@ -77535,7 +75669,7 @@ func_0803A204: @ 0x0803A204
     mov ip, r0
     cmp r3, #0
     blt .L0803A394
-    ldr r7, .L0803A364 @ =gMapMovement
+    ldr r7, .L0803A364 @ =gBmMapMovement
     ldr r6, .L0803A35C @ =gMapRange
     movs r2, #1
     rsbs r2, r2, #0
@@ -77566,8 +75700,8 @@ func_0803A204: @ 0x0803A204
     .align 2, 0
 .L0803A358: .4byte gActiveUnit
 .L0803A35C: .4byte gMapRange
-.L0803A360: .4byte gMapSize
-.L0803A364: .4byte gMapMovement
+.L0803A360: .4byte gBmMapSize
+.L0803A364: .4byte gBmMapMovement
 .L0803A368:
     ldr r0, [r7]
     lsls r2, r5, #2
@@ -77749,7 +75883,7 @@ func_0803A450: @ 0x0803A450
     strh r0, [r6, #2]
     movs r1, #2
     ldrsh r0, [r3, r1]
-    ldr r1, .L0803A4D4 @ =gMapMovement
+    ldr r1, .L0803A4D4 @ =gBmMapMovement
     ldr r1, [r1]
     lsls r0, r0, #2
     adds r0, r0, r1
@@ -77771,7 +75905,7 @@ func_0803A450: @ 0x0803A450
     pop {r1}
     bx r1
     .align 2, 0
-.L0803A4D4: .4byte gMapMovement
+.L0803A4D4: .4byte gBmMapMovement
     func_end func_0803A450
 
     thumb_func_start func_0803A4D8
@@ -78341,14 +76475,14 @@ func_0803A8C4: @ 0x0803A8C4
 .L0803A928:
     adds r0, r2, #0
     bl func_0803BEA0
-    ldr r0, .L0803A9FC @ =gMapSize
+    ldr r0, .L0803A9FC @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
     cmp r5, #0
     blt .L0803A9B0
 .L0803A93A:
-    ldr r0, .L0803A9FC @ =gMapSize
+    ldr r0, .L0803A9FC @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -78356,7 +76490,7 @@ func_0803A8C4: @ 0x0803A8C4
     mov sb, r0
     cmp r4, #0
     blt .L0803A9AA
-    ldr r7, .L0803AA00 @ =gMapMovement
+    ldr r7, .L0803AA00 @ =gBmMapMovement
     lsls r6, r5, #2
 .L0803A94E:
     ldr r0, [r7]
@@ -78447,8 +76581,8 @@ func_0803A8C4: @ 0x0803A8C4
     bl func_08034E94
     b .L0803AA28
     .align 2, 0
-.L0803A9FC: .4byte gMapSize
-.L0803AA00: .4byte gMapMovement
+.L0803A9FC: .4byte gBmMapSize
+.L0803AA00: .4byte gBmMapMovement
 .L0803AA04: .4byte gMapUnit
 .L0803AA08: .4byte 0x0203A97C
 .L0803AA0C:
@@ -78676,7 +76810,7 @@ func_0803AB80: @ 0x0803AB80
     ldr r0, [r2, #4]
     ldr r1, [sp, #4]
     adds r7, r1, r0
-    ldr r0, .L0803AC28 @ =gMapMovement
+    ldr r0, .L0803AC28 @ =gBmMapMovement
     ldr r0, [r0]
     lsls r6, r7, #2
     adds r0, r6, r0
@@ -78739,7 +76873,7 @@ func_0803AB80: @ 0x0803AB80
     b .L0803AC3E
     .align 2, 0
 .L0803AC24: .4byte 0x08B98AC8
-.L0803AC28: .4byte gMapMovement
+.L0803AC28: .4byte gBmMapMovement
 .L0803AC2C: .4byte gMapUnit
 .L0803AC30: .4byte gActiveUnitId
 .L0803AC34: .4byte gMapOther
@@ -78790,14 +76924,14 @@ func_0803AC50: @ 0x0803AC50
     adds r1, r0, #0
     mov sl, r1
 .L0803AC92:
-    ldr r0, .L0803ADB0 @ =gMapSize
+    ldr r0, .L0803ADB0 @ =gBmMapSize
     movs r4, #2
     ldrsh r0, [r0, r4]
     subs r7, r0, #1
     cmp r7, #0
     blt .L0803AD72
 .L0803AC9E:
-    ldr r0, .L0803ADB0 @ =gMapSize
+    ldr r0, .L0803ADB0 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r6, r0, #1
@@ -78808,7 +76942,7 @@ func_0803AC50: @ 0x0803AC50
     lsls r4, r7, #2
     mov r8, r4
 .L0803ACB2:
-    ldr r0, .L0803ADB4 @ =gMapMovement
+    ldr r0, .L0803ADB4 @ =gBmMapMovement
     ldr r0, [r0]
     add r0, r8
     ldr r0, [r0]
@@ -78932,8 +77066,8 @@ func_0803AC50: @ 0x0803AC50
     .align 2, 0
 .L0803ADA8: .4byte gActiveUnit
 .L0803ADAC: .4byte 0x0203A8EC
-.L0803ADB0: .4byte gMapSize
-.L0803ADB4: .4byte gMapMovement
+.L0803ADB0: .4byte gBmMapSize
+.L0803ADB4: .4byte gBmMapMovement
 .L0803ADB8: .4byte gMapUnit
 .L0803ADBC: .4byte gActiveUnitId
 .L0803ADC0: .4byte 0x0203A967
@@ -79194,14 +77328,14 @@ func_0803AF98: @ 0x0803AF98
     movs r0, #1
     rsbs r0, r0, #0
     bl func_0801B148
-    ldr r0, .L0803B090 @ =gMapSize
+    ldr r0, .L0803B090 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r5, r0, #1
     cmp r5, #0
     blt .L0803B050
 .L0803AFE0:
-    ldr r0, .L0803B090 @ =gMapSize
+    ldr r0, .L0803B090 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -79210,7 +77344,7 @@ func_0803AF98: @ 0x0803AF98
     blt .L0803B04A
     lsls r6, r5, #2
 .L0803AFF0:
-    ldr r0, .L0803B094 @ =gMapMovement
+    ldr r0, .L0803B094 @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r6, r0
     ldr r0, [r0]
@@ -79289,8 +77423,8 @@ func_0803AF98: @ 0x0803AF98
     .align 2, 0
 .L0803B088: .4byte 0x0203A8EC
 .L0803B08C: .4byte gActiveUnit
-.L0803B090: .4byte gMapSize
-.L0803B094: .4byte gMapMovement
+.L0803B090: .4byte gBmMapSize
+.L0803B094: .4byte gBmMapMovement
 .L0803B098: .4byte gMapUnit
 .L0803B09C: .4byte gActiveUnitId
 .L0803B0A0: .4byte gMapRange
@@ -79330,14 +77464,14 @@ func_0803B0A4: @ 0x0803B0A4
     rsbs r0, r0, #0
     bl func_0801B148
     bl func_0801A0FC
-    ldr r0, .L0803B1F0 @ =gMapSize
+    ldr r0, .L0803B1F0 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r7, r0, #1
     cmp r7, #0
     blt .L0803B1A0
 .L0803B0F4:
-    ldr r0, .L0803B1F0 @ =gMapSize
+    ldr r0, .L0803B1F0 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -79348,7 +77482,7 @@ func_0803B0A4: @ 0x0803B0A4
     lsls r0, r7, #2
     mov r8, r0
 .L0803B108:
-    ldr r0, .L0803B1F4 @ =gMapMovement
+    ldr r0, .L0803B1F4 @ =gBmMapMovement
     ldr r0, [r0]
     add r0, r8
     ldr r0, [r0]
@@ -79462,8 +77596,8 @@ func_0803B0A4: @ 0x0803B0A4
     .align 2, 0
 .L0803B1E8: .4byte 0x0203A8EC
 .L0803B1EC: .4byte gActiveUnit
-.L0803B1F0: .4byte gMapSize
-.L0803B1F4: .4byte gMapMovement
+.L0803B1F0: .4byte gBmMapSize
+.L0803B1F4: .4byte gBmMapMovement
 .L0803B1F8: .4byte gMapUnit
     func_end func_0803B0A4
 
@@ -79499,14 +77633,14 @@ func_0803B1FC: @ 0x0803B1FC
     rsbs r0, r0, #0
     bl func_0801B148
     bl func_0801A0FC
-    ldr r0, .L0803B334 @ =gMapSize
+    ldr r0, .L0803B334 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r7, r0, #1
     cmp r7, #0
     blt .L0803B2FA
 .L0803B24A:
-    ldr r0, .L0803B334 @ =gMapSize
+    ldr r0, .L0803B334 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -79517,7 +77651,7 @@ func_0803B1FC: @ 0x0803B1FC
     lsls r1, r7, #2
     mov r8, r1
 .L0803B25E:
-    ldr r0, .L0803B338 @ =gMapMovement
+    ldr r0, .L0803B338 @ =gBmMapMovement
     ldr r0, [r0]
     add r0, r8
     ldr r0, [r0]
@@ -79623,8 +77757,8 @@ func_0803B1FC: @ 0x0803B1FC
     .align 2, 0
 .L0803B32C: .4byte 0x0203A8EC
 .L0803B330: .4byte gActiveUnit
-.L0803B334: .4byte gMapSize
-.L0803B338: .4byte gMapMovement
+.L0803B334: .4byte gBmMapSize
+.L0803B338: .4byte gBmMapMovement
 .L0803B33C: .4byte gMapUnit
     func_end func_0803B1FC
 
@@ -80130,14 +78264,14 @@ func_0803B6FC: @ 0x0803B6FC
     rsbs r0, r0, #0
     bl func_0801B148
     bl func_0801A0FC
-    ldr r0, .L0803B830 @ =gMapSize
+    ldr r0, .L0803B830 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r7, r0, #1
     cmp r7, #0
     blt .L0803B7F6
 .L0803B74A:
-    ldr r0, .L0803B830 @ =gMapSize
+    ldr r0, .L0803B830 @ =gBmMapSize
     movs r2, #0
     ldrsh r0, [r0, r2]
     subs r4, r0, #1
@@ -80148,7 +78282,7 @@ func_0803B6FC: @ 0x0803B6FC
     lsls r1, r7, #2
     mov r8, r1
 .L0803B75E:
-    ldr r0, .L0803B834 @ =gMapMovement
+    ldr r0, .L0803B834 @ =gBmMapMovement
     ldr r0, [r0]
     add r0, r8
     ldr r0, [r0]
@@ -80250,8 +78384,8 @@ func_0803B6FC: @ 0x0803B6FC
     .align 2, 0
 .L0803B828: .4byte 0x0203A8EC
 .L0803B82C: .4byte gActiveUnit
-.L0803B830: .4byte gMapSize
-.L0803B834: .4byte gMapMovement
+.L0803B830: .4byte gBmMapSize
+.L0803B834: .4byte gBmMapMovement
 .L0803B838: .4byte gMapUnit
     func_end func_0803B6FC
 
@@ -80309,14 +78443,14 @@ func_0803B83C: @ 0x0803B83C
     bne .L0803B994
     adds r0, r7, #0
     bl func_0803C08C
-    ldr r0, .L0803B918 @ =gMapSize
+    ldr r0, .L0803B918 @ =gBmMapSize
     movs r1, #2
     ldrsh r0, [r0, r1]
     subs r6, r0, #1
     cmp r6, #0
     blt .L0803B96E
 .L0803B8B2:
-    ldr r0, .L0803B918 @ =gMapSize
+    ldr r0, .L0803B918 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     subs r4, r0, #1
@@ -80365,7 +78499,7 @@ func_0803B83C: @ 0x0803B83C
     .align 2, 0
 .L0803B910: .4byte gActiveUnit
 .L0803B914: .4byte 0x00010025
-.L0803B918: .4byte gMapSize
+.L0803B918: .4byte gBmMapSize
 .L0803B91C: .4byte gMapRange
 .L0803B920: .4byte gMapUnit
 .L0803B924:
@@ -80382,7 +78516,7 @@ func_0803B83C: @ 0x0803B83C
     asrs r0, r0, #0x18
     cmp r0, #0
     ble .L0803B962
-    ldr r0, .L0803B9AC @ =gMapMovement
+    ldr r0, .L0803B9AC @ =gBmMapMovement
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -80442,7 +78576,7 @@ func_0803B83C: @ 0x0803B83C
     b .L0803B9B2
     .align 2, 0
 .L0803B9A8: .4byte gMapTerrain
-.L0803B9AC: .4byte gMapMovement
+.L0803B9AC: .4byte gBmMapMovement
 .L0803B9B0:
     movs r0, #1
 .L0803B9B2:
@@ -80951,7 +79085,7 @@ func_0803BD64: @ 0x0803BD64
     bne .L0803BDB0
     movs r1, #2
     ldrsh r0, [r4, r1]
-    ldr r1, .L0803BDAC @ =gMapMovement
+    ldr r1, .L0803BDAC @ =gBmMapMovement
     ldr r1, [r1]
     lsls r0, r0, #2
     adds r0, r0, r1
@@ -80968,7 +79102,7 @@ func_0803BD64: @ 0x0803BD64
     movs r0, #1
     b .L0803BDF6
     .align 2, 0
-.L0803BDAC: .4byte gMapMovement
+.L0803BDAC: .4byte gBmMapMovement
 .L0803BDB0:
     adds r0, r5, #0
     bl func_0803BFF4
@@ -80981,7 +79115,7 @@ func_0803BD64: @ 0x0803BD64
     bne .L0803BDF4
     movs r3, #2
     ldrsh r1, [r4, r3]
-    ldr r0, .L0803BDFC @ =gMapMovement
+    ldr r0, .L0803BDFC @ =gBmMapMovement
     ldr r0, [r0]
     lsls r1, r1, #2
     adds r0, r1, r0
@@ -81009,7 +79143,7 @@ func_0803BD64: @ 0x0803BD64
     pop {r1}
     bx r1
     .align 2, 0
-.L0803BDFC: .4byte gMapMovement
+.L0803BDFC: .4byte gBmMapMovement
 .L0803BE00: .4byte gMapUnit
     func_end func_0803BD64
 
@@ -81112,7 +79246,7 @@ func_0803BEA0: @ 0x0803BEA0
     adds r4, r0, #0
     bl GetUnitMovementCost
     bl SetWorkingMoveTable
-    ldr r0, .L0803BECC @ =gMapMovement
+    ldr r0, .L0803BECC @ =gBmMapMovement
     ldr r0, [r0]
     bl func_0801B190
     movs r0, #0x10
@@ -81127,7 +79261,7 @@ func_0803BEA0: @ 0x0803BEA0
     pop {r0}
     bx r0
     .align 2, 0
-.L0803BECC: .4byte gMapMovement
+.L0803BECC: .4byte gBmMapMovement
     func_end func_0803BEA0
 
     thumb_func_start func_0803BED0
@@ -81160,7 +79294,7 @@ func_0803BF00: @ 0x0803BF00
     adds r4, r0, #0
     bl GetUnitMovementCost
     bl func_0803BE04
-    ldr r0, .L0803BF2C @ =gMapMovement
+    ldr r0, .L0803BF2C @ =gBmMapMovement
     ldr r0, [r0]
     bl func_0801B190
     movs r0, #0x10
@@ -81175,7 +79309,7 @@ func_0803BF00: @ 0x0803BF00
     pop {r0}
     bx r0
     .align 2, 0
-.L0803BF2C: .4byte gMapMovement
+.L0803BF2C: .4byte gBmMapMovement
     func_end func_0803BF00
 
     thumb_func_start func_0803BF30
@@ -81184,7 +79318,7 @@ func_0803BF30: @ 0x0803BF30
     adds r4, r0, #0
     bl GetUnitMovementCost
     bl func_0803BE04
-    ldr r0, .L0803BF5C @ =gMapMovement
+    ldr r0, .L0803BF5C @ =gBmMapMovement
     ldr r0, [r0]
     bl func_0801B190
     movs r0, #0x10
@@ -81198,7 +79332,7 @@ func_0803BF30: @ 0x0803BF30
     pop {r0}
     bx r0
     .align 2, 0
-.L0803BF5C: .4byte gMapMovement
+.L0803BF5C: .4byte gBmMapMovement
     func_end func_0803BF30
 
     thumb_func_start func_0803BF60
@@ -84711,38 +82845,38 @@ func_0803D9A8: @ 0x0803D9A8
 
     thumb_func_start func_0803D9F4
 func_0803D9F4: @ 0x0803D9F4
-    ldr r0, .L0803DA00 @ =gBmStatus
+    ldr r0, .L0803DA00 @ =gBmSt
     movs r1, #0x40
     ldrb r2, [r0, #4]
     orrs r1, r2
     strb r1, [r0, #4]
     bx lr
     .align 2, 0
-.L0803DA00: .4byte gBmStatus
+.L0803DA00: .4byte gBmSt
     func_end func_0803D9F4
 
     thumb_func_start func_0803DA04
 func_0803DA04: @ 0x0803DA04
-    ldr r1, .L0803DA10 @ =gBmStatus
+    ldr r1, .L0803DA10 @ =gBmSt
     movs r0, #0xbf
     ldrb r2, [r1, #4]
     ands r0, r2
     strb r0, [r1, #4]
     bx lr
     .align 2, 0
-.L0803DA10: .4byte gBmStatus
+.L0803DA10: .4byte gBmSt
     func_end func_0803DA04
 
     thumb_func_start func_0803DA14
 func_0803DA14: @ 0x0803DA14
-    ldr r0, .L0803DA20 @ =gBmStatus
+    ldr r0, .L0803DA20 @ =gBmSt
     ldrb r0, [r0, #4]
     lsrs r0, r0, #6
     movs r1, #1
     ands r0, r1
     bx lr
     .align 2, 0
-.L0803DA20: .4byte gBmStatus
+.L0803DA20: .4byte gBmSt
     func_end func_0803DA14
 
     thumb_func_start func_0803DA24
@@ -94852,7 +92986,7 @@ func_08042B44: @ 0x08042B44
 func_08042BB8: @ 0x08042BB8
     push {r4, lr}
     adds r4, r0, #0
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     ldr r0, .L08042C20 @ =0x0203DA60
     ldr r1, .L08042C24 @ =0x06001800
     movs r2, #0xc0
@@ -94925,7 +93059,7 @@ func_08042C38: @ 0x08042C38
 func_08042C58: @ 0x08042C58
     push {r4, lr}
     adds r4, r0, #0
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl func_0803DA04
     ldr r0, .L08042CA4 @ =0x0203DA60
     ldr r1, .L08042CA8 @ =0x06001800
@@ -97205,7 +95339,7 @@ func_08043EB4: @ 0x08043EB4
     adds r0, r4, #0
     bl func_08043EA0
     str r0, [r4, #0x54]
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     ldr r0, .L08043F00 @ =gBg1Tm
     movs r1, #4
     str r1, [sp]
@@ -97446,7 +95580,7 @@ func_080440AC: @ 0x080440AC
 GC_ConnectToFE6: @ 0x080440B8
     push {r4, lr}
     adds r4, r0, #0
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     ldr r0, .L080440DC @ =0x0203DA60
     ldr r1, .L080440E0 @ =0x06001800
     movs r2, #0xc0
@@ -99269,7 +97403,7 @@ func_08044ED8: @ 0x08044ED8
     mov r1, sp
     movs r0, #0
     strh r0, [r1]
-    ldr r4, .L08044F30 @ =gBmStatus
+    ldr r4, .L08044F30 @ =gBmSt
     ldr r2, .L08044F34 @ =0x01000020
     mov r0, sp
     adds r1, r4, #0
@@ -99303,7 +97437,7 @@ func_08044ED8: @ 0x08044ED8
     pop {r0}
     bx r0
     .align 2, 0
-.L08044F30: .4byte gBmStatus
+.L08044F30: .4byte gBmSt
 .L08044F34: .4byte 0x01000020
 .L08044F38: .4byte gPlaySt
     func_end func_08044ED8
@@ -99504,7 +97638,7 @@ func_08045058: @ 0x08045058
     ldrsb r1, [r0, r1]
     adds r0, r2, #0
     bl SetMapCursorPosition
-    ldr r0, .L08045118 @ =gBmStatus
+    ldr r0, .L08045118 @ =gBmSt
     strh r4, [r0, #0xc]
     strh r4, [r0, #0xe]
     bl ApplySystemGraphics
@@ -99532,7 +97666,7 @@ func_08045058: @ 0x08045058
 .L0804510C: .4byte 0x08B99BC4
 .L08045110: .4byte 0x03001400
 .L08045114: .4byte 0x03001414
-.L08045118: .4byte gBmStatus
+.L08045118: .4byte gBmSt
 .L0804511C: .4byte 0x08B961A8
 .L08045120: .4byte gPlaySt
     func_end func_08045058
@@ -101179,7 +99313,7 @@ func_08045E18: @ 0x08045E18
     adds r0, r6, #0
     mov r1, r8
     bl BattleGenerateReal
-    ldr r1, .L08045EA0 @ =gBmStatus
+    ldr r1, .L08045EA0 @ =gBmSt
     movs r0, #0x40
     ldrb r2, [r1, #4]
     orrs r0, r2
@@ -101200,7 +99334,7 @@ func_08045E18: @ 0x08045E18
 .L08045E94: .4byte 0x0203DC9C
 .L08045E98: .4byte gActionSt
 .L08045E9C: .4byte 0x0300141C
-.L08045EA0: .4byte gBmStatus
+.L08045EA0: .4byte gBmSt
 .L08045EA4: .4byte 0x08B9A188
     func_end func_08045E18
 
@@ -110062,8 +108196,8 @@ func_0804A1E8: @ 0x0804A1E8
 .L0804A20C: .4byte 0x08B9A860
     func_end func_0804A1E8
 
-    thumb_func_start LoadUiFrameGraphics
-LoadUiFrameGraphics: @ 0x0804A210
+    thumb_func_start UnpackUiWindowFrameGraphics
+UnpackUiWindowFrameGraphics: @ 0x0804A210
     push {lr}
     movs r0, #0
     bl func_08049AC4
@@ -110072,7 +108206,7 @@ LoadUiFrameGraphics: @ 0x0804A210
     bl func_08049A94
     pop {r0}
     bx r0
-    func_end LoadUiFrameGraphics
+    func_end UnpackUiWindowFrameGraphics
 
     thumb_func_start func_0804A224
 func_0804A224: @ 0x0804A224
@@ -110377,7 +108511,7 @@ func_0804A424: @ 0x0804A424
     ands r0, r5
     cmp r0, #0
     beq .L0804A46C
-    bl ReleaseGame
+    bl UnlockGame
 .L0804A46C:
     adds r0, r4, #0
     bl Proc_End
@@ -111744,7 +109878,7 @@ func_0804ADAC: @ 0x0804ADAC
     ldr r2, [sp, #4]
     asrs r2, r2, #4
     adds r0, r4, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     cmp r0, #1
@@ -111845,7 +109979,7 @@ func_0804AF00: @ 0x0804AF00
     ands r0, r1
     cmp r0, #0
     beq .L0804AF24
-    bl ReleaseGame
+    bl UnlockGame
 .L0804AF24:
     adds r0, r4, #0
     bl Proc_End
@@ -112276,7 +110410,7 @@ func_0804B200: @ 0x0804B200
     ldr r1, .L0804B210 @ =0x0203E000
     movs r0, #0
     str r0, [r1]
-    bl ReleaseGame
+    bl UnlockGame
     pop {r0}
     bx r0
     .align 2, 0
@@ -112397,7 +110531,7 @@ func_0804B284: @ 0x0804B284
     bl Proc_End
     bl func_0804C438
 .L0804B308:
-    ldr r1, .L0804B320 @ =gBmStatus
+    ldr r1, .L0804B320 @ =gBmSt
     movs r0, #1
     strb r0, [r1]
     ldr r0, .L0804B324 @ =0x04000006
@@ -112408,7 +110542,7 @@ func_0804B284: @ 0x0804B284
     bx r0
     .align 2, 0
 .L0804B31C: .4byte 0x02000064
-.L0804B320: .4byte gBmStatus
+.L0804B320: .4byte gBmSt
 .L0804B324: .4byte 0x04000006
     func_end func_0804B284
 
@@ -123526,7 +121660,7 @@ func_08050A38: @ 0x08050A38
     bl func_08053454
     movs r0, #0xd
     bl PutSpriteLayerOam
-    ldr r1, .L08050AA4 @ =gBmStatus
+    ldr r1, .L08050AA4 @ =gBmSt
     movs r0, #1
     strb r0, [r1]
     ldr r0, .L08050AA8 @ =0x04000006
@@ -123539,7 +121673,7 @@ func_08050A38: @ 0x08050A38
     .align 2, 0
 .L08050A9C: .4byte gpKeySt
 .L08050AA0: .4byte gProcTreeRoots
-.L08050AA4: .4byte gBmStatus
+.L08050AA4: .4byte gBmSt
 .L08050AA8: .4byte 0x04000006
     func_end func_08050A38
 
@@ -125938,7 +124072,7 @@ func_08051D50: @ 0x08051D50
     movs r0, #1
     bl func_080554E4
 .L08051D82:
-    ldr r1, .L08051D98 @ =gBmStatus
+    ldr r1, .L08051D98 @ =gBmSt
     movs r0, #0x40
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -125948,7 +124082,7 @@ func_08051D50: @ 0x08051D50
     bl func_0804B194
     b .L08051DA2
     .align 2, 0
-.L08051D98: .4byte gBmStatus
+.L08051D98: .4byte gBmSt
 .L08051D9C:
     movs r0, #1
     bl func_0804B194
@@ -126163,7 +124297,7 @@ func_08051D50: @ 0x08051D50
     movs r0, #0x10
     ldrsb r0, [r4, r0]
     lsls r0, r0, #4
-    ldr r2, .L08051FDC @ =gBmStatus
+    ldr r2, .L08051FDC @ =gBmSt
     movs r4, #0xc
     ldrsh r1, [r2, r4]
     subs r0, r0, r1
@@ -126186,7 +124320,7 @@ func_08051D50: @ 0x08051D50
     movs r0, #0x10
     ldrsb r0, [r1, r0]
     lsls r0, r0, #4
-    ldr r2, .L08051FDC @ =gBmStatus
+    ldr r2, .L08051FDC @ =gBmSt
     movs r4, #0xc
     ldrsh r1, [r2, r4]
     subs r0, r0, r1
@@ -126225,7 +124359,7 @@ func_08051D50: @ 0x08051D50
 .L08051FD0: .4byte 0x0203E014
 .L08051FD4: .4byte 0x0203E010
 .L08051FD8: .4byte 0x0203E02E
-.L08051FDC: .4byte gBmStatus
+.L08051FDC: .4byte gBmSt
 .L08051FE0: .4byte 0x0203E02C
 .L08051FE4:
     movs r0, #3
@@ -126457,7 +124591,7 @@ func_08051D50: @ 0x08051D50
     bl func_08052954
     strh r0, [r5, #2]
 .L080521AC:
-    ldr r1, .L0805225C @ =gBmStatus
+    ldr r1, .L0805225C @ =gBmSt
     movs r0, #0x40
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -126537,7 +124671,7 @@ func_08051D50: @ 0x08051D50
 .L08052250: .4byte 0x0203E028
 .L08052254: .4byte 0x0000FFFF
 .L08052258: .4byte gPlaySt
-.L0805225C: .4byte gBmStatus
+.L0805225C: .4byte gBmSt
 .L08052260: .4byte 0x0203E02C
 .L08052264: .4byte 0x0203E00E
 .L08052268:
@@ -134159,7 +132293,7 @@ func_08055E24: @ 0x08055E24
 func_08055E30: @ 0x08055E30
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L08055E5C @ =gBmStatus
+    ldr r0, .L08055E5C @ =gBmSt
     ldrb r0, [r0]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -134179,7 +132313,7 @@ func_08055E30: @ 0x08055E30
     ldr r0, .L08055E6C @ =0x0201FB2C
     b .L08055E76
     .align 2, 0
-.L08055E5C: .4byte gBmStatus
+.L08055E5C: .4byte gBmSt
 .L08055E60: .4byte 0x0201FB24
 .L08055E64: .4byte 0x0201FDB0
 .L08055E68: .4byte 0x0201FB20
@@ -169174,7 +167308,7 @@ func_080675C8: @ 0x080675C8
     push {r4, r5, r6, lr}
     adds r6, r0, #0
     adds r5, r1, #0
-    ldr r1, .L08067608 @ =gBmStatus
+    ldr r1, .L08067608 @ =gBmSt
     movs r0, #0x20
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -169199,7 +167333,7 @@ func_080675C8: @ 0x080675C8
     bl m4aSongNumStart
     b .L0806761E
     .align 2, 0
-.L08067608: .4byte gBmStatus
+.L08067608: .4byte gBmSt
 .L0806760C: .4byte gPlaySt
 .L08067610:
     ldr r0, .L08067624 @ =0x08BDAF68
@@ -169273,7 +167407,7 @@ func_0806768C: @ 0x0806768C
     push {r4, lr}
     adds r4, r0, #0
     adds r2, r1, #0
-    ldr r1, .L080676B0 @ =gBmStatus
+    ldr r1, .L080676B0 @ =gBmSt
     movs r0, #0x20
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -169288,7 +167422,7 @@ func_0806768C: @ 0x0806768C
     pop {r0}
     bx r0
     .align 2, 0
-.L080676B0: .4byte gBmStatus
+.L080676B0: .4byte gBmSt
     func_end func_0806768C
 
     thumb_func_start func_080676B4
@@ -169336,7 +167470,7 @@ func_080676E8: @ 0x080676E8
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     adds r6, r1, #0
-    ldr r1, .L08067714 @ =gBmStatus
+    ldr r1, .L08067714 @ =gBmSt
     movs r0, #0x20
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -169354,7 +167488,7 @@ func_080676E8: @ 0x080676E8
     subs r5, #0x78
     b .L0806772C
     .align 2, 0
-.L08067714: .4byte gBmStatus
+.L08067714: .4byte gBmSt
 .L08067718:
     movs r0, #0xf0
     subs r0, r0, r6
@@ -170222,7 +168356,7 @@ func_08067E48: @ 0x08067E48
     ldr r1, .L08067E98 @ =0x0203E098
     ldr r5, [r0]
     ldr r6, [r1]
-    ldr r1, .L08067E9C @ =gBmStatus
+    ldr r1, .L08067E9C @ =gBmSt
     movs r0, #0x20
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -170255,7 +168389,7 @@ func_08067E48: @ 0x08067E48
     .align 2, 0
 .L08067E94: .4byte 0x0203E094
 .L08067E98: .4byte 0x0203E098
-.L08067E9C: .4byte gBmStatus
+.L08067E9C: .4byte gBmSt
 .L08067EA0: .4byte 0x020200A0
 .L08067EA4: .4byte 0x0203E020
 .L08067EA8: .4byte 0x0203E00C
@@ -170558,7 +168692,7 @@ func_080680DC: @ 0x080680DC
     bl func_0806B78C
     cmp r0, #1
     beq .L080680FA
-    ldr r1, .L08068100 @ =gBmStatus
+    ldr r1, .L08068100 @ =gBmSt
     movs r0, #0x20
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -170572,7 +168706,7 @@ func_080680DC: @ 0x080680DC
     bl MakeBgmOverridePersist
     b .L0806810C
     .align 2, 0
-.L08068100: .4byte gBmStatus
+.L08068100: .4byte gBmSt
 .L08068104: .4byte 0x020200A0
 .L08068108:
     bl RestoreBgm_WithFixedSpeed
@@ -174062,7 +172196,7 @@ func_08069D0C: @ 0x08069D0C
 
     thumb_func_start func_08069D18
 func_08069D18: @ 0x08069D18
-    ldr r0, .L08069D38 @ =gBmStatus
+    ldr r0, .L08069D38 @ =gBmSt
     ldrb r0, [r0]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
@@ -174079,7 +172213,7 @@ func_08069D18: @ 0x08069D18
     ldr r0, .L08069D48 @ =0x0201FB2C
     b .L08069D52
     .align 2, 0
-.L08069D38: .4byte gBmStatus
+.L08069D38: .4byte gBmSt
 .L08069D3C: .4byte 0x0201FB24
 .L08069D40: .4byte 0x0201FDB0
 .L08069D44: .4byte 0x0201FB20
@@ -179140,7 +177274,7 @@ func_0806C30C: @ 0x0806C30C
     adds r0, r1, #0
     lsls r1, r0, #0x10
     asrs r0, r1, #0x10
-    ldr r1, .L0806C440 @ =gBmStatus
+    ldr r1, .L0806C440 @ =gBmSt
     movs r3, #0xc
     ldrsh r2, [r1, r3]
     subs r0, r0, r2
@@ -179153,14 +177287,14 @@ func_0806C30C: @ 0x0806C30C
     adds r1, r2, #0
     lsls r2, r1, #0x10
     asrs r1, r2, #0x10
-    ldr r2, .L0806C440 @ =gBmStatus
+    ldr r2, .L0806C440 @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     subs r1, r1, r3
     bl func_0806C540
     b .L0806C536
     .align 2, 0
-.L0806C440: .4byte gBmStatus
+.L0806C440: .4byte gBmSt
 .L0806C444:
     ldr r0, [r7]
     bl func_0806CD00
@@ -179990,7 +178124,7 @@ func_0806C8A0: @ 0x0806C8A0
     adds r0, r1, #0
     bl GetCameraAdjustedX
     adds r1, r0, #0
-    ldr r0, .L0806CAF4 @ =gBmStatus
+    ldr r0, .L0806CAF4 @ =gBmSt
     ldrh r2, [r0, #0xc]
     movs r3, #0
     ands r2, r3
@@ -180010,7 +178144,7 @@ func_0806C8A0: @ 0x0806C8A0
     adds r0, r1, #0
     bl GetCameraAdjustedY
     adds r1, r0, #0
-    ldr r0, .L0806CAF4 @ =gBmStatus
+    ldr r0, .L0806CAF4 @ =gBmSt
     ldrh r2, [r0, #0xe]
     movs r3, #0
     ands r2, r3
@@ -180040,7 +178174,7 @@ func_0806C8A0: @ 0x0806C8A0
     .align 2, 0
 .L0806CAEC: .4byte 0x08C9CEC0
 .L0806CAF0: .4byte 0xFFFFFF00
-.L0806CAF4: .4byte gBmStatus
+.L0806CAF4: .4byte gBmSt
     func_end func_0806C8A0
 
     thumb_func_start func_0806CAF8
@@ -180820,7 +178954,7 @@ func_0806CFFC: @ 0x0806CFFC
     ldrsh r2, [r3, r4]
     adds r1, r1, r2
     asrs r2, r1, #4
-    ldr r1, .L0806D134 @ =gBmStatus
+    ldr r1, .L0806D134 @ =gBmSt
     ldrh r1, [r1, #0xc]
     subs r2, r2, r1
     adds r1, r2, #0
@@ -180842,7 +178976,7 @@ func_0806CFFC: @ 0x0806CFFC
     ldrsh r2, [r3, r4]
     adds r1, r1, r2
     asrs r2, r1, #4
-    ldr r1, .L0806D134 @ =gBmStatus
+    ldr r1, .L0806D134 @ =gBmSt
     ldrh r1, [r1, #0xe]
     subs r2, r2, r1
     adds r1, r2, #0
@@ -180906,7 +179040,7 @@ func_0806CFFC: @ 0x0806CFFC
     bgt .L0806D138
     b .L0806D13C
     .align 2, 0
-.L0806D134: .4byte gBmStatus
+.L0806D134: .4byte gBmSt
 .L0806D138:
     movs r0, #0
     b .L0806D140
@@ -183540,7 +181674,7 @@ func_0806E474: @ 0x0806E474
     bl ResetTextFont
     bl func_0806F76C
     bl InitBmBgLayers
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ApplySystemObjectsGraphics
     bl IsEventRunning
     lsls r1, r0, #0x18
@@ -183782,7 +181916,7 @@ func_0806E644: @ 0x0806E644
     movs r2, #0x11
     ldrsb r2, [r3, r2]
     ldr r0, [r7]
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     add sp, #4
     pop {r7}
     pop {r0}
@@ -183816,7 +181950,7 @@ func_0806E670: @ 0x0806E670
     movs r2, #0x11
     ldrsb r2, [r3, r2]
     ldr r0, [r7]
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
 .L0806E6A2:
     add sp, #4
     pop {r7}
@@ -184203,7 +182337,7 @@ func_0806E8D8: @ 0x0806E8D8
     movs r2, #0x11
     ldrsb r2, [r1, r2]
     lsls r0, r2, #4
-    ldr r1, .L0806E99C @ =gBmStatus
+    ldr r1, .L0806E99C @ =gBmSt
     movs r3, #0xe
     ldrsh r2, [r1, r3]
     subs r0, r0, r2
@@ -184218,7 +182352,7 @@ func_0806E8D8: @ 0x0806E8D8
     b .L0806E9A8
     .align 2, 0
 .L0806E998: .4byte 0x0203E0FC
-.L0806E99C: .4byte gBmStatus
+.L0806E99C: .4byte gBmSt
 .L0806E9A0:
     ldr r0, [r7, #4]
     adds r1, r0, #0
@@ -184258,7 +182392,7 @@ func_0806E8D8: @ 0x0806E8D8
     movs r3, #0x11
     ldrsb r3, [r2, r3]
     lsls r1, r3, #4
-    ldr r2, .L0806E9FC @ =gBmStatus
+    ldr r2, .L0806E9FC @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     subs r1, r1, r3
@@ -184269,7 +182403,7 @@ func_0806E8D8: @ 0x0806E8D8
     b .L0806E9AE
     .align 2, 0
 .L0806E9F8: .4byte 0x0203E0FC
-.L0806E9FC: .4byte gBmStatus
+.L0806E9FC: .4byte gBmSt
 .L0806EA00:
     ldr r0, [r7, #8]
     ldr r1, [r7, #0xc]
@@ -189743,7 +187877,7 @@ func_08071424: @ 0x08071424
     ldr r2, [r7]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L0807149C @ =gBmStatus
+    ldr r2, .L0807149C @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -189759,7 +187893,7 @@ func_08071424: @ 0x08071424
     ldr r3, [r7]
     movs r2, #0x11
     ldrsb r2, [r3, r2]
-    ldr r3, .L0807149C @ =gBmStatus
+    ldr r3, .L0807149C @ =gBmSt
     movs r5, #0xe
     ldrsh r4, [r3, r5]
     asrs r3, r4, #4
@@ -189787,7 +187921,7 @@ func_08071424: @ 0x08071424
 .L08071490: .4byte 0x083F2B4C
 .L08071494: .4byte 0x06013000
 .L08071498: .4byte 0x083F2C3C
-.L0807149C: .4byte gBmStatus
+.L0807149C: .4byte gBmSt
     func_end func_08071424
 
     thumb_func_start func_080714A0
@@ -189803,7 +187937,7 @@ func_080714A0: @ 0x080714A0
     ldr r2, [r7]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L08071518 @ =gBmStatus
+    ldr r2, .L08071518 @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -189819,7 +187953,7 @@ func_080714A0: @ 0x080714A0
     ldr r3, [r7]
     movs r2, #0x11
     ldrsb r2, [r3, r2]
-    ldr r3, .L08071518 @ =gBmStatus
+    ldr r3, .L08071518 @ =gBmSt
     movs r5, #0xe
     ldrsh r4, [r3, r5]
     asrs r3, r4, #4
@@ -189847,7 +187981,7 @@ func_080714A0: @ 0x080714A0
 .L0807150C: .4byte 0x083F2DA4
 .L08071510: .4byte 0x06013000
 .L08071514: .4byte 0x083F2EE8
-.L08071518: .4byte gBmStatus
+.L08071518: .4byte gBmSt
     func_end func_080714A0
 
     thumb_func_start func_0807151C
@@ -189869,7 +188003,7 @@ func_0807151C: @ 0x0807151C
     ldr r2, [r7]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L080715AC @ =gBmStatus
+    ldr r2, .L080715AC @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -189887,7 +188021,7 @@ func_0807151C: @ 0x0807151C
     ldr r2, [r7]
     movs r1, #0x11
     ldrsb r1, [r2, r1]
-    ldr r2, .L080715AC @ =gBmStatus
+    ldr r2, .L080715AC @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -189922,7 +188056,7 @@ func_0807151C: @ 0x0807151C
     bx r0
     .align 2, 0
 .L080715A8: .4byte 0x08C9D99C
-.L080715AC: .4byte gBmStatus
+.L080715AC: .4byte gBmSt
     func_end func_0807151C
 
     thumb_func_start func_080715B0
@@ -189986,7 +188120,7 @@ func_0807160C: @ 0x0807160C
     ldr r2, [r7]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L08071678 @ =gBmStatus
+    ldr r2, .L08071678 @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -190003,7 +188137,7 @@ func_0807160C: @ 0x0807160C
     ldr r2, [r7]
     movs r1, #0x11
     ldrsb r1, [r2, r1]
-    ldr r2, .L08071678 @ =gBmStatus
+    ldr r2, .L08071678 @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -190022,7 +188156,7 @@ func_0807160C: @ 0x0807160C
     bx r0
     .align 2, 0
 .L08071674: .4byte 0x08C9D9BC
-.L08071678: .4byte gBmStatus
+.L08071678: .4byte gBmSt
     func_end func_0807160C
 
     thumb_func_start func_0807167C
@@ -190088,7 +188222,7 @@ func_080716E0: @ 0x080716E0
     ldr r2, [r7]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L0807174C @ =gBmStatus
+    ldr r2, .L0807174C @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -190105,7 +188239,7 @@ func_080716E0: @ 0x080716E0
     ldr r2, [r7]
     movs r1, #0x11
     ldrsb r1, [r2, r1]
-    ldr r2, .L0807174C @ =gBmStatus
+    ldr r2, .L0807174C @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -190124,7 +188258,7 @@ func_080716E0: @ 0x080716E0
     bx r0
     .align 2, 0
 .L08071748: .4byte 0x08C9D9DC
-.L0807174C: .4byte gBmStatus
+.L0807174C: .4byte gBmSt
     func_end func_080716E0
 
     thumb_func_start func_08071750
@@ -191045,7 +189179,7 @@ func_08071E4C: @ 0x08071E4C
     ldr r2, [r7]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L08071EC8 @ =gBmStatus
+    ldr r2, .L08071EC8 @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -191062,7 +189196,7 @@ func_08071E4C: @ 0x08071E4C
     ldr r2, [r7]
     movs r1, #0x11
     ldrsb r1, [r2, r1]
-    ldr r2, .L08071EC8 @ =gBmStatus
+    ldr r2, .L08071EC8 @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -191087,7 +189221,7 @@ func_08071E4C: @ 0x08071E4C
     bx r0
     .align 2, 0
 .L08071EC4: .4byte 0x08C9DA7C
-.L08071EC8: .4byte gBmStatus
+.L08071EC8: .4byte gBmSt
     func_end func_08071E4C
 
     thumb_func_start func_08071ECC
@@ -191331,7 +189465,7 @@ func_08072098: @ 0x08072098
     ldr r2, [r7]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L08072100 @ =gBmStatus
+    ldr r2, .L08072100 @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -191349,7 +189483,7 @@ func_08072098: @ 0x08072098
     ldr r2, [r7]
     movs r1, #0x11
     ldrsb r1, [r2, r1]
-    ldr r2, .L08072100 @ =gBmStatus
+    ldr r2, .L08072100 @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -191369,7 +189503,7 @@ func_08072098: @ 0x08072098
     bx r0
     .align 2, 0
 .L080720FC: .4byte 0x08C9DAC4
-.L08072100: .4byte gBmStatus
+.L08072100: .4byte gBmSt
     func_end func_08072098
 
     thumb_func_start func_08072104
@@ -191498,7 +189632,7 @@ func_08072180: @ 0x08072180
     ldr r2, [r1, #0x2c]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L080722B8 @ =gBmStatus
+    ldr r2, .L080722B8 @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -191512,7 +189646,7 @@ func_08072180: @ 0x08072180
     ldr r3, [r2, #0x2c]
     movs r2, #0x11
     ldrsb r2, [r3, r2]
-    ldr r3, .L080722B8 @ =gBmStatus
+    ldr r3, .L080722B8 @ =gBmSt
     movs r5, #0xe
     ldrsh r4, [r3, r5]
     asrs r3, r4, #4
@@ -191566,7 +189700,7 @@ func_08072180: @ 0x08072180
     ldr r2, [r1, #0x2c]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L080722B8 @ =gBmStatus
+    ldr r2, .L080722B8 @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -191587,7 +189721,7 @@ func_08072180: @ 0x08072180
 .L080722AC: .4byte gDispIo
 .L080722B0: .4byte 0x06002800
 .L080722B4: .4byte gBg2Tm
-.L080722B8: .4byte gBmStatus
+.L080722B8: .4byte gBmSt
 .L080722BC: .4byte 0x00004140
     func_end func_08072180
 
@@ -192126,7 +190260,7 @@ func_080726C0: @ 0x080726C0
     ldr r2, [r1, #0x2c]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L08072728 @ =gBmStatus
+    ldr r2, .L08072728 @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -192141,7 +190275,7 @@ func_080726C0: @ 0x080726C0
     ldr r2, [r1, #0x2c]
     movs r1, #0x11
     ldrsb r1, [r2, r1]
-    ldr r2, .L08072728 @ =gBmStatus
+    ldr r2, .L08072728 @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -192157,7 +190291,7 @@ func_080726C0: @ 0x080726C0
     bx r0
     .align 2, 0
 .L08072724: .4byte 0x08C9DB1C
-.L08072728: .4byte gBmStatus
+.L08072728: .4byte gBmSt
     func_end func_080726C0
 
     thumb_func_start func_0807272C
@@ -192354,7 +190488,7 @@ func_08072898: @ 0x08072898
     ldrb r2, [r1, #0x13]
     adds r3, r2, #0
     lsls r1, r3, #4
-    ldr r2, .L080728EC @ =gBmStatus
+    ldr r2, .L080728EC @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     subs r1, r1, r3
@@ -192364,7 +190498,7 @@ func_08072898: @ 0x08072898
     ldrb r2, [r1, #0x14]
     adds r3, r2, #0
     lsls r1, r3, #4
-    ldr r2, .L080728EC @ =gBmStatus
+    ldr r2, .L080728EC @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     subs r1, r1, r3
@@ -192376,7 +190510,7 @@ func_08072898: @ 0x08072898
     .align 2, 0
 .L080728E4: .4byte 0x08C9DB64
 .L080728E8: .4byte gActionSt
-.L080728EC: .4byte gBmStatus
+.L080728EC: .4byte gBmSt
     func_end func_08072898
 
     thumb_func_start func_080728F0
@@ -192792,7 +190926,7 @@ func_08072C20: @ 0x08072C20
     ldr r2, [r7]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L08072C8C @ =gBmStatus
+    ldr r2, .L08072C8C @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -192809,7 +190943,7 @@ func_08072C20: @ 0x08072C20
     ldr r2, [r7]
     movs r1, #0x11
     ldrsb r1, [r2, r1]
-    ldr r2, .L08072C8C @ =gBmStatus
+    ldr r2, .L08072C8C @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -192828,7 +190962,7 @@ func_08072C20: @ 0x08072C20
     bx r0
     .align 2, 0
 .L08072C88: .4byte 0x08C9DBAC
-.L08072C8C: .4byte gBmStatus
+.L08072C8C: .4byte gBmSt
     func_end func_08072C20
 
     thumb_func_start func_08072C90
@@ -192904,7 +191038,7 @@ func_08072D10: @ 0x08072D10
     ldr r2, [r7]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L08072D78 @ =gBmStatus
+    ldr r2, .L08072D78 @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -192922,7 +191056,7 @@ func_08072D10: @ 0x08072D10
     ldr r2, [r7]
     movs r1, #0x11
     ldrsb r1, [r2, r1]
-    ldr r2, .L08072D78 @ =gBmStatus
+    ldr r2, .L08072D78 @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -192942,7 +191076,7 @@ func_08072D10: @ 0x08072D10
     bx r0
     .align 2, 0
 .L08072D74: .4byte 0x08C9DBD4
-.L08072D78: .4byte gBmStatus
+.L08072D78: .4byte gBmSt
     func_end func_08072D10
 
     thumb_func_start func_08072D7C
@@ -193333,7 +191467,7 @@ func_08073060: @ 0x08073060
     ldr r2, [r7]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L080730C4 @ =gBmStatus
+    ldr r2, .L080730C4 @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -193350,7 +191484,7 @@ func_08073060: @ 0x08073060
     ldr r2, [r7]
     movs r1, #0x11
     ldrsb r1, [r2, r1]
-    ldr r2, .L080730C4 @ =gBmStatus
+    ldr r2, .L080730C4 @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -193369,7 +191503,7 @@ func_08073060: @ 0x08073060
     bx r0
     .align 2, 0
 .L080730C0: .4byte 0x08C9DC14
-.L080730C4: .4byte gBmStatus
+.L080730C4: .4byte gBmSt
     func_end func_08073060
 
     thumb_func_start func_080730C8
@@ -193493,7 +191627,7 @@ func_08073198: @ 0x08073198
     ldr r2, [r7]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L080731FC @ =gBmStatus
+    ldr r2, .L080731FC @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -193510,7 +191644,7 @@ func_08073198: @ 0x08073198
     ldr r2, [r7]
     movs r1, #0x11
     ldrsb r1, [r2, r1]
-    ldr r2, .L080731FC @ =gBmStatus
+    ldr r2, .L080731FC @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -193529,7 +191663,7 @@ func_08073198: @ 0x08073198
     bx r0
     .align 2, 0
 .L080731F8: .4byte 0x08C9DC54
-.L080731FC: .4byte gBmStatus
+.L080731FC: .4byte gBmSt
     func_end func_08073198
 
     thumb_func_start func_08073200
@@ -193657,7 +191791,7 @@ func_080732E8: @ 0x080732E8
     ldr r2, [r7]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L08073350 @ =gBmStatus
+    ldr r2, .L08073350 @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -193674,7 +191808,7 @@ func_080732E8: @ 0x080732E8
     ldr r2, [r7]
     movs r1, #0x11
     ldrsb r1, [r2, r1]
-    ldr r2, .L08073350 @ =gBmStatus
+    ldr r2, .L08073350 @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -193694,7 +191828,7 @@ func_080732E8: @ 0x080732E8
     bx r0
     .align 2, 0
 .L0807334C: .4byte 0x08C9DC94
-.L08073350: .4byte gBmStatus
+.L08073350: .4byte gBmSt
     func_end func_080732E8
 
     thumb_func_start func_08073354
@@ -193962,7 +192096,7 @@ func_08073550: @ 0x08073550
     ldr r2, [r7]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L080735B4 @ =gBmStatus
+    ldr r2, .L080735B4 @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -193979,7 +192113,7 @@ func_08073550: @ 0x08073550
     ldr r2, [r7]
     movs r1, #0x11
     ldrsb r1, [r2, r1]
-    ldr r2, .L080735B4 @ =gBmStatus
+    ldr r2, .L080735B4 @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -193998,7 +192132,7 @@ func_08073550: @ 0x08073550
     bx r0
     .align 2, 0
 .L080735B0: .4byte 0x08C9DCE4
-.L080735B4: .4byte gBmStatus
+.L080735B4: .4byte gBmSt
     func_end func_08073550
 
     thumb_func_start func_080735B8
@@ -194354,7 +192488,7 @@ func_08073878: @ 0x08073878
     ldr r2, [r7]
     movs r1, #0x10
     ldrsb r1, [r2, r1]
-    ldr r2, .L080738DC @ =gBmStatus
+    ldr r2, .L080738DC @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -194371,7 +192505,7 @@ func_08073878: @ 0x08073878
     ldr r2, [r7]
     movs r1, #0x11
     ldrsb r1, [r2, r1]
-    ldr r2, .L080738DC @ =gBmStatus
+    ldr r2, .L080738DC @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     asrs r2, r3, #4
@@ -194390,7 +192524,7 @@ func_08073878: @ 0x08073878
     bx r0
     .align 2, 0
 .L080738D8: .4byte 0x08C9DD24
-.L080738DC: .4byte gBmStatus
+.L080738DC: .4byte gBmSt
     func_end func_08073878
 
     thumb_func_start func_080738E0
@@ -194587,7 +192721,7 @@ func_08073A54: @ 0x08073A54
     bl Proc_Start
     str r0, [r7, #8]
     ldr r0, [r7, #8]
-    ldr r1, .L08073AB8 @ =gBmStatus
+    ldr r1, .L08073AB8 @ =gBmSt
     movs r3, #0xc
     ldrsh r2, [r1, r3]
     asrs r1, r2, #4
@@ -194603,7 +192737,7 @@ func_08073A54: @ 0x08073A54
     adds r1, #8
     str r1, [r0, #0x30]
     ldr r0, [r7, #8]
-    ldr r1, .L08073AB8 @ =gBmStatus
+    ldr r1, .L08073AB8 @ =gBmSt
     movs r3, #0xe
     ldrsh r2, [r1, r3]
     asrs r1, r2, #4
@@ -194624,7 +192758,7 @@ func_08073A54: @ 0x08073A54
     bx r0
     .align 2, 0
 .L08073AB4: .4byte 0x08C9DD4C
-.L08073AB8: .4byte gBmStatus
+.L08073AB8: .4byte gBmSt
     func_end func_08073A54
 
     thumb_func_start func_08073ABC
@@ -197263,7 +195397,7 @@ func_08074F20: @ 0x08074F20
     ldr r1, [r0]
     movs r0, #0x10
     ldrsb r0, [r1, r0]
-    ldr r1, .L08075084 @ =gBmStatus
+    ldr r1, .L08075084 @ =gBmSt
     movs r3, #0xc
     ldrsh r2, [r1, r3]
     asrs r1, r2, #4
@@ -197289,7 +195423,7 @@ func_08074F20: @ 0x08074F20
     ldr r1, [r0]
     movs r0, #0x11
     ldrsb r0, [r1, r0]
-    ldr r1, .L08075084 @ =gBmStatus
+    ldr r1, .L08075084 @ =gBmSt
     movs r3, #0xe
     ldrsh r2, [r1, r3]
     asrs r1, r2, #4
@@ -197315,7 +195449,7 @@ func_08074F20: @ 0x08074F20
     ldr r1, [r0]
     movs r0, #0x11
     ldrsb r0, [r1, r0]
-    ldr r1, .L08075084 @ =gBmStatus
+    ldr r1, .L08075084 @ =gBmSt
     movs r3, #0xe
     ldrsh r2, [r1, r3]
     asrs r1, r2, #4
@@ -197343,7 +195477,7 @@ func_08074F20: @ 0x08074F20
     ldr r1, [r0]
     movs r0, #0x10
     ldrsb r0, [r1, r0]
-    ldr r1, .L08075084 @ =gBmStatus
+    ldr r1, .L08075084 @ =gBmSt
     movs r3, #0xc
     ldrsh r2, [r1, r3]
     asrs r1, r2, #4
@@ -197369,7 +195503,7 @@ func_08074F20: @ 0x08074F20
     ldr r1, [r0]
     movs r0, #0x10
     ldrsb r0, [r1, r0]
-    ldr r1, .L08075084 @ =gBmStatus
+    ldr r1, .L08075084 @ =gBmSt
     movs r3, #0xc
     ldrsh r2, [r1, r3]
     asrs r1, r2, #4
@@ -197414,7 +195548,7 @@ func_08074F20: @ 0x08074F20
 .L08075078: .4byte 0x06013800
 .L0807507C: .4byte 0x083F3450
 .L08075080: .4byte 0x0203E0FC
-.L08075084: .4byte gBmStatus
+.L08075084: .4byte gBmSt
 .L08075088: .4byte 0x083EC514
 .L0807508C: .4byte gPlaySt
 .L08075090: .4byte 0x0000037B
@@ -198386,7 +196520,7 @@ func_08075798: @ 0x08075798
     ldrsb r1, [r2, r1]
     adds r2, r1, #0
     lsls r1, r2, #4
-    ldr r2, .L080757D8 @ =gBmStatus
+    ldr r2, .L080757D8 @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     subs r1, r1, r3
@@ -198397,7 +196531,7 @@ func_08075798: @ 0x08075798
     .align 2, 0
 .L080757D0: .4byte 0x000002D5
 .L080757D4: .4byte 0x0203E0FC
-.L080757D8: .4byte gBmStatus
+.L080757D8: .4byte gBmSt
     func_end func_08075798
 
     thumb_func_start func_080757DC
@@ -198420,7 +196554,7 @@ func_080757DC: @ 0x080757DC
     ldrsb r1, [r2, r1]
     adds r2, r1, #0
     lsls r1, r2, #4
-    ldr r2, .L0807581C @ =gBmStatus
+    ldr r2, .L0807581C @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     subs r1, r1, r3
@@ -198431,7 +196565,7 @@ func_080757DC: @ 0x080757DC
     .align 2, 0
 .L08075814: .4byte 0x000002D6
 .L08075818: .4byte 0x0203E0FC
-.L0807581C: .4byte gBmStatus
+.L0807581C: .4byte gBmSt
     func_end func_080757DC
 
     thumb_func_start func_08075820
@@ -198927,7 +197061,7 @@ func_08075B80: @ 0x08075B80
     movs r2, #0x11
     ldrsb r2, [r3, r2]
     ldr r0, [r7]
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     add sp, #4
     pop {r4, r7}
     pop {r0}
@@ -198969,7 +197103,7 @@ func_08075BD0: @ 0x08075BD0
     movs r2, #0x11
     ldrsb r2, [r3, r2]
     ldr r0, [r7]
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     add sp, #4
     pop {r4, r7}
     pop {r0}
@@ -199025,7 +197159,7 @@ func_08075C20: @ 0x08075C20
     adds r3, #0x61
     ldrb r2, [r3]
     ldr r0, [r7]
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     add sp, #4
     pop {r7}
     pop {r0}
@@ -199192,7 +197326,7 @@ func_08075C90: @ 0x08075C90
     ldrsb r0, [r1, r0]
     adds r1, r0, #0
     lsls r0, r1, #4
-    ldr r1, .L08075DEC @ =gBmStatus
+    ldr r1, .L08075DEC @ =gBmSt
     movs r3, #0xc
     ldrsh r2, [r1, r3]
     subs r1, r0, r2
@@ -199211,7 +197345,7 @@ func_08075C90: @ 0x08075C90
     b .L0807603E
     .align 2, 0
 .L08075DE8: .4byte 0x0203E0FC
-.L08075DEC: .4byte gBmStatus
+.L08075DEC: .4byte gBmSt
 .L08075DF0:
     ldr r1, .L08075E3C @ =0x0203E0FC
     adds r0, r1, #0
@@ -199233,7 +197367,7 @@ func_08075C90: @ 0x08075C90
     ldrsb r1, [r2, r1]
     adds r2, r1, #0
     lsls r1, r2, #4
-    ldr r2, .L08075E44 @ =gBmStatus
+    ldr r2, .L08075E44 @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     subs r1, r1, r3
@@ -199252,7 +197386,7 @@ func_08075C90: @ 0x08075C90
     .align 2, 0
 .L08075E3C: .4byte 0x0203E0FC
 .L08075E40: .4byte 0x000002CE
-.L08075E44: .4byte gBmStatus
+.L08075E44: .4byte gBmSt
 .L08075E48:
     movs r0, #0
     ldr r1, .L08075E88 @ =0x0203E0FC
@@ -199385,7 +197519,7 @@ func_08075C90: @ 0x08075C90
     ldrsb r1, [r2, r1]
     adds r2, r1, #0
     lsls r1, r2, #4
-    ldr r2, .L08075FD8 @ =gBmStatus
+    ldr r2, .L08075FD8 @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     subs r1, r1, r3
@@ -199431,7 +197565,7 @@ func_08075C90: @ 0x08075C90
     ldrsb r0, [r1, r0]
     adds r1, r0, #0
     lsls r0, r1, #4
-    ldr r1, .L08075FD8 @ =gBmStatus
+    ldr r1, .L08075FD8 @ =gBmSt
     movs r3, #0xc
     ldrsh r2, [r1, r3]
     subs r1, r0, r2
@@ -199451,7 +197585,7 @@ func_08075C90: @ 0x08075C90
     b .L0807603E
     .align 2, 0
 .L08075FD4: .4byte 0x0203E0FC
-.L08075FD8: .4byte gBmStatus
+.L08075FD8: .4byte gBmSt
 .L08075FDC:
     ldr r0, [r7, #4]
     ldr r1, .L08076048 @ =0x0203E0FC
@@ -199466,7 +197600,7 @@ func_08075C90: @ 0x08075C90
     ldrsb r1, [r2, r1]
     adds r2, r1, #0
     lsls r1, r2, #4
-    ldr r2, .L0807604C @ =gBmStatus
+    ldr r2, .L0807604C @ =gBmSt
     movs r4, #0xc
     ldrsh r3, [r2, r4]
     subs r1, r1, r3
@@ -199506,7 +197640,7 @@ func_08075C90: @ 0x08075C90
     bx r0
     .align 2, 0
 .L08076048: .4byte 0x0203E0FC
-.L0807604C: .4byte gBmStatus
+.L0807604C: .4byte gBmSt
     func_end func_08075C90
 
     thumb_func_start func_08076050
@@ -200361,7 +198495,7 @@ func_08076664: @ 0x08076664
     ldrsb r0, [r1, r0]
     adds r1, r0, #0
     lsls r0, r1, #4
-    ldr r1, .L080766D4 @ =gBmStatus
+    ldr r1, .L080766D4 @ =gBmSt
     movs r3, #0xc
     ldrsh r2, [r1, r3]
     subs r1, r0, r2
@@ -200382,7 +198516,7 @@ func_08076664: @ 0x08076664
     ldrsb r1, [r2, r1]
     adds r2, r1, #0
     lsls r1, r2, #4
-    ldr r2, .L080766D4 @ =gBmStatus
+    ldr r2, .L080766D4 @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     subs r1, r1, r3
@@ -200396,7 +198530,7 @@ func_08076664: @ 0x08076664
     bx r0
     .align 2, 0
 .L080766D0: .4byte 0x0203E0FC
-.L080766D4: .4byte gBmStatus
+.L080766D4: .4byte gBmSt
     func_end func_08076664
 
     thumb_func_start func_080766D8
@@ -200431,7 +198565,7 @@ func_080766D8: @ 0x080766D8
     ldrsb r0, [r1, r0]
     adds r1, r0, #0
     lsls r0, r1, #4
-    ldr r1, .L08076760 @ =gBmStatus
+    ldr r1, .L08076760 @ =gBmSt
     movs r3, #0xc
     ldrsh r2, [r1, r3]
     subs r1, r0, r2
@@ -200452,7 +198586,7 @@ func_080766D8: @ 0x080766D8
     ldrsb r1, [r2, r1]
     adds r2, r1, #0
     lsls r1, r2, #4
-    ldr r2, .L08076760 @ =gBmStatus
+    ldr r2, .L08076760 @ =gBmSt
     movs r4, #0xe
     ldrsh r3, [r2, r4]
     subs r1, r1, r3
@@ -200467,7 +198601,7 @@ func_080766D8: @ 0x080766D8
     .align 2, 0
 .L08076758: .4byte gPlaySt
 .L0807675C: .4byte 0x0203E0FC
-.L08076760: .4byte gBmStatus
+.L08076760: .4byte gBmSt
     func_end func_080766D8
 
     thumb_func_start func_08076764
@@ -203955,7 +202089,7 @@ func_0807812C: @ 0x0807812C
     ldr r0, [r4]
     ldrh r5, [r0]
     ldrh r0, [r0, #2]
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08078140
@@ -204020,7 +202154,7 @@ func_080781B4: @ 0x080781B4
     adds r4, r0, #0
     ldr r0, [r4]
     ldrh r0, [r0, #8]
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080781CA
@@ -204047,12 +202181,12 @@ func_080781DC: @ 0x080781DC
     ldrh r5, [r0, #0xc]
     ldr r6, .L08078210 @ =0xFFFF0000
     ldrh r0, [r0, #2]
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08078214
     adds r0, r5, #0
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08078214
@@ -204079,7 +202213,7 @@ func_080781DC: @ 0x080781DC
 func_0807821C: @ 0x0807821C
     push {r4, r5, r6, lr}
     movs r3, #0
-    ldr r1, .L08078240 @ =gBmStatus
+    ldr r1, .L08078240 @ =gBmSt
     ldrb r5, [r1, #0x14]
     ldrb r4, [r1, #0x16]
     adds r6, r4, #0
@@ -204096,7 +202230,7 @@ func_0807821C: @ 0x0807821C
     movs r0, #1
     b .L080782B2
     .align 2, 0
-.L08078240: .4byte gBmStatus
+.L08078240: .4byte gBmSt
 .L08078244:
     ldrb r0, [r2]
     cmp r0, #0xff
@@ -204121,7 +202255,7 @@ func_0807821C: @ 0x0807821C
     bne .L0807824A
     b .L080782B0
 .L0807826C:
-    ldr r0, .L08078298 @ =gMapMovement
+    ldr r0, .L08078298 @ =gBmMapMovement
     ldr r1, [r0]
     lsls r0, r4, #2
     adds r0, r0, r1
@@ -204144,7 +202278,7 @@ func_0807821C: @ 0x0807821C
     bhi .L080782B0
     b .L0807823A
     .align 2, 0
-.L08078298: .4byte gMapMovement
+.L08078298: .4byte gBmMapMovement
 .L0807829C:
     ldr r0, .L080782B8 @ =gActiveUnit
     ldr r1, [r0]
@@ -204174,12 +202308,12 @@ func_080782BC: @ 0x080782BC
     ldrh r5, [r0, #0xc]
     ldr r6, .L080782F0 @ =0xFFFF0000
     ldrh r0, [r0, #2]
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080782F4
     adds r0, r5, #0
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080782F4
@@ -204291,7 +202425,7 @@ func_080782FC: @ 0x080782FC
     beq .L080783EC
 .L080783A4:
     movs r0, #2
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080783EC
@@ -204381,7 +202515,7 @@ func_080783F4: @ 0x080783F4
 .L08078440: .4byte gPlaySt
 .L08078444:
     lsrs r0, r0, #0x10
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807846E
@@ -204746,7 +202880,7 @@ func_080786B4: @ 0x080786B4
     cmp r0, #2
     bne .L080786D8
     movs r0, #2
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080786D8
@@ -204772,7 +202906,7 @@ func_080786E0: @ 0x080786E0
     cmp r0, #3
     bne .L08078704
     movs r0, #2
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08078704
@@ -205157,15 +203291,15 @@ func_08078928: @ 0x08078928
     bx r1
     func_end func_08078928
 
-    thumb_func_start func_08078988
-func_08078988: @ 0x08078988
+    thumb_func_start CheckAvailableTurnEvent
+CheckAvailableTurnEvent: @ 0x08078988
     push {lr}
     sub sp, #0x1c
     ldr r0, .L080789AC @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
-    bl func_080315BC
+    bl GetChapterEventInfo
     ldr r0, [r0]
     str r0, [sp]
     mov r0, sp
@@ -205182,17 +203316,17 @@ func_08078988: @ 0x08078988
     add sp, #0x1c
     pop {r1}
     bx r1
-    func_end func_08078988
+    func_end CheckAvailableTurnEvent
 
-    thumb_func_start func_080789B8
-func_080789B8: @ 0x080789B8
+    thumb_func_start StartAvailableTurnEvents
+StartAvailableTurnEvents: @ 0x080789B8
     push {lr}
     sub sp, #0x1c
     ldr r0, .L080789E0 @ =gPlaySt
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
-    bl func_080315BC
+    bl GetChapterEventInfo
     ldr r0, [r0]
     str r0, [sp]
     mov r0, sp
@@ -205216,7 +203350,7 @@ func_080789B8: @ 0x080789B8
     add sp, #0x1c
     pop {r0}
     bx r0
-    func_end func_080789B8
+    func_end StartAvailableTurnEvents
 
     thumb_func_start func_080789FC
 func_080789FC: @ 0x080789FC
@@ -205232,7 +203366,7 @@ func_080789FC: @ 0x080789FC
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
-    bl func_080315BC
+    bl GetChapterEventInfo
     ldr r0, [r0, #4]
     str r0, [sp]
     mov r0, sp
@@ -205268,7 +203402,7 @@ func_08078A40: @ 0x08078A40
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
-    bl func_080315BC
+    bl GetChapterEventInfo
     ldr r0, [r0, #4]
     str r0, [sp]
     mov r0, sp
@@ -205495,7 +203629,7 @@ func_08078BD0: @ 0x08078BD0
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
-    bl func_080315BC
+    bl GetChapterEventInfo
     ldr r0, [r0, #8]
     str r0, [sp]
     mov r0, sp
@@ -205531,7 +203665,7 @@ func_08078C14: @ 0x08078C14
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
-    bl func_080315BC
+    bl GetChapterEventInfo
     ldr r0, [r0, #8]
     str r0, [sp]
     mov r0, sp
@@ -206216,7 +204350,7 @@ func_08079140: @ 0x08079140
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
-    bl func_080315BC
+    bl GetChapterEventInfo
     ldr r0, [r0, #0xc]
     str r0, [sp]
     mov r1, sp
@@ -206251,7 +204385,7 @@ func_08079180: @ 0x08079180
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
-    bl func_080315BC
+    bl GetChapterEventInfo
     ldr r0, [r0, #0xc]
     str r0, [sp]
     mov r1, sp
@@ -206280,7 +204414,7 @@ func_08079180: @ 0x08079180
 func_080791C0: @ 0x080791C0
     push {lr}
     movs r0, #3
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     pop {r1}
@@ -206291,7 +204425,7 @@ func_080791C0: @ 0x080791C0
 func_080791D0: @ 0x080791D0
     push {lr}
     movs r0, #3
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080791EC
@@ -206311,7 +204445,7 @@ func_080791F0: @ 0x080791F0
     ldr r4, .L08079208 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
-    bl func_080315BC
+    bl GetChapterEventInfo
     ldrb r4, [r4, #0x1b]
     cmp r4, #3
     beq .L0807920C
@@ -206334,7 +204468,7 @@ func_08079214: @ 0x08079214
     ldr r5, .L08079248 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r5, r0]
-    bl func_080315BC
+    bl GetChapterEventInfo
     adds r4, r0, #0
     movs r0, #0
     str r0, [sp, #8]
@@ -206389,7 +204523,7 @@ func_08079280: @ 0x08079280
     ldr r4, .L080792A4 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
-    bl func_080315BC
+    bl GetChapterEventInfo
     adds r1, r0, #0
     ldrb r0, [r4, #0x1b]
     cmp r0, #3
@@ -206486,7 +204620,7 @@ func_08079320: @ 0x08079320
     b .L0807935A
 .L0807932A:
     ldr r0, [r4, #8]
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08079358
@@ -206530,7 +204664,7 @@ func_08079368: @ 0x08079368
     b .L080793A2
 .L08079372:
     ldr r0, [r4, #0xc]
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080793A0
@@ -206574,7 +204708,7 @@ func_080793B0: @ 0x080793B0
     b .L080793EA
 .L080793BA:
     ldr r0, [r4, #8]
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080793E8
@@ -206623,7 +204757,7 @@ func_080793F8: @ 0x080793F8
     cmp r0, #0
     beq .L0807941E
     ldr r0, [r0, #0xc]
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0807945C
@@ -206678,7 +204812,7 @@ func_08079464: @ 0x08079464
     cmp r5, #0
     beq .L080794A8
     ldr r0, [r5, #0xc]
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08079508
@@ -207320,8 +205454,8 @@ SetFlag: @ 0x080798E4
     bx r0
     func_end SetFlag
 
-    thumb_func_start GetFlag
-GetFlag: @ 0x080798F8
+    thumb_func_start CheckFlag
+CheckFlag: @ 0x080798F8
     push {lr}
     cmp r0, #0x63
     ble .L08079904
@@ -207334,7 +205468,7 @@ GetFlag: @ 0x080798F8
     asrs r0, r0, #0x18
     pop {r1}
     bx r1
-    func_end GetFlag
+    func_end CheckFlag
 
     thumb_func_start ClearFlag
 ClearFlag: @ 0x08079910
@@ -207539,7 +205673,7 @@ func_08079A38: @ 0x08079A38
     ldrb r0, [r0, #0xe]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
-    bl func_080315BC
+    bl GetChapterEventInfo
     ldr r0, [r0, #0x3c]
     bl StartEvent
     movs r0, #0x91
@@ -207564,7 +205698,7 @@ func_08079A5C: @ 0x08079A5C
     cmp r0, #0
     bne .L08079A84
     movs r0, #0x9c
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     rsbs r1, r0, #0
@@ -207592,7 +205726,7 @@ func_08079A90: @ 0x08079A90
 func_08079A9C: @ 0x08079A9C
     push {lr}
     movs r0, #0x8f
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08079AAE
@@ -209097,7 +207231,7 @@ IsTactFemale: @ 0x0807A3C8
 func_0807A3D8: @ 0x0807A3D8
     push {lr}
     movs r0, #0x9b
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     pop {r1}
@@ -209351,7 +207485,7 @@ func_0807A558: @ 0x0807A558
     ldrb r0, [r0]
     cmp r5, r0
     bge .L0807A662
-    ldr r6, .L0807A5C0 @ =gBmStatus
+    ldr r6, .L0807A5C0 @ =gBmSt
 .L0807A574:
     adds r0, r5, #0
     bl GetTarget
@@ -209389,7 +207523,7 @@ func_0807A558: @ 0x0807A558
     b .L0807A662
     .align 2, 0
 .L0807A5BC: .4byte 0x0203E66C
-.L0807A5C0: .4byte gBmStatus
+.L0807A5C0: .4byte gBmSt
 .L0807A5C4: .4byte 0x000001FF
 .L0807A5C8: .4byte 0x08CA7518
 .L0807A5CC: .4byte 0x00002822
@@ -209401,7 +207535,7 @@ func_0807A558: @ 0x0807A558
     movs r0, #0x10
     ldrsb r0, [r3, r0]
     lsls r0, r0, #4
-    ldr r2, .L0807A614 @ =gBmStatus
+    ldr r2, .L0807A614 @ =gBmSt
     movs r4, #0xc
     ldrsh r1, [r2, r4]
     subs r4, r0, r1
@@ -209427,14 +207561,14 @@ func_0807A558: @ 0x0807A558
     b .L0807A662
     .align 2, 0
 .L0807A610: .4byte gActiveUnit
-.L0807A614: .4byte gBmStatus
+.L0807A614: .4byte gBmSt
 .L0807A618: .4byte 0x08CA7518
 .L0807A61C: .4byte 0x00002822
 .L0807A620:
     ldrb r0, [r1]
     cmp r0, #0xff
     beq .L0807A662
-    ldr r6, .L0807A6A4 @ =gBmStatus
+    ldr r6, .L0807A6A4 @ =gBmSt
     adds r5, r1, #0
 .L0807A62A:
     ldrb r4, [r5]
@@ -209496,7 +207630,7 @@ func_0807A558: @ 0x0807A558
     strh r5, [r6]
     b .L0807A6D8
     .align 2, 0
-.L0807A6A4: .4byte gBmStatus
+.L0807A6A4: .4byte gBmSt
 .L0807A6A8: .4byte 0x000001FF
 .L0807A6AC: .4byte 0x08CA7518
 .L0807A6B0: .4byte 0x00002822
@@ -209553,7 +207687,7 @@ StartTutorialCursors: @ 0x0807A6E4
     movs r2, #1
     ldrsb r2, [r0, r2]
     movs r0, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     ldr r1, [r6]
     movs r0, #0x10
     ldrsb r0, [r1, r0]
@@ -210116,14 +208250,14 @@ func_0807AB04: @ 0x0807AB04
     ands r1, r0
     cmp r1, #0
     beq .L0807AB56
-    ldr r1, .L0807AB30 @ =gBmStatus
+    ldr r1, .L0807AB30 @ =gBmSt
     movs r0, #2
     ldrh r2, [r1, #0xc]
     eors r0, r2
     strh r0, [r1, #0xc]
     b .L0807AB56
     .align 2, 0
-.L0807AB30: .4byte gBmStatus
+.L0807AB30: .4byte gBmSt
 .L0807AB34:
     bl GetGameTime
     movs r1, #1
@@ -210160,7 +208294,7 @@ func_0807AB5C: @ 0x0807AB5C
     ands r1, r0
     cmp r1, #0
     beq .L0807ABB8
-    ldr r0, .L0807AB8C @ =gBmStatus
+    ldr r0, .L0807AB8C @ =gBmSt
     ldr r1, .L0807AB90 @ =0x0000FFFD
     ldrh r2, [r0, #0xc]
     ands r1, r2
@@ -210169,7 +208303,7 @@ func_0807AB5C: @ 0x0807AB5C
     strh r1, [r0, #0xc]
     b .L0807ABB8
     .align 2, 0
-.L0807AB8C: .4byte gBmStatus
+.L0807AB8C: .4byte gBmSt
 .L0807AB90: .4byte 0x0000FFFD
 .L0807AB94:
     bl GetGameTime
@@ -210219,7 +208353,7 @@ func_0807ABBC: @ 0x0807ABBC
     ands r1, r0
     cmp r1, #0
     beq .L0807AC02
-    ldr r0, .L0807AC08 @ =gBmStatus
+    ldr r0, .L0807AC08 @ =gBmSt
     ldr r1, .L0807AC0C @ =0x0000FFFD
     ldrh r2, [r0, #0xe]
     ands r1, r2
@@ -210230,7 +208364,7 @@ func_0807ABBC: @ 0x0807ABBC
     pop {r0}
     bx r0
     .align 2, 0
-.L0807AC08: .4byte gBmStatus
+.L0807AC08: .4byte gBmSt
 .L0807AC0C: .4byte 0x0000FFFD
     func_end func_0807ABBC
 
@@ -210380,7 +208514,7 @@ func_0807AD04: @ 0x0807AD04
     thumb_func_start func_0807AD2C
 func_0807AD2C: @ 0x0807AD2C
     push {lr}
-    ldr r0, .L0807AD48 @ =gBmStatus
+    ldr r0, .L0807AD48 @ =gBmSt
     ldr r1, .L0807AD4C @ =0x0000FFFC
     ldrh r2, [r0, #0xc]
     ands r1, r2
@@ -210392,7 +208526,7 @@ func_0807AD2C: @ 0x0807AD2C
     pop {r0}
     bx r0
     .align 2, 0
-.L0807AD48: .4byte gBmStatus
+.L0807AD48: .4byte gBmSt
 .L0807AD4C: .4byte 0x0000FFFC
 .L0807AD50: .4byte 0x08CA756C
     func_end func_0807AD2C
@@ -210400,7 +208534,7 @@ func_0807AD2C: @ 0x0807AD2C
     thumb_func_start func_0807AD54
 func_0807AD54: @ 0x0807AD54
     push {lr}
-    ldr r0, .L0807AD70 @ =gBmStatus
+    ldr r0, .L0807AD70 @ =gBmSt
     ldr r1, .L0807AD74 @ =0x0000FFFC
     ldrh r2, [r0, #0xe]
     ands r1, r2
@@ -210412,7 +208546,7 @@ func_0807AD54: @ 0x0807AD54
     pop {r0}
     bx r0
     .align 2, 0
-.L0807AD70: .4byte gBmStatus
+.L0807AD70: .4byte gBmSt
 .L0807AD74: .4byte 0x0000FFFC
 .L0807AD78: .4byte 0x08CA759C
     func_end func_0807AD54
@@ -210442,7 +208576,7 @@ func_0807AD84: @ 0x0807AD84
     ands r1, r0
     cmp r1, #0
     beq .L0807ADE0
-    ldr r0, .L0807ADB4 @ =gBmStatus
+    ldr r0, .L0807ADB4 @ =gBmSt
     ldr r1, .L0807ADB8 @ =0x0000FFFD
     ldrh r2, [r0, #0xc]
     ands r1, r2
@@ -210451,7 +208585,7 @@ func_0807AD84: @ 0x0807AD84
     strh r1, [r0, #0xc]
     b .L0807ADE0
     .align 2, 0
-.L0807ADB4: .4byte gBmStatus
+.L0807ADB4: .4byte gBmSt
 .L0807ADB8: .4byte 0x0000FFFD
 .L0807ADBC:
     bl GetGameTime
@@ -210515,7 +208649,7 @@ func_0807AE04: @ 0x0807AE04
     thumb_func_start func_0807AE30
 func_0807AE30: @ 0x0807AE30
     push {lr}
-    ldr r0, .L0807AE4C @ =gBmStatus
+    ldr r0, .L0807AE4C @ =gBmSt
     ldr r1, .L0807AE50 @ =0x0000FFFC
     ldrh r2, [r0, #0xe]
     ands r1, r2
@@ -210527,28 +208661,28 @@ func_0807AE30: @ 0x0807AE30
     pop {r0}
     bx r0
     .align 2, 0
-.L0807AE4C: .4byte gBmStatus
+.L0807AE4C: .4byte gBmSt
 .L0807AE50: .4byte 0x0000FFFC
 .L0807AE54: .4byte 0x08CA75B4
     func_end func_0807AE30
 
-    thumb_func_start func_0807AE58
-func_0807AE58: @ 0x0807AE58
+    thumb_func_start SetFlag_145
+SetFlag_145: @ 0x0807AE58
     push {lr}
     movs r0, #0x91
     bl SetFlag
     pop {r0}
     bx r0
-    func_end func_0807AE58
+    func_end SetFlag_145
 
-    thumb_func_start func_0807AE64
-func_0807AE64: @ 0x0807AE64
+    thumb_func_start ClearFlag_145
+ClearFlag_145: @ 0x0807AE64
     push {lr}
     movs r0, #0x91
     bl ClearFlag
     pop {r0}
     bx r0
-    func_end func_0807AE64
+    func_end ClearFlag_145
 
     thumb_func_start func_0807AE70
 func_0807AE70: @ 0x0807AE70
@@ -211062,7 +209196,7 @@ func_0807B28C: @ 0x0807B28C
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    ldr r2, .L0807B2E0 @ =gBmStatus
+    ldr r2, .L0807B2E0 @ =gBmSt
     movs r1, #0xc
     ldrsh r0, [r2, r1]
     subs r4, r0, r4
@@ -211095,7 +209229,7 @@ func_0807B28C: @ 0x0807B28C
     pop {r0}
     bx r0
     .align 2, 0
-.L0807B2E0: .4byte gBmStatus
+.L0807B2E0: .4byte gBmSt
 .L0807B2E4: .4byte 0x081B9790
 .L0807B2E8: .4byte 0x081B93C8
 .L0807B2EC: .4byte 0x06000800
@@ -211108,7 +209242,7 @@ func_0807B2F8: @ 0x0807B2F8
     push {r4, r5, r6, lr}
     sub sp, #0x18
     adds r3, r0, #0
-    ldr r2, .L0807B340 @ =gBmStatus
+    ldr r2, .L0807B340 @ =gBmSt
     movs r4, #0xc
     ldrsh r0, [r2, r4]
     subs r3, r3, r0
@@ -211141,7 +209275,7 @@ func_0807B2F8: @ 0x0807B2F8
     pop {r0}
     bx r0
     .align 2, 0
-.L0807B340: .4byte gBmStatus
+.L0807B340: .4byte gBmSt
 .L0807B344: .4byte 0x000001FF
 .L0807B348: .4byte 0x08197CC8
 .L0807B34C: .4byte 0x08198164
@@ -213978,14 +212112,14 @@ func_0807C96C: @ 0x0807C96C
 .L0807C984: .4byte gPlaySt
 .L0807C988:
     movs r0, #0x6a
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0807C9AA
     b .L0807C9A2
 .L0807C996:
     movs r0, #0x6a
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807C9AA
@@ -214161,7 +212295,7 @@ func_0807CAC0: @ 0x0807CAC0
     cmp r0, #0
     bne .L0807CB16
     movs r0, #0x90
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807CB16
@@ -214201,7 +212335,7 @@ func_0807CB3C: @ 0x0807CB3C
     movs r0, #0x28
     bl GetUnitByPid
     adds r5, r0, #0
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ResetText
     movs r0, #0
     str r0, [sp]
@@ -214685,7 +212819,7 @@ func_0807CEF8: @ 0x0807CEF8
 
     thumb_func_start func_0807CEFC
 func_0807CEFC: @ 0x0807CEFC
-    ldr r1, .L0807CF0C @ =gBmStatus
+    ldr r1, .L0807CF0C @ =gBmSt
     adds r1, #0x3d
     movs r0, #2
     ldrb r1, [r1]
@@ -214694,7 +212828,7 @@ func_0807CEFC: @ 0x0807CEFC
     asrs r0, r0, #0x18
     bx lr
     .align 2, 0
-.L0807CF0C: .4byte gBmStatus
+.L0807CF0C: .4byte gBmSt
     func_end func_0807CEFC
 
     thumb_func_start func_0807CF10
@@ -214837,7 +212971,7 @@ func_0807CFE4: @ 0x0807CFE4
 func_0807CFF4: @ 0x0807CFF4
     push {lr}
     movs r0, #8
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D006
@@ -214865,12 +212999,12 @@ func_0807D020: @ 0x0807D020
     push {r4, r5, lr}
     movs r5, #0
     movs r0, #0x85
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D042
     movs r0, #0x84
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     movs r5, #0x74
     cmp r0, #0
@@ -214879,7 +213013,7 @@ func_0807D020: @ 0x0807D020
     b .L0807D054
 .L0807D042:
     movs r0, #0x84
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D050
@@ -215034,21 +213168,21 @@ func_0807D170: @ 0x0807D170
 func_0807D18C: @ 0x0807D18C
     push {r4, lr}
     movs r0, #0xe
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     rsbs r1, r0, #0
     orrs r1, r0
     lsrs r4, r1, #0x1f
     movs r0, #0xf
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D1AC
     adds r4, #1
 .L0807D1AC:
     movs r0, #0x10
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D1BE
@@ -215149,7 +213283,7 @@ func_0807D240: @ 0x0807D240
     cmp r0, #6
     ble .L0807D266
     movs r0, #0xa
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D266
@@ -215424,12 +213558,12 @@ func_0807D414: @ 0x0807D414
 func_0807D424: @ 0x0807D424
     push {lr}
     movs r0, #7
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D442
     movs r0, #0xd
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0807D442
@@ -215537,21 +213671,21 @@ func_0807D4C0: @ 0x0807D4C0
 func_0807D4EC: @ 0x0807D4EC
     push {r4, lr}
     movs r0, #9
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     rsbs r1, r0, #0
     orrs r1, r0
     lsrs r4, r1, #0x1f
     movs r0, #0xa
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D50C
     adds r4, #1
 .L0807D50C:
     movs r0, #0xb
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D51A
@@ -215571,63 +213705,63 @@ func_0807D4EC: @ 0x0807D4EC
 func_0807D528: @ 0x0807D528
     push {r4, lr}
     movs r0, #9
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     rsbs r1, r0, #0
     orrs r1, r0
     lsrs r4, r1, #0x1f
     movs r0, #0xa
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D548
     adds r4, #1
 .L0807D548:
     movs r0, #0xb
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D556
     adds r4, #1
 .L0807D556:
     movs r0, #0xc
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D564
     adds r4, #1
 .L0807D564:
     movs r0, #0xd
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D572
     adds r4, #1
 .L0807D572:
     movs r0, #0xe
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D580
     adds r4, #1
 .L0807D580:
     movs r0, #0xf
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D58E
     adds r4, #1
 .L0807D58E:
     movs r0, #0x10
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D59C
     adds r4, #1
 .L0807D59C:
     movs r0, #0x11
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D5AA
@@ -215661,7 +213795,7 @@ func_0807D5BC: @ 0x0807D5BC
     movs r1, #0x10
     ldrsb r1, [r0, r1]
     lsls r1, r1, #4
-    ldr r3, .L0807D608 @ =gBmStatus
+    ldr r3, .L0807D608 @ =gBmSt
     movs r5, #0xc
     ldrsh r2, [r3, r5]
     subs r2, #8
@@ -215684,7 +213818,7 @@ func_0807D5BC: @ 0x0807D5BC
     pop {r0}
     bx r0
     .align 2, 0
-.L0807D608: .4byte gBmStatus
+.L0807D608: .4byte gBmSt
     func_end func_0807D5BC
 
     thumb_func_start func_0807D60C
@@ -215701,7 +213835,7 @@ func_0807D60C: @ 0x0807D60C
     ldrh r0, [r1]
     adds r0, #1
     strh r0, [r1]
-    ldr r1, .L0807D634 @ =gBmStatus
+    ldr r1, .L0807D634 @ =gBmSt
     ands r0, r2
     cmp r0, #0
     beq .L0807D638
@@ -215709,7 +213843,7 @@ func_0807D60C: @ 0x0807D60C
     subs r0, #1
     b .L0807D63C
     .align 2, 0
-.L0807D634: .4byte gBmStatus
+.L0807D634: .4byte gBmSt
 .L0807D638:
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -215733,7 +213867,7 @@ func_0807D644: @ 0x0807D644
     ldr r0, .L0807D678 @ =0x08CBB47C
     movs r1, #0
     bl Proc_Start
-    ldr r1, .L0807D67C @ =gBmStatus
+    ldr r1, .L0807D67C @ =gBmSt
     movs r2, #0xc
     ldrsh r1, [r1, r2]
     str r1, [r0, #0x2c]
@@ -215750,7 +213884,7 @@ func_0807D644: @ 0x0807D644
     bx r0
     .align 2, 0
 .L0807D678: .4byte 0x08CBB47C
-.L0807D67C: .4byte gBmStatus
+.L0807D67C: .4byte gBmSt
 .L0807D680: .4byte gPlaySt
 .L0807D684: .4byte 0x0000026A
     func_end func_0807D644
@@ -215760,7 +213894,7 @@ func_0807D688: @ 0x0807D688
     push {lr}
     ldr r0, .L0807D6AC @ =0x08CBB47C
     bl Proc_EndEach
-    ldr r2, .L0807D6B0 @ =gBmStatus
+    ldr r2, .L0807D6B0 @ =gBmSt
     ldrh r0, [r2, #0xc]
     adds r0, #0xf
     movs r3, #0x10
@@ -215774,7 +213908,7 @@ func_0807D688: @ 0x0807D688
     bx r0
     .align 2, 0
 .L0807D6AC: .4byte 0x08CBB47C
-.L0807D6B0: .4byte gBmStatus
+.L0807D6B0: .4byte gBmSt
     func_end func_0807D688
 
     thumb_func_start func_0807D6B4
@@ -215944,7 +214078,7 @@ func_0807D7B4: @ 0x0807D7B4
 func_0807D7E0: @ 0x0807D7E0
     push {lr}
     movs r0, #0x70
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807D7FC
@@ -216007,7 +214141,7 @@ func_0807D840: @ 0x0807D840
     movs r1, #0x10
     ldrsb r1, [r0, r1]
     lsls r1, r1, #4
-    ldr r3, .L0807D88C @ =gBmStatus
+    ldr r3, .L0807D88C @ =gBmSt
     movs r5, #0xc
     ldrsh r2, [r3, r5]
     subs r2, #8
@@ -216030,7 +214164,7 @@ func_0807D840: @ 0x0807D840
     pop {r0}
     bx r0
     .align 2, 0
-.L0807D88C: .4byte gBmStatus
+.L0807D88C: .4byte gBmSt
     func_end func_0807D840
 
     thumb_func_start func_0807D890
@@ -216045,7 +214179,7 @@ func_0807D890: @ 0x0807D890
     ands r0, r1
     cmp r0, #0
     bne .L0807D8C6
-    ldr r0, .L0807D8D0 @ =gBmStatus
+    ldr r0, .L0807D8D0 @ =gBmSt
     movs r1, #0xc
     ldrsh r5, [r0, r1]
     movs r1, #0x7f
@@ -216067,7 +214201,7 @@ func_0807D890: @ 0x0807D890
     pop {r0}
     bx r0
     .align 2, 0
-.L0807D8D0: .4byte gBmStatus
+.L0807D8D0: .4byte gBmSt
     func_end func_0807D890
 
     thumb_func_start func_0807D8D4
@@ -216160,7 +214294,7 @@ func_0807D954: @ 0x0807D954
     movs r4, #0x10
     ldrsb r4, [r0, r4]
     lsls r4, r4, #4
-    ldr r2, .L0807D9B4 @ =gBmStatus
+    ldr r2, .L0807D9B4 @ =gBmSt
     movs r3, #0xc
     ldrsh r1, [r2, r3]
     subs r4, r4, r1
@@ -216190,7 +214324,7 @@ func_0807D954: @ 0x0807D954
     pop {r0}
     bx r0
     .align 2, 0
-.L0807D9B4: .4byte gBmStatus
+.L0807D9B4: .4byte gBmSt
 .L0807D9B8: .4byte 0x081BE108
 .L0807D9BC: .4byte 0x06013000
 .L0807D9C0: .4byte 0x081BE4D8
@@ -216651,7 +214785,7 @@ func_0807DC5C: @ 0x0807DC5C
     movs r2, #0x11
     ldrsb r2, [r4, r2]
     adds r0, r6, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
     movs r0, #0x10
     ldrsb r0, [r4, r0]
     movs r1, #0x11
@@ -216767,7 +214901,7 @@ func_0807DDEC: @ 0x0807DDEC
     cmp r0, #0
     beq .L0807DE14
     movs r0, #7
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0807DE14
@@ -217739,7 +215873,7 @@ func_0807E49C: @ 0x0807E49C
     movs r0, #0
     ldrsh r4, [r1, r0]
 .L0807E5A2:
-    ldr r1, .L0807E634 @ =gBmStatus
+    ldr r1, .L0807E634 @ =gBmSt
     movs r2, #0xc
     ldrsh r0, [r1, r2]
     subs r6, r6, r0
@@ -217813,7 +215947,7 @@ func_0807E49C: @ 0x0807E49C
     pop {r0}
     bx r0
     .align 2, 0
-.L0807E634: .4byte gBmStatus
+.L0807E634: .4byte gBmSt
 .L0807E638: .4byte 0x000001FF
 .L0807E63C: .4byte gPlaySt
     func_end func_0807E49C
@@ -218429,7 +216563,7 @@ func_0807EA30: @ 0x0807EA30
     thumb_func_start func_0807EAE0
 func_0807EAE0: @ 0x0807EAE0
     push {r4, r5, lr}
-    ldr r2, .L0807EB1C @ =gBmStatus
+    ldr r2, .L0807EB1C @ =gBmSt
     movs r3, #0xc
     ldrsh r1, [r2, r3]
     ldr r5, [r0, #0x2c]
@@ -218456,7 +216590,7 @@ func_0807EAE0: @ 0x0807EAE0
     pop {r0}
     bx r0
     .align 2, 0
-.L0807EB1C: .4byte gBmStatus
+.L0807EB1C: .4byte gBmSt
     func_end func_0807EAE0
 
     thumb_func_start func_0807EB20
@@ -218768,7 +216902,7 @@ func_0807ED40: @ 0x0807ED40
     movs r2, #0x11
     ldrsb r2, [r4, r2]
     adds r0, r5, #0
-    bl CameraMoveWatchPositionCenter
+    bl EnsureCameraOntoCenteredPosition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -218903,7 +217037,7 @@ func_0807EE20: @ 0x0807EE20
 GetLynModeDeathFlag: @ 0x0807EE3C
     push {lr}
     movs r0, #0x9d
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     pop {r1}
@@ -220065,7 +218199,7 @@ func_0807F6C8: @ 0x0807F6C8
     push {r4, lr}
     adds r4, r0, #0
     movs r0, #0x98
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0807F6E4
@@ -220368,7 +218502,7 @@ StartMuralBackgroundAlt: @ 0x0807F8D4
     bge .L0807F8F4
     movs r5, #0xe
 .L0807F8F4:
-    ldr r1, .L0807F910 @ =gBmStatus
+    ldr r1, .L0807F910 @ =gBmSt
     movs r0, #0x40
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -220381,7 +218515,7 @@ StartMuralBackgroundAlt: @ 0x0807F8D4
     b .L0807F922
     .align 2, 0
 .L0807F90C: .4byte gBg3Tm
-.L0807F910: .4byte gBmStatus
+.L0807F910: .4byte gBmSt
 .L0807F914: .4byte 0x081C8184
 .L0807F918:
     ldr r0, .L0807F95C @ =0x0841E2D8
@@ -220752,7 +218886,7 @@ func_0807FBF0: @ 0x0807FBF0
     adds r4, r0, #0
     cmp r4, #0
     beq .L0807FCF6
-    ldr r1, .L0807FD04 @ =gBmStatus
+    ldr r1, .L0807FD04 @ =gBmSt
     movs r0, #0x40
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -220865,7 +218999,7 @@ func_0807FBF0: @ 0x0807FBF0
     bx r0
     .align 2, 0
 .L0807FD00: .4byte 0x0200310C
-.L0807FD04: .4byte gBmStatus
+.L0807FD04: .4byte gBmSt
 .L0807FD08: .4byte gPlaySt
 .L0807FD0C: .4byte 0x000003E7
 .L0807FD10: .4byte 0x000012AB
@@ -223147,11 +221281,11 @@ func_08080F54: @ 0x08080F54
     movs r0, #0x78
     movs r1, #0x28
     movs r2, #1
-    bl func_08015AA8
+    bl PutSysArrow
     movs r0, #0x78
     movs r1, #0x38
     movs r2, #1
-    bl func_08015AA8
+    bl PutSysArrow
     cmp r5, #0
     beq .L08080FD0
     ldr r3, .L08081018 @ =0x08B905B0
@@ -230303,7 +228437,7 @@ func_08084714: @ 0x08084714
     thumb_func_start func_08084730
 func_08084730: @ 0x08084730
     push {r4, lr}
-    ldr r2, .L0808475C @ =gBmStatus
+    ldr r2, .L0808475C @ =gBmSt
     movs r0, #0x14
     ldrsh r3, [r2, r0]
     lsls r3, r3, #4
@@ -230325,7 +228459,7 @@ func_08084730: @ 0x08084730
     movs r0, #0
     b .L0808476E
     .align 2, 0
-.L0808475C: .4byte gBmStatus
+.L0808475C: .4byte gBmSt
 .L08084760:
     cmp r1, #0x50
     bgt .L0808476C
@@ -230611,7 +228745,7 @@ func_08084858: @ 0x08084858
     str r0, [r7, #0x58]
     adds r0, r7, #0
     bl Proc_Break
-    ldr r2, .L080849C8 @ =gBmStatus
+    ldr r2, .L080849C8 @ =gBmSt
     movs r1, #0x16
     ldrsh r0, [r2, r1]
     ldr r1, .L080849CC @ =gMapUnit
@@ -230638,7 +228772,7 @@ func_08084858: @ 0x08084858
 .L080849BC: .4byte gBg0Tm
 .L080849C0: .4byte 0x0200373C
 .L080849C4: .4byte gBg1Tm
-.L080849C8: .4byte gBmStatus
+.L080849C8: .4byte gBmSt
 .L080849CC: .4byte gMapUnit
     func_end func_08084858
 
@@ -231202,7 +229336,7 @@ func_08084E28: @ 0x08084E28
 
     thumb_func_start func_08084E70
 func_08084E70: @ 0x08084E70
-    ldr r0, .L08084E88 @ =gBmStatus
+    ldr r0, .L08084E88 @ =gBmSt
     movs r2, #0x14
     ldrsh r1, [r0, r2]
     lsls r1, r1, #4
@@ -231215,7 +229349,7 @@ func_08084E70: @ 0x08084E70
     rsbs r0, r0, #0
     b .L08084E8E
     .align 2, 0
-.L08084E88: .4byte gBmStatus
+.L08084E88: .4byte gBmSt
 .L08084E8C:
     movs r0, #1
 .L08084E8E:
@@ -231224,7 +229358,7 @@ func_08084E70: @ 0x08084E70
 
     thumb_func_start func_08084E90
 func_08084E90: @ 0x08084E90
-    ldr r0, .L08084EA8 @ =gBmStatus
+    ldr r0, .L08084EA8 @ =gBmSt
     movs r2, #0x14
     ldrsh r1, [r0, r2]
     lsls r1, r1, #4
@@ -231236,7 +229370,7 @@ func_08084E90: @ 0x08084E90
     movs r0, #1
     b .L08084EB0
     .align 2, 0
-.L08084EA8: .4byte gBmStatus
+.L08084EA8: .4byte gBmSt
 .L08084EAC:
     movs r0, #1
     rsbs r0, r0, #0
@@ -231749,7 +229883,7 @@ func_08085290: @ 0x08085290
     movs r0, #0x10
     ldrsb r0, [r1, r0]
     lsls r0, r0, #4
-    ldr r2, .L080853D8 @ =gBmStatus
+    ldr r2, .L080853D8 @ =gBmSt
     movs r3, #0xc
     ldrsh r1, [r2, r3]
     subs r0, r0, r1
@@ -231893,7 +230027,7 @@ func_08085290: @ 0x08085290
     pop {r0}
     bx r0
     .align 2, 0
-.L080853D8: .4byte gBmStatus
+.L080853D8: .4byte gBmSt
 .L080853DC: .4byte 0x08CC2BCC
 .L080853E0: .4byte 0x08CC2BD2
 .L080853E4: .4byte 0x08CC2BBA
@@ -231976,7 +230110,7 @@ func_08085478: @ 0x08085478
     mov r5, r8
     push {r5, r6, r7}
     adds r4, r0, #0
-    ldr r0, .L08085564 @ =gBmStatus
+    ldr r0, .L08085564 @ =gBmSt
     mov sb, r0
     movs r1, #0x16
     ldrsh r0, [r0, r1]
@@ -232076,7 +230210,7 @@ func_08085478: @ 0x08085478
     beq .L0808558C
     b .L0808561A
     .align 2, 0
-.L08085564: .4byte gBmStatus
+.L08085564: .4byte gBmSt
 .L08085568: .4byte gMapTerrain
 .L0808556C: .4byte 0x020034BC
 .L08085570: .4byte 0x020039BC
@@ -232095,7 +230229,7 @@ func_08085478: @ 0x08085478
     lsls r2, r2, #6
     adds r0, r4, #0
     bl TmApplyTsa_thm
-    ldr r1, .L080855C8 @ =gBmStatus
+    ldr r1, .L080855C8 @ =gBmSt
     movs r3, #0x14
     ldrsh r0, [r1, r3]
     movs r2, #0x16
@@ -232114,7 +230248,7 @@ func_08085478: @ 0x08085478
     .align 2, 0
 .L080855C0: .4byte 0x020035BE
 .L080855C4: .4byte 0x08404894
-.L080855C8: .4byte gBmStatus
+.L080855C8: .4byte gBmSt
 .L080855CC: .4byte 0x084048A0
 .L080855D0:
     adds r0, r6, #0
@@ -232249,7 +230383,7 @@ func_0808566C: @ 0x0808566C
     strb r6, [r0]
     adds r0, r5, #0
     bl func_08085478
-    ldr r0, .L0808570C @ =gBmStatus
+    ldr r0, .L0808570C @ =gBmSt
     ldrh r1, [r0, #0x14]
     adds r2, r5, #0
     adds r2, #0x4e
@@ -232268,7 +230402,7 @@ func_0808566C: @ 0x0808566C
 .L08085700: .4byte 0x08CC2B94
 .L08085704: .4byte 0x08CC2C60
 .L08085708: .4byte 0x08CC2D38
-.L0808570C: .4byte gBmStatus
+.L0808570C: .4byte gBmSt
     func_end func_0808566C
 
     thumb_func_start func_08085710
@@ -232288,7 +230422,7 @@ func_08085710: @ 0x08085710
     adds r1, r4, #0
     adds r1, #0x4d
     strb r0, [r1]
-    ldr r1, .L08085790 @ =gBmStatus
+    ldr r1, .L08085790 @ =gBmSt
     ldrh r0, [r1, #0x14]
     strb r0, [r3]
     ldrh r0, [r1, #0x16]
@@ -232334,7 +230468,7 @@ func_08085710: @ 0x08085710
     bl func_08084DE4
     b .L080857AE
     .align 2, 0
-.L08085790: .4byte gBmStatus
+.L08085790: .4byte gBmSt
 .L08085794: .4byte 0x0000FFFF
 .L08085798: .4byte ProcScr_MoveCamera
 .L0808579C: .4byte 0x08CC2B94
@@ -232377,7 +230511,7 @@ func_080857B4: @ 0x080857B4
 func_080857DC: @ 0x080857DC
     push {r4, r5, r6, lr}
     adds r4, r0, #0
-    ldr r2, .L08085878 @ =gBmStatus
+    ldr r2, .L08085878 @ =gBmSt
     movs r1, #0x16
     ldrsh r0, [r2, r1]
     ldr r1, .L0808587C @ =gMapUnit
@@ -232430,7 +230564,7 @@ func_080857DC: @ 0x080857DC
     adds r0, r4, #0
     adds r0, #0x57
     strb r5, [r0]
-    ldr r0, .L08085878 @ =gBmStatus
+    ldr r0, .L08085878 @ =gBmSt
     ldrh r1, [r0, #0x14]
     adds r2, r4, #0
     adds r2, #0x4e
@@ -232449,7 +230583,7 @@ func_080857DC: @ 0x080857DC
     pop {r0}
     bx r0
     .align 2, 0
-.L08085878: .4byte gBmStatus
+.L08085878: .4byte gBmSt
 .L0808587C: .4byte gMapUnit
 .L08085880: .4byte 0x08CC2B94
 .L08085884: .4byte 0x08CC2C00
@@ -232459,7 +230593,7 @@ func_080857DC: @ 0x080857DC
 func_08085888: @ 0x08085888
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
-    ldr r6, .L08085940 @ =gBmStatus
+    ldr r6, .L08085940 @ =gBmSt
     movs r1, #0x16
     ldrsh r0, [r6, r1]
     ldr r1, .L08085944 @ =gMapUnit
@@ -232546,7 +230680,7 @@ func_08085888: @ 0x08085888
     bl Proc_Goto
     b .L08085962
     .align 2, 0
-.L08085940: .4byte gBmStatus
+.L08085940: .4byte gBmSt
 .L08085944: .4byte gMapUnit
 .L08085948: .4byte 0x0000FFFF
 .L0808594C: .4byte ProcScr_MoveCamera
@@ -232568,7 +230702,7 @@ func_08085888: @ 0x08085888
 func_08085968: @ 0x08085968
     push {r4, lr}
     adds r4, r0, #0
-    ldr r2, .L08085998 @ =gBmStatus
+    ldr r2, .L08085998 @ =gBmSt
     movs r1, #0x16
     ldrsh r0, [r2, r1]
     ldr r1, .L0808599C @ =gMapUnit
@@ -232589,7 +230723,7 @@ func_08085968: @ 0x08085968
     bl Proc_Goto
     b .L080859AC
     .align 2, 0
-.L08085998: .4byte gBmStatus
+.L08085998: .4byte gBmSt
 .L0808599C: .4byte gMapUnit
 .L080859A0:
     adds r0, r4, #0
@@ -232637,7 +230771,7 @@ func_080859E0: @ 0x080859E0
     adds r3, r4, #0
     adds r3, #0x4a
     strb r0, [r3]
-    ldr r2, .L08085A24 @ =gBmStatus
+    ldr r2, .L08085A24 @ =gBmSt
     movs r1, #0x16
     ldrsh r0, [r2, r1]
     ldr r1, .L08085A28 @ =gMapUnit
@@ -232663,7 +230797,7 @@ func_080859E0: @ 0x080859E0
     str r0, [r4, #0x58]
     b .L08085AD4
     .align 2, 0
-.L08085A24: .4byte gBmStatus
+.L08085A24: .4byte gBmSt
 .L08085A28: .4byte gMapUnit
 .L08085A2C:
     adds r0, r4, #0
@@ -232863,7 +230997,7 @@ func_08085ADC: @ 0x08085ADC
     movs r1, #3
     bl Proc_Start
 .L08085BC6:
-    ldr r1, .L08085C0C @ =gBmStatus
+    ldr r1, .L08085C0C @ =gBmSt
     movs r0, #0x10
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -232886,7 +231020,7 @@ func_08085ADC: @ 0x08085ADC
 .L08085C00: .4byte gPal
 .L08085C04: .4byte gPlaySt
 .L08085C08: .4byte 0x08CC2C00
-.L08085C0C: .4byte gBmStatus
+.L08085C0C: .4byte gBmSt
 .L08085C10: .4byte 0x08CC2D98
 .L08085C14:
     adds r0, r4, #0
@@ -232985,7 +231119,7 @@ func_08085C7C: @ 0x08085C7C
 
     thumb_func_start func_08085CDC
 func_08085CDC: @ 0x08085CDC
-    ldr r0, .L08085CF4 @ =gBmStatus
+    ldr r0, .L08085CF4 @ =gBmSt
     movs r2, #0x16
     ldrsh r1, [r0, r2]
     lsls r1, r1, #4
@@ -232997,7 +231131,7 @@ func_08085CDC: @ 0x08085CDC
     movs r0, #0
     b .L08085CFA
     .align 2, 0
-.L08085CF4: .4byte gBmStatus
+.L08085CF4: .4byte gBmSt
 .L08085CF8:
     movs r0, #1
 .L08085CFA:
@@ -233336,7 +231470,7 @@ func_08085F70: @ 0x08085F70
     strb r5, [r0]
     adds r0, r4, #0
     bl func_08085D48
-    ldr r1, .L08086004 @ =gBmStatus
+    ldr r1, .L08086004 @ =gBmSt
     ldrh r0, [r1, #0x14]
     adds r2, r4, #0
     adds r2, #0x4e
@@ -233362,7 +231496,7 @@ func_08085F70: @ 0x08085F70
     .align 2, 0
 .L08085FFC: .4byte 0x08CC2B94
 .L08086000: .4byte 0x08CC2C00
-.L08086004: .4byte gBmStatus
+.L08086004: .4byte gBmSt
     func_end func_08085F70
 
     thumb_func_start func_08086008
@@ -233685,7 +231819,7 @@ func_08086278: @ 0x08086278
     adds r1, r4, #0
     adds r1, #0x4d
     strb r0, [r1]
-    ldr r1, .L080862FC @ =gBmStatus
+    ldr r1, .L080862FC @ =gBmSt
     ldrh r0, [r1, #0x14]
     strb r0, [r3]
     ldrh r0, [r1, #0x16]
@@ -233736,7 +231870,7 @@ func_08086278: @ 0x08086278
     pop {r0}
     bx r0
     .align 2, 0
-.L080862FC: .4byte gBmStatus
+.L080862FC: .4byte gBmSt
 .L08086300: .4byte 0x0000FFFF
 .L08086304: .4byte ProcScr_MoveCamera
 .L08086308: .4byte 0x08CC2B94
@@ -233976,7 +232110,7 @@ func_080864AC: @ 0x080864AC
     adds r0, r4, #0
     bl func_08086398
     str r5, [r4, #0x58]
-    ldr r1, .L080864E4 @ =gBmStatus
+    ldr r1, .L080864E4 @ =gBmSt
     ldrh r0, [r1, #0x14]
     adds r2, r4, #0
     adds r2, #0x4e
@@ -233988,7 +232122,7 @@ func_080864AC: @ 0x080864AC
     pop {r0}
     bx r0
     .align 2, 0
-.L080864E4: .4byte gBmStatus
+.L080864E4: .4byte gBmSt
     func_end func_080864AC
 
     thumb_func_start func_080864E8
@@ -234052,7 +232186,7 @@ func_0808652C: @ 0x0808652C
     adds r1, r4, #0
     adds r1, #0x4d
     strb r0, [r1]
-    ldr r1, .L080865C4 @ =gBmStatus
+    ldr r1, .L080865C4 @ =gBmSt
     ldrh r0, [r1, #0x14]
     strb r0, [r3]
     ldrh r0, [r1, #0x16]
@@ -234103,7 +232237,7 @@ func_0808652C: @ 0x0808652C
     pop {r0}
     bx r0
     .align 2, 0
-.L080865C4: .4byte gBmStatus
+.L080865C4: .4byte gBmSt
 .L080865C8: .4byte 0x0000FFFF
 .L080865CC: .4byte ProcScr_MoveCamera
 .L080865D0: .4byte 0x08CC2B94
@@ -240432,7 +238566,7 @@ func_08089794: @ 0x08089794
     bl InitIcons
     movs r0, #4
     bl ApplyIconPalettes
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     ldr r0, .L08089988 @ =0x0840D3F8
     ldr r1, .L0808998C @ =0x06014800
     bl Decompress
@@ -250571,7 +248705,7 @@ func_0808E6D4: @ 0x0808E6D4
     ldr r0, .L0808E8BC @ =0x08CC3B18
     bl InitBgs
     bl ResetText
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     movs r0, #0
     movs r1, #0xe
     bl func_08082528
@@ -251515,7 +249649,7 @@ func_0808EEB0: @ 0x0808EEB0
     cmp r0, #0
     bne .L0808EEC4
     bl UnlockBmDisplay
-    bl ReleaseGame
+    bl UnlockGame
 .L0808EEC4:
     pop {r0}
     bx r0
@@ -251814,7 +249948,7 @@ func_0808F0A4: @ 0x0808F0A4
     b .L0808F12A
 .L0808F0E0:
     movs r0, #0x6a
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0808F106
@@ -251843,7 +249977,7 @@ func_0808F0A4: @ 0x0808F0A4
     b .L0808F12A
 .L0808F118:
     movs r0, #0x6a
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0808F128
@@ -251873,7 +250007,7 @@ func_0808F0A4: @ 0x0808F0A4
     bl InitBgs
     bl InitFaces
     bl ResetText
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ApplySystemObjectsGraphics
     ldr r3, .L0808F2F4 @ =gDispIo
     movs r1, #4
@@ -256551,7 +254685,7 @@ func_080913FC: @ 0x080913FC
     bl InitIcons
     movs r0, #4
     bl ApplyIconPalettes
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ApplySystemObjectsGraphics
     bl func_0808E32C
     bl func_0808DD58
@@ -262346,7 +260480,7 @@ func_08094350: @ 0x08094350
     bl TmFill
     bl ResetText
     bl InitIcons
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ApplySystemObjectsGraphics
     movs r0, #0
     movs r1, #0
@@ -263867,7 +262001,7 @@ func_08094FE4: @ 0x08094FE4
     strb r0, [r4, #0x18]
     bl ResetText
     bl InitIcons
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ApplySystemObjectsGraphics
     bl ApplyUnitSpritePalettes
     movs r0, #0
@@ -266048,7 +264182,7 @@ func_080962A0: @ 0x080962A0
     bl InitFaces
     bl ResetText
     bl InitIcons
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl func_0808E448
     pop {r3, r4, r5}
     mov r8, r3
@@ -268531,7 +266665,7 @@ func_080976F0: @ 0x080976F0
     bl InitFaces
     bl ResetText
     bl InitIcons
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ApplySystemObjectsGraphics
     movs r0, #0
     movs r1, #0
@@ -270754,7 +268888,7 @@ func_08098908: @ 0x08098908
     bl InitFaces
     bl ResetText
     bl InitIcons
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ApplySystemObjectsGraphics
     movs r0, #0
     movs r1, #0
@@ -272080,7 +270214,7 @@ func_08099358: @ 0x08099358
     bl InitFaces
     bl ResetText
     bl InitIcons
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ApplySystemObjectsGraphics
     movs r0, #0
     movs r1, #0
@@ -274852,7 +272986,7 @@ func_0809A9A8: @ 0x0809A9A8
     bl InitFaces
     bl ResetText
     bl InitIcons
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ApplySystemObjectsGraphics
     ldr r2, .L0809AADC @ =0x0000FFFC
     movs r0, #0
@@ -274942,7 +273076,7 @@ func_0809A9A8: @ 0x0809A9A8
     b .L0809AB1C
 .L0809AAF8:
     movs r0, #0x99
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0809AB1C
@@ -276603,7 +274737,7 @@ func_0809B700: @ 0x0809B700
     bl InitFaces
     bl ResetText
     bl InitIcons
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ApplySystemObjectsGraphics
     movs r0, #0xe
     bl ApplyIconPalettes
@@ -279184,7 +277318,7 @@ func_0809CC30: @ 0x0809CC30
     strb r2, [r4, #0x18]
     bl ResetText
     bl InitIcons
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ApplySystemObjectsGraphics
     bl ApplyUnitSpritePalettes
     bl func_0809CBD8
@@ -279657,7 +277791,7 @@ func_0809CFF8: @ 0x0809CFF8
     bl InitFaces
     bl ResetText
     bl InitIcons
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ApplySystemObjectsGraphics
     ldr r0, [r5, #0x2c]
     bl func_0809B0E4
@@ -281954,7 +280088,7 @@ func_0809E25C: @ 0x0809E25C
     ldrb r1, [r4, #0x18]
     orrs r0, r1
     strb r0, [r4, #0x18]
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl EnablePalSync
     ldr r0, .L0809E358 @ =gBg0Tm
     movs r1, #0
@@ -285704,7 +283838,7 @@ func_0809FDFC: @ 0x0809FDFC
     adds r5, r6, r0
     cmp r5, #0
     beq .L0809FECC
-    ldr r1, .L0809FEDC @ =gBmStatus
+    ldr r1, .L0809FEDC @ =gBmSt
     adds r0, r1, #0
     adds r0, #0x3c
     ldrb r0, [r0]
@@ -285781,7 +283915,7 @@ func_0809FDFC: @ 0x0809FDFC
     bx r0
     .align 2, 0
 .L0809FED8: .4byte 0x0203E790
-.L0809FEDC: .4byte gBmStatus
+.L0809FEDC: .4byte gBmSt
 .L0809FEE0: .4byte gPlaySt
 .L0809FEE4: .4byte 0x000019DC
     func_end func_0809FDFC
@@ -287171,7 +285305,7 @@ func_080A08EC: @ 0x080A08EC
     bl func_0809E918
     adds r7, r0, #0
     bl ClearMenuOverrides
-    ldr r1, .L080A0990 @ =gBmStatus
+    ldr r1, .L080A0990 @ =gBmSt
     movs r0, #0x40
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -287235,7 +285369,7 @@ func_080A08EC: @ 0x080A08EC
     pop {r0}
     bx r0
     .align 2, 0
-.L080A0990: .4byte gBmStatus
+.L080A0990: .4byte gBmSt
 .L080A0994: .4byte 0x03005E70
 .L080A0998: .4byte gPlaySt
 .L080A099C: .4byte gBlueUnits
@@ -288216,8 +286350,8 @@ func_080A10D8: @ 0x080A10D8
     bx r0
     func_end func_080A10D8
 
-    thumb_func_start func_080A1100
-func_080A1100: @ 0x080A1100
+    thumb_func_start WriteSuspendSave
+WriteSuspendSave: @ 0x080A1100
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -288330,7 +286464,7 @@ func_080A1100: @ 0x080A1100
     mov r0, sp
     mov r1, r8
     bl func_0809E7A0
-    ldr r0, .L080A1254 @ =gBmStatus
+    ldr r0, .L080A1254 @ =gBmSt
     adds r0, #0x3c
     strb r4, [r0]
     bl func_080A1948
@@ -288358,8 +286492,8 @@ func_080A1100: @ 0x080A1100
 .L080A1248: .4byte 0x00001724
 .L080A124C: .4byte 0x00001F0C
 .L080A1250: .4byte 0x00020509
-.L080A1254: .4byte gBmStatus
-    func_end func_080A1100
+.L080A1254: .4byte gBmSt
+    func_end WriteSuspendSave
 
     thumb_func_start ReadSuspendSave
 ReadSuspendSave: @ 0x080A1258
@@ -291265,7 +289399,7 @@ func_080A26A4: @ 0x080A26A4
     movs r0, #2
     add sl, r0
     adds r6, #2
-    ldr r0, .L080A28C8 @ =gMapSize
+    ldr r0, .L080A28C8 @ =gBmMapSize
     movs r1, #0
     ldrsh r0, [r0, r1]
     cmp r6, r0
@@ -291275,7 +289409,7 @@ func_080A26A4: @ 0x080A26A4
     ldr r2, [sp, #0xc]
 .L080A289E:
     mov r8, r2
-    ldr r1, .L080A28C8 @ =gMapSize
+    ldr r1, .L080A28C8 @ =gBmMapSize
     movs r3, #2
     ldrsh r0, [r1, r3]
     cmp r8, r0
@@ -291294,7 +289428,7 @@ func_080A26A4: @ 0x080A26A4
 .L080A28BC: .4byte gBg1Tm
 .L080A28C0: .4byte gMapUnit
 .L080A28C4: .4byte gBg0Tm
-.L080A28C8: .4byte gMapSize
+.L080A28C8: .4byte gBmMapSize
     func_end func_080A26A4
 
     thumb_func_start func_080A28CC
@@ -292184,7 +290318,7 @@ func_080A2FB8: @ 0x080A2FB8
     mov r0, sp
     movs r2, #0x1a
     bl memcpy
-    ldr r3, .L080A3000 @ =gBmStatus
+    ldr r3, .L080A3000 @ =gBmSt
     movs r0, #0xc
     ldrsh r1, [r3, r0]
     cmp r1, #0
@@ -292213,14 +290347,14 @@ func_080A2FB8: @ 0x080A2FB8
     bx r0
     .align 2, 0
 .L080A2FFC: .4byte 0x0840F984
-.L080A3000: .4byte gBmStatus
+.L080A3000: .4byte gBmSt
     func_end func_080A2FB8
 
     thumb_func_start func_080A3004
 func_080A3004: @ 0x080A3004
     push {r4, r5, r6, lr}
     adds r6, r0, #0
-    ldr r2, .L080A3074 @ =gMapSize
+    ldr r2, .L080A3074 @ =gBmMapSize
     movs r0, #0
     ldrsh r1, [r2, r0]
     lsls r1, r1, #2
@@ -292237,7 +290371,7 @@ func_080A3004: @ 0x080A3004
     ble .L080A3048
     adds r4, r1, #0
     subs r4, #0x90
-    ldr r1, .L080A3078 @ =gBmStatus
+    ldr r1, .L080A3078 @ =gBmSt
     ldrh r2, [r1, #0xe]
     lsls r0, r2, #0x10
     movs r2, #0x2a
@@ -292273,8 +290407,8 @@ func_080A3004: @ 0x080A3004
     pop {r0}
     bx r0
     .align 2, 0
-.L080A3074: .4byte gMapSize
-.L080A3078: .4byte gBmStatus
+.L080A3074: .4byte gBmMapSize
+.L080A3078: .4byte gBmSt
 .L080A307C: .4byte 0x0000FFFF
     func_end func_080A3004
 
@@ -292282,7 +290416,7 @@ func_080A3004: @ 0x080A3004
 func_080A3080: @ 0x080A3080
     push {r4, r5, r6, r7, lr}
     adds r3, r0, #0
-    ldr r1, .L080A3140 @ =gBmStatus
+    ldr r1, .L080A3140 @ =gBmSt
     movs r0, #0xc
     ldrsh r4, [r1, r0]
     movs r2, #0xe
@@ -292384,7 +290518,7 @@ func_080A3080: @ 0x080A3080
     pop {r0}
     bx r0
     .align 2, 0
-.L080A3140: .4byte gBmStatus
+.L080A3140: .4byte gBmSt
 .L080A3144: .4byte gpKeySt
     func_end func_080A3080
 
@@ -292394,7 +290528,7 @@ func_080A3148: @ 0x080A3148
     adds r2, #0x4a
     movs r1, #0
     strh r1, [r2]
-    ldr r2, .L080A3164 @ =gMapSize
+    ldr r2, .L080A3164 @ =gBmMapSize
     movs r3, #0
     ldrsh r1, [r2, r3]
     lsls r1, r1, #1
@@ -292405,7 +290539,7 @@ func_080A3148: @ 0x080A3148
     str r1, [r0, #0x38]
     bx lr
     .align 2, 0
-.L080A3164: .4byte gMapSize
+.L080A3164: .4byte gBmMapSize
     func_end func_080A3148
 
     thumb_func_start func_080A3168
@@ -292416,7 +290550,7 @@ func_080A3168: @ 0x080A3168
     ldrsh r0, [r0, r1]
     cmp r0, #0
     beq .L080A3196
-    ldr r1, .L080A31A0 @ =gBmStatus
+    ldr r1, .L080A31A0 @ =gBmSt
     movs r2, #0xc
     ldrsh r0, [r1, r2]
     cmp r0, #0
@@ -292440,7 +290574,7 @@ func_080A3168: @ 0x080A3168
     pop {r0}
     bx r0
     .align 2, 0
-.L080A31A0: .4byte gBmStatus
+.L080A31A0: .4byte gBmSt
     func_end func_080A3168
 
     thumb_func_start func_080A31A4
@@ -292518,7 +290652,7 @@ func_080A31A4: @ 0x080A31A4
     movs r0, #4
     strb r0, [r2, #0xa]
 .L080A3244:
-    ldr r0, .L080A3278 @ =gBmStatus
+    ldr r0, .L080A3278 @ =gBmSt
     ldr r0, [r0, #0xc]
     ldr r1, .L080A327C @ =0x000F000F
     ands r0, r1
@@ -292541,7 +290675,7 @@ func_080A31A4: @ 0x080A31A4
 .L080A326C: .4byte 0x030028AC
 .L080A3270: .4byte 0x0000FFE0
 .L080A3274: .4byte 0x0000E0FF
-.L080A3278: .4byte gBmStatus
+.L080A3278: .4byte gBmSt
 .L080A327C: .4byte 0x000F000F
 .L080A3280: .4byte gpKeySt
     func_end func_080A31A4
@@ -296060,7 +294194,7 @@ StartMainMenu: @ 0x080A4DB4
 func_080A4DEC: @ 0x080A4DEC
     push {lr}
     adds r2, r0, #0
-    ldr r1, .L080A4E08 @ =gBmStatus
+    ldr r1, .L080A4E08 @ =gBmSt
     movs r0, #0x10
     ldrb r1, [r1, #4]
     ands r0, r1
@@ -296073,7 +294207,7 @@ func_080A4DEC: @ 0x080A4DEC
     pop {r0}
     bx r0
     .align 2, 0
-.L080A4E08: .4byte gBmStatus
+.L080A4E08: .4byte gBmSt
     func_end func_080A4DEC
 
     thumb_func_start func_080A4E0C
@@ -299609,7 +297743,7 @@ func_080A68DC: @ 0x080A68DC
     mov sl, r2
     strb r5, [r2]
     bl ResetText
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl InitIcons
     movs r0, #4
     bl ApplyIconPalettes
@@ -305217,7 +303351,7 @@ func_080A943C: @ 0x080A943C
     ldr r0, [r4, #0x2c]
     ldr r1, [r4, #0x30]
     adds r1, #2
-    bl func_08015A5C
+    bl DisplayBmTextShadow
 .L080A9474:
     pop {r4}
     pop {r0}
@@ -310100,7 +308234,7 @@ func_080AB79C: @ 0x080AB79C
     bl ResetTextFont
     bl ResetText
     bl ApplySystemObjectsGraphics
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl InitSystemTextFont
     ldr r7, .L080ABA64 @ =gDispIo
     movs r6, #1
@@ -313058,7 +311192,7 @@ func_080ACF5C: @ 0x080ACF5C
     bl TmApplyTsa_thm
     movs r0, #8
     bl EnableBgSync
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ResetText
     bl InitIcons
     movs r0, #4
@@ -315066,7 +313200,7 @@ func_080ADFA0: @ 0x080ADFA0
     strb r1, [r0]
     adds r0, #1
     strb r1, [r0]
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     ldr r7, .L080AE1BC @ =gDispIo
     movs r4, #1
     ldrb r0, [r7, #1]
@@ -321659,7 +319793,7 @@ func_080B12E0: @ 0x080B12E0
     sub sp, #4
     mov r7, sp
     str r0, [r7]
-    ldr r0, .L080B1310 @ =gBmStatus
+    ldr r0, .L080B1310 @ =gBmSt
     ldrb r1, [r0, #4]
     movs r2, #0x10
     adds r0, r1, #0
@@ -321679,7 +319813,7 @@ func_080B12E0: @ 0x080B12E0
     pop {r0}
     bx r0
     .align 2, 0
-.L080B1310: .4byte gBmStatus
+.L080B1310: .4byte gBmSt
 .L080B1314: .4byte 0x08CE6F48
     func_end func_080B12E0
 
@@ -321689,7 +319823,7 @@ func_080B1318: @ 0x080B1318
     sub sp, #4
     mov r7, sp
     str r0, [r7]
-    ldr r0, .L080B1340 @ =gBmStatus
+    ldr r0, .L080B1340 @ =gBmSt
     ldrb r1, [r0, #4]
     movs r2, #0x10
     adds r0, r1, #0
@@ -321705,7 +319839,7 @@ func_080B1318: @ 0x080B1318
     bl Proc_StartBlocking
     b .L080B134C
     .align 2, 0
-.L080B1340: .4byte gBmStatus
+.L080B1340: .4byte gBmSt
 .L080B1344: .4byte 0x08CE6F80
 .L080B1348:
     bl ClearTalk
@@ -323169,7 +321303,7 @@ func_080B1E28: @ 0x080B1E28
     movs r0, #0xf
     bl EnableBgSync
     bl ResetText
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl InitIcons
     movs r0, #4
     bl ApplyIconPalettes
@@ -325353,7 +323487,7 @@ func_080B2F74: @ 0x080B2F74
     adds r2, r1, #0
     strb r2, [r0, #0x16]
     movs r0, #3
-    bl func_080A1100
+    bl WriteSuspendSave
     pop {r7}
     pop {r0}
     bx r0
@@ -329777,7 +327911,7 @@ WorldMap_Init: @ 0x080B5030
     ldrb r1, [r4, #0x18]
     orrs r0, r1
     strb r0, [r4, #0x18]
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     bl ResetText
     bl InitFaces
     mov r0, sp
@@ -329785,7 +327919,7 @@ WorldMap_Init: @ 0x080B5030
     bl ResetUnitSprites
     bl InitMus
     bl ApplyUnitSpritePalettes
-    ldr r1, .L080B50C0 @ =gBmStatus
+    ldr r1, .L080B50C0 @ =gBmSt
     movs r0, #0
     strh r0, [r1, #0xc]
     strh r0, [r1, #0xe]
@@ -329809,7 +327943,7 @@ WorldMap_Init: @ 0x080B5030
     .align 2, 0
 .L080B50B8: .4byte 0x085E9AA0
 .L080B50BC: .4byte gDispIo
-.L080B50C0: .4byte gBmStatus
+.L080B50C0: .4byte gBmSt
     func_end WorldMap_Init
 
     thumb_func_start func_080B50C4
@@ -337835,7 +335969,7 @@ func_080B8EEC: @ 0x080B8EEC
     str r0, [r4, #0x58]
     bl InitBgs
     movs r0, #0x86
-    bl GetFlag
+    bl CheckFlag
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080B8F34
@@ -339336,7 +337470,7 @@ func_080B9B38: @ 0x080B9B38
     movs r0, #0
     str r0, [r5, #0x30]
     str r0, [r5, #0x2c]
-    bl LoadUiFrameGraphics
+    bl UnpackUiWindowFrameGraphics
     ldr r0, .L080B9C14 @ =gBg1Tm
     ldr r1, .L080B9C18 @ =0x085E0024
     movs r2, #0x80

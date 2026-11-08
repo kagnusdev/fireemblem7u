@@ -7,7 +7,7 @@ func_08011B7C: @ 0x08011B7C
     push {r6}
     sub sp, #0x18
     mov r8, r0
-    ldr r1, .L08011BDC @ =gBmStatus
+    ldr r1, .L08011BDC @ =gBmSt
     movs r2, #0xc
     ldrsh r0, [r1, r2]
     mov r5, r8
@@ -50,7 +50,7 @@ func_08011B7C: @ 0x08011B7C
     pop {r0}
     bx r0
     .align 2, 0
-.L08011BDC: .4byte gBmStatus
+.L08011BDC: .4byte gBmSt
 .L08011BE0: .4byte 0x000001FF
     func_end func_08011B7C
 
@@ -62,7 +62,7 @@ func_08011BE4: @ 0x08011BE4
     ldr r5, [r6]
     cmp r5, #0
     beq .L08011C24
-    ldr r2, .L08011C1C @ =gBmStatus
+    ldr r2, .L08011C1C @ =gBmSt
     movs r1, #0xc
     ldrsh r0, [r2, r1]
     ldr r1, [r4, #0x2c]
@@ -83,7 +83,7 @@ func_08011BE4: @ 0x08011BE4
     bl SetSpriteAnimProcParameters
     b .L08011C2C
     .align 2, 0
-.L08011C1C: .4byte gBmStatus
+.L08011C1C: .4byte gBmSt
 .L08011C20: .4byte 0x000001FF
 .L08011C24:
     adds r0, r4, #0
@@ -418,7 +418,7 @@ func_08011E28: @ 0x08011E28
     adds r1, r3, #0
     bl MapFloodExtended
     movs r5, #0
-    ldr r0, .L08011F08 @ =gMapSize
+    ldr r0, .L08011F08 @ =gBmMapSize
     movs r3, #2
     ldrsh r1, [r0, r3]
     cmp r5, r1
@@ -434,13 +434,13 @@ func_08011E28: @ 0x08011E28
     ldr r0, [sp, #8]
     cmp r3, r0
     bge .L08011ED4
-    ldr r1, .L08011F0C @ =gMapMovement
+    ldr r1, .L08011F0C @ =gBmMapMovement
     ldr r0, [r1]
     lsls r1, r5, #2
     adds r0, r1, r0
     ldr r0, [r0]
     str r0, [sp, #0xc]
-    ldr r2, .L08011F08 @ =gMapSize
+    ldr r2, .L08011F08 @ =gBmMapSize
     movs r6, #0
     ldrsh r4, [r2, r6]
     ldr r0, .L08011F00 @ =gMapUnit
@@ -480,7 +480,7 @@ func_08011E28: @ 0x08011E28
     ldr r1, [r7, #0x2c]
     ldr r2, [r7, #0x30]
     adds r0, r7, #0
-    bl CameraMoveWatchPosition
+    bl EnsureCameraOntoPosition
 .L08011EEE:
     add sp, #0x10
     pop {r3, r4, r5}
@@ -493,8 +493,8 @@ func_08011E28: @ 0x08011E28
     .align 2, 0
 .L08011F00: .4byte gMapUnit
 .L08011F04: .4byte 0x08BE3888
-.L08011F08: .4byte gMapSize
-.L08011F0C: .4byte gMapMovement
+.L08011F08: .4byte gBmMapSize
+.L08011F0C: .4byte gBmMapMovement
     func_end func_08011E28
 
     thumb_func_start func_08011F10

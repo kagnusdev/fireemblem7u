@@ -822,7 +822,7 @@ int EvtCmd_TalkByFlag(struct EventProc * proc)
         return EVENT_CMDRET_CONTINUE;
     }
 
-    if (GetFlag(proc->script[1]))
+    if (CheckFlag(proc->script[1]))
     {
         EventStartTalk(proc, proc->script[2], TRUE);
     }
@@ -846,7 +846,7 @@ int EvtCmd_TalkMoreByFlag(struct EventProc * proc)
         return EVENT_CMDRET_CONTINUE;
     }
 
-    if (GetFlag(proc->script[1]))
+    if (CheckFlag(proc->script[1]))
     {
         EventStartTalk(proc, proc->script[2], FALSE);
     }
@@ -937,10 +937,10 @@ int EvtCmd_CameraCenterPosition(struct EventProc * proc)
     {
         i32 x_cam, y_cam;
 
-        GetCameraAdjustedCenter(x, y, &x_cam, &y_cam);
+        StoreAdjustedCameraPositions(x, y, &x_cam, &y_cam);
 
-        gBmStatus.camera.x = x_cam << 4;
-        gBmStatus.camera.y = y_cam << 4;
+        gBmSt.camera.x = x_cam << 4;
+        gBmSt.camera.y = y_cam << 4;
 
         SetMapCursorPosition(x, y);
 
@@ -949,7 +949,7 @@ int EvtCmd_CameraCenterPosition(struct EventProc * proc)
         return EVENT_CMDRET_CONTINUE;
     }
 
-    CameraMoveWatchPositionCenter(proc, x, y);
+    EnsureCameraOntoCenteredPosition(proc, x, y);
     SetMapCursorPosition(x, y);
 
     return EVENT_CMDRET_YIELD;
@@ -962,8 +962,8 @@ int EvtCmd_CameraPosition(struct EventProc * proc)
 
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0 || proc->unk_4D)
     {
-        gBmStatus.camera.x = GetCameraAdjustedX(x << 4);
-        gBmStatus.camera.y = GetCameraAdjustedY(y << 4);
+        gBmSt.camera.x = GetCameraAdjustedX(x << 4);
+        gBmSt.camera.y = GetCameraAdjustedY(y << 4);
 
         SetMapCursorPosition(x, y);
 
@@ -972,7 +972,7 @@ int EvtCmd_CameraPosition(struct EventProc * proc)
         return EVENT_CMDRET_CONTINUE;
     }
 
-    CameraMoveWatchPosition(proc, x, y);
+    EnsureCameraOntoPosition(proc, x, y);
     SetMapCursorPosition(x, y);
 
     return EVENT_CMDRET_YIELD;
@@ -984,8 +984,8 @@ int EvtCmd_CameraPid(struct EventProc * proc)
 
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0 || proc->unk_4D)
     {
-        gBmStatus.camera.x = GetCameraAdjustedX(unit->x << 4);
-        gBmStatus.camera.y = GetCameraAdjustedY(unit->y << 4);
+        gBmSt.camera.x = GetCameraAdjustedX(unit->x << 4);
+        gBmSt.camera.y = GetCameraAdjustedY(unit->y << 4);
 
         SetMapCursorPosition(unit->x, unit->y);
 
@@ -994,7 +994,7 @@ int EvtCmd_CameraPid(struct EventProc * proc)
         return EVENT_CMDRET_YIELD;
     }
 
-    CameraMoveWatchPosition(proc, unit->x, unit->y);
+    EnsureCameraOntoPosition(proc, unit->x, unit->y);
     SetMapCursorPosition(unit->x, unit->y);
 
     return EVENT_CMDRET_YIELD;
@@ -1004,7 +1004,7 @@ int EvtCmd_CameraLeader(struct EventProc * proc)
 {
     struct Unit * unit = GetUnitByPid(GetLeaderPid());
 
-    CameraMoveWatchPosition(proc, unit->x, unit->y);
+    EnsureCameraOntoPosition(proc, unit->x, unit->y);
     SetMapCursorPosition(unit->x, unit->y);
 
     return EVENT_CMDRET_YIELD;
@@ -1014,7 +1014,7 @@ bool CanDisplayUnitMovement(struct EventProc * proc, int x, int y)
 {
     if ((proc->flags & EVENT_FLAG_FOLLOWMOVE) != 0)
     {
-        if (Proc_Find(ProcScr_MoveCamera) != NULL || CameraMoveWatchPosition(proc, x, y))
+        if (Proc_Find(ProcScr_MoveCamera) != NULL || EnsureCameraOntoPosition(proc, x, y))
             return FALSE;
     }
 
@@ -2271,7 +2271,7 @@ int EvtCmd_GotoIfyFlag(struct EventProc * proc)
 
     int label = proc->script[1];
 
-    if (!GetFlag(proc->script[2]))
+    if (!CheckFlag(proc->script[2]))
         return EVENT_CMDRET_CONTINUE;
 
 #if BUGFIX
@@ -2300,7 +2300,7 @@ int EvtCmd_GotoIfnFlag(struct EventProc * proc)
 
     int label = proc->script[1];
 
-    if (GetFlag(proc->script[2]))
+    if (CheckFlag(proc->script[2]))
         return EVENT_CMDRET_CONTINUE;
 
 #if BUGFIX
@@ -2438,7 +2438,7 @@ int EvtCmd_GotoIfnDeadAndFlagOnce(struct EventProc * proc)
         if (unit->pinfo->id != pid)
             continue;
 
-        if (GetFlag(flag_id))
+        if (CheckFlag(flag_id))
             break;
 
         SetFlag(flag_id);

@@ -67,6 +67,7 @@ SECTIONS
         src/game-ctrl.o(.text);
         src/msg.o(.text);
         asm/utils.o(.text);
+        src/bm.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -165,6 +166,8 @@ SECTIONS
         . = ALIGN(4); src/sprite-anim.o(.data);
         . = ALIGN(4); src/game-ctrl.o(.data);
         . = ALIGN(4); src/msg.o(.data);
+        . = ALIGN(4); asm/data.o(.data_0_3);
+        . = ALIGN(4); src/bm.o(.data);
         . = ALIGN(4); asm/data.o(.data);
         . = ALIGN(4); src/sio_link_loader.o(.data);
 
