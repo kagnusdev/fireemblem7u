@@ -70,6 +70,7 @@ SECTIONS
         src/bm.o(.text);
         asm/items.o(.text);
         src/unit.o(.text);
+        asm/map.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
