@@ -33,7 +33,7 @@ EvtCmd_HidePosition: @ 0x0800E100
     ldr r0, .L0800E164 @ =0x0000FFFF
 .L0800E136:
     lsls r2, r0, #0x10
-    ldr r0, .L0800E168 @ =gMapUnit
+    ldr r0, .L0800E168 @ =gBmMapUnit
     ldr r0, [r0]
     asrs r2, r2, #0xe
     adds r2, r2, r0
@@ -54,7 +54,7 @@ EvtCmd_HidePosition: @ 0x0800E100
     bx r1
     .align 2, 0
 .L0800E164: .4byte 0x0000FFFF
-.L0800E168: .4byte gMapUnit
+.L0800E168: .4byte gBmMapUnit
     func_end EvtCmd_HidePosition
 
     thumb_func_start EvtCmd_HidePid
@@ -62,7 +62,7 @@ EvtCmd_HidePid: @ 0x0800E16C
     push {lr}
     ldr r0, [r0, #0x30]
     ldr r0, [r0, #4]
-    bl GetUnitByPid
+    bl GetUnitFromCharId
     ldr r1, [r0, #0xc]
     movs r2, #9
     orrs r1, r2
@@ -79,7 +79,7 @@ EvtCmd_DisablePid: @ 0x0800E18C
     push {lr}
     ldr r0, [r0, #0x30]
     ldr r0, [r0, #4]
-    bl GetUnitByPid
+    bl GetUnitFromCharId
     ldr r1, [r0, #0xc]
     ldr r2, .L0800E1A4 @ =0x04010000
     orrs r1, r2
@@ -96,7 +96,7 @@ EvtCmd_EnablePid: @ 0x0800E1A8
     push {lr}
     ldr r0, [r0, #0x30]
     ldr r0, [r0, #4]
-    bl GetUnitByPid
+    bl GetUnitFromCharId
     ldr r1, [r0, #0xc]
     ldr r2, .L0800E1C0 @ =0xFFBFFFFF
     ands r1, r2
@@ -114,7 +114,7 @@ EvtCmd_SetState: @ 0x0800E1C4
     adds r4, r0, #0
     ldr r0, [r4, #0x30]
     ldr r0, [r0, #4]
-    bl GetUnitByPid
+    bl GetUnitFromCharId
     ldr r1, [r4, #0x30]
     ldr r2, [r1, #8]
     ldr r1, [r0, #0xc]
@@ -134,7 +134,7 @@ EvtCmd_ClearState: @ 0x0800E1EC
     adds r4, r0, #0
     ldr r0, [r4, #0x30]
     ldr r0, [r0, #4]
-    bl GetUnitByPid
+    bl GetUnitFromCharId
     ldr r1, [r4, #0x30]
     ldr r2, [r1, #8]
     ldr r1, [r0, #0xc]
@@ -1229,12 +1229,12 @@ EvtCmd_FightScript: @ 0x0800E948
     mov r1, r8
     ldr r0, [r1, #0x30]
     ldr r0, [r0, #4]
-    bl GetUnitByPid
+    bl GetUnitFromCharId
     mov sb, r0
     mov r2, r8
     ldr r0, [r2, #0x30]
     ldr r0, [r0, #8]
-    bl GetUnitByPid
+    bl GetUnitFromCharId
     mov sl, r0
     mov r1, r8
     ldr r0, [r1, #0x30]
@@ -1260,7 +1260,7 @@ EvtCmd_FightScript: @ 0x0800E948
 .L0800E99C:
     mov r1, sb
     ldrh r0, [r1, #0x1e]
-    bl GetItemKind
+    bl GetItemType
     cmp r0, #4
     beq .L0800E9AC
     cmp r7, #0
@@ -2107,7 +2107,7 @@ GiveItem_DoGiveItem: @ 0x0800EFB0
     adds r4, r0, #0
     ldr r5, [r4, #0x54]
     ldr r0, [r4, #0x58]
-    bl CreateItem
+    bl MakeNewItem
     adds r1, r0, #0
     adds r0, r5, #0
     adds r2, r4, #0
@@ -4247,7 +4247,7 @@ func_0800FE18: @ 0x0800FE18
     ldr r0, [r4, #0x30]
     ldr r6, [r0, #8]
     ldr r0, [r0, #4]
-    bl GetUnitByPid
+    bl GetUnitFromCharId
     adds r2, r0, #0
     adds r0, r4, #0
     adds r0, #0x5e

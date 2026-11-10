@@ -237,8 +237,8 @@ GetItemLckBonus: @ 0x08016148
     bx lr
     func_end GetItemLckBonus
 
-    thumb_func_start CreateItem
-CreateItem: @ 0x08016174
+    thumb_func_start MakeNewItem
+MakeNewItem: @ 0x08016174
     adds r2, r0, #0
     movs r0, #0xff
     ands r2, r0
@@ -264,7 +264,7 @@ CreateItem: @ 0x08016174
     bx lr
     .align 2, 0
 .L080161A0: .4byte 0x08BE222C
-    func_end CreateItem
+    func_end MakeNewItem
 
     thumb_func_start CanUnitUseWeapon
 CanUnitUseWeapon: @ 0x080161A4
@@ -543,7 +543,7 @@ CanUnitUseWeaponNow: @ 0x08016380
     cmp r1, #0
     beq .L080163C0
     adds r0, r5, #0
-    bl func_0801878C
+    bl IsUnitMagicSealed
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080163C0
@@ -634,7 +634,7 @@ func_08016428: @ 0x08016428
     cmp r0, #0
     beq .L08016468
     adds r0, r5, #0
-    bl func_0801878C
+    bl IsUnitMagicSealed
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08016468
@@ -1767,8 +1767,8 @@ GetUnitItemHealAmount: @ 0x08016B68
 .L08016D08: .4byte 0x08BE222C
     func_end GetUnitItemHealAmount
 
-    thumb_func_start FindUnitItemSlot
-FindUnitItemSlot: @ 0x08016D0C
+    thumb_func_start GetUnitItemSlot
+GetUnitItemSlot: @ 0x08016D0C
     push {r4, r5, lr}
     movs r3, #0
     movs r4, #0xff
@@ -1793,7 +1793,7 @@ FindUnitItemSlot: @ 0x08016D0C
     pop {r4, r5}
     pop {r1}
     bx r1
-    func_end FindUnitItemSlot
+    func_end GetUnitItemSlot
 
     thumb_func_start IsItemStealable
 IsItemStealable: @ 0x08016D38
@@ -2400,13 +2400,13 @@ func_08017178: @ 0x08017178
 .L080171B0: .4byte gPlaySt
     func_end func_08017178
 
-    thumb_func_start GetItemIid
-GetItemIid: @ 0x080171B4
+    thumb_func_start GetItemIndex
+GetItemIndex: @ 0x080171B4
     adds r1, r0, #0
     movs r0, #0xff
     ands r0, r1
     bx lr
-    func_end GetItemIid
+    func_end GetItemIndex
 
     thumb_func_start GetItemName
 GetItemName: @ 0x080171BC
@@ -2498,8 +2498,8 @@ func_08017244: @ 0x08017244
 .L08017258: .4byte 0x08BE222C
     func_end func_08017244
 
-    thumb_func_start GetItemKind
-GetItemKind: @ 0x0801725C
+    thumb_func_start GetItemType
+GetItemType: @ 0x0801725C
     cmp r0, #0
     beq .L08017278
     movs r1, #0xff
@@ -2517,7 +2517,7 @@ GetItemKind: @ 0x0801725C
     movs r0, #0xff
 .L0801727A:
     bx lr
-    func_end GetItemKind
+    func_end GetItemType
 
     thumb_func_start GetItemAttributes
 GetItemAttributes: @ 0x0801727C

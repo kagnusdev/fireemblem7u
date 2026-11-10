@@ -61,7 +61,12 @@ Tsa_Unk_08195680:
 
     .global Tsa_Unk_08195738
 Tsa_Unk_08195738:
-    .incbin "baserom.gba", 0x195738, 0x3FBD34 - 0x195738
+    .incbin "baserom.gba", 0x195738, 0x1C3B6C - 0x195738
+
+
+    .section ".rodata_1_2", "a"
+
+    .incbin "baserom.gba", 0x1C3B74, 0x3FBD34 - 0x1C3B74
 
     .global gUnk_083FBD34
 gUnk_083FBD34:

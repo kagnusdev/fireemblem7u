@@ -4,12 +4,12 @@
 
 struct Vec2i EWRAM_DATA gBmMapSize = { 0 };
 
-u8 ** EWRAM_DATA gMapUnit = NULL;
-u8 ** EWRAM_DATA gMapTerrain = NULL;
+u8 ** EWRAM_DATA gBmMapUnit = NULL;
+u8 ** EWRAM_DATA gBmMapTerrain = NULL;
 u8 ** EWRAM_DATA gBmMapMovement = NULL;
 u8 ** EWRAM_DATA gMapRange = NULL;
 u8 ** EWRAM_DATA gMapFog = NULL;
-u8 ** EWRAM_DATA gMapHidden = NULL;
+u8 ** EWRAM_DATA gBmMapHidden = NULL;
 u8 ** EWRAM_DATA gMapOther = NULL;
 
 u8 ALIGNED(4) EWRAM_DATA gMapUnitBuf[MAP_BUFFER_SIZE] = { 0 };

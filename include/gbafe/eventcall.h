@@ -72,7 +72,7 @@ void RunWaitEvents(void);
 // sub_8079990
 // sub_80799A0
 // sub_80799C0
-// sub_80799E4
+// func_08079214
 // sub_8079A50
 // sub_8079A94
 // sub_8079AF0
@@ -267,7 +267,7 @@ void sub_807AA5C(void);
 void func_0807A834(void);
 // sub_807B2DC
 // sub_807B304
-// sub_807B32C
+// func_0807A8B8
 // sub_807B3AC
 // ImmediateDisplayMap
 // sub_807B400

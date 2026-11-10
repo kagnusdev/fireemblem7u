@@ -69,6 +69,7 @@ SECTIONS
         asm/utils.o(.text);
         src/bm.o(.text);
         asm/items.o(.text);
+        src/unit.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -141,6 +142,8 @@ SECTIONS
         . = ALIGN(4); src/talk.o(.rodata);
         . = ALIGN(4); src/msg.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_1);
+        . = ALIGN(4); src/unit.o(.rodata);
+        . = ALIGN(4); asm/rodata.o(.rodata_1_2);
         . = ALIGN(4); src/m4a.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_2);
         . = ALIGN(4); *libc.a:vfprintf.o(.rodata);

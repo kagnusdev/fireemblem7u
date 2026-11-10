@@ -17,7 +17,7 @@ LoadUnitWrapper: @ 0x0800A618
     movs r6, #0
     ldrb r0, [r5]
     movs r1, #0
-    bl func_08017D70
+    bl GetUnitFromCharIdAndFaction
     adds r4, r0, #0
     cmp r4, #0
     beq .L0800A66E
@@ -40,13 +40,13 @@ LoadUnitWrapper: @ 0x0800A618
     bl UnitChangeFaction
 .L0800A662:
     ldrb r0, [r5]
-    bl GetUnitByPid
+    bl GetUnitFromCharId
     adds r4, r0, #0
     cmp r4, #0
     bne .L0800A682
 .L0800A66E:
     adds r0, r5, #0
-    bl CreateUnit
+    bl LoadUnit
     adds r4, r0, #0
     ldr r0, [r4, #0xc]
     movs r1, #0x80
@@ -62,7 +62,7 @@ LoadUnitWrapper: @ 0x0800A618
     beq .L0800A69E
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080178F4
+    bl UnitLoadItemsFromDefinition
     ldr r0, [r4, #0xc]
     ldr r1, .L0800A700 @ =0xFFFEFFFF
     ands r0, r1

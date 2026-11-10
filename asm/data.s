@@ -128,7 +128,18 @@ data_0_2End:
     @ B92E70 ... CF0CD0
     .global dataStart
 dataStart:
-    .incbin "baserom.gba", 0xB92E70, 0xB93374 - 0xB92E70
+    .incbin "baserom.gba", 0xB92E70, 0xB92E88 - 0xB92E70
+
+    .global gUnk_08B92E88
+gUnk_08B92E88:
+    .incbin "baserom.gba", 0xB92E88, 0xB92EB0 - 0xB92E88
+
+    .global gUnitLut
+gUnitLut:
+    .incbin "baserom.gba", 0xB92EB0, 0x400
+
+gUnk_08B932B0:
+    .incbin "baserom.gba", 0xB932B0, 0xB93374 - 0xB932B0
 
     .global ProcScr_PlayerPhase
 ProcScr_PlayerPhase:
@@ -197,7 +208,23 @@ ProcScr_AiPhase:
 
     .global ProcUnk_08B96EA8
 ProcUnk_08B96EA8:
-    .incbin "baserom.gba", 0xB96EA8, 0xC96584 - 0xB96EA8
+    .incbin "baserom.gba", 0xB96EA8, 0xBDCE4C - 0xB96EA8
+
+    .global gCharacterData
+gCharacterData:
+    .incbin "baserom.gba", 0xBDCE4C, 0xBE01B0 - 0xBDCE4C
+
+    .global gClassData
+gClassData:
+    .incbin "baserom.gba", 0xBE01B0, 0xBE3C16 - 0xBE01B0
+
+    .global MoveTable_Flying
+MoveTable_Flying:
+    .incbin "baserom.gba", 0xBE3C16, 0xBE3C98 - 0xBE3C16
+
+    .global MoveTable_Ballista
+MoveTable_Ballista:
+    .incbin "baserom.gba", 0xBE3C98, 0xC96584 - 0xBE3C98
 
     .global FaceInfoTable
 FaceInfoTable:

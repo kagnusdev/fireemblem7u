@@ -220,7 +220,7 @@ bool HasBattleUnitGainedWeaponLevel(struct BattleUnit *bu);
 void UpdateUnitFromBattle(struct Unit *unit, struct BattleUnit *bu);
 void UpdateUnitDuringBattle(struct Unit *unit, struct BattleUnit *bu);
 void BattleApplyBallistaUpdates(void);
-// sub_802A21C
+// func_08029D6C
 // GetUnitExpLevel
 // GetUnitRoundExp
 // GetUnitPowerLevel

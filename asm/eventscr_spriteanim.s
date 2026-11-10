@@ -397,7 +397,7 @@ func_08011E28: @ 0x08011E28
     str r4, [r7, #0x2c]
     ldrb r3, [r1, #7]
     str r3, [r7, #0x30]
-    ldr r6, .L08011F00 @ =gMapUnit
+    ldr r6, .L08011F00 @ =gBmMapUnit
     ldr r1, [r6]
     lsls r0, r3, #2
     adds r0, r0, r1
@@ -416,7 +416,7 @@ func_08011E28: @ 0x08011E28
     ldr r2, .L08011F04 @ =0x08BE3888
     adds r0, r4, #0
     adds r1, r3, #0
-    bl MapFloodExtended
+    bl GenerateExtendedMovementMap
     movs r5, #0
     ldr r0, .L08011F08 @ =gBmMapSize
     movs r3, #2
@@ -443,7 +443,7 @@ func_08011E28: @ 0x08011E28
     ldr r2, .L08011F08 @ =gBmMapSize
     movs r6, #0
     ldrsh r4, [r2, r6]
-    ldr r0, .L08011F00 @ =gMapUnit
+    ldr r0, .L08011F00 @ =gBmMapUnit
     mov r8, r0
 .L08011EAE:
     ldr r2, [sp, #0xc]
@@ -491,7 +491,7 @@ func_08011E28: @ 0x08011E28
     pop {r0}
     bx r0
     .align 2, 0
-.L08011F00: .4byte gMapUnit
+.L08011F00: .4byte gBmMapUnit
 .L08011F04: .4byte 0x08BE3888
 .L08011F08: .4byte gBmMapSize
 .L08011F0C: .4byte gBmMapMovement
@@ -525,7 +525,7 @@ func_08011F10: @ 0x08011F10
     strb r0, [r1, #7]
     strb r0, [r2, #5]
     adds r0, r1, #0
-    bl CreateUnit
+    bl LoadUnit
     adds r5, #0x10
     str r5, [r4, #0x54]
     add sp, #0x14

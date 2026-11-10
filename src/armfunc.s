@@ -440,8 +440,8 @@ DecodeString: @ 0x080006C0
 .L0800074C: .4byte gWorkingMovTable
 .L08000750: .4byte gMapFloodSt
 .L08000754: .4byte gWorkingMap
-.L08000758: .4byte gMapTerrain
-.L0800075C: .4byte gMapUnit
+.L08000758: .4byte gBmMapTerrain
+.L0800075C: .4byte gBmMapUnit
 
     func_start MapFloodCoreStep
 MapFloodCoreStep: @ 0x08000760
@@ -452,7 +452,7 @@ MapFloodCoreStep: @ 0x08000760
     add r1, r1, r5
     ldrb r6, [r4, #1]
     add r2, r2, r6
-    ldr r7, .L08000758 @ =gMapTerrain
+    ldr r7, .L08000758 @ =gBmMapTerrain
     ldr r7, [r7]
     ldr r7, [r7, r2, lsl #2]
     ldrb r7, [r7, r1]
@@ -470,7 +470,7 @@ MapFloodCoreStep: @ 0x08000760
     ldrb r4, [r3, #8]
     tst r4, r4
     beq .L080007EC
-    ldr r7, .L0800075C @ =gMapUnit
+    ldr r7, .L0800075C @ =gBmMapUnit
     ldr r7, [r7]
     ldr r7, [r7, r2, lsl #2]
     ldrb r7, [r7, r1]

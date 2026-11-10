@@ -980,7 +980,7 @@ int EvtCmd_CameraPosition(struct EventProc * proc)
 
 int EvtCmd_CameraPid(struct EventProc * proc)
 {
-    struct Unit * unit = GetUnitByPid(SCR_HI16(proc->script[0]));
+    struct Unit * unit = GetUnitFromCharId(SCR_HI16(proc->script[0]));
 
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0 || proc->unk_4D)
     {
@@ -1002,7 +1002,7 @@ int EvtCmd_CameraPid(struct EventProc * proc)
 
 int EvtCmd_CameraLeader(struct EventProc * proc)
 {
-    struct Unit * unit = GetUnitByPid(GetLeaderPid());
+    struct Unit * unit = GetUnitFromCharId(GetPlayerLeaderUnitId());
 
     EnsureCameraOntoPosition(proc, unit->x, unit->y);
     SetMapCursorPosition(unit->x, unit->y);
@@ -1034,12 +1034,12 @@ int EvtCmd_MovePosition(struct EventProc * proc)
     int x_target = SCR_LO16_SIGN(proc->script[2]);
     int y_target = SCR_HI16_SIGN(proc->script[2]);
 
-    if (gMapUnit[y_unit][x_unit] == 0)
+    if (gBmMapUnit[y_unit][x_unit] == 0)
     {
         return EVENT_CMDRET_CONTINUE;
     }
 
-    unit = GetUnit(gMapUnit[y_unit][x_unit]);
+    unit = GetUnit(gBmMapUnit[y_unit][x_unit]);
 
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0 || proc->unk_4D)
     {
@@ -1069,12 +1069,12 @@ int EvtCmd_MovePositionSpeed(struct EventProc * proc)
 
     fu16 move_speed = proc->script[3];
 
-    if (gMapUnit[y_unit][x_unit] == 0)
+    if (gBmMapUnit[y_unit][x_unit] == 0)
     {
         return EVENT_CMDRET_CONTINUE;
     }
 
-    unit = GetUnit(gMapUnit[y_unit][x_unit]);
+    unit = GetUnit(gBmMapUnit[y_unit][x_unit]);
 
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0 || proc->unk_4D)
     {
@@ -1094,7 +1094,7 @@ int EvtCmd_MovePositionSpeed(struct EventProc * proc)
 
 int EvtCmd_MovePid(struct EventProc * proc)
 {
-    struct Unit * unit = GetUnitByPid(proc->script[1]);
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
 
     int x_target = SCR_LO16_SIGN(proc->script[2]);
     int y_target = SCR_HI16_SIGN(proc->script[2]);
@@ -1117,7 +1117,7 @@ int EvtCmd_MovePid(struct EventProc * proc)
 
 int EvtCmd_MovePidSpeed(struct EventProc * proc)
 {
-    struct Unit * unit = GetUnitByPid(proc->script[1]);
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
 
     int x_target = SCR_LO16_SIGN(proc->script[2]);
     int y_target = SCR_HI16_SIGN(proc->script[2]);
@@ -1142,7 +1142,7 @@ int EvtCmd_MovePidSpeed(struct EventProc * proc)
 
 int EvtCmd_MovePidOneStepSpeed(struct EventProc * proc)
 {
-    struct Unit * unit = GetUnitByPid(proc->script[1]);
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
 
     int direction = proc->script[2];
 
@@ -1190,7 +1190,7 @@ int EvtCmd_MovePidOneStepSpeed(struct EventProc * proc)
 
 int EvtCmd_MovePidScript(struct EventProc * proc)
 {
-    struct Unit * unit = GetUnitByPid(proc->script[1]);
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
 
     u8 const * move_script = (void const *)proc->script[2];
 
@@ -1222,7 +1222,7 @@ int EvtCmd_MovePositionScript(struct EventProc * proc)
 
     u8 const * move_script = (void const *)proc->script[2];
 
-    struct Unit * unit = GetUnit(gMapUnit[y_unit][x_unit]);
+    struct Unit * unit = GetUnit(gBmMapUnit[y_unit][x_unit]);
 
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0 || proc->unk_4D)
     {
@@ -1244,12 +1244,12 @@ int EvtCmd_MovePositionScript(struct EventProc * proc)
 
 int EvtCmd_MovePidNextTo(struct EventProc * proc)
 {
-    struct Unit * unit = GetUnitByPid(proc->script[2]);
+    struct Unit * unit = GetUnitFromCharId(proc->script[2]);
 
     int x = unit->x;
     int y = unit->y;
 
-    unit = GetUnitByPid(proc->script[1]);
+    unit = GetUnitFromCharId(proc->script[1]);
 
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0 || proc->unk_4D)
     {
@@ -1269,7 +1269,7 @@ int EvtCmd_MovePidNextTo(struct EventProc * proc)
 
 int EvtCmd_MoveLeader(struct EventProc * proc)
 {
-    struct Unit * unit = GetUnitByPid(GetLeaderPid());
+    struct Unit * unit = GetUnitFromCharId(GetPlayerLeaderUnitId());
 
     int x_target = SCR_LO16_SIGN(proc->script[1]);
     int y_target = SCR_HI16_SIGN(proc->script[1]);
@@ -1294,7 +1294,7 @@ int EvtCmd_MovePidByFaction_PositionSpeed_Script(struct EventProc * proc)
 {
     bool is_blue = IsPidBlue(SCR_LO16(proc->script[1]));
 
-    struct Unit * unit = GetUnitByPid(SCR_LO16(proc->script[1]));
+    struct Unit * unit = GetUnitFromCharId(SCR_LO16(proc->script[1]));
 
     i32 x_target = SCR_LO16_SIGN(proc->script[2]);
     i32 y_target = SCR_HI16_SIGN(proc->script[2]);
@@ -1341,7 +1341,7 @@ int EvtCmd_MovePidByFaction_Script_Script(struct EventProc * proc)
 {
     bool is_blue = IsPidBlue(SCR_LO16(proc->script[1]));
 
-    struct Unit * unit = GetUnitByPid(SCR_LO16(proc->script[1]));
+    struct Unit * unit = GetUnitFromCharId(SCR_LO16(proc->script[1]));
 
     u8 const * move_script_blue = (void const *)proc->script[2];
     u8 const * move_script_red = (void const *)proc->script[3];
@@ -1385,7 +1385,7 @@ int EvtCmd_MovePositionInstant(struct EventProc * proc)
 {
     int x_target, y_target;
 
-    struct Unit * unit = GetUnit(gMapUnit[SCR_HI16_SIGN(proc->script[1])][SCR_LO16_SIGN(proc->script[1])]);
+    struct Unit * unit = GetUnit(gBmMapUnit[SCR_HI16_SIGN(proc->script[1])][SCR_LO16_SIGN(proc->script[1])]);
 
     if (unit == NULL)
     {
@@ -1405,7 +1405,7 @@ int EvtCmd_MovePidInstant(struct EventProc * proc)
 {
     int x_target, y_target;
 
-    struct Unit * unit = GetUnitByPid(proc->script[1]);
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
 
     x_target = SCR_LO16_SIGN(proc->script[2]);
     y_target = SCR_HI16_SIGN(proc->script[2]);
@@ -1423,10 +1423,10 @@ int EvtCmd_SavePositionPid(struct EventProc * proc)
 
     if (proc->script[1] == 0)
     {
-        if (!IsPidBlueDeployed(GetLeaderPid()))
+        if (!IsPidBlueDeployed(GetPlayerLeaderUnitId()))
             return EVENT_CMDRET_CONTINUE;
 
-        unit = GetUnitByPid(GetLeaderPid());
+        unit = GetUnitFromCharId(GetPlayerLeaderUnitId());
         slot = gPlaySt.scenario;
     }
     else
@@ -1434,7 +1434,7 @@ int EvtCmd_SavePositionPid(struct EventProc * proc)
         if (!IsPidBlueDeployed(proc->script[1]))
             return EVENT_CMDRET_CONTINUE;
 
-        unit = GetUnitByPid(proc->script[1]);
+        unit = GetUnitFromCharId(proc->script[1]);
         slot = proc->script[2];
     }
 
@@ -1452,10 +1452,10 @@ int EvtCmd_MovePidToSavedPosition(struct EventProc * proc)
 
     if (proc->script[1] == 0)
     {
-        if (!IsPidBlueDeployed(GetLeaderPid()))
+        if (!IsPidBlueDeployed(GetPlayerLeaderUnitId()))
             return EVENT_CMDRET_CONTINUE;
 
-        unit = GetUnitByPid(GetLeaderPid());
+        unit = GetUnitFromCharId(GetPlayerLeaderUnitId());
         slot = gPlaySt.scenario;
     }
     else
@@ -1463,7 +1463,7 @@ int EvtCmd_MovePidToSavedPosition(struct EventProc * proc)
         if (!IsPidBlueDeployed(proc->script[1]))
             return EVENT_CMDRET_CONTINUE;
 
-        unit = GetUnitByPid(proc->script[1]);
+        unit = GetUnitFromCharId(proc->script[1]);
         slot = proc->script[2];
     }
 
@@ -1499,7 +1499,7 @@ void TryMoveUnit(struct Unit * unit, int x, int y, bool closest)
     vec.x = x;
     vec.y = y;
 
-    if (gMapTerrain[y][x] == TERRAIN_0)
+    if (gBmMapTerrain[y][x] == TERRAIN_0)
     {
     }
     else if (closest && (unit->x != x || unit->y != y))
@@ -1536,10 +1536,10 @@ bool TryMoveUnitDisplayed(struct EventProc * proc, struct Unit * unit, int x, in
     vec.x = x;
     vec.y = y;
 
-    if (gMapTerrain[y][x] == TERRAIN_0)
+    if (gBmMapTerrain[y][x] == TERRAIN_0)
     {
         terrain_changed = TRUE;
-        gMapTerrain[y][x] = TERRAIN_1;
+        gBmMapTerrain[y][x] = TERRAIN_1;
     }
     else
     {
@@ -1550,7 +1550,7 @@ bool TryMoveUnitDisplayed(struct EventProc * proc, struct Unit * unit, int x, in
     BuildBestMoveScript(vec.x, vec.y, gWorkingMoveScript);
 
     if (terrain_changed)
-        gMapTerrain[y][x] = TERRAIN_0;
+        gBmMapTerrain[y][x] = TERRAIN_0;
 
     if ((proc->flags & EVENT_FLAG_SLOWTALK) != 0)
     {
@@ -1846,7 +1846,7 @@ bool UnitInfoRequiresNoMovement(struct UnitInfo const * unit_info)
         return FALSE;
 
     // TODO: isn't this backwards?
-    if (gMapUnit[unit_info->y_load][unit_info->x_load] == 0)
+    if (gBmMapUnit[unit_info->y_load][unit_info->x_load] == 0)
         return FALSE;
 
     return TRUE;
@@ -1907,7 +1907,7 @@ void EventUnitLoadAliveWait(struct EventProc * proc)
         {
             while (info->pid != 0)
             {
-                if ((GetUnitByPid(info->pid)->flags & UNIT_FLAG_DEAD) == 0)
+                if ((GetUnitFromCharId(info->pid)->flags & UNIT_FLAG_DEAD) == 0)
                     LoadUnitWrapper(info, NULL);
 
                 info++;
@@ -1917,7 +1917,7 @@ void EventUnitLoadAliveWait(struct EventProc * proc)
             return;
         }
 
-        if ((GetUnitByPid(info->pid)->flags & UNIT_FLAG_DEAD) == 0)
+        if ((GetUnitFromCharId(info->pid)->flags & UNIT_FLAG_DEAD) == 0)
         {
             if (!UnitInfoRequiresNoMovement(info))
             {
@@ -2523,14 +2523,14 @@ int EvtCmd_GiveItemToPid(struct EventProc * proc)
     if (pid == 0)
         pid = proc->pid_param;
 
-    return EventGiveItem(GetUnitByPid(pid), iid, proc);
+    return EventGiveItem(GetUnitFromCharId(pid), iid, proc);
 }
 
 int EvtCmd_GiveItemToLeader(struct EventProc * proc)
 {
     fu16 iid = SCR_LO16(proc->script[1]);
 
-    return EventGiveItem(GetUnitByPid(GetLeaderPid()), iid, proc);
+    return EventGiveItem(GetUnitFromCharId(GetPlayerLeaderUnitId()), iid, proc);
 }
 
 int EventGiveItem(struct Unit * unit, fu16 iid, struct EventProc * proc)
@@ -2808,7 +2808,7 @@ int EvtCmd_FlashCursorPid(struct EventProc * proc)
 {
     struct EventFlashCursorProc * flash_cursor_proc;
 
-    struct Unit * unit = GetUnitByPid(proc->script[1]);
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
 
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0)
         return EVENT_CMDRET_CONTINUE;
@@ -2899,7 +2899,7 @@ int EvtCmd_RemovePosition(struct EventProc * proc)
     fi16 x = SCR_LO16_SIGN(proc->script[1]);
     fi16 y = SCR_HI16_SIGN(proc->script[1]);
 
-    struct Unit * unit = GetUnit(gMapUnit[y][x]);
+    struct Unit * unit = GetUnit(gBmMapUnit[y][x]);
 
     if (EventIsPidBlueForDisable(unit->pinfo->id))
     {
@@ -2918,7 +2918,7 @@ int EvtCmd_RemovePosition(struct EventProc * proc)
 
 int EvtCmd_RemovePid(struct EventProc * proc)
 {
-    struct Unit * unit = GetUnitByPid(proc->script[1]);
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
 
     if (EventIsPidBlueForDisable(proc->script[1]))
     {
@@ -2940,7 +2940,7 @@ int EvtCmd_RemovePositionDisplayed(struct EventProc * proc)
     fi16 x = SCR_LO16_SIGN(proc->script[1]);
     fi16 y = SCR_HI16_SIGN(proc->script[1]);
 
-    struct Unit * unit = GetUnit(gMapUnit[y][x]);
+    struct Unit * unit = GetUnit(gBmMapUnit[y][x]);
 
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0)
     {
@@ -2981,7 +2981,7 @@ int EvtCmd_RemovePidDisplayed(struct EventProc * proc)
     struct Unit * unit;
 
     proc->pid_param = proc->script[1];
-    unit = GetUnitByPid(proc->pid_param);
+    unit = GetUnitFromCharId(proc->pid_param);
 
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0)
     {
@@ -3017,7 +3017,7 @@ int EvtCmd_RemovePidDisplayed(struct EventProc * proc)
 
 void EventRemoveDisplayedWait(struct EventProc * proc)
 {
-    struct Unit * unit = GetUnitByPid(proc->pid_param);
+    struct Unit * unit = GetUnitFromCharId(proc->pid_param);
 
     EndAllMus();
 
