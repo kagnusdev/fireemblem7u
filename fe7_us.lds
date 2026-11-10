@@ -72,6 +72,7 @@ SECTIONS
         src/unit.o(.text);
         asm/map.o(.text);
         asm/mapwork.o(.text);
+        asm/debug-menu.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
