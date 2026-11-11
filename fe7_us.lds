@@ -74,6 +74,7 @@ SECTIONS
         asm/mapwork.o(.text);
         asm/debug-menu.o(.text);
         src/player-phase.o(.text);
+        asm/bmfx.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
