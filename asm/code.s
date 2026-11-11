@@ -1,151 +1,5 @@
     .include "asm_prelude.inc"
 
-    thumb_func_start CountFactionMoveableUnits
-CountFactionMoveableUnits: @ 0x08023810
-    push {r4, r5, r6, lr}
-    adds r5, r0, #0
-    movs r6, #0
-    adds r4, r5, #1
-    b .L08023860
-.L0802381A:
-    adds r0, r4, #0
-    bl GetUnit
-    adds r2, r0, #0
-    cmp r2, #0
-    beq .L0802385C
-    ldr r3, [r2]
-    cmp r3, #0
-    beq .L0802385C
-    ldr r0, [r2, #0xc]
-    ldr r1, .L08023870 @ =0x000100AE
-    ands r0, r1
-    cmp r0, #0
-    bne .L0802385C
-    adds r0, r2, #0
-    adds r0, #0x30
-    movs r1, #0xf
-    ldrb r0, [r0]
-    ands r1, r0
-    cmp r1, #2
-    beq .L0802385C
-    cmp r1, #4
-    beq .L0802385C
-    ldr r0, [r2, #4]
-    ldr r1, [r3, #0x28]
-    ldr r0, [r0, #0x28]
-    orrs r1, r0
-    movs r0, #0x80
-    lsls r0, r0, #0xd
-    ands r1, r0
-    cmp r1, #0
-    bne .L0802385C
-    adds r6, #1
-.L0802385C:
-    adds r4, #1
-    adds r0, r5, #0
-.L08023860:
-    adds r0, #0x40
-    cmp r4, r0
-    blt .L0802381A
-    adds r0, r6, #0
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08023870: .4byte 0x000100AE
-    func_end CountFactionMoveableUnits
-
-    thumb_func_start CountFactionUnitsWithoutFlags
-CountFactionUnitsWithoutFlags: @ 0x08023874
-    push {r4, r5, r6, r7, lr}
-    adds r5, r0, #0
-    adds r7, r1, #0
-    movs r6, #0
-    adds r4, r5, #1
-    b .L080238A0
-.L08023880:
-    adds r0, r4, #0
-    bl GetUnit
-    adds r1, r0, #0
-    cmp r1, #0
-    beq .L0802389C
-    ldr r0, [r1]
-    cmp r0, #0
-    beq .L0802389C
-    ldr r0, [r1, #0xc]
-    ands r0, r7
-    cmp r0, #0
-    bne .L0802389C
-    adds r6, #1
-.L0802389C:
-    adds r4, #1
-    adds r0, r5, #0
-.L080238A0:
-    adds r0, #0x40
-    cmp r4, r0
-    blt .L08023880
-    adds r0, r6, #0
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    func_end CountFactionUnitsWithoutFlags
-
-    thumb_func_start AreUnitIdsAllied
-AreUnitIdsAllied: @ 0x080238B0
-    movs r2, #0x80
-    ands r1, r2
-    movs r3, #0
-    ands r2, r0
-    cmp r2, r1
-    bne .L080238BE
-    movs r3, #1
-.L080238BE:
-    adds r0, r3, #0
-    bx lr
-    func_end AreUnitIdsAllied
-
-    thumb_func_start func_080238C4
-func_080238C4: @ 0x080238C4
-    movs r2, #0xc0
-    ands r1, r2
-    movs r3, #0
-    ands r2, r0
-    cmp r2, r1
-    bne .L080238D2
-    movs r3, #1
-.L080238D2:
-    adds r0, r3, #0
-    bx lr
-    func_end func_080238C4
-
-    thumb_func_start func_080238D8
-func_080238D8: @ 0x080238D8
-    ldr r1, .L080238E8 @ =gPlaySt
-    movs r0, #0x80
-    ldrb r1, [r1, #0xf]
-    ands r0, r1
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x18
-    bx lr
-    .align 2, 0
-.L080238E8: .4byte gPlaySt
-    func_end func_080238D8
-
-    thumb_func_start func_080238EC
-func_080238EC: @ 0x080238EC
-    ldr r1, .L08023900 @ =gPlaySt
-    movs r2, #0x80
-    movs r0, #0x80
-    ldrb r1, [r1, #0xf]
-    ands r0, r1
-    eors r0, r2
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x18
-    bx lr
-    .align 2, 0
-.L08023900: .4byte gPlaySt
-    func_end func_080238EC
-
     thumb_func_start GetGold
 GetGold: @ 0x08023904
     ldr r0, .L0802390C @ =gPlaySt
@@ -656,7 +510,7 @@ func_08023CC0: @ 0x08023CC0
     asrs r0, r0, #0x18
     movs r1, #0xb
     ldrsb r1, [r4, r1]
-    bl func_080238C4
+    bl AreUnitIdsSameFaction
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08023D5A
@@ -939,7 +793,7 @@ func_08023EF8: @ 0x08023EF8
     asrs r0, r0, #0x18
     movs r1, #0xb
     ldrsb r1, [r5, r1]
-    bl func_080238C4
+    bl AreUnitIdsSameFaction
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08023F5A
@@ -1020,7 +874,7 @@ func_08023F98: @ 0x08023F98
     asrs r0, r0, #0x18
     movs r1, #0xb
     ldrsb r1, [r4, r1]
-    bl func_080238C4
+    bl AreUnitIdsSameFaction
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802400C
@@ -1616,7 +1470,7 @@ func_08024434: @ 0x08024434
     asrs r0, r0, #0x18
     movs r1, #0xb
     ldrsb r1, [r4, r1]
-    bl func_080238C4
+    bl AreUnitIdsSameFaction
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802446C
@@ -2305,7 +2159,7 @@ func_08024970: @ 0x08024970
     asrs r0, r0, #0x18
     movs r1, #0xb
     ldrsb r1, [r4, r1]
-    bl func_080238C4
+    bl AreUnitIdsSameFaction
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080249C0
@@ -2380,7 +2234,7 @@ func_080249FC: @ 0x080249FC
     movs r1, #0x11
     ldrsb r1, [r2, r1]
     bl BeginTargetList
-    bl func_080238D8
+    bl GetActiveFactionAlliance
     adds r7, r0, #0
     adds r6, r7, #1
     b .L08024A74
@@ -41066,7 +40920,7 @@ func_08037380: @ 0x08037380
 func_08037460: @ 0x08037460
     push {r4, r5, r6, lr}
     movs r6, #0
-    bl func_080238D8
+    bl GetActiveFactionAlliance
     adds r5, r0, #0
     adds r4, r5, #1
     b .L0803749A
@@ -47347,7 +47201,7 @@ func_0803A3D4: @ 0x0803A3D4
     thumb_func_start func_0803A3F0
 func_0803A3F0: @ 0x0803A3F0
     push {r4, r5, lr}
-    bl func_080238D8
+    bl GetActiveFactionAlliance
     adds r4, r0, #1
     adds r0, #0x80
     cmp r4, r0
@@ -47375,7 +47229,7 @@ func_0803A3F0: @ 0x0803A3F0
     thumb_func_start func_0803A420
 func_0803A420: @ 0x0803A420
     push {r4, r5, lr}
-    bl func_080238D8
+    bl GetActiveFactionAlliance
     adds r4, r0, #1
     adds r0, #0x80
     cmp r4, r0
@@ -49977,7 +49831,7 @@ func_0803B83C: @ 0x0803B83C
     ldr r0, [r0]
     bl GetUnitMovementCost
     str r0, [sp, #0x10]
-    bl func_080238D8
+    bl GetActiveFactionAlliance
     str r0, [sp, #0x14]
     adds r4, r0, #0
     adds r4, #1

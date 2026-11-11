@@ -2654,7 +2654,7 @@ GenerateDangerZoneRange: @ 0x0801B008
     ldr r0, [r0]
     movs r1, #0
     bl BmMapFill
-    bl func_080238EC
+    bl GetActiveFactionOpposingAlliance
     mov sb, r0
     mov r6, sb
     adds r6, #1
