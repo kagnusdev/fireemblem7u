@@ -91,6 +91,7 @@ SECTIONS
         asm/unit-sprite.o(.text);
         asm/support.o(.text);
         asm/item-use.o(.text);
+        asm/battle.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
