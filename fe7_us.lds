@@ -88,6 +88,7 @@ SECTIONS
         src/faction.o(.text);
         src/gold.o(.text);
         asm/target-sel.o(.text);
+        asm/unit-sprite.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
