@@ -83,6 +83,7 @@ SECTIONS
         asm/bmfx_080200D8.o(.text);
         asm/bmfx-swingsword.o(.text);
         asm/bmfx-minefx.o(.text);
+        asm/bmfx-niniantransform.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
