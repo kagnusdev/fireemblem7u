@@ -1,46 +1,5 @@
     .include "asm_prelude.inc"
 
-    thumb_func_start GetGold
-GetGold: @ 0x08023904
-    ldr r0, .L0802390C @ =gPlaySt
-    ldr r0, [r0, #8]
-    bx lr
-    .align 2, 0
-.L0802390C: .4byte gPlaySt
-    func_end GetGold
-
-    thumb_func_start SetGold
-SetGold: @ 0x08023910
-    ldr r2, .L08023920 @ =gPlaySt
-    str r0, [r2, #8]
-    ldr r1, .L08023924 @ =0x000F423F
-    cmp r0, r1
-    ble .L0802391C
-    str r1, [r2, #8]
-.L0802391C:
-    bx lr
-    .align 2, 0
-.L08023920: .4byte gPlaySt
-.L08023924: .4byte 0x000F423F
-    func_end SetGold
-
-    thumb_func_start func_08023928
-func_08023928: @ 0x08023928
-    ldr r2, .L0802393C @ =gPlaySt
-    ldr r1, [r2, #8]
-    adds r1, r1, r0
-    str r1, [r2, #8]
-    ldr r0, .L08023940 @ =0x000F423F
-    cmp r1, r0
-    ble .L08023938
-    str r0, [r2, #8]
-.L08023938:
-    bx lr
-    .align 2, 0
-.L0802393C: .4byte gPlaySt
-.L08023940: .4byte 0x000F423F
-    func_end func_08023928
-
     thumb_func_start func_08023944
 func_08023944: @ 0x08023944
     push {r4, r5, r6, r7, lr}
@@ -240869,7 +240828,7 @@ func_08098E18: @ 0x08098E18
     bl func_080B1D90
     lsls r0, r0, #0x10
     lsrs r0, r0, #0x10
-    bl func_08023928
+    bl AddGold
     ldr r0, [r4, #0x2c]
     ldrb r2, [r5]
     lsls r1, r2, #1
@@ -244816,7 +244775,7 @@ func_0809AD64: @ 0x0809AD64
     cmp r4, #0
     ble .L0809AD9A
     rsbs r0, r4, #0
-    bl func_08023928
+    bl AddGold
     ldr r0, .L0809ADA4 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
@@ -282943,7 +282902,7 @@ func_080AD1AC: @ 0x080AD1AC
     cmp r1, #0x97
     bne .L080AD274
     ldr r0, .L080AD29C @ =0x00000BB8
-    bl func_08023928
+    bl AddGold
 .L080AD274:
     ldr r0, [r7]
     adds r0, r0, r4
@@ -282951,7 +282910,7 @@ func_080AD1AC: @ 0x080AD1AC
     cmp r0, #0x98
     bne .L080AD284
     ldr r0, .L080AD2A0 @ =0x00001388
-    bl func_08023928
+    bl AddGold
 .L080AD284:
     ldrb r0, [r6]
     bl func_080ACE34

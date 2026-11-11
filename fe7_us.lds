@@ -86,6 +86,7 @@ SECTIONS
         asm/bmfx-niniantransform.o(.text);
         asm/map-menu.o(.text);
         src/faction.o(.text);
+        src/gold.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);

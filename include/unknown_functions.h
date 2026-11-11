@@ -1675,7 +1675,7 @@ void BuildBestMoveScript(int x, int y, u8 * output);
 // ... GetActiveFactionOpposingAlliance(...)
 // ... GetGold(...)
 // ... SetGold(...)
-// ... func_08023928(...)
+// ... AddGold(...)
 // ... func_08023944(...)
 // ... func_080239B0(...)
 // ... func_08023A1C(...)
