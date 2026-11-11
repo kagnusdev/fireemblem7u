@@ -11,12 +11,12 @@ extern struct Vec2i gBmMapSize;
 extern u8 ** gBmMapUnit;
 extern u8 ** gBmMapTerrain;
 extern u8 ** gBmMapMovement;
-extern u8 ** gMapRange;
+extern u8 ** gBmMapRange;
 extern u8 ** gMapFog;
 extern u8 ** gBmMapHidden;
-extern u8 ** gMapOther;
+extern u8 ** gBmMapOther;
 
-#define gMapRangeSigned ((i8 **)gMapRange)
+#define gMapRangeSigned ((i8 **)gBmMapRange)
 #define gBmMapMovementSigned ((i8 **)gBmMapMovement)
 
 #endif // MAP_H

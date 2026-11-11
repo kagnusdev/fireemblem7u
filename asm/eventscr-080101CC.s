@@ -1923,7 +1923,7 @@ func_080110B8: @ 0x080110B8
     beq .L080110F4
     movs r0, #0xff
     strb r0, [r4]
-    bl func_0802E368
+    bl RefreshBMapGraphics
     bl UnlockBmDisplay
     bl ReleaseMus
 .L080110F4:

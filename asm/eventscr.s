@@ -1397,7 +1397,7 @@ EvtCmd_FightScript: @ 0x0800E948
     bl HideUnitSprite
     ldr r0, [r4]
     bl StartMu
-    bl SetAutoMuDefaultFacing
+    bl MU_SetDefaultFacing_Auto
     bl BeginBattleAnimations
     mov r0, r8
     movs r1, #7

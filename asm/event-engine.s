@@ -1103,7 +1103,7 @@ func_0800AE34: @ 0x0800AE34
     thumb_func_start func_0800AE50
 func_0800AE50: @ 0x0800AE50
     push {lr}
-    bl func_0802E368
+    bl RefreshBMapGraphics
     bl UnlockBmDisplay
     bl ReleaseMus
     ldr r0, .L0800AE84 @ =gBg0Tm
@@ -1140,7 +1140,7 @@ func_0800AE8C: @ 0x0800AE8C
     movs r0, #2
     bl EnableBgSync
     bl ClearTalk
-    bl func_0802E368
+    bl RefreshBMapGraphics
     adds r1, r5, #0
     adds r1, #0x5e
     movs r0, #4
@@ -1351,10 +1351,10 @@ StartEventInternal: @ 0x0800AF74
     movs r0, #0
 .L0800B03E:
     strb r0, [r1]
-    ldr r0, .L0800B060 @ =gMapOther
+    ldr r0, .L0800B060 @ =gBmMapOther
     ldr r0, [r0]
     movs r1, #0
-    bl MapFill
+    bl BmMapFill
     ldr r0, [r4, #0x30]
     ldr r0, [r0]
     subs r0, #0x86
@@ -1366,7 +1366,7 @@ StartEventInternal: @ 0x0800AF74
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.L0800B060: .4byte gMapOther
+.L0800B060: .4byte gBmMapOther
 .L0800B064: .4byte .L0800B068
 .L0800B068: @ jump table
     .4byte .L0800B096 @ case 0
@@ -1813,7 +1813,7 @@ Event_MainLoop: @ 0x0800B390
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0800B494
-    bl IsMapFadeActive
+    bl DoesBMXFADEExist
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0800B494

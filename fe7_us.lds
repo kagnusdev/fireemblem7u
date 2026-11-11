@@ -73,6 +73,7 @@ SECTIONS
         asm/map.o(.text);
         asm/mapwork.o(.text);
         asm/debug-menu.o(.text);
+        src/player-phase.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -176,6 +177,8 @@ SECTIONS
         . = ALIGN(4); asm/data.o(.data_0_3);
         . = ALIGN(4); src/bm.o(.data);
         . = ALIGN(4); asm/data.o(.data);
+        . = ALIGN(4); src/player-phase.o(.data);
+        . = ALIGN(4); asm/data.o(.data_1);
         . = ALIGN(4); src/sio_link_loader.o(.data);
 
         /* libc */
@@ -271,7 +274,7 @@ SECTIONS
         . = ALIGN(4); src/unit.o(ewram_data);
         . = ALIGN(4); src/map.o(ewram_data);
 
-        . = 0x033E00; gWorkingMoveScript = .;
+        . = 0x033E00; gWorkingMoveScr = .;
 
         . = 0x03EEA8;
         . = ALIGN(4); end = .;

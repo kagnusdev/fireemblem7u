@@ -79,7 +79,7 @@ extern u16 gUiTmScratchC[];
 
 void DrawUiGaugeBitmapEdgeColumn(u8 * bitmap, int pixels_per_line, int column);
 void DrawUiGaugeBitmapBaseColumn(u8 * bitmap, int pixels_per_line, int column);
-void DrawUiGaugeBitmapFilledColumn(u8 * bitmap, int pixels_per_line, int column);
+void DrawUiGaugeBitBmMapFilledColumn(u8 * bitmap, int pixels_per_line, int column);
 void DrawUiGaugeBitmapBonusColumn(u8 * bitmap, int pixels_per_line, int column);
 void DrawUiGauge(int chr, int dot_x, int chr_count, int dot_width, int dot_plain, int dot_bonus);
 void PutDrawUiGauge(int chr, int width, u16 * tm, int tileref, int dot_width, int dot_plain, int dot_bonus);

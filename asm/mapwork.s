@@ -1,7 +1,7 @@
     .include "asm_prelude.inc"
 
-    thumb_func_start MapFloodUnitMovement
-MapFloodUnitMovement: @ 0x08019BE0
+    thumb_func_start GenerateUnitMovementMapExt
+GenerateUnitMovementMapExt: @ 0x08019BE0
     push {r4, r5, lr}
     adds r5, r0, #0
     lsls r4, r1, #0x18
@@ -28,7 +28,7 @@ MapFloodUnitMovement: @ 0x08019BE0
     .align 2, 0
 .L08019C14: .4byte gBmMapMovement
 .L08019C18: .4byte gWorkingMap
-    func_end MapFloodUnitMovement
+    func_end GenerateUnitMovementMapExt
 
     thumb_func_start MapFloodUnitExtended
 MapFloodUnitExtended: @ 0x08019C1C
@@ -62,7 +62,7 @@ MapFloodRange_Unitless: @ 0x08019C50
     adds r5, r1, #0
     adds r0, r2, #0
     bl SetWorkingMoveTable
-    ldr r0, .L08019C78 @ =gMapRange
+    ldr r0, .L08019C78 @ =gBmMapRange
     ldr r1, [r0]
     ldr r0, .L08019C7C @ =gWorkingMap
     str r1, [r0]
@@ -75,7 +75,7 @@ MapFloodRange_Unitless: @ 0x08019C50
     pop {r0}
     bx r0
     .align 2, 0
-.L08019C78: .4byte gMapRange
+.L08019C78: .4byte gBmMapRange
 .L08019C7C: .4byte gWorkingMap
     func_end MapFloodRange_Unitless
 
@@ -183,7 +183,7 @@ BeginMapFlood: @ 0x08019D00
     ldr r0, [r4]
     movs r1, #1
     rsbs r1, r1, #0
-    bl MapFill
+    bl BmMapFill
     ldr r0, [r6, #4]
     strb r5, [r0]
     ldr r0, [r6, #4]
@@ -604,19 +604,19 @@ func_0801A010: @ 0x0801A010
     bx lr
     func_end func_0801A010
 
-    thumb_func_start func_0801A044
-func_0801A044: @ 0x0801A044
+    thumb_func_start UnitApplyWorkingMovementScript
+UnitApplyWorkingMovementScript: @ 0x0801A044
     push {r4, r5, r6, r7, lr}
     adds r7, r0, #0
     adds r3, r1, #0
     adds r4, r2, #0
-    ldr r5, .L0801A058 @ =gWorkingMoveScript
+    ldr r5, .L0801A058 @ =gWorkingMoveScr
     ldr r6, .L0801A05C @ =gActionSt
     ldr r0, .L0801A060 @ =gBmMapHidden
     mov ip, r0
     b .L0801A066
     .align 2, 0
-.L0801A058: .4byte gWorkingMoveScript
+.L0801A058: .4byte gWorkingMoveScr
 .L0801A05C: .4byte gActionSt
 .L0801A060: .4byte gBmMapHidden
 .L0801A064:
@@ -703,7 +703,7 @@ func_0801A044: @ 0x0801A044
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    func_end func_0801A044
+    func_end UnitApplyWorkingMovementScript
 
     thumb_func_start func_0801A0FC
 func_0801A0FC: @ 0x0801A0FC
@@ -1244,8 +1244,8 @@ func_0801A3D8: @ 0x0801A3D8
 .L0801A4D0: .4byte gWorkingMap
     func_end func_0801A3D8
 
-    thumb_func_start func_0801A4D4
-func_0801A4D4: @ 0x0801A4D4
+    thumb_func_start GenerateUnitCompleteAttackRange
+GenerateUnitCompleteAttackRange: @ 0x0801A4D4
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -1323,7 +1323,7 @@ func_0801A4D4: @ 0x0801A4D4
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801A5B4
-    ldr r0, .L0801A5D4 @ =gMapOther
+    ldr r0, .L0801A5D4 @ =gBmMapOther
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -1361,7 +1361,7 @@ func_0801A4D4: @ 0x0801A4D4
 .L0801A5C8: .4byte gBmMapSize
 .L0801A5CC: .4byte gBmMapMovement
 .L0801A5D0: .4byte gBmMapUnit
-.L0801A5D4: .4byte gMapOther
+.L0801A5D4: .4byte gBmMapOther
 .L0801A5D8:
     ldr r0, .L0801A664 @ =gBmMapSize
     movs r2, #2
@@ -1400,7 +1400,7 @@ func_0801A4D4: @ 0x0801A4D4
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801A64E
-    ldr r0, .L0801A670 @ =gMapOther
+    ldr r0, .L0801A670 @ =gBmMapOther
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -1438,7 +1438,7 @@ func_0801A4D4: @ 0x0801A4D4
 .L0801A664: .4byte gBmMapSize
 .L0801A668: .4byte gBmMapMovement
 .L0801A66C: .4byte gBmMapUnit
-.L0801A670: .4byte gMapOther
+.L0801A670: .4byte gBmMapOther
 .L0801A674:
     ldr r0, .L0801A700 @ =gBmMapSize
     movs r1, #2
@@ -1478,7 +1478,7 @@ func_0801A4D4: @ 0x0801A4D4
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801A6EC
-    ldr r0, .L0801A70C @ =gMapOther
+    ldr r0, .L0801A70C @ =gBmMapOther
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -1516,7 +1516,7 @@ func_0801A4D4: @ 0x0801A4D4
 .L0801A700: .4byte gBmMapSize
 .L0801A704: .4byte gBmMapMovement
 .L0801A708: .4byte gBmMapUnit
-.L0801A70C: .4byte gMapOther
+.L0801A70C: .4byte gBmMapOther
 .L0801A710:
     ldr r0, .L0801A79C @ =gBmMapSize
     movs r2, #2
@@ -1555,7 +1555,7 @@ func_0801A4D4: @ 0x0801A4D4
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801A786
-    ldr r0, .L0801A7A8 @ =gMapOther
+    ldr r0, .L0801A7A8 @ =gBmMapOther
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -1593,7 +1593,7 @@ func_0801A4D4: @ 0x0801A4D4
 .L0801A79C: .4byte gBmMapSize
 .L0801A7A0: .4byte gBmMapMovement
 .L0801A7A4: .4byte gBmMapUnit
-.L0801A7A8: .4byte gMapOther
+.L0801A7A8: .4byte gBmMapOther
 .L0801A7AC:
     ldr r0, .L0801A838 @ =gBmMapSize
     movs r1, #2
@@ -1633,7 +1633,7 @@ func_0801A4D4: @ 0x0801A4D4
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801A824
-    ldr r0, .L0801A844 @ =gMapOther
+    ldr r0, .L0801A844 @ =gBmMapOther
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -1671,7 +1671,7 @@ func_0801A4D4: @ 0x0801A4D4
 .L0801A838: .4byte gBmMapSize
 .L0801A83C: .4byte gBmMapMovement
 .L0801A840: .4byte gBmMapUnit
-.L0801A844: .4byte gMapOther
+.L0801A844: .4byte gBmMapOther
 .L0801A848:
     ldr r0, .L0801A8D4 @ =gBmMapSize
     movs r2, #2
@@ -1710,7 +1710,7 @@ func_0801A4D4: @ 0x0801A4D4
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801A8BE
-    ldr r0, .L0801A8E0 @ =gMapOther
+    ldr r0, .L0801A8E0 @ =gBmMapOther
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -1748,7 +1748,7 @@ func_0801A4D4: @ 0x0801A4D4
 .L0801A8D4: .4byte gBmMapSize
 .L0801A8D8: .4byte gBmMapMovement
 .L0801A8DC: .4byte gBmMapUnit
-.L0801A8E0: .4byte gMapOther
+.L0801A8E0: .4byte gBmMapOther
 .L0801A8E4:
     ldr r0, .L0801A970 @ =gBmMapSize
     movs r1, #2
@@ -1788,7 +1788,7 @@ func_0801A4D4: @ 0x0801A4D4
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801A95C
-    ldr r0, .L0801A97C @ =gMapOther
+    ldr r0, .L0801A97C @ =gBmMapOther
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -1826,7 +1826,7 @@ func_0801A4D4: @ 0x0801A4D4
 .L0801A970: .4byte gBmMapSize
 .L0801A974: .4byte gBmMapMovement
 .L0801A978: .4byte gBmMapUnit
-.L0801A97C: .4byte gMapOther
+.L0801A97C: .4byte gBmMapOther
 .L0801A980:
     ldr r0, .L0801AA24 @ =gBmMapSize
     movs r2, #2
@@ -1865,7 +1865,7 @@ func_0801A4D4: @ 0x0801A4D4
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801AA10
-    ldr r0, .L0801AA30 @ =gMapOther
+    ldr r0, .L0801AA30 @ =gBmMapOther
     ldr r0, [r0]
     adds r0, r7, r0
     ldr r0, [r0]
@@ -1914,7 +1914,7 @@ func_0801A4D4: @ 0x0801A4D4
 .L0801AA24: .4byte gBmMapSize
 .L0801AA28: .4byte gBmMapMovement
 .L0801AA2C: .4byte gBmMapUnit
-.L0801AA30: .4byte gMapOther
+.L0801AA30: .4byte gBmMapOther
 .L0801AA34:
     ldr r0, .L0801AADC @ =gBmMapSize
     movs r1, #2
@@ -1954,7 +1954,7 @@ func_0801A4D4: @ 0x0801A4D4
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801AAC6
-    ldr r0, .L0801AAE8 @ =gMapOther
+    ldr r0, .L0801AAE8 @ =gBmMapOther
     ldr r0, [r0]
     adds r0, r7, r0
     ldr r0, [r0]
@@ -2003,7 +2003,7 @@ func_0801A4D4: @ 0x0801A4D4
 .L0801AADC: .4byte gBmMapSize
 .L0801AAE0: .4byte gBmMapMovement
 .L0801AAE4: .4byte gBmMapUnit
-.L0801AAE8: .4byte gMapOther
+.L0801AAE8: .4byte gBmMapOther
 .L0801AAEC:
     ldr r0, .L0801AC4C @ =gBmMapSize
     movs r2, #2
@@ -2041,7 +2041,7 @@ func_0801A4D4: @ 0x0801A4D4
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801AB60
-    ldr r0, .L0801AC58 @ =gMapOther
+    ldr r0, .L0801AC58 @ =gBmMapOther
     ldr r0, [r0]
     adds r0, r5, r0
     ldr r0, [r0]
@@ -2123,7 +2123,7 @@ func_0801A4D4: @ 0x0801A4D4
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801AC22
-    ldr r0, .L0801AC58 @ =gMapOther
+    ldr r0, .L0801AC58 @ =gBmMapOther
     ldr r0, [r0]
     add r0, sb
     ldr r0, [r0]
@@ -2188,9 +2188,9 @@ func_0801A4D4: @ 0x0801A4D4
 .L0801AC4C: .4byte gBmMapSize
 .L0801AC50: .4byte gBmMapMovement
 .L0801AC54: .4byte gBmMapUnit
-.L0801AC58: .4byte gMapOther
+.L0801AC58: .4byte gBmMapOther
 .L0801AC5C: .4byte gWorkingMap
-    func_end func_0801A4D4
+    func_end GenerateUnitCompleteAttackRange
 
     thumb_func_start BuildUnitStandingRangeForReach
 BuildUnitStandingRangeForReach: @ 0x0801AC60
@@ -2379,8 +2379,8 @@ BuildUnitStandingRangeForReach: @ 0x0801AC60
     bx r0
     func_end BuildUnitStandingRangeForReach
 
-    thumb_func_start BuildUnitCompleteStaffRange
-BuildUnitCompleteStaffRange: @ 0x0801AE10
+    thumb_func_start GenerateUnitCompleteStaffRange
+GenerateUnitCompleteStaffRange: @ 0x0801AE10
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -2442,7 +2442,7 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801AEB2
-    ldr r0, .L0801AECC @ =gMapOther
+    ldr r0, .L0801AECC @ =gBmMapOther
     ldr r0, [r0]
     adds r0, r6, r0
     ldr r0, [r0]
@@ -2476,7 +2476,7 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
 .L0801AEC0: .4byte gBmMapSize
 .L0801AEC4: .4byte gBmMapMovement
 .L0801AEC8: .4byte gBmMapUnit
-.L0801AECC: .4byte gMapOther
+.L0801AECC: .4byte gBmMapOther
 .L0801AED0:
     ldr r0, .L0801AF50 @ =gBmMapSize
     movs r1, #2
@@ -2514,7 +2514,7 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801AF42
-    ldr r0, .L0801AF5C @ =gMapOther
+    ldr r0, .L0801AF5C @ =gBmMapOther
     ldr r0, [r0]
     adds r0, r6, r0
     ldr r0, [r0]
@@ -2548,7 +2548,7 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
 .L0801AF50: .4byte gBmMapSize
 .L0801AF54: .4byte gBmMapMovement
 .L0801AF58: .4byte gBmMapUnit
-.L0801AF5C: .4byte gMapOther
+.L0801AF5C: .4byte gBmMapOther
 .L0801AF60:
     ldr r0, .L0801AFF8 @ =gBmMapSize
     movs r1, #2
@@ -2591,7 +2591,7 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0801AFDE
-    ldr r0, .L0801B004 @ =gMapOther
+    ldr r0, .L0801B004 @ =gBmMapOther
     ldr r0, [r0]
     adds r0, r6, r0
     ldr r0, [r0]
@@ -2633,11 +2633,11 @@ BuildUnitCompleteStaffRange: @ 0x0801AE10
 .L0801AFF8: .4byte gBmMapSize
 .L0801AFFC: .4byte gBmMapMovement
 .L0801B000: .4byte gBmMapUnit
-.L0801B004: .4byte gMapOther
-    func_end BuildUnitCompleteStaffRange
+.L0801B004: .4byte gBmMapOther
+    func_end GenerateUnitCompleteStaffRange
 
-    thumb_func_start func_0801B008
-func_0801B008: @ 0x0801B008
+    thumb_func_start GenerateDangerZoneRange
+GenerateDangerZoneRange: @ 0x0801B008
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -2650,17 +2650,17 @@ func_0801B008: @ 0x0801B008
     movs r0, #1
     rsbs r0, r0, #0
     mov sl, r0
-    ldr r0, .L0801B038 @ =gMapRange
+    ldr r0, .L0801B038 @ =gBmMapRange
     ldr r0, [r0]
     movs r1, #0
-    bl MapFill
+    bl BmMapFill
     bl func_080238EC
     mov sb, r0
     mov r6, sb
     adds r6, #1
     b .L0801B12C
     .align 2, 0
-.L0801B038: .4byte gMapRange
+.L0801B038: .4byte gBmMapRange
 .L0801B03C:
     adds r0, r6, #0
     bl GetUnit
@@ -2711,7 +2711,7 @@ func_0801B008: @ 0x0801B008
     lsls r1, r1, #0x18
     asrs r1, r1, #0x18
     adds r0, r4, #0
-    bl MapFloodUnitMovement
+    bl GenerateUnitMovementMapExt
     movs r1, #0x11
     ldrsb r1, [r4, r1]
     ldr r0, .L0801B0FC @ =gBmMapUnit
@@ -2730,18 +2730,18 @@ func_0801B008: @ 0x0801B008
     asrs r5, r0, #0x18
     cmp sl, r5
     beq .L0801B0DE
-    ldr r0, .L0801B100 @ =gMapOther
+    ldr r0, .L0801B100 @ =gBmMapOther
     ldr r0, [r0]
     movs r1, #0
-    bl MapFill
+    bl BmMapFill
     cmp r5, #0
     beq .L0801B0DC
     movs r0, #1
-    bl func_0801B148
+    bl GenerateMagicSealMap
 .L0801B0DC:
     mov sl, r5
 .L0801B0DE:
-    ldr r0, .L0801B104 @ =gMapRange
+    ldr r0, .L0801B104 @ =gBmMapRange
     ldr r1, [r0]
     ldr r0, .L0801B108 @ =gWorkingMap
     str r1, [r0]
@@ -2749,18 +2749,18 @@ func_0801B008: @ 0x0801B008
     cmp r0, #0
     beq .L0801B10C
     adds r0, r4, #0
-    bl BuildUnitCompleteStaffRange
+    bl GenerateUnitCompleteStaffRange
     b .L0801B112
     .align 2, 0
 .L0801B0F4: .4byte gPlaySt
 .L0801B0F8: .4byte gMapFog
 .L0801B0FC: .4byte gBmMapUnit
-.L0801B100: .4byte gMapOther
-.L0801B104: .4byte gMapRange
+.L0801B100: .4byte gBmMapOther
+.L0801B104: .4byte gBmMapRange
 .L0801B108: .4byte gWorkingMap
 .L0801B10C:
     adds r0, r4, #0
-    bl func_0801A4D4
+    bl GenerateUnitCompleteAttackRange
 .L0801B112:
     movs r1, #0x11
     ldrsb r1, [r4, r1]
@@ -2792,10 +2792,10 @@ func_0801B008: @ 0x0801B008
     bx r0
     .align 2, 0
 .L0801B144: .4byte gBmMapUnit
-    func_end func_0801B008
+    func_end GenerateDangerZoneRange
 
-    thumb_func_start func_0801B148
-func_0801B148: @ 0x0801B148
+    thumb_func_start GenerateMagicSealMap
+GenerateMagicSealMap: @ 0x0801B148
     push {r4, r5, lr}
     adds r5, r0, #0
     movs r4, #0x81
@@ -2831,7 +2831,7 @@ func_0801B148: @ 0x0801B148
     pop {r4, r5}
     pop {r0}
     bx r0
-    func_end func_0801B148
+    func_end GenerateMagicSealMap
 
     thumb_func_start func_0801B190
 func_0801B190: @ 0x0801B190

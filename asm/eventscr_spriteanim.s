@@ -538,10 +538,10 @@ func_08011F10: @ 0x08011F10
 EvtCmd_WarpLoadUnits: @ 0x08011F58
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L08011FA4 @ =gMapOther
+    ldr r0, .L08011FA4 @ =gBmMapOther
     ldr r0, [r0]
     movs r1, #0
-    bl MapFill
+    bl BmMapFill
     ldr r0, .L08011FA8 @ =0x08B92414
     adds r1, r4, #0
     bl Proc_StartBlocking
@@ -575,6 +575,6 @@ EvtCmd_WarpLoadUnits: @ 0x08011F58
     pop {r1}
     bx r1
     .align 2, 0
-.L08011FA4: .4byte gMapOther
+.L08011FA4: .4byte gBmMapOther
 .L08011FA8: .4byte 0x08B92414
     func_end EvtCmd_WarpLoadUnits

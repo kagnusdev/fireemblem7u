@@ -34,7 +34,7 @@ InitMapForChapter: @ 0x08018D88
     ldrsh r3, [r4, r7]
     bl MapInit
     ldr r0, .L08018E60 @ =0x03000BF8
-    ldr r1, .L08018E64 @ =gMapRange
+    ldr r1, .L08018E64 @ =gBmMapRange
     movs r3, #0
     ldrsh r2, [r4, r3]
     movs r7, #2
@@ -55,7 +55,7 @@ InitMapForChapter: @ 0x08018D88
     ldrsh r3, [r4, r7]
     bl MapInit
     ldr r0, .L08018E78 @ =gMapOtherBuf
-    ldr r1, .L08018E7C @ =gMapOther
+    ldr r1, .L08018E7C @ =gBmMapOther
     movs r3, #0
     ldrsh r2, [r4, r3]
     movs r7, #2
@@ -63,10 +63,10 @@ InitMapForChapter: @ 0x08018D88
     bl MapInit
     ldr r0, [r6]
     movs r1, #0
-    bl MapFill
+    bl BmMapFill
     ldr r0, [r5]
     movs r1, #0
-    bl MapFill
+    bl BmMapFill
     bl InitMetatilesMap
     bl ApplyEnabledMapChanges
     bl RefreshTerrainMap
@@ -89,13 +89,13 @@ InitMapForChapter: @ 0x08018D88
 .L08018E58: .4byte 0x03000440
 .L08018E5C: .4byte gBmMapMovement
 .L08018E60: .4byte 0x03000BF8
-.L08018E64: .4byte gMapRange
+.L08018E64: .4byte gBmMapRange
 .L08018E68: .4byte gMapFogBuf
 .L08018E6C: .4byte gMapFog
 .L08018E70: .4byte gMapHiddenBuf
 .L08018E74: .4byte gBmMapHidden
 .L08018E78: .4byte gMapOtherBuf
-.L08018E7C: .4byte gMapOther
+.L08018E7C: .4byte gBmMapOther
 .L08018E80: .4byte gPlaySt
     func_end InitMapForChapter
 
@@ -124,10 +124,10 @@ InitChapterPreviewMap: @ 0x08018E84
     bl MapInit
     ldr r0, [r6]
     movs r1, #0
-    bl MapFill
+    bl BmMapFill
     ldr r0, [r5]
     movs r1, #0
-    bl MapFill
+    bl BmMapFill
     bl InitMetatilesMap
     bl RefreshTerrainMap
     pop {r4, r5, r6}
@@ -392,8 +392,8 @@ MapInit: @ 0x0801906C
 .L080190A8: .4byte 0x03000438
     func_end MapInit
 
-    thumb_func_start MapFill
-MapFill: @ 0x080190AC
+    thumb_func_start BmMapFill
+BmMapFill: @ 0x080190AC
     push {r4, r5, lr}
     sub sp, #4
     adds r5, r0, #0
@@ -439,7 +439,7 @@ MapFill: @ 0x080190AC
     bx r0
     .align 2, 0
 .L08019104: .4byte gBmMapSize
-    func_end MapFill
+    func_end BmMapFill
 
     thumb_func_start func_08019108
 func_08019108: @ 0x08019108
@@ -883,8 +883,8 @@ func_08019450: @ 0x08019450
     bx lr
     func_end func_08019450
 
-    thumb_func_start PutLimitViewSquare
-PutLimitViewSquare: @ 0x08019454
+    thumb_func_start DisplayMovementViewTile
+DisplayMovementViewTile: @ 0x08019454
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     adds r6, r1, #0
@@ -919,7 +919,7 @@ PutLimitViewSquare: @ 0x08019454
 .L08019490: .4byte gBmMapMovement
 .L08019494: .4byte 0x00004281
 .L08019498:
-    ldr r0, .L080194BC @ =gMapRange
+    ldr r0, .L080194BC @ =gBmMapRange
     ldr r0, [r0]
     adds r0, r2, r0
     ldr r0, [r0]
@@ -937,7 +937,7 @@ PutLimitViewSquare: @ 0x08019454
     ldr r2, .L080194C4 @ =0x00005285
     b .L080194D2
     .align 2, 0
-.L080194BC: .4byte gMapRange
+.L080194BC: .4byte gBmMapRange
 .L080194C0: .4byte 0x00005284
 .L080194C4: .4byte 0x00005285
 .L080194C8:
@@ -973,7 +973,7 @@ PutLimitViewSquare: @ 0x08019454
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    func_end PutLimitViewSquare
+    func_end DisplayMovementViewTile
 
     thumb_func_start RenderMap
 RenderMap: @ 0x08019504
@@ -1289,7 +1289,7 @@ RenderMapColumn: @ 0x080196D0
     mov r1, r8
     adds r2, r5, #0
     adds r3, r7, #0
-    bl PutLimitViewSquare
+    bl DisplayMovementViewTile
     subs r6, #1
     cmp r6, #0
     bge .L0801974E
@@ -1391,7 +1391,7 @@ RenderMapLine: @ 0x0801979C
     adds r1, r5, #0
     mov r2, r8
     adds r3, r4, #0
-    bl PutLimitViewSquare
+    bl DisplayMovementViewTile
     subs r6, #1
     cmp r6, #0
     bge .L0801981A
@@ -1727,11 +1727,11 @@ RefreshEntityMaps: @ 0x08019ABC
     ldr r0, .L08019AF8 @ =gBmMapUnit
     ldr r0, [r0]
     movs r1, #0
-    bl MapFill
+    bl BmMapFill
     ldr r0, .L08019AFC @ =gBmMapHidden
     ldr r0, [r0]
     movs r1, #0
-    bl MapFill
+    bl BmMapFill
     ldr r0, .L08019B00 @ =gMapFog
     ldr r2, [r0]
     movs r1, #0
@@ -1742,7 +1742,7 @@ RefreshEntityMaps: @ 0x08019ABC
     movs r1, #1
 .L08019AE2:
     adds r0, r2, #0
-    bl MapFill
+    bl BmMapFill
     bl RefreshTorchlightOnFogMap
     bl RefreshUnitsOnMaps
     bl RefreshMinesOnHiddenMap

@@ -113,7 +113,15 @@ data_0_1End:
 
     .section ".data_0_2", "a"
 
-.incbin "baserom.gba", 0xB90C9C, 0xB92474 - 0xB90C9C
+    .incbin "baserom.gba", 0xB90C9C, 0xB90D88 - 0xB90C9C
+
+    .global ProcScr_UnkEvt
+ProcScr_UnkEvt:
+    .incbin "baserom.gba", 0xB90D88, 0xB90DE8 - 0xB90D88
+
+gUnk_08B90DE8:
+    .incbin "baserom.gba", 0xB90DE8, 0xB92474 - 0xB90DE8
+
     .global data_0_2End
 data_0_2End:
 
@@ -122,6 +130,7 @@ data_0_2End:
 
     @ B928BC ... B92AF8
     .incbin "baserom.gba", 0xB928BC, 0xB92AF8 - 0xB928BC
+
 
     .data
 
@@ -141,19 +150,22 @@ gUnitLut:
 gUnk_08B932B0:
     .incbin "baserom.gba", 0xB932B0, 0xB93374 - 0xB932B0
 
-    .global ProcScr_PlayerPhase
-ProcScr_PlayerPhase:
-    .incbin "baserom.gba", 0xB93374, 0xB9356C - 0xB93374
 
-gUnk_08B9356C:
-    .incbin "baserom.gba", 0xB9356C, 0xB93664 - 0xB9356C
+    .section ".data_1", "a"
+
+gUnk_08B935EC:
+    .incbin "baserom.gba", 0xB935EC, 0xB93664 - 0xB935EC
 
     .global ProcUnk_08B93664
 ProcUnk_08B93664:
     .incbin "baserom.gba", 0xB93664, 0xB9367C - 0xB93664
 
-gUnk_08B9367C:
-    .incbin "baserom.gba", 0xB9367C, 0xB937AC - 0xB9367C
+    .global ProcScr_ADJUSTSFROMXI
+ProcScr_ADJUSTSFROMXI:
+    .incbin "baserom.gba", 0xB9367C, 0xB9369C - 0xB9367C
+
+gUnk_08B9369C:
+    .incbin "baserom.gba", 0xB9369C, 0xB937AC - 0xB9369C
 
     .global ProcScr_BmMain_08B937AC
 ProcScr_BmMain_08B937AC:
@@ -178,7 +190,15 @@ ProcScr_UpdateTraps:
     .incbin "baserom.gba", 0xB94578, 0xB945C8 - 0xB94578
 
 gUnk_08B945C8:
-    .incbin "baserom.gba", 0xB945C8, 0xB96460 - 0xB945C8
+    .incbin "baserom.gba", 0xB945C8, 0xB95AAC - 0xB945C8
+
+    .global gUnitActionMenuDef
+gUnitActionMenuDef:
+    .incbin "baserom.gba", 0xB95AAC, 0xB95AF4 - 0xB95AAC
+
+    .global gMapMenuDef
+gMapMenuDef:
+    .incbin "baserom.gba", 0xB95AF4, 0xB96460 - 0xB95AF4
 
     .global ProcScr_SALLYCURSOR
 ProcScr_SALLYCURSOR:

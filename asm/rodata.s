@@ -94,7 +94,28 @@ gUnk_083FBF80:
 
     .global gUnk_083FBFD0
 gUnk_083FBFD0:
-    .incbin "baserom.gba", 0x3FBFD0, 0x677370 - 0x3FBFD0
+    .incbin "baserom.gba", 0x3FBFD0, 0x3FDA1C - 0x3FBFD0
+
+    .global Img_LimitViewSquares
+Img_LimitViewSquares:
+    .incbin "baserom.gba", 0x3FDA1C, 0x3FDC9C - 0x3FDA1C
+
+    .global Img_LimitViewSquareFull
+Img_LimitViewSquareFull:
+    .incbin "baserom.gba", 0x3FDC9C, 0x3FDD1C - 0x3FDC9C
+
+    .global Pal_LimitViewBlue
+Pal_LimitViewBlue:
+    .incbin "baserom.gba", 0x3FDD1C, 0x3FDD7C - 0x3FDD1C
+
+    .global Pal_LimitViewRed
+Pal_LimitViewRed:
+    .incbin "baserom.gba", 0x3FDD7C, 0x3FDDDC - 0x3FDD7C
+
+    .global Pal_LimitViewGreen
+Pal_LimitViewGreen:
+    .incbin "baserom.gba", 0x3FDDDC, 0x677370 - 0x3FDDDC
+
 
     .section ".rodata_2", "a"
 

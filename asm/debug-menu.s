@@ -956,7 +956,7 @@ func_0801B924: @ 0x0801B924
     bl SetMainFunc
     ldr r0, .L0801B978 @ =OnVBlank
     bl SetOnVBlank
-    bl func_0802E368
+    bl RefreshBMapGraphics
     movs r0, #2
     movs r1, #0
     bl DebugInitBg
@@ -1509,7 +1509,7 @@ func_0801BD64: @ 0x0801BD64
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    bl IsMapFadeActive
+    bl DoesBMXFADEExist
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0801BDB2

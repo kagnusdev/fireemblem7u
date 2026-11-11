@@ -100,7 +100,7 @@ void EventTalkWait(struct EventProc * proc);
 void func_0800AF20(struct EventProc * proc);
 
 extern struct ProcScr ProcScr_MoveCamera[];
-extern u8 gWorkingMoveScript[];
+extern u8 gWorkingMoveScr[];
 
 bool AiGetUnitClosestValidPosition(struct Unit * unit, fi16 x, fi16 y, struct Vec2i * out_position);
 void UnitSyncMovement(struct Unit * unit);
@@ -240,7 +240,7 @@ struct EventCursorProc
 
 void ClearUnit(struct Unit * unit);
 
-void SetAutoMuDefaultFacing(void);
+void MU_SetDefaultFacing_Auto(void);
 void StartMuDeathFade(Proc * mu_proc);
 
 void EventRemoveDisplayedWait(struct EventProc * proc);
@@ -1547,7 +1547,7 @@ bool TryMoveUnitDisplayed(struct EventProc * proc, struct Unit * unit, int x, in
     }
 
     MapFloodRange_Unitless(unit->x, unit->y, unit->jinfo->mov_table[0]);
-    BuildBestMoveScript(vec.x, vec.y, gWorkingMoveScript);
+    BuildBestMoveScript(vec.x, vec.y, gWorkingMoveScr);
 
     if (terrain_changed)
         gBmMapTerrain[y][x] = TERRAIN_0;
@@ -1559,7 +1559,7 @@ bool TryMoveUnitDisplayed(struct EventProc * proc, struct Unit * unit, int x, in
 
     func_0802C2DC();
 
-    return DisplayMovement(proc, unit, gWorkingMoveScript, move_speed);
+    return DisplayMovement(proc, unit, gWorkingMoveScr, move_speed);
 }
 
 bool DisplayMovement(struct EventProc * proc, struct Unit * unit, u8 const * move_script, fu16 move_speed)
@@ -1584,7 +1584,7 @@ bool DisplayMovement(struct EventProc * proc, struct Unit * unit, u8 const * mov
     x = unit->x;
     y = unit->y;
 
-    gMapOther[y][x] = 0;
+    gBmMapOther[y][x] = 0;
 
     ApplyMoveScriptToCoordinates(&x, &y, move_script);
 
@@ -1598,7 +1598,7 @@ bool DisplayMovement(struct EventProc * proc, struct Unit * unit, u8 const * mov
         func_0806D4CC(mu, move_speed);
     }
 
-    gMapOther[y][x] = unit->id;
+    gBmMapOther[y][x] = unit->id;
 
     return TRUE;
 }
@@ -1636,7 +1636,7 @@ void EventWaitForMu_Loop(struct EventWaitForMuProc * proc)
 
 int EvtCmd_LoadUnits(struct EventProc * proc)
 {
-    MapFill(gMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     proc->unit_info = (void const *)proc->script[1];
 
@@ -1654,7 +1654,7 @@ int EvtCmd_LoadUnits(struct EventProc * proc)
 
 int EvtCmd_LoadUnitsAlive(struct EventProc * proc)
 {
-    MapFill(gMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     proc->unit_info = (void const *)proc->script[1];
 
@@ -1682,7 +1682,7 @@ int EvtCmd_LoadUnitsFiltered(struct EventProc * proc)
         return EVENT_CMDRET_CONTINUE;
     }
 
-    MapFill(gMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     proc->unit_info = (void const *)proc->script[2];
 
@@ -1700,7 +1700,7 @@ int EvtCmd_LoadUnitsFiltered(struct EventProc * proc)
 
 int EvtCmd_LoadUnitsParty(struct EventProc * proc)
 {
-    MapFill(gMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     proc->unit_info = (void const *)proc->script[1];
     EventLoadUnitsAsParty(proc);
@@ -1712,7 +1712,7 @@ int EvtCmd_LoadUnitsPartyIfScenario(struct EventProc * proc)
 {
     if (gPlaySt.scenario == (proc->script[1] & 0xFF))
     {
-        MapFill(gMapOther, 0);
+        BmMapFill(gBmMapOther, 0);
 
         proc->unit_info = (void const *)proc->script[2];
         EventLoadUnitsAsParty(proc);
@@ -1735,7 +1735,7 @@ int EvtCmd_LoadUnitsByMode(struct EventProc * proc)
     if (gPlaySt.scenario == PLAY_SCENARIO_3)
         idx += 2;
 
-    MapFill(gMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     switch (idx)
     {
@@ -1789,7 +1789,7 @@ int EvtCmd_LoadUnitsPartyByMode(struct EventProc * proc)
     if (gPlaySt.scenario == PLAY_SCENARIO_3)
         idx += 2;
 
-    MapFill(gMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     switch (idx)
     {
@@ -2042,7 +2042,7 @@ void EventMovementWait(struct EventProc * proc)
     if (MuExistsActive())
         return;
 
-    MapFill(gMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
     proc->idle_func = NULL;
 }
 
@@ -2051,7 +2051,7 @@ int EvtCmd_WaitForMovement(struct EventProc * proc)
     if (MuExistsActive())
         return EVENT_CMDRET_REPEAT;
 
-    MapFill(gMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0)
         return EVENT_CMDRET_CONTINUE;
@@ -2966,7 +2966,7 @@ int EvtCmd_RemovePositionDisplayed(struct EventProc * proc)
 
         mu = StartMu(unit);
 
-        SetAutoMuDefaultFacing();
+        MU_SetDefaultFacing_Auto();
         StartMuDeathFade(mu);
 
         proc->idle_func = EventRemoveDisplayedWait;
@@ -3005,7 +3005,7 @@ int EvtCmd_RemovePidDisplayed(struct EventProc * proc)
 
         mu = StartMu(unit);
 
-        SetAutoMuDefaultFacing();
+        MU_SetDefaultFacing_Auto();
         StartMuDeathFade(mu);
 
         proc->idle_func = EventRemoveDisplayedWait;

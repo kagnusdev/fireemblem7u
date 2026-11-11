@@ -64,7 +64,7 @@ bool StartDestSelectedEvent(void);
 // sub_8079884
 // sub_8079888
 // sub_807988C
-s8 sub_8079890(void);
+s8 func_080790C0(void);
 void func_080790C4(void);
 bool func_08079104(void);
 bool CheckForWaitEvents(void);
