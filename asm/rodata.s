@@ -114,8 +114,27 @@ Pal_LimitViewRed:
 
     .global Pal_LimitViewGreen
 Pal_LimitViewGreen:
-    .incbin "baserom.gba", 0x3FDDDC, 0x677370 - 0x3FDDDC
+    .incbin "baserom.gba", 0x3FDDDC, 0x3FE578 - 0x3FDDDC
 
+    .global Img_ChapterIntroMotif
+Img_ChapterIntroMotif:
+    .incbin "baserom.gba", 0x3FE578, 0x3FF538 - 0x3FE578
+
+    .global Tm_ChapterIntroMotif
+Tm_ChapterIntroMotif:
+    .incbin "baserom.gba", 0x3FF538, 0x3FF760 - 0x3FF538
+
+    .global Pal_ChapterIntroMotif
+Pal_ChapterIntroMotif:
+    .incbin "baserom.gba", 0x3FF760, 0x3FF780 - 0x3FF760
+
+    .global Img_ChapterIntroFog
+Img_ChapterIntroFog:
+    .incbin "baserom.gba", 0x3FF780, 0x401404 - 0x3FF780
+
+    .global Pal_ChapterIntroFog
+Pal_ChapterIntroFog:
+    .incbin "baserom.gba", 0x401404, 0x677370 - 0x401404
 
     .section ".rodata_2", "a"
 

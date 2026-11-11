@@ -1778,7 +1778,7 @@ func_08010FBC: @ 0x08010FBC
     ldr r4, .L08011004 @ =gPlaySt
     movs r0, #0xe
     ldrsb r0, [r4, r0]
-    bl ApplyChapterMapGraphics
+    bl UnpackChapterMapGraphics
     ldrb r0, [r4, #0x15]
     bl AllocWeatherParticles
     bl RenderMap

@@ -8,7 +8,7 @@ InitMapForChapter: @ 0x08018D88
     adds r1, r4, #0
     bl UnpackRawMap
     adds r0, r4, #0
-    bl ApplyChapterMapGraphics
+    bl UnpackChapterMapGraphics
     ldr r0, .L08018E44 @ =gMapUnitBuf
     ldr r6, .L08018E48 @ =gBmMapUnit
     ldr r4, .L08018E4C @ =gBmMapSize
@@ -546,8 +546,8 @@ UnpackRawMap: @ 0x08019174
 .L080191D0: .4byte gBmSt
     func_end UnpackRawMap
 
-    thumb_func_start ApplyChapterMapGraphics
-ApplyChapterMapGraphics: @ 0x080191D4
+    thumb_func_start UnpackChapterMapGraphics
+UnpackChapterMapGraphics: @ 0x080191D4
     push {r4, r5, lr}
     adds r4, r0, #0
     ldr r5, .L08019230 @ =0x08C9C9C8
@@ -592,7 +592,7 @@ ApplyChapterMapGraphics: @ 0x080191D4
 .L08019230: .4byte 0x08C9C9C8
 .L08019234: .4byte 0x06008000
 .L08019238: .4byte 0x0600C000
-    func_end ApplyChapterMapGraphics
+    func_end UnpackChapterMapGraphics
 
     thumb_func_start ApplyChapterMapPalettes
 ApplyChapterMapPalettes: @ 0x0801923C

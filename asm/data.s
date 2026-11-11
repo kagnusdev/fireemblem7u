@@ -172,11 +172,10 @@ ProcScr_BmMain_08B937AC:
     .incbin "baserom.gba", 0xB937AC, 0xB937F4 - 0xB937AC
 
 gUnk_08B937F4:
-    .incbin "baserom.gba", 0xB937F4, 0xB93934 - 0xB937F4
+    .incbin "baserom.gba", 0xB937F4, 0xB9390C - 0xB937F4
 
-    .global ProcScr_ChapterIntrofx
-ProcScr_ChapterIntrofx:
-    .incbin "baserom.gba", 0xB93934, 0xB93ADC - 0xB93934
+
+    .section ".data_1_1", "a"
 
     .global ProcScr_BmMain_08B93ADC
 ProcScr_BmMain_08B93ADC:

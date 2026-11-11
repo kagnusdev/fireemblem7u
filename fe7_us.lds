@@ -8,6 +8,10 @@ MEMORY
     ROM   (x)    : ORIGIN = 0x08000000, LENGTH = 32M
 }
 
+__text_start            =       ORIGIN(ROM);
+__ewram_start           =       ORIGIN(EWRAM);
+__iwram_start           =       ORIGIN(IWRAM);
+
 /* TODO: dump */
 gMusicPlayerTable = 0x0869D668;
 gSongTable = 0x0869D6E0;
@@ -31,7 +35,7 @@ gMaxLines = 0;
 
 SECTIONS
 {
-    .text : ALIGN(4)
+    ROM __text_start : ALIGN(4)
     {
         src/crt0.o(.text);
         src/armfunc.o(.text);
@@ -75,6 +79,7 @@ SECTIONS
         asm/debug-menu.o(.text);
         src/player-phase.o(.text);
         asm/bmfx.o(.text);
+        src/bmfx-chapterintrofx.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -131,10 +136,7 @@ SECTIONS
         *libgcc.a:_negdi2.o(.text);
 
         *(fake_glue);
-    } > ROM
 
-    .rodata : ALIGN(4)
-    {
         . = ALIGN(4); src/main.o(.rodata);
         . = ALIGN(4); src/interrupt.o(.rodata);
         . = ALIGN(4); src/random.o(.rodata);
@@ -157,10 +159,7 @@ SECTIONS
         . = ALIGN(4); *libc.a:locale.o(.rodata);
         . = ALIGN(4); *libc.a:mprec.o(.rodata);
         . = ALIGN(4); *libc.a:syscalls.o(.rodata);
-    } > ROM
 
-    .data : ALIGN(4)
-    {
         . = ALIGN(4); src/hardware.o(.data);
         . = ALIGN(4); src/sound.o(.data);
         . = ALIGN(4); src/proc.o(.data);
@@ -180,6 +179,8 @@ SECTIONS
         . = ALIGN(4); asm/data.o(.data);
         . = ALIGN(4); src/player-phase.o(.data);
         . = ALIGN(4); asm/data.o(.data_1);
+        . = ALIGN(4); src/bmfx-chapterintrofx.o(.data);
+        . = ALIGN(4); asm/data.o(.data_1_1);
         . = ALIGN(4); src/sio_link_loader.o(.data);
 
         /* libc */
@@ -189,9 +190,9 @@ SECTIONS
 
         /* garbage first then banim */
         . = ALIGN(4); asm/data.o(.data_2);
-    } > ROM
+    }
 
-    .bss (NOLOAD) : ALIGN(4)
+    IWRAM __iwram_start (NOLOAD) : ALIGN(4)
     {
         . = ALIGN(4); src/random.o(.bss);
         . = ALIGN(4); src/hardware.o(.bss);
@@ -252,9 +253,15 @@ SECTIONS
         . = ALIGN(4); *(COMMON.ReadSramFast);
         . = ALIGN(4); *(COMMON.VerifySramFast);
         . = ALIGN(4); errno = .; . = . + 4;
-    } > IWRAM
+    }
 
-    .ewram_data (NOLOAD) : ALIGN(4)
+    ewram_overlay_0 __ewram_start (NOLOAD) : ALIGN(4)
+    {
+        . = 0x001F70;
+        . = ALIGN(4); src/bmfx-chapterintrofx.o(ewram_overlay_0);
+    }
+
+    ewram_data __ewram_start (NOLOAD) : ALIGN(4)
     {
         . = 0x020140; /* begin (before that is ewram overlay) */
 
@@ -279,7 +286,7 @@ SECTIONS
 
         . = 0x03EEA8;
         . = ALIGN(4); end = .;
-    } > EWRAM
+    }
 
     /* DWARF 2 sections */
     .debug_aranges  0 : { *(.debug_aranges) }
