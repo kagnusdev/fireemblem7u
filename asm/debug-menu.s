@@ -129,7 +129,7 @@ func_0801B280: @ 0x0801B280
     adds r1, r4, #0
     adds r2, r5, #0
     movs r3, #4
-    bl func_08049CE4
+    bl DrawUiFrame2
     adds r4, #1
     lsls r4, r4, #5
     adds r4, #1

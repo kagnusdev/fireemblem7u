@@ -163,7 +163,7 @@ func_080130F4: @ 0x080130F4
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    bl func_080131A8
+    bl GetDataSize
     adds r2, r0, #0
     subs r1, r2, #4
     movs r0, #0x1f
@@ -205,7 +205,7 @@ func_08013138: @ 0x08013138
     adds r1, r6, #0
     bl LZ77UnComp8bit
     adds r0, r4, #0
-    bl func_080131A8
+    bl GetDataSize
     cmp r0, #0
     bge .L08013152
     adds r0, #3
@@ -256,12 +256,12 @@ Decompress: @ 0x08013168
 .L080131A4: .4byte 0x08B928BC
     func_end Decompress
 
-    thumb_func_start func_080131A8
-func_080131A8: @ 0x080131A8
+    thumb_func_start GetDataSize
+GetDataSize: @ 0x080131A8
     ldr r0, [r0]
     lsrs r0, r0, #8
     bx lr
-    func_end func_080131A8
+    func_end GetDataSize
 
     thumb_func_start func_080131B0
 func_080131B0: @ 0x080131B0
@@ -288,7 +288,7 @@ func_080131C8: @ 0x080131C8
     adds r0, r4, #0
     bl Decompress
     adds r0, r4, #0
-    bl func_080131A8
+    bl GetDataSize
     ldr r1, [r5]
     adds r1, r1, r0
     str r1, [r5]

@@ -1600,7 +1600,7 @@ func_0801DFC0: @ 0x0801DFC0
     str r2, [sp]
     movs r2, #0xe
     movs r3, #8
-    bl func_08049CE4
+    bl DrawUiFrame2
     cmp r5, #0
     blt .L0801E058
     cmp r5, #4
@@ -3789,7 +3789,7 @@ func_0801F100: @ 0x0801F100
     adds r0, r4, #0
     movs r1, #8
     movs r3, #4
-    bl func_08049CE4
+    bl DrawUiFrame2
     cmp r5, #0
     blt .L0801F15E
     bl InitIcons
@@ -3916,7 +3916,7 @@ func_0801F190: @ 0x0801F190
     adds r0, r6, #0
     movs r1, #8
     movs r3, #4
-    bl func_08049CE4
+    bl DrawUiFrame2
     lsls r1, r6, #1
     ldr r5, .L0801F290 @ =0x02022EA2
     adds r1, r1, r5

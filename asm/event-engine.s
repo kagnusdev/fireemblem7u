@@ -734,7 +734,7 @@ func_0800AB38: @ 0x0800AB38
     mov r1, r8
     adds r2, r4, #0
     movs r3, #4
-    bl func_08049CE4
+    bl DrawUiFrame2
     movs r0, #0x37
     adds r0, r0, r5
     mov sl, r0

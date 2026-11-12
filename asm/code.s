@@ -1,1016 +1,5 @@
     .include "asm_prelude.inc"
 
-    thumb_func_start func_08049A94
-func_08049A94: @ 0x08049A94
-    push {lr}
-    adds r3, r0, #0
-    cmp r3, #0
-    bge .L08049A9E
-    movs r3, #1
-.L08049A9E:
-    ldr r2, .L08049ABC @ =0x08B9A830
-    ldr r1, .L08049AC0 @ =gPlaySt
-    adds r1, #0x41
-    movs r0, #0xc
-    ldrb r1, [r1]
-    ands r0, r1
-    adds r0, r0, r2
-    ldr r0, [r0]
-    lsls r1, r3, #5
-    movs r2, #0x20
-    bl ApplyPaletteExt
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08049ABC: .4byte 0x08B9A830
-.L08049AC0: .4byte gPlaySt
-    func_end func_08049A94
-
-    thumb_func_start func_08049AC4
-func_08049AC4: @ 0x08049AC4
-    push {lr}
-    adds r3, r0, #0
-    cmp r3, #0
-    bne .L08049AD0
-    movs r3, #0xc0
-    lsls r3, r3, #0x13
-.L08049AD0:
-    ldr r2, .L08049AEC @ =0x08B9A840
-    ldr r1, .L08049AF0 @ =gPlaySt
-    adds r1, #0x41
-    movs r0, #0xc
-    ldrb r1, [r1]
-    ands r0, r1
-    adds r0, r0, r2
-    ldr r0, [r0]
-    adds r1, r3, #0
-    bl Decompress
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08049AEC: .4byte 0x08B9A840
-.L08049AF0: .4byte gPlaySt
-    func_end func_08049AC4
-
-    thumb_func_start func_08049AF4
-func_08049AF4: @ 0x08049AF4
-    push {lr}
-    adds r3, r0, #0
-    cmp r3, #0
-    bge .L08049AFE
-    movs r3, #6
-.L08049AFE:
-    ldr r2, .L08049B1C @ =0x08B9A850
-    ldr r1, .L08049B20 @ =gPlaySt
-    adds r1, #0x41
-    movs r0, #0xc
-    ldrb r1, [r1]
-    ands r0, r1
-    adds r0, r0, r2
-    ldr r0, [r0]
-    lsls r1, r3, #5
-    movs r2, #0x20
-    bl ApplyPaletteExt
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08049B1C: .4byte 0x08B9A850
-.L08049B20: .4byte gPlaySt
-    func_end func_08049AF4
-
-    thumb_func_start func_08049B24
-func_08049B24: @ 0x08049B24
-    push {r4, r5, r6, lr}
-    adds r5, r0, #0
-    cmp r5, #0
-    bge .L08049B36
-    ldr r0, .L08049B6C @ =gPlaySt
-    adds r0, #0x41
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1c
-    lsrs r5, r0, #0x1e
-.L08049B36:
-    ldr r0, .L08049B70 @ =0x08B9A840
-    lsls r5, r5, #2
-    adds r5, r5, r0
-    ldr r0, [r5]
-    bl func_080131A8
-    adds r6, r0, #0
-    ldr r4, .L08049B74 @ =gFadeComponentStep
-    subs r4, r4, r6
-    ldr r0, [r5]
-    adds r1, r4, #0
-    bl Decompress
-    movs r1, #0xc0
-    lsls r1, r1, #0x13
-    adds r0, r4, #0
-    adds r2, r6, #0
-    bl RegisterDataMove
-    movs r0, #1
-    rsbs r0, r0, #0
-    bl func_08049A94
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08049B6C: .4byte gPlaySt
-.L08049B70: .4byte 0x08B9A840
-.L08049B74: .4byte gFadeComponentStep
-    func_end func_08049B24
-
-    thumb_func_start func_08049B78
-func_08049B78: @ 0x08049B78
-    push {r4, r5, r6, r7, lr}
-    mov r7, sl
-    mov r6, sb
-    mov r5, r8
-    push {r5, r6, r7}
-    sub sp, #0x14
-    mov sb, r0
-    str r1, [sp]
-    str r2, [sp, #4]
-    ldr r2, [sp, #0x34]
-    ldr r6, [sp, #0x38]
-    ldr r0, [sp, #0x3c]
-    ldr r1, .L08049CE0 @ =0x08B9A824
-    lsls r0, r0, #2
-    adds r0, r0, r1
-    ldr r5, [r0]
-    ldr r0, [sp]
-    adds r3, r0, r3
-    subs r3, #1
-    mov r8, r3
-    ldr r1, [sp, #4]
-    adds r2, r1, r2
-    subs r2, #1
-    mov sl, r2
-    adds r4, r1, #0
-    adds r4, #1
-    cmp r4, sl
-    bge .L08049BFA
-.L08049BB0:
-    ldr r3, [sp]
-    adds r3, #1
-    adds r2, r4, #2
-    str r2, [sp, #0x10]
-    cmp r3, r8
-    bge .L08049BF4
-    lsls r1, r3, #0x10
-    lsls r0, r4, #0x15
-    adds r4, r1, r0
-    movs r7, #0x80
-    lsls r7, r7, #0xa
-    mov ip, r7
-.L08049BC8:
-    lsrs r0, r4, #0x10
-    lsls r0, r0, #1
-    add r0, sb
-    ldrh r2, [r5, #0xa]
-    adds r1, r2, r6
-    strh r1, [r0]
-    ldrh r7, [r5, #0xc]
-    adds r1, r7, r6
-    strh r1, [r0, #2]
-    adds r2, r0, #0
-    adds r2, #0x40
-    ldrh r7, [r5, #0x12]
-    adds r1, r7, r6
-    strh r1, [r2]
-    adds r0, #0x42
-    ldrh r2, [r5, #0x14]
-    adds r1, r2, r6
-    strh r1, [r0]
-    add r4, ip
-    adds r3, #2
-    cmp r3, r8
-    blt .L08049BC8
-.L08049BF4:
-    ldr r4, [sp, #0x10]
-    cmp r4, sl
-    blt .L08049BB0
-.L08049BFA:
-    ldr r3, [sp]
-    adds r3, #1
-    ldr r2, [sp, #4]
-    adds r2, #1
-    ldr r4, [sp, #4]
-    lsls r4, r4, #5
-    str r4, [sp, #8]
-    mov r7, sl
-    lsls r7, r7, #5
-    str r7, [sp, #0xc]
-    cmp r3, r8
-    bge .L08049C46
-    lsls r0, r3, #1
-    mov r4, sl
-    lsls r1, r4, #6
-    add r1, sb
-    adds r4, r0, r1
-    ldr r7, [sp, #4]
-    lsls r1, r7, #6
-    add r1, sb
-    adds r1, r0, r1
-.L08049C24:
-    ldrh r7, [r5, #2]
-    adds r0, r7, r6
-    strh r0, [r1]
-    ldrh r7, [r5, #4]
-    adds r0, r7, r6
-    strh r0, [r1, #2]
-    ldrh r7, [r5, #0x1a]
-    adds r0, r7, r6
-    strh r0, [r4]
-    ldrh r7, [r5, #0x1c]
-    adds r0, r7, r6
-    strh r0, [r4, #2]
-    adds r4, #4
-    adds r1, #4
-    adds r3, #2
-    cmp r3, r8
-    blt .L08049C24
-.L08049C46:
-    adds r4, r2, #0
-    cmp r4, sl
-    bge .L08049C96
-    lsls r3, r4, #6
-    mov r0, r8
-    lsls r2, r0, #1
-    mov r0, sb
-    adds r0, #0x40
-    adds r1, r2, r0
-    adds r1, r1, r3
-    mov ip, r1
-    ldr r7, [sp]
-    lsls r1, r7, #1
-    adds r0, r1, r0
-    adds r7, r3, r0
-    add r2, sb
-    adds r2, r3, r2
-    add r1, sb
-    adds r3, r3, r1
-.L08049C6C:
-    ldrh r1, [r5, #8]
-    adds r0, r1, r6
-    strh r0, [r3]
-    ldrh r1, [r5, #0xe]
-    adds r0, r1, r6
-    strh r0, [r2]
-    ldrh r1, [r5, #0x10]
-    adds r0, r1, r6
-    strh r0, [r7]
-    ldrh r1, [r5, #0x16]
-    adds r0, r1, r6
-    mov r1, ip
-    strh r0, [r1]
-    movs r0, #0x80
-    add ip, r0
-    adds r7, #0x80
-    adds r2, #0x80
-    adds r3, #0x80
-    adds r4, #2
-    cmp r4, sl
-    blt .L08049C6C
-.L08049C96:
-    ldr r1, [sp, #8]
-    ldr r2, [sp]
-    adds r0, r1, r2
-    lsls r0, r0, #1
-    add r0, sb
-    ldrh r4, [r5]
-    adds r1, r4, r6
-    strh r1, [r0]
-    ldr r0, [sp, #8]
-    add r0, r8
-    lsls r0, r0, #1
-    add r0, sb
-    ldrh r7, [r5, #6]
-    adds r1, r7, r6
-    strh r1, [r0]
-    ldr r1, [sp, #0xc]
-    adds r0, r1, r2
-    lsls r0, r0, #1
-    add r0, sb
-    ldrh r2, [r5, #0x18]
-    adds r1, r2, r6
-    strh r1, [r0]
-    ldr r0, [sp, #0xc]
-    add r0, r8
-    lsls r0, r0, #1
-    add r0, sb
-    ldrh r5, [r5, #0x1e]
-    adds r1, r5, r6
-    strh r1, [r0]
-    add sp, #0x14
-    pop {r3, r4, r5}
-    mov r8, r3
-    mov sb, r4
-    mov sl, r5
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08049CE0: .4byte 0x08B9A824
-    func_end func_08049B78
-
-    thumb_func_start func_08049CE4
-func_08049CE4: @ 0x08049CE4
-    push {r4, r5, r6, r7, lr}
-    mov r7, sl
-    mov r6, sb
-    mov r5, r8
-    push {r5, r6, r7}
-    sub sp, #0x30
-    str r0, [sp]
-    mov sb, r1
-    ldr r0, [sp, #0x50]
-    ldr r1, .L08049F4C @ =0x08B9A824
-    lsls r0, r0, #2
-    adds r0, r0, r1
-    ldr r6, [r0]
-    ldr r0, [sp]
-    adds r2, r0, r2
-    subs r2, #1
-    str r2, [sp, #4]
-    add r3, sb
-    subs r3, #1
-    str r3, [sp, #8]
-    mov r4, sb
-    adds r4, #1
-    cmp r4, r3
-    bge .L08049D8E
-    ldr r1, .L08049F50 @ =gBg1Tm
-    mov sl, r1
-.L08049D18:
-    ldr r7, [sp]
-    adds r7, #1
-    adds r2, r4, #2
-    mov r8, r2
-    ldr r0, [sp, #4]
-    cmp r7, r0
-    bge .L08049D86
-    ldr r1, .L08049F54 @ =gBg0Tm
-    mov ip, r1
-    movs r5, #0
-    mov r3, sl
-.L08049D2E:
-    lsls r0, r4, #5
-    adds r0, r0, r7
-    lsls r0, r0, #0x10
-    lsrs r0, r0, #0x10
-    lsls r2, r0, #1
-    mov r1, ip
-    adds r1, r2, r1
-    strh r5, [r1]
-    adds r2, r2, r3
-    ldrh r1, [r6, #0xa]
-    strh r1, [r2]
-    adds r0, #1
-    lsls r0, r0, #0x10
-    lsrs r0, r0, #0x10
-    lsls r2, r0, #1
-    mov r1, ip
-    adds r1, r2, r1
-    strh r5, [r1]
-    adds r2, r2, r3
-    ldrh r1, [r6, #0xc]
-    strh r1, [r2]
-    adds r0, #0x1f
-    lsls r0, r0, #0x10
-    lsrs r0, r0, #0x10
-    lsls r2, r0, #1
-    mov r1, ip
-    adds r1, r2, r1
-    strh r5, [r1]
-    adds r2, r2, r3
-    ldrh r1, [r6, #0x12]
-    strh r1, [r2]
-    adds r0, #1
-    lsls r0, r0, #0x10
-    lsrs r0, r0, #0xf
-    mov r2, ip
-    adds r1, r0, r2
-    strh r5, [r1]
-    adds r0, r0, r3
-    ldrh r1, [r6, #0x14]
-    strh r1, [r0]
-    adds r7, #2
-    ldr r0, [sp, #4]
-    cmp r7, r0
-    blt .L08049D2E
-.L08049D86:
-    mov r4, r8
-    ldr r1, [sp, #8]
-    cmp r4, r1
-    blt .L08049D18
-.L08049D8E:
-    ldr r7, [sp]
-    adds r7, #1
-    mov r2, sb
-    adds r2, #1
-    str r2, [sp, #0xc]
-    mov r4, sb
-    lsls r4, r4, #5
-    str r4, [sp, #0x10]
-    ldr r0, [sp, #8]
-    lsls r0, r0, #5
-    str r0, [sp, #0x14]
-    ldr r1, [sp, #4]
-    cmp r7, r1
-    bge .L08049E3E
-    adds r5, r4, #0
-    adds r5, #1
-    adds r3, r0, #0
-    adds r3, #1
-    lsls r2, r7, #1
-    ldr r4, [sp, #8]
-    lsls r0, r4, #6
-    ldr r4, .L08049F50 @ =gBg1Tm
-    adds r1, r0, r4
-    adds r1, r2, r1
-    str r1, [sp, #0x1c]
-    ldr r1, .L08049F54 @ =gBg0Tm
-    adds r0, r0, r1
-    adds r0, r0, r2
-    mov sl, r0
-    mov r4, sb
-    lsls r0, r4, #6
-    ldr r4, .L08049F50 @ =gBg1Tm
-    adds r1, r0, r4
-    adds r1, r1, r2
-    mov sb, r1
-    ldr r1, .L08049F54 @ =gBg0Tm
-    adds r0, r0, r1
-    adds r0, r0, r2
-    mov r8, r0
-    lsls r3, r3, #1
-    adds r0, r3, r4
-    adds r0, r0, r2
-    mov ip, r0
-    adds r3, r3, r1
-    adds r1, r2, r3
-    lsls r5, r5, #1
-    adds r4, r5, r4
-    str r4, [sp, #0x24]
-    adds r3, r2, r4
-    ldr r0, .L08049F54 @ =gBg0Tm
-    adds r5, r5, r0
-    adds r2, r2, r5
-.L08049DF6:
-    movs r0, #0
-    mov r4, r8
-    strh r0, [r4]
-    ldrh r0, [r6, #2]
-    mov r4, sb
-    strh r0, [r4]
-    movs r0, #0
-    strh r0, [r2]
-    ldrh r0, [r6, #4]
-    strh r0, [r3]
-    movs r0, #0
-    mov r4, sl
-    strh r0, [r4]
-    ldrh r0, [r6, #0x1a]
-    ldr r4, [sp, #0x1c]
-    strh r0, [r4]
-    movs r0, #0
-    strh r0, [r1]
-    ldrh r0, [r6, #0x1c]
-    mov r4, ip
-    strh r0, [r4]
-    ldr r0, [sp, #0x1c]
-    adds r0, #4
-    str r0, [sp, #0x1c]
-    movs r4, #4
-    add sl, r4
-    add sb, r4
-    add r8, r4
-    add ip, r4
-    adds r1, #4
-    adds r3, #4
-    adds r2, #4
-    adds r7, #2
-    ldr r0, [sp, #4]
-    cmp r7, r0
-    blt .L08049DF6
-.L08049E3E:
-    ldr r4, [sp, #0xc]
-    ldr r1, [sp, #8]
-    cmp r4, r1
-    bge .L08049ED4
-    movs r2, #0
-    mov sl, r2
-    ldr r5, .L08049F50 @ =gBg1Tm
-    lsls r2, r4, #5
-    adds r2, #0x20
-    ldr r7, [sp, #4]
-    adds r7, r2, r7
-    str r7, [sp, #0x18]
-    ldr r0, [sp]
-    adds r2, r2, r0
-    lsls r3, r4, #6
-    ldr r1, [sp, #4]
-    lsls r0, r1, #1
-    adds r1, r0, r5
-    adds r1, r1, r3
-    mov sb, r1
-    ldr r7, .L08049F54 @ =gBg0Tm
-    adds r0, r0, r7
-    adds r0, r0, r3
-    mov r8, r0
-    ldr r1, [sp]
-    lsls r0, r1, #1
-    adds r1, r0, r5
-    adds r1, r1, r3
-    mov ip, r1
-    adds r0, r0, r7
-    adds r3, r3, r0
-    lsls r2, r2, #1
-    adds r7, r2, r5
-    str r7, [sp, #0x2c]
-    ldr r0, .L08049F54 @ =gBg0Tm
-    adds r2, r2, r0
-    ldr r1, [sp, #0x18]
-    lsls r1, r1, #1
-    str r1, [sp, #0x20]
-    adds r5, r1, r5
-    adds r1, r1, r0
-.L08049E90:
-    mov r7, sl
-    strh r7, [r3]
-    ldrh r0, [r6, #8]
-    mov r7, ip
-    strh r0, [r7]
-    mov r7, sl
-    mov r0, r8
-    strh r7, [r0]
-    ldrh r0, [r6, #0xe]
-    mov r7, sb
-    strh r0, [r7]
-    mov r0, sl
-    strh r0, [r2]
-    ldrh r0, [r6, #0x10]
-    ldr r7, [sp, #0x2c]
-    strh r0, [r7]
-    mov r0, sl
-    strh r0, [r1]
-    ldrh r0, [r6, #0x16]
-    strh r0, [r5]
-    adds r5, #0x80
-    adds r1, #0x80
-    adds r7, #0x80
-    str r7, [sp, #0x2c]
-    adds r2, #0x80
-    movs r0, #0x80
-    add sb, r0
-    add r8, r0
-    add ip, r0
-    adds r3, #0x80
-    adds r4, #2
-    ldr r7, [sp, #8]
-    cmp r4, r7
-    blt .L08049E90
-.L08049ED4:
-    ldr r0, [sp, #0x10]
-    ldr r1, [sp]
-    adds r5, r0, r1
-    lsls r5, r5, #1
-    ldr r2, .L08049F54 @ =gBg0Tm
-    adds r0, r5, r2
-    movs r7, #0
-    strh r7, [r0]
-    ldr r4, [sp, #0x10]
-    ldr r0, [sp, #4]
-    adds r3, r4, r0
-    lsls r3, r3, #1
-    adds r0, r3, r2
-    strh r7, [r0]
-    ldr r4, [sp, #0x14]
-    adds r2, r4, r1
-    lsls r2, r2, #1
-    ldr r1, .L08049F54 @ =gBg0Tm
-    adds r0, r2, r1
-    strh r7, [r0]
-    ldr r0, [sp, #4]
-    adds r1, r4, r0
-    lsls r1, r1, #1
-    ldr r4, .L08049F54 @ =gBg0Tm
-    adds r0, r1, r4
-    strh r7, [r0]
-    ldr r7, .L08049F50 @ =gBg1Tm
-    adds r5, r5, r7
-    ldrh r0, [r6]
-    strh r0, [r5]
-    adds r3, r3, r7
-    ldrh r0, [r6, #6]
-    strh r0, [r3]
-    adds r2, r2, r7
-    ldrh r0, [r6, #0x18]
-    strh r0, [r2]
-    adds r1, r1, r7
-    ldrh r0, [r6, #0x1e]
-    strh r0, [r1]
-    movs r0, #0
-    movs r1, #0
-    movs r2, #0
-    bl SetBgOffset
-    movs r0, #1
-    movs r1, #0
-    movs r2, #0
-    bl SetBgOffset
-    movs r0, #3
-    bl EnableBgSync
-    add sp, #0x30
-    pop {r3, r4, r5}
-    mov r8, r3
-    mov sb, r4
-    mov sl, r5
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08049F4C: .4byte 0x08B9A824
-.L08049F50: .4byte gBg1Tm
-.L08049F54: .4byte gBg0Tm
-    func_end func_08049CE4
-
-    thumb_func_start PutUiHand
-PutUiHand: @ 0x08049F58
-    push {r4, r5, r6, r7, lr}
-    sub sp, #4
-    adds r5, r0, #0
-    adds r6, r1, #0
-    bl GetGameTime
-    subs r0, #1
-    ldr r7, .L08049FB8 @ =0x0203DCF0
-    ldr r1, [r7]
-    cmp r0, r1
-    bne .L08049F80
-    ldr r0, .L08049FBC @ =0x0203DCEC
-    movs r2, #0
-    ldrsh r1, [r0, r2]
-    adds r1, r5, r1
-    asrs r5, r1, #1
-    movs r1, #2
-    ldrsh r0, [r0, r1]
-    adds r0, r6, r0
-    asrs r6, r0, #1
-.L08049F80:
-    ldr r0, .L08049FBC @ =0x0203DCEC
-    movs r4, #0
-    strh r5, [r0]
-    strh r6, [r0, #2]
-    bl GetGameTime
-    str r0, [r7]
-    bl GetGameTime
-    adds r3, r5, #0
-    subs r3, #0xe
-    ldr r2, .L08049FC0 @ =0x08B9A868
-    movs r1, #0x1f
-    ands r1, r0
-    adds r1, r1, r2
-    ldrb r1, [r1]
-    adds r5, r1, r3
-    ldr r3, .L08049FC4 @ =0x08B9A860
-    str r4, [sp]
-    movs r0, #2
-    adds r1, r5, #0
-    adds r2, r6, #0
-    bl PutSprite
-    add sp, #4
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08049FB8: .4byte 0x0203DCF0
-.L08049FBC: .4byte 0x0203DCEC
-.L08049FC0: .4byte 0x08B9A868
-.L08049FC4: .4byte 0x08B9A860
-    func_end PutUiHand
-
-    thumb_func_start func_08049FC8
-func_08049FC8: @ 0x08049FC8
-    push {r4, r5, lr}
-    sub sp, #4
-    adds r5, r0, #0
-    adds r4, r1, #0
-    bl GetGameTime
-    adds r3, r5, #0
-    subs r3, #0xe
-    ldr r2, .L08049FFC @ =0x08B9A868
-    movs r1, #0x1f
-    ands r1, r0
-    adds r1, r1, r2
-    ldrb r1, [r1]
-    adds r5, r1, r3
-    ldr r3, .L0804A000 @ =0x08B9A860
-    movs r0, #0
-    str r0, [sp]
-    movs r0, #2
-    adds r1, r5, #0
-    adds r2, r4, #0
-    bl PutSprite
-    add sp, #4
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08049FFC: .4byte 0x08B9A868
-.L0804A000: .4byte 0x08B9A860
-    func_end func_08049FC8
-
-    thumb_func_start func_0804A004
-func_0804A004: @ 0x0804A004
-    push {r4, lr}
-    sub sp, #4
-    adds r4, r0, #0
-    adds r2, r1, #0
-    subs r4, #0xc
-    ldr r3, .L0804A024 @ =0x08B9A860
-    movs r0, #0
-    str r0, [sp]
-    movs r0, #3
-    adds r1, r4, #0
-    bl PutSprite
-    add sp, #4
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0804A024: .4byte 0x08B9A860
-    func_end func_0804A004
-
-    thumb_func_start func_0804A028
-func_0804A028: @ 0x0804A028
-    ldr r0, .L0804A030 @ =0x0203DCEC
-    movs r1, #0
-    ldrsh r0, [r0, r1]
-    bx lr
-    .align 2, 0
-.L0804A030: .4byte 0x0203DCEC
-    func_end func_0804A028
-
-    thumb_func_start func_0804A034
-func_0804A034: @ 0x0804A034
-    ldr r0, .L0804A03C @ =0x0203DCEC
-    movs r1, #2
-    ldrsh r0, [r0, r1]
-    bx lr
-    .align 2, 0
-.L0804A03C: .4byte 0x0203DCEC
-    func_end func_0804A034
-
-    thumb_func_start ClearUi
-ClearUi: @ 0x0804A040
-    push {lr}
-    ldr r0, .L0804A05C @ =gBg0Tm
-    movs r1, #0
-    bl TmFill
-    ldr r0, .L0804A060 @ =gBg1Tm
-    movs r1, #0
-    bl TmFill
-    movs r0, #3
-    bl EnableBgSync
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0804A05C: .4byte gBg0Tm
-.L0804A060: .4byte gBg1Tm
-    func_end ClearUi
-
-    thumb_func_start func_0804A064
-func_0804A064: @ 0x0804A064
-    push {r4, r5, r6, lr}
-    adds r3, r0, #0
-    adds r4, r1, #0
-    adds r2, r3, r2
-    subs r5, r2, #1
-    adds r4, #1
-    ldr r2, .L0804A0B8 @ =gBg1Tm
-    lsls r0, r4, #5
-    adds r0, r0, r3
-    lsls r0, r0, #1
-    adds r0, r0, r2
-    ldr r1, .L0804A0BC @ =0x0000106A
-    strh r1, [r0]
-    adds r3, #1
-    adds r6, r2, #0
-    cmp r3, r5
-    bge .L0804A09E
-    ldr r2, .L0804A0C0 @ =0x00001076
-    lsls r1, r3, #1
-    lsls r0, r4, #6
-    adds r0, r0, r6
-    adds r1, r1, r0
-    subs r3, r5, r3
-.L0804A092:
-    strh r2, [r1]
-    adds r1, #2
-    subs r3, #1
-    cmp r3, #0
-    bne .L0804A092
-    adds r3, r5, #0
-.L0804A09E:
-    lsls r0, r4, #5
-    adds r0, r0, r3
-    lsls r0, r0, #1
-    adds r0, r0, r6
-    ldr r1, .L0804A0C4 @ =0x0000106B
-    strh r1, [r0]
-    movs r0, #2
-    bl EnableBgSync
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0804A0B8: .4byte gBg1Tm
-.L0804A0BC: .4byte 0x0000106A
-.L0804A0C0: .4byte 0x00001076
-.L0804A0C4: .4byte 0x0000106B
-    func_end func_0804A064
-
-    thumb_func_start func_0804A0C8
-func_0804A0C8: @ 0x0804A0C8
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    adds r3, r0, #0
-    adds r4, r1, #0
-    mov sb, r2
-    adds r0, r3, r2
-    subs r5, r0, #1
-    adds r4, #1
-    ldr r0, .L0804A128 @ =gBg1Tm
-    mov r8, r0
-    ldr r1, .L0804A12C @ =0x081D581C
-    mov ip, r1
-    cmp r3, r5
-    bge .L0804A10C
-    lsls r0, r4, #5
-    ldrh r7, [r1, #0xc]
-    adds r0, #1
-    ldrh r6, [r1, #0xe]
-    lsls r2, r3, #1
-    lsls r1, r4, #6
-    add r1, r8
-    adds r1, r2, r1
-    lsls r0, r0, #1
-    add r0, r8
-    adds r2, r2, r0
-.L0804A0FE:
-    strh r7, [r1]
-    strh r6, [r2]
-    adds r1, #4
-    adds r2, #4
-    adds r3, #2
-    cmp r3, r5
-    blt .L0804A0FE
-.L0804A10C:
-    lsls r0, r4, #5
-    adds r0, r0, r5
-    lsls r0, r0, #1
-    mov r2, r8
-    adds r1, r0, r2
-    movs r0, #1
-    mov r2, sb
-    ands r0, r2
-    cmp r0, #0
-    beq .L0804A130
-    mov r2, ip
-    ldrh r0, [r2, #0xc]
-    b .L0804A134
-    .align 2, 0
-.L0804A128: .4byte gBg1Tm
-.L0804A12C: .4byte 0x081D581C
-.L0804A130:
-    mov r2, ip
-    ldrh r0, [r2, #0xe]
-.L0804A134:
-    strh r0, [r1]
-    movs r0, #2
-    bl EnableBgSync
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    func_end func_0804A0C8
-
-    thumb_func_start func_0804A148
-func_0804A148: @ 0x0804A148
-    push {r4, r5, lr}
-    adds r3, r0, #0
-    adds r4, r1, #0
-    adds r5, r2, #0
-    ldr r0, .L0804A16C @ =0x081D7B80
-    adds r1, r3, #0
-    bl Decompress
-    ldr r0, .L0804A170 @ =0x081D7DD4
-    lsls r4, r4, #5
-    lsls r5, r5, #5
-    adds r1, r4, #0
-    adds r2, r5, #0
-    bl ApplyPaletteExt
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0804A16C: .4byte 0x081D7B80
-.L0804A170: .4byte 0x081D7DD4
-    func_end func_0804A148
-
-    thumb_func_start func_0804A174
-func_0804A174: @ 0x0804A174
-    push {r4, r5, r6, r7, lr}
-    sub sp, #4
-    adds r4, r0, #0
-    adds r5, r1, #0
-    adds r7, r2, #0
-    bl GetGameTime
-    subs r0, #1
-    ldr r6, .L0804A1D8 @ =0x0203DCF0
-    ldr r1, [r6]
-    cmp r0, r1
-    bne .L0804A19E
-    ldr r0, .L0804A1DC @ =0x0203DCEC
-    movs r2, #0
-    ldrsh r1, [r0, r2]
-    adds r1, r4, r1
-    asrs r4, r1, #1
-    movs r1, #2
-    ldrsh r0, [r0, r1]
-    adds r0, r5, r0
-    asrs r5, r0, #1
-.L0804A19E:
-    ldr r0, .L0804A1DC @ =0x0203DCEC
-    strh r4, [r0]
-    strh r5, [r0, #2]
-    bl GetGameTime
-    str r0, [r6]
-    bl GetGameTime
-    adds r3, r4, #0
-    subs r3, #0xe
-    ldr r2, .L0804A1E0 @ =0x08B9A868
-    movs r1, #0x1f
-    ands r1, r0
-    adds r1, r1, r2
-    ldrb r1, [r1]
-    adds r4, r1, r3
-    ldr r3, .L0804A1E4 @ =0x08B9A860
-    lsls r0, r7, #0xf
-    lsrs r0, r0, #0x14
-    str r0, [sp]
-    movs r0, #2
-    adds r1, r4, #0
-    adds r2, r5, #0
-    bl PutSprite
-    add sp, #4
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0804A1D8: .4byte 0x0203DCF0
-.L0804A1DC: .4byte 0x0203DCEC
-.L0804A1E0: .4byte 0x08B9A868
-.L0804A1E4: .4byte 0x08B9A860
-    func_end func_0804A174
-
-    thumb_func_start func_0804A1E8
-func_0804A1E8: @ 0x0804A1E8
-    push {r4, r5, lr}
-    sub sp, #4
-    adds r4, r0, #0
-    adds r5, r1, #0
-    subs r4, #0xc
-    ldr r3, .L0804A20C @ =0x08B9A860
-    lsls r2, r2, #0xf
-    lsrs r2, r2, #0x14
-    str r2, [sp]
-    movs r0, #3
-    adds r1, r4, #0
-    adds r2, r5, #0
-    bl PutSprite
-    add sp, #4
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0804A20C: .4byte 0x08B9A860
-    func_end func_0804A1E8
-
-    thumb_func_start UnpackUiWindowFrameGraphics
-UnpackUiWindowFrameGraphics: @ 0x0804A210
-    push {lr}
-    movs r0, #0
-    bl func_08049AC4
-    movs r0, #1
-    rsbs r0, r0, #0
-    bl func_08049A94
-    pop {r0}
-    bx r0
-    func_end UnpackUiWindowFrameGraphics
-
     thumb_func_start StartAdjustedMenu
 StartAdjustedMenu: @ 0x0804A224
     push {r4, lr}
@@ -1414,7 +403,7 @@ func_0804A4E0: @ 0x0804A4E0
     ldr r4, [r6, #0x30]
     ldrb r4, [r4, #4]
     str r4, [sp]
-    bl func_08049CE4
+    bl DrawUiFrame2
     movs r7, #0
     adds r0, r6, #0
     adds r0, #0x60
@@ -1545,11 +534,11 @@ func_0804A5E0: @ 0x0804A5E0
     cmp r0, #1
     bne .L0804A636
     adds r0, r3, #0
-    bl func_0804A064
+    bl DrawUiItemHover
     b .L0804A636
 .L0804A630:
     adds r0, r3, #0
-    bl func_0804A0C8
+    bl ClearUiItemHover
 .L0804A636:
     pop {r4}
     pop {r0}
@@ -1573,7 +562,7 @@ func_0804A63C: @ 0x0804A63C
     bl func_0804A8B0
     ldr r0, [sp]
     ldr r1, [sp, #4]
-    bl func_0804A004
+    bl DisplayFrozenUiHand
     b .L0804A726
 .L0804A662:
     movs r0, #0x80
@@ -2066,7 +1055,7 @@ func_0804A9E4: @ 0x0804A9E4
     bl func_0804AB58
     ldr r0, [sp]
     ldr r1, [sp, #4]
-    bl func_0804A004
+    bl DisplayFrozenUiHand
     ldr r0, .L0804AA2C @ =gpKeySt
     ldr r1, [r0]
     movs r0, #0x81
@@ -2099,9 +1088,9 @@ MenuFrozenHelpBox: @ 0x0804AA34
     rsbs r1, r1, #0
     movs r0, #0
     bl func_08082528
-    bl func_0804A028
+    bl GetUiHandPrevX
     adds r4, r0, #0
-    bl func_0804A034
+    bl GetUiHandPrevY
     adds r1, r0, #0
     adds r0, r4, #0
     adds r2, r5, #0
@@ -2128,7 +1117,7 @@ func_0804AA68: @ 0x0804AA68
     bl func_0804AB58
     ldr r0, [sp]
     ldr r1, [sp, #4]
-    bl func_0804A004
+    bl DisplayFrozenUiHand
     ldr r0, .L0804AAA8 @ =gpKeySt
     ldr r1, [r0]
     movs r0, #3
@@ -79398,7 +78387,7 @@ func_08070980: @ 0x08070980
     movs r1, #0
     movs r2, #0x1d
     movs r3, #0x13
-    bl func_08049CE4
+    bl DrawUiFrame2
     movs r0, #0
     str r0, [r7, #4]
 .L08070A62:
@@ -105146,7 +104135,7 @@ func_0807CB3C: @ 0x0807CB3C
     movs r1, #8
     movs r2, #0x11
     movs r3, #4
-    bl func_08049CE4
+    bl DrawUiFrame2
     ldr r0, .L0807CBD0 @ =gPlaySt
     adds r0, #0x41
     ldrb r0, [r0]
@@ -114235,7 +113224,7 @@ func_08081088: @ 0x08081088
     movs r0, #4
     bl ApplyIconPalettes
     movs r0, #6
-    bl func_08049AF4
+    bl ApplyUiStatBarPal
     movs r0, #1
     movs r1, #0x13
     bl ApplyIconPalette
@@ -115311,9 +114300,9 @@ func_08081940: @ 0x08081940
     bge .L0808195C
     cmp r3, #0
     bge .L0808195C
-    bl func_0804A028
+    bl GetUiHandPrevX
     adds r4, r0, #0
-    bl func_0804A034
+    bl GetUiHandPrevY
     adds r3, r0, #0
 .L0808195C:
     ldr r0, .L08081984 @ =0x0203E674
@@ -115487,9 +114476,9 @@ func_08081A94: @ 0x08081A94
     bge .L08081ACA
     cmp r6, #0
     bge .L08081ACA
-    bl func_0804A028
+    bl GetUiHandPrevX
     adds r7, r0, #0
-    bl func_0804A034
+    bl GetUiHandPrevY
     adds r6, r0, #0
 .L08081ACA:
     adds r0, r5, #0
@@ -116149,9 +115138,9 @@ func_08081F68: @ 0x08081F68
     rsbs r1, r1, #0
     movs r0, #0
     bl func_08082528
-    bl func_0804A028
+    bl GetUiHandPrevX
     adds r4, r0, #0
-    bl func_0804A034
+    bl GetUiHandPrevY
     adds r1, r0, #0
     adds r0, r4, #0
     adds r2, r5, #0
@@ -118519,9 +117508,9 @@ func_08083148: @ 0x08083148
     rsbs r1, r1, #0
     movs r0, #0
     bl func_08082528
-    bl func_0804A028
+    bl GetUiHandPrevX
     adds r4, r0, #0
-    bl func_0804A034
+    bl GetUiHandPrevY
     adds r1, r0, #0
     adds r0, r4, #0
     adds r2, r5, #0
@@ -141830,7 +140819,7 @@ func_0808E9A8: @ 0x0808E9A8
     movs r0, #5
     movs r1, #6
     movs r2, #9
-    bl func_08049CE4
+    bl DrawUiFrame2
     movs r4, #0
     movs r6, #0xe0
     lsls r6, r6, #1
@@ -142854,7 +141843,7 @@ func_0808F0A4: @ 0x0808F0A4
     movs r1, #4
     movs r2, #0xa
     movs r3, #0xc
-    bl func_08049CE4
+    bl DrawUiFrame2
     ldr r0, .L0808F2FC @ =0x0000113D
     bl DecodeMsg
     ldr r5, .L0808F300 @ =0x02023DA6
@@ -144413,7 +143402,7 @@ func_0808FDE0: @ 0x0808FDE0
     ldrb r2, [r2]
     lsls r2, r2, #4
     adds r1, r1, r2
-    bl func_0804A004
+    bl DisplayFrozenUiHand
     pop {r0}
     bx r0
     func_end func_0808FDE0
@@ -144720,7 +143709,7 @@ func_0808FFF0: @ 0x0808FFF0
     adds r0, r6, #0
     adds r1, r5, #0
     movs r2, #0xa
-    bl func_08049CE4
+    bl DrawUiFrame2
     mov r8, r4
     ldrb r0, [r4]
     cmp r0, #1
@@ -146486,9 +145475,9 @@ func_08090D20: @ 0x08090D20
     bge .L08090D3C
     cmp r1, #0
     bge .L08090D3C
-    bl func_0804A028
+    bl GetUiHandPrevX
     adds r4, r0, #0
-    bl func_0804A034
+    bl GetUiHandPrevY
     adds r1, r0, #0
 .L08090D3C:
     adds r0, r4, #0
@@ -153384,13 +152373,13 @@ func_08094350: @ 0x08094350
     movs r1, #8
     movs r2, #0xe
     movs r3, #0xc
-    bl func_08049CE4
+    bl DrawUiFrame2
     str r6, [sp]
     movs r0, #0xf
     movs r1, #8
     movs r2, #0xe
     movs r3, #0xc
-    bl func_08049CE4
+    bl DrawUiFrame2
     movs r0, #7
     bl EnableBgSync
     mov r4, r8
@@ -154256,7 +153245,7 @@ func_08094BD4: @ 0x08094BD4
     adds r5, r0, #0
     mov r8, r1
     movs r0, #2
-    bl func_08049AF4
+    bl ApplyUiStatBarPal
     add r4, sp, #0xc
     adds r0, r5, #0
     bl GetUnitCurrentHp
@@ -172936,7 +171925,7 @@ func_0809E25C: @ 0x0809E25C
     movs r1, #6
     movs r2, #0x1a
     movs r3, #7
-    bl func_08049CE4
+    bl DrawUiFrame2
     movs r0, #0xf
     bl EnableBgSync
     ldr r5, .L0809E368 @ =0x0201440C
@@ -191243,7 +190232,7 @@ func_080A6E78: @ 0x080A6E78
     movs r1, #0xb
     movs r2, #0x1a
     movs r3, #6
-    bl func_08049CE4
+    bl DrawUiFrame2
     movs r0, #2
     bl EnableBgSync
     ldr r5, [r4, #0x2c]
@@ -191627,7 +190616,7 @@ func_080A71A8: @ 0x080A71A8
     movs r1, #0xb
     movs r2, #0xa
     movs r3, #4
-    bl func_08049CE4
+    bl DrawUiFrame2
     movs r0, #2
     bl EnableBgSync
     ldr r0, [r4, #0x2c]
@@ -192776,7 +191765,7 @@ func_080A79A4: @ 0x080A79A4
     movs r2, #0xbc
     lsls r2, r2, #4
     movs r0, #0x6c
-    bl func_0804A1E8
+    bl DisplayFrozenUiHandExt
     b .L080A7AEA
 .L080A7AD6:
     adds r0, r5, #0
@@ -192787,7 +191776,7 @@ func_080A79A4: @ 0x080A79A4
     movs r2, #0xbc
     lsls r2, r2, #4
     movs r0, #0x6c
-    bl func_0804A174
+    bl DisplayUiHandExt
 .L080A7AEA:
     ldr r3, .L080A7B68 @ =0x08CE483C
     movs r4, #0xb0
@@ -201175,19 +200164,19 @@ func_080AB79C: @ 0x080AB79C
     movs r1, #1
     movs r2, #0x1a
     movs r3, #6
-    bl func_08049CE4
+    bl DrawUiFrame2
     str r5, [sp]
     movs r0, #0xb
     movs r1, #7
     movs r2, #0x11
     movs r3, #0xc
-    bl func_08049CE4
+    bl DrawUiFrame2
     str r5, [sp]
     movs r0, #2
     movs r1, #0xb
     movs r2, #9
     movs r3, #8
-    bl func_08049CE4
+    bl DrawUiFrame2
     movs r0, #0xb1
     lsls r0, r0, #2
     add r0, sl
@@ -201201,7 +200190,7 @@ func_080AB79C: @ 0x080AB79C
     movs r1, #7
     movs r2, #9
     movs r3, #4
-    bl func_08049CE4
+    bl DrawUiFrame2
     movs r3, #0xb6
     lsls r3, r3, #1
     add sl, r3
@@ -201920,7 +200909,7 @@ func_080ABEF4: @ 0x080ABEF4
     movs r1, #0
     movs r2, #0
     movs r3, #0x1a
-    bl func_08049B78
+    bl PutUiWindowFrame
     ldr r0, [r6]
     movs r1, #4
     str r1, [sp]
@@ -201929,7 +200918,7 @@ func_080ABEF4: @ 0x080ABEF4
     movs r1, #0
     movs r2, #7
     movs r3, #9
-    bl func_08049B78
+    bl PutUiWindowFrame
     ldr r0, [r6]
     movs r1, #0xb0
     lsls r1, r1, #2
@@ -201947,7 +200936,7 @@ func_080ABEF4: @ 0x080ABEF4
     movs r1, #0xa
     movs r2, #7
     movs r3, #0x11
-    bl func_08049B78
+    bl PutUiWindowFrame
     ldr r0, [r6]
     ldr r1, .L080ABFB4 @ =0x000004D4
     adds r0, r0, r1
@@ -203940,14 +202929,14 @@ func_080ACF08: @ 0x080ACF08
     movs r1, #6
     movs r2, #0x12
     movs r3, #0xc
-    bl func_08049CE4
+    bl DrawUiFrame2
     movs r0, #1
     str r0, [sp]
     movs r0, #0x12
     movs r1, #0x11
     movs r2, #0xa
     movs r3, #3
-    bl func_08049CE4
+    bl DrawUiFrame2
     ldr r4, .L080ACF58 @ =0x02023112
     bl GetGold
     adds r2, r0, #0
@@ -204632,7 +203621,7 @@ func_080AD49C: @ 0x080AD49C
     movs r0, #0xa
     movs r1, #5
     movs r2, #0xb
-    bl func_08049CE4
+    bl DrawUiFrame2
     ldr r3, .L080AD5B0 @ =gDispIo
     movs r0, #0x20
     ldrb r1, [r3, #1]
@@ -205230,7 +204219,7 @@ func_080AD820: @ 0x080AD820
     adds r1, r6, #0
     movs r2, #0xa
     mov r3, sb
-    bl func_08049B78
+    bl PutUiWindowFrame
     ldr r0, .L080ADA50 @ =gDispIo
     mov ip, r0
     movs r0, #0x20
@@ -205884,7 +204873,7 @@ func_080ADEA8: @ 0x080ADEA8
     adds r4, #0x20
     movs r0, #0x10
     adds r1, r4, #0
-    bl func_0804A004
+    bl DisplayFrozenUiHand
     adds r0, r5, #0
     bl func_080AE360
     ldr r2, .L080ADF94 @ =0x08CE58D8
@@ -206228,7 +205217,7 @@ func_080AE1FC: @ 0x080AE1FC
     beq .L080AE210
     movs r0, #1
     rsbs r0, r0, #0
-    bl func_08049B24
+    bl UnpackUiWindowFrameGraphics2
 .L080AE210:
     movs r0, #0
     pop {r1}
@@ -212788,7 +211777,7 @@ func_080B1354: @ 0x080B1354
     movs r1, #8
     movs r2, #0x14
     movs r3, #0xc
-    bl func_08049CE4
+    bl DrawUiFrame2
     movs r0, #2
     bl EnableBgSync
     ldr r0, [r7]
@@ -216099,7 +215088,7 @@ func_080B2DF8: @ 0x080B2DF8
     movs r1, #9
     movs r2, #0x10
     movs r3, #6
-    bl func_08049CE4
+    bl DrawUiFrame2
     movs r0, #0
     bl SetTextFont
     bl InitSystemTextFont

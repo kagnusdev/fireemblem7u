@@ -99,6 +99,7 @@ SECTIONS
         asm/code1.o(.text);
         asm/code-ai.o(.text);
         asm/code-sio.o(.text);
+        src/ui.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -302,6 +303,8 @@ SECTIONS
         . = ALIGN(4); src/map.o(ewram_data);
 
         . = 0x033E00; gWorkingMoveScr = .;
+
+        . = 0x03DCEC; src/ui.o(ewram_data);
 
         . = 0x03EEA8;
         . = ALIGN(4); end = .;

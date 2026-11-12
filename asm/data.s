@@ -227,7 +227,31 @@ ProcScr_AiPhase:
 
     .global ProcUnk_08B96EA8
 ProcUnk_08B96EA8:
-    .incbin "baserom.gba", 0xB96EA8, 0xBDCE4C - 0xB96EA8
+    .incbin "baserom.gba", 0xB96EA8, 0xB9A824 - 0xB96EA8
+
+    .global gUiWindowFrameModelLut
+gUiWindowFrameModelLut:
+    .incbin "baserom.gba", 0xB9A824, 0xB9A830 - 0xB9A824
+
+    .global gUiWindowFramePalLut
+gUiWindowFramePalLut:
+    .incbin "baserom.gba", 0xB9A830, 0xB9A840 - 0xB9A830
+
+    .global gUiWindowFrameImgLut
+gUiWindowFrameImgLut:
+    .incbin "baserom.gba", 0xB9A840, 0xB9A850 - 0xB9A840
+
+    .global gUiStatBarPalLut
+gUiStatBarPalLut:
+    .incbin "baserom.gba", 0xB9A850, 0xB9A860 - 0xB9A850
+
+    .global Sprite_UiHand
+Sprite_UiHand:
+    .incbin "baserom.gba", 0xB9A860, 0xB9A868 - 0xB9A860
+
+    .global sHandXOffsetLut
+sHandXOffsetLut:
+    .incbin "baserom.gba", 0xB9A868, 0xBDCE4C - 0xB9A868
 
     .global gCharacterData
 gCharacterData:

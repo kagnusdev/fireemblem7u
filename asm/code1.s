@@ -7288,7 +7288,7 @@ func_08031700: @ 0x08031700
     adds r0, r6, #0
     adds r1, r4, #0
     ldr r2, [sp, #0x2c]
-    bl func_08049CE4
+    bl DrawUiFrame2
     lsls r0, r7, #5
     adds r0, r0, r6
     lsls r0, r0, #1
@@ -11923,7 +11923,7 @@ func_08033C28: @ 0x08033C28
     push {lr}
     movs r0, #1
     rsbs r0, r0, #0
-    bl func_08049B24
+    bl UnpackUiWindowFrameGraphics2
     pop {r0}
     bx r0
     func_end func_08033C28

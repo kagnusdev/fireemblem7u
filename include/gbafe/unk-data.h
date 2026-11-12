@@ -809,8 +809,8 @@ extern u16 Pal_LinkArenaMuralBackground[];
 // ??? gUnk_081DB400
 // ??? gUiItemHoverModel
 extern u16 Pal_UiWindowFrame1[];
-// ??? gUnk_081DD7F4
-// ??? gUnk_081DDA48
+// ??? gUnk_081D7B80
+// ??? gUnk_081D7DD4
 extern u8 Img_SysGrayBox[];
 // ??? gUnk_081DDB58
 // ??? gUnk_081DDB74

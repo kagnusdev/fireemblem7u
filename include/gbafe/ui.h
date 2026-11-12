@@ -33,14 +33,14 @@ int GetUiHandPrevY(void);
 void ClearUi(void); // FE8U: ClearBg0Bg1
 void DrawUiItemHover(int x, int y, int width);
 void ClearUiItemHover(int x, int y, int width);
-void sub_804A930(void * vram, int palid, int palcount);
+void func_0804A148(void * vram, int palid, int palcount);
 void DisplayUiHandExt(s32 x, s32 y, u32 objTileOffset);
 void DisplayFrozenUiHandExt(s32 x, s32 y, u32 objTileOffset);
 void UnpackUiWindowFrameGraphics(void);
 
 extern u16 const gUiItemHoverModel[];
-extern u8 const gUnk_081DD7F4[];
-extern u16 const gUnk_081DDA48[];
+extern u8 const gUnk_081D7B80[];
+extern u16 const gUnk_081D7DD4[];
 // ??? gUnk_08C09944
 // ??? gUnk_08C09B0C
 extern u16 const * CONST_DATA gUiWindowFrameModelLut[];

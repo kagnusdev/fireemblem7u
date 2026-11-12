@@ -154,7 +154,7 @@ func_0802ACB4: @ 0x0802ACB4
     movs r2, #2
     ldrsh r1, [r1, r2]
     movs r2, #0xc
-    bl func_0804A0C8
+    bl ClearUiItemHover
 .L0802ACF4:
     ldr r0, .L0802AD2C @ =0x08B942B8
     adds r6, r4, #0
@@ -172,7 +172,7 @@ func_0802ACB4: @ 0x0802ACB4
     movs r2, #2
     ldrsh r1, [r1, r2]
     movs r2, #0xc
-    bl func_0804A064
+    bl DrawUiItemHover
     ldrb r0, [r4]
     strb r0, [r5]
     ldrb r0, [r6]
@@ -642,13 +642,13 @@ func_0802B094: @ 0x0802B094
     movs r1, #8
     movs r2, #0xe
     movs r3, #0xc
-    bl func_08049CE4
+    bl DrawUiFrame2
     str r4, [sp]
     movs r0, #0xf
     movs r1, #8
     movs r2, #0xe
     movs r3, #0xc
-    bl func_08049CE4
+    bl DrawUiFrame2
     bl ResetTextFont
     bl ClearIcons
     movs r0, #4
@@ -915,7 +915,7 @@ func_0802B288: @ 0x0802B288
     movs r3, #2
     ldrsh r1, [r1, r3]
     lsls r1, r1, #3
-    bl func_0804A004
+    bl DisplayFrozenUiHand
     b .L0802B3B2
     .align 2, 0
 .L0802B2E8: .4byte 0x08B942B8
@@ -958,7 +958,7 @@ func_0802B288: @ 0x0802B288
     movs r3, #2
     ldrsh r1, [r1, r3]
     lsls r1, r1, #3
-    bl func_0804A004
+    bl DisplayFrozenUiHand
     ldr r0, .L0802B368 @ =gpKeySt
     ldr r0, [r0]
     ldrh r1, [r0, #8]
@@ -1292,7 +1292,7 @@ func_0802B514: @ 0x0802B514
     movs r3, #2
     ldrsh r1, [r1, r3]
     lsls r1, r1, #3
-    bl func_0804A004
+    bl DisplayFrozenUiHand
 .L0802B5D2:
     pop {r3, r4}
     mov r8, r3
@@ -1371,7 +1371,7 @@ func_0802B5E8: @ 0x0802B5E8
     movs r3, #2
     ldrsh r1, [r1, r3]
     lsls r1, r1, #3
-    bl func_0804A004
+    bl DisplayFrozenUiHand
 .L0802B66E:
     pop {r4, r5, r6}
     pop {r0}
@@ -1523,7 +1523,7 @@ func_0802B738: @ 0x0802B738
     movs r4, #2
     ldrsh r1, [r1, r4]
     lsls r1, r1, #3
-    bl func_0804A004
+    bl DisplayFrozenUiHand
     pop {r4}
     pop {r0}
     bx r0
@@ -1555,7 +1555,7 @@ func_0802B774: @ 0x0802B774
     movs r3, #2
     ldrsh r1, [r1, r3]
     lsls r1, r1, #3
-    bl func_0804A004
+    bl DisplayFrozenUiHand
     adds r2, r5, #0
     adds r2, #0x44
     adds r0, r5, #0
@@ -1573,7 +1573,7 @@ func_0802B774: @ 0x0802B774
     movs r3, #2
     ldrsh r1, [r1, r3]
     lsls r1, r1, #3
-    bl func_0804A004
+    bl DisplayFrozenUiHand
     pop {r4, r5}
     pop {r0}
     bx r0

@@ -3509,7 +3509,7 @@ func_0803DB6C: @ 0x0803DB6C
     cmp r1, r0
     ble .L0803DB84
     ldr r0, [r2, #0x2c]
-    bl func_0804A004
+    bl DisplayFrozenUiHand
 .L0803DB84:
     pop {r0}
     bx r0
@@ -14064,14 +14064,14 @@ func_080430C4: @ 0x080430C4
     push {r4, r5, lr}
     sub sp, #0xc
     movs r0, #6
-    bl func_08049AF4
+    bl ApplyUiStatBarPal
     movs r5, #0
     str r5, [sp]
     movs r0, #0xd
     movs r1, #0xb
     movs r2, #0x10
     movs r3, #6
-    bl func_08049CE4
+    bl DrawUiFrame2
     ldr r0, .L08043120 @ =0x0203DA60
     bl SetTextFont
     bl InitSystemTextFont
@@ -15781,7 +15781,7 @@ func_08043EB4: @ 0x08043EB4
     movs r1, #0x12
     movs r2, #0x10
     movs r3, #0xb
-    bl func_08049B78
+    bl PutUiWindowFrame
     movs r0, #0xf
     bl EnableBgSync
     add sp, #0xc
@@ -15822,7 +15822,7 @@ func_08043F1C: @ 0x08043F1C
     movs r1, #2
     movs r2, #9
     movs r3, #0x10
-    bl func_08049B78
+    bl PutUiWindowFrame
     movs r0, #2
     bl EnableBgSync
     adds r5, #0x68
@@ -25223,7 +25223,7 @@ func_08048834: @ 0x08048834
     adds r1, r7, #0
     adds r1, #0x30
     movs r0, #0x20
-    bl func_0804A004
+    bl DisplayFrozenUiHand
     movs r2, #0x2e
     ldrsh r0, [r5, r2]
     movs r2, #0x30
