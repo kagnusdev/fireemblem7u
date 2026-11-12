@@ -102,6 +102,7 @@ SECTIONS
         src/ui.o(.text);
         asm/ui-menu.o(.text);
         asm/map-sel.o(.text);
+        asm/banim-ekrbattle.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
