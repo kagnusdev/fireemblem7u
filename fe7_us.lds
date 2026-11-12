@@ -104,6 +104,7 @@ SECTIONS
         asm/map-sel.o(.text);
         asm/banim-ekrbattle.o(.text);
         asm/banim-ekrgauge.o(.text);
+        asm/banim-efxbattle.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
