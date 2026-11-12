@@ -100,6 +100,7 @@ SECTIONS
         asm/code-ai.o(.text);
         asm/code-sio.o(.text);
         src/ui.o(.text);
+        asm/ui-menu.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
