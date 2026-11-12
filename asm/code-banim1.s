@@ -105,7 +105,7 @@ func_08050A38: @ 0x08050A38
     ldr r0, [r4, #0x10]
     bl Proc_Run
     bl AnimUpdateAll
-    bl func_08053454
+    bl BattleAIS_ExecCommands
     movs r0, #0xd
     bl PutSpriteLayerOam
     ldr r1, .L08050AA4 @ =gBmSt
@@ -5256,7 +5256,7 @@ func_080532C0: @ 0x080532C0
     adds r5, r0, #0
     lsls r4, r1, #0x10
     lsrs r4, r4, #0x10
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L080532E8 @ =0x0203E08E
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -5264,7 +5264,7 @@ func_080532C0: @ 0x080532C0
     bl func_08054024
     adds r0, r5, #0
     movs r1, #6
-    bl func_08054594
+    bl SwitchAISFrameDataFromBARoundType
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -5272,8 +5272,8 @@ func_080532C0: @ 0x080532C0
 .L080532E8: .4byte 0x0203E08E
     func_end func_080532C0
 
-    thumb_func_start func_080532EC
-func_080532EC: @ 0x080532EC
+    thumb_func_start GetBattleAnimRoundType
+GetBattleAnimRoundType: @ 0x080532EC
     ldr r1, .L08053308 @ =0x0203E036
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -5294,10 +5294,10 @@ func_080532EC: @ 0x080532EC
     adds r0, r1, #0
 .L08053312:
     bx lr
-    func_end func_080532EC
+    func_end GetBattleAnimRoundType
 
-    thumb_func_start func_08053314
-func_08053314: @ 0x08053314
+    thumb_func_start GetBattleAnimRoundTypeFlags
+GetBattleAnimRoundTypeFlags: @ 0x08053314
     ldr r1, .L08053334 @ =0x0203E036
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -5320,7 +5320,7 @@ func_08053314: @ 0x08053314
     movs r0, #0
 .L0805333E:
     bx lr
-    func_end func_08053314
+    func_end GetBattleAnimRoundTypeFlags
 
     thumb_func_start func_08053340
 func_08053340: @ 0x08053340

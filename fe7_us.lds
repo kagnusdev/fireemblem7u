@@ -106,6 +106,7 @@ SECTIONS
         asm/banim-ekrgauge.o(.text);
         asm/banim-efxbattle.o(.text);
         asm/code-banim1.o(.text);
+        src/banim-main.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -261,6 +262,7 @@ SECTIONS
         . = 0x004490; gMapFloodSquareBufA = .;
         . = 0x004690; gActiveUnit = .;
         . = 0x0046A0; gMapFloodSt = .;
+        . = 0x004830; gBanimDebugCurrentIndex = .;
         . = 0x004AE0; *(COMMON.gSoundInfo);
         . = 0x005A90; gMPlayInfo_SE4 = .;
         . = 0x005AD0; gMPlayInfo_SE5 = .;
@@ -287,6 +289,18 @@ SECTIONS
         . = ALIGN(4); src/bmfx-chapterintrofx.o(ewram_overlay_0);
     }
 
+    ewram_overlay_banim __ewram_start (NOLOAD) : ALIGN(4)
+    {
+        . = 0x000000; gAnims = .;
+        . = 0x000024; gAnimC01Blocking = .;
+        . = 0x00005C; gpBanimModesLeft = .;
+        . = 0x000060; gpBanimModesRight = .;
+        . = 0x00F1C8; gBanimScrLeft = .;
+        . = 0x017758; gEfxTeonoState = .;
+        . = 0x01FAF8; gBanimDoneFlag = .;
+        . = 0x01FB10; gpImgSheet = .;
+    }
+
     ewram_data __ewram_start (NOLOAD) : ALIGN(4)
     {
         . = 0x020140; /* begin (before that is ewram overlay) */
@@ -311,6 +325,10 @@ SECTIONS
         . = 0x033E00; gWorkingMoveScr = .;
 
         . = 0x03DCEC; src/ui.o(ewram_data);
+
+        . = 0x03E02C; gEkrDistanceType = .;
+
+        . = 0x03E0B0; gBanimForceUnitChgDebug = .;
 
         . = 0x03EEA8;
         . = ALIGN(4); end = .;

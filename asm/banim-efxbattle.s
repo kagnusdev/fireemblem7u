@@ -1,7 +1,7 @@
     .include "asm_prelude.inc"
 
-    thumb_func_start func_0804D574
-func_0804D574: @ 0x0804D574
+    thumb_func_start CheckEkrHitDone
+CheckEkrHitDone: @ 0x0804D574
     ldr r0, .L0804D588 @ =0x02017728
     ldr r0, [r0]
     cmp r0, #0
@@ -19,7 +19,7 @@ func_0804D574: @ 0x0804D574
     movs r0, #0
 .L0804D592:
     bx lr
-    func_end func_0804D574
+    func_end CheckEkrHitDone
 
     thumb_func_start func_0804D594
 func_0804D594: @ 0x0804D594
@@ -49,7 +49,7 @@ func_0804D5A4: @ 0x0804D5A4
     adds r6, r0, #0
     str r4, [r6, #0x64]
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804D5E0
     ldr r0, .L0804D5DC @ =0x02000000
@@ -70,7 +70,7 @@ func_0804D5A4: @ 0x0804D5A4
     str r0, [r6, #0x60]
     ldr r4, .L0804D640 @ =0x0203E05E
     ldr r0, [r6, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     movs r1, #0
@@ -79,7 +79,7 @@ func_0804D5A4: @ 0x0804D5A4
     lsls r4, r4, #0x10
     lsrs r4, r4, #0x10
     ldr r0, [r6, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r5, r5, #1
     adds r5, r5, r0
     adds r0, r5, #0
@@ -88,7 +88,7 @@ func_0804D5A4: @ 0x0804D5A4
     asrs r0, r0, #0x10
     str r0, [r6, #0x4c]
     ldr r0, [r6, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r4, r4, #0x10
     asrs r4, r4, #0xf
     adds r4, r4, r0
@@ -117,7 +117,7 @@ func_0804D5A4: @ 0x0804D5A4
     str r1, [r6, #0x54]
     str r1, [r6, #0x58]
     ldr r0, [r6, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804D66C @ =0x02017780
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -137,12 +137,12 @@ func_0804D670: @ 0x0804D670
     adds r5, r0, #0
     ldr r4, .L0804D714 @ =0x02000000
     ldr r0, [r5, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #3
     adds r0, r0, r4
     ldr r6, [r0]
     ldr r0, [r5, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, #1
     lsls r0, r0, #2
@@ -164,7 +164,7 @@ func_0804D670: @ 0x0804D670
     adds r0, r1, r0
     strh r0, [r5, #0x2e]
     ldr r0, [r5, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804D718 @ =0x0203E0B8
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -188,7 +188,7 @@ func_0804D670: @ 0x0804D670
     bne .L0804D774
     ldr r4, .L0804D71C @ =0x0203E05E
     ldr r0, [r5, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     ldrh r1, [r0]
@@ -196,7 +196,7 @@ func_0804D670: @ 0x0804D670
     movs r4, #0
     strh r1, [r0]
     ldr r0, [r5, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804D720 @ =0x02017780
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -217,7 +217,7 @@ func_0804D670: @ 0x0804D670
 .L0804D724:
     ldr r4, .L0804D748 @ =0x0203E09C
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     adds r0, r0, r4
     ldrb r0, [r0]
     bl func_08079514
@@ -238,7 +238,7 @@ func_0804D670: @ 0x0804D670
     adds r1, r7, #0
     bl func_0804E1F4
     ldr r0, [r5, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804D770 @ =0x0203E010
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -279,9 +279,9 @@ func_0804D788: @ 0x0804D788
     movs r0, #1
     strh r0, [r5, #0x2e]
     ldr r0, [r5, #0x64]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r4, r0, #0
-    bl func_080547E4
+    bl GetAnimNextRoundType
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     bl func_0805471C
@@ -312,7 +312,7 @@ func_0804D788: @ 0x0804D788
     movs r0, #0x10
     strh r0, [r5, #0x2e]
     adds r0, r4, #0
-    bl func_080547A8
+    bl GetAnimAnotherSide
     movs r1, #1
     rsbs r1, r1, #0
     bl func_0804E498
@@ -321,7 +321,7 @@ func_0804D788: @ 0x0804D788
     movs r0, #0x14
     strh r0, [r5, #0x2e]
     adds r0, r4, #0
-    bl func_080547A8
+    bl GetAnimAnotherSide
     movs r1, #1
     rsbs r1, r1, #0
     bl func_0804E498
@@ -349,7 +349,7 @@ func_0804D828: @ 0x0804D828
     cmp r1, r0
     bne .L0804D84E
     ldr r0, [r2, #0x64]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     movs r0, #4
     bl EnableBgSync
     b .L0804D864
@@ -386,10 +386,10 @@ func_0804D86C: @ 0x0804D86C
     bl Proc_Start
     adds r6, r0, #0
     adds r0, r4, #0
-    bl func_080547A8
+    bl GetAnimAnotherSide
     str r0, [r6, #0x64]
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804D8B0
     ldr r0, .L0804D8AC @ =0x02000000
@@ -410,7 +410,7 @@ func_0804D86C: @ 0x0804D86C
     str r0, [r6, #0x60]
     ldr r4, .L0804D910 @ =0x0203E05E
     ldr r0, [r6, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     movs r1, #0
@@ -419,7 +419,7 @@ func_0804D86C: @ 0x0804D86C
     lsls r4, r4, #0x10
     lsrs r4, r4, #0x10
     ldr r0, [r6, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r5, r5, #1
     adds r5, r5, r0
     adds r0, r5, #0
@@ -428,7 +428,7 @@ func_0804D86C: @ 0x0804D86C
     asrs r0, r0, #0x10
     str r0, [r6, #0x4c]
     ldr r0, [r6, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r4, r4, #0x10
     asrs r4, r4, #0xf
     adds r4, r4, r0
@@ -462,7 +462,7 @@ func_0804D86C: @ 0x0804D86C
     ldr r0, .L0804D944 @ =0x02017750
     str r1, [r0]
     ldr r0, [r6, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804D948 @ =0x02017780
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -482,9 +482,9 @@ func_0804D94C: @ 0x0804D94C
     push {r4, r5, r6, lr}
     adds r5, r0, #0
     ldr r0, [r5, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r0, [r5, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, [r5, #0x58]
     cmp r1, #0
     bne .L0804D99C
@@ -501,7 +501,7 @@ func_0804D94C: @ 0x0804D94C
     adds r0, r1, r0
     strh r0, [r5, #0x2e]
     ldr r0, [r5, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804D9E8 @ =0x0203E0B8
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -525,7 +525,7 @@ func_0804D94C: @ 0x0804D94C
     bne .L0804D9F8
     ldr r4, .L0804D9EC @ =0x0203E05E
     ldr r0, [r5, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     ldrh r1, [r0]
@@ -533,7 +533,7 @@ func_0804D94C: @ 0x0804D94C
     movs r4, #0
     strh r1, [r0]
     ldr r0, [r5, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804D9F0 @ =0x02017780
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -586,7 +586,7 @@ func_0804DA0C: @ 0x0804DA0C
     ble .L0804DAA6
     ldr r4, .L0804DA88 @ =0x0203E05E
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     movs r1, #0
@@ -595,7 +595,7 @@ func_0804DA0C: @ 0x0804DA0C
     lsls r4, r4, #0x10
     lsrs r4, r4, #0x10
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r5, r5, #1
     adds r5, r5, r0
     adds r0, r5, #0
@@ -604,7 +604,7 @@ func_0804DA0C: @ 0x0804DA0C
     asrs r0, r0, #0x10
     str r0, [r6, #0x4c]
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r4, r4, #0x10
     asrs r4, r4, #0xf
     adds r4, r4, r0
@@ -639,7 +639,7 @@ func_0804DA0C: @ 0x0804DA0C
     adds r0, r6, #0
     bl Proc_Break
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804DAAC @ =0x02017780
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -661,19 +661,19 @@ func_0804DAB0: @ 0x0804DAB0
     adds r5, r0, #0
     ldr r4, .L0804DB88 @ =0x02000000
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #3
     adds r0, r0, r4
     ldr r7, [r0]
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r0, [r5, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #3
     adds r0, r0, r4
     ldr r6, [r0]
     ldr r0, [r5, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, #1
     lsls r0, r0, #2
@@ -696,7 +696,7 @@ func_0804DAB0: @ 0x0804DAB0
     adds r0, r1, r0
     strh r0, [r5, #0x2e]
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804DB8C @ =0x0203E0B8
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -730,7 +730,7 @@ func_0804DAB0: @ 0x0804DAB0
     bne .L0804DBEC
     ldr r4, .L0804DB94 @ =0x0203E05E
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     ldrh r1, [r0]
@@ -738,7 +738,7 @@ func_0804DAB0: @ 0x0804DAB0
     movs r4, #0
     strh r1, [r0]
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804DB98 @ =0x02017780
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -762,7 +762,7 @@ func_0804DAB0: @ 0x0804DAB0
 .L0804DB9C:
     ldr r4, .L0804DBC0 @ =0x0203E09C
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     adds r0, r0, r4
     ldrb r0, [r0]
     bl func_08079514
@@ -783,7 +783,7 @@ func_0804DAB0: @ 0x0804DAB0
     mov r1, r8
     bl func_0804E1F4
     ldr r0, [r5, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804DBE8 @ =0x0203E010
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -826,7 +826,7 @@ func_0804DC04: @ 0x0804DC04
     adds r4, r0, #0
     strh r5, [r4, #0x2c]
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804DC40
     ldr r0, .L0804DC3C @ =0x02000000
@@ -903,7 +903,7 @@ func_0804DC98: @ 0x0804DC98
     bl Proc_Start
     adds r6, r0, #0
     adds r0, r7, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804DCD4
     ldr r0, .L0804DCD0 @ =0x02000000
@@ -924,7 +924,7 @@ func_0804DC98: @ 0x0804DC98
     str r0, [r6, #0x60]
     ldr r4, .L0804DD38 @ =0x0203E05E
     ldr r0, [r6, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     movs r1, #0
@@ -933,7 +933,7 @@ func_0804DC98: @ 0x0804DC98
     lsls r4, r4, #0x10
     lsrs r4, r4, #0x10
     ldr r0, [r6, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r5, r5, #1
     adds r5, r5, r0
     adds r0, r5, #0
@@ -942,7 +942,7 @@ func_0804DC98: @ 0x0804DC98
     asrs r0, r0, #0x10
     str r0, [r6, #0x4c]
     ldr r0, [r6, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r4, r4, #0x10
     asrs r4, r4, #0xf
     adds r4, r4, r0
@@ -980,7 +980,7 @@ func_0804DC98: @ 0x0804DC98
     strh r0, [r6, #0x2e]
     str r7, [r6, #0x64]
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804DD6C @ =0x02017780
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -1015,7 +1015,7 @@ func_0804DD70: @ 0x0804DD70
     adds r0, r1, r0
     strh r0, [r5, #0x2e]
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804DE04 @ =0x0203E0B8
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -1049,7 +1049,7 @@ func_0804DD70: @ 0x0804DD70
     bne .L0804DE14
     ldr r4, .L0804DE0C @ =0x0203E05E
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     ldrh r1, [r0]
@@ -1057,7 +1057,7 @@ func_0804DD70: @ 0x0804DD70
     movs r4, #0
     strh r1, [r0]
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804DE10 @ =0x02017780
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -1129,7 +1129,7 @@ func_0804DE7C: @ 0x0804DE7C
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -1138,7 +1138,7 @@ func_0804DE7C: @ 0x0804DE7C
     bne .L0804DEC4
     ldr r6, .L0804DECC @ =0x0203E05E
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r6
     ldrh r1, [r0]
@@ -1150,7 +1150,7 @@ func_0804DE7C: @ 0x0804DE7C
     cmp r0, #1
     bne .L0804DEBE
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r6
     ldrh r1, [r0]
@@ -1210,7 +1210,7 @@ func_0804DEF4: @ 0x0804DEF4
     cmp r1, r0
     bne .L0804DF5C
     mov r0, r8
-    bl func_08054678
+    bl GetAnimPosition
     ldr r5, .L0804DF54 @ =0x02000028
     lsls r0, r0, #1
     adds r0, r0, r5
@@ -1221,7 +1221,7 @@ func_0804DEF4: @ 0x0804DEF4
     mov r2, r8
     strh r0, [r2, #2]
     ldr r0, [r7, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r5
     ldrh r0, [r0]
@@ -1238,7 +1238,7 @@ func_0804DEF4: @ 0x0804DEF4
 .L0804DF58: .4byte 0x0201FB00
 .L0804DF5C:
     mov r0, r8
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #1
     bne .L0804DF78
     movs r2, #0x2c
@@ -1258,7 +1258,7 @@ func_0804DEF4: @ 0x0804DEF4
     ldrh r4, [r0]
 .L0804DF82:
     ldr r0, [r7, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r6, .L0804DFC8 @ =0x02000028
     lsls r0, r0, #1
     adds r0, r0, r6
@@ -1272,7 +1272,7 @@ func_0804DEF4: @ 0x0804DEF4
     mov r2, r8
     strh r1, [r2, #2]
     ldr r0, [r7, #0x60]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r6
     ldr r1, [r5]
@@ -1364,7 +1364,7 @@ func_0804E040: @ 0x0804E040
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
     ldr r0, [r5, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r7, r0, #0
     movs r6, #0
     ldr r0, .L0804E0AC @ =0x0201774C
@@ -1377,7 +1377,7 @@ func_0804E040: @ 0x0804E040
     bne .L0804E072
     ldr r4, .L0804E0B4 @ =0x0201FAF8
     adds r0, r7, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r4
     ldr r0, [r0]
@@ -1395,7 +1395,7 @@ func_0804E040: @ 0x0804E040
     cmp r0, #0
     beq .L0804E0A0
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804E0BC @ =0x02017744
     ldr r1, [r1]
     cmp r0, r1
@@ -1479,7 +1479,7 @@ func_0804E0F0: @ 0x0804E0F0
     bl func_0804C45C
     ldr r4, .L0804E164 @ =0x0203E09C
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     adds r0, r0, r4
     ldrb r0, [r0]
     bl func_08079624
@@ -1512,7 +1512,7 @@ func_0804E168: @ 0x0804E168
     bl func_0804E1F4
     bl func_0804D1D4
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804E1C8 @ =0x0203E010
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -1939,7 +1939,7 @@ func_0804E498: @ 0x0804E498
     bl Proc_Start
     adds r4, r0, #0
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     adds r2, r4, #0
     adds r2, #0x29
     movs r1, #0
@@ -2355,8 +2355,8 @@ func_0804E800: @ 0x0804E800
     bx lr
     func_end func_0804E800
 
-    thumb_func_start func_0804E804
-func_0804E804: @ 0x0804E804
+    thumb_func_start NewEfxQuake
+NewEfxQuake: @ 0x0804E804
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, .L0804E814 @ =0x02017748
@@ -2483,7 +2483,7 @@ func_0804E804: @ 0x0804E804
     bx r1
     .align 2, 0
 .L0804E8FC: .4byte 0x081D7F00
-    func_end func_0804E804
+    func_end NewEfxQuake
 
     thumb_func_start func_0804E900
 func_0804E900: @ 0x0804E900
@@ -2657,7 +2657,7 @@ func_0804E900: @ 0x0804E900
     cmp r0, #2
     bgt .L0804EA9E
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804EA90
     lsls r1, r7, #0x10
@@ -2783,7 +2783,7 @@ func_0804EAA8: @ 0x0804EAA8
 .L0804EB60: .4byte 0x0203E02C
 .L0804EB64:
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804EB94 @ =0x0201FB00
     ldr r1, [r1]
     ldr r2, .L0804EB98 @ =0x02000030
@@ -2794,7 +2794,7 @@ func_0804EAA8: @ 0x0804EAA8
     lsls r1, r1, #0x10
     lsrs r4, r1, #0x10
     mov r0, r8
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804EBA0
     movs r0, #0x40
@@ -2842,7 +2842,7 @@ func_0804EAA8: @ 0x0804EAA8
     str r1, [r5, #0x64]
     ldr r4, .L0804EC68 @ =0x0200003C
     mov r0, r8
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r4
     ldr r0, [r0]
@@ -2852,7 +2852,7 @@ func_0804EAA8: @ 0x0804EAA8
     bl RegisterDataMove
     ldr r4, .L0804EC70 @ =0x0203E024
     mov r0, sb
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     ldrh r0, [r0]
@@ -2860,7 +2860,7 @@ func_0804EAA8: @ 0x0804EAA8
     bne .L0804EC20
     ldr r4, .L0804EC74 @ =0x0200004C
     mov r0, sb
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r4
     ldr r0, [r0]
@@ -2870,7 +2870,7 @@ func_0804EAA8: @ 0x0804EAA8
 .L0804EC20:
     ldr r4, .L0804EC74 @ =0x0200004C
     mov r0, r8
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r4
     ldr r0, [r0]
@@ -2882,7 +2882,7 @@ func_0804EAA8: @ 0x0804EAA8
     movs r1, #0
     ldrsh r4, [r0, r1]
     mov r0, r8
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     lsls r1, r1, #0x10
     asrs r1, r1, #0x10
@@ -3053,7 +3053,7 @@ func_0804EC88: @ 0x0804EC88
     cmp r0, #0
     beq .L0804EDE0
     ldr r0, [r7, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     lsls r0, r1, #4
     subs r0, r0, r1
@@ -3089,7 +3089,7 @@ func_0804EC88: @ 0x0804EC88
     cmp r0, #0
     beq .L0804EE4C
     ldr r0, [r7, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804EE44 @ =0x0201FB00
     ldr r1, [r1]
     ldr r2, .L0804EE48 @ =0x02000030
@@ -3276,7 +3276,7 @@ func_0804EC88: @ 0x0804EC88
     cmp r0, #2
     bgt .L0804EFCE
     ldr r0, [r7, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804EFC0
     lsls r1, r6, #0x10
@@ -3635,7 +3635,7 @@ func_0804F254: @ 0x0804F254
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804F290
     ldr r0, .L0804F274 @ =0x0203E0B8
@@ -3704,7 +3704,7 @@ func_0804F2E8: @ 0x0804F2E8
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804F328
     ldr r0, .L0804F310 @ =0x0203E0B8
@@ -4073,7 +4073,7 @@ func_0804F5D4: @ 0x0804F5D4
     cmp r0, r1
     blt .L0804F632
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804F60C
     ldr r0, .L0804F604 @ =0x081D97D0
@@ -4117,7 +4117,7 @@ func_0804F640: @ 0x0804F640
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804F66C
     ldr r0, .L0804F664 @ =0x02000054
@@ -4156,7 +4156,7 @@ func_0804F698: @ 0x0804F698
     push {r4, r5, r6, lr}
     sub sp, #4
     adds r5, r0, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804F6B0
     ldr r0, .L0804F6AC @ =0x0203E094
@@ -4196,13 +4196,13 @@ func_0804F698: @ 0x0804F698
     strh r1, [r4, #0x34]
     strh r1, [r4, #0x32]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L0804F748 @ =0x0201776C
     lsls r0, r0, #2
     adds r0, r0, r1
     str r4, [r0]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804F754
     ldr r5, .L0804F74C @ =0x02000054
@@ -4272,20 +4272,20 @@ func_0804F794: @ 0x0804F794
     push {r4, r5, lr}
     adds r4, r0, #0
     ldr r5, .L0804F7CC @ =0x0201776C
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r5
     ldr r0, [r0]
     cmp r0, #0
     beq .L0804F7C6
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r5
     ldr r0, [r0]
     bl Proc_End
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r5
     movs r1, #0
@@ -4302,7 +4302,7 @@ func_0804F794: @ 0x0804F794
 func_0804F7D0: @ 0x0804F7D0
     push {r4, lr}
     ldr r4, .L0804F7EC @ =0x0201776C
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r4
     ldr r0, [r0]
@@ -4320,7 +4320,7 @@ func_0804F7D0: @ 0x0804F7D0
 func_0804F7F0: @ 0x0804F7F0
     push {r4, lr}
     ldr r4, .L0804F80C @ =0x0201776C
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r4
     ldr r0, [r0]
@@ -4340,7 +4340,7 @@ func_0804F810: @ 0x0804F810
     adds r6, r0, #0
     adds r5, r1, #0
     ldr r4, .L0804F83C @ =0x0201776C
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r4
     ldr r0, [r0]
@@ -4364,7 +4364,7 @@ func_0804F810: @ 0x0804F810
 func_0804F840: @ 0x0804F840
     push {r4, lr}
     ldr r4, .L0804F858 @ =0x0201776C
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r4
     ldr r0, [r0]
@@ -4386,7 +4386,7 @@ func_0804F85C: @ 0x0804F85C
     adds r7, r1, #0
     adds r5, r2, #0
     adds r6, r3, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804F8C4
     ldr r0, .L0804F8B8 @ =0x02000054
@@ -4542,7 +4542,7 @@ func_0804F900: @ 0x0804F900
     b .L0804F9F2
 .L0804F9A2:
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804F9D4
     ldr r0, .L0804F9CC @ =0x02022B40
@@ -4595,7 +4595,7 @@ func_0804FA08: @ 0x0804FA08
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0804FA2C
     ldr r0, .L0804FA24 @ =0x02000054
@@ -5539,15 +5539,15 @@ func_08050118: @ 0x08050118
 .L0805013C: .4byte gDispIo
     func_end func_08050118
 
-    thumb_func_start func_08050140
-func_08050140: @ 0x08050140
+    thumb_func_start StartBattleAnimHitEffectsDefault
+StartBattleAnimHitEffectsDefault: @ 0x08050140
     push {lr}
     movs r2, #3
     movs r3, #4
     bl func_08050160
     pop {r0}
     bx r0
-    func_end func_08050140
+    func_end StartBattleAnimHitEffectsDefault
 
     thumb_func_start func_08050150
 func_08050150: @ 0x08050150
@@ -5570,7 +5570,7 @@ func_08050160: @ 0x08050160
     adds r4, r1, #0
     str r2, [sp]
     mov sl, r3
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805018C
     ldr r0, .L08050188 @ =0x02000000
@@ -5602,23 +5602,23 @@ func_08050160: @ 0x08050160
 .L080501A8: .4byte 0x02000000
 .L080501AC:
     adds r0, r7, #0
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     ldrh r0, [r7, #0xe]
     subs r0, #1
     lsls r0, r0, #1
     adds r0, r0, r1
-    bl func_08053314
+    bl GetBattleAnimRoundTypeFlags
     lsls r0, r0, #0x10
     lsrs r6, r0, #0x10
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     ldrh r0, [r5, #0xe]
     subs r0, #1
     lsls r0, r0, #1
     adds r0, r0, r1
-    bl func_08053314
+    bl GetBattleAnimRoundTypeFlags
     lsls r0, r0, #0x10
     lsrs r4, r0, #0x10
     lsls r0, r6, #0x10
@@ -5671,20 +5671,20 @@ func_08050160: @ 0x08050160
 .L0805023C:
     ldr r4, .L080502A4 @ =0x0203E05E
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     movs r1, #0
     ldrsh r6, [r0, r1]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     movs r1, #0
     ldrsh r4, [r0, r1]
     adds r4, #1
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     lsls r0, r6, #1
     adds r0, r0, r1
@@ -5692,7 +5692,7 @@ func_08050160: @ 0x08050160
     lsls r0, r0, #0x10
     asrs r6, r0, #0x10
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     lsls r0, r4, #1
     adds r0, r0, r1
@@ -5757,7 +5757,7 @@ func_080502EC: @ 0x080502EC
     mov r6, r8
     push {r6, r7}
     mov sb, r1
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805030C
     ldr r0, .L08050308 @ =0x02000000
@@ -5776,20 +5776,20 @@ func_080502EC: @ 0x080502EC
     mov r8, r0
     ldr r4, .L08050370 @ =0x0203E05E
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     movs r1, #0
     ldrsh r6, [r0, r1]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     movs r1, #0
     ldrsh r4, [r0, r1]
     adds r4, #1
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     lsls r0, r6, #1
     adds r0, r0, r1
@@ -5797,7 +5797,7 @@ func_080502EC: @ 0x080502EC
     lsls r0, r0, #0x10
     asrs r6, r0, #0x10
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     lsls r0, r4, #1
     adds r0, r0, r1
@@ -5870,7 +5870,7 @@ func_080502EC: @ 0x080502EC
 func_080503E0: @ 0x080503E0
     push {r4, lr}
     adds r4, r1, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080503F8
     ldr r0, .L080503F4 @ =0x02000000
@@ -5913,7 +5913,7 @@ func_0805041C: @ 0x0805041C
     cmp r0, #0
     bne .L08050448
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08050444
     adds r0, r7, #0
@@ -5925,7 +5925,7 @@ func_0805041C: @ 0x0805041C
     b .L08050458
 .L08050448:
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08050456
     adds r0, r5, #0
@@ -5963,7 +5963,7 @@ func_08050478: @ 0x08050478
     adds r4, r1, #0
 .L0805048C:
     adds r0, r3, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080504B4
     ldr r1, .L080504B0 @ =gBg1Tm
@@ -6025,7 +6025,7 @@ func_080504DC: @ 0x080504DC
 .L08050508:
     ldr r5, .L0805052C @ =0x02019784
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08050534
     ldr r1, .L08050530 @ =gBg1Tm
@@ -6074,7 +6074,7 @@ func_0805055C: @ 0x0805055C
     adds r1, r7, #0
     bl LZ77UnComp8bit
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805059C
     ldr r1, .L08050598 @ =gBg1Tm
@@ -6468,8 +6468,8 @@ func_08050814: @ 0x08050814
 .L0805081C: .4byte 0x0201FABC
     func_end func_08050814
 
-    thumb_func_start func_08050820
-func_08050820: @ 0x08050820
+    thumb_func_start NewEfxspdquake
+NewEfxspdquake: @ 0x08050820
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, .L0805083C @ =0x08B9AFE4
@@ -6486,7 +6486,7 @@ func_08050820: @ 0x08050820
     .align 2, 0
 .L0805083C: .4byte 0x08B9AFE4
 .L08050840: .4byte 0x081D7F22
-    func_end func_08050820
+    func_end NewEfxspdquake
 
     thumb_func_start func_08050844
 func_08050844: @ 0x08050844

@@ -232,7 +232,7 @@ func_0804B328: @ 0x0804B328
     ldr r0, [r4, #4]
     bl Proc_Run
     bl AnimUpdateAll
-    bl func_08053454
+    bl BattleAIS_ExecCommands
     ldr r0, [r4, #0x10]
     bl Proc_Run
     ldr r1, .L0804B398 @ =0x02000020

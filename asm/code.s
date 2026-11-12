@@ -1,1253 +1,7 @@
     .include "asm_prelude.inc"
 
-    thumb_func_start func_08053454
-func_08053454: @ 0x08053454
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    sub sp, #4
-    movs r2, #0
-    func_end func_08053454
-
-    thumb_func_start func_08053460
-func_08053460: @ 0x08053460
-    ldr r0, .L080534C0 @ =0x03004830
-    str r2, [r0]
-    ldr r1, .L080534C4 @ =0x02000000
-    lsls r0, r2, #2
-    adds r0, r0, r1
-    ldr r7, [r0]
-    adds r2, #1
-    mov sb, r2
-    cmp r7, #0
-    bne .L08053478
-    bl .L08053EEA
-.L08053478:
-    movs r0, #0xf0
-    lsls r0, r0, #8
-    ldrh r1, [r7, #0xc]
-    ands r1, r0
-    mov r8, r1
-    cmp r1, #0
-    bne .L0805348A
-    bl .L08053EEA
-.L0805348A:
-    movs r0, #0x80
-    lsls r0, r0, #5
-    ands r0, r1
-    cmp r0, #0
-    bne .L08053498
-.L08053494:
-    .byte 0x00, 0xF0
-.L08053496:
-.L08053496:
-    .byte 0x45, 0xFC
-.L08053498:
-    ldrb r0, [r7, #0x14]
-    cmp r0, #0
-    bne .L080534A2
-    bl .L08053D18
-.L080534A2:
-    subs r1, r0, #1
-    adds r2, r7, #0
-    adds r2, #0x15
-    adds r1, r2, r1
-    ldrb r1, [r1]
-    adds r3, r0, #0
-    cmp r1, #0x52
-    bls .L080534B6
-    bl .L08053D06
-.L080534B6:
-    lsls r0, r1, #2
-    ldr r1, .L080534C8 @ =.L080534CC
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.L080534C0: .4byte 0x03004830
-.L080534C4: .4byte 0x02000000
-.L080534C8: .4byte .L080534CC
-.L080534CC: @ jump table
-    .4byte .L08053D06 @ case 0
-    .4byte .L08053618 @ case 1
-    .4byte .L0805366C @ case 2
-    .4byte .L08053680 @ case 3
-    .4byte .L080536A6 @ case 4
-    .4byte .L0805372C @ case 5
-    .4byte .L08053790 @ case 6
-    .4byte .L08053D06 @ case 7
-    .4byte .L080537C0 @ case 8
-    .4byte .L080537C0 @ case 9
-    .4byte .L080537C0 @ case 10
-    .4byte .L080537C0 @ case 11
-    .4byte .L080537C0 @ case 12
-    .4byte .L0805385A @ case 13
-    .4byte .L08053D06 @ case 14
-    .4byte .L08053D06 @ case 15
-    .4byte .L08053D06 @ case 16
-    .4byte .L08053D06 @ case 17
-    .4byte .L08053D06 @ case 18
-    .4byte .L08053A08 @ case 19
-    .4byte .L08053A38 @ case 20
-    .4byte .L08053A4C @ case 21
-    .4byte .L08053D06 @ case 22
-    .4byte .L08053D06 @ case 23
-    .4byte .L08053A60 @ case 24
-    .4byte .L08053C78 @ case 25
-    .4byte .L08053A9C @ case 26
-    .4byte .L08053C78 @ case 27
-    .4byte .L08053C78 @ case 28
-    .4byte .L08053C78 @ case 29
-    .4byte .L08053C78 @ case 30
-    .4byte .L08053C78 @ case 31
-    .4byte .L08053C78 @ case 32
-    .4byte .L08053C78 @ case 33
-    .4byte .L08053C78 @ case 34
-    .4byte .L08053C78 @ case 35
-    .4byte .L08053C78 @ case 36
-    .4byte .L08053C78 @ case 37
-    .4byte .L08053B1C @ case 38
-    .4byte .L08053B32 @ case 39
-    .4byte .L08053C78 @ case 40
-    .4byte .L08053C78 @ case 41
-    .4byte .L08053C78 @ case 42
-    .4byte .L08053C78 @ case 43
-    .4byte .L08053B48 @ case 44
-    .4byte .L08053B5C @ case 45
-    .4byte .L08053BA6 @ case 46
-    .4byte .L08053BBC @ case 47
-    .4byte .L08053BD2 @ case 48
-    .4byte .L08053BE8 @ case 49
-    .4byte .L08053BFE @ case 50
-    .4byte .L08053C78 @ case 51
-    .4byte .L08053C78 @ case 52
-    .4byte .L08053C78 @ case 53
-    .4byte .L08053C78 @ case 54
-    .4byte .L08053C78 @ case 55
-    .4byte .L08053C78 @ case 56
-    .4byte .L08053C12 @ case 57
-    .4byte .L08053C78 @ case 58
-    .4byte .L08053C78 @ case 59
-    .4byte .L08053C78 @ case 60
-    .4byte .L08053C36 @ case 61
-    .4byte .L08053C78 @ case 62
-    .4byte .L08053C78 @ case 63
-    .4byte .L08053C78 @ case 64
-    .4byte .L08053C78 @ case 65
-    .4byte .L08053C78 @ case 66
-    .4byte .L08053C78 @ case 67
-    .4byte .L08053C78 @ case 68
-    .4byte .L08053C78 @ case 69
-    .4byte .L08053C78 @ case 70
-    .4byte .L08053C68 @ case 71
-    .4byte .L08053C78 @ case 72
-    .4byte .L08053C78 @ case 73
-    .4byte .L08053C78 @ case 74
-    .4byte .L08053C78 @ case 75
-    .4byte .L08053C78 @ case 76
-    .4byte .L08053C78 @ case 77
-    .4byte .L08053C70 @ case 78
-    .4byte .L08053C78 @ case 79
-    .4byte .L08053D06 @ case 80
-    .4byte .L08053C86 @ case 81
-    .4byte .L08053CAA @ case 82
-.L08053618:
-    ldr r0, .L08053624 @ =0x02000024
-    ldr r0, [r0]
-    cmp r0, #1
-    bne .L08053628
-    ldr r0, [r7, #0x24]
-    b .L08053D04
-    .align 2, 0
-.L08053624: .4byte 0x02000024
-.L08053628:
-    ldrh r1, [r7, #0x10]
-    movs r0, #4
-    ands r0, r1
-    cmp r0, #0
-    bne .L08053634
-    b .L08053D00
-.L08053634:
-    movs r0, #8
-    ands r0, r1
-    cmp r0, #0
-    bne .L0805363E
-    b .L08053D06
-.L0805363E:
-    bl func_0804D574
-    cmp r0, #1
-    beq .L08053648
-    b .L08053D06
-.L08053648:
-    ldr r0, .L08053668 @ =0x0000FFF2
-    ldrh r2, [r7, #0x10]
-    ands r0, r2
-    strh r0, [r7, #0x10]
-    ldr r0, [r7, #0x20]
-    adds r0, #4
-    str r0, [r7, #0x20]
-    bl func_08050808
-    cmp r0, #0
-    bne .L08053660
-    b .L08053D06
-.L08053660:
-    movs r0, #0
-    bl func_08050814
-    b .L08053D06
-    .align 2, 0
-.L08053668: .4byte 0x0000FFF2
-.L0805366C:
-    ldrh r1, [r7, #0x10]
-    movs r0, #1
-    ands r0, r1
-    cmp r0, #0
-    bne .L08053678
-    b .L08053D06
-.L08053678:
-    ldr r0, .L0805367C @ =0x0000FFFE
-    b .L08053CFC
-    .align 2, 0
-.L0805367C: .4byte 0x0000FFFE
-.L08053680:
-    ldrh r1, [r7, #0x10]
-    movs r2, #0x20
-    movs r0, #0x20
-    ands r0, r1
-    cmp r0, #0
-    bne .L080536A2
-    adds r0, r2, #0
-    orrs r0, r1
-    strh r0, [r7, #0x10]
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    bne .L080536A2
-    adds r0, r7, #0
-    bl func_0806337C
-.L080536A2:
-    ldrh r1, [r7, #0x10]
-    b .L08053CEE
-.L080536A6:
-    ldrh r1, [r7, #0x10]
-    movs r2, #0x20
-    movs r0, #0x20
-    ands r0, r1
-    cmp r0, #0
-    bne .L080536BC
-    adds r0, r2, #0
-    orrs r0, r1
-    movs r1, #0x40
-    orrs r0, r1
-    strh r0, [r7, #0x10]
-.L080536BC:
-    ldrh r2, [r7, #0x10]
-    movs r0, #0x40
-    ands r0, r2
-    cmp r0, #0
-    bne .L080536C8
-    b .L08053D06
-.L080536C8:
-    ldr r1, .L08053724 @ =0x0000FFDF
-    ands r1, r2
-    ldr r0, .L08053728 @ =0x0000FFBF
-    ands r1, r0
-    ldr r0, [r7, #0x20]
-    adds r0, #4
-    str r0, [r7, #0x20]
-    movs r5, #9
-    movs r6, #0
-    orrs r1, r5
-    strh r1, [r7, #0x10]
-    adds r0, r7, #0
-    bl func_080547A8
-    adds r2, r0, #0
-    adds r0, r7, #0
-    str r2, [sp]
-    bl func_08054804
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    mov r8, r0
-    mov r4, r8
-    adds r0, r4, #0
-    bl func_0805468C
-    ldr r2, [sp]
-    cmp r0, #1
-    beq .L08053704
-    b .L08053D06
-.L08053704:
-    cmp r2, #0
-    bne .L0805370A
-    b .L08053D06
-.L0805370A:
-    ldrh r0, [r2, #0x10]
-    orrs r0, r5
-    strh r0, [r2, #0x10]
-    adds r0, r7, #0
-    str r2, [sp]
-    bl func_08054664
-    cmp r0, #0
-    beq .L0805371E
-    b .L08053D06
-.L0805371E:
-    adds r0, r4, #0
-    b .L0805384A
-    .align 2, 0
-.L08053724: .4byte 0x0000FFDF
-.L08053728: .4byte 0x0000FFBF
-.L0805372C:
-    ldrh r1, [r7, #0x10]
-    movs r2, #0x20
-    movs r0, #0x20
-    ands r0, r1
-    cmp r0, #0
-    bne .L08053742
-    adds r0, r2, #0
-    orrs r0, r1
-    movs r1, #0x40
-    orrs r0, r1
-    strh r0, [r7, #0x10]
-.L08053742:
-    ldrh r2, [r7, #0x10]
-    movs r0, #0x40
-    ands r0, r2
-    cmp r0, #0
-    bne .L0805374E
-    b .L08053D06
-.L0805374E:
-    ldr r1, .L08053788 @ =0x0000FFDF
-    ands r1, r2
-    ldr r0, .L0805378C @ =0x0000FFBF
-    ands r1, r0
-    ldr r0, [r7, #0x20]
-    adds r0, #4
-    str r0, [r7, #0x20]
-    movs r0, #9
-    orrs r1, r0
-    strh r1, [r7, #0x10]
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    beq .L0805376E
-    b .L08053D06
-.L0805376E:
-    adds r0, r7, #0
-    bl func_08055888
-    bl func_08050808
-    cmp r0, #0
-    bne .L0805377E
-    b .L08053D06
-.L0805377E:
-    movs r0, #2
-    bl func_08050814
-    b .L08053D06
-    .align 2, 0
-.L08053788: .4byte 0x0000FFDF
-.L0805378C: .4byte 0x0000FFBF
-.L08053790:
-    adds r0, r7, #0
-    bl func_080547A8
-    adds r2, r0, #0
-    cmp r2, #0
-    bne .L0805379E
-    b .L08053D06
-.L0805379E:
-    str r2, [sp]
-    bl func_08054828
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    mov r8, r0
-    movs r0, #1
-    rsbs r0, r0, #0
-    ldr r2, [sp]
-    cmp r8, r0
-    bne .L080537B6
-    b .L08053D06
-.L080537B6:
-    movs r0, #2
-    ldrh r3, [r2, #0x10]
-    orrs r0, r3
-    strh r0, [r2, #0x10]
-    b .L08053D06
-.L080537C0:
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    beq .L080537CC
-    b .L08053D06
-.L080537CC:
-    adds r0, r7, #0
-    bl func_080547A8
-    adds r2, r0, #0
-    adds r0, r7, #0
-    str r2, [sp]
-    bl func_08054804
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    mov r8, r0
-    bl func_0805468C
-    ldr r2, [sp]
-    cmp r0, #0
-    bne .L0805382E
-    adds r0, r2, #0
-    bl func_08067CC4
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    ldr r2, [sp]
-    cmp r0, #2
-    beq .L0805382E
-    adds r0, r7, #0
-    bl func_08054678
-    adds r1, r0, #0
-    ldrh r0, [r7, #0xe]
-    subs r0, #1
-    lsls r0, r0, #1
-    adds r0, r0, r1
-    bl func_08053314
-    movs r1, #0x80
-    lsls r1, r1, #5
-    ands r1, r0
-    ldr r2, [sp]
-    cmp r1, #0
-    beq .L08053824
-    adds r0, r2, #0
-    bl func_080639C8
-    b .L0805382C
-.L08053824:
-    adds r0, r2, #0
-    str r2, [sp]
-    bl func_08062580
-.L0805382C:
-    ldr r2, [sp]
-.L0805382E:
-    cmp r2, #0
-    bne .L08053834
-    b .L08053D06
-.L08053834:
-    movs r0, #9
-    ldrh r1, [r2, #0x10]
-    orrs r0, r1
-    strh r0, [r2, #0x10]
-    adds r0, r7, #0
-    str r2, [sp]
-    bl func_08054804
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    mov r8, r0
-.L0805384A:
-    bl func_0805468C
-    adds r1, r0, #0
-    ldr r2, [sp]
-    adds r0, r2, #0
-    bl func_08050140
-    b .L08053D06
-.L0805385A:
-    adds r0, r7, #0
-    bl func_080547E4
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    mov r8, r0
-    ldr r4, .L0805389C @ =0x02000000
-    adds r0, r7, #0
-    bl func_08054678
-    lsls r0, r0, #3
-    adds r0, r0, r4
-    ldr r2, [r0]
-    adds r0, r7, #0
-    str r2, [sp]
-    bl func_08054678
-    lsls r0, r0, #1
-    adds r0, #1
-    lsls r0, r0, #2
-    adds r0, r0, r4
-    ldr r6, [r0]
-    ldrb r0, [r7, #0x12]
-    ldr r2, [sp]
-    cmp r0, #9
-    bls .L08053890
-    b .L08053D06
-.L08053890:
-    lsls r0, r0, #2
-    ldr r1, .L080538A0 @ =.L080538A4
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.L0805389C: .4byte 0x02000000
-.L080538A0: .4byte .L080538A4
-.L080538A4: @ jump table
-    .4byte .L080538CC @ case 0
-    .4byte .L080538CC @ case 1
-    .4byte .L080538CC @ case 2
-    .4byte .L080538CC @ case 3
-    .4byte .L080539D0 @ case 4
-    .4byte .L080539D0 @ case 5
-    .4byte .L080539DE @ case 6
-    .4byte .L080539DE @ case 7
-    .4byte .L080539DE @ case 8
-    .4byte .L080538CC @ case 9
-.L080538CC:
-    movs r0, #1
-    rsbs r0, r0, #0
-    cmp r8, r0
-    bne .L080538D6
-    b .L080539D0
-.L080538D6:
-    ldrh r0, [r2, #0xe]
-    adds r0, #1
-    strh r0, [r2, #0xe]
-    ldrh r0, [r6, #0xe]
-    adds r0, #1
-    strh r0, [r6, #0xe]
-    adds r0, r2, #0
-    mov r1, r8
-    str r2, [sp]
-    bl func_08054594
-    adds r0, r6, #0
-    mov r1, r8
-    bl func_08054594
-    movs r1, #4
-    ldr r2, [sp]
-    ldrh r0, [r2, #0x10]
-    orrs r0, r1
-    strh r0, [r2, #0x10]
-    ldrh r0, [r6, #0x10]
-    orrs r0, r1
-    strh r0, [r6, #0x10]
-    ldr r1, .L0805392C @ =0x081D8594
-    ldr r0, .L08053930 @ =0x0203E02C
-    movs r3, #0
-    ldrsh r0, [r0, r3]
-    adds r0, r0, r1
-    ldrb r0, [r0]
-    mov r8, r0
-    ldr r1, .L08053934 @ =0x081D856C
-    lsls r0, r0, #2
-    adds r0, r0, r1
-    ldrb r4, [r0]
-    adds r0, r7, #0
-    str r2, [sp]
-    bl func_08054678
-    ldr r2, [sp]
-    cmp r0, #0
-    bne .L0805393C
-    ldr r0, .L08053938 @ =0x0200005C
-    b .L0805393E
-    .align 2, 0
-.L0805392C: .4byte 0x081D8594
-.L08053930: .4byte 0x0203E02C
-.L08053934: .4byte 0x081D856C
-.L08053938: .4byte 0x0200005C
-.L0805393C:
-    ldr r0, .L080539BC @ =0x02000060
-.L0805393E:
-    ldr r1, [r0]
-    lsls r0, r4, #2
-    adds r0, r0, r1
-    ldr r4, [r0]
-    adds r0, r7, #0
-    str r2, [sp]
-    bl func_08054678
-    lsls r1, r0, #2
-    adds r1, r1, r0
-    lsls r1, r1, #2
-    adds r1, r1, r0
-    lsls r1, r1, #9
-    ldr r0, .L080539C0 @ =0x0200F1C8
-    adds r1, r1, r0
-    adds r1, r4, r1
-    ldr r0, [r1, #4]
-    ldr r2, [sp]
-    str r0, [r2, #0x28]
-    ldr r4, [r2, #0x30]
-    ldr r1, [r1, #8]
-    adds r4, r4, r1
-    str r4, [r2, #0x3c]
-    ldr r4, [r6, #0x30]
-    ldr r0, .L080539C4 @ =0x000057F0
-    adds r4, r4, r0
-    str r4, [r6, #0x3c]
-    ldr r4, .L080539C8 @ =0x0203E0B0
-    adds r0, r7, #0
-    str r2, [sp]
-    bl func_08054678
-    lsls r0, r0, #2
-    adds r0, r0, r4
-    ldr r0, [r0]
-    ldr r2, [sp]
-    cmp r0, #0
-    bne .L080539F2
-    ldr r4, .L080539CC @ =0x0201FB10
-    adds r0, r2, #0
-    bl func_08054678
-    lsls r0, r0, #2
-    adds r0, r0, r4
-    ldr r1, [r0]
-    ldr r2, [sp]
-    ldr r0, [r2, #0x28]
-    cmp r1, r0
-    beq .L080539F2
-    adds r0, r2, #0
-    bl func_08053F4C
-    ldr r2, [sp]
-    adds r0, r2, #0
-    bl func_08054678
-    lsls r0, r0, #2
-    adds r0, r0, r4
-    ldr r2, [sp]
-    ldr r1, [r2, #0x28]
-    str r1, [r0]
-    b .L080539F2
-    .align 2, 0
-.L080539BC: .4byte 0x02000060
-.L080539C0: .4byte 0x0200F1C8
-.L080539C4: .4byte 0x000057F0
-.L080539C8: .4byte 0x0203E0B0
-.L080539CC: .4byte 0x0201FB10
-.L080539D0:
-    ldr r1, .L08053A00 @ =0x081D8594
-    ldr r0, .L08053A04 @ =0x0203E02C
-    movs r3, #0
-    ldrsh r0, [r0, r3]
-    adds r0, r0, r1
-    ldrb r0, [r0]
-    mov r8, r0
-.L080539DE:
-    adds r0, r2, #0
-    mov r1, r8
-    str r2, [sp]
-    bl func_08054594
-    adds r0, r6, #0
-    mov r1, r8
-    bl func_08054594
-    ldr r2, [sp]
-.L080539F2:
-    adds r0, r2, #0
-    bl func_08053F08
-    adds r0, r6, #0
-    bl func_08053F08
-    b .L08053D18
-    .align 2, 0
-.L08053A00: .4byte 0x081D8594
-.L08053A04: .4byte 0x0203E02C
-.L08053A08:
-    ldrh r2, [r7, #0x10]
-    movs r1, #0x20
-    movs r0, #0x20
-    ands r0, r2
-    cmp r0, #0
-    bne .L08053A1C
-    adds r0, r1, #0
-    orrs r0, r2
-    strh r0, [r7, #0x10]
-    b .L08053D06
-.L08053A1C:
-    ldr r1, .L08053A30 @ =0x02017758
-    ldr r0, [r1]
-    cmp r0, #1
-    beq .L08053A26
-    b .L08053D06
-.L08053A26:
-    movs r0, #0
-    str r0, [r1]
-    ldr r0, .L08053A34 @ =0x0000FFDF
-    ands r0, r2
-    b .L08053CFE
-    .align 2, 0
-.L08053A30: .4byte 0x02017758
-.L08053A34: .4byte 0x0000FFDF
-.L08053A38:
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    beq .L08053A44
-    b .L08053D06
-.L08053A44:
-    movs r0, #3
-    bl func_0804E804
-    b .L08053D06
-.L08053A4C:
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    beq .L08053A58
-    b .L08053D06
-.L08053A58:
-    movs r0, #0
-    bl func_0804E804
-    b .L08053D06
-.L08053A60:
-    ldrh r1, [r7, #0x10]
-    movs r0, #1
-    ands r0, r1
-    cmp r0, #0
-    bne .L08053A6C
-    b .L08053D06
-.L08053A6C:
-    ldr r0, .L08053A94 @ =0x0000FFFE
-    ands r0, r1
-    strh r0, [r7, #0x10]
-    ldr r0, [r7, #0x20]
-    adds r0, #4
-    str r0, [r7, #0x20]
-    ldr r0, .L08053A98 @ =0x0000F3FF
-    ldrh r1, [r7, #8]
-    ands r0, r1
-    movs r2, #0x80
-    lsls r2, r2, #3
-    adds r1, r2, #0
-    orrs r0, r1
-    strh r0, [r7, #8]
-    movs r0, #0x8c
-    strh r0, [r7, #0xa]
-    bl AnimSort
-    b .L08053D06
-    .align 2, 0
-.L08053A94: .4byte 0x0000FFFE
-.L08053A98: .4byte 0x0000F3FF
-.L08053A9C:
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    beq .L08053AA8
-    b .L08053D06
-.L08053AA8:
-    adds r0, r7, #0
-    bl func_080547A8
-    adds r2, r0, #0
-    cmp r2, #0
-    beq .L08053ADA
-    movs r0, #9
-    ldrh r3, [r2, #0x10]
-    orrs r0, r3
-    strh r0, [r2, #0x10]
-    adds r0, r7, #0
-    str r2, [sp]
-    bl func_08054804
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    mov r8, r0
-    bl func_0805468C
-    adds r1, r0, #0
-    ldr r2, [sp]
-    adds r0, r2, #0
-    bl func_08050140
-    ldr r2, [sp]
-.L08053ADA:
-    adds r0, r2, #0
-    str r2, [sp]
-    bl func_08067CC4
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    cmp r0, #2
-    bne .L08053AEC
-    b .L08053D06
-.L08053AEC:
-    adds r0, r7, #0
-    bl func_08054678
-    adds r1, r0, #0
-    ldrh r0, [r7, #0xe]
-    subs r0, #1
-    lsls r0, r0, #1
-    adds r0, r0, r1
-    bl func_08053314
-    movs r1, #0x80
-    lsls r1, r1, #5
-    ands r1, r0
-    ldr r2, [sp]
-    cmp r1, #0
-    beq .L08053B14
-    adds r0, r2, #0
-    bl func_080639C8
-    b .L08053D06
-.L08053B14:
-    adds r0, r7, #0
-    bl func_080626B4
-    b .L08053D06
-.L08053B1C:
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    beq .L08053B28
-    b .L08053D06
-.L08053B28:
-    adds r0, r7, #0
-    movs r1, #0
-    bl func_080627F8
-    b .L08053D06
-.L08053B32:
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    beq .L08053B3E
-    b .L08053D06
-.L08053B3E:
-    adds r0, r7, #0
-    movs r1, #1
-    bl func_080627F8
-    b .L08053D06
-.L08053B48:
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    beq .L08053B54
-    b .L08053D06
-.L08053B54:
-    adds r0, r7, #0
-    bl func_080629C8
-    b .L08053D06
-.L08053B5C:
-    adds r0, r7, #0
-    bl func_08054678
-    adds r1, r0, #0
-    ldrh r0, [r7, #0xe]
-    subs r0, #1
-    lsls r0, r0, #1
-    adds r0, r0, r1
-    bl func_08053314
-    movs r1, #0x80
-    lsls r1, r1, #5
-    ands r1, r0
-    cmp r1, #0
-    bne .L08053B7C
-    b .L08053D00
-.L08053B7C:
-    ldrh r1, [r7, #0x10]
-    movs r2, #0x20
-    movs r0, #0x20
-    ands r0, r1
-    cmp r0, #0
-    beq .L08053B8A
-    b .L08053CEE
-.L08053B8A:
-    adds r0, r2, #0
-    orrs r0, r1
-    strh r0, [r7, #0x10]
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    beq .L08053B9C
-    b .L08053D06
-.L08053B9C:
-    adds r0, r7, #0
-    movs r1, #0
-    bl func_08063B48
-    b .L08053D06
-.L08053BA6:
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    beq .L08053BB2
-    b .L08053D06
-.L08053BB2:
-    adds r0, r7, #0
-    movs r1, #0
-    bl func_08062C18
-    b .L08053D06
-.L08053BBC:
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    beq .L08053BC8
-    b .L08053D06
-.L08053BC8:
-    adds r0, r7, #0
-    movs r1, #1
-    bl func_08062C18
-    b .L08053D06
-.L08053BD2:
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    beq .L08053BDE
-    b .L08053D06
-.L08053BDE:
-    adds r0, r7, #0
-    movs r1, #0
-    bl func_08062DCC
-    b .L08053D06
-.L08053BE8:
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    beq .L08053BF4
-    b .L08053D06
-.L08053BF4:
-    adds r0, r7, #0
-    movs r1, #1
-    bl func_08062DCC
-    b .L08053D06
-.L08053BFE:
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    bne .L08053D06
-    adds r0, r7, #0
-    movs r1, #2
-    bl func_08062DCC
-    b .L08053D06
-.L08053C12:
-    ldrh r1, [r7, #0x10]
-    movs r2, #0x20
-    movs r0, #0x20
-    ands r0, r1
-    cmp r0, #0
-    bne .L08053CEE
-    adds r0, r2, #0
-    orrs r0, r1
-    strh r0, [r7, #0x10]
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    bne .L08053D06
-    adds r0, r7, #0
-    bl func_08063108
-    b .L08053D06
-.L08053C36:
-    ldrh r1, [r7, #0x10]
-    movs r2, #0x20
-    movs r0, #0x20
-    ands r0, r1
-    cmp r0, #0
-    beq .L08053C44
-    b .L080536A2
-.L08053C44:
-    adds r0, r2, #0
-    orrs r0, r1
-    strh r0, [r7, #0x10]
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    bne .L08053C5A
-    movs r0, #1
-    bl func_08050814
-.L08053C5A:
-    adds r0, r7, #0
-    bl func_08063C70
-    adds r0, r7, #0
-    bl func_08050820
-    b .L080536A2
-.L08053C68:
-    adds r0, r7, #0
-    bl func_080637D4
-    b .L08053D06
-.L08053C70:
-    adds r0, r7, #0
-    bl func_0806301C
-    b .L08053D06
-.L08053C78:
-    subs r0, r3, #1
-    adds r0, r2, r0
-    ldrb r1, [r0]
-    adds r0, r7, #0
-    bl func_080677A4
-    b .L08053D06
-.L08053C86:
-    ldrh r1, [r7, #0x10]
-    movs r2, #0x20
-    movs r0, #0x20
-    ands r0, r1
-    cmp r0, #0
-    bne .L08053CEE
-    adds r0, r2, #0
-    orrs r0, r1
-    strh r0, [r7, #0x10]
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    bne .L08053D06
-    adds r0, r7, #0
-    bl func_08063194
-    b .L08053D06
-.L08053CAA:
-    adds r0, r7, #0
-    bl func_08054678
-    adds r1, r0, #0
-    ldrh r0, [r7, #0xe]
-    subs r0, #1
-    lsls r0, r0, #1
-    adds r0, r0, r1
-    bl func_08053314
-    movs r1, #0x80
-    lsls r1, r1, #5
-    ands r1, r0
-    cmp r1, #0
-    beq .L08053D00
-    ldrh r1, [r7, #0x10]
-    movs r2, #0x20
-    movs r0, #0x20
-    ands r0, r1
-    cmp r0, #0
-    bne .L08053CEE
-    adds r0, r2, #0
-    orrs r0, r1
-    strh r0, [r7, #0x10]
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    bne .L08053D06
-    adds r0, r7, #0
-    movs r1, #1
-    bl func_08063B48
-    b .L08053D06
-.L08053CEE:
-    movs r0, #0x40
-    ands r0, r1
-    cmp r0, #0
-    beq .L08053D06
-    ldr r0, .L08053D10 @ =0x0000FFDF
-    ands r0, r1
-    ldr r1, .L08053D14 @ =0x0000FFBF
-.L08053CFC:
-    ands r0, r1
-.L08053CFE:
-    strh r0, [r7, #0x10]
-.L08053D00:
-    ldr r0, [r7, #0x20]
-    adds r0, #4
-.L08053D04:
-    str r0, [r7, #0x20]
-.L08053D06:
-    ldrb r0, [r7, #0x14]
-    subs r0, #1
-    strb r0, [r7, #0x14]
-    bl .L08053498
-    .align 2, 0
-.L08053D10: .4byte 0x0000FFDF
-.L08053D14: .4byte 0x0000FFBF
-.L08053D18:
-    movs r0, #0xe7
-    lsls r0, r0, #8
-    ldrh r1, [r7, #0xc]
-    ands r0, r1
-    strh r0, [r7, #0xc]
-    movs r0, #0x80
-    lsls r0, r0, #6
-    mov r2, r8
-    ands r0, r2
-    cmp r0, #0
-    beq .L08053D88
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    bne .L08053D7E
-    ldr r4, .L08053DD8 @ =0x0203E0B0
-    adds r0, r7, #0
-    bl func_08054678
-    lsls r0, r0, #2
-    adds r0, r0, r4
-    ldr r0, [r0]
-    cmp r0, #0
-    bne .L08053D7E
-    movs r0, #0x80
-    lsls r0, r0, #7
-    ldrh r3, [r7, #0x10]
-    ands r0, r3
-    cmp r0, #0
-    bne .L08053D7E
-    ldr r4, .L08053DDC @ =0x0201FB10
-    adds r0, r7, #0
-    bl func_08054678
-    lsls r0, r0, #2
-    adds r0, r0, r4
-    ldr r1, [r0]
-    ldr r0, [r7, #0x28]
-    cmp r1, r0
-    beq .L08053D7E
-    adds r0, r7, #0
-    bl func_08053F7C
-    adds r0, r7, #0
-    bl func_08054678
-    lsls r0, r0, #2
-    adds r0, r0, r4
-    ldr r1, [r7, #0x28]
-    str r1, [r0]
-.L08053D7E:
-    movs r0, #0xd7
-    lsls r0, r0, #8
-    ldrh r1, [r7, #0xc]
-    ands r0, r1
-    strh r0, [r7, #0xc]
-.L08053D88:
-    movs r0, #0x80
-    lsls r0, r0, #7
-    mov r2, r8
-    ands r2, r0
-    cmp r2, #0
-    bne .L08053D9E
-    ldr r0, .L08053DE0 @ =0x02000024
-    ldr r0, [r0]
-    cmp r0, #1
-    beq .L08053D9E
-    b .L08053EEA
-.L08053D9E:
-    ldrh r1, [r7, #0x10]
-    movs r0, #2
-    ands r0, r1
-    cmp r0, #0
-    beq .L08053E24
-    adds r0, r7, #0
-    bl func_080547E4
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    mov r8, r0
-    movs r0, #1
-    rsbs r0, r0, #0
-    cmp r8, r0
-    beq .L08053DEC
-    ldr r6, .L08053DE4 @ =0x02000000
-    adds r0, r7, #0
-    bl func_08054678
-    lsls r0, r0, #3
-    adds r0, r0, r6
-    ldr r2, [r0]
-    adds r0, r2, #0
-    mov r1, r8
-    str r2, [sp]
-    bl func_08054594
-    ldr r4, .L08053DE8 @ =0x0000FFFD
-    b .L08053E5C
-    .align 2, 0
-.L08053DD8: .4byte 0x0203E0B0
-.L08053DDC: .4byte 0x0201FB10
-.L08053DE0: .4byte 0x02000024
-.L08053DE4: .4byte 0x02000000
-.L08053DE8: .4byte 0x0000FFFD
-.L08053DEC:
-    ldr r5, .L08053E1C @ =0x02000000
-    adds r0, r7, #0
-    bl func_08054678
-    lsls r0, r0, #3
-    adds r0, r0, r5
-    ldr r2, [r0]
-    ldr r4, .L08053E20 @ =0x0000FFFD
-    adds r0, r4, #0
-    ldrh r1, [r2, #0x10]
-    ands r0, r1
-    strh r0, [r2, #0x10]
-    adds r0, r7, #0
-    bl func_08054678
-    lsls r0, r0, #1
-    adds r0, #1
-    lsls r0, r0, #2
-    adds r0, r0, r5
-    ldr r6, [r0]
-    ldrh r2, [r6, #0x10]
-    ands r4, r2
-    strh r4, [r6, #0x10]
-    b .L08053EEA
-    .align 2, 0
-.L08053E1C: .4byte 0x02000000
-.L08053E20: .4byte 0x0000FFFD
-.L08053E24:
-    movs r0, #0x80
-    lsls r0, r0, #8
-    ands r0, r1
-    cmp r0, #0
-    beq .L08053EB0
-    adds r0, r7, #0
-    bl func_080547E4
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    mov r8, r0
-    movs r0, #1
-    rsbs r0, r0, #0
-    cmp r8, r0
-    beq .L08053EEA
-    ldr r6, .L08053EA8 @ =0x02000000
-    adds r0, r7, #0
-    bl func_08054678
-    lsls r0, r0, #3
-    adds r0, r0, r6
-    ldr r2, [r0]
-    adds r0, r2, #0
-    mov r1, r8
-    str r2, [sp]
-    bl func_08054594
-    ldr r4, .L08053EAC @ =0x00007FFF
-.L08053E5C:
-    adds r0, r4, #0
-    ldr r2, [sp]
-    ldrh r3, [r2, #0x10]
-    ands r0, r3
-    movs r5, #4
-    orrs r0, r5
-    strh r0, [r2, #0x10]
-    adds r0, r7, #0
-    str r2, [sp]
-    bl func_08054678
-    lsls r0, r0, #1
-    adds r0, #1
-    lsls r0, r0, #2
-    adds r0, r0, r6
-    ldr r6, [r0]
-    adds r0, r6, #0
-    mov r1, r8
-    bl func_08054594
-    ldrh r0, [r6, #0x10]
-    ands r4, r0
-    orrs r4, r5
-    strh r4, [r6, #0x10]
-    ldr r2, [sp]
-    ldrh r0, [r2, #0xe]
-    adds r0, #1
-    strh r0, [r2, #0xe]
-    ldrh r0, [r6, #0xe]
-    adds r0, #1
-    strh r0, [r6, #0xe]
-    adds r0, r2, #0
-    bl func_08053F08
-    adds r0, r6, #0
-    bl func_08053F08
-    b .L08053EEA
-    .align 2, 0
-.L08053EA8: .4byte 0x02000000
-.L08053EAC: .4byte 0x00007FFF
-.L08053EB0:
-    adds r0, r7, #0
-    bl func_08054664
-    cmp r0, #0
-    bne .L08053EEA
-    adds r0, r7, #0
-    bl func_08054678
-    adds r1, r0, #0
-    ldrh r2, [r7, #0xe]
-    lsls r0, r2, #1
-    adds r0, r0, r1
-    bl func_080532EC
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    mov r8, r0
-    movs r0, #1
-    rsbs r0, r0, #0
-    cmp r8, r0
-    bne .L08053EEA
-    adds r0, r7, #0
-    bl func_08054678
-    ldr r1, .L08053F04 @ =0x0201FAF8
-    lsls r0, r0, #2
-    adds r0, r0, r1
-    movs r1, #1
-    str r1, [r0]
-.L08053EEA:
-    mov r2, sb
-    cmp r2, #3
-    bhi .L08053EF4
-    bl func_08053460
-.L08053EF4:
-    add sp, #4
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08053F04: .4byte 0x0201FAF8
-    func_end func_08053460
-
-    thumb_func_start func_08053F08
-func_08053F08: @ 0x08053F08
+    thumb_func_start AnimScrAdvance
+AnimScrAdvance: @ 0x08053F08
     push {r4, lr}
     adds r4, r0, #0
     ldrb r0, [r4, #0x12]
@@ -1283,10 +37,10 @@ func_08053F08: @ 0x08053F08
     pop {r4}
     pop {r0}
     bx r0
-    func_end func_08053F08
+    func_end AnimScrAdvance
 
-    thumb_func_start func_08053F4C
-func_08053F4C: @ 0x08053F4C
+    thumb_func_start NewEkrChienCHR
+NewEkrChienCHR: @ 0x08053F4C
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, .L08053F60 @ =0x08B9B2C4
@@ -1298,14 +52,14 @@ func_08053F4C: @ 0x08053F4C
     bx r0
     .align 2, 0
 .L08053F60: .4byte 0x08B9B2C4
-    func_end func_08053F4C
+    func_end NewEkrChienCHR
 
     thumb_func_start func_08053F64
 func_08053F64: @ 0x08053F64
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_08053F7C
+    bl RegisterAISSheetGraphics
     adds r0, r4, #0
     bl Proc_Break
     pop {r4}
@@ -1313,8 +67,8 @@ func_08053F64: @ 0x08053F64
     bx r0
     func_end func_08053F64
 
-    thumb_func_start func_08053F7C
-func_08053F7C: @ 0x08053F7C
+    thumb_func_start RegisterAISSheetGraphics
+RegisterAISSheetGraphics: @ 0x08053F7C
     push {r4, r5, lr}
     adds r5, r0, #0
     ldr r4, .L08053FA8 @ =0x000003FF
@@ -1337,7 +91,7 @@ func_08053F7C: @ 0x08053F7C
     .align 2, 0
 .L08053FA8: .4byte 0x000003FF
 .L08053FAC: .4byte 0x06010000
-    func_end func_08053F7C
+    func_end RegisterAISSheetGraphics
 
     thumb_func_start func_08053FB0
 func_08053FB0: @ 0x08053FB0
@@ -2056,12 +810,12 @@ func_08054474: @ 0x08054474
 .L08054590: .4byte 0x02000000
     func_end func_08054474
 
-    thumb_func_start func_08054594
-func_08054594: @ 0x08054594
+    thumb_func_start SwitchAISFrameDataFromBARoundType
+SwitchAISFrameDataFromBARoundType: @ 0x08054594
     push {r4, r5, r6, r7, lr}
     adds r4, r0, #0
     adds r6, r1, #0
-    bl func_08054664
+    bl GetAISLayerId
     cmp r0, #0
     bne .L080545B4
     ldr r0, .L080545B0 @ =0x081D856C
@@ -2086,7 +840,7 @@ func_08054594: @ 0x08054594
     cmp r5, #0xff
     beq .L08054608
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080545EC
     ldr r0, .L080545E4 @ =0x0200005C
@@ -2142,7 +896,7 @@ func_08054594: @ 0x08054594
     strb r6, [r4, #0x12]
     strb r3, [r4, #0x14]
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r1, r0, #1
     adds r1, r1, r0
     lsls r1, r1, #2
@@ -2159,10 +913,10 @@ func_08054594: @ 0x08054594
 .L08054658: .4byte 0x08B9B28C
 .L0805465C: .4byte 0x0000F3FF
 .L08054660: .4byte 0x020041C8
-    func_end func_08054594
+    func_end SwitchAISFrameDataFromBARoundType
 
-    thumb_func_start func_08054664
-func_08054664: @ 0x08054664
+    thumb_func_start GetAISLayerId
+GetAISLayerId: @ 0x08054664
     movs r1, #0x80
     lsls r1, r1, #1
     ldrh r0, [r0, #0xc]
@@ -2175,10 +929,10 @@ func_08054664: @ 0x08054664
     movs r0, #0
 .L08054676:
     bx lr
-    func_end func_08054664
+    func_end GetAISLayerId
 
-    thumb_func_start func_08054678
-func_08054678: @ 0x08054678
+    thumb_func_start GetAnimPosition
+GetAnimPosition: @ 0x08054678
     movs r1, #0x80
     lsls r1, r1, #2
     ldrh r0, [r0, #0xc]
@@ -2191,10 +945,10 @@ func_08054678: @ 0x08054678
     movs r0, #0
 .L0805468A:
     bx lr
-    func_end func_08054678
+    func_end GetAnimPosition
 
-    thumb_func_start func_0805468C
-func_0805468C: @ 0x0805468C
+    thumb_func_start CheckRoundMiss
+CheckRoundMiss: @ 0x0805468C
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     cmp r0, #9
@@ -2224,7 +978,7 @@ func_0805468C: @ 0x0805468C
     movs r0, #0
 .L080546D2:
     bx lr
-    func_end func_0805468C
+    func_end CheckRoundMiss
 
     thumb_func_start func_080546D4
 func_080546D4: @ 0x080546D4
@@ -2324,11 +1078,11 @@ func_08054764: @ 0x08054764
     bx lr
     func_end func_08054764
 
-    thumb_func_start func_080547A8
-func_080547A8: @ 0x080547A8
+    thumb_func_start GetAnimAnotherSide
+GetAnimAnotherSide: @ 0x080547A8
     push {r4, lr}
     ldr r4, .L080547C0 @ =0x02000000
-    bl func_08054678
+    bl GetAnimPosition
     movs r1, #1
     eors r1, r0
     lsls r1, r1, #3
@@ -2339,19 +1093,19 @@ func_080547A8: @ 0x080547A8
     bx r1
     .align 2, 0
 .L080547C0: .4byte 0x02000000
-    func_end func_080547A8
+    func_end GetAnimAnotherSide
 
     thumb_func_start func_080547C4
 func_080547C4: @ 0x080547C4
     push {r4, lr}
     adds r4, r0, #0
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     ldrh r0, [r4, #0xe]
     subs r0, #1
     lsls r0, r0, #1
     adds r0, r0, r1
-    bl func_080532EC
+    bl GetBattleAnimRoundType
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     pop {r4}
@@ -2359,28 +1113,28 @@ func_080547C4: @ 0x080547C4
     bx r1
     func_end func_080547C4
 
-    thumb_func_start func_080547E4
-func_080547E4: @ 0x080547E4
+    thumb_func_start GetAnimNextRoundType
+GetAnimNextRoundType: @ 0x080547E4
     push {r4, lr}
     adds r4, r0, #0
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     ldrh r4, [r4, #0xe]
     lsls r0, r4, #1
     adds r0, r0, r1
-    bl func_080532EC
+    bl GetBattleAnimRoundType
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     pop {r4}
     pop {r1}
     bx r1
-    func_end func_080547E4
+    func_end GetAnimNextRoundType
 
-    thumb_func_start func_08054804
-func_08054804: @ 0x08054804
+    thumb_func_start GetAnimRoundTypeAnotherSide
+GetAnimRoundTypeAnotherSide: @ 0x08054804
     push {r4, lr}
     adds r4, r0, #0
-    bl func_08054678
+    bl GetAnimPosition
     adds r2, r0, #0
     ldrh r0, [r4, #0xe]
     subs r0, #1
@@ -2388,32 +1142,32 @@ func_08054804: @ 0x08054804
     movs r1, #1
     eors r1, r2
     adds r0, r0, r1
-    bl func_080532EC
+    bl GetBattleAnimRoundType
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     pop {r4}
     pop {r1}
     bx r1
-    func_end func_08054804
+    func_end GetAnimRoundTypeAnotherSide
 
-    thumb_func_start func_08054828
-func_08054828: @ 0x08054828
+    thumb_func_start GetAnimNextRoundTypeAnotherSide
+GetAnimNextRoundTypeAnotherSide: @ 0x08054828
     push {r4, lr}
     adds r4, r0, #0
-    bl func_08054678
+    bl GetAnimPosition
     adds r2, r0, #0
     ldrh r4, [r4, #0xe]
     lsls r0, r4, #1
     movs r1, #1
     eors r1, r2
     adds r0, r0, r1
-    bl func_080532EC
+    bl GetBattleAnimRoundType
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     pop {r4}
     pop {r1}
     bx r1
-    func_end func_08054828
+    func_end GetAnimNextRoundTypeAnotherSide
 
     thumb_func_start func_0805484C
 func_0805484C: @ 0x0805484C
@@ -2591,7 +1345,7 @@ func_080548CC: @ 0x080548CC
     b .L08054A0E
 .L080549E8:
     adds r0, r4, #0
-    bl func_08054664
+    bl GetAISLayerId
     cmp r0, #0
     bne .L080549F8
     adds r0, r4, #0
@@ -2626,7 +1380,7 @@ func_080548CC: @ 0x080548CC
     cmp r0, #0
     beq .L08054A50
     adds r0, r4, #0
-    bl func_08054664
+    bl GetAISLayerId
     cmp r0, #0
     bne .L08054A46
     ldr r1, [r6, #0x2c]
@@ -2634,7 +1388,7 @@ func_080548CC: @ 0x080548CC
     cmp r1, r0
     beq .L08054A46
     adds r0, r4, #0
-    bl func_08053F7C
+    bl RegisterAISSheetGraphics
     ldr r0, [r4, #0x28]
     str r0, [r6, #0x2c]
 .L08054A46:
@@ -2686,7 +1440,7 @@ func_08054A8C: @ 0x08054A8C
     push {r4, r5, r6, r7, lr}
     adds r7, r0, #0
     ldr r6, [r7, #0x44]
-    bl func_08054664
+    bl GetAISLayerId
     cmp r0, #0
     bne .L08054ADE
     ldr r3, .L08054AE4 @ =0x081D856C
@@ -2719,7 +1473,7 @@ func_08054A8C: @ 0x08054A8C
     cmp r1, r0
     beq .L08054ADE
     adds r0, r7, #0
-    bl func_08053F4C
+    bl NewEkrChienCHR
     ldr r0, [r7, #0x28]
     str r0, [r6, #0x2c]
 .L08054ADE:
@@ -4484,12 +3238,12 @@ func_08055850: @ 0x08055850
 .L08055884: .4byte 0x02022920
     func_end func_08055850
 
-    thumb_func_start func_08055888
-func_08055888: @ 0x08055888
+    thumb_func_start StartSpellAnimation
+StartSpellAnimation: @ 0x08055888
     push {r4, r5, lr}
     adds r5, r0, #0
     ldr r4, .L080558B0 @ =0x0203E024
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     ldr r1, .L080558B4 @ =0x08BA13D0
@@ -4506,7 +3260,7 @@ func_08055888: @ 0x08055888
     .align 2, 0
 .L080558B0: .4byte 0x0203E024
 .L080558B4: .4byte 0x08BA13D0
-    func_end func_08055888
+    func_end StartSpellAnimation
 
     thumb_func_start func_080558B8
 func_080558B8: @ 0x080558B8
@@ -4802,8 +3556,8 @@ func_08055A9C: @ 0x08055A9C
     str r5, [r7, #0x54]
     str r6, [r7, #0x58]
     mov r0, r8
-    bl func_080547A8
-    bl func_08054678
+    bl GetAnimAnotherSide
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08055AF0
     ldr r0, .L08055AEC @ =0x0000FFB8
@@ -4822,7 +3576,7 @@ func_08055A9C: @ 0x08055A9C
     cmp r0, #0
     beq .L08055B1E
     mov r0, r8
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08055B18
     ldrh r0, [r7, #0x32]
@@ -5556,7 +4310,7 @@ func_08056054: @ 0x08056054
     mov r0, sl
     str r0, [r4, #0x54]
     mov r0, r8
-    bl func_080547A8
+    bl GetAnimAnotherSide
     strh r5, [r4, #0x32]
     strh r6, [r4, #0x3a]
     pop {r3, r4, r5}
@@ -5993,7 +4747,7 @@ func_08056404: @ 0x08056404
     push {r4, r5, r6, lr}
     adds r5, r0, #0
     ldr r0, [r5, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r4, r0, #0
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -6012,7 +4766,7 @@ func_08056404: @ 0x08056404
     cmp r0, #0xa
     bne .L08056452
     adds r0, r4, #0
-    bl func_080547E4
+    bl GetAnimNextRoundType
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     movs r1, #1
@@ -6047,10 +4801,10 @@ func_08056458: @ 0x08056458
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -6065,7 +4819,7 @@ func_08056490: @ 0x08056490
     push {r4, r5, r6, lr}
     adds r5, r0, #0
     ldr r0, [r5, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r6, r0, #0
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -6091,7 +4845,7 @@ func_08056490: @ 0x08056490
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r6, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     adds r0, r6, #0
     bl func_08067CC4
     lsls r0, r0, #0x10
@@ -6103,14 +4857,14 @@ func_08056490: @ 0x08056490
     cmp r0, #1
     bne .L080564F4
     adds r0, r6, #0
-    bl func_08062580
+    bl NewEfxPierceCritical
     b .L08056500
 .L080564F4:
     ldrb r0, [r4]
     cmp r0, #0
     bne .L08056524
     ldr r0, [r5, #0x5c]
-    bl func_080626B4
+    bl NewEfxNormalEffect
 .L08056500:
     ldrb r0, [r4]
     cmp r0, #0
@@ -6160,7 +4914,7 @@ func_0805652C: @ 0x0805652C
     adds r5, r0, #0
     str r5, [r6, #0x60]
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08056588
     ldrh r0, [r5, #2]
@@ -6300,7 +5054,7 @@ func_08056650: @ 0x08056650
     adds r5, r0, #0
     str r5, [r6, #0x60]
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080566A0
     ldrh r0, [r5, #2]
@@ -6468,10 +5222,10 @@ func_080567B0: @ 0x080567B0
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -6486,7 +5240,7 @@ func_080567E8: @ 0x080567E8
     push {r4, r5, r6, lr}
     adds r5, r0, #0
     ldr r0, [r5, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r6, r0, #0
     bl func_08050778
     adds r4, r0, #0
@@ -6522,7 +5276,7 @@ func_080567E8: @ 0x080567E8
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r6, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     adds r0, r6, #0
     bl func_08067CC4
     lsls r0, r0, #0x10
@@ -6534,14 +5288,14 @@ func_080567E8: @ 0x080567E8
     cmp r0, #1
     bne .L08056864
     adds r0, r6, #0
-    bl func_08062580
+    bl NewEfxPierceCritical
     b .L08056870
 .L08056864:
     ldrb r0, [r4]
     cmp r0, #0
     bne .L0805689A
     ldr r0, [r5, #0x5c]
-    bl func_080626B4
+    bl NewEfxNormalEffect
 .L08056870:
     ldrb r0, [r4]
     cmp r0, #0
@@ -6654,10 +5408,10 @@ func_08056938: @ 0x08056938
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     adds r0, r5, #0
@@ -6693,10 +5447,10 @@ func_08056994: @ 0x08056994
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     adds r0, r5, #0
@@ -6732,10 +5486,10 @@ func_080569F0: @ 0x080569F0
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     adds r0, r5, #0
@@ -6771,10 +5525,10 @@ func_08056A4C: @ 0x08056A4C
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     adds r0, r5, #0
@@ -6810,10 +5564,10 @@ func_08056AA8: @ 0x08056AA8
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     adds r0, r5, #0
@@ -6849,10 +5603,10 @@ func_08056B04: @ 0x08056B04
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     adds r0, r5, #0
@@ -6888,10 +5642,10 @@ func_08056B60: @ 0x08056B60
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     adds r0, r5, #0
@@ -6927,10 +5681,10 @@ func_08056BBC: @ 0x08056BBC
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     adds r0, r5, #0
@@ -6966,10 +5720,10 @@ func_08056C18: @ 0x08056C18
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     adds r0, r5, #0
@@ -7005,10 +5759,10 @@ func_08056C74: @ 0x08056C74
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     adds r0, r5, #0
@@ -7044,10 +5798,10 @@ func_08056CD0: @ 0x08056CD0
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     adds r0, r5, #0
@@ -7096,7 +5850,7 @@ func_08056D2C: @ 0x08056D2C
     cmp r0, #1
     bne .L08056DB6
     ldr r0, [r5, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r6, r0, #0
     movs r0, #9
     ldrh r1, [r6, #0x10]
@@ -7106,7 +5860,7 @@ func_08056D2C: @ 0x08056D2C
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r6, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     adds r0, r6, #0
     bl func_08067CC4
     lsls r0, r0, #0x10
@@ -7118,14 +5872,14 @@ func_08056D2C: @ 0x08056D2C
     cmp r0, #1
     bne .L08056D9C
     adds r0, r6, #0
-    bl func_08062580
+    bl NewEfxPierceCritical
     b .L08056DA8
 .L08056D9C:
     ldrb r0, [r4]
     cmp r0, #0
     bne .L08056DCC
     ldr r0, [r5, #0x5c]
-    bl func_080626B4
+    bl NewEfxNormalEffect
 .L08056DA8:
     ldrb r0, [r4]
     cmp r0, #0
@@ -7187,7 +5941,7 @@ func_08056DD4: @ 0x08056DD4
     adds r4, r0, #0
     str r4, [r5, #0x60]
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08056E3C
     ldrh r0, [r4, #2]
@@ -7248,10 +6002,10 @@ func_08056E7C: @ 0x08056E7C
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -7267,7 +6021,7 @@ func_08056EB4: @ 0x08056EB4
     sub sp, #8
     adds r5, r0, #0
     ldr r0, [r5, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r4, r0, #0
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -7344,7 +6098,7 @@ func_08056EB4: @ 0x08056EB4
     adds r0, r4, #0
     bl func_080503E0
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08056F88
     ldr r0, .L08056F80 @ =0x02000054
@@ -7583,10 +6337,10 @@ func_0805713C: @ 0x0805713C
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -7602,7 +6356,7 @@ func_08057174: @ 0x08057174
     sub sp, #8
     adds r5, r0, #0
     ldr r0, [r5, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r4, r0, #0
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -7679,7 +6433,7 @@ func_08057174: @ 0x08057174
     adds r0, r4, #0
     bl func_080503E0
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08057248
     ldr r0, .L08057240 @ =0x02000054
@@ -7736,10 +6490,10 @@ func_08057284: @ 0x08057284
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r1, r4, #0
     adds r1, #0x29
     strb r0, [r1]
@@ -7764,7 +6518,7 @@ func_080572D4: @ 0x080572D4
     push {r4, r5, r6, lr}
     adds r5, r0, #0
     ldr r0, [r5, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r6, r0, #0
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -7811,7 +6565,7 @@ func_080572D4: @ 0x080572D4
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r6, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     adds r0, r6, #0
     bl func_08067CC4
     lsls r0, r0, #0x10
@@ -7823,14 +6577,14 @@ func_080572D4: @ 0x080572D4
     cmp r0, #1
     bne .L08057360
     adds r0, r6, #0
-    bl func_08062580
+    bl NewEfxPierceCritical
     b .L0805736C
 .L08057360:
     ldrb r0, [r4]
     cmp r0, #0
     bne .L0805738C
     ldr r0, [r5, #0x5c]
-    bl func_080626B4
+    bl NewEfxNormalEffect
 .L0805736C:
     ldrb r0, [r4]
     cmp r0, #0
@@ -7886,7 +6640,7 @@ func_08057394: @ 0x08057394
     ands r0, r1
     strh r0, [r6, #8]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #1
     bne .L080573F8
     movs r1, #0xe4
@@ -7953,10 +6707,10 @@ func_0805743C: @ 0x0805743C
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -7971,7 +6725,7 @@ func_08057478: @ 0x08057478
     push {r4, r5, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -8018,7 +6772,7 @@ func_08057478: @ 0x08057478
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L0805750E
@@ -8070,7 +6824,7 @@ func_08057514: @ 0x08057514
     adds r1, r5, #0
     bl LZ77UnComp8bit
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08057590
     ldr r1, .L0805758C @ =gBg1Tm
@@ -8171,7 +6925,7 @@ func_08057608: @ 0x08057608
     strh r0, [r6, #0x2c]
     strh r5, [r6, #0x2e]
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08057640
     movs r0, #0xd8
@@ -8208,7 +6962,7 @@ func_0805764C: @ 0x0805764C
     ldr r4, .L08057684 @ =gDispIo
     strh r0, [r4, #0x20]
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08057688
     ldrh r4, [r4, #0x20]
@@ -8369,10 +7123,10 @@ func_0805779C: @ 0x0805779C
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -8388,7 +7142,7 @@ func_080577D8: @ 0x080577D8
     sub sp, #8
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r6, r0, #0
@@ -8429,7 +7183,7 @@ func_080577D8: @ 0x080577D8
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L0805788A
@@ -8489,7 +7243,7 @@ func_08057894: @ 0x08057894
     movs r0, #0x34
     strh r0, [r4, #0x2e]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     ldr r3, .L080578F4 @ =0x08BA7F18
     cmp r0, #0
     bne .L080578C4
@@ -8563,10 +7317,10 @@ func_08057938: @ 0x08057938
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -8582,7 +7336,7 @@ func_08057970: @ 0x08057970
     sub sp, #8
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -8638,7 +7392,7 @@ func_08057970: @ 0x08057970
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L08057A16
@@ -8677,7 +7431,7 @@ func_08057A20: @ 0x08057A20
     movs r0, #0x34
     strh r0, [r5, #0x2e]
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     ldr r3, .L08057A84 @ =0x08BAA2A8
     cmp r0, #0
     bne .L08057A50
@@ -8696,7 +7450,7 @@ func_08057A20: @ 0x08057A20
     cmp r0, #0
     bne .L08057A96
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08057A90
     ldrh r0, [r4, #2]
@@ -8714,7 +7468,7 @@ func_08057A20: @ 0x08057A20
     b .L08057AAA
 .L08057A96:
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08057AA6
     ldrh r0, [r4, #2]
@@ -8751,7 +7505,7 @@ func_08057AD0: @ 0x08057AD0
     cmp r0, #0
     beq .L08057B02
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08057AF8
     ldr r0, [r4, #0x60]
@@ -8950,10 +7704,10 @@ func_08057C54: @ 0x08057C54
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -8968,7 +7722,7 @@ func_08057C90: @ 0x08057C90
     push {r4, r5, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -9003,7 +7757,7 @@ func_08057C90: @ 0x08057C90
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L08057D0A
@@ -9048,7 +7802,7 @@ func_08057D10: @ 0x08057D10
     adds r6, r0, #0
     str r6, [r5, #0x60]
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08057D5C
     ldrh r0, [r6, #2]
@@ -9109,10 +7863,10 @@ func_08057D9C: @ 0x08057D9C
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -9127,7 +7881,7 @@ func_08057DD4: @ 0x08057DD4
     push {r4, r5, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -9165,7 +7919,7 @@ func_08057DD4: @ 0x08057DD4
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L08057E5A
@@ -9363,7 +8117,7 @@ func_08057F90: @ 0x08057F90
     adds r6, r0, #0
     str r6, [r4, #0x60]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08057FE0
     ldrh r0, [r6, #2]
@@ -9440,10 +8194,10 @@ func_08058044: @ 0x08058044
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -9458,7 +8212,7 @@ func_08058080: @ 0x08058080
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r6, r0, #0
@@ -9497,7 +8251,7 @@ func_08058080: @ 0x08058080
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     movs r1, #0x80
     lsls r1, r1, #1
     movs r0, #2
@@ -9562,7 +8316,7 @@ func_08058120: @ 0x08058120
     cmp r0, #0
     beq .L0805819E
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08058194
     movs r0, #1
@@ -9811,10 +8565,10 @@ func_08058340: @ 0x08058340
     adds r0, #0x2a
     strb r1, [r0]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -9843,10 +8597,10 @@ func_08058384: @ 0x08058384
     movs r0, #1
     strb r0, [r1]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -9864,7 +8618,7 @@ func_080583C8: @ 0x080583C8
     push {r6, r7}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r6, r0, #0
     ldr r0, .L080583F4 @ =0x0203E02C
     movs r1, #0
@@ -9928,7 +8682,7 @@ func_080583C8: @ 0x080583C8
     adds r5, #0x29
     ldrb r1, [r5]
     adds r0, r6, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r5]
     cmp r0, #0
     bne .L080584C4
@@ -10095,7 +8849,7 @@ func_08058588: @ 0x08058588
     adds r5, r0, #0
     str r5, [r4, #0x60]
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080585E4
     ldrh r0, [r6, #2]
@@ -10204,7 +8958,7 @@ func_0805865C: @ 0x0805865C
     cmp r0, #0
     beq .L080586DA
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080586D0
     movs r0, #1
@@ -10313,7 +9067,7 @@ func_08058744: @ 0x08058744
     cmp r0, #0
     beq .L080587D0
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080587B4
     movs r0, #1
@@ -10472,7 +9226,7 @@ func_0805889C: @ 0x0805889C
     adds r6, r0, #0
     str r6, [r4, #0x60]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080588EC
     ldrh r0, [r6, #2]
@@ -10551,10 +9305,10 @@ func_08058950: @ 0x08058950
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -10572,7 +9326,7 @@ func_0805898C: @ 0x0805898C
     sub sp, #8
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r6, r0, #0
@@ -10684,7 +9438,7 @@ func_0805898C: @ 0x0805898C
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L08058AB8
@@ -10744,7 +9498,7 @@ func_08058AC4: @ 0x08058AC4
     cmp r0, #0
     beq .L08058B3E
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08058B34
     movs r0, #1
@@ -10854,7 +9608,7 @@ func_08058BAC: @ 0x08058BAC
     cmp r0, #0
     beq .L08058C26
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08058C1C
     movs r0, #1
@@ -11335,10 +10089,10 @@ func_08058FB4: @ 0x08058FB4
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -11353,7 +10107,7 @@ func_08058FF0: @ 0x08058FF0
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r6, r0, #0
@@ -11412,7 +10166,7 @@ func_08058FF0: @ 0x08058FF0
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L080590A8
@@ -11887,10 +10641,10 @@ func_0805940C: @ 0x0805940C
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -11905,7 +10659,7 @@ func_08059448: @ 0x08059448
     push {r4, r5, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r2, r0, #0
@@ -11993,7 +10747,7 @@ func_08059448: @ 0x08059448
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L08059532
@@ -12048,7 +10802,7 @@ func_08059538: @ 0x08059538
     cmp r0, #0
     beq .L080595B6
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080595AC
     movs r0, #1
@@ -12071,7 +10825,7 @@ func_08059538: @ 0x08059538
     bl SetBgOffset
 .L080595B6:
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080595CC
     ldr r0, .L080595C8 @ =gDispIo
@@ -12150,7 +10904,7 @@ func_080595E8: @ 0x080595E8
     cmp r0, #0
     beq .L08059692
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08059688
     movs r0, #1
@@ -12243,7 +10997,7 @@ func_080596FC: @ 0x080596FC
     adds r4, r0, #0
     str r5, [r4, #0x5c]
     adds r0, r5, #0
-    bl func_080547A8
+    bl GetAnimAnotherSide
     ldr r3, .L0805973C @ =0x08BA14DC
     ldr r0, [r4, #0x5c]
     str r3, [sp]
@@ -12276,7 +11030,7 @@ func_08059740: @ 0x08059740
     adds r4, r0, #0
     str r5, [r4, #0x5c]
     adds r0, r5, #0
-    bl func_080547A8
+    bl GetAnimAnotherSide
     ldr r3, .L08059788 @ =0x08BA14DC
     ldr r0, [r4, #0x5c]
     str r3, [sp]
@@ -12459,10 +11213,10 @@ func_080598A8: @ 0x080598A8
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -12480,7 +11234,7 @@ func_080598E4: @ 0x080598E4
     sub sp, #8
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r6, r0, #0
     bl func_08050778
     adds r5, r0, #0
@@ -12666,7 +11420,7 @@ func_08059A28: @ 0x08059A28
     cmp r0, #0
     beq .L08059AAE
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08059AA4
     movs r0, #1
@@ -12737,7 +11491,7 @@ func_08059AB4: @ 0x08059AB4
     cmp r0, #0
     beq .L08059B4E
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08059B44
     movs r0, #1
@@ -12910,7 +11664,7 @@ func_08059C74: @ 0x08059C74
     push {r4, r5, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -12926,7 +11680,7 @@ func_08059C74: @ 0x08059C74
     cmp r0, #0
     beq .L08059CBE
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08059CB4
     movs r0, #1
@@ -13141,10 +11895,10 @@ func_08059E24: @ 0x08059E24
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -13159,7 +11913,7 @@ func_08059E60: @ 0x08059E60
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r6, r0, #0
@@ -13213,7 +11967,7 @@ func_08059E60: @ 0x08059E60
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L08059F10
@@ -13272,7 +12026,7 @@ func_08059F18: @ 0x08059F18
     cmp r0, #0
     beq .L08059F92
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08059F88
     movs r0, #1
@@ -13342,7 +12096,7 @@ func_08059F98: @ 0x08059F98
     cmp r0, #0
     beq .L0805A03E
     ldr r0, [r7, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     cmp r1, #0
     bne .L0805A008
@@ -13402,10 +12156,10 @@ func_0805A050: @ 0x0805A050
     movs r6, #0
     strh r6, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     ldr r0, .L0805A090 @ =0x02020038
@@ -13457,7 +12211,7 @@ func_0805A0D0: @ 0x0805A0D0
     sub sp, #8
     adds r6, r0, #0
     ldr r0, [r6, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r4, r0, #0
@@ -13551,7 +12305,7 @@ func_0805A0D0: @ 0x0805A0D0
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldr r0, .L0805A1C4 @ =0x00000101
     movs r1, #0x80
     lsls r1, r1, #1
@@ -13853,10 +12607,10 @@ func_0805A3F0: @ 0x0805A3F0
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -13875,7 +12629,7 @@ func_0805A42C: @ 0x0805A42C
     sub sp, #8
     adds r6, r0, #0
     ldr r0, [r6, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     mov r8, r0
@@ -14009,7 +12763,7 @@ func_0805A42C: @ 0x0805A42C
     strh r0, [r5, #0x10]
     ldrb r1, [r2]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     adds r0, r5, #0
     bl func_08067D14
     adds r0, r5, #0
@@ -14086,7 +12840,7 @@ func_0805A42C: @ 0x0805A42C
     mov r2, sb
     ldrb r1, [r2]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
 .L0805A602:
     movs r0, #0x2c
     ldrsh r1, [r6, r0]
@@ -14906,7 +13660,7 @@ func_0805AC1C: @ 0x0805AC1C
     movs r0, #0x70
     strh r0, [r7, #0x3a]
     ldr r0, [r7, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805ACCC
     mov r2, sb
@@ -15167,10 +13921,10 @@ func_0805AE90: @ 0x0805AE90
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -15185,7 +13939,7 @@ func_0805AECC: @ 0x0805AECC
     push {r4, r5, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r3, r0, #0
@@ -15273,7 +14027,7 @@ func_0805AECC: @ 0x0805AECC
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L0805AFB6
@@ -15329,7 +14083,7 @@ func_0805AFBC: @ 0x0805AFBC
     cmp r0, #0
     beq .L0805B036
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805B02C
     movs r0, #1
@@ -15389,7 +14143,7 @@ func_0805B040: @ 0x0805B040
     cmp r0, #0
     beq .L0805B0BA
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805B0B0
     movs r0, #1
@@ -15449,7 +14203,7 @@ func_0805B0C4: @ 0x0805B0C4
     cmp r0, #0
     beq .L0805B13E
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805B134
     movs r0, #1
@@ -15512,7 +14266,7 @@ func_0805B148: @ 0x0805B148
     cmp r0, #0
     beq .L0805B1DE
     ldr r0, [r7, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     cmp r1, #0
     bne .L0805B1A8
@@ -15580,7 +14334,7 @@ func_0805B1EC: @ 0x0805B1EC
     adds r6, r0, #0
     str r6, [r4, #0x60]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805B238
     ldrh r0, [r6, #2]
@@ -15653,10 +14407,10 @@ func_0805B290: @ 0x0805B290
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -15674,7 +14428,7 @@ func_0805B2CC: @ 0x0805B2CC
     sub sp, #8
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r6, r0, #0
@@ -15869,7 +14623,7 @@ func_0805B438: @ 0x0805B438
     cmp r0, #0
     bne .L0805B4B4
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805B4A8
     movs r0, #1
@@ -15892,7 +14646,7 @@ func_0805B438: @ 0x0805B438
     b .L0805B4C8
 .L0805B4B4:
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805B4C8
     movs r0, #1
@@ -16295,7 +15049,7 @@ func_0805B798: @ 0x0805B798
     strh r0, [r4, #0x34]
 .L0805B7F8:
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #1
     bne .L0805B810
     movs r0, #0xf0
@@ -16457,7 +15211,7 @@ func_0805B8F4: @ 0x0805B8F4
     strh r0, [r5, #0x34]
 .L0805B93A:
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #1
     bne .L0805B952
     movs r0, #0xf0
@@ -16819,10 +15573,10 @@ func_0805BBF0: @ 0x0805BBF0
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -16840,7 +15594,7 @@ func_0805BC2C: @ 0x0805BC2C
     sub sp, #8
     adds r6, r0, #0
     ldr r0, [r6, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r4, r0, #0
@@ -16985,7 +15739,7 @@ func_0805BC2C: @ 0x0805BC2C
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L0805BDC0
@@ -17256,7 +16010,7 @@ func_0805BF94: @ 0x0805BF94
     adds r4, r0, #0
     str r5, [r4, #0x5c]
     adds r0, r5, #0
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     movs r0, #0
     strh r0, [r4, #0x2c]
@@ -17277,7 +16031,7 @@ func_0805BF94: @ 0x0805BF94
     orrs r0, r1
     strh r0, [r6, #8]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805BFFC
     ldrh r0, [r6, #2]
@@ -17608,10 +16362,10 @@ func_0805C250: @ 0x0805C250
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -17629,7 +16383,7 @@ func_0805C28C: @ 0x0805C28C
     sub sp, #8
     adds r6, r0, #0
     ldr r0, [r6, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r4, r0, #0
@@ -17797,7 +16551,7 @@ func_0805C28C: @ 0x0805C28C
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldr r0, .L0805C41C @ =0x00000133
     movs r1, #0x80
     lsls r1, r1, #1
@@ -18150,7 +16904,7 @@ func_0805C678: @ 0x0805C678
     cmp r0, #0
     beq .L0805C702
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805C6F8
     movs r0, #1
@@ -18211,7 +16965,7 @@ func_0805C708: @ 0x0805C708
     cmp r0, #0
     beq .L0805C78A
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805C780
     movs r0, #1
@@ -18284,7 +17038,7 @@ func_0805C790: @ 0x0805C790
     cmp r0, #0
     beq .L0805C84A
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     cmp r1, #0
     bne .L0805C810
@@ -18566,7 +17320,7 @@ func_0805CA18: @ 0x0805CA18
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -18684,7 +17438,7 @@ func_0805CA18: @ 0x0805CA18
     bl func_0804FFFC
     bl func_0804FBC4
     adds r0, r5, #0
-    bl func_080547E4
+    bl GetAnimNextRoundType
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     movs r1, #1
@@ -18729,7 +17483,7 @@ func_0805CB68: @ 0x0805CB68
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r2, r0, #0
@@ -18885,7 +17639,7 @@ func_0805CB68: @ 0x0805CB68
     bl func_0804FFFC
     bl func_0804FBC4
     adds r0, r5, #0
-    bl func_080547E4
+    bl GetAnimNextRoundType
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     movs r1, #1
@@ -18930,7 +17684,7 @@ func_0805CD0C: @ 0x0805CD0C
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r2, r0, #0
@@ -19086,7 +17840,7 @@ func_0805CD0C: @ 0x0805CD0C
     bl func_0804FFFC
     bl func_0804FBC4
     adds r0, r5, #0
-    bl func_080547E4
+    bl GetAnimNextRoundType
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     movs r1, #1
@@ -19131,7 +17885,7 @@ func_0805CEB0: @ 0x0805CEB0
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r2, r0, #0
@@ -19293,7 +18047,7 @@ func_0805CEB0: @ 0x0805CEB0
     bl func_0804FFFC
     bl func_0804FBC4
     adds r0, r5, #0
-    bl func_080547E4
+    bl GetAnimNextRoundType
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     movs r1, #1
@@ -19376,7 +18130,7 @@ func_0805D03C: @ 0x0805D03C
     cmp r0, #0
     beq .L0805D0EE
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805D0E4
     movs r0, #1
@@ -19459,7 +18213,7 @@ func_0805D0F8: @ 0x0805D0F8
     cmp r0, #0
     beq .L0805D1A2
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805D198
     movs r0, #1
@@ -20071,7 +18825,7 @@ func_0805D5D8: @ 0x0805D5D8
     cmp r0, #0
     beq .L0805D62C
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     movs r5, #0x88
     cmp r0, #0
     bne .L0805D63A
@@ -20083,7 +18837,7 @@ func_0805D5D8: @ 0x0805D5D8
 .L0805D628: .4byte 0x0203E02C
 .L0805D62C:
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     movs r5, #0x70
     cmp r0, #0
     bne .L0805D63A
@@ -20101,7 +18855,7 @@ func_0805D5D8: @ 0x0805D5D8
     cmp r0, #0
     beq .L0805D66C
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     movs r5, #0x4c
     cmp r0, #0
     bne .L0805D67A
@@ -20113,7 +18867,7 @@ func_0805D5D8: @ 0x0805D5D8
 .L0805D668: .4byte 0x0203E02C
 .L0805D66C:
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     movs r5, #0x64
     cmp r0, #0
     bne .L0805D67A
@@ -20356,7 +19110,7 @@ func_0805D85C: @ 0x0805D85C
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r6, r0, #0
     adds r0, r4, #0
     adds r0, #0x2c
@@ -20551,7 +19305,7 @@ func_0805D970: @ 0x0805D970
     strh r0, [r5, #8]
     ldr r4, .L0805DA48 @ =0x02000010
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r4
     ldr r1, [r0]
@@ -20600,11 +19354,11 @@ func_0805DA54: @ 0x0805DA54
     adds r5, r0, #0
     ldr r6, [r5, #0x5c]
     adds r0, r6, #0
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r7, r0, #0
     ldr r4, .L0805DAB0 @ =0x02000010
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r4
     ldr r4, [r0]
@@ -20796,10 +19550,10 @@ func_0805DBC8: @ 0x0805DBC8
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -20817,7 +19571,7 @@ func_0805DC04: @ 0x0805DC04
     sub sp, #8
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r6, r0, #0
     bl func_08050778
     adds r5, r0, #0
@@ -21059,7 +19813,7 @@ func_0805DDE0: @ 0x0805DDE0
     adds r6, r0, #0
     str r6, [r5, #0x60]
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805DE28
     ldrh r0, [r6, #2]
@@ -21119,10 +19873,10 @@ func_0805DE68: @ 0x0805DE68
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -21140,7 +19894,7 @@ func_0805DEA4: @ 0x0805DEA4
     sub sp, #8
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r6, r0, #0
@@ -21290,7 +20044,7 @@ func_0805DFAC: @ 0x0805DFAC
     cmp r0, #0
     beq .L0805E032
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805E028
     movs r0, #1
@@ -21431,10 +20185,10 @@ func_0805E100: @ 0x0805E100
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -21452,7 +20206,7 @@ func_0805E13C: @ 0x0805E13C
     sub sp, #8
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r6, r0, #0
@@ -21598,7 +20352,7 @@ func_0805E23C: @ 0x0805E23C
     cmp r0, #0
     beq .L0805E2C2
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805E2B8
     movs r0, #1
@@ -21818,10 +20572,10 @@ func_0805E420: @ 0x0805E420
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -21839,7 +20593,7 @@ func_0805E45C: @ 0x0805E45C
     sub sp, #8
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r6, r0, #0
     bl func_08050778
     adds r5, r0, #0
@@ -22123,10 +20877,10 @@ func_0805E69C: @ 0x0805E69C
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -22142,7 +20896,7 @@ func_0805E6D8: @ 0x0805E6D8
     sub sp, #4
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r6, r0, #0
@@ -22521,7 +21275,7 @@ func_0805E9DC: @ 0x0805E9DC
     adds r4, r0, #0
     str r5, [r4, #0x5c]
     adds r0, r5, #0
-    bl func_080547A8
+    bl GetAnimAnotherSide
     ldr r3, .L0805EA2C @ =0x08BA14DC
     ldr r0, [r4, #0x5c]
     str r3, [sp]
@@ -22858,10 +21612,10 @@ func_0805ECA4: @ 0x0805ECA4
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -22876,7 +21630,7 @@ func_0805ECE0: @ 0x0805ECE0
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
     ldr r0, [r5, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r4, r0, #0
     bl func_08050778
     adds r6, r0, #0
@@ -23156,10 +21910,10 @@ func_0805EF10: @ 0x0805EF10
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -23174,7 +21928,7 @@ func_0805EF4C: @ 0x0805EF4C
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r6, r0, #0
@@ -23248,7 +22002,7 @@ func_0805EF4C: @ 0x0805EF4C
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L0805F018
@@ -23394,7 +22148,7 @@ func_0805F0DC: @ 0x0805F0DC
     cmp r0, #0
     beq .L0805F15E
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805F154
     movs r0, #1
@@ -23451,7 +22205,7 @@ func_0805F168: @ 0x0805F168
     cmp r0, #0
     beq .L0805F1EE
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     cmp r1, #0
     bne .L0805F1B8
@@ -23612,7 +22366,7 @@ func_0805F2D0: @ 0x0805F2D0
     cmp r0, r1
     bne .L0805F36C
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805F320
     ldr r0, [r5, #0x5c]
@@ -23770,10 +22524,10 @@ func_0805F400: @ 0x0805F400
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -23791,7 +22545,7 @@ func_0805F43C: @ 0x0805F43C
     sub sp, #8
     adds r6, r0, #0
     ldr r0, [r6, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r4, r0, #0
@@ -23982,7 +22736,7 @@ func_0805F43C: @ 0x0805F43C
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L0805F62A
@@ -24304,7 +23058,7 @@ func_0805F82C: @ 0x0805F82C
     adds r1, r4, #0
     bl LZ77UnComp8bit
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805F8AC
     ldr r1, .L0805F8A8 @ =gBg1Tm
@@ -24345,7 +23099,7 @@ func_0805F82C: @ 0x0805F82C
     cmp r0, #0
     beq .L0805F8FE
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805F8F4
     movs r0, #1
@@ -24535,7 +23289,7 @@ func_0805FA00: @ 0x0805FA00
     cmp r0, #0
     beq .L0805FA7E
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0805FA74
     movs r0, #1
@@ -25000,10 +23754,10 @@ func_0805FDBC: @ 0x0805FDBC
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -25018,7 +23772,7 @@ func_0805FDF8: @ 0x0805FDF8
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
     ldr r0, [r5, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r4, r0, #0
     bl func_08050778
     adds r6, r0, #0
@@ -25112,7 +23866,7 @@ func_0805FDF8: @ 0x0805FDF8
     strh r0, [r4, #0x10]
     ldrb r1, [r7]
     adds r0, r4, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     adds r0, r4, #0
     bl func_08067D14
 .L0805FED6:
@@ -25151,7 +23905,7 @@ func_0805FDF8: @ 0x0805FDF8
     strh r0, [r4, #0x10]
     ldrb r1, [r7]
     adds r0, r4, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
 .L0805FF26:
     movs r3, #0x2c
     ldrsh r1, [r5, r3]
@@ -25238,7 +23992,7 @@ func_0805FFD0: @ 0x0805FFD0
     sub sp, #8
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08060000
     ldr r0, .L0805FFF8 @ =0x02019784
@@ -25281,7 +24035,7 @@ func_0805FFD0: @ 0x0805FFD0
     strh r0, [r4, #0x2e]
     strh r2, [r4, #0x32]
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0806004C
     movs r0, #0x80
@@ -25653,7 +24407,7 @@ func_08060298: @ 0x08060298
     bl LZ77UnComp8bit
 .L080602FC:
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08060328
     ldr r0, .L08060320 @ =0x02019784
@@ -25859,7 +24613,7 @@ func_08060444: @ 0x08060444
     bl LZ77UnComp8bit
 .L080604A8:
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080604D4
     ldr r0, .L080604CC @ =0x02019784
@@ -26110,10 +24864,10 @@ func_08060688: @ 0x08060688
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -26131,7 +24885,7 @@ func_080606C4: @ 0x080606C4
     sub sp, #8
     adds r6, r0, #0
     ldr r0, [r6, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r4, r0, #0
@@ -26281,7 +25035,7 @@ func_080606C4: @ 0x080606C4
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L0806089E
@@ -26394,7 +25148,7 @@ func_080608AC: @ 0x080608AC
     cmp r0, #0
     beq .L08060936
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0806092C
     movs r0, #1
@@ -26451,7 +25205,7 @@ func_08060940: @ 0x08060940
     cmp r0, #0
     beq .L080609D6
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     cmp r1, #0
     bne .L0806099C
@@ -26592,7 +25346,7 @@ func_08060AA8: @ 0x08060AA8
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08060AC4
     ldr r1, .L08060AC0 @ =gDispIo
@@ -26893,7 +25647,7 @@ func_08060CFC: @ 0x08060CFC
     adds r4, r0, #0
     str r5, [r4, #0x5c]
     adds r0, r5, #0
-    bl func_080547A8
+    bl GetAnimAnotherSide
     ldr r3, .L08060D60 @ =0x08BA14DC
     ldr r0, [r4, #0x5c]
     str r3, [sp]
@@ -27007,10 +25761,10 @@ func_08060DDC: @ 0x08060DDC
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -27026,7 +25780,7 @@ func_08060E18: @ 0x08060E18
     sub sp, #8
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r2, r0, #0
@@ -27140,7 +25894,7 @@ func_08060E18: @ 0x08060E18
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L08060F66
@@ -27224,7 +25978,7 @@ func_08060F70: @ 0x08060F70
     cmp r0, #0
     bne .L08060FFA
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08060FF0
     movs r0, #1
@@ -27290,7 +26044,7 @@ func_08061004: @ 0x08061004
     cmp r0, #0
     beq .L0806108E
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08061084
     movs r0, #1
@@ -27356,7 +26110,7 @@ func_08061098: @ 0x08061098
     cmp r0, #0
     beq .L08061122
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08061118
     movs r0, #1
@@ -27473,7 +26227,7 @@ func_08061184: @ 0x08061184
     bl LZ77UnComp8bit
 .L080611E8:
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08061214
     ldr r0, .L0806120C @ =0x02019784
@@ -27742,10 +26496,10 @@ func_080613F8: @ 0x080613F8
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -27763,7 +26517,7 @@ func_08061434: @ 0x08061434
     sub sp, #8
     adds r6, r0, #0
     ldr r0, [r6, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     bl func_08050778
     adds r4, r0, #0
@@ -27873,7 +26627,7 @@ func_08061434: @ 0x08061434
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r5, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L0806158E
@@ -28107,7 +26861,7 @@ func_0806171C: @ 0x0806171C
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08061738
     ldr r1, .L08061734 @ =gDispIo
@@ -28449,7 +27203,7 @@ func_08061914: @ 0x08061914
     strb r0, [r3, #0x14]
 .L080619E4:
     ldr r0, [r5, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     ldr r6, .L08061A2C @ =0x0000F3FF
     adds r1, r6, #0
     ldrh r2, [r7, #8]
@@ -28465,7 +27219,7 @@ func_08061914: @ 0x08061914
     orrs r1, r5
     strh r1, [r0, #8]
     ldr r4, .L08061A30 @ =0x02000010
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r4
     ldr r1, [r0]
@@ -28492,10 +27246,10 @@ func_08061A34: @ 0x08061A34
     sub sp, #4
     adds r5, r0, #0
     ldr r0, [r5, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r6, r0, #0
     ldr r4, .L08061ADC @ =0x02000010
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #2
     adds r0, r0, r4
     ldr r4, [r0]
@@ -28652,10 +27406,10 @@ func_08061B68: @ 0x08061B68
     movs r0, #0
     strh r0, [r4, #0x2c]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -28671,7 +27425,7 @@ func_08061BA4: @ 0x08061BA4
     sub sp, #8
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r6, r0, #0
     bl func_08050778
     adds r5, r0, #0
@@ -28735,7 +27489,7 @@ func_08061BA4: @ 0x08061BA4
     adds r4, #0x29
     ldrb r1, [r4]
     adds r0, r6, #0
-    bl func_08050140
+    bl StartBattleAnimHitEffectsDefault
     ldrb r0, [r4]
     cmp r0, #0
     bne .L08061D18
@@ -29281,7 +28035,7 @@ func_0806203C: @ 0x0806203C
     cmp r0, #0
     beq .L080620F6
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     adds r1, r0, #0
     cmp r1, #0
     bne .L080620BC
@@ -29568,10 +28322,10 @@ func_080622C4: @ 0x080622C4
     movs r0, #1
     str r0, [r4, #0x44]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -29597,10 +28351,10 @@ func_08062300: @ 0x08062300
     movs r0, #2
     str r0, [r4, #0x44]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -29626,10 +28380,10 @@ func_0806233C: @ 0x0806233C
     movs r0, #3
     str r0, [r4, #0x44]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -29655,10 +28409,10 @@ func_08062378: @ 0x08062378
     movs r0, #4
     str r0, [r4, #0x44]
     adds r0, r5, #0
-    bl func_08054804
+    bl GetAnimRoundTypeAnotherSide
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
-    bl func_0805468C
+    bl CheckRoundMiss
     adds r4, #0x29
     strb r0, [r4]
     pop {r4, r5}
@@ -29674,7 +28428,7 @@ func_080623B4: @ 0x080623B4
     sub sp, #8
     adds r5, r0, #0
     ldr r0, [r5, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r4, r0, #0
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -29844,7 +28598,7 @@ func_080624E0: @ 0x080624E0
     ldr r4, .L0806254C @ =0x08B9DA64
 .L08062512:
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     movs r2, #0xa2
     lsls r2, r2, #7
     cmp r0, #0
@@ -29900,8 +28654,8 @@ func_08062550: @ 0x08062550
     bx r0
     func_end func_08062550
 
-    thumb_func_start func_08062580
-func_08062580: @ 0x08062580
+    thumb_func_start NewEfxPierceCritical
+NewEfxPierceCritical: @ 0x08062580
     push {r4, lr}
     adds r4, r0, #0
     bl func_08050008
@@ -29916,7 +28670,7 @@ func_08062580: @ 0x08062580
     bx r0
     .align 2, 0
 .L0806259C: .4byte 0x08BA4204
-    func_end func_08062580
+    func_end NewEfxPierceCritical
 
     thumb_func_start func_080625A0
 func_080625A0: @ 0x080625A0
@@ -30056,8 +28810,8 @@ func_08062678: @ 0x08062678
     bx r0
     func_end func_08062678
 
-    thumb_func_start func_080626B4
-func_080626B4: @ 0x080626B4
+    thumb_func_start NewEfxNormalEffect
+NewEfxNormalEffect: @ 0x080626B4
     push {r4, lr}
     adds r4, r0, #0
     bl func_08050008
@@ -30072,14 +28826,14 @@ func_080626B4: @ 0x080626B4
     bx r0
     .align 2, 0
 .L080626D0: .4byte 0x08BA4254
-    func_end func_080626B4
+    func_end NewEfxNormalEffect
 
     thumb_func_start func_080626D4
 func_080626D4: @ 0x080626D4
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r1, r0, #0
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -30144,7 +28898,7 @@ func_08062714: @ 0x08062714
     cmp r0, #0
     beq .L0806279A
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08062790
     movs r0, #1
@@ -30215,8 +28969,8 @@ func_080627A0: @ 0x080627A0
 .L080627F4: .4byte 0x0201774C
     func_end func_080627A0
 
-    thumb_func_start func_080627F8
-func_080627F8: @ 0x080627F8
+    thumb_func_start NewEfxYushaSpinShield
+NewEfxYushaSpinShield: @ 0x080627F8
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
@@ -30234,7 +28988,7 @@ func_080627F8: @ 0x080627F8
     bx r0
     .align 2, 0
 .L0806281C: .4byte 0x08BA42AC
-    func_end func_080627F8
+    func_end NewEfxYushaSpinShield
 
     thumb_func_start func_08062820
 func_08062820: @ 0x08062820
@@ -30286,7 +29040,7 @@ func_0806282C: @ 0x0806282C
     movs r5, #0
     strh r0, [r4, #8]
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08062898
     movs r1, #0xe4
@@ -30327,7 +29081,7 @@ func_080628AC: @ 0x080628AC
     cmp r0, #0
     bne .L080628E4
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080628DC
     ldr r0, .L080628D8 @ =0x08BAEC94
@@ -30341,7 +29095,7 @@ func_080628AC: @ 0x080628AC
 .L080628E0: .4byte 0x08BAD9F4
 .L080628E4:
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080628F8
     ldr r0, .L080628F4 @ =0x08BB1234
@@ -30394,7 +29148,7 @@ func_0806293C: @ 0x0806293C
     push {r4, r5, lr}
     adds r5, r0, #0
     ldr r4, [r5, #0x60]
-    bl func_0804D574
+    bl CheckEkrHitDone
     cmp r0, #1
     bne .L08062996
     adds r0, r5, #0
@@ -30403,7 +29157,7 @@ func_0806293C: @ 0x0806293C
     cmp r0, #0
     bne .L08062970
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08062968
     ldr r0, .L08062964 @ =0x08BAECBC
@@ -30417,7 +29171,7 @@ func_0806293C: @ 0x0806293C
 .L0806296C: .4byte 0x08BADA1C
 .L08062970:
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08062984
     ldr r0, .L08062980 @ =0x08BB125C
@@ -30465,8 +29219,8 @@ func_080629A0: @ 0x080629A0
     bx r0
     func_end func_080629A0
 
-    thumb_func_start func_080629C8
-func_080629C8: @ 0x080629C8
+    thumb_func_start NewEfxHurtmutEff00
+NewEfxHurtmutEff00: @ 0x080629C8
     push {r4, r5, lr}
     adds r4, r0, #0
     ldr r0, .L080629F4 @ =0x0201774C
@@ -30497,7 +29251,7 @@ func_080629C8: @ 0x080629C8
     pop {r4, r5}
     pop {r0}
     bx r0
-    func_end func_080629C8
+    func_end NewEfxHurtmutEff00
 
     thumb_func_start func_08062A0C
 func_08062A0C: @ 0x08062A0C
@@ -30546,7 +29300,7 @@ func_08062A5C: @ 0x08062A5C
     adds r5, r0, #0
     ldr r4, [r5, #0x60]
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #1
     bne .L08062A74
     ldr r0, .L08062A70 @ =0x08BA8230
@@ -30584,7 +29338,7 @@ func_08062AA8: @ 0x08062AA8
     adds r5, r0, #0
     ldr r4, [r5, #0x60]
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #1
     bne .L08062AC0
     ldr r0, .L08062ABC @ =0x08BA8884
@@ -30674,7 +29428,7 @@ func_08062B5C: @ 0x08062B5C
     adds r5, r0, #0
     ldr r4, [r5, #0x60]
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #1
     bne .L08062B74
     ldr r0, .L08062B70 @ =0x08BA8278
@@ -30712,7 +29466,7 @@ func_08062BA8: @ 0x08062BA8
     adds r5, r0, #0
     ldr r4, [r5, #0x60]
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #1
     bne .L08062BC0
     ldr r0, .L08062BBC @ =0x08BA8894
@@ -30763,8 +29517,8 @@ func_08062BF4: @ 0x08062BF4
 .L08062C14: .4byte 0x0201774C
     func_end func_08062BF4
 
-    thumb_func_start func_08062C18
-func_08062C18: @ 0x08062C18
+    thumb_func_start NewEfxMagfcast
+NewEfxMagfcast: @ 0x08062C18
     push {r4, r5, r6, r7, lr}
     adds r6, r0, #0
     adds r7, r1, #0
@@ -30781,7 +29535,7 @@ func_08062C18: @ 0x08062C18
     strh r4, [r5, #0x2c]
     ldr r4, .L08062C64 @ =0x0203E08E
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     movs r1, #0
@@ -30806,7 +29560,7 @@ func_08062C18: @ 0x08062C18
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    func_end func_08062C18
+    func_end NewEfxMagfcast
 
     thumb_func_start func_08062C78
 func_08062C78: @ 0x08062C78
@@ -30892,7 +29646,7 @@ func_08062C94: @ 0x08062C94
     adds r0, r1, r6
     ldrb r1, [r0, #0x14]
     adds r0, r6, #0
-    bl func_080677A4
+    bl EfxPlaySEwithCmdCtrl
 .L08062D1A:
     ldr r0, .L08062D58 @ =0x081F832C
     movs r1, #0x80
@@ -30908,7 +29662,7 @@ func_08062C94: @ 0x08062C94
     cmp r0, #0
     beq .L08062D6E
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08062D64
     movs r0, #1
@@ -30977,8 +29731,8 @@ func_08062D74: @ 0x08062D74
 .L08062DC8: .4byte 0x0201774C
     func_end func_08062D74
 
-    thumb_func_start func_08062DCC
-func_08062DCC: @ 0x08062DCC
+    thumb_func_start NewEfxSunakemuri
+NewEfxSunakemuri: @ 0x08062DCC
     push {r4, r5, r6, lr}
     adds r5, r0, #0
     adds r6, r1, #0
@@ -31001,7 +29755,7 @@ func_08062DCC: @ 0x08062DCC
     .align 2, 0
 .L08062DF4: .4byte 0x0201774C
 .L08062DF8: .4byte 0x08BA4404
-    func_end func_08062DCC
+    func_end NewEfxSunakemuri
 
     thumb_func_start func_08062DFC
 func_08062DFC: @ 0x08062DFC
@@ -31051,7 +29805,7 @@ func_08062E08: @ 0x08062E08
     str r0, [r5, #0x60]
     ldr r4, .L08062E90 @ =0x0203E0D8
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     movs r1, #0
@@ -31209,8 +29963,8 @@ func_08062FEC: @ 0x08062FEC
 .L08063018: .4byte 0x0201774C
     func_end func_08062FEC
 
-    thumb_func_start func_0806301C
-func_0806301C: @ 0x0806301C
+    thumb_func_start NewEfxLokmsuna
+NewEfxLokmsuna: @ 0x0806301C
     push {r4, r5, lr}
     adds r5, r0, #0
     ldr r0, .L08063040 @ =0x0201774C
@@ -31231,7 +29985,7 @@ func_0806301C: @ 0x0806301C
     .align 2, 0
 .L08063040: .4byte 0x0201774C
 .L08063044: .4byte 0x08BA4434
-    func_end func_0806301C
+    func_end NewEfxLokmsuna
 
     thumb_func_start func_08063048
 func_08063048: @ 0x08063048
@@ -31271,7 +30025,7 @@ func_08063054: @ 0x08063054
     ands r0, r1
     strh r0, [r6, #8]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080630B4
     movs r1, #0xe0
@@ -31330,8 +30084,8 @@ func_080630D8: @ 0x080630D8
 .L08063104: .4byte 0x0201774C
     func_end func_080630D8
 
-    thumb_func_start func_08063108
-func_08063108: @ 0x08063108
+    thumb_func_start NewEfxKingPika
+NewEfxKingPika: @ 0x08063108
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, .L08063120 @ =0x08BA4464
@@ -31345,7 +30099,7 @@ func_08063108: @ 0x08063108
     bx r0
     .align 2, 0
 .L08063120: .4byte 0x08BA4464
-    func_end func_08063108
+    func_end NewEfxKingPika
 
     thumb_func_start func_08063124
 func_08063124: @ 0x08063124
@@ -31377,12 +30131,12 @@ func_08063124: @ 0x08063124
     bne .L0806318A
     ldr r5, .L08063190 @ =0x02000000
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #3
     adds r0, r0, r5
     ldr r4, [r0]
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, #1
     lsls r0, r0, #2
@@ -31405,8 +30159,8 @@ func_08063124: @ 0x08063124
 .L08063190: .4byte 0x02000000
     func_end func_08063124
 
-    thumb_func_start func_08063194
-func_08063194: @ 0x08063194
+    thumb_func_start NewEfxFlashFX
+NewEfxFlashFX: @ 0x08063194
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, .L080631AC @ =0x08BA447C
@@ -31420,7 +30174,7 @@ func_08063194: @ 0x08063194
     bx r0
     .align 2, 0
 .L080631AC: .4byte 0x08BA447C
-    func_end func_08063194
+    func_end NewEfxFlashFX
 
     thumb_func_start func_080631B0
 func_080631B0: @ 0x080631B0
@@ -31443,12 +30197,12 @@ func_080631B0: @ 0x080631B0
     bne .L08063204
     ldr r5, .L0806320C @ =0x02000000
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #3
     adds r0, r0, r5
     ldr r4, [r0]
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, #1
     lsls r0, r0, #2
@@ -31645,12 +30399,12 @@ func_08063348: @ 0x08063348
 .L08063378: .4byte 0x0201774C
     func_end func_08063348
 
-    thumb_func_start func_0806337C
-func_0806337C: @ 0x0806337C
+    thumb_func_start NewEfxSpecalEffect
+NewEfxSpecalEffect: @ 0x0806337C
     push {r4, r5, r6, lr}
     adds r5, r0, #0
     ldr r4, .L080633B0 @ =0x02017768
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     movs r1, #0
@@ -31658,13 +30412,13 @@ func_0806337C: @ 0x0806337C
     cmp r0, #0
     bne .L080633CA
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     movs r1, #1
     strh r1, [r0]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080633B8
     ldr r0, .L080633B4 @ =0x0203E094
@@ -31685,12 +30439,12 @@ func_0806337C: @ 0x0806337C
 .L080633CA:
     ldr r4, .L080633FC @ =0x02000000
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #3
     adds r0, r0, r4
     ldr r6, [r0]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, #1
     lsls r0, r0, #2
@@ -31728,7 +30482,7 @@ func_0806337C: @ 0x0806337C
     bx r0
     .align 2, 0
 .L08063428: .4byte 0x08BA44C4
-    func_end func_0806337C
+    func_end NewEfxSpecalEffect
 
     thumb_func_start func_0806342C
 func_0806342C: @ 0x0806342C
@@ -31784,12 +30538,12 @@ func_08063458: @ 0x08063458
     bne .L080634BC
     ldr r5, .L080634C4 @ =0x02000000
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #3
     adds r0, r0, r5
     ldr r4, [r0]
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, #1
     lsls r0, r0, #2
@@ -32206,14 +30960,14 @@ func_08063748: @ 0x08063748
 .L080637D0: .4byte 0x0201774C
     func_end func_08063748
 
-    thumb_func_start func_080637D4
-func_080637D4: @ 0x080637D4
+    thumb_func_start NewEfxMantBatabata
+NewEfxMantBatabata: @ 0x080637D4
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
     sub sp, #4
     adds r7, r0, #0
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L08063800 @ =0x0203E08E
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -32317,7 +31071,7 @@ func_080637D4: @ 0x080637D4
     adds r4, r0, #0
     str r4, [r6, #0x60]
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L08063930 @ =0x02000010
     lsls r0, r0, #2
     adds r0, r0, r1
@@ -32332,7 +31086,7 @@ func_080637D4: @ 0x080637D4
     strh r0, [r4, #0xa]
     bl AnimSort
     adds r0, r7, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08063934
     movs r1, #0xe4
@@ -32352,7 +31106,7 @@ func_080637D4: @ 0x080637D4
     orrs r0, r1
     strh r0, [r4, #8]
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     bl func_0805484C
     add sp, #4
     pop {r3}
@@ -32360,7 +31114,7 @@ func_080637D4: @ 0x080637D4
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    func_end func_080637D4
+    func_end NewEfxMantBatabata
 
     thumb_func_start func_08063958
 func_08063958: @ 0x08063958
@@ -32395,16 +31149,16 @@ func_08063984: @ 0x08063984
     ldr r0, [r4, #0x5c]
     ldrh r0, [r0, #2]
     strh r0, [r1, #2]
-    bl func_0804D574
+    bl CheckEkrHitDone
     cmp r0, #1
     bne .L080639BE
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     bl func_08054884
     ldr r0, [r4, #0x60]
     bl AnimDelete
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L080639C4 @ =0x02000010
     lsls r0, r0, #2
     adds r0, r0, r1
@@ -32420,8 +31174,8 @@ func_08063984: @ 0x08063984
 .L080639C4: .4byte 0x02000010
     func_end func_08063984
 
-    thumb_func_start func_080639C8
-func_080639C8: @ 0x080639C8
+    thumb_func_start NewEfxChillEffect
+NewEfxChillEffect: @ 0x080639C8
     push {r4, lr}
     adds r4, r0, #0
     bl func_08050008
@@ -32436,7 +31190,7 @@ func_080639C8: @ 0x080639C8
     bx r0
     .align 2, 0
 .L080639E4: .4byte 0x08BA468C
-    func_end func_080639C8
+    func_end NewEfxChillEffect
 
     thumb_func_start func_080639E8
 func_080639E8: @ 0x080639E8
@@ -32615,8 +31369,8 @@ func_08063B0C: @ 0x08063B0C
     bx r0
     func_end func_08063B0C
 
-    thumb_func_start func_08063B48
-func_08063B48: @ 0x08063B48
+    thumb_func_start NewEfxChillAnime
+NewEfxChillAnime: @ 0x08063B48
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
@@ -32652,7 +31406,7 @@ func_08063B48: @ 0x08063B48
     adds r4, r0, #0
     str r4, [r5, #0x60]
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L08063BCC @ =0x02000010
     lsls r0, r0, #2
     adds r0, r0, r1
@@ -32667,7 +31421,7 @@ func_08063B48: @ 0x08063B48
     strh r0, [r4, #0xa]
     bl AnimSort
     adds r0, r7, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08063BD0
     movs r1, #0xe4
@@ -32687,7 +31441,7 @@ func_08063B48: @ 0x08063B48
     orrs r0, r1
     strh r0, [r4, #8]
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     bl func_0805484C
     add sp, #4
     pop {r3}
@@ -32695,7 +31449,7 @@ func_08063B48: @ 0x08063B48
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    func_end func_08063B48
+    func_end NewEfxChillAnime
 
     thumb_func_start func_08063BF4
 func_08063BF4: @ 0x08063BF4
@@ -32713,12 +31467,12 @@ func_08063BF4: @ 0x08063BF4
     cmp r0, #0x14
     bne .L08063C60
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     bl func_08054884
     ldr r0, [r6, #0x60]
     bl AnimDelete
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L08063C68 @ =0x02000010
     lsls r0, r0, #2
     adds r0, r0, r1
@@ -32726,12 +31480,12 @@ func_08063BF4: @ 0x08063BF4
     str r1, [r0]
     ldr r5, .L08063C6C @ =0x02000000
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #3
     adds r0, r0, r5
     ldr r4, [r0]
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, #1
     lsls r0, r0, #2
@@ -32755,8 +31509,8 @@ func_08063BF4: @ 0x08063BF4
 .L08063C6C: .4byte 0x02000000
     func_end func_08063BF4
 
-    thumb_func_start func_08063C70
-func_08063C70: @ 0x08063C70
+    thumb_func_start NewEfxDrsmmoya
+NewEfxDrsmmoya: @ 0x08063C70
     push {r4, lr}
     adds r4, r0, #0
     bl func_08050008
@@ -32771,7 +31525,7 @@ func_08063C70: @ 0x08063C70
     bx r0
     .align 2, 0
 .L08063C8C: .4byte 0x08BA4700
-    func_end func_08063C70
+    func_end NewEfxDrsmmoya
 
     thumb_func_start func_08063C90
 func_08063C90: @ 0x08063C90
@@ -32779,7 +31533,7 @@ func_08063C90: @ 0x08063C90
     sub sp, #4
     adds r6, r0, #0
     ldr r0, [r6, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r1, r0, #0
     ldrh r0, [r6, #0x2c]
     adds r0, #1
@@ -32832,12 +31586,12 @@ func_08063C90: @ 0x08063C90
     bne .L08063D38
     ldr r5, .L08063D40 @ =0x02000000
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #3
     adds r0, r0, r5
     ldr r4, [r0]
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, #1
     lsls r0, r0, #2
@@ -32911,7 +31665,7 @@ func_08063D44: @ 0x08063D44
     cmp r0, #0
     beq .L08063DE6
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08063DDC
     movs r0, #1
@@ -33284,7 +32038,7 @@ func_0806404C: @ 0x0806404C
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08064068
     ldr r0, .L08064064 @ =0x081D8599
@@ -33700,7 +32454,7 @@ func_08064358: @ 0x08064358
     adds r4, r0, #0
     str r4, [r6, #0x60]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080643A0
     ldrh r0, [r5, #2]
@@ -33983,7 +32737,7 @@ func_08064598: @ 0x08064598
     adds r4, r0, #0
     str r4, [r6, #0x60]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L080645E0
     ldrh r0, [r5, #2]
@@ -34594,7 +33348,7 @@ func_08064A48: @ 0x08064A48
     thumb_func_start func_08064A6C
 func_08064A6C: @ 0x08064A6C
     push {lr}
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     beq .L08064A80
     ldr r0, .L08064A7C @ =0x02020050
@@ -34920,7 +33674,7 @@ func_08064C90: @ 0x08064C90
     cmp r0, #0
     beq .L08064CCA
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08064CBC
     ldr r0, .L08064CB4 @ =0x081D97D0
@@ -34955,7 +33709,7 @@ func_08064CD8: @ 0x08064CD8
     cmp r0, #0
     beq .L08064D12
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08064D04
     ldr r0, .L08064CFC @ =0x082E0FEC
@@ -35666,7 +34420,7 @@ func_080652C0: @ 0x080652C0
     cmp r0, #2
     bne .L0806531C
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     bl func_08054884
     ldr r0, .L08065308 @ =0x082E1218
     ldr r1, .L0806530C @ =0x02019784
@@ -35719,7 +34473,7 @@ func_080652C0: @ 0x080652C0
     ldr r0, [r4, #0x64]
     bl Proc_End
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     bl func_08054884
     ldr r0, .L0806539C @ =0x082E1218
     ldr r1, .L080653A0 @ =0x02019784
@@ -35861,10 +34615,10 @@ func_08065444: @ 0x08065444
     orrs r0, r1
     strb r0, [r3, #0x18]
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     bl func_0805484C
     ldr r0, [r4, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     ldr r1, .L080654CC @ =0x0203E010
     lsls r0, r0, #1
     adds r0, r0, r1
@@ -37313,7 +36067,7 @@ func_08065EE8: @ 0x08065EE8
     cmp r0, #0
     bne .L08065FBC
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r1, r0, #0
     movs r0, #8
     ldrh r1, [r1, #0x10]
@@ -37322,7 +36076,7 @@ func_08065EE8: @ 0x08065EE8
     beq .L0806600C
     b .L08065FD6
 .L08065FBC:
-    bl func_0804D574
+    bl CheckEkrHitDone
     cmp r0, #1
     bne .L0806600C
     b .L08066000
@@ -37668,7 +36422,7 @@ func_080661FC: @ 0x080661FC
     cmp r2, #0x36
     bne .L080662C2
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     bl func_0805484C
     movs r4, #0x80
     lsls r4, r4, #1
@@ -40510,8 +39264,8 @@ func_080676E8: @ 0x080676E8
 .L080677A0: .4byte 0x0000FFFF
     func_end func_080676E8
 
-    thumb_func_start func_080677A4
-func_080677A4: @ 0x080677A4
+    thumb_func_start EfxPlaySEwithCmdCtrl
+EfxPlaySEwithCmdCtrl: @ 0x080677A4
     push {r4, r5, r6, r7, lr}
     mov r7, sb
     mov r6, r8
@@ -40519,16 +39273,16 @@ func_080677A4: @ 0x080677A4
     sub sp, #8
     mov r8, r0
     mov sb, r1
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r6, r0, #0
     mov r0, r8
-    bl func_08054664
+    bl GetAISLayerId
     cmp r0, #1
     bne .L080677C4
     b .L08067B10
 .L080677C4:
     mov r0, r8
-    bl func_08054678
+    bl GetAnimPosition
     adds r5, r0, #0
     cmp r5, #0
     bne .L080677DC
@@ -40934,7 +39688,7 @@ func_080677A4: @ 0x080677A4
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    func_end func_080677A4
+    func_end EfxPlaySEwithCmdCtrl
 
     thumb_func_start func_08067B20
 func_08067B20: @ 0x08067B20
@@ -41060,7 +39814,7 @@ func_08067C6C: @ 0x08067C6C
     ldrsh r1, [r4, r2]
     adds r5, r0, r1
     adds r0, r4, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08067C8A
     cmp r5, #0x58
@@ -41111,13 +39865,13 @@ func_08067CC4: @ 0x08067CC4
     push {r4, r5, r6, lr}
     adds r5, r0, #0
     ldr r4, .L08067D04 @ =0x0203E05E
-    bl func_08054678
+    bl GetAnimPosition
     lsls r0, r0, #1
     adds r0, r0, r4
     movs r1, #0
     ldrsh r6, [r0, r1]
     adds r0, r5, #0
-    bl func_08054678
+    bl GetAnimPosition
     lsls r1, r6, #1
     adds r6, r1, r0
     adds r0, r6, #0
@@ -41207,7 +39961,7 @@ func_08067D14: @ 0x08067D14
 func_08067D78: @ 0x08067D78
     push {r4, r5, lr}
     adds r4, r0, #0
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     adds r0, r4, #0
     bl func_08067CC4
@@ -41880,7 +40634,7 @@ func_0806827C: @ 0x0806827C
     sub sp, #8
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     ldrh r0, [r4, #0x2c]
     adds r0, #1
@@ -42813,7 +41567,7 @@ func_080689CC: @ 0x080689CC
     bl Interpolate
     adds r6, r0, #0
     ldr r0, [r5, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08068A24
     ldr r0, .L08068A18 @ =0x02000054
@@ -43498,7 +42252,7 @@ func_08068F90: @ 0x08068F90
     str r6, [r5]
     str r4, [r6, #0x5c]
     adds r0, r4, #0
-    bl func_080547A8
+    bl GetAnimAnotherSide
     str r0, [r6, #0x60]
     ldr r0, .L08068FC4 @ =0x0203E02C
     ldrh r0, [r0]
@@ -43908,7 +42662,7 @@ func_080692A4: @ 0x080692A4
     movs r0, #0x50
     strh r0, [r7, #0x2c]
     adds r0, r6, #0
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L08069374
     mov r1, sb
@@ -46169,7 +44923,7 @@ func_0806A4E0: @ 0x0806A4E0
     mov r8, r0
     movs r7, #0
     ldr r0, [r6, #0x5c]
-    bl func_08054678
+    bl GetAnimPosition
     cmp r0, #0
     bne .L0806A50C
     ldr r0, .L0806A508 @ =0x0203E094
@@ -46465,7 +45219,7 @@ func_0806A71C: @ 0x0806A71C
     push {r4, r5, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_080547A8
+    bl GetAnimAnotherSide
     adds r5, r0, #0
     ldrh r0, [r4, #0x2c]
     adds r0, #1

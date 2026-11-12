@@ -78,7 +78,15 @@ gUnk_081D7B80:
 
     .global gUnk_081D7DD4
 gUnk_081D7DD4:
-    .incbin "baserom.gba", 0x1D7DD4, 0x3FBD34 - 0x1D7DD4
+    .incbin "baserom.gba", 0x1D7DD4, 0x1D856C - 0x1D7DD4
+
+    .global BanimDefaultModeConfig
+BanimDefaultModeConfig:
+    .incbin "baserom.gba", 0x1D856C, 0x1D8594 - 0x1D856C
+
+    .global BattleTypeToAnimModeEndOfDodge
+BattleTypeToAnimModeEndOfDodge:
+    .incbin "baserom.gba", 0x1D8594, 0x3FBD34 - 0x1D8594
 
     .global gUnk_083FBD34
 gUnk_083FBD34:

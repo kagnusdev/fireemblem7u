@@ -294,9 +294,9 @@ extern u16 gBanimPaletteLeft[0x50];
 extern u16 gBanimPaletteRight[0x50];
 extern u32 gBanimOaml[0x1600];
 extern u32 gBanimOamr2[0x1600];
-extern int Unk_02017758;
-extern int Unk_03004750;
-extern int Unk_0203E088[2];
+extern int gEfxTeonoState;
+extern int gBanimDebugCurrentIndex;
+extern int gBanimForceUnitChgDebug[2];
 extern s16 Unk_0203DFEC;
 extern short gEkrPairHpInitial[2];
 extern short gEfxPairHpBufOffset[];
@@ -528,8 +528,8 @@ int EfxGetCamMovDuration(void);
 // ??? sub_8050F74
 void EfxTmFill(u32 val);
 void SetEkrFrontAnimPostion(int pos, s16 x, s16 y);
-int sub_8050FE4(void);
-void sub_8050FF0(int);
+int func_08050808(void);
+void func_08050814(int);
 void NewEfxspdquake(struct Anim * anim);
 // ??? sub_8051020
 // ??? sub_80510F4
@@ -1467,7 +1467,7 @@ void EfxPlaySEwithCmdCtrl(struct Anim * anim, int);
 // ??? GetEfxSoundType1FromTerrain
 // ??? IsAnimSoundInPositionMaybe
 // ??? GetEfxSoundType2FromBaseCon
-s16 sub_80684B0(struct Anim * anim);
+s16 func_08067CC4(struct Anim * anim);
 // ??? EfxPlayHittedSFX
 // ??? EfxPlayCriticalHittedSFX
 // ??? EfxCheckRetaliation
