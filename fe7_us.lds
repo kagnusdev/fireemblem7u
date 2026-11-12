@@ -96,6 +96,7 @@ SECTIONS
         asm/trap.o(.text);
         asm/item-action.o(.text);
         asm/bmio.o(.text);
+        asm/code1.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
