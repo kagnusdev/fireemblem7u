@@ -98,6 +98,7 @@ SECTIONS
         asm/bmio.o(.text);
         asm/code1.o(.text);
         asm/code-ai.o(.text);
+        asm/code-sio.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
