@@ -71,7 +71,7 @@ enum
 /* svc 0E */ void BgAffineSet(struct BgAffineSetSrc const * src, struct BgAffineSetDst * dst, i32 count);
 /* svc 0F */ void ObjAffineSet(struct ObjAffineSetSrc const * src, void * dest, i32 count, i32 offset);
 // svc 10 */ void BitUnpack(void const * src, void * dst, struct BitUnpackInfo const * info);
-/* svc 11 */ void LZ77UnComp8bit(void const * src, void * dst);
+/* svc 11 */ void LZ77UnCompWram(void const * src, void * dst);
 /* svc 12 */ void LZ77UnComp16bit(void const * src, void * dst);
 /* svc 13 */ void HuffUnComp(void const * src, void * dst);
 /* svc 14 */ void RLUnComp8bit(void const * src, void * dst);

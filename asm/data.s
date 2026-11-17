@@ -251,7 +251,12 @@ Sprite_UiHand:
 
     .global sHandXOffsetLut
 sHandXOffsetLut:
-    .incbin "baserom.gba", 0xB9A868, 0xBDCE4C - 0xB9A868
+    .incbin "baserom.gba", 0xB9A868, 0xB9B28C - 0xB9A868
+
+
+    .section ".data_1_2", "a"
+
+    .incbin "baserom.gba", 0xB9B2DC, 0xBDCE4C - 0xB9B2DC
 
     .global gCharacterData
 gCharacterData:
@@ -317,4 +322,16 @@ ProcScr_OpeningSequence:
 
     @ CF6A94 ... 1000000
 
-    .incbin "baserom.gba", 0xCF6A94, 0x1000000 - 0xCF6A94
+    .incbin "baserom.gba", 0xCF6A94, 0xE00008 - 0xCF6A94
+
+    .global banim_data
+banim_data:
+    .incbin "baserom.gba", 0xE00008, 0xFC0008 - 0xE00008
+
+    .global battle_terrain_table
+battle_terrain_table:
+    .incbin "baserom.gba", 0xFC0008, 0xFD8008 - 0xFC0008
+
+    .global character_battle_animation_palette_table
+character_battle_animation_palette_table:
+    .incbin "baserom.gba", 0xFD8008, 0x1000000 - 0xFD8008

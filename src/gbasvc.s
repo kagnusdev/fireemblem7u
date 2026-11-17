@@ -105,18 +105,18 @@ LZ77UnComp16bit:
     .align 2, 0
     .size LZ77UnComp16bit, . - LZ77UnComp16bit
 
-    @ LZ77UnComp8bit
+    @ LZ77UnCompWram
 
-    .global LZ77UnComp8bit
-    .type LZ77UnComp8bit, function
+    .global LZ77UnCompWram
+    .type LZ77UnCompWram, function
 
     .thumb
-LZ77UnComp8bit:
+LZ77UnCompWram:
     svc   #0x11
     bx    lr
 
     .align 2, 0
-    .size LZ77UnComp8bit, . - LZ77UnComp8bit
+    .size LZ77UnCompWram, . - LZ77UnCompWram
 
     @ MultiBoot
 

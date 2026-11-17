@@ -239,7 +239,7 @@ func_0804D670: @ 0x0804D670
     bl func_0804E1F4
     ldr r0, [r5, #0x60]
     bl GetAnimPosition
-    ldr r1, .L0804D770 @ =0x0203E010
+    ldr r1, .L0804D770 @ =gBanimValid
     lsls r0, r0, #1
     adds r0, r0, r1
     movs r1, #0
@@ -249,7 +249,7 @@ func_0804D670: @ 0x0804D670
     bl Proc_Break
     b .L0804D780
     .align 2, 0
-.L0804D770: .4byte 0x0203E010
+.L0804D770: .4byte gBanimValid
 .L0804D774:
     adds r0, r1, #1
     str r0, [r5, #0x54]
@@ -784,7 +784,7 @@ func_0804DAB0: @ 0x0804DAB0
     bl func_0804E1F4
     ldr r0, [r5, #0x60]
     bl GetAnimPosition
-    ldr r1, .L0804DBE8 @ =0x0203E010
+    ldr r1, .L0804DBE8 @ =gBanimValid
     lsls r0, r0, #1
     adds r0, r0, r1
     movs r1, #0
@@ -794,7 +794,7 @@ func_0804DAB0: @ 0x0804DAB0
     bl Proc_Break
     b .L0804DBF8
     .align 2, 0
-.L0804DBE8: .4byte 0x0203E010
+.L0804DBE8: .4byte gBanimValid
 .L0804DBEC:
     adds r0, r1, #1
     str r0, [r5, #0x54]
@@ -1513,7 +1513,7 @@ func_0804E168: @ 0x0804E168
     bl func_0804D1D4
     ldr r0, [r4, #0x5c]
     bl GetAnimPosition
-    ldr r1, .L0804E1C8 @ =0x0203E010
+    ldr r1, .L0804E1C8 @ =gBanimValid
     lsls r0, r0, #1
     adds r0, r0, r1
     strh r5, [r0]
@@ -1536,7 +1536,7 @@ func_0804E168: @ 0x0804E168
     pop {r0}
     bx r0
     .align 2, 0
-.L0804E1C8: .4byte 0x0203E010
+.L0804E1C8: .4byte gBanimValid
     func_end func_0804E168
 
     thumb_func_start func_0804E1CC
@@ -3712,7 +3712,7 @@ func_0804F2E8: @ 0x0804F2E8
     ldrsh r0, [r0, r1]
     cmp r0, #0x50
     bgt .L0804F320
-    ldr r0, .L0804F314 @ =0x0203E020
+    ldr r0, .L0804F314 @ =gBanimFactionPal
     movs r1, #0
     ldrsh r0, [r0, r1]
     lsls r0, r0, #5
@@ -3722,7 +3722,7 @@ func_0804F2E8: @ 0x0804F2E8
     b .L0804F340
     .align 2, 0
 .L0804F310: .4byte 0x0203E0B8
-.L0804F314: .4byte 0x0203E020
+.L0804F314: .4byte gBanimFactionPal
 .L0804F318: .4byte 0x081D95B0
 .L0804F31C: .4byte 0x02022BC0
 .L0804F320:
@@ -3736,7 +3736,7 @@ func_0804F2E8: @ 0x0804F2E8
     ldrsh r0, [r0, r1]
     cmp r0, #0x50
     bgt .L0804F358
-    ldr r0, .L0804F34C @ =0x0203E020
+    ldr r0, .L0804F34C @ =gBanimFactionPal
     movs r1, #2
     ldrsh r0, [r0, r1]
     lsls r0, r0, #5
@@ -3750,7 +3750,7 @@ func_0804F2E8: @ 0x0804F2E8
     b .L0804F362
     .align 2, 0
 .L0804F348: .4byte 0x0203E0B8
-.L0804F34C: .4byte 0x0203E020
+.L0804F34C: .4byte gBanimFactionPal
 .L0804F350: .4byte 0x081D95B0
 .L0804F354: .4byte 0x02022BE0
 .L0804F358:
@@ -3799,7 +3799,7 @@ func_0804F37C: @ 0x0804F37C
     str r2, [r0, #0x58]
     adds r0, #0x29
     strb r3, [r0]
-    ldr r5, .L0804F448 @ =0x0203E020
+    ldr r5, .L0804F448 @ =gBanimFactionPal
     movs r1, #0
     ldrsh r0, [r5, r1]
     lsls r0, r0, #5
@@ -3864,7 +3864,7 @@ func_0804F37C: @ 0x0804F37C
 .L0804F43C: .4byte 0x08B9AECC
 .L0804F440: .4byte 0x081D8398
 .L0804F444: .4byte 0x081D83C2
-.L0804F448: .4byte 0x0203E020
+.L0804F448: .4byte gBanimFactionPal
 .L0804F44C: .4byte 0x081D95B0
 .L0804F450: .4byte 0x0201F93C
 .L0804F454: .4byte 0x081D9670
@@ -4077,7 +4077,7 @@ func_0804F5D4: @ 0x0804F5D4
     cmp r0, #0
     bne .L0804F60C
     ldr r0, .L0804F604 @ =0x081D97D0
-    ldr r1, .L0804F608 @ =0x02022B40
+    ldr r1, .L0804F608 @ =gPal + 0x2e0
     movs r2, #8
     bl CpuFastSet
     ldr r0, [r4, #0x5c]
@@ -4085,10 +4085,10 @@ func_0804F5D4: @ 0x0804F5D4
     b .L0804F61C
     .align 2, 0
 .L0804F604: .4byte 0x081D97D0
-.L0804F608: .4byte 0x02022B40
+.L0804F608: .4byte gPal + 0x2e0
 .L0804F60C:
     ldr r0, .L0804F638 @ =0x081D97D0
-    ldr r1, .L0804F63C @ =0x02022B80
+    ldr r1, .L0804F63C @ =gPal + 0x320
     movs r2, #8
     bl CpuFastSet
     ldr r0, [r4, #0x5c]
@@ -4109,7 +4109,7 @@ func_0804F5D4: @ 0x0804F5D4
     bx r0
     .align 2, 0
 .L0804F638: .4byte 0x081D97D0
-.L0804F63C: .4byte 0x02022B80
+.L0804F63C: .4byte gPal + 0x320
     func_end func_0804F5D4
 
     thumb_func_start func_0804F640
@@ -4120,21 +4120,21 @@ func_0804F640: @ 0x0804F640
     bl GetAnimPosition
     cmp r0, #0
     bne .L0804F66C
-    ldr r0, .L0804F664 @ =0x02000054
+    ldr r0, .L0804F664 @ =gpEfxUnitPaletteBackup
     ldr r0, [r0]
-    ldr r1, .L0804F668 @ =0x02022B40
+    ldr r1, .L0804F668 @ =gPal + 0x2e0
     movs r2, #8
     bl CpuFastSet
     ldr r0, [r4, #0x5c]
     bl func_08064CD8
     b .L0804F67E
     .align 2, 0
-.L0804F664: .4byte 0x02000054
-.L0804F668: .4byte 0x02022B40
+.L0804F664: .4byte gpEfxUnitPaletteBackup
+.L0804F668: .4byte gPal + 0x2e0
 .L0804F66C:
-    ldr r0, .L0804F690 @ =0x02000054
+    ldr r0, .L0804F690 @ =gpEfxUnitPaletteBackup
     ldr r0, [r0, #4]
-    ldr r1, .L0804F694 @ =0x02022B80
+    ldr r1, .L0804F694 @ =gPal + 0x320
     movs r2, #8
     bl CpuFastSet
     ldr r0, [r4, #0x5c]
@@ -4147,8 +4147,8 @@ func_0804F640: @ 0x0804F640
     pop {r0}
     bx r0
     .align 2, 0
-.L0804F690: .4byte 0x02000054
-.L0804F694: .4byte 0x02022B80
+.L0804F690: .4byte gpEfxUnitPaletteBackup
+.L0804F694: .4byte gPal + 0x320
     func_end func_0804F640
 
     thumb_func_start func_0804F698
@@ -4205,7 +4205,7 @@ func_0804F698: @ 0x0804F698
     bl GetAnimPosition
     cmp r0, #0
     bne .L0804F754
-    ldr r5, .L0804F74C @ =0x02000054
+    ldr r5, .L0804F74C @ =gpEfxUnitPaletteBackup
     ldr r0, [r5]
     ldr r4, .L0804F750 @ =gFadeComponents
     adds r1, r4, #0
@@ -4233,10 +4233,10 @@ func_0804F698: @ 0x0804F698
 .L0804F740: .4byte 0x081D83E4
 .L0804F744: .4byte 0x0203E008
 .L0804F748: .4byte 0x0201776C
-.L0804F74C: .4byte 0x02000054
+.L0804F74C: .4byte gpEfxUnitPaletteBackup
 .L0804F750: .4byte gFadeComponents
 .L0804F754:
-    ldr r5, .L0804F78C @ =0x02000054
+    ldr r5, .L0804F78C @ =gpEfxUnitPaletteBackup
     ldr r0, [r5, #4]
     ldr r4, .L0804F790 @ =0x020222C0
     adds r1, r4, #0
@@ -4263,7 +4263,7 @@ func_0804F698: @ 0x0804F698
     pop {r0}
     bx r0
     .align 2, 0
-.L0804F78C: .4byte 0x02000054
+.L0804F78C: .4byte gpEfxUnitPaletteBackup
 .L0804F790: .4byte 0x020222C0
     func_end func_0804F698
 
@@ -4389,9 +4389,9 @@ func_0804F85C: @ 0x0804F85C
     bl GetAnimPosition
     cmp r0, #0
     bne .L0804F8C4
-    ldr r0, .L0804F8B8 @ =0x02000054
+    ldr r0, .L0804F8B8 @ =gpEfxUnitPaletteBackup
     ldr r0, [r0]
-    ldr r4, .L0804F8BC @ =0x02022B40
+    ldr r4, .L0804F8BC @ =gPal + 0x2e0
     adds r1, r4, #0
     movs r2, #8
     bl CpuFastSet
@@ -4418,13 +4418,13 @@ func_0804F85C: @ 0x0804F85C
     bl func_08066FE8
     b .L0804F8E6
     .align 2, 0
-.L0804F8B8: .4byte 0x02000054
-.L0804F8BC: .4byte 0x02022B40
+.L0804F8B8: .4byte gpEfxUnitPaletteBackup
+.L0804F8BC: .4byte gPal + 0x2e0
 .L0804F8C0: .4byte 0xFFFFFD20
 .L0804F8C4:
-    ldr r0, .L0804F8F4 @ =0x02000054
+    ldr r0, .L0804F8F4 @ =gpEfxUnitPaletteBackup
     ldr r0, [r0, #4]
-    ldr r4, .L0804F8F8 @ =0x02022B80
+    ldr r4, .L0804F8F8 @ =gPal + 0x320
     adds r1, r4, #0
     movs r2, #8
     bl CpuFastSet
@@ -4445,8 +4445,8 @@ func_0804F85C: @ 0x0804F85C
     pop {r0}
     bx r0
     .align 2, 0
-.L0804F8F4: .4byte 0x02000054
-.L0804F8F8: .4byte 0x02022B80
+.L0804F8F4: .4byte gpEfxUnitPaletteBackup
+.L0804F8F8: .4byte gPal + 0x320
 .L0804F8FC: .4byte 0xFFFFFCE0
     func_end func_0804F85C
 
@@ -4545,7 +4545,7 @@ func_0804F900: @ 0x0804F900
     bl GetAnimPosition
     cmp r0, #0
     bne .L0804F9D4
-    ldr r0, .L0804F9CC @ =0x02022B40
+    ldr r0, .L0804F9CC @ =gPal + 0x2e0
     ldr r1, .L0804F9D0 @ =gFadeComponents
     adds r2, r1, #0
     adds r2, #0x30
@@ -4561,10 +4561,10 @@ func_0804F900: @ 0x0804F900
     bl func_0806722C
     b .L0804F9F2
     .align 2, 0
-.L0804F9CC: .4byte 0x02022B40
+.L0804F9CC: .4byte gPal + 0x2e0
 .L0804F9D0: .4byte gFadeComponents
 .L0804F9D4:
-    ldr r0, .L0804FA00 @ =0x02022B80
+    ldr r0, .L0804FA00 @ =gPal + 0x320
     ldr r1, .L0804FA04 @ =0x020222C0
     adds r2, r1, #0
     adds r2, #0x30
@@ -4586,7 +4586,7 @@ func_0804F900: @ 0x0804F900
     pop {r0}
     bx r0
     .align 2, 0
-.L0804FA00: .4byte 0x02022B80
+.L0804FA00: .4byte gPal + 0x320
 .L0804FA04: .4byte 0x020222C0
     func_end func_0804F900
 
@@ -4598,19 +4598,19 @@ func_0804FA08: @ 0x0804FA08
     bl GetAnimPosition
     cmp r0, #0
     bne .L0804FA2C
-    ldr r0, .L0804FA24 @ =0x02000054
+    ldr r0, .L0804FA24 @ =gpEfxUnitPaletteBackup
     ldr r0, [r0]
-    ldr r1, .L0804FA28 @ =0x02022B40
+    ldr r1, .L0804FA28 @ =gPal + 0x2e0
     movs r2, #8
     bl CpuFastSet
     b .L0804FA38
     .align 2, 0
-.L0804FA24: .4byte 0x02000054
-.L0804FA28: .4byte 0x02022B40
+.L0804FA24: .4byte gpEfxUnitPaletteBackup
+.L0804FA28: .4byte gPal + 0x2e0
 .L0804FA2C:
-    ldr r0, .L0804FA48 @ =0x02000054
+    ldr r0, .L0804FA48 @ =gpEfxUnitPaletteBackup
     ldr r0, [r0, #4]
-    ldr r1, .L0804FA4C @ =0x02022B80
+    ldr r1, .L0804FA4C @ =gPal + 0x320
     movs r2, #8
     bl CpuFastSet
 .L0804FA38:
@@ -4621,8 +4621,8 @@ func_0804FA08: @ 0x0804FA08
     pop {r0}
     bx r0
     .align 2, 0
-.L0804FA48: .4byte 0x02000054
-.L0804FA4C: .4byte 0x02022B80
+.L0804FA48: .4byte gpEfxUnitPaletteBackup
+.L0804FA4C: .4byte gPal + 0x320
     func_end func_0804FA08
 
     thumb_func_start func_0804FA50
@@ -5198,7 +5198,7 @@ func_0804FE78: @ 0x0804FE78
     adds r0, r0, r1
     ldr r0, [r0]
     adds r1, r5, #0
-    bl LZ77UnComp8bit
+    bl LZ77UnCompWram
     ldr r1, .L0804FEF8 @ =gBg3Tm
     movs r0, #6
     str r0, [sp]
@@ -6013,7 +6013,7 @@ func_080504DC: @ 0x080504DC
     bne .L08050500
     ldr r1, .L080504FC @ =0x02019784
     adds r0, r3, #0
-    bl LZ77UnComp8bit
+    bl LZ77UnCompWram
     b .L08050508
     .align 2, 0
 .L080504F8: .4byte 0x0203E02C
@@ -6021,7 +6021,7 @@ func_080504DC: @ 0x080504DC
 .L08050500:
     ldr r1, .L0805052C @ =0x02019784
     adds r0, r2, #0
-    bl LZ77UnComp8bit
+    bl LZ77UnCompWram
 .L08050508:
     ldr r5, .L0805052C @ =0x02019784
     adds r0, r4, #0
@@ -6072,7 +6072,7 @@ func_0805055C: @ 0x0805055C
     adds r6, r3, #0
     ldr r7, .L08050594 @ =0x02019784
     adds r1, r7, #0
-    bl LZ77UnComp8bit
+    bl LZ77UnCompWram
     adds r0, r4, #0
     bl GetAnimPosition
     cmp r0, #0
@@ -6122,7 +6122,7 @@ func_080505C8: @ 0x080505C8
     ldr r5, .L080505E8 @ =0x06010800
     ldr r4, .L080505EC @ =0x0201A784
     adds r1, r4, #0
-    bl LZ77UnComp8bit
+    bl LZ77UnCompWram
     adds r0, r4, #0
     adds r1, r5, #0
     adds r2, r6, #0
@@ -6157,7 +6157,7 @@ func_0805060C: @ 0x0805060C
     ldr r5, .L0805062C @ =0x06002000
     ldr r4, .L08050630 @ =0x02017784
     adds r1, r4, #0
-    bl LZ77UnComp8bit
+    bl LZ77UnCompWram
     adds r0, r4, #0
     adds r1, r5, #0
     adds r2, r6, #0

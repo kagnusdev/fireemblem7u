@@ -203,7 +203,7 @@ func_08013138: @ 0x08013138
     adds r5, r1, #0
     ldr r6, .L08013164 @ =gBuf
     adds r1, r6, #0
-    bl LZ77UnComp8bit
+    bl LZ77UnCompWram
     adds r0, r4, #0
     bl GetDataSize
     cmp r0, #0

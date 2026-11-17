@@ -703,7 +703,7 @@ func_0804B6A8: @ 0x0804B6A8
 func_0804B6FC: @ 0x0804B6FC
     push {r4, lr}
     adds r4, r0, #0
-    ldr r0, .L0804B714 @ =0x0203E0A0
+    ldr r0, .L0804B714 @ =gpEkrTriangleUnits
     ldr r0, [r0]
     cmp r0, #0
     beq .L0804B720
@@ -713,7 +713,7 @@ func_0804B6FC: @ 0x0804B6FC
     ldr r0, .L0804B71C @ =func_0804B730
     b .L0804B722
     .align 2, 0
-.L0804B714: .4byte 0x0203E0A0
+.L0804B714: .4byte gpEkrTriangleUnits
 .L0804B718: .4byte 0x02000000
 .L0804B71C: .4byte func_0804B730
 .L0804B720:
@@ -761,7 +761,7 @@ func_0804B758: @ 0x0804B758
     asrs r0, r0, #0x10
     cmp r0, #0x1e
     ble .L0804B7C4
-    ldr r6, .L0804B7CC @ =0x0203E010
+    ldr r6, .L0804B7CC @ =gBanimValid
     ldrh r0, [r6]
     cmp r0, #1
     bne .L0804B794
@@ -812,7 +812,7 @@ func_0804B758: @ 0x0804B758
     pop {r0}
     bx r0
     .align 2, 0
-.L0804B7CC: .4byte 0x0203E010
+.L0804B7CC: .4byte gBanimValid
 .L0804B7D0: .4byte 0x02000000
 .L0804B7D4: .4byte 0x0201FAF8
 .L0804B7D8: .4byte func_0804B7DC
@@ -980,7 +980,7 @@ func_0804B858: @ 0x0804B858
     bl ArenaContinueBattle
     bl func_08052C9C
     bl AnimClearAll
-    bl func_08054024
+    bl UpdateBanimFrame
     bl func_08054248
     strh r4, [r6, #0x2c]
     ldr r0, .L0804B92C @ =func_0804B758

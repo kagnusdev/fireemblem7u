@@ -194,7 +194,7 @@ func_0804C1D0: @ 0x0804C1D0
 .L0804C22C: .4byte 0x081D9730
 .L0804C230: .4byte 0x02022BC0
 .L0804C234:
-    ldr r0, .L0804C260 @ =0x0203E020
+    ldr r0, .L0804C260 @ =gBanimFactionPal
     movs r2, #0
     ldrsh r0, [r0, r2]
     lsls r0, r0, #5
@@ -215,14 +215,14 @@ func_0804C1D0: @ 0x0804C1D0
     bl CpuSet
     b .L0804C28C
     .align 2, 0
-.L0804C260: .4byte 0x0203E020
+.L0804C260: .4byte gBanimFactionPal
 .L0804C264: .4byte 0x081D95B0
 .L0804C268: .4byte 0x02022BC0
 .L0804C26C: .4byte 0x0203E0B8
 .L0804C270: .4byte 0x081D9730
 .L0804C274: .4byte 0x02022BE0
 .L0804C278:
-    ldr r0, .L0804C3DC @ =0x0203E020
+    ldr r0, .L0804C3DC @ =gBanimFactionPal
     movs r2, #2
     ldrsh r0, [r0, r2]
     lsls r0, r0, #5
@@ -247,7 +247,7 @@ func_0804C1D0: @ 0x0804C1D0
     ldr r0, .L0804C3F8 @ =0x081D90C0
     ldr r1, .L0804C3FC @ =0x06013C00
     bl LZ77UnComp16bit
-    ldr r6, .L0804C3DC @ =0x0203E020
+    ldr r6, .L0804C3DC @ =gBanimFactionPal
     movs r1, #0
     ldrsh r0, [r6, r1]
     lsls r0, r0, #5
@@ -380,7 +380,7 @@ func_0804C1D0: @ 0x0804C1D0
     pop {r0}
     bx r0
     .align 2, 0
-.L0804C3DC: .4byte 0x0203E020
+.L0804C3DC: .4byte gBanimFactionPal
 .L0804C3E0: .4byte 0x081D95B0
 .L0804C3E4: .4byte 0x02022BE0
 .L0804C3E8: .4byte 0x0203E0C0
@@ -791,7 +791,7 @@ func_0804C550: @ 0x0804C550
 .L0804C6D0: .4byte 0x0203E0BC
 .L0804C6D4: .4byte 0x0203E02C
 .L0804C6D8:
-    ldr r0, .L0804C6EC @ =0x0203E010
+    ldr r0, .L0804C6EC @ =gBanimValid
     ldrh r0, [r0]
     cmp r0, #1
     bne .L0804C6F0
@@ -801,7 +801,7 @@ func_0804C550: @ 0x0804C550
     adds r0, #0x38
     b .L0804C700
     .align 2, 0
-.L0804C6EC: .4byte 0x0203E010
+.L0804C6EC: .4byte gBanimValid
 .L0804C6F0:
     mov r3, sb
     movs r4, #0x32
@@ -2074,7 +2074,7 @@ func_0804D0B8: @ 0x0804D0B8
     lsls r0, r1, #1
     adds r0, r0, r1
     lsls r0, r0, #3
-    ldr r3, .L0804D100 @ =0x08FC0008
+    ldr r3, .L0804D100 @ =battle_terrain_table
     adds r5, r0, r3
     movs r6, #2
     ldrsh r1, [r2, r6]
@@ -2098,7 +2098,7 @@ func_0804D0B8: @ 0x0804D0B8
     .align 2, 0
 .L0804D0F8: .4byte 0x0201FAD0
 .L0804D0FC: .4byte 0x0203E028
-.L0804D100: .4byte 0x08FC0008
+.L0804D100: .4byte battle_terrain_table
 .L0804D104: .4byte 0x0203E02C
 .L0804D108: .4byte 0x020145C8
 .L0804D10C:
@@ -2220,7 +2220,7 @@ func_0804D1D4: @ 0x0804D1D4
     ldr r0, .L0804D220 @ =0x081D88B4
     ldr r1, .L0804D224 @ =0x06001000
     bl LZ77UnComp16bit
-    ldr r0, .L0804D228 @ =0x0203E010
+    ldr r0, .L0804D228 @ =gBanimValid
     movs r1, #0
     ldrsh r0, [r0, r1]
     cmp r0, #0
@@ -2233,7 +2233,7 @@ func_0804D1D4: @ 0x0804D1D4
 .L0804D21C: .4byte 0x06001400
 .L0804D220: .4byte 0x081D88B4
 .L0804D224: .4byte 0x06001000
-.L0804D228: .4byte 0x0203E010
+.L0804D228: .4byte gBanimValid
 .L0804D22C: .4byte 0x08B9A998
 .L0804D230:
     ldr r0, .L0804D278 @ =0x0203E094
@@ -2259,7 +2259,7 @@ func_0804D1D4: @ 0x0804D1D4
     adds r0, r4, #0
     adds r1, r5, #0
     bl Text_DrawString
-    ldr r0, .L0804D288 @ =0x0203E010
+    ldr r0, .L0804D288 @ =gBanimValid
     movs r1, #0
     ldrsh r0, [r0, r1]
     cmp r0, #0
@@ -2271,7 +2271,7 @@ func_0804D1D4: @ 0x0804D1D4
 .L0804D27C: .4byte 0x02017660
 .L0804D280: .4byte 0x081D8ABC
 .L0804D284: .4byte 0x06001400
-.L0804D288: .4byte 0x0203E010
+.L0804D288: .4byte gBanimValid
 .L0804D28C: .4byte 0x08B9A998
 .L0804D290:
     ldr r0, .L0804D2D8 @ =0x0203E094
@@ -2297,7 +2297,7 @@ func_0804D1D4: @ 0x0804D1D4
     adds r0, r4, #0
     adds r1, r5, #0
     bl Text_DrawString
-    ldr r0, .L0804D2E8 @ =0x0203E010
+    ldr r0, .L0804D2E8 @ =gBanimValid
     movs r1, #2
     ldrsh r0, [r0, r1]
     cmp r0, #0
@@ -2309,7 +2309,7 @@ func_0804D1D4: @ 0x0804D1D4
 .L0804D2DC: .4byte 0x02017670
 .L0804D2E0: .4byte 0x081D8B0C
 .L0804D2E4: .4byte 0x06001580
-.L0804D2E8: .4byte 0x0203E010
+.L0804D2E8: .4byte gBanimValid
 .L0804D2EC: .4byte 0x08B9A998
 .L0804D2F0:
     ldr r0, .L0804D338 @ =0x0203E098
@@ -2335,7 +2335,7 @@ func_0804D1D4: @ 0x0804D1D4
     adds r0, r4, #0
     adds r1, r5, #0
     bl Text_DrawString
-    ldr r0, .L0804D348 @ =0x0203E010
+    ldr r0, .L0804D348 @ =gBanimValid
     movs r1, #2
     ldrsh r0, [r0, r1]
     cmp r0, #0
@@ -2347,7 +2347,7 @@ func_0804D1D4: @ 0x0804D1D4
 .L0804D33C: .4byte 0x02017678
 .L0804D340: .4byte 0x081D8B78
 .L0804D344: .4byte 0x06001740
-.L0804D348: .4byte 0x0203E010
+.L0804D348: .4byte gBanimValid
 .L0804D34C: .4byte 0x08B9A998
 .L0804D350:
     ldr r0, .L0804D414 @ =0x0203E098
@@ -2404,7 +2404,7 @@ func_0804D1D4: @ 0x0804D1D4
     bl func_0806693C
     movs r0, #1
     bl EnableBgSync
-    ldr r6, .L0804D42C @ =0x0203E020
+    ldr r6, .L0804D42C @ =gBanimFactionPal
     movs r1, #0
     ldrsh r0, [r6, r1]
     lsls r0, r0, #5
@@ -2441,7 +2441,7 @@ func_0804D1D4: @ 0x0804D1D4
 .L0804D420: .4byte 0x060018C0
 .L0804D424: .4byte gBg0Tm
 .L0804D428: .4byte 0x081D8F50
-.L0804D42C: .4byte 0x0203E020
+.L0804D42C: .4byte gBanimFactionPal
 .L0804D430: .4byte 0x081D8FA0
 .L0804D434: .4byte 0x020228A0
 .L0804D438: .4byte 0x02000038

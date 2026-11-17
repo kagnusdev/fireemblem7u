@@ -107,6 +107,7 @@ SECTIONS
         asm/banim-efxbattle.o(.text);
         asm/code-banim1.o(.text);
         src/banim-main.o(.text);
+        src/banim-mainutils.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -178,6 +179,8 @@ SECTIONS
         . = ALIGN(4); asm/rodata.o(.rodata_1);
         . = ALIGN(4); src/unit.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_1_2);
+        . = ALIGN(4); src/banim-mainutils.o(.rodata);
+        . = ALIGN(4); asm/rodata.o(.rodata_1_3);
         . = ALIGN(4); src/m4a.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_2);
         . = ALIGN(4); *libc.a:vfprintf.o(.rodata);
@@ -208,6 +211,8 @@ SECTIONS
         . = ALIGN(4); asm/data.o(.data_1);
         . = ALIGN(4); src/bmfx-chapterintrofx.o(.data);
         . = ALIGN(4); asm/data.o(.data_1_1);
+        . = ALIGN(4); src/banim-mainutils.o(.data);
+        . = ALIGN(4); asm/data.o(.data_1_2);
         . = ALIGN(4); src/sio_link_loader.o(.data);
 
         /* libc */
@@ -293,9 +298,15 @@ SECTIONS
     {
         . = 0x000000; gAnims = .;
         . = 0x000024; gAnimC01Blocking = .;
+        . = 0x000054; gpEfxUnitPaletteBackup = .;
         . = 0x00005C; gpBanimModesLeft = .;
         . = 0x000060; gpBanimModesRight = .;
+        . = 0x004088; gBanimPaletteLeft = .;
+        . = 0x004128; gBanimPaletteRight = .;
+        . = 0x0041C8; gBanimOaml = .;
+        . = 0x0099C8; gBanimOamr2 = .;
         . = 0x00F1C8; gBanimScrLeft = .;
+        . = 0x011BC8; gBanimScrRight = .;
         . = 0x017758; gEfxTeonoState = .;
         . = 0x01FAF8; gBanimDoneFlag = .;
         . = 0x01FB10; gpImgSheet = .;
@@ -325,10 +336,23 @@ SECTIONS
         . = 0x033E00; gWorkingMoveScr = .;
 
         . = 0x03DCEC; src/ui.o(ewram_data);
+        . = 0x03E010; gBanimValid = .;
+
+        . = 0x03E01C; gBanimUniquePal = .;
+        . = 0x03E020; gBanimFactionPal = .;
 
         . = 0x03E02C; gEkrDistanceType = .;
 
+        . = 0x03E08E; gBanimIdx = .;
+
+        . = 0x03E094; gpEkrBattleUnitLeft = .;
+        . = 0x03E098; gpEkrBattleUnitRight = .;
+
+        . = 0x03E0A0; gpEkrTriangleUnits = .;
+        . = 0x03E0A8; gBanimTriAtkPalettes = .;
         . = 0x03E0B0; gBanimForceUnitChgDebug = .;
+
+        . = 0x03E0E8; gBanimUniquePaletteDisabled = .;
 
         . = 0x03EEA8;
         . = ALIGN(4); end = .;

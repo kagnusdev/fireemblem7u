@@ -80,13 +80,26 @@ gUnk_081D7B80:
 gUnk_081D7DD4:
     .incbin "baserom.gba", 0x1D7DD4, 0x1D856C - 0x1D7DD4
 
-    .global BanimDefaultModeConfig
-BanimDefaultModeConfig:
-    .incbin "baserom.gba", 0x1D856C, 0x1D8594 - 0x1D856C
 
-    .global BattleTypeToAnimModeEndOfDodge
-BattleTypeToAnimModeEndOfDodge:
-    .incbin "baserom.gba", 0x1D8594, 0x3FBD34 - 0x1D8594
+    .section ".rodata_1_3", "a"
+
+    .incbin "baserom.gba", 0x1D85A4, 0x1D8654 - 0x1D85A4
+
+    .global TsaConf_BanimTmA1
+TsaConf_BanimTmA1:
+    .incbin "baserom.gba", 0x1D8654, 0x1D86EC - 0x1D8654
+
+    .global TsaConf_BanimTmA2
+TsaConf_BanimTmA2:
+    .incbin "baserom.gba", 0x1D86EC, 0x1D8784 - 0x1D86EC
+
+    .global TsaConf_BanimTmA3
+TsaConf_BanimTmA3:
+    .incbin "baserom.gba", 0x1D8784, 0x1D881C - 0x1D8784
+
+    .global TsaConf_BanimTmA4
+TsaConf_BanimTmA4:
+    .incbin "baserom.gba", 0x1D881C, 0x3FBD34 - 0x1D881C
 
     .global gUnk_083FBD34
 gUnk_083FBD34:
