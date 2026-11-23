@@ -108,6 +108,7 @@ SECTIONS
         asm/code-banim1.o(.text);
         src/banim-main.o(.text);
         src/banim-mainutils.o(.text);
+        asm/code-banim.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
