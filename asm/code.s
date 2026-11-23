@@ -1,455 +1,5 @@
     .include "asm_prelude.inc"
 
-    thumb_func_start NewEfxDrsmmoya
-NewEfxDrsmmoya: @ 0x08063C70
-    push {r4, lr}
-    adds r4, r0, #0
-    bl func_08050008
-    ldr r0, .L08063C8C @ =0x08BA4700
-    movs r1, #3
-    bl Proc_Start
-    str r4, [r0, #0x5c]
-    movs r1, #0
-    strh r1, [r0, #0x2c]
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08063C8C: .4byte 0x08BA4700
-    func_end NewEfxDrsmmoya
-
-    thumb_func_start func_08063C90
-func_08063C90: @ 0x08063C90
-    push {r4, r5, r6, lr}
-    sub sp, #4
-    adds r6, r0, #0
-    ldr r0, [r6, #0x5c]
-    bl GetAnimAnotherSide
-    adds r1, r0, #0
-    ldrh r0, [r6, #0x2c]
-    adds r0, #1
-    strh r0, [r6, #0x2c]
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    cmp r0, #1
-    bne .L08063CDC
-    adds r0, r1, #0
-    bl func_08063D44
-    ldr r0, [r6, #0x5c]
-    bl func_08054764
-    cmp r0, #1
-    bne .L08063CC2
-    movs r0, #0xba
-    lsls r0, r0, #2
-    b .L08063CC4
-.L08063CC2:
-    ldr r0, .L08063CD8 @ =0x000002E3
-.L08063CC4:
-    movs r1, #0x80
-    lsls r1, r1, #1
-    ldr r2, [r6, #0x5c]
-    movs r3, #2
-    ldrsh r2, [r2, r3]
-    movs r3, #1
-    bl func_080681E4
-    b .L08063D38
-    .align 2, 0
-.L08063CD8: .4byte 0x000002E3
-.L08063CDC:
-    cmp r0, #0x1a
-    bne .L08063D02
-    ldr r0, [r6, #0x5c]
-    movs r1, #0x41
-    bl func_08063E5C
-    adds r1, r0, #0
-    ldr r0, [r6, #0x5c]
-    movs r2, #0xa
-    str r2, [sp]
-    movs r3, #0x2d
-    bl func_08063F04
-    ldr r0, [r6, #0x5c]
-    movs r1, #0x41
-    movs r2, #1
-    bl func_08055E14
-    b .L08063D38
-.L08063D02:
-    cmp r0, #0x6f
-    bne .L08063D38
-    ldr r5, .L08063D40 @ =0x02000000
-    ldr r0, [r6, #0x5c]
-    bl GetAnimPosition
-    lsls r0, r0, #3
-    adds r0, r0, r5
-    ldr r4, [r0]
-    ldr r0, [r6, #0x5c]
-    bl GetAnimPosition
-    lsls r0, r0, #1
-    adds r0, #1
-    lsls r0, r0, #2
-    adds r0, r0, r5
-    ldr r2, [r0]
-    movs r0, #0x40
-    ldrh r1, [r4, #0x10]
-    orrs r1, r0
-    strh r1, [r4, #0x10]
-    ldrh r1, [r2, #0x10]
-    orrs r0, r1
-    strh r0, [r2, #0x10]
-    adds r0, r6, #0
-    bl Proc_Break
-.L08063D38:
-    add sp, #4
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08063D40: .4byte 0x02000000
-    func_end func_08063C90
-
-    thumb_func_start func_08063D44
-func_08063D44: @ 0x08063D44
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    ldr r0, .L08063DC0 @ =0x08BA4718
-    movs r1, #3
-    bl Proc_Start
-    adds r5, r0, #0
-    str r4, [r5, #0x5c]
-    movs r4, #0
-    movs r1, #0
-    strh r1, [r5, #0x2c]
-    str r1, [r5, #0x44]
-    ldr r0, .L08063DC4 @ =0x081E9792
-    str r0, [r5, #0x48]
-    ldr r0, .L08063DC8 @ =0x08BA4730
-    str r0, [r5, #0x4c]
-    str r0, [r5, #0x50]
-    ldr r0, .L08063DCC @ =0x08BA4764
-    str r0, [r5, #0x54]
-    str r1, [r5, #0x58]
-    ldr r0, .L08063DD0 @ =0x082B83B4
-    movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
-    ldr r3, .L08063DD4 @ =gDispIo
-    adds r2, r3, #0
-    adds r2, #0x3c
-    movs r0, #0x3f
-    ldrb r1, [r2]
-    ands r0, r1
-    movs r1, #0x40
-    orrs r0, r1
-    strb r0, [r2]
-    adds r1, r3, #0
-    adds r1, #0x44
-    movs r0, #0xb
-    strb r0, [r1]
-    adds r1, #1
-    movs r0, #7
-    strb r0, [r1]
-    adds r0, r3, #0
-    adds r0, #0x46
-    strb r4, [r0]
-    ldr r0, .L08063DD8 @ =0x0203E02C
-    movs r1, #0
-    ldrsh r0, [r0, r1]
-    cmp r0, #0
-    beq .L08063DE6
-    ldr r0, [r5, #0x5c]
-    bl GetAnimPosition
-    cmp r0, #0
-    bne .L08063DDC
-    movs r0, #1
-    movs r1, #0xe8
-    movs r2, #0
-    bl SetBgOffset
-    b .L08063DE6
-    .align 2, 0
-.L08063DC0: .4byte 0x08BA4718
-.L08063DC4: .4byte 0x081E9792
-.L08063DC8: .4byte 0x08BA4730
-.L08063DCC: .4byte 0x08BA4764
-.L08063DD0: .4byte 0x082B83B4
-.L08063DD4: .4byte gDispIo
-.L08063DD8: .4byte 0x0203E02C
-.L08063DDC:
-    movs r0, #1
-    movs r1, #0x18
-    movs r2, #0
-    bl SetBgOffset
-.L08063DE6:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    func_end func_08063D44
-
-    thumb_func_start func_08063DEC
-func_08063DEC: @ 0x08063DEC
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    adds r4, r0, #0
-    adds r0, #0x2c
-    adds r1, r4, #0
-    adds r1, #0x44
-    ldr r2, [r4, #0x48]
-    bl func_080506E4
-    lsls r0, r0, #0x10
-    asrs r1, r0, #0x10
-    cmp r1, #0
-    blt .L08063E3C
-    ldr r7, [r4, #0x4c]
-    ldr r0, [r4, #0x50]
-    mov r8, r0
-    ldr r0, [r4, #0x54]
-    lsls r5, r1, #2
-    adds r6, r5, r0
-    ldr r0, [r4, #0x58]
-    ldr r2, [r6]
-    cmp r0, r2
-    beq .L08063E26
-    movs r1, #0x80
-    lsls r1, r1, #6
-    adds r0, r2, #0
-    bl func_0805060C
-.L08063E26:
-    ldr r0, [r6]
-    str r0, [r4, #0x58]
-    ldr r0, [r4, #0x5c]
-    adds r1, r5, r7
-    ldr r1, [r1]
-    mov r3, r8
-    adds r2, r5, r3
-    ldr r2, [r2]
-    bl func_080504DC
-    b .L08063E52
-.L08063E3C:
-    movs r0, #1
-    rsbs r0, r0, #0
-    cmp r1, r0
-    bne .L08063E52
-    bl func_08050018
-    bl func_08050118
-    adds r0, r4, #0
-    bl Proc_Break
-.L08063E52:
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    func_end func_08063DEC
-
-    thumb_func_start func_08063E5C
-func_08063E5C: @ 0x08063E5C
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .L08063E80 @ =0x08BA4798
-    movs r1, #3
-    bl Proc_Start
-    str r4, [r0, #0x5c]
-    movs r1, #0
-    strh r1, [r0, #0x2c]
-    strh r1, [r0, #0x2e]
-    str r5, [r0, #0x44]
-    movs r1, #0x80
-    lsls r1, r1, #1
-    str r1, [r0, #0x48]
-    pop {r4, r5}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08063E80: .4byte 0x08BA4798
-    func_end func_08063E5C
-
-    thumb_func_start func_08063E84
-func_08063E84: @ 0x08063E84
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    adds r2, r0, #0
-    ldr r0, .L08063EF4 @ =0x0201FDAC
-    ldr r0, [r0]
-    ldr r4, .L08063EF8 @ =0x0201FDB8
-    cmp r0, #0
-    bne .L08063E98
-    ldr r4, .L08063EFC @ =0x0201FEF8
-.L08063E98:
-    movs r3, #0
-    ldr r0, [r2, #0x44]
-    mov ip, r0
-    ldr r1, .L08063F00 @ =0x080C5A48
-    mov r8, r1
-    movs r6, #0xff
-    ldr r5, [r2, #0x48]
-.L08063EA6:
-    lsls r0, r3, #1
-    movs r7, #0x2e
-    ldrsh r1, [r2, r7]
-    adds r0, r0, r1
-    ands r0, r6
-    lsls r0, r0, #1
-    add r0, r8
-    movs r1, #0
-    ldrsh r0, [r0, r1]
-    asrs r0, r0, #9
-    adds r0, #4
-    lsls r0, r0, #0x10
-    lsrs r0, r0, #0x10
-    muls r0, r5, r0
-    asrs r0, r0, #8
-    strh r0, [r4]
-    adds r4, #2
-    adds r3, #1
-    cmp r3, #0x4f
-    bls .L08063EA6
-    ldrh r0, [r2, #0x2e]
-    adds r0, #2
-    strh r0, [r2, #0x2e]
-    ldrh r0, [r2, #0x2c]
-    adds r0, #1
-    strh r0, [r2, #0x2c]
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    cmp r0, ip
-    bne .L08063EE8
-    adds r0, r2, #0
-    bl Proc_End
-.L08063EE8:
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08063EF4: .4byte 0x0201FDAC
-.L08063EF8: .4byte 0x0201FDB8
-.L08063EFC: .4byte 0x0201FEF8
-.L08063F00: .4byte gSinLut
-    func_end func_08063E84
-
-    thumb_func_start func_08063F04
-func_08063F04: @ 0x08063F04
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    adds r4, r0, #0
-    mov r8, r1
-    adds r5, r2, #0
-    adds r6, r3, #0
-    ldr r7, [sp, #0x18]
-    ldr r0, .L08063F38 @ =0x08BA47B0
-    movs r1, #3
-    bl Proc_Start
-    str r4, [r0, #0x5c]
-    movs r1, #0
-    strh r1, [r0, #0x2c]
-    str r5, [r0, #0x44]
-    str r6, [r0, #0x48]
-    str r7, [r0, #0x4c]
-    mov r1, r8
-    str r1, [r0, #0x64]
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08063F38: .4byte 0x08BA47B0
-    func_end func_08063F04
-
-    thumb_func_start func_08063F3C
-func_08063F3C: @ 0x08063F3C
-    push {r4, r5, lr}
-    sub sp, #4
-    adds r5, r0, #0
-    ldr r4, [r5, #0x64]
-    movs r2, #0x80
-    lsls r2, r2, #1
-    movs r0, #0x2c
-    ldrsh r3, [r5, r0]
-    ldr r0, [r5, #0x44]
-    str r0, [sp]
-    movs r0, #0
-    movs r1, #0
-    bl Interpolate
-    str r0, [r4, #0x48]
-    ldrh r0, [r5, #0x2c]
-    adds r0, #1
-    strh r0, [r5, #0x2c]
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    ldr r1, [r5, #0x44]
-    cmp r0, r1
-    ble .L08063F74
-    movs r0, #0
-    strh r0, [r5, #0x2c]
-    adds r0, r5, #0
-    bl Proc_Break
-.L08063F74:
-    add sp, #4
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    func_end func_08063F3C
-
-    thumb_func_start func_08063F7C
-func_08063F7C: @ 0x08063F7C
-    push {lr}
-    adds r2, r0, #0
-    ldrh r0, [r2, #0x2c]
-    adds r0, #1
-    strh r0, [r2, #0x2c]
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    ldr r1, [r2, #0x48]
-    cmp r0, r1
-    ble .L08063F9A
-    movs r0, #0
-    strh r0, [r2, #0x2c]
-    adds r0, r2, #0
-    bl Proc_Break
-.L08063F9A:
-    pop {r0}
-    bx r0
-    func_end func_08063F7C
-
-    thumb_func_start func_08063FA0
-func_08063FA0: @ 0x08063FA0
-    push {r4, r5, lr}
-    sub sp, #4
-    adds r5, r0, #0
-    ldr r4, [r5, #0x64]
-    movs r1, #0x80
-    lsls r1, r1, #1
-    movs r0, #0x2c
-    ldrsh r3, [r5, r0]
-    ldr r0, [r5, #0x4c]
-    str r0, [sp]
-    movs r0, #0
-    movs r2, #0
-    bl Interpolate
-    str r0, [r4, #0x48]
-    ldrh r0, [r5, #0x2c]
-    adds r0, #1
-    strh r0, [r5, #0x2c]
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    ldr r1, [r5, #0x4c]
-    cmp r0, r1
-    ble .L08063FD8
-    movs r0, #0
-    strh r0, [r5, #0x2c]
-    adds r0, r5, #0
-    bl Proc_Break
-.L08063FD8:
-    add sp, #4
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    func_end func_08063FA0
-
     thumb_func_start func_08063FE0
 func_08063FE0: @ 0x08063FE0
     ldr r0, .L08063FEC @ =0x0203E0F4
@@ -893,7 +443,7 @@ func_0806430C: @ 0x0806430C
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -914,7 +464,7 @@ func_0806430C: @ 0x0806430C
     bne .L08064350
     ldr r0, [r4, #0x5c]
     bl func_080640A4
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L08064350:
@@ -1096,7 +646,7 @@ func_080644A0: @ 0x080644A0
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r5, r0, #0x10
     cmp r5, #0
@@ -1138,7 +688,7 @@ func_080644A0: @ 0x080644A0
     bne .L0806451A
     ldr r0, [r4, #0x5c]
     bl func_080640A4
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0806451A:
@@ -1182,7 +732,7 @@ func_08064558: @ 0x08064558
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -1403,7 +953,7 @@ func_0806471C: @ 0x0806471C
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -1424,7 +974,7 @@ func_0806471C: @ 0x0806471C
     bne .L08064760
     ldr r0, [r4, #0x5c]
     bl func_080640A4
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L08064760:
@@ -1467,7 +1017,7 @@ func_0806479C: @ 0x0806479C
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -1754,7 +1304,7 @@ func_080649C8: @ 0x080649C8
     adds r1, r7, #0
     adds r1, #0x44
     ldr r2, [r7, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r4, r0, #0x10
     cmp r4, #0
@@ -1785,7 +1335,7 @@ func_080649C8: @ 0x080649C8
     bne .L08064A24
     ldr r0, [r7, #0x5c]
     bl func_080640A4
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r7, #0
     bl Proc_Break
 .L08064A24:
@@ -2436,7 +1986,7 @@ func_08064E70: @ 0x08064E70
     movs r0, #0xe6
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
 .L08064EE0:
     add sp, #4
     pop {r4, r5}
@@ -2680,7 +2230,7 @@ func_08064FE4: @ 0x08064FE4
     lsls r1, r1, #1
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
     adds r0, r6, #0
     bl Proc_Break
 .L080650E6:
@@ -2953,7 +2503,7 @@ func_080652C0: @ 0x080652C0
     lsls r1, r1, #1
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
 .L08065342:
     ldr r0, .L08065398 @ =0x00000195
     ldrh r1, [r4, #0x2c]
@@ -3759,7 +3309,7 @@ func_08065928: @ 0x08065928
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -3892,7 +3442,7 @@ func_08065A34: @ 0x08065A34
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -4527,7 +4077,7 @@ func_08065EE8: @ 0x08065EE8
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -4602,7 +4152,7 @@ func_08065EE8: @ 0x08065EE8
     lsls r1, r1, #1
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
 .L08066000:
     movs r0, #0
     strh r0, [r4, #0x2c]
@@ -4879,7 +4429,7 @@ func_080661FC: @ 0x080661FC
     lsls r1, r1, #1
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
 .L08066228:
     ldrh r0, [r5, #0x2c]
     cmp r0, #0x23
@@ -4893,7 +4443,7 @@ func_080661FC: @ 0x080661FC
     lsls r1, r1, #1
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
 .L08066246:
     ldrh r1, [r5, #0x2c]
     cmp r1, #0x32
@@ -4907,7 +4457,7 @@ func_080661FC: @ 0x080661FC
     lsls r1, r1, #1
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
 .L08066264:
     ldrh r2, [r5, #0x2c]
     cmp r2, #0x36
@@ -5089,7 +4639,7 @@ func_080662F4: @ 0x080662F4
     lsls r1, r1, #1
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
 .L080663EC:
     ldrh r3, [r4, #0x30]
     cmp r3, #0x3c
@@ -5207,11 +4757,11 @@ func_080664C0: @ 0x080664C0
     ldr r0, .L08066530 @ =0x082E4164
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L08066534 @ =0x082E4B54
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050018
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_ClearBG1
     ldr r0, .L08066538 @ =0x082E4B74
     ldr r4, .L0806653C @ =0x02019784
     adds r1, r4, #0
@@ -5227,7 +4777,7 @@ func_080664C0: @ 0x080664C0
     bl func_08066AFC
     movs r0, #2
     bl EnableBgSync
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     movs r0, #1
     movs r1, #0
     movs r2, #0
@@ -5248,8 +4798,8 @@ func_080664C0: @ 0x080664C0
     thumb_func_start func_08066544
 func_08066544: @ 0x08066544
     push {lr}
-    bl func_08050018
-    bl func_08050118
+    bl SpellFx_ClearBG1
+    bl SpellFx_ClearColorEffects
     pop {r0}
     bx r0
     func_end func_08066544
@@ -8463,7 +8013,7 @@ func_08067D78: @ 0x08067D78
     cmp r0, #0
     blt .L08067DB4
     adds r0, r5, #0
-    bl func_08054764
+    bl CheckRoundCrit
     cmp r0, #1
     bne .L08067DB4
     movs r1, #0x80
@@ -9030,8 +8580,8 @@ func_0806814C: @ 0x0806814C
     bx r1
     func_end func_0806814C
 
-    thumb_func_start func_080681E4
-func_080681E4: @ 0x080681E4
+    thumb_func_start PlaySFX
+PlaySFX: @ 0x080681E4
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     adds r5, r2, #0
@@ -9044,7 +8594,7 @@ func_080681E4: @ 0x080681E4
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    func_end func_080681E4
+    func_end PlaySFX
 
     thumb_func_start func_08068200
 func_08068200: @ 0x08068200
@@ -9172,7 +8722,7 @@ func_0806827C: @ 0x0806827C
     movs r3, #2
     ldrsh r2, [r2, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     movs r0, #1
     movs r1, #0
     movs r2, #8
@@ -9239,7 +8789,7 @@ func_0806827C: @ 0x0806827C
     ldr r0, [r4, #0x5c]
     movs r1, #0x38
     movs r2, #0
-    bl func_08055E14
+    bl NewEfxRestWINH_
     ldr r0, [r4, #0x5c]
     mov r3, r8
     str r3, [sp]
@@ -9285,7 +8835,7 @@ func_0806827C: @ 0x0806827C
     ldr r0, [r4, #0x5c]
     movs r1, #0x38
     movs r2, #0
-    bl func_08055E14
+    bl NewEfxRestWINH_
     adds r2, r6, #0
     adds r2, #0x3c
     movs r0, #0x3f
@@ -9417,14 +8967,14 @@ func_0806827C: @ 0x0806827C
     adds r0, r5, #0
     movs r1, #0x82
     movs r2, #0
-    bl func_08055E14
+    bl NewEfxRestWINH_
     ldr r0, .L08068518 @ =0x0000013D
     movs r3, #2
     ldrsh r2, [r5, r3]
     adds r1, r4, #0
 .L0806850E:
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0806852A
     .align 2, 0
 .L08068518: .4byte 0x0000013D
@@ -9472,7 +9022,7 @@ func_08068540: @ 0x08068540
     str r1, [r0, #0x54]
     ldr r1, .L08068580 @ =0x08BDB488
     str r1, [r0, #0x58]
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -9504,7 +9054,7 @@ func_08068584: @ 0x08068584
     str r1, [r0, #0x54]
     ldr r1, .L080685C4 @ =0x08BDB488
     str r1, [r0, #0x58]
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -9526,7 +9076,7 @@ func_080685C8: @ 0x080685C8
     adds r1, r7, #0
     adds r1, #0x44
     ldr r2, [r7, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r5, r0, #0x10
     cmp r5, #0
@@ -9541,25 +9091,25 @@ func_080685C8: @ 0x080685C8
     ldr r0, [r0]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     adds r4, r5, r4
     ldr r0, [r4]
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, [r7, #0x5c]
     adds r6, r5, r6
     ldr r1, [r6]
     add r5, r8
     ldr r2, [r5]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L0806862C
 .L08068616:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r5, r0
     bne .L0806862C
-    bl func_08050018
-    bl func_08050118
+    bl SpellFx_ClearBG1
+    bl SpellFx_ClearColorEffects
     adds r0, r7, #0
     bl Proc_End
 .L0806862C:
@@ -9631,7 +9181,7 @@ func_08068654: @ 0x08068654
     movs r3, #2
     ldrsh r2, [r2, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L080686B6
 .L080686AC:
     cmp r0, #0x50
@@ -9702,7 +9252,7 @@ func_080686D8: @ 0x080686D8
     movs r3, #2
     ldrsh r2, [r2, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L08068736
 .L0806872C:
     cmp r0, #0x6e
@@ -9778,11 +9328,11 @@ func_080687A0: @ 0x080687A0
     strh r4, [r0, #0x2e]
     ldr r0, .L08068894 @ =0x081F65A0
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L08068898 @ =0x082739E4
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L0806889C @ =0x08273AE4
     ldr r1, .L080688A0 @ =gBg1Tm
     movs r2, #1
@@ -9794,7 +9344,7 @@ func_080687A0: @ 0x080687A0
     bl func_08066ACC
     movs r0, #2
     bl EnableBgSync
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L080688A4 @ =gDispIo
     mov ip, r0
     mov r2, ip
@@ -9907,8 +9457,8 @@ func_080688B4: @ 0x080688B4
     lsls r1, r2, #0x10
     cmp r0, r1
     bne .L080688F8
-    bl func_08050018
-    bl func_08050118
+    bl SpellFx_ClearBG1
+    bl SpellFx_ClearColorEffects
     ldr r0, [r5, #0x1c]
     ldr r1, .L08068904 @ =0xFFFFF7FF
     ands r0, r1
@@ -12553,8 +12103,8 @@ func_08069E30: @ 0x08069E30
     str r1, [r0, #0x54]
     ldr r0, .L08069E74 @ =0x081E3EB4
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -12574,7 +12124,7 @@ func_08069E78: @ 0x08069E78
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r3, r0, #0x10
     cmp r3, #0
@@ -12588,20 +12138,20 @@ func_08069E78: @ 0x08069E78
     ldr r1, [r1]
     adds r2, r4, r2
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     adds r4, r4, r5
     ldr r0, [r4]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     b .L08069ECA
 .L08069EB4:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r3, r0
     bne .L08069ECA
-    bl func_08050018
-    bl func_08050118
+    bl SpellFx_ClearBG1
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L08069ECA:
@@ -12629,10 +12179,10 @@ func_08069ED0: @ 0x08069ED0
     ldr r0, .L08069F14 @ =0x081E4F9C
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L08069F18 @ =0x081E565C
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     pop {r4}
     pop {r0}
     bx r0
@@ -12652,7 +12202,7 @@ func_08069F1C: @ 0x08069F1C
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -12665,7 +12215,7 @@ func_08069F1C: @ 0x08069F1C
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L08069F58
 .L08069F4A:
     movs r0, #1
@@ -12769,7 +12319,7 @@ func_0806A000: @ 0x0806A000
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r3, r0, #0x10
     cmp r3, #0
@@ -12819,7 +12369,7 @@ func_0806A064: @ 0x0806A064
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -12828,7 +12378,7 @@ func_0806A064: @ 0x0806A064
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L0806A098
 .L0806A08A:
     movs r0, #1
@@ -13753,7 +13303,7 @@ func_0806A71C: @ 0x0806A71C
     movs r3, #2
     ldrsh r2, [r2, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L0806A782:
     ldrh r0, [r4, #0x2c]
     cmp r0, #0x33
@@ -13778,7 +13328,7 @@ func_0806A71C: @ 0x0806A71C
     movs r3, #2
     ldrsh r2, [r2, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L0806A7B6:
     ldrh r0, [r4, #0x2c]
     cmp r0, #0x43
@@ -13836,7 +13386,7 @@ func_0806A7D4: @ 0x0806A7D4
     bl LZ77UnCompWram
     adds r0, r4, #0
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L0806A854 @ =0x082E5CB8
     cmp r6, #0
     beq .L0806A836
@@ -13847,7 +13397,7 @@ func_0806A7D4: @ 0x0806A7D4
 .L0806A836:
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
@@ -13869,7 +13419,7 @@ func_0806A860: @ 0x0806A860
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -13882,14 +13432,14 @@ func_0806A860: @ 0x0806A860
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L0806A8A0
 .L0806A88E:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r2, r0
     bne .L0806A8A0
-    bl func_08050018
+    bl SpellFx_ClearBG1
     adds r0, r4, #0
     bl Proc_Break
 .L0806A8A0:
@@ -14055,7 +13605,7 @@ func_0806A9B4: @ 0x0806A9B4
     ldrsh r2, [r0, r3]
     movs r0, #0xe2
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L0806A9EA:
     ldrh r0, [r5, #0x2c]
     cmp r0, #0x30
@@ -14072,7 +13622,7 @@ func_0806A9B4: @ 0x0806A9B4
     ldrsh r2, [r0, r3]
     movs r0, #0xe2
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L0806AA0E:
     ldrh r0, [r5, #0x2c]
     cmp r0, #0x3c
@@ -14099,7 +13649,7 @@ func_0806A9B4: @ 0x0806A9B4
     ldrsh r2, [r0, r3]
     movs r0, #0xe2
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L0806AA48:
     ldrh r0, [r5, #0x2c]
     cmp r0, #0x5b
@@ -15509,7 +15059,7 @@ func_0806B594: @ 0x0806B594
     ble .L0806B5C6
     ldr r0, [r4, #0x60]
     bl AnimDelete
-    bl func_08050018
+    bl SpellFx_ClearBG1
     adds r0, r4, #0
     bl Proc_Break
 .L0806B5C6:
@@ -15561,7 +15111,7 @@ func_0806B5F4: @ 0x0806B5F4
     ble .L0806B626
     ldr r0, [r4, #0x60]
     bl AnimDelete
-    bl func_08050018
+    bl SpellFx_ClearBG1
     adds r0, r4, #0
     bl Proc_Break
 .L0806B626:
@@ -15613,7 +15163,7 @@ func_0806B654: @ 0x0806B654
     ble .L0806B686
     ldr r0, [r4, #0x60]
     bl AnimDelete
-    bl func_08050018
+    bl SpellFx_ClearBG1
     adds r0, r4, #0
     bl Proc_Break
 .L0806B686:
@@ -15667,7 +15217,7 @@ func_0806B6B4: @ 0x0806B6B4
     strh r0, [r4, #0x2c]
     ldr r0, [r4, #0x60]
     bl AnimDelete
-    bl func_08050018
+    bl SpellFx_ClearBG1
     adds r0, r4, #0
     bl Proc_Break
 .L0806B6EA:
@@ -15755,7 +15305,7 @@ func_0806B750: @ 0x0806B750
     strh r0, [r4, #0x2c]
     ldr r0, [r4, #0x60]
     bl AnimDelete
-    bl func_08050018
+    bl SpellFx_ClearBG1
     adds r0, r4, #0
     bl Proc_Break
 .L0806B786:

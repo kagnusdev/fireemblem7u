@@ -256,7 +256,12 @@ sHandXOffsetLut:
 
     .section ".data_1_2", "a"
 
-    .incbin "baserom.gba", 0xB9B2DC, 0xBDCE4C - 0xB9B2DC
+    .incbin "baserom.gba", 0xB9B2DC, 0xBA4700 - 0xB9B2DC
+
+
+    .section ".data_1_3", "a"
+
+    .incbin "baserom.gba", 0xBA47D8, 0xBDCE4C - 0xBA47D8
 
     .global gCharacterData
 gCharacterData:

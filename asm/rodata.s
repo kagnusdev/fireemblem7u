@@ -99,7 +99,83 @@ TsaConf_BanimTmA3:
 
     .global TsaConf_BanimTmA4
 TsaConf_BanimTmA4:
-    .incbin "baserom.gba", 0x1D881C, 0x3FBD34 - 0x1D881C
+    .incbin "baserom.gba", 0x1D881C, 0x1E9792 - 0x1D881C
+
+    .global FrameLut_EfxDrsmmoya
+FrameLut_EfxDrsmmoya:
+    .incbin "baserom.gba", 0x1E9792, 0x2B49EC - 0x1E9792
+
+    .global Tsa_EfxDrsmmoyaBgRight1
+Tsa_EfxDrsmmoyaBgRight1:
+    .incbin "baserom.gba", 0x2B49EC, 0x2B5798 - 0x2B49EC
+
+    .global Tsa_EfxDrsmmoyaBgRight2
+Tsa_EfxDrsmmoyaBgRight2:
+    .incbin "baserom.gba", 0x2B5798, 0x2B694C - 0x2B5798
+
+    .global Tsa_EfxDrsmmoyaBgRight3
+Tsa_EfxDrsmmoyaBgRight3:
+    .incbin "baserom.gba", 0x2B694C, 0x2B7834 - 0x2B694C
+
+    .global Tsa_EfxDrsmmoyaBgRight4
+Tsa_EfxDrsmmoyaBgRight4:
+    .incbin "baserom.gba", 0x2B7834, 0x2B83B4 - 0x2B7834
+
+    .global Pal_EfxDrsmmoyaBg
+Pal_EfxDrsmmoyaBg:
+    .incbin "baserom.gba", 0x2B83B4, 0x2B83D4 - 0x2B83B4
+
+    .global Tsa_EfxDrsmmoyaBgLeft1
+Tsa_EfxDrsmmoyaBgLeft1:
+    .incbin "baserom.gba", 0x2B83D4, 0x2B8490 - 0x2B83D4
+
+    .global Tsa_EfxDrsmmoyaBgLeft2
+Tsa_EfxDrsmmoyaBgLeft2:
+    .incbin "baserom.gba", 0x2B8490, 0x2B8568 - 0x2B8490
+
+    .global Tsa_EfxDrsmmoyaBgLeft3
+Tsa_EfxDrsmmoyaBgLeft3:
+    .incbin "baserom.gba", 0x2B8568, 0x2B8668 - 0x2B8568
+
+    .global Tsa_EfxDrsmmoyaBgLeft4
+Tsa_EfxDrsmmoyaBgLeft4:
+    .incbin "baserom.gba", 0x2B8668, 0x2B8794 - 0x2B8668
+
+    .global Tsa_EfxDrsmmoyaBgLeft5
+Tsa_EfxDrsmmoyaBgLeft5:
+    .incbin "baserom.gba", 0x2B8794, 0x2B88EC - 0x2B8794
+
+    .global Tsa_EfxDrsmmoyaBgLeft6
+Tsa_EfxDrsmmoyaBgLeft6:
+    .incbin "baserom.gba", 0x2B88EC, 0x2B8A68 - 0x2B88EC
+
+    .global Tsa_EfxDrsmmoyaBgLeft7
+Tsa_EfxDrsmmoyaBgLeft7:
+    .incbin "baserom.gba", 0x2B8A68, 0x2B8BE4 - 0x2B8A68
+
+    .global Tsa_EfxDrsmmoyaBgLeft8
+Tsa_EfxDrsmmoyaBgLeft8:
+    .incbin "baserom.gba", 0x2B8BE4, 0x2B8D44 - 0x2B8BE4
+
+    .global Tsa_EfxDrsmmoyaBgLeft9
+Tsa_EfxDrsmmoyaBgLeft9:
+    .incbin "baserom.gba", 0x2B8D44, 0x2B8E94 - 0x2B8D44
+
+    .global Tsa_EfxDrsmmoyaBgLeft10
+Tsa_EfxDrsmmoyaBgLeft10:
+    .incbin "baserom.gba", 0x2B8E94, 0x2B8FD0 - 0x2B8E94
+
+    .global Tsa_EfxDrsmmoyaBgLeft11
+Tsa_EfxDrsmmoyaBgLeft11:
+    .incbin "baserom.gba", 0x2B8FD0, 0x2B90F8 - 0x2B8FD0
+
+    .global Tsa_EfxDrsmmoyaBgLeft12
+Tsa_EfxDrsmmoyaBgLeft12:
+    .incbin "baserom.gba", 0x2B90F8, 0x2B920C - 0x2B90F8
+
+    .global Tsa_EfxDrsmmoyaBgLeft13
+Tsa_EfxDrsmmoyaBgLeft13:
+    .incbin "baserom.gba", 0x2B920C, 0x3FBD34 - 0x2B920C
 
     .global gUnk_083FBD34
 gUnk_083FBD34:

@@ -880,8 +880,8 @@ func_0805471C: @ 0x0805471C
     bx lr
     func_end func_0805471C
 
-    thumb_func_start func_08054764
-func_08054764: @ 0x08054764
+    thumb_func_start CheckRoundCrit
+CheckRoundCrit: @ 0x08054764
     ldrb r0, [r0, #0x12]
     cmp r0, #9
     bhi .L080547A4
@@ -910,7 +910,7 @@ func_08054764: @ 0x08054764
     movs r0, #0
 .L080547A6:
     bx lr
-    func_end func_08054764
+    func_end CheckRoundCrit
 
     thumb_func_start GetAnimAnotherSide
 GetAnimAnotherSide: @ 0x080547A8
@@ -3051,7 +3051,7 @@ func_08055850: @ 0x08055850
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     cmp r0, #0
@@ -3815,15 +3815,15 @@ func_08055CD0: @ 0x08055CD0
 .L08055E10: .4byte 0x08BA1554
     func_end func_08055CD0
 
-    thumb_func_start func_08055E14
-func_08055E14: @ 0x08055E14
+    thumb_func_start NewEfxRestWINH_
+NewEfxRestWINH_: @ 0x08055E14
     push {lr}
     adds r3, r2, #0
     movs r2, #0
     bl func_08055CD0
     pop {r0}
     bx r0
-    func_end func_08055E14
+    func_end NewEfxRestWINH_
 
     thumb_func_start func_08055E24
 func_08055E24: @ 0x08055E24
@@ -4562,7 +4562,7 @@ func_080563E0: @ 0x080563E0
     push {r4, lr}
     adds r4, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08056400 @ =0x08BA15BC
     movs r1, #3
     bl Proc_Start
@@ -4626,7 +4626,7 @@ func_08056458: @ 0x08056458
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805648C @ =0x08BA15D4
     movs r1, #3
     bl Proc_Start
@@ -4687,7 +4687,7 @@ func_08056490: @ 0x08056490
     cmp r0, #2
     beq .L08056500
     ldr r0, [r5, #0x5c]
-    bl func_08054764
+    bl CheckRoundCrit
     cmp r0, #1
     bne .L080564F4
     adds r0, r6, #0
@@ -4982,7 +4982,7 @@ func_08056714: @ 0x08056714
     ldrsh r2, [r6, r0]
     movs r0, #0xcd
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     adds r0, r4, #0
     pop {r4, r5, r6}
     pop {r1}
@@ -5026,7 +5026,7 @@ func_08056768: @ 0x08056768
     asrs r2, r2, #0x10
     movs r0, #0xcd
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     movs r0, #0
     strh r0, [r4, #0x2c]
     ldrh r1, [r4, #0x2e]
@@ -5047,7 +5047,7 @@ func_080567B0: @ 0x080567B0
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L080567E4 @ =0x08BA1644
     movs r1, #3
     bl Proc_Start
@@ -5098,7 +5098,7 @@ func_080567E8: @ 0x080567E8
     ldrsh r2, [r0, r3]
     movs r0, #0xcc
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     ldrh r0, [r5, #0x2c]
     cmp r0, #1
     bne .L0805687E
@@ -5118,7 +5118,7 @@ func_080567E8: @ 0x080567E8
     cmp r0, #2
     beq .L08056870
     ldr r0, [r5, #0x5c]
-    bl func_08054764
+    bl CheckRoundCrit
     cmp r0, #1
     bne .L08056864
     adds r0, r6, #0
@@ -5233,7 +5233,7 @@ func_08056938: @ 0x08056938
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08056988 @ =0x08BA1674
     movs r1, #3
     bl Proc_Start
@@ -5272,7 +5272,7 @@ func_08056994: @ 0x08056994
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L080569E4 @ =0x08BA1674
     movs r1, #3
     bl Proc_Start
@@ -5311,7 +5311,7 @@ func_080569F0: @ 0x080569F0
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08056A40 @ =0x08BA1674
     movs r1, #3
     bl Proc_Start
@@ -5350,7 +5350,7 @@ func_08056A4C: @ 0x08056A4C
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08056A9C @ =0x08BA1674
     movs r1, #3
     bl Proc_Start
@@ -5389,7 +5389,7 @@ func_08056AA8: @ 0x08056AA8
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08056AF8 @ =0x08BA1674
     movs r1, #3
     bl Proc_Start
@@ -5428,7 +5428,7 @@ func_08056B04: @ 0x08056B04
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08056B54 @ =0x08BA1674
     movs r1, #3
     bl Proc_Start
@@ -5467,7 +5467,7 @@ func_08056B60: @ 0x08056B60
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08056BB0 @ =0x08BA1674
     movs r1, #3
     bl Proc_Start
@@ -5506,7 +5506,7 @@ func_08056BBC: @ 0x08056BBC
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08056C0C @ =0x08BA1674
     movs r1, #3
     bl Proc_Start
@@ -5545,7 +5545,7 @@ func_08056C18: @ 0x08056C18
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08056C68 @ =0x08BA1674
     movs r1, #3
     bl Proc_Start
@@ -5584,7 +5584,7 @@ func_08056C74: @ 0x08056C74
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08056CC4 @ =0x08BA1674
     movs r1, #3
     bl Proc_Start
@@ -5623,7 +5623,7 @@ func_08056CD0: @ 0x08056CD0
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08056D20 @ =0x08BA1674
     movs r1, #3
     bl Proc_Start
@@ -5679,7 +5679,7 @@ func_08056D2C: @ 0x08056D2C
     ldrsh r2, [r0, r3]
     movs r0, #0xca
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     ldrh r0, [r5, #0x2c]
     cmp r0, #1
     bne .L08056DB6
@@ -5702,7 +5702,7 @@ func_08056D2C: @ 0x08056D2C
     cmp r0, #2
     beq .L08056DA8
     ldr r0, [r5, #0x5c]
-    bl func_08054764
+    bl CheckRoundCrit
     cmp r0, #1
     bne .L08056D9C
     adds r0, r6, #0
@@ -5827,7 +5827,7 @@ func_08056E7C: @ 0x08056E7C
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08056EB0 @ =0x08BA16A4
     movs r1, #3
     bl Proc_Start
@@ -5875,7 +5875,7 @@ func_08056EB4: @ 0x08056EB4
     adds r0, r4, #0
     movs r1, #0x82
     movs r2, #1
-    bl func_08055E14
+    bl NewEfxRestWINH_
     adds r0, r4, #0
     movs r1, #0x64
     bl func_080559A4
@@ -5916,7 +5916,7 @@ func_08056EB4: @ 0x08056EB4
     ldrsh r2, [r4, r0]
     movs r0, #0xef
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L08056F48:
     movs r1, #0x2c
     ldrsh r0, [r5, r1]
@@ -6004,8 +6004,8 @@ func_08056FC4: @ 0x08056FC4
     adds r4, r4, r0
     adds r0, r4, #0
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -6028,7 +6028,7 @@ func_08057024: @ 0x08057024
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -6046,7 +6046,7 @@ func_08057024: @ 0x08057024
     movs r1, #0x80
     lsls r1, r1, #6
     adds r0, r2, #0
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
 .L0805705E:
     ldr r0, [r6]
     str r0, [r4, #0x58]
@@ -6056,19 +6056,19 @@ func_08057024: @ 0x08057024
     mov r3, r8
     adds r2, r5, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L08057092
 .L08057074:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r1, r0
     bne .L08057092
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805709C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L08057092:
@@ -6162,7 +6162,7 @@ func_0805713C: @ 0x0805713C
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08057170 @ =0x08BA17C4
     movs r1, #3
     bl Proc_Start
@@ -6210,7 +6210,7 @@ func_08057174: @ 0x08057174
     adds r0, r4, #0
     movs r1, #0x82
     movs r2, #1
-    bl func_08055E14
+    bl NewEfxRestWINH_
     adds r0, r4, #0
     movs r1, #0x64
     bl func_080559A4
@@ -6251,7 +6251,7 @@ func_08057174: @ 0x08057174
     ldrsh r2, [r4, r0]
     movs r0, #0xef
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L08057208:
     movs r1, #0x2c
     ldrsh r0, [r5, r1]
@@ -6315,7 +6315,7 @@ func_08057284: @ 0x08057284
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L080572D0 @ =0x08BA17DC
     movs r1, #3
     bl Proc_Start
@@ -6339,7 +6339,7 @@ func_08057284: @ 0x08057284
     movs r3, #2
     ldrsh r2, [r2, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -6378,7 +6378,7 @@ func_080572D4: @ 0x080572D4
     movs r3, #2
     ldrsh r2, [r2, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805738C
     .align 2, 0
 .L08057318: .4byte 0x00000137
@@ -6407,7 +6407,7 @@ func_080572D4: @ 0x080572D4
     cmp r0, #2
     beq .L0805736C
     ldr r0, [r5, #0x5c]
-    bl func_08054764
+    bl CheckRoundCrit
     cmp r0, #1
     bne .L08057360
     adds r0, r6, #0
@@ -6532,7 +6532,7 @@ func_0805743C: @ 0x0805743C
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08057474 @ =0x08BA180C
     movs r1, #3
     bl Proc_Start
@@ -6594,7 +6594,7 @@ func_08057478: @ 0x08057478
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805750E
 .L080574D4:
     cmp r0, #0xa
@@ -6648,11 +6648,11 @@ func_08057514: @ 0x08057514
     strh r6, [r4, #0x2e]
     ldr r0, .L0805757C @ =0x081EE054
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L08057580 @ =0x081ED194
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L08057584 @ =0x081EE154
     ldr r5, .L08057588 @ =0x02019784
     adds r1, r5, #0
@@ -6692,7 +6692,7 @@ func_08057514: @ 0x08057514
 .L080575A4:
     movs r0, #2
     bl EnableBgSync
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     ldr r2, .L080575D0 @ =gDispIo
     movs r0, #0x21
     rsbs r0, r0, #0
@@ -6725,12 +6725,12 @@ func_080575D4: @ 0x080575D4
     lsls r1, r2, #0x10
     cmp r0, r1
     bne .L080575FE
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08057604 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L080575FE:
@@ -6859,7 +6859,7 @@ func_0805764C: @ 0x0805764C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050018
+    bl SpellFx_ClearBG1
     adds r0, r6, #0
     bl Proc_Break
 .L08057700:
@@ -6911,7 +6911,7 @@ func_08057750: @ 0x08057750
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -6920,14 +6920,14 @@ func_08057750: @ 0x08057750
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L08057790
 .L08057776:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r1, r0
     bne .L08057790
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     ldr r1, .L08057798 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -6948,7 +6948,7 @@ func_0805779C: @ 0x0805779C
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L080577D4 @ =0x08BA1874
     movs r1, #3
     bl Proc_Start
@@ -7004,7 +7004,7 @@ func_080577D8: @ 0x080577D8
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     adds r0, r5, #0
     bl func_08057894
     ldr r0, [r4, #0x5c]
@@ -7142,7 +7142,7 @@ func_08057938: @ 0x08057938
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805796C @ =0x08BA18A4
     movs r1, #3
     bl Proc_Start
@@ -7212,7 +7212,7 @@ func_08057970: @ 0x08057970
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L08057A16
     .align 2, 0
 .L080579E0: .4byte 0x0000011D
@@ -7401,13 +7401,13 @@ func_08057B30: @ 0x08057B30
     ldr r0, .L08057B7C @ =0x0827AC10
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r2, .L08057B80 @ =0x0827C028
     ldr r0, [r4, #0x5c]
     adds r1, r2, #0
-    bl func_080504DC
-    bl func_08050008
-    bl func_08050040
+    bl SpellFx_WriteBgMap
+    bl SpellFx_SetBG1Position
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -7430,8 +7430,8 @@ func_08057B84: @ 0x08057B84
     lsls r1, r2, #0x10
     cmp r0, r1
     bne .L08057BAE
-    bl func_08050018
-    bl func_08050118
+    bl SpellFx_ClearBG1
+    bl SpellFx_ClearColorEffects
     ldr r1, .L08057BB4 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -7483,7 +7483,7 @@ func_08057BF4: @ 0x08057BF4
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r5, r0, #0x10
     cmp r5, #0
@@ -7500,7 +7500,7 @@ func_08057BF4: @ 0x08057BF4
     bl func_08066F64
     adds r0, r4, #0
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L08057C4A
     .align 2, 0
 .L08057C30: .4byte 0x020165C8
@@ -7529,7 +7529,7 @@ func_08057C54: @ 0x08057C54
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08057C8C @ =0x08BA190C
     movs r1, #3
     bl Proc_Start
@@ -7578,7 +7578,7 @@ func_08057C90: @ 0x08057C90
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L08057CCC:
     movs r1, #0x2c
     ldrsh r0, [r4, r1]
@@ -7688,7 +7688,7 @@ func_08057D9C: @ 0x08057D9C
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08057DD0 @ =0x08BA1944
     movs r1, #3
     bl Proc_Start
@@ -7740,7 +7740,7 @@ func_08057DD4: @ 0x08057DD4
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L08057E1A:
     movs r1, #0x2c
     ldrsh r0, [r4, r1]
@@ -7799,8 +7799,8 @@ func_08057E60: @ 0x08057E60
     ldr r0, .L08057EAC @ =0x081F0320
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
-    bl func_08050040
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -7820,7 +7820,7 @@ func_08057EB0: @ 0x08057EB0
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -7833,19 +7833,19 @@ func_08057EB0: @ 0x08057EB0
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L08057EFC
 .L08057EDE:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r2, r0
     bne .L08057EFC
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08057F04 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L08057EFC:
@@ -7893,7 +7893,7 @@ func_08057F44: @ 0x08057F44
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -7902,14 +7902,14 @@ func_08057F44: @ 0x08057F44
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L08057F84
 .L08057F6A:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r1, r0
     bne .L08057F84
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     ldr r1, .L08057F8C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -8019,7 +8019,7 @@ func_08058044: @ 0x08058044
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805807C @ =0x08BA19DC
     movs r1, #3
     bl Proc_Start
@@ -8092,7 +8092,7 @@ func_08058080: @ 0x08058080
     ldrsh r2, [r5, r0]
     movs r0, #0xf5
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     ldrb r0, [r4]
     cmp r0, #0
     bne .L0805811A
@@ -8142,8 +8142,8 @@ func_08058120: @ 0x08058120
     ldr r0, .L0805818C @ =0x081FB4B4
     movs r1, #0x86
     lsls r1, r1, #5
-    bl func_0805060C
-    bl func_08050040
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L08058190 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -8187,7 +8187,7 @@ func_080581A4: @ 0x080581A4
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r5, r0, #0x10
     cmp r5, #0
@@ -8200,7 +8200,7 @@ func_080581A4: @ 0x080581A4
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     cmp r5, #0
     bne .L080581DA
     ldr r6, .L080581F4 @ =0x0000011F
@@ -8225,12 +8225,12 @@ func_080581A4: @ 0x080581A4
     rsbs r0, r0, #0
     cmp r5, r0
     bne .L0805821A
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08058224 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0805821A:
@@ -8279,7 +8279,7 @@ func_08058264: @ 0x08058264
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -8288,14 +8288,14 @@ func_08058264: @ 0x08058264
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L080582A4
 .L0805828A:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r1, r0
     bne .L080582A4
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     ldr r1, .L080582AC @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -8386,7 +8386,7 @@ func_08058340: @ 0x08058340
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08058380 @ =0x08BA1A54
     movs r1, #3
     bl Proc_Start
@@ -8418,7 +8418,7 @@ func_08058384: @ 0x08058384
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L080583C4 @ =0x08BA1A54
     movs r1, #3
     bl Proc_Start
@@ -8494,7 +8494,7 @@ func_080583C8: @ 0x080583C8
     ldrsh r2, [r0, r3]
     movs r0, #0xf1
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L08058430:
     movs r1, #0x2c
     ldrsh r0, [r4, r1]
@@ -8531,7 +8531,7 @@ func_080583C8: @ 0x080583C8
     ldrsh r2, [r6, r0]
     movs r0, #0xf7
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     adds r0, r6, #0
     bl func_0805865C
     b .L080584A6
@@ -8542,7 +8542,7 @@ func_080583C8: @ 0x080583C8
     ldrsh r2, [r6, r3]
     movs r0, #0xf8
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     adds r0, r6, #0
     bl func_08058744
     adds r0, r6, #0
@@ -8594,12 +8594,12 @@ func_080584D0: @ 0x080584D0
     str r1, [r0, #0x50]
     ldr r0, .L08058528 @ =0x081FD2CC
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L0805852C @ =0x081FC6D4
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
-    bl func_08050040
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -8621,7 +8621,7 @@ func_08058530: @ 0x08058530
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -8634,19 +8634,19 @@ func_08058530: @ 0x08058530
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L0805857C
 .L0805855E:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r2, r0
     bne .L0805857C
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08058584 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0805857C:
@@ -8738,7 +8738,7 @@ func_08058614: @ 0x08058614
     ldrsh r2, [r0, r3]
     movs r0, #0xf2
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L08058652
 .L0805863A:
     cmp r0, #0x32
@@ -8784,8 +8784,8 @@ func_0805865C: @ 0x0805865C
     str r0, [r5, #0x54]
     ldr r0, .L080586C8 @ =0x08207A18
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L080586CC @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -8827,7 +8827,7 @@ func_080586E0: @ 0x080586E0
     adds r1, r7, #0
     adds r1, #0x44
     ldr r2, [r7, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r4, r0, #0x10
     cmp r4, #0
@@ -8840,25 +8840,25 @@ func_080586E0: @ 0x080586E0
     ldr r0, [r0]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, [r7, #0x5c]
     adds r5, r4, r5
     ldr r1, [r5]
     adds r4, r4, r6
     ldr r2, [r4]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L0805873A
 .L0805871C:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r4, r0
     bne .L0805873A
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08058740 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r7, #0
     bl Proc_End
 .L0805873A:
@@ -8888,13 +8888,13 @@ func_08058744: @ 0x08058744
     ldr r0, .L080587A8 @ =0x08209520
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, [r5, #0x5c]
     ldr r2, .L080587AC @ =0x0820A6DC
     adds r1, r2, #0
-    bl func_080504DC
-    bl func_08050008
-    bl func_08050040
+    bl SpellFx_WriteBgMap
+    bl SpellFx_SetBG1Position
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L080587B0 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -8949,8 +8949,8 @@ func_080587DC: @ 0x080587DC
     asrs r0, r0, #0x10
     cmp r0, #0x28
     bne .L08058804
-    bl func_08050018
-    bl func_08050118
+    bl SpellFx_ClearBG1
+    bl SpellFx_ClearColorEffects
     ldr r1, .L0805880C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -8986,7 +8986,7 @@ func_08058810: @ 0x08058810
     str r1, [r0, #0x4c]
     adds r0, r1, #0
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     pop {r4}
     pop {r0}
     bx r0
@@ -9005,7 +9005,7 @@ func_08058854: @ 0x08058854
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -9014,7 +9014,7 @@ func_08058854: @ 0x08058854
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L08058890
 .L0805887A:
     movs r0, #1
@@ -9130,7 +9130,7 @@ func_08058950: @ 0x08058950
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08058988 @ =0x08BA1C0C
     movs r1, #3
     bl Proc_Start
@@ -9220,7 +9220,7 @@ func_0805898C: @ 0x0805898C
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L08058A1E:
     movs r0, #0x2c
     ldrsh r1, [r4, r0]
@@ -9256,7 +9256,7 @@ func_0805898C: @ 0x0805898C
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L08058AB8
     .align 2, 0
 .L08058A70: .4byte 0x00000123
@@ -9325,7 +9325,7 @@ func_08058AC4: @ 0x08058AC4
     str r0, [r5, #0x54]
     ldr r0, .L08058B2C @ =0x0821BBA8
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L08058B30 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -9354,7 +9354,7 @@ func_08058AC4: @ 0x08058AC4
     movs r2, #0
     bl SetBgOffset
 .L08058B3E:
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -9368,7 +9368,7 @@ func_08058B48: @ 0x08058B48
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r3, r0, #0x10
     cmp r3, #0
@@ -9382,24 +9382,24 @@ func_08058B48: @ 0x08058B48
     ldr r1, [r1]
     adds r2, r4, r2
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     adds r4, r4, r5
     ldr r0, [r4]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     b .L08058BA2
 .L08058B84:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r3, r0
     bne .L08058BA2
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08058BA8 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L08058BA2:
@@ -9435,7 +9435,7 @@ func_08058BAC: @ 0x08058BAC
     str r0, [r5, #0x54]
     ldr r0, .L08058C14 @ =0x08213E80
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L08058C18 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -9464,7 +9464,7 @@ func_08058BAC: @ 0x08058BAC
     movs r2, #0
     bl SetBgOffset
 .L08058C26:
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -9478,7 +9478,7 @@ func_08058C30: @ 0x08058C30
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r3, r0, #0x10
     cmp r3, #0
@@ -9492,24 +9492,24 @@ func_08058C30: @ 0x08058C30
     ldr r1, [r1]
     adds r2, r4, r2
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     adds r4, r4, r5
     ldr r0, [r4]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     b .L08058C8A
 .L08058C6C:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r3, r0
     bne .L08058C8A
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08058C90 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L08058C8A:
@@ -9914,7 +9914,7 @@ func_08058FB4: @ 0x08058FB4
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08058FEC @ =0x08BA1D24
     movs r1, #3
     bl Proc_Start
@@ -9968,7 +9968,7 @@ func_08058FF0: @ 0x08058FF0
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     adds r0, r5, #0
     bl func_080590B0
     adds r0, r5, #0
@@ -10051,8 +10051,8 @@ func_080590B0: @ 0x080590B0
     str r1, [r0, #0x54]
     ldr r0, .L08059100 @ =0x0820D584
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -10073,7 +10073,7 @@ func_08059104: @ 0x08059104
     adds r1, r7, #0
     adds r1, #0x44
     ldr r2, [r7, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r4, r0, #0x10
     cmp r4, #0
@@ -10086,13 +10086,13 @@ func_08059104: @ 0x08059104
     ldr r0, [r0]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, [r7, #0x5c]
     adds r5, r4, r5
     ldr r1, [r5]
     adds r4, r4, r6
     ldr r2, [r4]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L08059156
 .L08059140:
     movs r0, #1
@@ -10215,7 +10215,7 @@ func_08059210: @ 0x08059210
     movs r3, #2
     ldrsh r2, [r2, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     ldr r0, [r4, #0x5c]
     movs r1, #0x26
     bl func_0804EFDC
@@ -10322,8 +10322,8 @@ func_080592A8: @ 0x080592A8
     lsls r1, r2, #0x10
     cmp r0, r1
     ble .L08059310
-    bl func_08050018
-    bl func_08050118
+    bl SpellFx_ClearBG1
+    bl SpellFx_ClearColorEffects
     ldr r1, .L0805931C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -10466,7 +10466,7 @@ func_0805940C: @ 0x0805940C
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08059444 @ =0x08BA1E34
     movs r1, #3
     bl Proc_Start
@@ -10512,7 +10512,7 @@ func_08059448: @ 0x08059448
     movs r3, #2
     ldrsh r2, [r2, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     adds r0, r5, #0
     bl func_08059538
     b .L08059532
@@ -10552,7 +10552,7 @@ func_08059448: @ 0x08059448
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     ldr r0, [r4, #0x5c]
     bl func_080595E8
     b .L08059532
@@ -10628,8 +10628,8 @@ func_08059538: @ 0x08059538
     str r0, [r5, #0x54]
     ldr r0, .L080595A4 @ =0x08227108
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L080595A8 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -10711,8 +10711,8 @@ func_080595E8: @ 0x080595E8
     str r0, [r5, #0x54]
     ldr r0, .L0805967C @ =0x08227128
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     ldr r3, .L08059680 @ =gDispIo
     adds r2, r3, #0
     adds r2, #0x3c
@@ -10774,7 +10774,7 @@ func_08059698: @ 0x08059698
     adds r1, r7, #0
     adds r1, #0x44
     ldr r2, [r7, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r4, r0, #0x10
     cmp r4, #0
@@ -10787,25 +10787,25 @@ func_08059698: @ 0x08059698
     ldr r0, [r0]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, [r7, #0x5c]
     adds r5, r4, r5
     ldr r1, [r5]
     adds r4, r4, r6
     ldr r2, [r4]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L080596F2
 .L080596D4:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r4, r0
     bne .L080596F2
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L080596F8 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r7, #0
     bl Proc_End
 .L080596F2:
@@ -11038,7 +11038,7 @@ func_080598A8: @ 0x080598A8
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L080598E0 @ =0x08BA2024
     movs r1, #3
     bl Proc_Start
@@ -11174,7 +11174,7 @@ func_080598E4: @ 0x080598E4
     movs r3, #2
     ldrsh r2, [r6, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L08059A1C
     .align 2, 0
 .L080599D8: .4byte 0x00000125
@@ -11246,8 +11246,8 @@ func_08059A28: @ 0x08059A28
     str r0, [r6, #0x54]
     ldr r0, .L08059A9C @ =0x08232BB0
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L08059AA0 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -11306,8 +11306,8 @@ func_08059AB4: @ 0x08059AB4
     str r0, [r5, #0x54]
     ldr r0, .L08059B38 @ =0x08232BB0
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     ldr r2, .L08059B3C @ =gDispIo
     movs r0, #0x21
     rsbs r0, r0, #0
@@ -11361,7 +11361,7 @@ func_08059B54: @ 0x08059B54
     adds r1, r7, #0
     adds r1, #0x44
     ldr r2, [r7, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r4, r0, #0x10
     cmp r4, #0
@@ -11374,20 +11374,20 @@ func_08059B54: @ 0x08059B54
     ldr r0, [r0]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, [r7, #0x5c]
     adds r5, r4, r5
     ldr r1, [r5]
     adds r4, r4, r6
     ldr r2, [r4]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L08059BD2
 .L08059B90:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r4, r0
     bne .L08059BD2
-    bl func_08050018
+    bl SpellFx_ClearBG1
     adds r0, r7, #0
     adds r0, #0x29
     ldrb r0, [r0]
@@ -11397,7 +11397,7 @@ func_08059B54: @ 0x08059B54
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     bl func_0804FBC4
     adds r0, r7, #0
     bl Proc_End
@@ -11429,7 +11429,7 @@ func_08059BD8: @ 0x08059BD8
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     bl func_0804FBC4
     adds r0, r4, #0
     bl Proc_End
@@ -11539,7 +11539,7 @@ func_08059C74: @ 0x08059C74
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     adds r0, r4, #0
     bl Proc_Break
 .L08059CDA:
@@ -11556,7 +11556,7 @@ func_08059CE0: @ 0x08059CE0
     adds r1, r7, #0
     adds r1, #0x44
     ldr r2, [r7, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r4, r0, #0x10
     cmp r4, #0
@@ -11569,25 +11569,25 @@ func_08059CE0: @ 0x08059CE0
     ldr r0, [r0]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, [r7, #0x5c]
     adds r5, r4, r5
     ldr r1, [r5]
     adds r4, r4, r6
     ldr r2, [r4]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L08059D3E
 .L08059D1C:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r4, r0
     bne .L08059D3E
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08059D44 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     bl func_0804FBC4
     adds r0, r7, #0
     bl Proc_Break
@@ -11607,7 +11607,7 @@ func_08059D48: @ 0x08059D48
     adds r1, r7, #0
     adds r1, #0x44
     ldr r2, [r7, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r4, r0, #0x10
     cmp r4, #0
@@ -11620,25 +11620,25 @@ func_08059D48: @ 0x08059D48
     ldr r0, [r0]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, [r7, #0x5c]
     adds r5, r4, r5
     ldr r1, [r5]
     adds r4, r4, r6
     ldr r2, [r4]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L08059DA2
 .L08059D84:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r4, r0
     bne .L08059DA2
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08059DA8 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r7, #0
     bl Proc_Break
 .L08059DA2:
@@ -11720,7 +11720,7 @@ func_08059E24: @ 0x08059E24
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08059E5C @ =0x08BA2234
     movs r1, #3
     bl Proc_Start
@@ -11775,7 +11775,7 @@ func_08059E60: @ 0x08059E60
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     adds r0, r5, #0
     bl func_08059F18
     b .L08059F10
@@ -11790,7 +11790,7 @@ func_08059E60: @ 0x08059E60
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     ldr r0, [r4, #0x5c]
     movs r1, #4
     bl func_0804EFDC
@@ -11853,7 +11853,7 @@ func_08059F18: @ 0x08059F18
     str r0, [r5, #0x54]
     ldr r0, .L08059F80 @ =0x08BA22E8
     str r0, [r5, #0x58]
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L08059F84 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -11898,7 +11898,7 @@ func_08059F98: @ 0x08059F98
     adds r1, r7, #0
     adds r1, #0x44
     ldr r2, [r7, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r5, r0, #0x10
     cmp r5, #0
@@ -11913,17 +11913,17 @@ func_08059F98: @ 0x08059F98
     ldr r0, [r0]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     adds r4, r5, r4
     ldr r0, [r4]
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, [r7, #0x5c]
     adds r6, r5, r6
     ldr r1, [r6]
     add r5, r8
     ldr r2, [r5]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     ldr r0, .L0805A000 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -11956,12 +11956,12 @@ func_08059F98: @ 0x08059F98
     rsbs r0, r0, #0
     cmp r5, r0
     bne .L0805A03E
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805A04C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r7, #0
     bl Proc_End
 .L0805A03E:
@@ -11981,7 +11981,7 @@ func_0805A050: @ 0x0805A050
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805A08C @ =0x08BA23F0
     movs r1, #3
     bl Proc_Start
@@ -12019,7 +12019,7 @@ func_0805A094: @ 0x0805A094
     beq .L0805A0B4
     adds r1, #0xff
     movs r0, #0xfe
-    bl func_080681E4
+    bl PlaySFX
     b .L0805A0BE
     .align 2, 0
 .L0805A0B0: .4byte 0x02020038
@@ -12027,7 +12027,7 @@ func_0805A094: @ 0x0805A094
     movs r1, #0x80
     lsls r1, r1, #1
     movs r0, #0xff
-    bl func_080681E4
+    bl PlaySFX
 .L0805A0BE:
     ldr r1, .L0805A0CC @ =0x02020038
     ldr r0, [r1]
@@ -12121,7 +12121,7 @@ func_0805A0D0: @ 0x0805A0D0
     ldrsh r2, [r5, r3]
     adds r0, r1, #0
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805A1F8
 .L0805A182:
     adds r0, r4, #0
@@ -12146,7 +12146,7 @@ func_0805A0D0: @ 0x0805A0D0
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     ldrb r0, [r4]
     cmp r0, #0
     bne .L0805A1F8
@@ -12208,7 +12208,7 @@ func_0805A200: @ 0x0805A200
     str r1, [r0, #0x54]
     ldr r1, .L0805A24C @ =0x08BA2558
     str r1, [r0, #0x58]
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -12231,7 +12231,7 @@ func_0805A250: @ 0x0805A250
     adds r1, r7, #0
     adds r1, #0x44
     ldr r2, [r7, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r5, r0, #0x10
     cmp r5, #0
@@ -12246,29 +12246,29 @@ func_0805A250: @ 0x0805A250
     ldr r0, [r0]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     adds r4, r5, r4
     ldr r0, [r4]
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, [r7, #0x5c]
     adds r6, r5, r6
     ldr r1, [r6]
     add r5, r8
     ldr r2, [r5]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L0805A2BC
 .L0805A29E:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r5, r0
     bne .L0805A2BC
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805A2C8 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r7, #0
     bl Proc_End
 .L0805A2BC:
@@ -12432,7 +12432,7 @@ func_0805A3F0: @ 0x0805A3F0
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805A428 @ =0x08BA2840
     movs r1, #3
     bl Proc_Start
@@ -12493,7 +12493,7 @@ func_0805A42C: @ 0x0805A42C
     lsls r1, r1, #1
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
 .L0805A480:
     movs r2, #0x2c
     ldrsh r1, [r6, r2]
@@ -12644,7 +12644,7 @@ func_0805A42C: @ 0x0805A42C
     lsls r1, r1, #1
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
 .L0805A5C0:
     movs r2, #0x2c
     ldrsh r1, [r6, r2]
@@ -12722,8 +12722,8 @@ func_0805A62C: @ 0x0805A62C
     ldr r0, .L0805A67C @ =0x0827C2E4
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
-    bl func_08050040
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -12744,7 +12744,7 @@ func_0805A680: @ 0x0805A680
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -12757,7 +12757,7 @@ func_0805A680: @ 0x0805A680
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     ldr r0, .L0805A6EC @ =0x0202349C
     ldr r1, .L0805A6F0 @ =0x0000011F
     str r1, [sp]
@@ -12774,12 +12774,12 @@ func_0805A680: @ 0x0805A680
     lsls r1, r2, #0x10
     cmp r0, r1
     ble .L0805A6E4
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805A6F4 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0805A6E4:
@@ -12817,7 +12817,7 @@ func_0805A6F8: @ 0x0805A6F8
     str r1, [r0, #0x4c]
     adds r0, r1, #0
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -12836,7 +12836,7 @@ func_0805A740: @ 0x0805A740
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -12845,7 +12845,7 @@ func_0805A740: @ 0x0805A740
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
 .L0805A764:
     ldrh r0, [r4, #0x2e]
     adds r0, #1
@@ -12893,8 +12893,8 @@ func_0805A78C: @ 0x0805A78C
     str r1, [r0, #0x54]
     ldr r0, .L0805A7DC @ =0x082871D8
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -12916,7 +12916,7 @@ func_0805A7E0: @ 0x0805A7E0
     adds r1, r7, #0
     adds r1, #0x44
     ldr r2, [r7, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r4, r0, #0x10
     cmp r4, #0
@@ -12929,13 +12929,13 @@ func_0805A7E0: @ 0x0805A7E0
     ldr r0, [r0]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, [r7, #0x5c]
     adds r5, r4, r5
     ldr r1, [r5]
     adds r4, r4, r6
     ldr r2, [r4]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     ldr r0, .L0805A830 @ =0x0202349C
     ldr r1, .L0805A834 @ =0x0000011F
     str r1, [sp]
@@ -12952,12 +12952,12 @@ func_0805A7E0: @ 0x0805A7E0
     rsbs r0, r0, #0
     cmp r4, r0
     bne .L0805A856
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805A860 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r7, #0
     bl Proc_Break
 .L0805A856:
@@ -13260,8 +13260,8 @@ func_0805AA7C: @ 0x0805AA7C
     str r1, [r0, #0x54]
     ldr r0, .L0805AAD4 @ =0x0828D4A8
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13282,7 +13282,7 @@ func_0805AAD8: @ 0x0805AAD8
     adds r1, r6, #0
     adds r1, #0x44
     ldr r2, [r6, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r4, r0, #0x10
     cmp r4, #0
@@ -13296,12 +13296,12 @@ func_0805AAD8: @ 0x0805AAD8
     ldr r1, [r1]
     adds r2, r4, r2
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     adds r4, r4, r5
     ldr r0, [r4]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
 .L0805AB12:
     ldrh r0, [r6, #0x2e]
     adds r0, #1
@@ -13311,12 +13311,12 @@ func_0805AAD8: @ 0x0805AAD8
     lsls r1, r2, #0x10
     cmp r0, r1
     ble .L0805AB38
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805AB40 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r6, #0
     bl Proc_Break
 .L0805AB38:
@@ -13746,7 +13746,7 @@ func_0805AE90: @ 0x0805AE90
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805AEC8 @ =0x08BA29A8
     movs r1, #3
     bl Proc_Start
@@ -13791,7 +13791,7 @@ func_0805AECC: @ 0x0805AECC
     movs r3, #2
     ldrsh r2, [r2, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     adds r0, r5, #0
     bl func_0805AFBC
     ldr r0, [r4, #0x5c]
@@ -13834,7 +13834,7 @@ func_0805AECC: @ 0x0805AECC
     ldrsh r2, [r5, r3]
 .L0805AF50:
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805AFB6
     .align 2, 0
 .L0805AF58: .4byte 0x00000129
@@ -13910,7 +13910,7 @@ func_0805AFBC: @ 0x0805AFBC
     str r0, [r5, #0x54]
     ldr r0, .L0805B024 @ =0x0823E2F4
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L0805B028 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -13939,7 +13939,7 @@ func_0805AFBC: @ 0x0805AFBC
     movs r2, #0
     bl SetBgOffset
 .L0805B036:
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13970,7 +13970,7 @@ func_0805B040: @ 0x0805B040
     str r0, [r5, #0x54]
     ldr r0, .L0805B0A8 @ =0x0823E2F4
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L0805B0AC @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -13999,7 +13999,7 @@ func_0805B040: @ 0x0805B040
     movs r2, #0
     bl SetBgOffset
 .L0805B0BA:
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14030,7 +14030,7 @@ func_0805B0C4: @ 0x0805B0C4
     str r0, [r5, #0x54]
     ldr r0, .L0805B12C @ =0x0823E2D4
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L0805B130 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -14059,7 +14059,7 @@ func_0805B0C4: @ 0x0805B0C4
     movs r2, #0
     bl SetBgOffset
 .L0805B13E:
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14074,7 +14074,7 @@ func_0805B148: @ 0x0805B148
     adds r1, r7, #0
     adds r1, #0x44
     ldr r2, [r7, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r4, r0, #0x10
     cmp r4, #0
@@ -14087,13 +14087,13 @@ func_0805B148: @ 0x0805B148
     ldr r0, [r0]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, [r7, #0x5c]
     adds r5, r4, r5
     ldr r1, [r5]
     adds r4, r4, r6
     ldr r2, [r4]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     ldr r0, .L0805B1A0 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -14126,12 +14126,12 @@ func_0805B148: @ 0x0805B148
     rsbs r0, r0, #0
     cmp r4, r0
     bne .L0805B1DE
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805B1E8 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r7, #0
     bl Proc_Break
 .L0805B1DE:
@@ -14232,7 +14232,7 @@ func_0805B290: @ 0x0805B290
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805B2C8 @ =0x08BA2B50
     movs r1, #3
     bl Proc_Start
@@ -14332,7 +14332,7 @@ func_0805B2CC: @ 0x0805B2CC
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805B42C
     .align 2, 0
 .L0805B374: .4byte 0x0000011B
@@ -14383,7 +14383,7 @@ func_0805B2CC: @ 0x0805B2CC
     lsls r1, r1, #1
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
     adds r0, r5, #0
     movs r1, #0x64
     movs r2, #0xa
@@ -14448,9 +14448,9 @@ func_0805B438: @ 0x0805B438
     str r0, [r5, #0x54]
     ldr r0, .L0805B4A0 @ =0x08279EA4
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050008
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetBG1Position
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L0805B4A4 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -14501,7 +14501,7 @@ func_0805B4D0: @ 0x0805B4D0
     adds r1, r6, #0
     adds r1, #0x44
     ldr r2, [r6, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r4, r0, #0x10
     cmp r4, #0
@@ -14513,7 +14513,7 @@ func_0805B4D0: @ 0x0805B4D0
     ldr r0, [r0]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, [r6, #0x5c]
     adds r4, r4, r5
     ldr r1, [r4]
@@ -14526,12 +14526,12 @@ func_0805B4D0: @ 0x0805B4D0
     rsbs r0, r0, #0
     cmp r4, r0
     bne .L0805B528
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805B530 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r6, #0
     bl Proc_Break
 .L0805B528:
@@ -14565,12 +14565,12 @@ func_0805B534: @ 0x0805B534
     ldr r0, .L0805B584 @ =0x082779AC
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L0805B588 @ =0x08279EC4
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050008
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetBG1Position
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14656,8 +14656,8 @@ func_0805B58C: @ 0x0805B58C
     lsls r1, r2, #0x10
     cmp r0, r1
     bne .L0805B644
-    bl func_08050018
-    bl func_08050118
+    bl SpellFx_ClearBG1
+    bl SpellFx_ClearColorEffects
     ldr r1, .L0805B65C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -14701,7 +14701,7 @@ func_0805B660: @ 0x0805B660
     str r1, [r0, #0x4c]
     adds r0, r1, #0
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14720,7 +14720,7 @@ func_0805B6A8: @ 0x0805B6A8
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -14729,7 +14729,7 @@ func_0805B6A8: @ 0x0805B6A8
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
 .L0805B6CC:
     ldrh r0, [r4, #0x2e]
     adds r0, #1
@@ -15398,7 +15398,7 @@ func_0805BBF0: @ 0x0805BBF0
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805BC28 @ =0x08BA2C58
     movs r1, #3
     bl Proc_Start
@@ -15494,7 +15494,7 @@ func_0805BC2C: @ 0x0805BC2C
     lsls r1, r1, #1
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
     b .L0805BDC0
     .align 2, 0
 .L0805BCD0: .4byte gDispIo
@@ -15517,7 +15517,7 @@ func_0805BC2C: @ 0x0805BC2C
     adds r0, r5, #0
     movs r1, #0x2b
     movs r2, #0
-    bl func_08055E14
+    bl NewEfxRestWINH_
     b .L0805BDC0
 .L0805BD02:
     adds r0, r4, #0
@@ -15538,7 +15538,7 @@ func_0805BC2C: @ 0x0805BC2C
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805BDC0
     .align 2, 0
 .L0805BD2C: .4byte 0x00000139
@@ -15561,7 +15561,7 @@ func_0805BC2C: @ 0x0805BC2C
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     adds r0, r5, #0
     movs r1, #0xa
     bl func_0804EFDC
@@ -15641,8 +15641,8 @@ func_0805BDCC: @ 0x0805BDCC
     str r2, [r0, #0x58]
     ldr r0, .L0805BE34 @ =0x08232BB0
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     ldr r2, .L0805BE38 @ =gDispIo
     movs r0, #0x21
     rsbs r0, r0, #0
@@ -15693,8 +15693,8 @@ func_0805BE3C: @ 0x0805BE3C
     str r2, [r0, #0x58]
     ldr r0, .L0805BEB8 @ =0x0824A714
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     ldr r3, .L0805BEBC @ =gDispIo
     adds r2, r3, #0
     adds r2, #0x3c
@@ -15752,8 +15752,8 @@ func_0805BEC0: @ 0x0805BEC0
     str r2, [r0, #0x58]
     ldr r0, .L0805BF14 @ =0x0824A734
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -15776,7 +15776,7 @@ func_0805BF18: @ 0x0805BF18
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -15794,7 +15794,7 @@ func_0805BF18: @ 0x0805BF18
     movs r1, #0x80
     lsls r1, r1, #6
     adds r0, r2, #0
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
 .L0805BF52:
     ldr r0, [r6]
     str r0, [r4, #0x58]
@@ -15804,19 +15804,19 @@ func_0805BF18: @ 0x0805BF18
     mov r3, r8
     adds r2, r5, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L0805BF86
 .L0805BF68:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r1, r0
     bne .L0805BF86
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805BF90 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0805BF86:
@@ -16187,7 +16187,7 @@ func_0805C250: @ 0x0805C250
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805C288 @ =0x08BA2DF8
     movs r1, #3
     bl Proc_Start
@@ -16259,7 +16259,7 @@ func_0805C28C: @ 0x0805C28C
     adds r0, r5, #0
     movs r1, #0x69
     movs r2, #0
-    bl func_08055E14
+    bl NewEfxRestWINH_
     ldr r3, .L0805C350 @ =gDispIo
     adds r2, r3, #0
     adds r2, #0x3c
@@ -16297,7 +16297,7 @@ func_0805C28C: @ 0x0805C28C
     adds r1, r4, #0
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
     b .L0805C464
     .align 2, 0
 .L0805C350: .4byte gDispIo
@@ -16365,7 +16365,7 @@ func_0805C28C: @ 0x0805C28C
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805C464
 .L0805C3D4:
     adds r0, r4, #0
@@ -16392,7 +16392,7 @@ func_0805C28C: @ 0x0805C28C
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     ldrb r0, [r4]
     cmp r0, #0
     bne .L0805C464
@@ -16461,8 +16461,8 @@ func_0805C470: @ 0x0805C470
     ldr r0, .L0805C4EC @ =0x0824D5E0
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
-    bl func_08050018
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_ClearBG1
     ldr r0, .L0805C4F0 @ =0x0824DF20
     ldr r4, .L0805C4F4 @ =0x02019784
     adds r1, r4, #0
@@ -16478,7 +16478,7 @@ func_0805C470: @ 0x0805C470
     bl func_08066ACC
     movs r0, #2
     bl EnableBgSync
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     ldr r2, .L0805C4FC @ =gDispIo
     movs r0, #0x21
     rsbs r0, r0, #0
@@ -16507,12 +16507,12 @@ func_0805C470: @ 0x0805C470
     thumb_func_start func_0805C500
 func_0805C500: @ 0x0805C500
     push {lr}
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805C518 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     pop {r0}
     bx r0
     .align 2, 0
@@ -16571,7 +16571,7 @@ func_0805C54C: @ 0x0805C54C
     str r1, [r0, #0x4c]
     adds r0, r1, #0
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -16601,7 +16601,7 @@ func_0805C5A4: @ 0x0805C5A4
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -16610,7 +16610,7 @@ func_0805C5A4: @ 0x0805C5A4
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
 .L0805C5C8:
     ldrh r0, [r4, #0x2e]
     adds r0, #1
@@ -16726,8 +16726,8 @@ func_0805C678: @ 0x0805C678
     str r1, [r5, #0x58]
     ldr r0, .L0805C6F0 @ =0x082520E0
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     movs r0, #1
     movs r1, #0
     movs r2, #0
@@ -16791,8 +16791,8 @@ func_0805C708: @ 0x0805C708
     str r1, [r5, #0x58]
     ldr r0, .L0805C778 @ =0x08252100
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L0805C77C @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -16837,7 +16837,7 @@ func_0805C790: @ 0x0805C790
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -16855,7 +16855,7 @@ func_0805C790: @ 0x0805C790
     movs r1, #0x80
     lsls r1, r1, #6
     adds r0, r2, #0
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
 .L0805C7CC:
     ldr r0, [r6]
     str r0, [r4, #0x58]
@@ -16865,7 +16865,7 @@ func_0805C790: @ 0x0805C790
     mov r3, r8
     adds r2, r5, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     ldr r0, .L0805C808 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -16905,12 +16905,12 @@ func_0805C790: @ 0x0805C790
     rsbs r0, r0, #0
     cmp r1, r0
     bne .L0805C84A
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805C858 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0805C84A:
@@ -17135,7 +17135,7 @@ func_0805C9F0: @ 0x0805C9F0
     adds r4, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805CA14 @ =0x08BA3070
     movs r1, #3
     bl Proc_Start
@@ -17256,7 +17256,7 @@ func_0805CA18: @ 0x0805CA18
     ldrsh r2, [r5, r3]
 .L0805CAF4:
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805CB38
     .align 2, 0
 .L0805CAFC: .4byte 0x0000010F
@@ -17298,7 +17298,7 @@ func_0805CB40: @ 0x0805CB40
     adds r4, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805CB64 @ =0x08BA3088
     movs r1, #3
     bl Proc_Start
@@ -17452,7 +17452,7 @@ func_0805CB68: @ 0x0805CB68
     ldrsh r2, [r5, r3]
 .L0805CC8A:
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805CCDC
     .align 2, 0
 .L0805CC94: .4byte gDispIo
@@ -17499,7 +17499,7 @@ func_0805CCE4: @ 0x0805CCE4
     adds r4, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805CD08 @ =0x08BA30A0
     movs r1, #3
     bl Proc_Start
@@ -17653,7 +17653,7 @@ func_0805CD0C: @ 0x0805CD0C
     ldrsh r2, [r5, r3]
 .L0805CE2E:
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805CE80
     .align 2, 0
 .L0805CE38: .4byte gDispIo
@@ -17700,7 +17700,7 @@ func_0805CE88: @ 0x0805CE88
     adds r4, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805CEAC @ =0x08BA30B8
     movs r1, #3
     bl Proc_Start
@@ -17860,7 +17860,7 @@ func_0805CEB0: @ 0x0805CEB0
     ldrsh r2, [r5, r3]
 .L0805CFE2:
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805D034
     .align 2, 0
 .L0805CFEC: .4byte gDispIo
@@ -17935,7 +17935,7 @@ func_0805D03C: @ 0x0805D03C
     ldr r0, .L0805D098 @ =0x0826AC5C
     movs r1, #0xa8
     lsls r1, r1, #5
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     b .L0805D0EE
     .align 2, 0
 .L0805D084: .4byte 0x0201774C
@@ -17957,7 +17957,7 @@ func_0805D03C: @ 0x0805D03C
     ldr r0, .L0805D0DC @ =0x08269CF8
     movs r1, #0x80
     lsls r1, r1, #3
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L0805D0E0 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -17982,7 +17982,7 @@ func_0805D03C: @ 0x0805D03C
     movs r2, #0
     bl SetBgOffset
 .L0805D0EE:
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5, r6}
     pop {r0}
     bx r0
@@ -18022,7 +18022,7 @@ func_0805D0F8: @ 0x0805D0F8
     ldr r0, .L0805D154 @ =0x0826AC5C
     movs r1, #0xa8
     lsls r1, r1, #5
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     b .L0805D1A2
     .align 2, 0
 .L0805D140: .4byte 0x0201774C
@@ -18040,7 +18040,7 @@ func_0805D0F8: @ 0x0805D0F8
     ldr r0, .L0805D190 @ =0x08269CF8
     movs r1, #0x80
     lsls r1, r1, #3
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L0805D194 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -18065,7 +18065,7 @@ func_0805D0F8: @ 0x0805D0F8
     movs r2, #0
     bl SetBgOffset
 .L0805D1A2:
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5, r6}
     pop {r0}
     bx r0
@@ -18079,7 +18079,7 @@ func_0805D1AC: @ 0x0805D1AC
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r3, r0, #0x10
     cmp r3, #0
@@ -18106,8 +18106,8 @@ func_0805D1AC: @ 0x0805D1AC
     ldrb r0, [r0]
     cmp r0, #0
     bne .L0805D1F8
-    bl func_08050018
-    bl func_08050118
+    bl SpellFx_ClearBG1
+    bl SpellFx_ClearColorEffects
 .L0805D1F8:
     movs r0, #1
     movs r1, #0
@@ -18257,7 +18257,7 @@ func_0805D2FC: @ 0x0805D2FC
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -18266,7 +18266,7 @@ func_0805D2FC: @ 0x0805D2FC
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L0805D338
 .L0805D322:
     movs r0, #1
@@ -18763,7 +18763,7 @@ func_0805D6D8: @ 0x0805D6D8
     adds r4, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805D704 @ =0x08BA3180
     movs r1, #3
     bl Proc_Start
@@ -18786,7 +18786,7 @@ func_0805D708: @ 0x0805D708
     adds r4, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805D734 @ =0x08BA3180
     movs r1, #3
     bl Proc_Start
@@ -18825,7 +18825,7 @@ func_0805D738: @ 0x0805D738
     movs r3, #2
     ldrsh r2, [r2, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805D800
 .L0805D768:
     cmp r1, #0x34
@@ -18847,7 +18847,7 @@ func_0805D738: @ 0x0805D738
     lsls r1, r1, #1
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
     ldr r0, [r4, #0x5c]
     bl func_0805D970
     ldr r0, [r4, #0x5c]
@@ -18926,8 +18926,8 @@ func_0805D80C: @ 0x0805D80C
     ldr r0, .L0805D858 @ =0x08269CF8
     movs r1, #0x80
     lsls r1, r1, #3
-    bl func_0805060C
-    bl func_08050040
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -18951,7 +18951,7 @@ func_0805D85C: @ 0x0805D85C
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r5, r0, #0x10
     cmp r5, #0
@@ -18964,7 +18964,7 @@ func_0805D85C: @ 0x0805D85C
     adds r0, r0, r2
     ldr r2, [r0]
     adds r0, r6, #0
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     ldr r0, .L0805D8AC @ =0x081E8DD2
     lsls r1, r5, #1
     adds r0, r1, r0
@@ -18975,7 +18975,7 @@ func_0805D85C: @ 0x0805D85C
     movs r1, #0x80
     lsls r1, r1, #1
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
     b .L0805D8D2
     .align 2, 0
 .L0805D8AC: .4byte 0x081E8DD2
@@ -18985,12 +18985,12 @@ func_0805D85C: @ 0x0805D85C
     rsbs r0, r0, #0
     cmp r5, r0
     bne .L0805D8D2
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805D8D8 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0805D8D2:
@@ -19048,7 +19048,7 @@ func_0805D928: @ 0x0805D928
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -19057,7 +19057,7 @@ func_0805D928: @ 0x0805D928
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L0805D964
 .L0805D94E:
     movs r0, #1
@@ -19103,7 +19103,7 @@ func_0805D970: @ 0x0805D970
     ldr r0, .L0805DA3C @ =0x0826AC5C
     movs r1, #0xa8
     lsls r1, r1, #5
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r6, .L0805DA40 @ =gDispIo
     movs r1, #4
     rsbs r1, r1, #0
@@ -19151,7 +19151,7 @@ func_0805D970: @ 0x0805D970
     orrs r0, r7
     strh r0, [r1, #8]
 .L0805DA04:
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L0805DA4C @ =0x0000FFE0
     ldrh r1, [r6, #0x3c]
     ands r0, r1
@@ -19212,7 +19212,7 @@ func_0805DA54: @ 0x0805DA54
     adds r1, r5, #0
     adds r1, #0x44
     ldr r2, [r5, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r3, r0, #0x10
     cmp r3, #0
@@ -19225,7 +19225,7 @@ func_0805DA54: @ 0x0805DA54
     adds r0, r0, r2
     ldr r2, [r0]
     adds r0, r7, #0
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L0805DB22
     .align 2, 0
 .L0805DAB0: .4byte 0x02000010
@@ -19235,7 +19235,7 @@ func_0805DA54: @ 0x0805DA54
     rsbs r0, r0, #0
     cmp r3, r0
     bne .L0805DB22
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805DB28 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
@@ -19279,7 +19279,7 @@ func_0805DA54: @ 0x0805DA54
     orrs r0, r1
     strh r0, [r4, #8]
 .L0805DB18:
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r5, #0
     bl Proc_Break
 .L0805DB22:
@@ -19339,7 +19339,7 @@ func_0805DB80: @ 0x0805DB80
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -19348,7 +19348,7 @@ func_0805DB80: @ 0x0805DB80
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L0805DBBC
 .L0805DBA6:
     movs r0, #1
@@ -19375,7 +19375,7 @@ func_0805DBC8: @ 0x0805DBC8
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805DC00 @ =0x08BA321C
     movs r1, #3
     bl Proc_Start
@@ -19474,7 +19474,7 @@ func_0805DC04: @ 0x0805DC04
     ldrsh r2, [r6, r0]
     movs r0, #0xfd
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805DD1C
 .L0805DCB0:
     adds r0, r5, #0
@@ -19560,8 +19560,8 @@ func_0805DD28: @ 0x0805DD28
     str r1, [r0, #0x54]
     ldr r0, .L0805DD78 @ =0x08270258
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -19582,7 +19582,7 @@ func_0805DD7C: @ 0x0805DD7C
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r3, r0, #0x10
     cmp r3, #0
@@ -19596,24 +19596,24 @@ func_0805DD7C: @ 0x0805DD7C
     ldr r1, [r1]
     adds r2, r4, r2
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     adds r4, r4, r5
     ldr r0, [r4]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     b .L0805DDD6
 .L0805DDB8:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r3, r0
     bne .L0805DDD6
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805DDDC @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0805DDD6:
@@ -19698,7 +19698,7 @@ func_0805DE68: @ 0x0805DE68
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805DEA0 @ =0x08BA32D4
     movs r1, #3
     bl Proc_Start
@@ -19751,7 +19751,7 @@ func_0805DEA4: @ 0x0805DEA4
     ldrsh r2, [r0, r3]
     movs r0, #0xfa
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L0805DEE8:
     ldrh r0, [r4, #0x2c]
     cmp r0, #0x29
@@ -19776,7 +19776,7 @@ func_0805DEA4: @ 0x0805DEA4
     ldrsh r2, [r5, r0]
     movs r0, #0xfb
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     ldr r0, [r4, #0x5c]
     str r7, [sp]
     str r7, [sp, #4]
@@ -19796,7 +19796,7 @@ func_0805DEA4: @ 0x0805DEA4
     ldrsh r2, [r5, r3]
     movs r0, #0xfc
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     bl func_080676B4
     movs r0, #9
     ldrh r1, [r5, #0x10]
@@ -19866,12 +19866,12 @@ func_0805DFAC: @ 0x0805DFAC
     str r0, [r5, #0x50]
     ldr r0, .L0805E01C @ =0x08272D9C
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L0805E020 @ =0x08270E90
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
-    bl func_08050040
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L0805E024 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -19913,7 +19913,7 @@ func_0805E038: @ 0x0805E038
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -19926,19 +19926,19 @@ func_0805E038: @ 0x0805E038
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L0805E084
 .L0805E066:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r2, r0
     bne .L0805E084
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805E08C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0805E084:
@@ -20010,7 +20010,7 @@ func_0805E100: @ 0x0805E100
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805E138 @ =0x08BA336C
     movs r1, #3
     bl Proc_Start
@@ -20063,7 +20063,7 @@ func_0805E13C: @ 0x0805E13C
     movs r3, #2
     ldrsh r2, [r2, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L0805E180:
     ldrh r0, [r4, #0x2c]
     cmp r0, #0x64
@@ -20174,12 +20174,12 @@ func_0805E23C: @ 0x0805E23C
     str r0, [r5, #0x50]
     ldr r0, .L0805E2AC @ =0x082751D0
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L0805E2B0 @ =0x08274304
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
-    bl func_08050040
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L0805E2B4 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -20221,7 +20221,7 @@ func_0805E2C8: @ 0x0805E2C8
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -20234,19 +20234,19 @@ func_0805E2C8: @ 0x0805E2C8
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L0805E314
 .L0805E2F6:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r2, r0
     bne .L0805E314
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805E31C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0805E314:
@@ -20374,7 +20374,7 @@ func_0805E3F0: @ 0x0805E3F0
     ldrsh r2, [r0, r4]
     adds r0, r3, #0
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     pop {r4}
     pop {r0}
     bx r0
@@ -20397,7 +20397,7 @@ func_0805E420: @ 0x0805E420
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805E458 @ =0x08BA3464
     movs r1, #3
     bl Proc_Start
@@ -20496,7 +20496,7 @@ func_0805E45C: @ 0x0805E45C
     movs r3, #2
     ldrsh r2, [r6, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805E570
     .align 2, 0
 .L0805E508: .4byte 0x00000103
@@ -20581,8 +20581,8 @@ func_0805E57C: @ 0x0805E57C
     str r1, [r0, #0x54]
     ldr r0, .L0805E5CC @ =0x08272DBC
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -20603,7 +20603,7 @@ func_0805E5D0: @ 0x0805E5D0
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r3, r0, #0x10
     cmp r3, #0
@@ -20617,24 +20617,24 @@ func_0805E5D0: @ 0x0805E5D0
     ldr r1, [r1]
     adds r2, r4, r2
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     adds r4, r4, r5
     ldr r0, [r4]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     b .L0805E62A
 .L0805E60C:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r3, r0
     bne .L0805E62A
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805E630 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0805E62A:
@@ -20702,7 +20702,7 @@ func_0805E69C: @ 0x0805E69C
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805E6D4 @ =0x08BA351C
     movs r1, #3
     bl Proc_Start
@@ -20772,13 +20772,13 @@ func_0805E6D8: @ 0x0805E6D8
     adds r0, r5, #0
     movs r1, #0x4a
     movs r2, #0
-    bl func_08055E14
+    bl NewEfxRestWINH_
     movs r1, #2
     ldrsh r2, [r5, r1]
     movs r0, #0xf9
     adds r1, r4, #0
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805E7AE
 .L0805E754:
     adds r0, r6, #0
@@ -20847,11 +20847,11 @@ func_0805E7B8: @ 0x0805E7B8
     strh r4, [r0, #0x2e]
     ldr r0, .L0805E8B8 @ =0x082761D8
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L0805E8BC @ =0x082739E4
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L0805E8C0 @ =0x08273AE4
     ldr r1, .L0805E8C4 @ =gBg1Tm
     movs r2, #1
@@ -20863,7 +20863,7 @@ func_0805E7B8: @ 0x0805E7B8
     bl func_08066ACC
     movs r0, #2
     bl EnableBgSync
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L0805E8C8 @ =gDispIo
     mov ip, r0
     mov r2, ip
@@ -20977,8 +20977,8 @@ func_0805E8D8: @ 0x0805E8D8
     lsls r1, r2, #0x10
     cmp r0, r1
     bne .L0805E924
-    bl func_08050018
-    bl func_08050118
+    bl SpellFx_ClearBG1
+    bl SpellFx_ClearColorEffects
     ldr r0, [r5, #0x1c]
     ldr r1, .L0805E930 @ =0xFFFFF7FF
     ands r0, r1
@@ -21437,7 +21437,7 @@ func_0805ECA4: @ 0x0805ECA4
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805ECDC @ =0x08BA3624
     movs r1, #3
     bl Proc_Start
@@ -21499,7 +21499,7 @@ func_0805ECE0: @ 0x0805ECE0
     movs r3, #2
     ldrsh r2, [r4, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805EDA6
 .L0805ED3C:
     adds r0, r6, #0
@@ -21581,12 +21581,12 @@ func_0805EDAC: @ 0x0805EDAC
     str r1, [r0, #0x50]
     ldr r0, .L0805EE00 @ =0x0827747C
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L0805EE04 @ =0x08276BF0
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
-    bl func_08050040
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -21607,7 +21607,7 @@ func_0805EE08: @ 0x0805EE08
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -21620,19 +21620,19 @@ func_0805EE08: @ 0x0805EE08
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L0805EE54
 .L0805EE36:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r2, r0
     bne .L0805EE54
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805EE5C @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0805EE54:
@@ -21735,7 +21735,7 @@ func_0805EF10: @ 0x0805EF10
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805EF48 @ =0x08BA36A8
     movs r1, #3
     bl Proc_Start
@@ -21801,7 +21801,7 @@ func_0805EF4C: @ 0x0805EF4C
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805F018
 .L0805EFAC:
     adds r0, r6, #0
@@ -21885,7 +21885,7 @@ func_0805F020: @ 0x0805F020
     movs r1, #0
     movs r2, #0
     bl SetBgOffset
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -21906,7 +21906,7 @@ func_0805F078: @ 0x0805F078
     adds r1, r7, #0
     adds r1, #0x44
     ldr r2, [r7, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r4, r0, #0x10
     cmp r4, #0
@@ -21919,25 +21919,25 @@ func_0805F078: @ 0x0805F078
     ldr r0, [r0]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, [r7, #0x5c]
     adds r5, r4, r5
     ldr r1, [r5]
     adds r4, r4, r6
     ldr r2, [r4]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L0805F0D2
 .L0805F0B4:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r4, r0
     bne .L0805F0D2
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805F0D8 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r7, #0
     bl Proc_Break
 .L0805F0D2:
@@ -21971,11 +21971,11 @@ func_0805F0DC: @ 0x0805F0DC
     str r0, [r5, #0x50]
     ldr r0, .L0805F148 @ =0x08290954
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L0805F14C @ =0x08290678
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L0805F150 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -22004,7 +22004,7 @@ func_0805F0DC: @ 0x0805F0DC
     movs r2, #0
     bl SetBgOffset
 .L0805F15E:
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -22019,7 +22019,7 @@ func_0805F168: @ 0x0805F168
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -22032,7 +22032,7 @@ func_0805F168: @ 0x0805F168
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     ldr r0, .L0805F1B0 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -22065,12 +22065,12 @@ func_0805F168: @ 0x0805F168
     rsbs r0, r0, #0
     cmp r2, r0
     bne .L0805F1EE
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805F1F8 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0805F1EE:
@@ -22104,7 +22104,7 @@ func_0805F1FC: @ 0x0805F1FC
     str r1, [r0, #0x4c]
     adds r0, r1, #0
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     pop {r4}
     pop {r0}
     bx r0
@@ -22123,7 +22123,7 @@ func_0805F240: @ 0x0805F240
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -22132,7 +22132,7 @@ func_0805F240: @ 0x0805F240
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L0805F27C
 .L0805F266:
     movs r0, #1
@@ -22349,7 +22349,7 @@ func_0805F400: @ 0x0805F400
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805F438 @ =0x08BA3780
     movs r1, #3
     bl Proc_Start
@@ -22463,7 +22463,7 @@ func_0805F43C: @ 0x0805F43C
     adds r1, r4, #0
     movs r2, #0x78
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805F62A
     .align 2, 0
 .L0805F504: .4byte gDispIo
@@ -22477,7 +22477,7 @@ func_0805F43C: @ 0x0805F43C
     adds r0, r5, #0
     movs r1, #0x15
     movs r2, #1
-    bl func_08055E14
+    bl NewEfxRestWINH_
     adds r0, r5, #0
     bl func_0805FAE8
     mov r3, r8
@@ -22500,7 +22500,7 @@ func_0805F43C: @ 0x0805F43C
     movs r3, #2
     ldrsh r2, [r5, r3]
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
     b .L0805F62A
     .align 2, 0
 .L0805F558: .4byte 0x000002BE
@@ -22550,7 +22550,7 @@ func_0805F43C: @ 0x0805F43C
     adds r0, r5, #0
     movs r1, #0x44
     movs r2, #0
-    bl func_08055E14
+    bl NewEfxRestWINH_
     b .L0805F62A
     .align 2, 0
 .L0805F5C4: .4byte gDispIo
@@ -22629,12 +22629,12 @@ func_0805F638: @ 0x0805F638
     str r1, [r0, #0x50]
     ldr r0, .L0805F68C @ =0x0829211C
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L0805F690 @ =0x0829164C
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
-    bl func_08050040
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -22655,7 +22655,7 @@ func_0805F694: @ 0x0805F694
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -22668,19 +22668,19 @@ func_0805F694: @ 0x0805F694
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L0805F6E0
 .L0805F6C2:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r2, r0
     bne .L0805F6E0
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805F6E8 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0805F6E0:
@@ -22882,11 +22882,11 @@ func_0805F82C: @ 0x0805F82C
     ldr r0, .L0805F898 @ =0x0829226C
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L0805F89C @ =0x082929CC
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050018
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_ClearBG1
     ldr r0, .L0805F8A0 @ =0x08292BAC
     ldr r4, .L0805F8A4 @ =0x02019784
     adds r1, r4, #0
@@ -22926,7 +22926,7 @@ func_0805F82C: @ 0x0805F82C
 .L0805F8C0:
     movs r0, #2
     bl EnableBgSync
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L0805F8F0 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -22972,12 +22972,12 @@ func_0805F82C: @ 0x0805F82C
     thumb_func_start func_0805F920
 func_0805F920: @ 0x0805F920
     push {lr}
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805F938 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     pop {r0}
     bx r0
     .align 2, 0
@@ -23033,7 +23033,7 @@ func_0805F968: @ 0x0805F968
     str r1, [r0, #0x4c]
     adds r0, r1, #0
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -23063,7 +23063,7 @@ func_0805F9C0: @ 0x0805F9C0
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -23072,7 +23072,7 @@ func_0805F9C0: @ 0x0805F9C0
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
 .L0805F9E4:
     ldrh r0, [r4, #0x2e]
     adds r0, #1
@@ -23115,8 +23115,8 @@ func_0805FA00: @ 0x0805FA00
     str r0, [r5, #0x54]
     ldr r0, .L0805FA6C @ =0x08295850
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L0805FA70 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -23158,7 +23158,7 @@ func_0805FA84: @ 0x0805FA84
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r3, r0, #0x10
     cmp r3, #0
@@ -23172,24 +23172,24 @@ func_0805FA84: @ 0x0805FA84
     ldr r1, [r1]
     adds r2, r4, r2
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     adds r4, r4, r5
     ldr r0, [r4]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     b .L0805FADE
 .L0805FAC0:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r3, r0
     bne .L0805FADE
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805FAE4 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0805FADE:
@@ -23579,7 +23579,7 @@ func_0805FDBC: @ 0x0805FDBC
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0805FDF4 @ =0x08BA39AC
     movs r1, #3
     bl Proc_Start
@@ -23632,7 +23632,7 @@ func_0805FDF8: @ 0x0805FDF8
     adds r0, r4, #0
     movs r1, #0xf
     movs r2, #1
-    bl func_08055E14
+    bl NewEfxRestWINH_
     b .L0805FE84
 .L0805FE3E:
     adds r0, r6, #2
@@ -23648,7 +23648,7 @@ func_0805FDF8: @ 0x0805FDF8
     movs r3, #2
     ldrsh r2, [r4, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0805FE84
     .align 2, 0
 .L0805FE64: .4byte 0x000002BF
@@ -23665,7 +23665,7 @@ func_0805FDF8: @ 0x0805FDF8
     movs r3, #2
     ldrsh r2, [r2, r3]
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L0805FE84:
     adds r7, r5, #0
     adds r7, #0x29
@@ -23776,12 +23776,12 @@ func_0805FF48: @ 0x0805FF48
     ldr r0, .L0805FFA4 @ =0x08296814
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
-    bl func_08050018
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_ClearBG1
     ldr r0, .L0805FFA8 @ =0x08296DA4
     ldr r1, .L0805FFAC @ =0x02019784
     bl LZ77UnCompWram
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     ldr r2, .L0805FFB0 @ =gDispIo
     movs r0, #0x21
     rsbs r0, r0, #0
@@ -23808,12 +23808,12 @@ func_0805FF48: @ 0x0805FF48
     thumb_func_start func_0805FFB4
 func_0805FFB4: @ 0x0805FFB4
     push {lr}
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L0805FFCC @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     pop {r0}
     bx r0
     .align 2, 0
@@ -23974,7 +23974,7 @@ func_080600D0: @ 0x080600D0
     str r1, [r0, #0x4c]
     adds r0, r1, #0
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     pop {r4}
     pop {r0}
     bx r0
@@ -24004,7 +24004,7 @@ func_08060124: @ 0x08060124
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -24013,7 +24013,7 @@ func_08060124: @ 0x08060124
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L08060158
 .L0806014A:
     movs r0, #1
@@ -24217,8 +24217,8 @@ func_08060298: @ 0x08060298
     ldr r0, .L080602E4 @ =0x08296F50
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
-    bl func_08050018
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_ClearBG1
     ldr r0, .L080602E8 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -24271,7 +24271,7 @@ func_08060298: @ 0x08060298
 .L0806033C:
     movs r0, #2
     bl EnableBgSync
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     movs r0, #1
     movs r1, #0
     movs r2, #0
@@ -24300,12 +24300,12 @@ func_08060298: @ 0x08060298
     thumb_func_start func_0806037C
 func_0806037C: @ 0x0806037C
     push {lr}
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08060394 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     pop {r0}
     bx r0
     .align 2, 0
@@ -24353,7 +24353,7 @@ func_080603B8: @ 0x080603B8
     str r1, [r0, #0x4c]
     adds r0, r1, #0
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     pop {r4}
     pop {r0}
     bx r0
@@ -24372,7 +24372,7 @@ func_080603FC: @ 0x080603FC
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -24381,7 +24381,7 @@ func_080603FC: @ 0x080603FC
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L08060438
 .L08060422:
     movs r0, #1
@@ -24423,8 +24423,8 @@ func_08060444: @ 0x08060444
     ldr r0, .L08060490 @ =0x0828EAD8
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
-    bl func_08050018
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_ClearBG1
     ldr r0, .L08060494 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -24477,7 +24477,7 @@ func_08060444: @ 0x08060444
 .L080604E8:
     movs r0, #2
     bl EnableBgSync
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     movs r0, #1
     movs r1, #0
     movs r2, #0
@@ -24506,12 +24506,12 @@ func_08060444: @ 0x08060444
     thumb_func_start func_08060528
 func_08060528: @ 0x08060528
     push {lr}
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08060540 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     pop {r0}
     bx r0
     .align 2, 0
@@ -24559,7 +24559,7 @@ func_08060564: @ 0x08060564
     str r1, [r0, #0x4c]
     adds r0, r1, #0
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     pop {r4}
     pop {r0}
     bx r0
@@ -24578,7 +24578,7 @@ func_080605A8: @ 0x080605A8
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -24587,7 +24587,7 @@ func_080605A8: @ 0x080605A8
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L080605E4
 .L080605CE:
     movs r0, #1
@@ -24689,7 +24689,7 @@ func_08060688: @ 0x08060688
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L080606C0 @ =0x08BA3BE4
     movs r1, #3
     bl Proc_Start
@@ -24912,7 +24912,7 @@ func_080606C4: @ 0x080606C4
     movs r2, #0x78
 .L08060868:
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L0806089E
     .align 2, 0
 .L08060870: .4byte 0x000002C9
@@ -24968,10 +24968,10 @@ func_080608AC: @ 0x080608AC
     ldr r0, .L08060920 @ =0x08298D58
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L08060924 @ =0x08299F70
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     movs r0, #1
     movs r1, #0
     movs r2, #0
@@ -25004,7 +25004,7 @@ func_080608AC: @ 0x080608AC
     movs r2, #0
     bl SetBgOffset
 .L08060936:
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -25019,7 +25019,7 @@ func_08060940: @ 0x08060940
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -25032,7 +25032,7 @@ func_08060940: @ 0x08060940
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     ldr r0, .L08060994 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -25072,12 +25072,12 @@ func_08060940: @ 0x08060940
     rsbs r0, r0, #0
     cmp r2, r0
     bne .L080609D6
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L080609E0 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L080609D6:
@@ -25109,11 +25109,11 @@ func_080609E4: @ 0x080609E4
     ldr r0, .L08060A74 @ =0x0829C5B8
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L08060A78 @ =0x0829CFA8
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050018
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_ClearBG1
     ldr r0, .L08060A7C @ =0x0829D028
     ldr r4, .L08060A80 @ =0x02019784
     adds r1, r4, #0
@@ -25129,7 +25129,7 @@ func_080609E4: @ 0x080609E4
     bl func_08066AFC
     movs r0, #2
     bl EnableBgSync
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     movs r0, #1
     movs r1, #0
     movs r2, #0
@@ -25163,12 +25163,12 @@ func_080609E4: @ 0x080609E4
     thumb_func_start func_08060A8C
 func_08060A8C: @ 0x08060A8C
     push {lr}
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08060AA4 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     pop {r0}
     bx r0
     .align 2, 0
@@ -25233,11 +25233,11 @@ func_08060AEC: @ 0x08060AEC
     ldr r0, .L08060B7C @ =0x0829B1BC
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L08060B80 @ =0x0829C01C
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050018
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_ClearBG1
     ldr r0, .L08060B84 @ =0x0829C15C
     ldr r4, .L08060B88 @ =0x02019784
     adds r1, r4, #0
@@ -25253,7 +25253,7 @@ func_08060AEC: @ 0x08060AEC
     bl func_08066AFC
     movs r0, #2
     bl EnableBgSync
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     movs r0, #1
     movs r1, #0
     movs r2, #0
@@ -25287,12 +25287,12 @@ func_08060AEC: @ 0x08060AEC
     thumb_func_start func_08060B94
 func_08060B94: @ 0x08060B94
     push {lr}
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08060BAC @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     pop {r0}
     bx r0
     .align 2, 0
@@ -25340,7 +25340,7 @@ func_08060BD0: @ 0x08060BD0
     str r1, [r0, #0x4c]
     ldr r0, .L08060C14 @ =0x0829B13C
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     pop {r4}
     pop {r0}
     bx r0
@@ -25360,7 +25360,7 @@ func_08060C18: @ 0x08060C18
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -25369,7 +25369,7 @@ func_08060C18: @ 0x08060C18
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L08060C54
 .L08060C3E:
     movs r0, #1
@@ -25586,7 +25586,7 @@ func_08060DDC: @ 0x08060DDC
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08060E14 @ =0x08BA3D04
     movs r1, #3
     bl Proc_Start
@@ -25688,7 +25688,7 @@ func_08060E18: @ 0x08060E18
     ldrsh r2, [r5, r3]
 .L08060EB6:
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     b .L08060F66
     .align 2, 0
 .L08060EC0: .4byte 0x000002C3
@@ -25743,7 +25743,7 @@ func_08060E18: @ 0x08060E18
     ldr r0, [r4, #0x5c]
     movs r1, #0x55
     movs r2, #1
-    bl func_08055E14
+    bl NewEfxRestWINH_
     ldr r0, [r4, #0x5c]
     movs r1, #0x38
     bl func_080559A4
@@ -25798,10 +25798,10 @@ func_08060F70: @ 0x08060F70
     ldr r0, .L08060FE4 @ =0x0829DDD8
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L08060FE8 @ =0x0829E750
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     movs r0, #1
     movs r1, #0
     movs r2, #0
@@ -25834,7 +25834,7 @@ func_08060F70: @ 0x08060F70
     movs r2, #0
     bl SetBgOffset
 .L08060FFA:
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -25864,10 +25864,10 @@ func_08061004: @ 0x08061004
     ldr r0, .L08061078 @ =0x0829DDD8
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L0806107C @ =0x0829E750
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     movs r0, #1
     movs r1, #0
     movs r2, #0
@@ -25900,7 +25900,7 @@ func_08061004: @ 0x08061004
     movs r2, #0
     bl SetBgOffset
 .L0806108E:
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -25930,10 +25930,10 @@ func_08061098: @ 0x08061098
     ldr r0, .L0806110C @ =0x0829DDD8
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L08061110 @ =0x0829E750
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     movs r0, #1
     movs r1, #0
     movs r2, #0
@@ -25966,7 +25966,7 @@ func_08061098: @ 0x08061098
     movs r2, #0
     bl SetBgOffset
 .L08061122:
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -25980,7 +25980,7 @@ func_0806112C: @ 0x0806112C
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -25993,19 +25993,19 @@ func_0806112C: @ 0x0806112C
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L08061178
 .L0806115A:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r2, r0
     bne .L08061178
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08061180 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L08061178:
@@ -26037,8 +26037,8 @@ func_08061184: @ 0x08061184
     ldr r0, .L080611D0 @ =0x0828EAD8
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
-    bl func_08050018
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_ClearBG1
     ldr r0, .L080611D4 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -26091,7 +26091,7 @@ func_08061184: @ 0x08061184
 .L08061228:
     movs r0, #2
     bl EnableBgSync
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     movs r0, #1
     movs r1, #0
     movs r2, #0
@@ -26120,12 +26120,12 @@ func_08061184: @ 0x08061184
     thumb_func_start func_08061268
 func_08061268: @ 0x08061268
     push {lr}
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08061280 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     pop {r0}
     bx r0
     .align 2, 0
@@ -26174,7 +26174,7 @@ func_080612A4: @ 0x080612A4
     str r0, [r1, #0x4c]
     adds r0, #0x60
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     pop {r4}
     pop {r0}
     bx r0
@@ -26193,7 +26193,7 @@ func_080612EC: @ 0x080612EC
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -26202,7 +26202,7 @@ func_080612EC: @ 0x080612EC
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L08061328
 .L08061312:
     movs r0, #1
@@ -26247,12 +26247,12 @@ func_08061334: @ 0x08061334
     str r1, [r0, #0x54]
     ldr r0, .L08061390 @ =0x082AEF60
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     movs r0, #1
     movs r1, #0
     movs r2, #0
     bl SetBgOffset
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -26273,7 +26273,7 @@ func_08061394: @ 0x08061394
     adds r1, r7, #0
     adds r1, #0x44
     ldr r2, [r7, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r4, r0, #0x10
     cmp r4, #0
@@ -26286,25 +26286,25 @@ func_08061394: @ 0x08061394
     ldr r0, [r0]
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, [r7, #0x5c]
     adds r5, r4, r5
     ldr r1, [r5]
     adds r4, r4, r6
     ldr r2, [r4]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L080613EE
 .L080613D0:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r4, r0
     bne .L080613EE
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L080613F4 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r7, #0
     bl Proc_Break
 .L080613EE:
@@ -26321,7 +26321,7 @@ func_080613F8: @ 0x080613F8
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FB6C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08061430 @ =0x08BA3E5C
     movs r1, #3
     bl Proc_Start
@@ -26494,7 +26494,7 @@ func_08061434: @ 0x08061434
     lsls r1, r1, #1
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
     b .L0806158E
     .align 2, 0
 .L08061574: .4byte 0x000002C6
@@ -26539,15 +26539,15 @@ func_0806159C: @ 0x0806159C
     ldr r0, .L080615F8 @ =0x0829DDD8
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L080615FC @ =0x0829E750
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     movs r0, #1
     movs r1, #0
     movs r2, #0
     bl SetBgOffset
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -26568,7 +26568,7 @@ func_08061600: @ 0x08061600
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -26581,19 +26581,19 @@ func_08061600: @ 0x08061600
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L0806164C
 .L0806162E:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r2, r0
     bne .L0806164C
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08061654 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L0806164C:
@@ -26624,11 +26624,11 @@ func_08061658: @ 0x08061658
     ldr r0, .L080616E8 @ =0x082B0CFC
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L080616EC @ =0x082B125C
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050018
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_ClearBG1
     ldr r0, .L080616F0 @ =0x082B127C
     ldr r4, .L080616F4 @ =0x02019784
     adds r1, r4, #0
@@ -26644,7 +26644,7 @@ func_08061658: @ 0x08061658
     bl func_08066ACC
     movs r0, #2
     bl EnableBgSync
-    bl func_08050040
+    bl SpellFx_SetSomeColorEffect
     movs r0, #1
     movs r1, #0
     movs r2, #0
@@ -26678,12 +26678,12 @@ func_08061658: @ 0x08061658
     thumb_func_start func_08061700
 func_08061700: @ 0x08061700
     push {lr}
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08061718 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     pop {r0}
     bx r0
     .align 2, 0
@@ -26966,15 +26966,15 @@ func_08061914: @ 0x08061914
     ldr r0, .L080619A8 @ =0x082B1BB8
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     subs r4, #0x20
     adds r0, r4, #0
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, [r5, #0x5c]
     ldr r2, .L080619AC @ =0x082B35D0
     adds r1, r2, #0
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     ldr r0, .L080619B0 @ =0x02000000
     ldr r0, [r0]
     bl func_08064AB0
@@ -27103,7 +27103,7 @@ func_08061A34: @ 0x08061A34
     adds r1, r5, #0
     adds r1, #0x44
     ldr r2, [r5, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r3, r0, #0x10
     cmp r3, #0
@@ -27231,7 +27231,7 @@ func_08061B68: @ 0x08061B68
     adds r5, r0, #0
     bl func_0804FFF0
     bl func_0804FD1C
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08061BA0 @ =0x08BA3F24
     movs r1, #3
     bl Proc_Start
@@ -27365,7 +27365,7 @@ func_08061BA4: @ 0x08061BA4
     lsls r1, r1, #1
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
     b .L08061D18
     .align 2, 0
 .L08061C9C: .4byte 0x000002FE
@@ -27386,7 +27386,7 @@ func_08061BA4: @ 0x08061BA4
     ldr r0, [r4, #0x5c]
     movs r1, #0x46
     movs r2, #1
-    bl func_08055E14
+    bl NewEfxRestWINH_
     ldr r0, [r4, #0x5c]
     movs r1, #0x32
     bl func_080559A4
@@ -27703,8 +27703,8 @@ func_08061F08: @ 0x08061F08
     str r2, [r0, #0x58]
     ldr r0, .L08061F5C @ =0x082C5C08
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     pop {r4}
     pop {r0}
     bx r0
@@ -27727,7 +27727,7 @@ func_08061F60: @ 0x08061F60
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -27745,7 +27745,7 @@ func_08061F60: @ 0x08061F60
     movs r1, #0x80
     lsls r1, r1, #6
     adds r0, r2, #0
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
 .L08061F9A:
     ldr r0, [r6]
     str r0, [r4, #0x58]
@@ -27755,19 +27755,19 @@ func_08061F60: @ 0x08061F60
     mov r3, r8
     adds r2, r5, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L08061FCE
 .L08061FB0:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r1, r0
     bne .L08061FCE
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08061FD8 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L08061FCE:
@@ -27805,8 +27805,8 @@ func_08061FDC: @ 0x08061FDC
     str r2, [r0, #0x58]
     ldr r0, .L08062038 @ =0x082D8260
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     movs r0, #1
     movs r1, #0
     movs r2, #0
@@ -27834,7 +27834,7 @@ func_0806203C: @ 0x0806203C
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -27852,7 +27852,7 @@ func_0806203C: @ 0x0806203C
     movs r1, #0x80
     lsls r1, r1, #6
     adds r0, r2, #0
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
 .L08062078:
     ldr r0, [r6]
     str r0, [r4, #0x58]
@@ -27862,7 +27862,7 @@ func_0806203C: @ 0x0806203C
     mov r3, r8
     adds r2, r5, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     ldr r0, .L080620B4 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -27902,12 +27902,12 @@ func_0806203C: @ 0x0806203C
     rsbs r0, r0, #0
     cmp r1, r0
     bne .L080620F6
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08062104 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L080620F6:
@@ -28145,7 +28145,7 @@ func_080622C4: @ 0x080622C4
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L080622FC @ =0x08BA41BC
     movs r1, #3
     bl Proc_Start
@@ -28174,7 +28174,7 @@ func_08062300: @ 0x08062300
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08062338 @ =0x08BA41BC
     movs r1, #3
     bl Proc_Start
@@ -28203,7 +28203,7 @@ func_0806233C: @ 0x0806233C
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08062374 @ =0x08BA41BC
     movs r1, #3
     bl Proc_Start
@@ -28232,7 +28232,7 @@ func_08062378: @ 0x08062378
     push {r4, r5, lr}
     adds r5, r0, #0
     bl func_0804FFF0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L080623B0 @ =0x08BA41BC
     movs r1, #3
     bl Proc_Start
@@ -28282,7 +28282,7 @@ func_080623B4: @ 0x080623B4
     adds r0, r4, #0
     movs r1, #0x82
     movs r2, #1
-    bl func_08055E14
+    bl NewEfxRestWINH_
     adds r0, r4, #0
     movs r1, #0x64
     bl func_080559A4
@@ -28323,7 +28323,7 @@ func_080623B4: @ 0x080623B4
     ldrsh r2, [r4, r0]
     movs r0, #0xef
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L08062448:
     movs r1, #0x2c
     ldrsh r0, [r5, r1]
@@ -28492,7 +28492,7 @@ func_08062550: @ 0x08062550
 NewEfxPierceCritical: @ 0x08062580
     push {r4, lr}
     adds r4, r0, #0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L0806259C @ =0x08BA4204
     movs r1, #3
     bl Proc_Start
@@ -28547,15 +28547,15 @@ func_080625D0: @ 0x080625D0
     ldr r0, .L08062610 @ =0x081F1864
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L08062614 @ =0x081F2944
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, [r4, #0x5c]
     ldr r1, .L08062618 @ =0x081F2B44
     ldr r2, .L0806261C @ =0x081F2FE4
-    bl func_080504DC
-    bl func_08050040
+    bl SpellFx_WriteBgMap
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -28578,8 +28578,8 @@ func_08062620: @ 0x08062620
     asrs r0, r0, #0x10
     cmp r0, #0x11
     bne .L08062640
-    bl func_08050018
-    bl func_08050118
+    bl SpellFx_ClearBG1
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L08062640:
@@ -28620,7 +28620,7 @@ func_08062678: @ 0x08062678
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -28629,7 +28629,7 @@ func_08062678: @ 0x08062678
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L080626AC
 .L0806269E:
     movs r0, #1
@@ -28648,7 +28648,7 @@ func_08062678: @ 0x08062678
 NewEfxNormalEffect: @ 0x080626B4
     push {r4, lr}
     adds r4, r0, #0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L080626D0 @ =0x08BA4254
     movs r1, #3
     bl Proc_Start
@@ -28720,12 +28720,12 @@ func_08062714: @ 0x08062714
     str r0, [r5, #0x50]
     ldr r0, .L08062784 @ =0x081F398C
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L08062788 @ =0x081F35C4
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
-    bl func_08050040
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L0806278C @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -28767,7 +28767,7 @@ func_080627A0: @ 0x080627A0
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -28780,19 +28780,19 @@ func_080627A0: @ 0x080627A0
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L080627EC
 .L080627CE:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r2, r0
     bne .L080627EC
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L080627F4 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L080627EC:
@@ -29360,7 +29360,7 @@ NewEfxMagfcast: @ 0x08062C18
     ldr r4, [r0]
     cmp r4, #0
     bne .L08062C70
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08062C60 @ =0x08BA437C
     movs r1, #3
     bl Proc_Start
@@ -29485,11 +29485,11 @@ func_08062C94: @ 0x08062C94
     ldr r0, .L08062D58 @ =0x081F832C
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L08062D5C @ =0x081F9080
     movs r1, #0x20
-    bl func_08050634
-    bl func_08050040
+    bl SpellFx_RegisterBgPal
+    bl SpellFx_SetSomeColorEffect
     ldr r0, .L08062D60 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -29529,7 +29529,7 @@ func_08062D74: @ 0x08062D74
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -29542,19 +29542,19 @@ func_08062D74: @ 0x08062D74
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L08062DC0
 .L08062DA2:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r2, r0
     bne .L08062DC0
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08062DC8 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_End
 .L08062DC0:
@@ -30098,7 +30098,7 @@ func_08063210: @ 0x08063210
     ldrsh r2, [r0, r3]
     movs r0, #0xee
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     add sp, #4
     pop {r4, r5}
     pop {r0}
@@ -30129,7 +30129,7 @@ func_08063284: @ 0x08063284
     ldrsh r2, [r0, r3]
     movs r0, #0xee
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
 .L080632A8:
     movs r0, #0x2c
     ldrsh r1, [r4, r0]
@@ -30192,7 +30192,7 @@ func_080632D4: @ 0x080632D4
     ldrsh r2, [r0, r3]
     movs r0, #0xe1
     movs r3, #1
-    bl func_080681E4
+    bl PlaySFX
     add sp, #4
     pop {r4, r5}
     pop {r0}
@@ -30307,7 +30307,7 @@ NewEfxSpecalEffect: @ 0x0806337C
     movs r0, #0xf0
     movs r2, #0x78
     movs r3, #0
-    bl func_080681E4
+    bl PlaySFX
     adds r0, r5, #0
     bl func_08063438
 .L08063422:
@@ -30330,7 +30330,7 @@ func_0806342C: @ 0x0806342C
 func_08063438: @ 0x08063438
     push {r4, lr}
     adds r4, r0, #0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08063454 @ =0x08BA44DC
     movs r1, #3
     bl Proc_Start
@@ -30364,7 +30364,7 @@ func_08063458: @ 0x08063458
     ldr r0, [r6, #0x5c]
     movs r1, #0x2d
     movs r2, #1
-    bl func_08055E14
+    bl NewEfxRestWINH_
     bl func_0806353C
     b .L080634BC
 .L08063486:
@@ -30414,15 +30414,15 @@ func_080634C8: @ 0x080634C8
     ldr r0, .L08063508 @ =0x081F3440
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     ldr r0, .L0806350C @ =0x081F3500
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, [r4, #0x5c]
     ldr r2, .L08063510 @ =0x081F3520
     adds r1, r2, #0
-    bl func_080504DC
-    bl func_08050040
+    bl SpellFx_WriteBgMap
+    bl SpellFx_SetSomeColorEffect
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -30444,8 +30444,8 @@ func_08063514: @ 0x08063514
     asrs r0, r0, #0x10
     cmp r0, #0x3c
     bne .L08063534
-    bl func_08050018
-    bl func_08050118
+    bl SpellFx_ClearBG1
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L08063534:
@@ -30602,7 +30602,7 @@ func_08063600: @ 0x08063600
 func_08063644: @ 0x08063644
     push {r4, lr}
     adds r4, r0, #0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L08063660 @ =0x08BA462C
     movs r1, #3
     bl Proc_Start
@@ -30679,12 +30679,12 @@ func_080636AC: @ 0x080636AC
     str r1, [r0, #0x50]
     ldr r0, .L0806373C @ =0x081FAC38
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     ldr r0, .L08063740 @ =0x081F9FC4
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
-    bl func_08050040
+    bl SpellFx_RegisterBgGfx
+    bl SpellFx_SetSomeColorEffect
     ldr r3, .L08063744 @ =gDispIo
     movs r1, #4
     rsbs r1, r1, #0
@@ -30732,7 +30732,7 @@ func_08063748: @ 0x08063748
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -30745,7 +30745,7 @@ func_08063748: @ 0x08063748
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
 .L08063774:
     ldrh r0, [r4, #0x2e]
     adds r0, #1
@@ -30777,12 +30777,12 @@ func_08063748: @ 0x08063748
     ldrb r1, [r3, #0x14]
     orrs r0, r1
     strb r0, [r3, #0x14]
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L080637D0 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L080637C6:
@@ -31012,7 +31012,7 @@ func_08063984: @ 0x08063984
 NewEfxChillEffect: @ 0x080639C8
     push {r4, lr}
     adds r4, r0, #0
-    bl func_08050008
+    bl SpellFx_SetBG1Position
     ldr r0, .L080639E4 @ =0x08BA468C
     movs r1, #3
     bl Proc_Start
@@ -31087,7 +31087,7 @@ func_08063A2C: @ 0x08063A2C
     ldr r0, .L08063A80 @ =0x08296F50
     movs r1, #0x80
     lsls r1, r1, #6
-    bl func_0805060C
+    bl SpellFx_RegisterBgGfx
     movs r0, #1
     movs r1, #0
     movs r2, #0
@@ -31111,7 +31111,7 @@ func_08063A84: @ 0x08063A84
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r2, r0, #0x10
     cmp r2, #0
@@ -31124,19 +31124,19 @@ func_08063A84: @ 0x08063A84
     ldr r1, [r1]
     adds r2, r2, r3
     ldr r2, [r2]
-    bl func_080504DC
+    bl SpellFx_WriteBgMap
     b .L08063AD0
 .L08063AB2:
     movs r0, #1
     rsbs r0, r0, #0
     cmp r2, r0
     bne .L08063AD0
-    bl func_08050018
+    bl SpellFx_ClearBG1
     ldr r1, .L08063AD8 @ =0x0201774C
     ldr r0, [r1]
     subs r0, #1
     str r0, [r1]
-    bl func_08050118
+    bl SpellFx_ClearColorEffects
     adds r0, r4, #0
     bl Proc_Break
 .L08063AD0:
@@ -31179,7 +31179,7 @@ func_08063B0C: @ 0x08063B0C
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -31188,7 +31188,7 @@ func_08063B0C: @ 0x08063B0C
     lsls r1, r1, #5
     adds r0, r0, r1
     movs r1, #0x20
-    bl func_08050634
+    bl SpellFx_RegisterBgPal
     b .L08063B40
 .L08063B32:
     movs r0, #1

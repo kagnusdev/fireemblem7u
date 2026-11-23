@@ -1670,7 +1670,7 @@ func_0804BE2C: @ 0x0804BE2C
     ldrsh r0, [r4, r1]
     cmp r0, #0x28
     ble .L0804BF08
-    bl func_08050018
+    bl SpellFx_ClearBG1
     movs r0, #0
     bl func_0804C48C
     ldr r3, .L0804BEE0 @ =gDispIo

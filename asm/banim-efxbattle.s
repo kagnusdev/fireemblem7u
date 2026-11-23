@@ -3925,7 +3925,7 @@ func_0804F4A0: @ 0x0804F4A0
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     cmp r0, #0
@@ -3937,7 +3937,7 @@ func_0804F4A0: @ 0x0804F4A0
     adds r1, r4, #0
     adds r1, #0x4c
     ldr r2, [r4, #0x50]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     cmp r0, #0
@@ -4478,7 +4478,7 @@ func_0804F900: @ 0x0804F900
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r1, r0, #0x10
     cmp r1, #0
@@ -4714,7 +4714,7 @@ func_0804FAD4: @ 0x0804FAD4
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     cmp r0, #0
@@ -5188,7 +5188,7 @@ func_0804FE78: @ 0x0804FE78
     adds r1, r4, #0
     adds r1, #0x44
     ldr r2, [r4, #0x48]
-    bl func_080506E4
+    bl EfxAdvanceFrameLut
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     cmp r0, #0
@@ -5376,8 +5376,8 @@ func_0804FFFC: @ 0x0804FFFC
 .L08050004: .4byte 0x0201772C
     func_end func_0804FFFC
 
-    thumb_func_start func_08050008
-func_08050008: @ 0x08050008
+    thumb_func_start SpellFx_SetBG1Position
+SpellFx_SetBG1Position: @ 0x08050008
     push {lr}
     movs r0, #1
     movs r1, #0
@@ -5385,10 +5385,10 @@ func_08050008: @ 0x08050008
     bl SetBgOffset
     pop {r0}
     bx r0
-    func_end func_08050008
+    func_end SpellFx_SetBG1Position
 
-    thumb_func_start func_08050018
-func_08050018: @ 0x08050018
+    thumb_func_start SpellFx_ClearBG1
+SpellFx_ClearBG1: @ 0x08050018
     push {lr}
     sub sp, #4
     movs r0, #0
@@ -5405,10 +5405,10 @@ func_08050018: @ 0x08050018
     .align 2, 0
 .L08050038: .4byte gBg1Tm
 .L0805003C: .4byte 0x01000200
-    func_end func_08050018
+    func_end SpellFx_ClearBG1
 
-    thumb_func_start func_08050040
-func_08050040: @ 0x08050040
+    thumb_func_start SpellFx_SetSomeColorEffect
+SpellFx_SetSomeColorEffect: @ 0x08050040
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
@@ -5514,10 +5514,10 @@ func_08050040: @ 0x08050040
 .L0805010C: .4byte gDispIo
 .L08050110: .4byte 0x0000FFE0
 .L08050114: .4byte 0x0000E0FF
-    func_end func_08050040
+    func_end SpellFx_SetSomeColorEffect
 
-    thumb_func_start func_08050118
-func_08050118: @ 0x08050118
+    thumb_func_start SpellFx_ClearColorEffects
+SpellFx_ClearColorEffects: @ 0x08050118
     ldr r3, .L0805013C @ =gDispIo
     adds r1, r3, #0
     adds r1, #0x3c
@@ -5537,7 +5537,7 @@ func_08050118: @ 0x08050118
     bx lr
     .align 2, 0
 .L0805013C: .4byte gDispIo
-    func_end func_08050118
+    func_end SpellFx_ClearColorEffects
 
     thumb_func_start StartBattleAnimHitEffectsDefault
 StartBattleAnimHitEffectsDefault: @ 0x08050140
@@ -5704,7 +5704,7 @@ func_08050160: @ 0x08050160
     adds r0, r5, #0
     bl func_0804D5A4
     adds r0, r7, #0
-    bl func_08054764
+    bl CheckRoundCrit
     cmp r0, #1
     bne .L080502A8
     adds r0, r5, #0
@@ -5819,7 +5819,7 @@ func_080502EC: @ 0x080502EC
     adds r0, r5, #0
     bl func_0804D86C
     adds r0, r7, #0
-    bl func_08054764
+    bl CheckRoundCrit
     cmp r0, #1
     bne .L08050394
     adds r0, r5, #0
@@ -6000,8 +6000,8 @@ func_08050478: @ 0x08050478
 .L080504D8: .4byte gBg1Tm
     func_end func_08050478
 
-    thumb_func_start func_080504DC
-func_080504DC: @ 0x080504DC
+    thumb_func_start SpellFx_WriteBgMap
+SpellFx_WriteBgMap: @ 0x080504DC
     push {r4, r5, lr}
     sub sp, #8
     adds r4, r0, #0
@@ -6060,7 +6060,7 @@ func_080504DC: @ 0x080504DC
     bx r0
     .align 2, 0
 .L08050558: .4byte gBg1Tm
-    func_end func_080504DC
+    func_end SpellFx_WriteBgMap
 
     thumb_func_start func_0805055C
 func_0805055C: @ 0x0805055C
@@ -6150,8 +6150,8 @@ func_080505F0: @ 0x080505F0
 .L08050608: .4byte 0x02022AA0
     func_end func_080505F0
 
-    thumb_func_start func_0805060C
-func_0805060C: @ 0x0805060C
+    thumb_func_start SpellFx_RegisterBgGfx
+SpellFx_RegisterBgGfx: @ 0x0805060C
     push {r4, r5, r6, lr}
     adds r6, r1, #0
     ldr r5, .L0805062C @ =0x06002000
@@ -6168,10 +6168,10 @@ func_0805060C: @ 0x0805060C
     .align 2, 0
 .L0805062C: .4byte 0x06002000
 .L08050630: .4byte 0x02017784
-    func_end func_0805060C
+    func_end SpellFx_RegisterBgGfx
 
-    thumb_func_start func_08050634
-func_08050634: @ 0x08050634
+    thumb_func_start SpellFx_RegisterBgPal
+SpellFx_RegisterBgPal: @ 0x08050634
     push {lr}
     adds r2, r1, #0
     ldr r1, .L0805064C @ =0x02022880
@@ -6183,7 +6183,7 @@ func_08050634: @ 0x08050634
     bx r0
     .align 2, 0
 .L0805064C: .4byte 0x02022880
-    func_end func_08050634
+    func_end SpellFx_RegisterBgPal
 
     thumb_func_start func_08050650
 func_08050650: @ 0x08050650
@@ -6277,8 +6277,8 @@ func_080506AC: @ 0x080506AC
     bx r0
     func_end func_080506AC
 
-    thumb_func_start func_080506E4
-func_080506E4: @ 0x080506E4
+    thumb_func_start EfxAdvanceFrameLut
+EfxAdvanceFrameLut: @ 0x080506E4
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
     adds r3, r1, #0
@@ -6352,7 +6352,7 @@ func_080506E4: @ 0x080506E4
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    func_end func_080506E4
+    func_end EfxAdvanceFrameLut
 
     thumb_func_start func_0805076C
 func_0805076C: @ 0x0805076C

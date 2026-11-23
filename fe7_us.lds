@@ -109,6 +109,7 @@ SECTIONS
         src/banim-main.o(.text);
         src/banim-mainutils.o(.text);
         asm/code-banim.o(.text);
+        src/banim-efxdrsmmoya.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -182,6 +183,7 @@ SECTIONS
         . = ALIGN(4); asm/rodata.o(.rodata_1_2);
         . = ALIGN(4); src/banim-mainutils.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_1_3);
+        . = ALIGN(4); src/banim-efxdrsmmoya.o(.rodata);
         . = ALIGN(4); src/m4a.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_2);
         . = ALIGN(4); *libc.a:vfprintf.o(.rodata);
@@ -214,6 +216,8 @@ SECTIONS
         . = ALIGN(4); asm/data.o(.data_1_1);
         . = ALIGN(4); src/banim-mainutils.o(.data);
         . = ALIGN(4); asm/data.o(.data_1_2);
+        . = ALIGN(4); src/banim-efxdrsmmoya.o(.data);
+        . = ALIGN(4); asm/data.o(.data_1_3);
         . = ALIGN(4); src/sio_link_loader.o(.data);
 
         /* libc */
@@ -311,6 +315,9 @@ SECTIONS
         . = 0x017758; gEfxTeonoState = .;
         . = 0x01FAF8; gBanimDoneFlag = .;
         . = 0x01FB10; gpImgSheet = .;
+        . = 0x01FDAC; gEkrBg1ScrollFlip = .;
+        . = 0x01FDB8; gpBg1ScrollOffsetList2 = .;
+        . = 0x01FEF8; gpBg1ScrollOffsetList1 = .;
     }
 
     ewram_data __ewram_start (NOLOAD) : ALIGN(4)
