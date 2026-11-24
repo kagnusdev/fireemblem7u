@@ -110,6 +110,7 @@ SECTIONS
         src/banim-mainutils.o(.text);
         asm/code-banim.o(.text);
         src/banim-efxdrsmmoya.o(.text);
+        asm/code-banim-08063FE0.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
