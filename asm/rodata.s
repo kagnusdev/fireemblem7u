@@ -99,7 +99,11 @@ TsaConf_BanimTmA3:
 
     .global TsaConf_BanimTmA4
 TsaConf_BanimTmA4:
-    .incbin "baserom.gba", 0x1D881C, 0x1E9792 - 0x1D881C
+    .incbin "baserom.gba", 0x1D881C, 0x1D97D0 - 0x1D881C
+
+    .global Pal_EkrDragon
+Pal_EkrDragon:
+    .incbin "baserom.gba", 0x1D97D0, 0x1E9792 - 0x1D97D0
 
     .global FrameLut_EfxDrsmmoya
 FrameLut_EfxDrsmmoya:
@@ -175,7 +179,27 @@ Tsa_EfxDrsmmoyaBgLeft12:
 
     .global Tsa_EfxDrsmmoyaBgLeft13
 Tsa_EfxDrsmmoyaBgLeft13:
-    .incbin "baserom.gba", 0x2B920C, 0x3FBD34 - 0x2B920C
+    .incbin "baserom.gba", 0x2B920C, 0x2DE7E8 - 0x2B920C
+
+    .global Img_EkrDragon_082DE7E8
+Img_EkrDragon_082DE7E8:
+    .incbin "baserom.gba", 0x2DE7E8, 0x2E0FEC - 0x2DE7E8
+
+    .global Pals_EkrDragonFlashingWingBg
+Pals_EkrDragonFlashingWingBg:
+    .incbin "baserom.gba", 0x2E0FEC, 0x2E10CC - 0x2E0FEC
+
+    .global Tsa_EkrDragon_DragonTail
+Tsa_EkrDragon_DragonTail:
+    .incbin "baserom.gba", 0x2E10CC, 0x2E1218 - 0x2E10CC
+
+    .global Tsa_EkrDragon_MainBg
+Tsa_EkrDragon_MainBg:
+    .incbin "baserom.gba", 0x2E1218, 0x2E589C - 0x2E1218
+
+    .global Pal_EkrDragonFireBG2
+Pal_EkrDragonFireBG2:
+    .incbin "baserom.gba", 0x2E589C, 0x3FBD34 - 0x2E589C
 
     .global gUnk_083FBD34
 gUnk_083FBD34:

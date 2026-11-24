@@ -380,7 +380,7 @@ func_08050BD4: @ 0x08050BD4
     movs r1, #6
     movs r2, #0xa
     movs r3, #4
-    bl func_08066EE8
+    bl EfxPalBlackInOut
     bl EnablePalSync
     bl EndAllMus
     adds r0, r7, #0
@@ -484,7 +484,7 @@ func_08050D7C: @ 0x08050D7C
     ldrsh r0, [r0, r1]
     cmp r0, #0
     beq .L08050DA0
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     beq .L08050DB0
 .L08050DA0:
@@ -518,7 +518,7 @@ func_08050DC4: @ 0x08050DC4
     movs r1, #4
     movs r2, #0x10
     bl Interpolate
-    bl func_080672C4
+    bl EfxChapterMapFadeOUT
     ldrh r0, [r4, #0x2c]
     adds r0, #1
     strh r0, [r4, #0x2c]
@@ -566,7 +566,7 @@ func_08050E00: @ 0x08050E00
     movs r1, #6
     movs r2, #0xa
     movs r3, #0x10
-    bl func_08066EE8
+    bl EfxPalBlackInOut
     adds r0, r4, #0
     bl Proc_Break
     pop {r4}
@@ -601,7 +601,7 @@ func_08050E54: @ 0x08050E54
     movs r1, #6
     movs r2, #0xa
     adds r3, r4, #0
-    bl func_08066EE8
+    bl EfxPalBlackInOut
     bl EnablePalSync
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -648,7 +648,7 @@ func_08050ECC: @ 0x08050ECC
     ldrsh r0, [r7, r1]
     cmp r0, #0
     beq .L08050EE6
-    bl func_08064AE0
+    bl CheckInEkrDragon
     adds r6, r0, #0
     cmp r6, #0
     beq .L08050EF4
@@ -676,7 +676,7 @@ func_08050ECC: @ 0x08050ECC
     movs r1, #6
     movs r2, #0xa
     adds r3, r4, #0
-    bl func_08066EE8
+    bl EfxPalBlackInOut
     bl EnablePalSync
     ldrh r0, [r5, #0x2c]
     adds r0, #1
@@ -706,7 +706,7 @@ func_08050F44: @ 0x08050F44
     ldrsh r0, [r0, r1]
     cmp r0, #0
     beq .L08050F5A
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     beq .L08050F68
 .L08050F5A:
@@ -722,7 +722,7 @@ func_08050F44: @ 0x08050F44
     asrs r0, r0, #0x18
     bl UnpackChapterMapGraphics
     movs r0, #0x10
-    bl func_080672C4
+    bl EfxChapterMapFadeOUT
     bl RenderMap
     movs r0, #3
     movs r1, #0
@@ -748,7 +748,7 @@ func_08050F98: @ 0x08050F98
     ldrsh r0, [r0, r1]
     cmp r0, #0
     beq .L08050FB2
-    bl func_08064AE0
+    bl CheckInEkrDragon
     adds r5, r0, #0
     cmp r5, #0
     beq .L08050FC0
@@ -767,7 +767,7 @@ func_08050F98: @ 0x08050F98
     movs r1, #0x10
     movs r2, #4
     bl Interpolate
-    bl func_080672C4
+    bl EfxChapterMapFadeOUT
     ldrh r0, [r4, #0x2c]
     adds r0, #1
     strh r0, [r4, #0x2c]
@@ -1207,7 +1207,7 @@ func_08051274: @ 0x08051274
     ldr r0, [r0]
     adds r6, r1, #0
     ldr r1, .L08051374 @ =0x06010000
-    bl LZ77UnComp16bit
+    bl LZ77UnCompVram
     ldr r0, .L08051378 @ =0x081E7FF8
     ldr r1, .L0805137C @ =0x02022AE0
     movs r2, #1
@@ -1686,7 +1686,7 @@ func_080516E8: @ 0x080516E8
     ldrsh r5, [r0, r1]
     cmp r5, #1
     bne .L08051730
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     bne .L08051730
     str r5, [r4, #0x4c]
@@ -2504,7 +2504,7 @@ func_08051D50: @ 0x08051D50
     sub sp, #0x2c
     movs r0, #1
     str r0, [sp, #0x20]
-    bl func_08064A48
+    bl ResetEkrDragonStatus
     ldr r1, .L08051D78 @ =0x0203A3D8
     movs r0, #0x20
     ldrh r1, [r1]
@@ -5250,8 +5250,8 @@ func_08053298: @ 0x08053298
     bx lr
     func_end func_08053298
 
-    thumb_func_start func_080532C0
-func_080532C0: @ 0x080532C0
+    thumb_func_start EkrPrepareBanimfx
+EkrPrepareBanimfx: @ 0x080532C0
     push {r4, r5, lr}
     adds r5, r0, #0
     lsls r4, r1, #0x10
@@ -5270,7 +5270,7 @@ func_080532C0: @ 0x080532C0
     bx r0
     .align 2, 0
 .L080532E8: .4byte gBanimIdx
-    func_end func_080532C0
+    func_end EkrPrepareBanimfx
 
     thumb_func_start GetBattleAnimRoundType
 GetBattleAnimRoundType: @ 0x080532EC

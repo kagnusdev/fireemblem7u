@@ -295,7 +295,7 @@ func_0804B3A8: @ 0x0804B3A8
     str r0, [r1]
 .L0804B3DA:
     bl func_08054248
-    bl func_08064C7C
+    bl InitEkrDragonStatus
     ldr r0, .L0804B3F4 @ =0x02000024
     movs r1, #1
     str r1, [r0]
@@ -545,11 +545,11 @@ func_0804B5B0: @ 0x0804B5B0
     ldr r0, .L0804B5E8 @ =0x02000000
     ldr r0, [r0]
     str r0, [r4, #0x5c]
-    bl func_08064AB0
+    bl GetEkrDragonStatusType
     cmp r0, #0
     beq .L0804B5E2
     ldr r0, [r4, #0x5c]
-    bl func_08064C10
+    bl NewEkrDragon
     ldr r0, .L0804B5EC @ =func_0804B620
     str r0, [r4, #0xc]
 .L0804B5E2:
@@ -562,11 +562,11 @@ func_0804B5B0: @ 0x0804B5B0
     ldr r0, .L0804B618 @ =0x02000000
     ldr r0, [r0, #8]
     str r0, [r4, #0x5c]
-    bl func_08064AB0
+    bl GetEkrDragonStatusType
     cmp r0, #0
     beq .L0804B608
     ldr r0, [r4, #0x5c]
-    bl func_08064C10
+    bl NewEkrDragon
     ldr r0, .L0804B61C @ =func_0804B620
     str r0, [r4, #0xc]
 .L0804B608:
@@ -590,7 +590,7 @@ func_0804B620: @ 0x0804B620
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_08064BD8
+    bl EkrDragonIntroDone
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     cmp r0, #1
@@ -1046,7 +1046,7 @@ func_0804B968: @ 0x0804B968
     str r0, [r5, #0xc]
     ldr r4, .L0804B9E0 @ =0x02000000
     ldr r0, [r4]
-    bl func_08064C5C
+    bl CheckEfxDragonDeadFallHead
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0804B9CE
@@ -1880,11 +1880,11 @@ func_0804BFE8: @ 0x0804BFE8
     ldr r0, .L0804C020 @ =0x02000000
     ldr r0, [r0]
     str r0, [r4, #0x5c]
-    bl func_08064AB0
+    bl GetEkrDragonStatusType
     cmp r0, #0
     beq .L0804C01A
     ldr r0, [r4, #0x5c]
-    bl func_08064C40
+    bl SetEkrDragonExit
     ldr r0, .L0804C024 @ =func_0804C058
     str r0, [r4, #0xc]
 .L0804C01A:
@@ -1897,11 +1897,11 @@ func_0804BFE8: @ 0x0804BFE8
     ldr r0, .L0804C050 @ =0x02000000
     ldr r0, [r0, #8]
     str r0, [r4, #0x5c]
-    bl func_08064AB0
+    bl GetEkrDragonStatusType
     cmp r0, #0
     beq .L0804C040
     ldr r0, [r4, #0x5c]
-    bl func_08064C40
+    bl SetEkrDragonExit
     ldr r0, .L0804C054 @ =func_0804C058
     str r0, [r4, #0xc]
 .L0804C040:
@@ -1925,7 +1925,7 @@ func_0804C058: @ 0x0804C058
     push {r4, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_08064BF4
+    bl CheckEkrDragonEndingDone
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     cmp r0, #1

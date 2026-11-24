@@ -261,7 +261,14 @@ sHandXOffsetLut:
 
     .section ".data_1_3", "a"
 
-    .incbin "baserom.gba", 0xBA47D8, 0xBDCE4C - 0xBA47D8
+    .incbin "baserom.gba", 0xBA47D8, 0xBD9318 - 0xBA47D8
+
+    @ BD9318 -> BD93A0 is ProcScr_EkrDragon
+
+
+    .section ".data_1_4", "a"
+
+    .incbin "baserom.gba", 0xBD93A0, 0xBDCE4C - 0xBD93A0
 
     .global gCharacterData
 gCharacterData:

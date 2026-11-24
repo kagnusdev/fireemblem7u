@@ -134,7 +134,7 @@ extern u16 gEkrBgPaletteBackup[0x20];
 void InitEkrDragonStatus(void);
 void EkrDragonUpdateFlashingUnit(struct Anim * anim);
 void BanimSetFrontPaletteForDragon(struct Anim * anim);
-void EkrDragonUpdatePal_08065510(int ref);
+void EkrDragonUpdatePal_08064D20(int ref);
 void NewEkrDragon(struct Anim * anim);
 void EkrDragon_Preparefx(struct ProcEkrDragon * proc);
 void EkrDragon_CustomBgFadeIn(struct ProcEkrDragon * proc);

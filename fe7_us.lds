@@ -111,6 +111,7 @@ SECTIONS
         asm/code-banim.o(.text);
         src/banim-efxdrsmmoya.o(.text);
         asm/code-banim-08063FE0.o(.text);
+        src/banim-ekrdragon.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -219,6 +220,8 @@ SECTIONS
         . = ALIGN(4); asm/data.o(.data_1_2);
         . = ALIGN(4); src/banim-efxdrsmmoya.o(.data);
         . = ALIGN(4); asm/data.o(.data_1_3);
+        . = ALIGN(4); src/banim-ekrdragon.o(.data);
+        . = ALIGN(4); asm/data.o(.data_1_4);
         . = ALIGN(4); src/sio_link_loader.o(.data);
 
         /* libc */
@@ -304,6 +307,9 @@ SECTIONS
     {
         . = 0x000000; gAnims = .;
         . = 0x000024; gAnimC01Blocking = .;
+        . = 0x000028; gEkrXPosReal = .;
+        . = 0x00002C; gEkrYPosReal = .;
+        . = 0x000038; gEkrBg0QuakeVec = .;
         . = 0x000054; gpEfxUnitPaletteBackup = .;
         . = 0x00005C; gpBanimModesLeft = .;
         . = 0x000060; gpBanimModesRight = .;
@@ -314,11 +320,17 @@ SECTIONS
         . = 0x00F1C8; gBanimScrLeft = .;
         . = 0x011BC8; gBanimScrRight = .;
         . = 0x017758; gEfxTeonoState = .;
+        . = 0x017760; gEkrBg2QuakeVec = .;
+        . = 0x019784; gEkrTsaBuffer = .;
+        . = 0x01D41C; gEfxFrameTmap = .;
         . = 0x01FAF8; gBanimDoneFlag = .;
+        . = 0x01FB00; gEkrBgPosition = .;
         . = 0x01FB10; gpImgSheet = .;
         . = 0x01FDAC; gEkrBg1ScrollFlip = .;
         . = 0x01FDB8; gpBg1ScrollOffsetList2 = .;
         . = 0x01FEF8; gpBg1ScrollOffsetList1 = .;
+        . = 0x020040; gEkrDragonStatusLeft = .;
+        . = 0x020050; gEkrDragonStatusRight = .;
     }
 
     ewram_data __ewram_start (NOLOAD) : ALIGN(4)
@@ -349,7 +361,7 @@ SECTIONS
 
         . = 0x03E01C; gBanimUniquePal = .;
         . = 0x03E020; gBanimFactionPal = .;
-
+        . = 0x03E024; gEkrSpellAnimIndex = .;
         . = 0x03E02C; gEkrDistanceType = .;
 
         . = 0x03E08E; gBanimIdx = .;

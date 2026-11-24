@@ -1604,11 +1604,11 @@ func_0804E234: @ 0x0804E234
     ldr r0, [r0]
     cmp r0, #0
     bne .L0804E272
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     beq .L0804E260
     ldr r0, [r4, #0x5c]
-    bl func_08064C4C
+    bl SetEfxDragonDeadFallHead
     b .L0804E268
     .align 2, 0
 .L0804E258: .4byte 0x0201774C
@@ -1641,7 +1641,7 @@ func_0804E278: @ 0x0804E278
     cmp r1, #0x1e
     bne .L0804E2BE
     adds r0, r5, #0
-    bl func_08064C5C
+    bl CheckEfxDragonDeadFallHead
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
     cmp r0, #1
@@ -2060,7 +2060,7 @@ func_0804E5AC: @ 0x0804E5AC
     movs r1, #0x32
     ldrsh r0, [r4, r1]
     movs r1, #0
-    bl func_08064B38
+    bl EkrDragonTmCpyExt
     movs r1, #0x32
     ldrsh r0, [r4, r1]
     bl func_0804E6DC
@@ -2096,7 +2096,7 @@ func_0804E5DC: @ 0x0804E5DC
     bl func_0804E574
     ldr r0, [r5]
     movs r1, #0
-    bl func_08064B38
+    bl EkrDragonTmCpyExt
     ldr r0, [r5]
     bl func_0804E6DC
     bl func_080554F0
@@ -2149,7 +2149,7 @@ func_0804E648: @ 0x0804E648
     bl func_0804E574
     ldr r0, [r5]
     movs r1, #0
-    bl func_08064B38
+    bl EkrDragonTmCpyExt
     ldr r0, [r5]
     bl func_0804E6DC
     bl func_080554F0
@@ -2202,7 +2202,7 @@ func_0804E6DC: @ 0x0804E6DC
     push {r4, r5, lr}
     sub sp, #0x10
     adds r5, r0, #0
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     bne .L0804E72C
     bl func_080554F0
@@ -2231,7 +2231,7 @@ func_0804E6DC: @ 0x0804E6DC
     adds r0, r4, #0
     movs r1, #0x42
     movs r3, #0x20
-    bl func_08066B2C
+    bl EfxTmCpyExt
     movs r0, #4
     bl EnableBgSync
 .L0804E72C:
@@ -2244,8 +2244,8 @@ func_0804E6DC: @ 0x0804E6DC
 .L0804E738: .4byte gBg2Tm
     func_end func_0804E6DC
 
-    thumb_func_start func_0804E73C
-func_0804E73C: @ 0x0804E73C
+    thumb_func_start NewEfxQuakePure
+NewEfxQuakePure: @ 0x0804E73C
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
@@ -2276,7 +2276,7 @@ func_0804E73C: @ 0x0804E73C
     .align 2, 0
 .L0804E774: .4byte 0x08B9AD94
 .L0804E778: .4byte 0x08B9ADAC
-    func_end func_0804E73C
+    func_end NewEfxQuakePure
 
     thumb_func_start func_0804E77C
 func_0804E77C: @ 0x0804E77C
@@ -2518,17 +2518,17 @@ func_0804E900: @ 0x0804E900
     movs r3, #0
     ldrsh r2, [r2, r3]
     movs r0, #0
-    bl func_080507D8
+    bl SetEkrFrontAnimPostion
     lsls r1, r4, #0x10
     asrs r1, r1, #0x10
     adds r2, r5, #0
     movs r0, #1
-    bl func_080507D8
+    bl SetEkrFrontAnimPostion
     movs r0, #2
     movs r1, #0
     movs r2, #0
     bl SetBgOffset
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     beq .L0804E96A
     ldrh r1, [r6, #0x34]
@@ -2563,7 +2563,7 @@ func_0804E900: @ 0x0804E900
     ldrh r2, [r5, #2]
     movs r0, #2
     bl SetBgOffset
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     beq .L0804E9CC
     ldrh r2, [r6, #0x34]
@@ -2579,7 +2579,7 @@ func_0804E900: @ 0x0804E900
     movs r0, #3
     bl SetBgOffset
 .L0804E9CC:
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     beq .L0804E9EC
     ldr r4, .L0804E9E8 @ =0x02000028
@@ -2637,13 +2637,13 @@ func_0804E900: @ 0x0804E900
     lsls r2, r3, #0x10
     asrs r2, r2, #0x10
     movs r0, #0
-    bl func_080507D8
+    bl SetEkrFrontAnimPostion
     lsls r1, r4, #0x10
     asrs r1, r1, #0x10
     lsls r2, r5, #0x10
     asrs r2, r2, #0x10
     movs r0, #1
-    bl func_080507D8
+    bl SetEkrFrontAnimPostion
     b .L0804EA9E
     .align 2, 0
 .L0804EA58: .4byte 0x02000028
@@ -2666,7 +2666,7 @@ func_0804E900: @ 0x0804E900
     lsls r2, r4, #0x10
     asrs r2, r2, #0x10
     movs r0, #0
-    bl func_080507D8
+    bl SetEkrFrontAnimPostion
     b .L0804EA9E
 .L0804EA90:
     lsls r1, r4, #0x10
@@ -2674,7 +2674,7 @@ func_0804E900: @ 0x0804E900
     lsls r2, r5, #0x10
     asrs r2, r2, #0x10
     movs r0, #1
-    bl func_080507D8
+    bl SetEkrFrontAnimPostion
 .L0804EA9E:
     pop {r3}
     mov r8, r3
@@ -2756,7 +2756,7 @@ func_0804EAA8: @ 0x0804EAA8
     str r0, [r5, #0x44]
     movs r0, #1
     str r0, [r5, #0x48]
-    bl func_08064AE0
+    bl CheckInEkrDragon
     adds r4, r0, #0
     cmp r4, #0
     beq .L0804EB44
@@ -2936,7 +2936,7 @@ func_0804EC88: @ 0x0804EC88
     movs r1, #0
     movs r2, #0
     bl SetBgOffset
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     beq .L0804ECFA
     movs r0, #3
@@ -2952,7 +2952,7 @@ func_0804EC88: @ 0x0804EC88
     blt .L0804ECFA
     cmp r0, #2
     bgt .L0804ECFA
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     beq .L0804ECF2
     movs r0, #3
@@ -2988,12 +2988,12 @@ func_0804EC88: @ 0x0804EC88
     movs r3, #0
     ldrsh r2, [r2, r3]
     movs r0, #0
-    bl func_080507D8
+    bl SetEkrFrontAnimPostion
     lsls r1, r4, #0x10
     asrs r1, r1, #0x10
     adds r2, r5, #0
     movs r0, #1
-    bl func_080507D8
+    bl SetEkrFrontAnimPostion
     ldr r1, .L0804EDAC @ =0x02017740
     movs r0, #0
     str r0, [r1]
@@ -3002,7 +3002,7 @@ func_0804EC88: @ 0x0804EC88
     ldrb r0, [r0]
     cmp r0, #1
     bne .L0804ED92
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     beq .L0804ED5E
     movs r0, #3
@@ -3023,7 +3023,7 @@ func_0804EC88: @ 0x0804EC88
     rsbs r1, r6, #0
     lsls r1, r1, #0x10
     asrs r1, r1, #0x10
-    bl func_0804C4B0
+    bl EkrGauge_0804C4B0
     ldrh r1, [r4]
     rsbs r0, r1, #0
     lsls r0, r0, #0x10
@@ -3032,7 +3032,7 @@ func_0804EC88: @ 0x0804EC88
     rsbs r1, r4, #0
     lsls r1, r1, #0x10
     lsrs r1, r1, #0x10
-    bl func_0804CDFC
+    bl EkrDispUP_SetPositionSync
 .L0804ED92:
     adds r0, r7, #0
     bl Proc_End
@@ -3126,7 +3126,7 @@ func_0804EC88: @ 0x0804EC88
     ldrb r0, [r0]
     cmp r0, #1
     bne .L0804EED0
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     beq .L0804EE7A
     mov r0, r8
@@ -3164,7 +3164,7 @@ func_0804EC88: @ 0x0804EC88
     rsbs r1, r1, #0
     lsls r1, r1, #0x10
     asrs r1, r1, #0x10
-    bl func_0804C4B0
+    bl EkrGauge_0804C4B0
     ldrh r1, [r5]
     ldrh r2, [r4]
     adds r0, r1, r2
@@ -3177,9 +3177,9 @@ func_0804EC88: @ 0x0804EC88
     rsbs r1, r1, #0
     lsls r1, r1, #0x10
     lsrs r1, r1, #0x10
-    bl func_0804CDFC
+    bl EkrDispUP_SetPositionSync
 .L0804EED0:
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     beq .L0804EEE4
     ldr r0, .L0804EF0C @ =0x02017760
@@ -3188,7 +3188,7 @@ func_0804EC88: @ 0x0804EC88
     movs r0, #3
     bl SetBgOffset
 .L0804EEE4:
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     beq .L0804EF20
     ldr r3, .L0804EF14 @ =0x02000028
@@ -3256,13 +3256,13 @@ func_0804EC88: @ 0x0804EC88
     lsls r2, r3, #0x10
     asrs r2, r2, #0x10
     movs r0, #0
-    bl func_080507D8
+    bl SetEkrFrontAnimPostion
     lsls r1, r4, #0x10
     asrs r1, r1, #0x10
     lsls r2, r5, #0x10
     asrs r2, r2, #0x10
     movs r0, #1
-    bl func_080507D8
+    bl SetEkrFrontAnimPostion
     b .L0804EFCE
     .align 2, 0
 .L0804EF88: .4byte 0x02000028
@@ -3285,7 +3285,7 @@ func_0804EC88: @ 0x0804EC88
     lsls r2, r4, #0x10
     asrs r2, r2, #0x10
     movs r0, #0
-    bl func_080507D8
+    bl SetEkrFrontAnimPostion
     b .L0804EFCE
 .L0804EFC0:
     lsls r1, r4, #0x10
@@ -3293,7 +3293,7 @@ func_0804EC88: @ 0x0804EC88
     lsls r2, r5, #0x10
     asrs r2, r2, #0x10
     movs r0, #1
-    bl func_080507D8
+    bl SetEkrFrontAnimPostion
 .L0804EFCE:
     add sp, #4
     pop {r3}
@@ -3303,8 +3303,8 @@ func_0804EC88: @ 0x0804EC88
     bx r0
     func_end func_0804EC88
 
-    thumb_func_start func_0804EFDC
-func_0804EFDC: @ 0x0804EFDC
+    thumb_func_start NewEfxFlashBgWhite
+NewEfxFlashBgWhite: @ 0x0804EFDC
     push {r4, r5, lr}
     sub sp, #4
     adds r4, r0, #0
@@ -3331,7 +3331,7 @@ func_0804EFDC: @ 0x0804EFDC
 .L0804F00C: .4byte 0x08B9AE4C
 .L0804F010: .4byte 0x020165C8
 .L0804F014: .4byte 0x01000100
-    func_end func_0804EFDC
+    func_end NewEfxFlashBgWhite
 
     thumb_func_start func_0804F018
 func_0804F018: @ 0x0804F018
@@ -4081,7 +4081,7 @@ func_0804F5D4: @ 0x0804F5D4
     movs r2, #8
     bl CpuFastSet
     ldr r0, [r4, #0x5c]
-    bl func_08064C90
+    bl EkrDragonUpdateFlashingUnit
     b .L0804F61C
     .align 2, 0
 .L0804F604: .4byte 0x081D97D0
@@ -4092,7 +4092,7 @@ func_0804F5D4: @ 0x0804F5D4
     movs r2, #8
     bl CpuFastSet
     ldr r0, [r4, #0x5c]
-    bl func_08064C90
+    bl EkrDragonUpdateFlashingUnit
 .L0804F61C:
     bl EnablePalSync
     movs r0, #0x2c
@@ -4126,7 +4126,7 @@ func_0804F640: @ 0x0804F640
     movs r2, #8
     bl CpuFastSet
     ldr r0, [r4, #0x5c]
-    bl func_08064CD8
+    bl BanimSetFrontPaletteForDragon
     b .L0804F67E
     .align 2, 0
 .L0804F664: .4byte gpEfxUnitPaletteBackup
@@ -4138,7 +4138,7 @@ func_0804F640: @ 0x0804F640
     movs r2, #8
     bl CpuFastSet
     ldr r0, [r4, #0x5c]
-    bl func_08064CD8
+    bl BanimSetFrontPaletteForDragon
 .L0804F67E:
     bl EnablePalSync
     adds r0, r4, #0
@@ -4404,11 +4404,11 @@ func_0804F85C: @ 0x0804F85C
     movs r2, #1
     adds r3, r7, #0
     bl func_08066FE8
-    bl func_08064AE0
+    bl CheckInEkrDragon
     cmp r0, #0
     beq .L0804F8E6
     mov r0, r8
-    bl func_08064CD8
+    bl BanimSetFrontPaletteForDragon
     str r5, [sp]
     str r6, [sp, #4]
     adds r0, r4, #0
@@ -4615,7 +4615,7 @@ func_0804FA08: @ 0x0804FA08
     bl CpuFastSet
 .L0804FA38:
     ldr r0, [r4, #0x5c]
-    bl func_08064CD8
+    bl BanimSetFrontPaletteForDragon
     bl EnablePalSync
     pop {r4}
     pop {r0}
@@ -4782,7 +4782,7 @@ func_0804FB3C: @ 0x0804FB3C
     thumb_func_start func_0804FB6C
 func_0804FB6C: @ 0x0804FB6C
     push {r4, r5, lr}
-    bl func_08064AE0
+    bl CheckInEkrDragon
     adds r4, r0, #0
     cmp r4, #0
     bne .L0804FBB8
@@ -4880,7 +4880,7 @@ func_0804FBF8: @ 0x0804FBF8
     movs r1, #6
     movs r2, #0xa
     adds r3, r5, #0
-    bl func_08066EE8
+    bl EfxPalBlackInOut
     bl EnablePalSync
     ldrh r1, [r6, #0x2c]
     adds r1, #1
@@ -4918,7 +4918,7 @@ func_0804FC5C: @ 0x0804FC5C
     movs r1, #6
     movs r2, #0xa
     movs r3, #8
-    bl func_08066EE8
+    bl EfxPalBlackInOut
     adds r0, r5, #0
     adds r0, #0x29
     ldrb r0, [r0]
@@ -4963,7 +4963,7 @@ func_0804FC9C: @ 0x0804FC9C
     movs r1, #6
     movs r2, #0xa
     adds r3, r4, #0
-    bl func_08066EE8
+    bl EfxPalBlackInOut
     bl EnablePalSync
     ldrh r1, [r5, #0x2c]
     adds r1, #1
@@ -5094,7 +5094,7 @@ func_0804FDA0: @ 0x0804FDA0
     movs r2, #0x10
     bl Interpolate
     adds r4, r0, #0
-    bl func_080672C4
+    bl EfxChapterMapFadeOUT
     b .L0804FE00
     .align 2, 0
 .L0804FDCC: .4byte 0x0203E00A
@@ -5117,7 +5117,7 @@ func_0804FDA0: @ 0x0804FDA0
     movs r1, #6
     movs r2, #0xa
     adds r3, r4, #0
-    bl func_08066EE8
+    bl EfxPalBlackInOut
     bl EnablePalSync
 .L0804FE00:
     ldrh r1, [r5, #0x2c]
@@ -5158,7 +5158,7 @@ func_0804FE28: @ 0x0804FE28
     str r0, [r4, #0x4c]
     ldr r0, .L0804FE68 @ =0x082C7ED0
     ldr r1, .L0804FE6C @ =0x06008000
-    bl LZ77UnComp16bit
+    bl LZ77UnCompVram
     ldr r0, .L0804FE70 @ =0x082CD6C4
     ldr r1, .L0804FE74 @ =0x02022920
     movs r2, #8
@@ -5225,7 +5225,7 @@ func_0804FE78: @ 0x0804FE78
     movs r1, #6
     movs r2, #0xa
     movs r3, #0x10
-    bl func_08066EE8
+    bl EfxPalBlackInOut
     bl EnablePalSync
     adds r0, r4, #0
     bl Proc_Break
@@ -5270,7 +5270,7 @@ func_0804FF04: @ 0x0804FF04
     movs r1, #6
     movs r2, #0xa
     movs r3, #0x10
-    bl func_08066EE8
+    bl EfxPalBlackInOut
     bl EnablePalSync
     movs r0, #0
     strh r0, [r4, #0x2c]
@@ -5305,7 +5305,7 @@ func_0804FF60: @ 0x0804FF60
     movs r2, #4
     bl Interpolate
     adds r4, r0, #0
-    bl func_080672C4
+    bl EfxChapterMapFadeOUT
     b .L0804FFC0
     .align 2, 0
 .L0804FF8C: .4byte 0x0203E00A
@@ -5328,7 +5328,7 @@ func_0804FF60: @ 0x0804FF60
     movs r1, #6
     movs r2, #0xa
     adds r3, r4, #0
-    bl func_08066EE8
+    bl EfxPalBlackInOut
     bl EnablePalSync
 .L0804FFC0:
     ldrh r1, [r5, #0x2c]
@@ -6403,8 +6403,8 @@ func_08050798: @ 0x08050798
 .L080507B4: .4byte 0x050002D6
     func_end func_08050798
 
-    thumb_func_start func_080507B8
-func_080507B8: @ 0x080507B8
+    thumb_func_start EfxTmFill
+EfxTmFill: @ 0x080507B8
     push {lr}
     sub sp, #4
     ldr r1, .L080507D0 @ =0x0201D41C
@@ -6418,10 +6418,10 @@ func_080507B8: @ 0x080507B8
     .align 2, 0
 .L080507D0: .4byte 0x0201D41C
 .L080507D4: .4byte 0x05000948
-    func_end func_080507B8
+    func_end EfxTmFill
 
-    thumb_func_start func_080507D8
-func_080507D8: @ 0x080507D8
+    thumb_func_start SetEkrFrontAnimPostion
+SetEkrFrontAnimPostion: @ 0x080507D8
     lsls r1, r1, #0x10
     lsrs r1, r1, #0x10
     lsls r2, r2, #0x10
@@ -6448,7 +6448,7 @@ func_080507D8: @ 0x080507D8
     bx lr
     .align 2, 0
 .L08050804: .4byte 0x02000000
-    func_end func_080507D8
+    func_end SetEkrFrontAnimPostion
 
     thumb_func_start func_08050808
 func_08050808: @ 0x08050808
@@ -6615,13 +6615,13 @@ func_08050918: @ 0x08050918
     movs r0, #0
     ldrsh r2, [r3, r0]
     movs r0, #0
-    bl func_080507D8
+    bl SetEkrFrontAnimPostion
     lsls r4, r4, #0x10
     asrs r4, r4, #0x10
     movs r0, #1
     adds r1, r4, #0
     adds r2, r5, #0
-    bl func_080507D8
+    bl SetEkrFrontAnimPostion
     ldr r0, .L08050974 @ =0x0203E02C
     movs r1, #0
     ldrsh r0, [r0, r1]

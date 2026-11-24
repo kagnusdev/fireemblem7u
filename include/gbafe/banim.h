@@ -345,7 +345,7 @@ void EkrGauge_0804CC48(void);
 void EkrGauge_0804CC58(void);
 void EkrGauge_0804CC68(u16 val);
 void EkrGauge_0804CC78(s16 x, s16 y);
-void EkrGauge_0804CC8C(s16 x, s16 y);
+void EkrGauge_0804C4B0(s16 x, s16 y);
 void EkrGauge_SetInitFlag(void);
 void EkrGauge_ClrInitFlag(void);
 // ??? EnableEkrGauge

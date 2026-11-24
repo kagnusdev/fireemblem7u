@@ -243,10 +243,10 @@ func_0804C1D0: @ 0x0804C1D0
     strh r0, [r1, #2]
     ldr r0, .L0804C3F0 @ =0x081D9020
     ldr r1, .L0804C3F4 @ =0x06013800
-    bl LZ77UnComp16bit
+    bl LZ77UnCompVram
     ldr r0, .L0804C3F8 @ =0x081D90C0
     ldr r1, .L0804C3FC @ =0x06013C00
-    bl LZ77UnComp16bit
+    bl LZ77UnCompVram
     ldr r6, .L0804C3DC @ =gBanimFactionPal
     movs r1, #0
     ldrsh r0, [r6, r1]
@@ -489,8 +489,8 @@ func_0804C49C: @ 0x0804C49C
 .L0804C4AC: .4byte 0x02000068
     func_end func_0804C49C
 
-    thumb_func_start func_0804C4B0
-func_0804C4B0: @ 0x0804C4B0
+    thumb_func_start EkrGauge_0804C4B0
+EkrGauge_0804C4B0: @ 0x0804C4B0
     ldr r2, .L0804C4C0 @ =0x02000068
     ldr r2, [r2]
     strh r0, [r2, #0x32]
@@ -501,7 +501,7 @@ func_0804C4B0: @ 0x0804C4B0
     bx lr
     .align 2, 0
 .L0804C4C0: .4byte 0x02000068
-    func_end func_0804C4B0
+    func_end EkrGauge_0804C4B0
 
     thumb_func_start func_0804C4C4
 func_0804C4C4: @ 0x0804C4C4
@@ -1710,8 +1710,8 @@ func_0804CDE8: @ 0x0804CDE8
 .L0804CDF8: .4byte 0x0200006C
     func_end func_0804CDE8
 
-    thumb_func_start func_0804CDFC
-func_0804CDFC: @ 0x0804CDFC
+    thumb_func_start EkrDispUP_SetPositionSync
+EkrDispUP_SetPositionSync: @ 0x0804CDFC
     ldr r2, .L0804CE0C @ =0x0200006C
     ldr r2, [r2]
     strh r0, [r2, #0x32]
@@ -1722,7 +1722,7 @@ func_0804CDFC: @ 0x0804CDFC
     bx lr
     .align 2, 0
 .L0804CE0C: .4byte 0x0200006C
-    func_end func_0804CDFC
+    func_end EkrDispUP_SetPositionSync
 
     thumb_func_start func_0804CE10
 func_0804CE10: @ 0x0804CE10
@@ -2219,7 +2219,7 @@ func_0804D1D4: @ 0x0804D1D4
     bl SetTextDrawNoClear
     ldr r0, .L0804D220 @ =0x081D88B4
     ldr r1, .L0804D224 @ =0x06001000
-    bl LZ77UnComp16bit
+    bl LZ77UnCompVram
     ldr r0, .L0804D228 @ =gBanimValid
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -2255,7 +2255,7 @@ func_0804D1D4: @ 0x0804D1D4
     bl Text_SetCursor
     ldr r0, .L0804D280 @ =0x081D8ABC
     ldr r1, .L0804D284 @ =0x06001400
-    bl LZ77UnComp16bit
+    bl LZ77UnCompVram
     adds r0, r4, #0
     adds r1, r5, #0
     bl Text_DrawString
@@ -2293,7 +2293,7 @@ func_0804D1D4: @ 0x0804D1D4
     bl Text_SetCursor
     ldr r0, .L0804D2E0 @ =0x081D8B0C
     ldr r1, .L0804D2E4 @ =0x06001580
-    bl LZ77UnComp16bit
+    bl LZ77UnCompVram
     adds r0, r4, #0
     adds r1, r5, #0
     bl Text_DrawString
@@ -2331,7 +2331,7 @@ func_0804D1D4: @ 0x0804D1D4
     bl Text_SetCursor
     ldr r0, .L0804D340 @ =0x081D8B78
     ldr r1, .L0804D344 @ =0x06001740
-    bl LZ77UnComp16bit
+    bl LZ77UnCompVram
     adds r0, r4, #0
     adds r1, r5, #0
     bl Text_DrawString
@@ -2369,7 +2369,7 @@ func_0804D1D4: @ 0x0804D1D4
     bl Text_SetCursor
     ldr r0, .L0804D41C @ =0x081D8BC8
     ldr r1, .L0804D420 @ =0x060018C0
-    bl LZ77UnComp16bit
+    bl LZ77UnCompVram
     adds r0, r4, #0
     adds r1, r5, #0
     bl Text_DrawString

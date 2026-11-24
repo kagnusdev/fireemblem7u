@@ -92,18 +92,18 @@ HuffUnComp:
     .align 2, 0
     .size HuffUnComp, . - HuffUnComp
 
-    @ LZ77UnComp16bit
+    @ LZ77UnCompVram
 
-    .global LZ77UnComp16bit
-    .type LZ77UnComp16bit, function
+    .global LZ77UnCompVram
+    .type LZ77UnCompVram, function
 
     .thumb
-LZ77UnComp16bit:
+LZ77UnCompVram:
     svc   #0x12
     bx    lr
 
     .align 2, 0
-    .size LZ77UnComp16bit, . - LZ77UnComp16bit
+    .size LZ77UnCompVram, . - LZ77UnCompVram
 
     @ LZ77UnCompWram
 
