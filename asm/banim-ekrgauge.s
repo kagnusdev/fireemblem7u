@@ -675,7 +675,7 @@ func_0804C550: @ 0x0804C550
     movs r1, #0x1e
     movs r2, #8
     movs r3, #0
-    bl func_080669B4
+    bl FillBGRect
     mov r3, sb
     ldr r0, [r3, #0x4c]
     cmp r0, #0
@@ -697,7 +697,7 @@ func_0804C550: @ 0x0804C550
     adds r1, r5, #0
     movs r2, #0xf
     adds r3, r4, #0
-    bl func_08066ACC
+    bl EfxTmCpyBG
     movs r0, #0x80
     str r0, [sp]
     adds r0, r5, #0
@@ -728,7 +728,7 @@ func_0804C550: @ 0x0804C550
     adds r1, r5, #0
     movs r2, #0x10
     adds r3, r4, #0
-    bl func_08066ACC
+    bl EfxTmCpyBG
     movs r0, #0x80
     str r0, [sp]
     adds r0, r5, #0
@@ -1833,7 +1833,7 @@ func_0804CE50: @ 0x0804CE50
     movs r1, #0x1e
     movs r2, #7
     movs r3, #0
-    bl func_080669B4
+    bl FillBGRect
     cmp r6, #0
     ble .L0804CF3A
     ldr r0, [r7, #0x4c]
@@ -1855,7 +1855,7 @@ func_0804CE50: @ 0x0804CE50
     adds r1, r5, #0
     movs r2, #0xf
     adds r3, r4, #0
-    bl func_08066ACC
+    bl EfxTmCpyBG
     movs r0, #0x80
     str r0, [sp]
     adds r0, r5, #0
@@ -1883,7 +1883,7 @@ func_0804CE50: @ 0x0804CE50
     str r1, [sp, #4]
     adds r1, r5, #0
     adds r3, r4, #0
-    bl func_08066ACC
+    bl EfxTmCpyBG
     movs r0, #0x80
     str r0, [sp]
     adds r0, r5, #0
@@ -2387,7 +2387,7 @@ func_0804D1D4: @ 0x0804D1D4
     adds r1, r6, #0
     movs r2, #2
     movs r3, #0x14
-    bl func_08066ACC
+    bl EfxTmCpyBG
     adds r4, #0x3e
     movs r5, #0x80
     str r5, [sp]

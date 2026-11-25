@@ -250,7 +250,7 @@ void EkrDragonBg3HfScroll_Nop(struct ProcEkrDragonIntroFx * proc);
 void EkrDragonBg3HfScroll_Loop(struct ProcEkrDragonIntroFx * proc);
 
 extern CONST_DATA struct ProcCmd ProcScr_EkrDragonFxMain[];
-extern CONST_DATA const u16 * Tsas_EkrDragon_08C48874[];
+extern CONST_DATA const u16 * Tsas_EkrDragon_08BD9528[];
 ProcPtr NewEkrDragonFxMain(struct Anim * anim);
 void EkrDragonFxMainHandler(struct ProcEkrDragonFx * proc);
 
@@ -260,8 +260,8 @@ void EkrDragonBodyBlack_Loop(struct ProcEkrDragonFx * proc);
 void EkrDragonBodyBlack_Nop(struct ProcEkrDragonFx * proc);
 
 ProcPtr NewEkrDragonTunk(struct Anim * anim);
-void sub_80668B8(int x, int y);
-void sub_8066950(int x, int y);
+void func_080660CC(int x, int y);
+void func_08066164(int x, int y);
 void EkrDragonTunk_Loop1(struct ProcEkrDragon * proc);
 void EkrDragonTunk_Loop2(struct ProcEkrDragon * proc);
 void EkrDragonTunk_NopLoop(struct ProcEkrDragon * proc);

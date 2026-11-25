@@ -706,7 +706,7 @@ void EndEfxAnimeDrvProc(void);
 void NewEkrUnitMainMini(struct AnimBuffer *);
 void sub_80556D8(struct AnimBuffer *);
 // ??? sub_80556FC
-void sub_8055718(struct BanimUnkStructComm * conf); // FE8U: void sub_805AA68(struct BanimUnkStructComm * buf)
+void func_08054F30(struct BanimUnkStructComm * conf); // FE8U: void sub_805AA68(struct BanimUnkStructComm * buf)
 // ??? sub_8055AC4
 // ??? sub_8055AF0
 // ??? sub_8055B08

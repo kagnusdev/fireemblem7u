@@ -179,7 +179,39 @@ Tsa_EfxDrsmmoyaBgLeft12:
 
     .global Tsa_EfxDrsmmoyaBgLeft13
 Tsa_EfxDrsmmoyaBgLeft13:
-    .incbin "baserom.gba", 0x2B920C, 0x2DE7E8 - 0x2B920C
+    .incbin "baserom.gba", 0x2B920C, 0x2DE598 - 0x2B920C
+
+    .global FrameLut_EkrDragonWingFlashingNormalAtk
+FrameLut_EkrDragonWingFlashingNormalAtk:
+    .incbin "baserom.gba", 0x2DE598, 0x2DE5AA - 0x2DE598
+
+    .global FrameLut_EkrDragonWingFlashingCriticalAtk
+FrameLut_EkrDragonWingFlashingCriticalAtk:
+    .incbin "baserom.gba", 0x2DE5AA, 0x2DE6A4 - 0x2DE5AA
+
+    .global FrameLut_EkrDragonFlashingWingObjNormalAtk
+FrameLut_EkrDragonFlashingWingObjNormalAtk:
+    .incbin "baserom.gba", 0x2DE6A4, 0x2DE6AA - 0x2DE6A4
+
+    .global FrameLut_EkrDragonFlashingWingObjCriticalAtk
+FrameLut_EkrDragonFlashingWingObjCriticalAtk:
+    .incbin "baserom.gba", 0x2DE6AA, 0x2DE7A4 - 0x2DE6AA
+
+    .global FrameLut_EkrDragon_082DE7A4
+FrameLut_EkrDragon_082DE7A4:
+    .incbin "baserom.gba", 0x2DE7A4, 0x2DE7AA - 0x2DE7A4
+
+    .global FrameLut_EkrDragon_082DE7AA
+FrameLut_EkrDragon_082DE7AA:
+    .incbin "baserom.gba", 0x2DE7AA, 0x2DE7BC - 0x2DE7AA
+
+    .global FrameLut_EkrDragon_082DE7BC
+FrameLut_EkrDragon_082DE7BC:
+    .incbin "baserom.gba", 0x2DE7BC, 0x2DE7CE - 0x2DE7BC
+
+    .global FrameLut_EkrDragon_082DE7CE
+FrameLut_EkrDragon_082DE7CE:
+    .incbin "baserom.gba", 0x2DE7CE, 0x2DE7E8 - 0x2DE7CE
 
     .global Img_EkrDragon_082DE7E8
 Img_EkrDragon_082DE7E8:
@@ -195,11 +227,59 @@ Tsa_EkrDragon_DragonTail:
 
     .global Tsa_EkrDragon_MainBg
 Tsa_EkrDragon_MainBg:
-    .incbin "baserom.gba", 0x2E1218, 0x2E589C - 0x2E1218
+    .incbin "baserom.gba", 0x2E1218, 0x2E14FC - 0x2E1218
+
+    .global Tsa_EkrDragon_082E14FC
+Tsa_EkrDragon_082E14FC:
+    .incbin "baserom.gba", 0x2E14FC, 0x2E17A4 - 0x2E14FC
+
+    .global Tsa_EkrDragon_082E17A4
+Tsa_EkrDragon_082E17A4:
+    .incbin "baserom.gba", 0x2E17A4, 0x2E1A30 - 0x2E17A4
+
+    .global Img_EkrDragonTunkFace
+Img_EkrDragonTunkFace:
+    .incbin "baserom.gba", 0x2E1A30, 0x2E2910 - 0x2E1A30
+
+    .global Img_EkrDragonBark
+Img_EkrDragonBark:
+    .incbin "baserom.gba", 0x2E2910, 0x2E35CC - 0x2E2910
+
+    .global Img_EfxDragonDeadFallHead
+Img_EfxDragonDeadFallHead:
+    .incbin "baserom.gba", 0x2E35CC, 0x2E4064 - 0x2E35CC
+
+    .global Pal_EkrDragonHead
+Pal_EkrDragonHead:
+    .incbin "baserom.gba", 0x2E4064, 0x2E4084 - 0x2E4064
+
+    .global Pals_EkrDragonFlashingWingObj
+Pals_EkrDragonFlashingWingObj:
+    .incbin "baserom.gba", 0x2E4084, 0x2E4164 - 0x2E4084
+
+    .global Img_EkrDragonFireBg3
+Img_EkrDragonFireBg3:
+    .incbin "baserom.gba", 0x2E4164, 0x2E4B54 - 0x2E4164
+
+    .global Pal_EkrDragonFireBg3
+Pal_EkrDragonFireBg3:
+    .incbin "baserom.gba", 0x2E4B54, 0x2E4B74 - 0x2E4B54
+
+    .global Tsa_EkrDragonFireBg3
+Tsa_EkrDragonFireBg3:
+    .incbin "baserom.gba", 0x2E4B74, 0x2E4D30 - 0x2E4B74
+
+    .global Img_EkrDragonFireBG2
+Img_EkrDragonFireBG2:
+    .incbin "baserom.gba", 0x2E4D30, 0x2E589C - 0x2E4D30
 
     .global Pal_EkrDragonFireBG2
 Pal_EkrDragonFireBG2:
-    .incbin "baserom.gba", 0x2E589C, 0x3FBD34 - 0x2E589C
+    .incbin "baserom.gba", 0x2E589C, 0x2E58BC - 0x2E589C
+
+    .global Tsa_EkrDragonFireBG2
+Tsa_EkrDragonFireBG2:
+    .incbin "baserom.gba", 0x2E58BC, 0x3FBD34 - 0x2E58BC
 
     .global gUnk_083FBD34
 gUnk_083FBD34:

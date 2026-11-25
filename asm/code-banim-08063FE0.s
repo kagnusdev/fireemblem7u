@@ -224,7 +224,7 @@ func_08064128: @ 0x08064128
     adds r0, r2, #0
     movs r2, #0x1e
     movs r3, #0x14
-    bl func_08066AFC
+    bl EfxTmCpyBgHFlip
     b .L08064180
 .L0806416C:
     ldr r1, [r4, #0x14]
@@ -235,7 +235,7 @@ func_08064128: @ 0x08064128
     adds r0, r2, #0
     movs r2, #0x1e
     movs r3, #0x14
-    bl func_08066ACC
+    bl EfxTmCpyBG
 .L08064180:
     movs r0, #1
     ldrh r4, [r4, #0x12]
@@ -679,7 +679,7 @@ func_080644A0: @ 0x080644A0
     str r7, [sp]
     movs r1, #2
     movs r2, #0x14
-    bl func_080669B4
+    bl FillBGRect
     b .L0806451A
 .L08064502:
     movs r0, #1

@@ -263,12 +263,30 @@ sHandXOffsetLut:
 
     .incbin "baserom.gba", 0xBA47D8, 0xBD9318 - 0xBA47D8
 
-    @ BD9318 -> BD93A0 is ProcScr_EkrDragon
-
 
     .section ".data_1_4", "a"
 
-    .incbin "baserom.gba", 0xBD93A0, 0xBDCE4C - 0xBD93A0
+    .incbin "baserom.gba", 0xBD95E0, 0xBDABA0 - 0xBD95E0
+
+    .global AnimScr_EfxDragonDeadFallBody
+AnimScr_EfxDragonDeadFallBody:
+    .incbin "baserom.gba", 0xBDABA0, 0xBDAC58 - 0xBDABA0
+
+    .global AnimScr_EkrDragonHead
+AnimScr_EkrDragonHead:
+    .incbin "baserom.gba", 0xBDAC58, 0xBDAC60 - 0xBDAC58
+
+    .global AnimScr_EfxDragonDeadFallBody2
+AnimScr_EfxDragonDeadFallBody2:
+    .incbin "baserom.gba", 0xBDAC60, 0xBDACB0 - 0xBDAC60
+
+    .global AnimScr_EfxDragonDeadFallHeadFx
+AnimScr_EfxDragonDeadFallHeadFx:
+    .incbin "baserom.gba", 0xBDACB0, 0xBDACBC - 0xBDACB0
+
+    .global EkrBg3HfScrollingConf
+EkrBg3HfScrollingConf:
+    .incbin "baserom.gba", 0xBDACBC, 0xBDCE4C - 0xBDACBC
 
     .global gCharacterData
 gCharacterData:

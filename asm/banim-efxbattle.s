@@ -3064,7 +3064,7 @@ func_0804EC88: @ 0x0804EC88
     movs r1, #0xf
     movs r2, #5
     movs r3, #0
-    bl func_080669B4
+    bl FillBGRect
 .L0804EDE0:
     ldr r4, .L0804EE40 @ =0x02017760
     movs r3, #0x2c
@@ -3487,7 +3487,7 @@ func_0804F120: @ 0x0804F120
     movs r1, #0
     movs r2, #0x20
     movs r3, #0x10
-    bl func_08066F64
+    bl EfxPalWhiteInOut
     movs r1, #0xa0
     lsls r1, r1, #0x13
     adds r0, r4, #0
@@ -3541,7 +3541,7 @@ func_0804F178: @ 0x0804F178
     movs r1, #0
     movs r2, #0x20
     adds r3, r6, #0
-    bl func_08066F64
+    bl EfxPalWhiteInOut
     movs r1, #0xa0
     lsls r1, r1, #0x13
     adds r0, r4, #0
@@ -4360,8 +4360,8 @@ func_0804F810: @ 0x0804F810
 .L0804F83C: .4byte 0x0201776C
     func_end func_0804F810
 
-    thumb_func_start func_0804F840
-func_0804F840: @ 0x0804F840
+    thumb_func_start GetUnitEfxDebuff
+GetUnitEfxDebuff: @ 0x0804F840
     push {r4, lr}
     ldr r4, .L0804F858 @ =0x0201776C
     bl GetAnimPosition
@@ -4374,7 +4374,7 @@ func_0804F840: @ 0x0804F840
     bx r1
     .align 2, 0
 .L0804F858: .4byte 0x0201776C
-    func_end func_0804F840
+    func_end GetUnitEfxDebuff
 
     thumb_func_start func_0804F85C
 func_0804F85C: @ 0x0804F85C
@@ -4456,7 +4456,7 @@ func_0804F900: @ 0x0804F900
     sub sp, #0xc
     adds r4, r0, #0
     ldr r0, [r4, #0x5c]
-    bl func_0804F840
+    bl GetUnitEfxDebuff
     cmp r0, #0
     beq .L0804F9F6
     adds r0, r4, #0
@@ -4731,7 +4731,7 @@ func_0804FAD4: @ 0x0804FAD4
     ldr r3, [r4, #0x4c]
     movs r1, #0x1d
     movs r2, #1
-    bl func_08066F64
+    bl EfxPalWhiteInOut
 .L0804FB14:
     ldr r0, [r4, #0x58]
     cmp r0, #0
@@ -4743,7 +4743,7 @@ func_0804FAD4: @ 0x0804FAD4
     ldr r3, [r4, #0x4c]
     movs r1, #0x1e
     movs r2, #1
-    bl func_08066F64
+    bl EfxPalWhiteInOut
 .L0804FB2E:
     bl EnablePalSync
 .L0804FB32:
@@ -5207,7 +5207,7 @@ func_0804FE78: @ 0x0804FE78
     adds r0, r5, #0
     movs r2, #0x1e
     movs r3, #0x14
-    bl func_08066ACC
+    bl EfxTmCpyBG
     movs r0, #8
     bl EnableBgSync
 .L0804FEBC:
@@ -5629,7 +5629,7 @@ func_08050160: @ 0x08050160
     cmp r0, #0
     beq .L080501FC
     adds r0, r7, #0
-    bl func_0804F840
+    bl GetUnitEfxDebuff
     cmp r0, #0
     bne .L080501FC
     adds r0, r7, #0
@@ -5645,7 +5645,7 @@ func_08050160: @ 0x08050160
     cmp r1, #0
     beq .L0805021E
     adds r0, r5, #0
-    bl func_0804F840
+    bl GetUnitEfxDebuff
     cmp r0, #0
     bne .L0805021E
     adds r0, r5, #0
@@ -5900,8 +5900,8 @@ func_080503E0: @ 0x080503E0
     bx r0
     func_end func_080503E0
 
-    thumb_func_start func_0805041C
-func_0805041C: @ 0x0805041C
+    thumb_func_start EfxCreateFrontAnim
+EfxCreateFrontAnim: @ 0x0805041C
     push {r4, r5, r6, r7, lr}
     adds r4, r0, #0
     adds r7, r1, #0
@@ -5947,7 +5947,7 @@ func_0805041C: @ 0x0805041C
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    func_end func_0805041C
+    func_end EfxCreateFrontAnim
 
     thumb_func_start func_08050478
 func_08050478: @ 0x08050478
@@ -5974,7 +5974,7 @@ func_08050478: @ 0x08050478
     adds r0, r4, #0
     movs r2, #0x1e
     movs r3, #0x14
-    bl func_08066AFC
+    bl EfxTmCpyBgHFlip
     b .L080504C8
     .align 2, 0
 .L080504AC: .4byte 0x0203E02C
@@ -5988,7 +5988,7 @@ func_08050478: @ 0x08050478
     adds r0, r4, #0
     movs r2, #0x1e
     movs r3, #0x14
-    bl func_08066ACC
+    bl EfxTmCpyBG
 .L080504C8:
     movs r0, #2
     bl EnableBgSync
@@ -6036,7 +6036,7 @@ SpellFx_WriteBgMap: @ 0x080504DC
     adds r0, r5, #0
     movs r2, #0x1e
     movs r3, #0x14
-    bl func_08066AFC
+    bl EfxTmCpyBgHFlip
     b .L08050548
     .align 2, 0
 .L0805052C: .4byte 0x02019784
@@ -6050,7 +6050,7 @@ SpellFx_WriteBgMap: @ 0x080504DC
     adds r0, r5, #0
     movs r2, #0x1e
     movs r3, #0x14
-    bl func_08066ACC
+    bl EfxTmCpyBG
 .L08050548:
     movs r0, #2
     bl EnableBgSync
@@ -6087,7 +6087,7 @@ func_0805055C: @ 0x0805055C
     adds r0, #0xff
     str r0, [sp, #4]
     adds r0, r7, #0
-    bl func_08066AFC
+    bl EfxTmCpyBgHFlip
     b .L080505B4
     .align 2, 0
 .L08050594: .4byte 0x02019784
@@ -6103,7 +6103,7 @@ func_0805055C: @ 0x0805055C
     adds r0, #0xff
     str r0, [sp, #4]
     adds r0, r7, #0
-    bl func_08066ACC
+    bl EfxTmCpyBG
 .L080505B4:
     movs r0, #2
     bl EnableBgSync
@@ -6115,8 +6115,8 @@ func_0805055C: @ 0x0805055C
 .L080505C4: .4byte gBg1Tm
     func_end func_0805055C
 
-    thumb_func_start func_080505C8
-func_080505C8: @ 0x080505C8
+    thumb_func_start SpellFx_RegisterObjGfx
+SpellFx_RegisterObjGfx: @ 0x080505C8
     push {r4, r5, r6, lr}
     adds r6, r1, #0
     ldr r5, .L080505E8 @ =0x06010800
@@ -6133,10 +6133,10 @@ func_080505C8: @ 0x080505C8
     .align 2, 0
 .L080505E8: .4byte 0x06010800
 .L080505EC: .4byte 0x0201A784
-    func_end func_080505C8
+    func_end SpellFx_RegisterObjGfx
 
-    thumb_func_start func_080505F0
-func_080505F0: @ 0x080505F0
+    thumb_func_start SpellFx_RegisterObjPal
+SpellFx_RegisterObjPal: @ 0x080505F0
     push {lr}
     adds r2, r1, #0
     ldr r1, .L08050608 @ =0x02022AA0
@@ -6148,7 +6148,7 @@ func_080505F0: @ 0x080505F0
     bx r0
     .align 2, 0
 .L08050608: .4byte 0x02022AA0
-    func_end func_080505F0
+    func_end SpellFx_RegisterObjPal
 
     thumb_func_start SpellFx_RegisterBgGfx
 SpellFx_RegisterBgGfx: @ 0x0805060C

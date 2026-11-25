@@ -1214,7 +1214,7 @@ func_0804BA30: @ 0x0804BA30
     str r2, [sp, #4]
     movs r2, #0x12
     movs r3, #3
-    bl func_08066ACC
+    bl EfxTmCpyBG
     ldr r0, .L0804BB54 @ =0x081D9FBC
     ldr r1, .L0804BB58 @ =0x02022880
     movs r2, #8
