@@ -117,6 +117,7 @@ SECTIONS
         asm/mu.o(.text);
         asm/mapanim.o(.text);
         asm/scanline.o(.text);
+        asm/eventcall.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
