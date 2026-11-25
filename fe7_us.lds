@@ -114,6 +114,7 @@ SECTIONS
         src/banim-ekrdragon.o(.text);
         src/banim-ekrdragonfx.o(.text);
         asm/code-banim2.o(.text);
+        asm/mu.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
