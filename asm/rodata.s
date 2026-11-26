@@ -73,7 +73,19 @@ Pal_DragonFlameSmallFire:
 
     .global SpriteConf_DragonFlameSmallFire
 SpriteConf_DragonFlameSmallFire:
-    .incbin "baserom.gba", 0x198838, 0x1B93C8 - 0x198838
+    .incbin "baserom.gba", 0x198838, 0x19D22C - 0x198838
+
+    .global Img_EventSnowStormfx
+Img_EventSnowStormfx:
+    .incbin "baserom.gba", 0x19D22C, 0x19D6E4 - 0x19D22C
+
+    .global Pal_EventSnowStormfx
+Pal_EventSnowStormfx:
+    .incbin "baserom.gba", 0x19D6E4, 0x19D724 - 0x19D6E4
+
+    .global Tsa_EventSnowStormfx
+Tsa_EventSnowStormfx:
+    .incbin "baserom.gba", 0x19D724, 0x1B93C8 - 0x19D724
 
     .global Img_DragonGateFlame
 Img_DragonGateFlame:

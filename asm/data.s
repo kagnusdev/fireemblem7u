@@ -120,7 +120,12 @@ ProcScr_UnkEvt:
     .incbin "baserom.gba", 0xB90D88, 0xB90DE8 - 0xB90D88
 
 gUnk_08B90DE8:
-    .incbin "baserom.gba", 0xB90DE8, 0xB923EC - 0xB90DE8
+    .incbin "baserom.gba", 0xB90DE8, 0xB92034 - 0xB90DE8
+
+
+    .section ".data_0_2_1", "a"
+
+    .incbin "baserom.gba", 0xB92074, 0xB923EC - 0xB92074
 
     .global ProcScr_EventSpriteAnim
 ProcScr_EventSpriteAnim:

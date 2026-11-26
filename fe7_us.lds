@@ -61,7 +61,7 @@ SECTIONS
         src/eventscr.o(.text);
         asm/eventscr.o(.text);
         asm/eventscr-080101CC.o(.text);
-        asm/eventscr_snowstorm.o(.text);
+        src/eventscr_snowstormfx.o(.text);
         asm/eventscr_thunder.o(.text);
         asm/eventscr_niniandisp.o(.text);
         asm/eventscr_screenflash.o(.text);
@@ -215,6 +215,8 @@ SECTIONS
         . = ALIGN(4); src/talk-advance.o(.data);
         . = ALIGN(4); src/event.o(.data);
         . = ALIGN(4); asm/data.o(.data_0_2);
+        . = ALIGN(4); src/eventscr_snowstormfx.o(.data);
+        . = ALIGN(4); asm/data.o(.data_0_2_1);
         . = ALIGN(4); src/sprite-anim.o(.data);
         . = ALIGN(4); src/game-ctrl.o(.data);
         . = ALIGN(4); src/msg.o(.data);
