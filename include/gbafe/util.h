@@ -189,3 +189,5 @@ void CallDelayed(void (*)(), int);
 // ??? sub_8015664
 // ??? sub_8015688
 // ??? sub_80156C0
+
+void TmApplyCompressedTsa(u16 * tm, u8 const * tsa, u16 tileref);

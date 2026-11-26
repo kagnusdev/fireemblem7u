@@ -318,7 +318,7 @@ void ClearFlag_145(void);
 // DragonGatefx_DrawLight
 // DragonGatefx_DrawDragon
 // DragonGatefx_MergeDragon
-// sub_807BB48
+// func_0807B0D4
 // DragonGatefxSetHBlank
 // DragonGatefx_End
 // EventCall_StartDragonGatefx

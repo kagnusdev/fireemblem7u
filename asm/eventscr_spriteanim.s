@@ -229,7 +229,7 @@ func_08011CE0: @ 0x08011CE0
     str r5, [sp, #4]
     adds r0, r6, #0
     adds r1, r7, #0
-    bl func_080AA92C
+    bl StartMixPalette
 .L08011D1A:
     add sp, #8
     pop {r4, r5, r6, r7}

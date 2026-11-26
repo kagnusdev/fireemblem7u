@@ -49,7 +49,7 @@ func_08011118: @ 0x08011118
     ldr r0, .L080111CC @ =gBg2Tm
     ldr r1, .L080111D0 @ =0x0819D724
     ldr r2, .L080111D4 @ =0x0000F080
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #4
     bl EnableBgSync
     adds r1, r4, #0
@@ -60,7 +60,7 @@ func_08011118: @ 0x08011118
     adds r0, r4, #0
     movs r2, #0x20
     movs r3, #0xf
-    bl func_080AA92C
+    bl StartMixPalette
     str r5, [r6, #0x30]
     movs r0, #0x20
     str r0, [r6, #0x34]

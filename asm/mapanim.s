@@ -2915,7 +2915,7 @@ func_0806F7FC: @ 0x0806F7FC
     .align 2, 0
 .L0806F8C4: .4byte 0x0203E0FC
 .L0806F8C8:
-    bl func_0807685C
+    bl InitScanlineEffect
     ldr r0, .L0806F908 @ =0x0203E0FC
     ldrb r1, [r0, #0x11]
     adds r0, r1, #0
@@ -9127,7 +9127,7 @@ func_080728F0: @ 0x080728F0
     movs r4, #2
     str r4, [sp, #4]
     bl StartSpriteAnimProc
-    bl func_0807685C
+    bl InitScanlineEffect
     bl func_0807689C
     bl func_08073D80
     ldr r0, .L08072A14 @ =gDispIo
@@ -10385,7 +10385,7 @@ func_08073354: @ 0x08073354
     ldr r1, [r0, #0x30]
     movs r0, #0xfd
     bl func_08014D80
-    bl func_0807685C
+    bl InitScanlineEffect
     bl func_0807689C
     ldr r1, .L08073420 @ =func_08076A78
     adds r0, r1, #0
@@ -11420,7 +11420,7 @@ func_08073B14: @ 0x08073B14
     movs r2, #0x20
     movs r3, #4
     bl func_08014728
-    bl func_0807685C
+    bl InitScanlineEffect
     bl func_0807689C
     bl func_08073D80
     ldr r0, .L08073C4C @ =gDispIo

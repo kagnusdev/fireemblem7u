@@ -1,530 +1,5 @@
     .include "asm_prelude.inc"
 
-    thumb_func_start SetFlag_145
-SetFlag_145: @ 0x0807AE58
-    push {lr}
-    movs r0, #0x91
-    bl SetFlag
-    pop {r0}
-    bx r0
-    func_end SetFlag_145
-
-    thumb_func_start ClearFlag_145
-ClearFlag_145: @ 0x0807AE64
-    push {lr}
-    movs r0, #0x91
-    bl ClearFlag
-    pop {r0}
-    bx r0
-    func_end ClearFlag_145
-
-    thumb_func_start func_0807AE70
-func_0807AE70: @ 0x0807AE70
-    push {r4, r5, lr}
-    sub sp, #4
-    adds r4, r0, #0
-    ldr r0, [r4, #0x58]
-    adds r0, #1
-    str r0, [r4, #0x58]
-    movs r0, #1
-    movs r1, #0
-    bl func_0807751C
-    ldr r1, [r4, #0x58]
-    lsls r1, r1, #0x10
-    asrs r1, r1, #0x10
-    movs r2, #8
-    movs r3, #3
-    bl func_08076F44
-    movs r0, #1
-    movs r1, #0xa0
-    bl func_0807751C
-    adds r5, r0, #0
-    movs r0, #3
-    bl GetBgXOffset
-    ldr r1, [r4, #0x58]
-    lsls r1, r1, #0x10
-    asrs r1, r1, #0x10
-    str r0, [sp]
-    adds r0, r5, #0
-    movs r2, #8
-    movs r3, #3
-    bl func_08076FC4
-    bl func_080770C8
-    adds r4, #0x64
-    ldrh r4, [r4]
-    movs r0, #3
-    bl GetBgXOffset
-    adds r1, r0, #0
-    lsls r1, r1, #0x10
-    lsrs r1, r1, #0x10
-    adds r0, r4, #0
-    movs r2, #0
-    bl SetBgOffset
-    add sp, #4
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    func_end func_0807AE70
-
-    thumb_func_start func_0807AED8
-func_0807AED8: @ 0x0807AED8
-    push {r4, r5, lr}
-    sub sp, #8
-    adds r4, r0, #0
-    movs r1, #0
-    str r1, [r4, #0x58]
-    adds r0, #0x4c
-    strh r1, [r0]
-    movs r0, #1
-    movs r2, #0
-    bl SetBgOffset
-    movs r0, #2
-    movs r1, #0
-    movs r2, #0
-    bl SetBgOffset
-    ldr r3, .L0807AF7C @ =gDispIo
-    movs r2, #4
-    rsbs r2, r2, #0
-    adds r0, r2, #0
-    ldrb r1, [r3, #0xc]
-    ands r0, r1
-    strb r0, [r3, #0xc]
-    adds r0, r2, #0
-    ldrb r1, [r3, #0x10]
-    ands r0, r1
-    movs r1, #1
-    orrs r0, r1
-    strb r0, [r3, #0x10]
-    movs r0, #3
-    ldrb r1, [r3, #0x14]
-    orrs r0, r1
-    strb r0, [r3, #0x14]
-    ldrb r0, [r3, #0x18]
-    ands r2, r0
-    movs r0, #2
-    orrs r2, r0
-    strb r2, [r3, #0x18]
-    ldr r0, .L0807AF80 @ =0x081BB310
-    ldr r1, .L0807AF84 @ =0x06004000
-    bl Decompress
-    ldr r0, .L0807AF88 @ =gBg2Tm
-    ldr r1, .L0807AF8C @ =0x081BC784
-    movs r2, #0xc4
-    lsls r2, r2, #7
-    bl func_080AACD8
-    ldr r5, .L0807AF90 @ =0x081BC744
-    adds r0, r5, #0
-    movs r1, #0xc0
-    movs r2, #0x20
-    bl ApplyPaletteExt
-    movs r0, #4
-    bl EnableBgSync
-    ldr r1, .L0807AF94 @ =0x081BC764
-    movs r0, #1
-    str r0, [sp]
-    str r4, [sp, #4]
-    adds r0, r5, #0
-    movs r2, #2
-    movs r3, #6
-    bl func_080AA92C
-    bl func_0807685C
-    ldr r0, .L0807AF98 @ =func_08077C0C
-    bl SetOnHBlankA
-    ldr r0, .L0807AF9C @ =func_0807AE70
-    adds r1, r4, #0
-    bl func_080A92F8
-    adds r4, #0x64
-    movs r0, #2
-    strh r0, [r4]
-    add sp, #8
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807AF7C: .4byte gDispIo
-.L0807AF80: .4byte 0x081BB310
-.L0807AF84: .4byte 0x06004000
-.L0807AF88: .4byte gBg2Tm
-.L0807AF8C: .4byte 0x081BC784
-.L0807AF90: .4byte 0x081BC744
-.L0807AF94: .4byte 0x081BC764
-.L0807AF98: .4byte func_08077C0C
-.L0807AF9C: .4byte func_0807AE70
-    func_end func_0807AED8
-
-    thumb_func_start func_0807AFA0
-func_0807AFA0: @ 0x0807AFA0
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    ldr r0, .L0807B04C @ =func_08077DE8
-    bl SetOnHBlankA
-    ldr r3, .L0807B050 @ =gDispIo
-    adds r2, r3, #0
-    adds r2, #0x3c
-    movs r0, #0x3f
-    ldrb r1, [r2]
-    ands r0, r1
-    movs r1, #0x40
-    orrs r0, r1
-    strb r0, [r2]
-    adds r0, r3, #0
-    adds r0, #0x44
-    movs r5, #0
-    strb r5, [r0]
-    adds r1, r3, #0
-    adds r1, #0x45
-    movs r0, #0x10
-    strb r0, [r1]
-    adds r0, r3, #0
-    adds r0, #0x46
-    strb r5, [r0]
-    movs r1, #4
-    rsbs r1, r1, #0
-    adds r0, r1, #0
-    ldrb r2, [r3, #0xc]
-    ands r0, r2
-    strb r0, [r3, #0xc]
-    movs r0, #3
-    ldrb r2, [r3, #0x10]
-    orrs r2, r0
-    strb r2, [r3, #0x10]
-    ldrb r2, [r3, #0x14]
-    orrs r0, r2
-    strb r0, [r3, #0x14]
-    ldrb r0, [r3, #0x18]
-    ands r1, r0
-    movs r0, #2
-    orrs r1, r0
-    strb r1, [r3, #0x18]
-    ldr r0, .L0807B054 @ =0x0000FFE0
-    ldrh r1, [r3, #0x3c]
-    ands r0, r1
-    movs r1, #2
-    orrs r0, r1
-    ldr r1, .L0807B058 @ =0x0000E0FF
-    ands r0, r1
-    movs r2, #0x80
-    lsls r2, r2, #3
-    adds r1, r2, #0
-    orrs r0, r1
-    strh r0, [r3, #0x3c]
-    ldr r0, .L0807B05C @ =0x081BCB1C
-    ldr r1, .L0807B060 @ =0x06003000
-    bl Decompress
-    ldr r0, .L0807B064 @ =gBg1Tm
-    ldr r1, .L0807B068 @ =0x081BD958
-    movs r2, #0xe3
-    lsls r2, r2, #7
-    bl func_080AACD8
-    ldr r0, .L0807B06C @ =0x081BD758
-    movs r1, #0xe0
-    movs r2, #0x20
-    bl ApplyPaletteExt
-    movs r0, #2
-    bl EnableBgSync
-    adds r0, r4, #0
-    adds r0, #0x4c
-    strh r5, [r0]
-    ldr r0, [r4, #0x14]
-    bl TryLockProc
-    adds r4, #0x64
-    movs r0, #1
-    strh r0, [r4]
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807B04C: .4byte func_08077DE8
-.L0807B050: .4byte gDispIo
-.L0807B054: .4byte 0x0000FFE0
-.L0807B058: .4byte 0x0000E0FF
-.L0807B05C: .4byte 0x081BCB1C
-.L0807B060: .4byte 0x06003000
-.L0807B064: .4byte gBg1Tm
-.L0807B068: .4byte 0x081BD958
-.L0807B06C: .4byte 0x081BD758
-    func_end func_0807AFA0
-
-    thumb_func_start func_0807B070
-func_0807B070: @ 0x0807B070
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    adds r0, #0x4c
-    ldrh r2, [r0]
-    adds r2, #1
-    movs r4, #0
-    strh r2, [r0]
-    lsls r2, r2, #0x10
-    asrs r2, r2, #0x12
-    ldr r0, .L0807B0CC @ =gDispIo
-    mov ip, r0
-    mov r3, ip
-    adds r3, #0x3c
-    movs r0, #0x3f
-    ldrb r1, [r3]
-    ands r0, r1
-    movs r1, #0x40
-    orrs r0, r1
-    strb r0, [r3]
-    mov r0, ip
-    adds r0, #0x44
-    strb r2, [r0]
-    movs r0, #0x10
-    subs r0, r0, r2
-    mov r1, ip
-    adds r1, #0x45
-    strb r0, [r1]
-    mov r0, ip
-    adds r0, #0x46
-    strb r4, [r0]
-    cmp r2, #0x10
-    bne .L0807B0C4
-    adds r0, r5, #0
-    bl Proc_Break
-    ldr r0, .L0807B0D0 @ =gBg2Tm
-    movs r1, #0
-    bl TmFill
-    movs r0, #4
-    bl EnableBgSync
-.L0807B0C4:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807B0CC: .4byte gDispIo
-.L0807B0D0: .4byte gBg2Tm
-    func_end func_0807B070
-
-    thumb_func_start func_0807B0D4
-func_0807B0D4: @ 0x0807B0D4
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    ldr r5, .L0807B160 @ =gDispIo
-    adds r1, r5, #0
-    adds r1, #0x3c
-    movs r0, #0x3f
-    ldrb r2, [r1]
-    ands r0, r2
-    strb r0, [r1]
-    adds r1, #8
-    movs r2, #0
-    movs r0, #0x10
-    strb r0, [r1]
-    adds r0, r5, #0
-    adds r0, #0x45
-    strb r2, [r0]
-    adds r0, #1
-    strb r2, [r0]
-    ldr r0, .L0807B164 @ =0x06003000
-    ldr r1, .L0807B168 @ =0x06004000
-    movs r2, #0x80
-    lsls r2, r2, #3
-    bl CpuFastSet
-    ldr r0, .L0807B16C @ =gBg2Tm
-    ldr r1, .L0807B170 @ =0x081BD958
-    movs r2, #0xe4
-    lsls r2, r2, #7
-    bl func_080AACD8
-    movs r0, #4
-    bl EnableBgSync
-    ldr r0, .L0807B174 @ =gBg1Tm
-    movs r1, #0
-    bl TmFill
-    movs r0, #2
-    bl EnableBgSync
-    movs r2, #4
-    rsbs r2, r2, #0
-    adds r0, r2, #0
-    ldrb r1, [r5, #0xc]
-    ands r0, r1
-    strb r0, [r5, #0xc]
-    adds r0, r2, #0
-    ldrb r1, [r5, #0x10]
-    ands r0, r1
-    movs r1, #1
-    orrs r0, r1
-    strb r0, [r5, #0x10]
-    movs r0, #3
-    ldrb r1, [r5, #0x14]
-    orrs r0, r1
-    strb r0, [r5, #0x14]
-    ldrb r0, [r5, #0x18]
-    ands r2, r0
-    movs r0, #2
-    orrs r2, r0
-    strb r2, [r5, #0x18]
-    ldr r0, [r4, #0x14]
-    bl TryUnlockProc
-    adds r4, #0x64
-    movs r0, #2
-    strh r0, [r4]
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807B160: .4byte gDispIo
-.L0807B164: .4byte 0x06003000
-.L0807B168: .4byte 0x06004000
-.L0807B16C: .4byte gBg2Tm
-.L0807B170: .4byte 0x081BD958
-.L0807B174: .4byte gBg1Tm
-    func_end func_0807B0D4
-
-    thumb_func_start func_0807B178
-func_0807B178: @ 0x0807B178
-    push {lr}
-    ldr r0, .L0807B184 @ =func_08077C0C
-    bl SetOnHBlankA
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807B184: .4byte func_08077C0C
-    func_end func_0807B178
-
-    thumb_func_start func_0807B188
-func_0807B188: @ 0x0807B188
-    push {lr}
-    sub sp, #4
-    movs r0, #0
-    str r0, [sp]
-    ldr r1, .L0807B1D4 @ =0x06003000
-    ldr r2, .L0807B1D8 @ =0x01000C00
-    mov r0, sp
-    bl CpuFastSet
-    movs r0, #0
-    bl SetOnHBlankA
-    ldr r3, .L0807B1DC @ =gDispIo
-    movs r1, #4
-    rsbs r1, r1, #0
-    adds r0, r1, #0
-    ldrb r2, [r3, #0xc]
-    ands r0, r2
-    strb r0, [r3, #0xc]
-    adds r0, r1, #0
-    ldrb r2, [r3, #0x10]
-    ands r0, r2
-    movs r2, #1
-    orrs r0, r2
-    strb r0, [r3, #0x10]
-    ldrb r0, [r3, #0x14]
-    ands r1, r0
-    movs r0, #2
-    orrs r1, r0
-    strb r1, [r3, #0x14]
-    movs r0, #3
-    ldrb r1, [r3, #0x18]
-    orrs r0, r1
-    strb r0, [r3, #0x18]
-    add sp, #4
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807B1D4: .4byte 0x06003000
-.L0807B1D8: .4byte 0x01000C00
-.L0807B1DC: .4byte gDispIo
-    func_end func_0807B188
-
-    thumb_func_start func_0807B1E0
-func_0807B1E0: @ 0x0807B1E0
-    push {lr}
-    adds r1, r0, #0
-    ldr r0, .L0807B1F0 @ =0x08CA75D4
-    bl Proc_Start
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807B1F0: .4byte 0x08CA75D4
-    func_end func_0807B1E0
-
-    thumb_func_start func_0807B1F4
-func_0807B1F4: @ 0x0807B1F4
-    push {lr}
-    ldr r0, .L0807B208 @ =0x08CA75D4
-    bl Proc_Find
-    movs r1, #0
-    bl Proc_Goto
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807B208: .4byte 0x08CA75D4
-    func_end func_0807B1F4
-
-    thumb_func_start func_0807B20C
-func_0807B20C: @ 0x0807B20C
-    push {lr}
-    ldr r0, .L0807B21C @ =0x08CA75D4
-    bl Proc_Find
-    bl Proc_End
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807B21C: .4byte 0x08CA75D4
-    func_end func_0807B20C
-
-    thumb_func_start func_0807B220
-func_0807B220: @ 0x0807B220
-    adds r0, #0x4c
-    movs r1, #0
-    strh r1, [r0]
-    bx lr
-    func_end func_0807B220
-
-    thumb_func_start func_0807B228
-func_0807B228: @ 0x0807B228
-    push {r4, lr}
-    adds r4, r0, #0
-    movs r0, #0x86
-    bl GetUnitFromCharId
-    adds r2, r0, #0
-    adds r4, #0x4c
-    ldrh r0, [r4]
-    adds r0, #1
-    strh r0, [r4]
-    cmp r2, #0
-    beq .L0807B25E
-    movs r3, #1
-    ands r0, r3
-    cmp r0, #0
-    beq .L0807B25E
-    ldr r1, [r2, #0xc]
-    movs r0, #8
-    ands r0, r1
-    cmp r0, #0
-    bne .L0807B25E
-    eors r1, r3
-    str r1, [r2, #0xc]
-    bl RefreshEntityMaps
-    bl RefreshUnitSprites
-.L0807B25E:
-    pop {r4}
-    pop {r0}
-    bx r0
-    func_end func_0807B228
-
-    thumb_func_start func_0807B264
-func_0807B264: @ 0x0807B264
-    push {lr}
-    adds r1, r0, #0
-    ldr r0, .L0807B274 @ =0x08CA762C
-    bl Proc_Start
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807B274: .4byte 0x08CA762C
-    func_end func_0807B264
-
-    thumb_func_start func_0807B278
-func_0807B278: @ 0x0807B278
-    push {lr}
-    ldr r0, .L0807B288 @ =0x08CA762C
-    bl Proc_Find
-    bl Proc_End
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807B288: .4byte 0x08CA762C
-    func_end func_0807B278
-
     thumb_func_start func_0807B28C
 func_0807B28C: @ 0x0807B28C
     push {r4, r5, lr}
@@ -550,7 +25,7 @@ func_0807B28C: @ 0x0807B28C
     ldr r0, .L0807B2F0 @ =gBg0Tm
     ldr r1, .L0807B2F4 @ =0x081B97B0
     movs r2, #0x40
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #1
     bl EnableBgSync
     adds r1, r4, #0
@@ -689,7 +164,7 @@ func_0807B388: @ 0x0807B388
     adds r1, r2, #0
     orrs r0, r1
     strh r0, [r7, #0x3c]
-    bl func_0807685C
+    bl InitScanlineEffect
     movs r0, #0
     movs r1, #0
     bl func_08077910
@@ -755,7 +230,7 @@ func_0807B388: @ 0x0807B388
     strh r0, [r1]
     ldr r0, .L0807B490 @ =func_0807B354
     adds r1, r4, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     add sp, #0x14
     pop {r4, r5, r6, r7}
     pop {r0}
@@ -1272,7 +747,7 @@ func_0807B818: @ 0x0807B818
     adds r1, r2, #0
     orrs r0, r1
     strh r0, [r7, #0x3c]
-    bl func_0807685C
+    bl InitScanlineEffect
     movs r0, #0
     movs r1, #0
     bl func_08077910
@@ -1789,7 +1264,7 @@ func_0807BC7C: @ 0x0807BC7C
     str r0, [r4, #0x58]
     movs r0, #1
     movs r1, #0
-    bl func_0807751C
+    bl GetScanlineBuf
     ldr r1, [r4, #0x58]
     lsls r1, r1, #0x10
     asrs r1, r1, #0x10
@@ -1805,7 +1280,7 @@ func_0807BC7C: @ 0x0807BC7C
     bl func_080779F8
     movs r0, #1
     movs r1, #0xa0
-    bl func_0807751C
+    bl GetScanlineBuf
     ldr r1, [r4, #0x58]
     lsls r1, r1, #0x11
     asrs r1, r1, #0x10
@@ -1816,7 +1291,7 @@ func_0807BC7C: @ 0x0807BC7C
     movs r2, #3
     movs r3, #0xf
     bl func_080779F8
-    bl func_080770C8
+    bl SwapScanlineBufs
     add sp, #0xc
     pop {r3}
     mov r8, r3
@@ -1847,12 +1322,12 @@ func_0807BCE0: @ 0x0807BCE0
     bl ApplyPaletteExt
     movs r0, #2
     bl EnableBgSync
-    bl func_0807685C
+    bl InitScanlineEffect
     ldr r0, .L0807BD58 @ =func_08077960
     bl SetOnHBlankA
     ldr r0, .L0807BD5C @ =func_0807BC7C
     adds r1, r5, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     ldr r0, .L0807BD60 @ =0x085499B4
     ldr r1, .L0807BD64 @ =0x08425B20
     movs r2, #7
@@ -1860,7 +1335,7 @@ func_0807BCE0: @ 0x0807BCE0
     str r5, [sp, #4]
     movs r2, #2
     movs r3, #8
-    bl func_080AA92C
+    bl StartMixPalette
     add sp, #8
     pop {r4, r5}
     pop {r0}
@@ -2047,7 +1522,7 @@ func_0807BE68: @ 0x0807BE68
     str r2, [sp, #4]
     movs r2, #2
     movs r3, #8
-    bl func_080AA92C
+    bl StartMixPalette
     add sp, #8
     pop {r4}
     pop {r0}
@@ -2184,7 +1659,7 @@ func_0807BFBC: @ 0x0807BFBC
     str r0, [r4, #0x58]
     movs r0, #1
     movs r1, #0
-    bl func_0807751C
+    bl GetScanlineBuf
     ldr r1, [r4, #0x58]
     lsls r1, r1, #0x10
     asrs r1, r1, #0x10
@@ -2200,7 +1675,7 @@ func_0807BFBC: @ 0x0807BFBC
     bl func_080779F8
     movs r0, #1
     movs r1, #0xa0
-    bl func_0807751C
+    bl GetScanlineBuf
     ldr r1, [r4, #0x58]
     lsls r1, r1, #0x10
     asrs r1, r1, #0x10
@@ -2211,7 +1686,7 @@ func_0807BFBC: @ 0x0807BFBC
     movs r2, #2
     movs r3, #4
     bl func_080779F8
-    bl func_080770C8
+    bl SwapScanlineBufs
     add sp, #0xc
     pop {r3}
     mov r8, r3
@@ -2290,7 +1765,7 @@ func_0807C044: @ 0x0807C044
     ldr r1, .L0807C0FC @ =0x081B98E8
     movs r2, #0xa4
     lsls r2, r2, #7
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #0xc
     bl EnableBgSync
     movs r0, #2
@@ -2301,12 +1776,12 @@ func_0807C044: @ 0x0807C044
     adds r0, #0x4c
     strh r4, [r0]
     str r4, [r5, #0x58]
-    bl func_0807685C
+    bl InitScanlineEffect
     ldr r0, .L0807C100 @ =func_08077D3C
     bl SetOnHBlankA
     ldr r0, .L0807C104 @ =func_0807BFBC
     adds r1, r5, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     ldr r0, .L0807C108 @ =0x08CA7794
     movs r1, #0
     bl Proc_Start
@@ -2701,7 +2176,7 @@ func_0807C3A0: @ 0x0807C3A0
     strh r0, [r4]
     movs r0, #1
     movs r1, #0
-    bl func_0807751C
+    bl GetScanlineBuf
     adds r5, r0, #0
     movs r0, #0
     bl func_080AAA34
@@ -2721,7 +2196,7 @@ func_0807C3A0: @ 0x0807C3A0
     bl func_080779F8
     movs r0, #1
     movs r1, #0xa0
-    bl func_0807751C
+    bl GetScanlineBuf
     adds r5, r0, #0
     movs r0, #0
     bl GetBgXOffset
@@ -2737,7 +2212,7 @@ func_0807C3A0: @ 0x0807C3A0
     movs r2, #3
     movs r3, #2
     bl func_080779F8
-    bl func_080770C8
+    bl SwapScanlineBufs
     add sp, #0xc
     pop {r3}
     mov r8, r3
@@ -2822,7 +2297,7 @@ func_0807C41C: @ 0x0807C41C
     add r1, sp
     ldr r1, [r1]
     ldr r2, .L0807C514 @ =0x00005040
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     ldr r1, [r5, #0x2c]
     rsbs r1, r1, #0
     movs r0, #0xff
@@ -2837,12 +2312,12 @@ func_0807C41C: @ 0x0807C41C
     adds r0, r5, #0
     adds r0, #0x4c
     strh r4, [r0]
-    bl func_0807685C
+    bl InitScanlineEffect
     ldr r0, .L0807C518 @ =func_08077ADC
     bl SetOnHBlankA
     ldr r0, .L0807C51C @ =func_0807C3A0
     adds r1, r5, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     add sp, #8
     pop {r4, r5}
     pop {r0}
@@ -3134,7 +2609,7 @@ func_0807C6CC: @ 0x0807C6CC
     adds r1, r2, #0
     orrs r0, r1
     strh r0, [r6, #0x3c]
-    bl func_0807685C
+    bl InitScanlineEffect
     movs r0, #0
     movs r1, #0
     bl func_08077910
@@ -3810,7 +3285,7 @@ func_0807CC5C: @ 0x0807CC5C
     push {r5, r6, r7}
     movs r1, #0
     str r1, [r0, #0x2c]
-    bl func_0807685C
+    bl InitScanlineEffect
     ldr r2, .L0807CD38 @ =0x030028AC
     mov ip, r2
     ldr r0, .L0807CD3C @ =0x0000FFE0
@@ -7834,7 +7309,7 @@ func_0807EA30: @ 0x0807EA30
     ldr r1, .L0807EAD8 @ =0x081C25C8
     movs r2, #0x85
     lsls r2, r2, #7
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #4
     bl EnableBgSync
     movs r0, #2
@@ -8822,7 +8297,7 @@ func_0807F0F4: @ 0x0807F0F4
     ldr r0, .L0807F178 @ =gBg0Tm
     ldr r1, .L0807F17C @ =0x081C39C4
     ldr r2, .L0807F180 @ =0x00005040
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #1
     bl EnableBgSync
     pop {r0}
@@ -9166,7 +8641,7 @@ func_0807F394: @ 0x0807F394
     strb r2, [r1]
     adds r1, #1
     strb r2, [r1]
-    bl func_0807B20C
+    bl EndDragonGatefx
     ldr r0, .L0807F410 @ =gBg1Tm
     movs r1, #0
     bl TmFill
@@ -24173,7 +23648,7 @@ func_080869C8: @ 0x080869C8
     ldr r1, .L08086B00 @ =0x08403314
     movs r2, #0x96
     lsls r2, r2, #5
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     adds r1, r7, #0
     adds r1, #0x3c
     movs r0, #0x3f
@@ -25885,7 +25360,7 @@ func_08087690: @ 0x08087690
     bl func_08087EAC
     ldr r0, .L08087920 @ =func_08088098
     adds r1, r6, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     ldr r0, [r6, #0x30]
     bl SetTextFont
     movs r0, #1
@@ -29914,7 +29389,7 @@ func_08089794: @ 0x08089794
     movs r2, #0x80
     lsls r2, r2, #5
     adds r0, r4, #0
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r4, #0
     mov r6, r8
     adds r6, #0x2e
@@ -40210,7 +39685,7 @@ func_0808E6D4: @ 0x0808E6D4
     ldr r1, .L0808E90C @ =0x084050D8
     movs r2, #0xcf
     lsls r2, r2, #6
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #0xa0
     lsls r0, r0, #7
     movs r1, #0xb
@@ -40572,7 +40047,7 @@ func_0808EA80: @ 0x0808EA80
     ldr r1, .L0808EBA8 @ =0x084050D8
     movs r2, #0xcf
     lsls r2, r2, #6
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #1
     movs r1, #4
     bl func_0808FFF0
@@ -41452,7 +40927,7 @@ func_0808F0A4: @ 0x0808F0A4
     ldr r0, .L0808F31C @ =0x02023578
     ldr r1, .L0808F320 @ =0x084050D8
     ldr r2, .L0808F324 @ =0x0000F2C0
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     adds r7, r6, #0
     adds r7, #0x4c
     movs r0, #0x64
@@ -41551,7 +41026,7 @@ func_0808F0A4: @ 0x0808F0A4
     strh r0, [r1]
     ldr r0, .L0808F368 @ =func_0808EF94
     adds r1, r6, #0
-    bl func_080A92F8
+    bl StartParallelWorker
 .L0808F35C:
     add sp, #8
     pop {r3}
@@ -46032,7 +45507,7 @@ func_080913FC: @ 0x080913FC
     bl func_080A947C
     ldr r0, .L080917D0 @ =func_08092C44
     mov r1, r8
-    bl func_080A92F8
+    bl StartParallelWorker
     mov r0, r8
     bl func_080A89B4
     movs r0, #0
@@ -46629,7 +46104,7 @@ func_080919C8: @ 0x080919C8
     ldr r1, .L08091AC4 @ =0x084070BC
     movs r2, #0xa6
     lsls r2, r2, #7
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     adds r7, r6, #0
     adds r7, #0x29
     ldrb r0, [r7]
@@ -46691,7 +46166,7 @@ func_080919C8: @ 0x080919C8
     bl func_08091914
     ldr r0, .L08091AD4 @ =func_080918B4
     adds r1, r6, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     bl func_0809138C
     movs r0, #7
     bl EnableBgSync
@@ -47357,7 +46832,7 @@ func_08092010: @ 0x08092010
     ldr r1, .L080920FC @ =0x08407188
     movs r2, #0xa6
     lsls r2, r2, #7
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r4, #0
 .L0809203A:
     ldrh r1, [r5, #0x32]
@@ -47521,7 +46996,7 @@ func_0809218C: @ 0x0809218C
     bl func_08091F04
     ldr r0, .L080921E4 @ =func_080918F4
     adds r1, r4, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     movs r0, #0xc9
     movs r1, #0x7b
     adds r2, r4, #0
@@ -48063,7 +47538,7 @@ func_080925D0: @ 0x080925D0
     ldr r1, .L080926E8 @ =0x08407270
     movs r2, #0xa6
     lsls r2, r2, #7
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     adds r1, r6, #0
     adds r1, #0x31
     movs r0, #0
@@ -49587,7 +49062,7 @@ func_08093208: @ 0x08093208
     ldr r1, .L08093244 @ =0x08406FD0
     movs r2, #0xf3
     lsls r2, r2, #8
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     ldr r0, .L08093248 @ =0x0840E0C0
     ldr r1, .L0809324C @ =0x06010800
     bl Decompress
@@ -50509,7 +49984,7 @@ func_08093880: @ 0x08093880
     bl func_080932BC
     ldr r0, .L08093A74 @ =func_0809303C
     adds r1, r5, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     adds r0, r5, #0
     bl func_080A947C
     movs r0, #0xc0
@@ -53441,7 +52916,7 @@ func_08094FE4: @ 0x08094FE4
     ldr r1, .L0809530C @ =0x0840E50C
     movs r2, #0xa6
     lsls r2, r2, #7
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #7
     bl EnableBgSync
     movs r1, #0xe0
@@ -53489,7 +52964,7 @@ func_08094FE4: @ 0x08094FE4
     bl func_080A94A0
     ldr r0, .L08095314 @ =func_08094FB4
     adds r1, r7, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     ldr r3, .L080952F0 @ =gDispIo
     mov ip, r3
     movs r0, #0x20
@@ -54642,7 +54117,7 @@ func_08095C28: @ 0x08095C28
     adds r4, r0, #0
     adds r5, r1, #0
     ldr r0, .L08095C60 @ =func_08095BF4
-    bl func_080A92F8
+    bl StartParallelWorker
     ldr r0, .L08095C64 @ =0x08CC4B7C
     lsls r4, r4, #2
     adds r4, r4, r0
@@ -55579,7 +55054,7 @@ func_08096370: @ 0x08096370
     ldr r1, .L080965DC @ =0x0840E5D4
     movs r2, #0xa5
     lsls r2, r2, #7
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #7
     bl EnableBgSync
     movs r1, #0xe0
@@ -55789,7 +55264,7 @@ func_08096370: @ 0x08096370
     bl func_080A8D54
     ldr r0, .L08096600 @ =func_080961D0
     adds r1, r7, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     add sp, #8
     pop {r3, r4, r5}
     mov r8, r3
@@ -55842,7 +55317,7 @@ func_08096604: @ 0x08096604
     bl Proc_End
     ldr r0, .L08096664 @ =func_08096110
     adds r1, r4, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     movs r0, #7
     bl EnableBgSync
     pop {r4}
@@ -55906,7 +55381,7 @@ func_08096668: @ 0x08096668
     bl Proc_End
     ldr r0, .L080966FC @ =func_08096160
     adds r1, r5, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     movs r0, #1
     adds r1, r5, #0
     bl func_08095C28
@@ -55945,7 +55420,7 @@ func_08096668: @ 0x08096668
     bl Proc_End
     ldr r0, .L0809675C @ =func_08096198
     adds r1, r5, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     movs r0, #2
     adds r1, r5, #0
     bl func_08095C28
@@ -58038,7 +57513,7 @@ func_080976F0: @ 0x080976F0
     ldr r1, .L08097A3C @ =0x0840E780
     movs r2, #0xa5
     lsls r2, r2, #7
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #7
     bl EnableBgSync
     adds r0, r7, #0
@@ -58210,7 +57685,7 @@ func_080976F0: @ 0x080976F0
     bl func_080A8D54
     ldr r0, .L08097A58 @ =func_08097660
     adds r1, r7, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     ldr r0, [r7, #0x2c]
     bl GetUnitPortraitId
     adds r1, r0, #0
@@ -59794,7 +59269,7 @@ func_080985D4: @ 0x080985D4
     adds r4, r0, #0
     adds r5, r1, #0
     ldr r0, .L0809860C @ =func_080985A0
-    bl func_080A92F8
+    bl StartParallelWorker
     ldr r0, .L08098610 @ =0x08CC4EB4
     lsls r4, r4, #2
     adds r4, r4, r0
@@ -60255,7 +59730,7 @@ func_08098908: @ 0x08098908
     ldr r1, .L08098B60 @ =0x0840E6AC
     movs r2, #0xa5
     lsls r2, r2, #7
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #7
     bl EnableBgSync
     mov r1, sb
@@ -60384,7 +59859,7 @@ func_08098908: @ 0x08098908
     bl func_080988A8
     ldr r0, .L08098B78 @ =func_08098790
     mov r1, sb
-    bl func_080A92F8
+    bl StartParallelWorker
     mov r6, sb
     ldr r0, [r6, #0x2c]
     mov r1, sb
@@ -60739,7 +60214,7 @@ func_08098DCC: @ 0x08098DCC
     strb r0, [r5]
     ldr r0, .L08098E14 @ =func_0809871C
     adds r1, r4, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     adds r0, r4, #0
     adds r0, #0x30
     ldrb r0, [r0]
@@ -61951,7 +61426,7 @@ func_08099684: @ 0x08099684
     bl ApplyPaletteExt
     ldr r0, .L08099724 @ =func_08099474
     adds r1, r7, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     add sp, #4
     pop {r3, r4, r5}
     mov r8, r3
@@ -61981,7 +61456,7 @@ func_08099728: @ 0x08099728
     ldr r1, .L08099828 @ =0x0840EA38
     movs r2, #0xa5
     lsls r2, r2, #7
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #7
     bl EnableBgSync
     adds r0, r4, #0
@@ -62483,7 +61958,7 @@ func_08099AC0: @ 0x08099AC0
     strb r0, [r2]
     ldr r0, .L08099B64 @ =func_08099968
     adds r1, r4, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     adds r0, r4, #0
     bl StartGreenText
     ldr r2, .L08099B68 @ =gDispIo
@@ -63269,7 +62744,7 @@ func_0809A024: @ 0x0809A024
     lsls r2, r2, #7
     mov r0, r8
     adds r1, r7, #0
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     adds r0, r6, #0
     bl func_08099BA4
     adds r0, r6, #0
@@ -64383,7 +63858,7 @@ func_0809A9A8: @ 0x0809A9A8
     bl func_0808E680
     ldr r0, .L0809AAE8 @ =func_0809A8E4
     adds r1, r5, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     movs r0, #0x80
     lsls r0, r0, #2
     movs r1, #3
@@ -66105,7 +65580,7 @@ func_0809B700: @ 0x0809B700
     ldr r1, .L0809B93C @ =0x0840EBE8
     movs r2, #0xa5
     lsls r2, r2, #7
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #7
     bl EnableBgSync
     bl func_0809B040
@@ -66287,7 +65762,7 @@ func_0809B700: @ 0x0809B700
     str r0, [r7, #0x30]
     ldr r0, .L0809B9B4 @ =func_0809B604
     adds r1, r7, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     adds r0, r7, #0
     bl func_08090490
     movs r0, #0x80
@@ -67519,7 +66994,7 @@ func_0809C154: @ 0x0809C154
     bl ApplyPaletteExt
     ldr r0, .L0809C3D8 @ =func_0809BFCC
     mov r1, r8
-    bl func_080A92F8
+    bl StartParallelWorker
     ldr r0, .L0809C3DC @ =0x08418C54
     ldr r1, .L0809C3E0 @ =0x06017800
     bl Decompress
@@ -68767,7 +68242,7 @@ func_0809CC30: @ 0x0809CC30
     ldr r1, .L0809CDC8 @ =0x0840ECC4
     movs r2, #0xa4
     lsls r2, r2, #7
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     ldr r4, .L0809CDCC @ =0x08BDCE4C
     ldr r0, [r5, #0x2c]
     bl func_0809B0E4
@@ -68831,7 +68306,7 @@ func_0809CC30: @ 0x0809CC30
     bl func_0809C844
     ldr r0, .L0809CE34 @ =func_0809C544
     adds r1, r5, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     add sp, #4
     pop {r4, r5, r6}
     pop {r0}
@@ -69720,7 +69195,7 @@ func_0809D4D4: @ 0x0809D4D4
     movs r2, #0xa4
     lsls r2, r2, #7
     adds r0, r4, #0
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     ldr r4, .L0809D594 @ =0x08BDCE4C
     ldr r0, [r5, #0x2c]
     bl func_0809B0E4
@@ -89131,7 +88606,7 @@ func_080A68DC: @ 0x080A68DC
     bl func_080A6748
     ldr r0, .L080A69DC @ =func_080A682C
     mov r1, sb
-    bl func_080A92F8
+    bl StartParallelWorker
     movs r0, #0xb4
     movs r1, #0x10
     mov r2, sb
@@ -91592,7 +91067,7 @@ func_080A7C84: @ 0x080A7C84
     ldr r1, .L080A7DD4 @ =0x08415AC0
     movs r2, #0xf0
     lsls r2, r2, #8
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     ldr r0, .L080A7DD8 @ =0x084150C0
     movs r1, #0xd8
     lsls r1, r1, #2
@@ -94485,8 +93960,8 @@ func_080A92E8: @ 0x080A92E8
     bx r0
     func_end func_080A92E8
 
-    thumb_func_start func_080A92F8
-func_080A92F8: @ 0x080A92F8
+    thumb_func_start StartParallelWorker
+StartParallelWorker: @ 0x080A92F8
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
@@ -94503,7 +93978,7 @@ func_080A92F8: @ 0x080A92F8
     bx r1
     .align 2, 0
 .L080A9318: .4byte 0x08CE4AB0
-    func_end func_080A92F8
+    func_end StartParallelWorker
 
     thumb_func_start func_080A931C
 func_080A931C: @ 0x080A931C
@@ -97172,7 +96647,7 @@ func_080AA4E4: @ 0x080AA4E4
     adds r2, r2, r3
     lsls r2, r2, #0x10
     lsrs r2, r2, #0x10
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #0
     str r0, [r5, #0x44]
     movs r0, #1
@@ -97544,8 +97019,8 @@ func_080AA900: @ 0x080AA900
     bx r0
     func_end func_080AA900
 
-    thumb_func_start func_080AA92C
-func_080AA92C: @ 0x080AA92C
+    thumb_func_start StartMixPalette
+StartMixPalette: @ 0x080AA92C
     push {r4, r5, r6, lr}
     mov r6, sb
     mov r5, r8
@@ -97573,7 +97048,7 @@ func_080AA92C: @ 0x080AA92C
     bx r0
     .align 2, 0
 .L080AA960: .4byte 0x08CE4CD8
-    func_end func_080AA92C
+    func_end StartMixPalette
 
     thumb_func_start func_080AA964
 func_080AA964: @ 0x080AA964
@@ -98036,8 +97511,8 @@ func_080AACB8: @ 0x080AACB8
 .L080AACD4: .4byte 0x08CE4CF8
     func_end func_080AACB8
 
-    thumb_func_start func_080AACD8
-func_080AACD8: @ 0x080AACD8
+    thumb_func_start TmApplyCompressedTsa
+TmApplyCompressedTsa: @ 0x080AACD8
     push {r4, r5, r6, lr}
     adds r6, r0, #0
     adds r0, r1, #0
@@ -98055,7 +97530,7 @@ func_080AACD8: @ 0x080AACD8
     bx r0
     .align 2, 0
 .L080AACFC: .4byte gBuf
-    func_end func_080AACD8
+    func_end TmApplyCompressedTsa
 
     thumb_func_start func_080AAD00
 func_080AAD00: @ 0x080AAD00
@@ -99854,7 +99329,7 @@ func_080AB79C: @ 0x080AB79C
     bl func_080AB2C0
     ldr r0, .L080ABAAC @ =func_080AB78C
     adds r1, r4, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     ldr r0, .L080ABAB0 @ =0x08CE54B4
     adds r1, r4, #0
     bl Proc_Start
@@ -102669,7 +102144,7 @@ func_080ACF5C: @ 0x080ACF5C
     bl InitText
     ldr r0, .L080AD19C @ =func_080ACABC
     adds r1, r6, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     movs r0, #2
     bl EnableBgSync
     ldr r0, .L080AD1A0 @ =func_080ACB64
@@ -103340,7 +102815,7 @@ func_080AD49C: @ 0x080AD49C
 .L080AD63A:
     ldr r0, .L080AD65C @ =func_080AD414
     ldr r1, [sp, #4]
-    bl func_080A92F8
+    bl StartParallelWorker
     ldr r1, [sp, #4]
     str r0, [r1, #0x34]
     add sp, #0xc
@@ -108473,7 +107948,7 @@ func_080AFDFC: @ 0x080AFDFC
     bl Proc_Break
     ldr r0, .L080AFEE8 @ =func_080AFDC0
     adds r1, r7, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     b .L080AFEF0
     .align 2, 0
 .L080AFEE4: .4byte gDispIo
@@ -119529,7 +119004,7 @@ func_080B52D0: @ 0x080B52D0
     ands r0, r1
     cmp r0, #0
     beq .L080B533A
-    bl func_0807685C
+    bl InitScanlineEffect
     ldr r0, .L080B5340 @ =func_08077860
     bl SetOnHBlankB
     movs r0, #0
@@ -120415,7 +119890,7 @@ func_080B5990: @ 0x080B5990
     movs r1, #0
     mov sb, r1
     str r1, [r0, #0x2c]
-    bl func_0807685C
+    bl InitScanlineEffect
     ldr r2, .L080B5A78 @ =0x030028AC
     mov ip, r2
     ldr r0, .L080B5A7C @ =0x0000FFE0
@@ -121319,7 +120794,7 @@ func_080B608C: @ 0x080B608C
     push {r5, r6, r7}
     movs r1, #0
     str r1, [r0, #0x2c]
-    bl func_0807685C
+    bl InitScanlineEffect
     ldr r2, .L080B6178 @ =0x030028AC
     mov ip, r2
     ldr r0, .L080B617C @ =0x0000FFE0
@@ -124115,7 +123590,7 @@ func_080B7530: @ 0x080B7530
     strb r0, [r1]
     ldr r0, .L080B75D4 @ =func_080B74B4
     adds r1, r4, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -124479,7 +123954,7 @@ func_080B7810: @ 0x080B7810
     bl func_080B6E28
     ldr r0, .L080B78D4 @ =func_080B7408
     adds r1, r5, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     adds r6, r5, #0
     adds r6, #0x51
     strb r4, [r6]
@@ -124503,7 +123978,7 @@ func_080B7810: @ 0x080B7810
     strb r1, [r0]
     ldr r0, .L080B78D8 @ =func_080B77DC
     adds r1, r5, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     add sp, #0x64
     pop {r4, r5, r6}
     pop {r0}
@@ -124835,7 +124310,7 @@ func_080B7B18: @ 0x080B7B18
     bl func_080A9DC0
     ldr r0, .L080B7B70 @ =func_080B77DC
     adds r1, r4, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     adds r0, r4, #0
     bl Proc_Break
 .L080B7B64:
@@ -125010,7 +124485,7 @@ func_080B7C5C: @ 0x080B7C5C
     ldr r0, .L080B7CC4 @ =gBg0Tm
     ldr r1, .L080B7CC8 @ =0x081C39C4
     ldr r2, .L080B7CCC @ =0x00005040
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #1
     bl EnableBgSync
     adds r5, #0x44
@@ -127566,7 +127041,7 @@ func_080B90C0: @ 0x080B90C0
     ldr r1, .L080B9124 @ =0x081B98E8
     movs r2, #0xa4
     lsls r2, r2, #7
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #4
     bl EnableBgSync
     adds r4, #0x4c
@@ -129002,7 +128477,7 @@ func_080B9B38: @ 0x080B9B38
     bls .L080B9CFE
     ldr r0, .L080B9D4C @ =func_080B96FC
     adds r1, r5, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     ldr r0, .L080B9D50 @ =0x085DFAB0
     adds r1, r0, #0
     adds r1, #0x20
@@ -129011,7 +128486,7 @@ func_080B9B38: @ 0x080B9B38
     str r5, [sp, #4]
     movs r2, #2
     movs r3, #0x17
-    bl func_080AA92C
+    bl StartMixPalette
     add sp, #0x10
     pop {r3, r4, r5}
     mov r8, r3
@@ -130030,7 +129505,7 @@ func_080BA4BC: @ 0x080BA4BC
     ldr r0, .L080BA540 @ =0x02023CA0
     ldr r1, .L080BA544 @ =0x0866FB1C
     ldr r2, .L080BA548 @ =0x0000E260
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     ldr r0, .L080BA54C @ =0x0866AB28
     movs r1, #0xd0
     lsls r1, r1, #1
@@ -130042,7 +129517,7 @@ func_080BA4BC: @ 0x080BA4BC
     ldr r0, .L080BA558 @ =gBg1Tm
     ldr r1, .L080BA55C @ =0x0866ADEC
     ldr r2, .L080BA560 @ =0x0000D2F0
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     pop {r0}
     bx r0
     .align 2, 0
@@ -131043,10 +130518,10 @@ func_080BABB8: @ 0x080BABB8
     ldr r0, .L080BAD68 @ =gBg0Tm
     ldr r1, .L080BAD6C @ =0x086771DC
     ldr r2, .L080BAD70 @ =0x0000C280
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #1
     bl EnableBgSync
-    bl func_0807685C
+    bl InitScanlineEffect
     ldr r0, .L080BAD74 @ =func_080BAB24
     bl SetOnHBlankA
     ldr r0, .L080BAD78 @ =0x08CEF034
@@ -131146,7 +130621,7 @@ func_080BADA0: @ 0x080BADA0
 .L080BADF0:
     movs r0, #1
     movs r1, #0
-    bl func_0807751C
+    bl GetScanlineBuf
     adds r5, #0x64
     movs r6, #0
     ldrsh r1, [r5, r6]
@@ -131160,7 +130635,7 @@ func_080BADA0: @ 0x080BADA0
     bl func_08076FC4
     movs r0, #1
     movs r1, #0xa0
-    bl func_0807751C
+    bl GetScanlineBuf
     movs r7, #0
     ldrsh r1, [r5, r7]
     movs r3, #0xc
@@ -131169,7 +130644,7 @@ func_080BADA0: @ 0x080BADA0
     ldrsh r3, [r4, r7]
     str r6, [sp]
     bl func_08076FC4
-    bl func_080770C8
+    bl SwapScanlineBufs
     ldrh r2, [r4, #0x10]
     movs r0, #0
     movs r1, #0
@@ -132637,7 +132112,7 @@ func_080BB98C: @ 0x080BB98C
     ldr r1, .L080BBA28 @ =0x085ED0DC
     movs r2, #0xa2
     lsls r2, r2, #8
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #8
     bl EnableBgSync
     movs r0, #0
@@ -132756,7 +132231,7 @@ func_080BBAC4: @ 0x080BBAC4
     ldr r1, .L080BBB24 @ =0x0860029C
     movs r2, #0xe0
     lsls r2, r2, #8
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     ldr r2, .L080BBB28 @ =gDispIo
     movs r0, #0x3f
     ldrb r1, [r2, #0xd]
@@ -132901,7 +132376,7 @@ func_080BBBB8: @ 0x080BBBB8
     bl func_080A931C
     ldr r0, .L080BBC54 @ =func_080BB76C
     adds r1, r5, #0
-    bl func_080A92F8
+    bl StartParallelWorker
     adds r0, r5, #0
     bl func_080BCE20
     adds r1, r6, #0
@@ -132982,7 +132457,7 @@ func_080BBC80: @ 0x080BBC80
     movs r2, #0xd0
     lsls r2, r2, #8
     adds r0, r4, #0
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #1
     bl EnableBgSync
     ldr r3, .L080BBD1C @ =gDispIo
@@ -133056,7 +132531,7 @@ func_080BBD28: @ 0x080BBD28
     movs r2, #0xd0
     lsls r2, r2, #8
     adds r0, r4, #0
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #1
     bl EnableBgSync
     ldr r3, .L080BBDC4 @ =gDispIo
@@ -133132,7 +132607,7 @@ func_080BBDD0: @ 0x080BBDD0
     movs r2, #0xd0
     lsls r2, r2, #8
     adds r0, r4, #0
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     ldr r2, .L080BBE3C @ =0x03001620
     ldr r0, [r2]
     movs r1, #0x20
@@ -133882,7 +133357,7 @@ func_080BC30C: @ 0x080BC30C
     movs r2, #0xe0
     lsls r2, r2, #8
     adds r0, r6, #0
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     ldr r0, .L080BC460 @ =0x085ED1C4
     movs r1, #0xc0
     lsls r1, r1, #2
@@ -134281,7 +133756,7 @@ func_080BC6A8: @ 0x080BC6A8
     lsls r3, r3, #0x18
     adds r2, r2, r3
     lsrs r2, r2, #0x10
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     ldr r1, [r4, #0x30]
     movs r0, #1
     subs r0, r0, r1

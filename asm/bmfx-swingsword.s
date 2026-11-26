@@ -118,7 +118,7 @@ func_08021234: @ 0x08021234
     ldr r1, .L080212C4 @ =0x081BB1D4
     movs r2, #0x8a
     lsls r2, r2, #6
-    bl func_080AACD8
+    bl TmApplyCompressedTsa
     movs r0, #1
     bl EnableBgSync
     ldr r3, .L080212C8 @ =gDispIo

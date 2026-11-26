@@ -61,7 +61,35 @@ Tsa_Unk_08195680:
 
     .global Tsa_Unk_08195738
 Tsa_Unk_08195738:
-    .incbin "baserom.gba", 0x195738, 0x1C3B6C - 0x195738
+    .incbin "baserom.gba", 0x195738, 0x1BB310 - 0x195738
+
+    .global Img_DragonGateLight
+Img_DragonGateLight:
+    .incbin "baserom.gba", 0x1BB310, 0x1BC744 - 0x1BB310
+
+    .global Pal_DragonGateLight
+Pal_DragonGateLight:
+    .incbin "baserom.gba", 0x1BC744, 0x1BC764 - 0x1BC744
+
+    .global Pal_DragonGateLightForMixing
+Pal_DragonGateLightForMixing:
+    .incbin "baserom.gba", 0x1BC764, 0x1BC784 - 0x1BC764
+
+    .global Tsa_DragonGateLight
+Tsa_DragonGateLight:
+    .incbin "baserom.gba", 0x1BC784, 0x1BCB1C - 0x1BC784
+
+    .global Img_DragonGateDragon
+Img_DragonGateDragon:
+    .incbin "baserom.gba", 0x1BCB1C, 0x1BD758 - 0x1BCB1C
+
+    .global Pal_DragonGateDragon
+Pal_DragonGateDragon:
+    .incbin "baserom.gba", 0x1BD758, 0x1BD958 - 0x1BD758
+
+    .global Tsa_DragonGateDragon
+Tsa_DragonGateDragon:
+    .incbin "baserom.gba", 0x1BD958, 0x1C3B6C - 0x1BD958
 
 
     .section ".rodata_1_2", "a"

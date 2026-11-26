@@ -1,7 +1,7 @@
     .include "asm_prelude.inc"
 
-    thumb_func_start func_0807685C
-func_0807685C: @ 0x0807685C
+    thumb_func_start InitScanlineEffect
+InitScanlineEffect: @ 0x0807685C
     push {r7, lr}
     mov r7, sp
     ldr r1, .L0807688C @ =0x0203E160
@@ -28,7 +28,7 @@ func_0807685C: @ 0x0807685C
 .L08076890: .4byte 0x0203E3E0
 .L08076894: .4byte 0x0203E660
 .L08076898: .4byte 0x0203E668
-    func_end func_0807685C
+    func_end InitScanlineEffect
 
     thumb_func_start func_0807689C
 func_0807689C: @ 0x0807689C
@@ -201,7 +201,7 @@ func_080769CC: @ 0x080769CC
     ldr r3, [r7, #8]
     ldr r1, [r7]
     bl func_080771BC
-    bl func_080770C8
+    bl SwapScanlineBufs
     add sp, #0xc
     pop {r7}
     pop {r0}
@@ -656,7 +656,7 @@ func_08076C50: @ 0x08076C50
     lsrs r4, r5, #0x10
     str r4, [sp]
     bl func_080772A0
-    bl func_080770C8
+    bl SwapScanlineBufs
     ldr r1, .L08076D88 @ =func_08076AFC
     adds r0, r1, #0
     bl SetOnHBlankA
@@ -1124,8 +1124,8 @@ func_0807704C: @ 0x0807704C
     bx r0
     func_end func_0807704C
 
-    thumb_func_start func_080770C8
-func_080770C8: @ 0x080770C8
+    thumb_func_start SwapScanlineBufs
+SwapScanlineBufs: @ 0x080770C8
     push {r7, lr}
     sub sp, #4
     mov r7, sp
@@ -1145,7 +1145,7 @@ func_080770C8: @ 0x080770C8
     bx r0
     .align 2, 0
 .L080770EC: .4byte 0x0203E660
-    func_end func_080770C8
+    func_end SwapScanlineBufs
 
     thumb_func_start func_080770F0
 func_080770F0: @ 0x080770F0
@@ -1605,7 +1605,7 @@ func_08077410: @ 0x08077410
     movs r2, #0x10
     movs r3, #8
     bl func_08076E4C
-    bl func_080770C8
+    bl SwapScanlineBufs
     add sp, #4
     pop {r4, r7}
     pop {r0}
@@ -1729,8 +1729,8 @@ func_0807744C: @ 0x0807744C
     bx r0
     func_end func_0807744C
 
-    thumb_func_start func_0807751C
-func_0807751C: @ 0x0807751C
+    thumb_func_start GetScanlineBuf
+GetScanlineBuf: @ 0x0807751C
     push {r7, lr}
     sub sp, #8
     mov r7, sp
@@ -1755,7 +1755,7 @@ func_0807751C: @ 0x0807751C
     pop {r7}
     pop {r1}
     bx r1
-    func_end func_0807751C
+    func_end GetScanlineBuf
 
     thumb_func_start func_0807754C
 func_0807754C: @ 0x0807754C
@@ -1905,7 +1905,7 @@ func_0807764C: @ 0x0807764C
     ldr r3, [r7, #8]
     ldr r1, [r7]
     bl func_0807754C
-    bl func_080770C8
+    bl SwapScanlineBufs
     add sp, #0xc
     pop {r7}
     pop {r0}
@@ -2104,7 +2104,7 @@ func_08077680: @ 0x08077680
     .align 2, 0
 .L080777D4: .4byte 0x0203E660
 .L080777D8:
-    bl func_080770C8
+    bl SwapScanlineBufs
     add sp, #0x14
     pop {r7}
     pop {r0}
@@ -2306,7 +2306,7 @@ func_08077910: @ 0x08077910
     .align 2, 0
 .L08077950: .4byte 0x0203E668
 .L08077954:
-    bl func_080770C8
+    bl SwapScanlineBufs
     add sp, #0xc
     pop {r7}
     pop {r0}
@@ -2669,8 +2669,8 @@ func_08077B74: @ 0x08077B74
 .L08077C08: .4byte 0x04000016
     func_end func_08077B74
 
-    thumb_func_start func_08077C0C
-func_08077C0C: @ 0x08077C0C
+    thumb_func_start DragonGatefx_LightHBlank
+DragonGatefx_LightHBlank: @ 0x08077C0C
     push {r7, lr}
     sub sp, #4
     mov r7, sp
@@ -2745,7 +2745,7 @@ func_08077C0C: @ 0x08077C0C
 .L08077C98: .4byte 0x04000018
 .L08077C9C: .4byte 0x0203E668
 .L08077CA0: .4byte 0x0400001A
-    func_end func_08077C0C
+    func_end DragonGatefx_LightHBlank
 
     thumb_func_start func_08077CA4
 func_08077CA4: @ 0x08077CA4
@@ -2912,8 +2912,8 @@ func_08077D3C: @ 0x08077D3C
 .L08077DE4: .4byte 0x0400001A
     func_end func_08077D3C
 
-    thumb_func_start func_08077DE8
-func_08077DE8: @ 0x08077DE8
+    thumb_func_start DragonGatefx_DragonHBlank
+DragonGatefx_DragonHBlank: @ 0x08077DE8
     push {r7, lr}
     sub sp, #4
     mov r7, sp
@@ -3013,7 +3013,7 @@ func_08077DE8: @ 0x08077DE8
 .L08077EAC: .4byte 0x04000016
 .L08077EB0: .4byte 0x04000018
 .L08077EB4: .4byte 0x0400001A
-    func_end func_08077DE8
+    func_end DragonGatefx_DragonHBlank
 
     thumb_func_start func_08077EB8
 func_08077EB8: @ 0x08077EB8
@@ -3291,7 +3291,7 @@ func_080780C4: @ 0x080780C4
     str r1, [sp]
     ldr r1, [r7]
     bl func_08077EB8
-    bl func_080770C8
+    bl SwapScanlineBufs
     add sp, #0x14
     pop {r7}
     pop {r0}
