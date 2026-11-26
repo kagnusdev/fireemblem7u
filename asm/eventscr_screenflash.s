@@ -5,7 +5,7 @@ func_08011878: @ 0x08011878
     push {lr}
     movs r1, #0
     str r1, [r0, #0x3c]
-    bl func_080136AC
+    bl ArchiveCurrentPalettes
     pop {r0}
     bx r0
     func_end func_08011878

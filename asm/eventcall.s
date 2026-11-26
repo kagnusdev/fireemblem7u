@@ -6009,23 +6009,23 @@ func_0807A98C: @ 0x0807A98C
     bx r0
     func_end func_0807A98C
 
-    thumb_func_start func_0807A9BC
-func_0807A9BC: @ 0x0807A9BC
+    thumb_func_start TryLockParentProc
+TryLockParentProc: @ 0x0807A9BC
     push {lr}
     ldr r0, [r0, #0x14]
     bl TryLockProc
     pop {r0}
     bx r0
-    func_end func_0807A9BC
+    func_end TryLockParentProc
 
-    thumb_func_start func_0807A9C8
-func_0807A9C8: @ 0x0807A9C8
+    thumb_func_start TryUnlockParentProc
+TryUnlockParentProc: @ 0x0807A9C8
     push {lr}
     ldr r0, [r0, #0x14]
     bl TryUnlockProc
     pop {r0}
     bx r0
-    func_end func_0807A9C8
+    func_end TryUnlockParentProc
 
     thumb_func_start func_0807A9D4
 func_0807A9D4: @ 0x0807A9D4

@@ -157,7 +157,7 @@ func_08011B0C: @ 0x08011B0C
     thumb_func_start func_08011B58
 func_08011B58: @ 0x08011B58
     push {lr}
-    bl func_080136AC
+    bl ArchiveCurrentPalettes
     movs r0, #2
     pop {r1}
     bx r1

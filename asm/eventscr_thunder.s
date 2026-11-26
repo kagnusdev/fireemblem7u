@@ -69,7 +69,7 @@ func_0801138C: @ 0x0801138C
     str r0, [sp, #0x10]
     adds r0, r5, #0
     movs r1, #2
-    bl func_080AA78C
+    bl StartBmBgfx
     add sp, #0x14
     pop {r4, r5}
     pop {r0}

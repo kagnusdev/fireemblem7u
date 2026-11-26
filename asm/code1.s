@@ -4980,7 +4980,7 @@ func_08030518: @ 0x08030518
     thumb_func_start func_08030528
 func_08030528: @ 0x08030528
     push {lr}
-    bl func_080136AC
+    bl ArchiveCurrentPalettes
     ldr r3, .L08030540 @ =0xFF00FFF0
     movs r0, #0xc0
     movs r1, #0xc0
@@ -5021,7 +5021,7 @@ func_08030570: @ 0x08030570
     push {r4, lr}
     sub sp, #0x14
     adds r4, r0, #0
-    bl func_080136AC
+    bl ArchiveCurrentPalettes
     movs r2, #0x80
     lsls r2, r2, #1
     movs r0, #0xc0

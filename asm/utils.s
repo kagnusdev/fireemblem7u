@@ -1017,8 +1017,8 @@ func_08013690: @ 0x08013690
     bx r0
     func_end func_08013690
 
-    thumb_func_start func_080136AC
-func_080136AC: @ 0x080136AC
+    thumb_func_start ArchiveCurrentPalettes
+ArchiveCurrentPalettes: @ 0x080136AC
     push {r4, r5, lr}
     bl func_08013624
     ldr r3, .L080136F4 @ =gPal
@@ -1054,10 +1054,10 @@ func_080136AC: @ 0x080136AC
     bx r0
     .align 2, 0
 .L080136F4: .4byte gPal
-    func_end func_080136AC
+    func_end ArchiveCurrentPalettes
 
-    thumb_func_start func_080136F8
-func_080136F8: @ 0x080136F8
+    thumb_func_start ArchivePalette
+ArchivePalette: @ 0x080136F8
     push {r4, lr}
     adds r4, r0, #0
     bl func_08013624
@@ -1082,7 +1082,7 @@ func_080136F8: @ 0x080136F8
     bx r0
     .align 2, 0
 .L08013724: .4byte gPal
-    func_end func_080136F8
+    func_end ArchivePalette
 
     thumb_func_start func_08013728
 func_08013728: @ 0x08013728

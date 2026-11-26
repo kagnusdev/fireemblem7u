@@ -120,7 +120,11 @@ ProcScr_UnkEvt:
     .incbin "baserom.gba", 0xB90D88, 0xB90DE8 - 0xB90D88
 
 gUnk_08B90DE8:
-    .incbin "baserom.gba", 0xB90DE8, 0xB92474 - 0xB90DE8
+    .incbin "baserom.gba", 0xB90DE8, 0xB923EC - 0xB90DE8
+
+    .global ProcScr_EventSpriteAnim
+ProcScr_EventSpriteAnim:
+    .incbin "baserom.gba", 0xB923EC, 0xB92474 - 0xB923EC
 
     .global data_0_2End
 data_0_2End:
@@ -311,7 +315,7 @@ FaceInfoTable:
 
     .section ".data_1_5", "a"
 
-    .incbin "baserom.gba", 0xCA763C, 0xCC1B1C - 0xCA763C
+    .incbin "baserom.gba", 0xCA7754, 0xCC1B1C - 0xCA7754
 
     .global gUnk_08CC1B1C
 gUnk_08CC1B1C:
@@ -347,7 +351,15 @@ ProcScr_Unk_08CEE0C4:
 
     .global ProcScr_OpeningSequence
 ProcScr_OpeningSequence:
-    .incbin "baserom.gba", 0xCEF10C, 0xCF0CD0 - 0xCEF10C
+    .incbin "baserom.gba", 0xCEF10C, 0xCF0214 - 0xCEF10C
+
+    .global BmBgfxConf_DeadDragonFlame
+BmBgfxConf_DeadDragonFlame:
+    .incbin "baserom.gba", 0xCF0214, 0xCF09B8 - 0xCF0214
+
+    .global BmBgfxConf_DragonFlame
+BmBgfxConf_DragonFlame:
+    .incbin "baserom.gba", 0xCF09B8, 0xCF0CD0 - 0xCF09B8
 
 
     .section ".data_2", "a"

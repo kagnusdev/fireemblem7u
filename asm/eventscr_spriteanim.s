@@ -40,7 +40,7 @@ func_08011B7C: @ 0x08011B7C
     str r4, [sp, #0x10]
     movs r4, #4
     str r4, [sp, #0x14]
-    bl func_080AA978
+    bl StartSpriteAnimfx
     mov r1, r8
     str r0, [r1, #0x34]
     add sp, #0x18
@@ -240,7 +240,7 @@ func_08011CE0: @ 0x08011CE0
     thumb_func_start func_08011D24
 func_08011D24: @ 0x08011D24
     push {lr}
-    bl func_080AA964
+    bl EndMixPalette
     movs r0, #0
     pop {r1}
     bx r1

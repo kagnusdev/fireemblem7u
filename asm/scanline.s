@@ -2228,8 +2228,8 @@ func_08077860: @ 0x08077860
 .L080778C4: .4byte 0x0203E668
     func_end func_08077860
 
-    thumb_func_start func_080778C8
-func_080778C8: @ 0x080778C8
+    thumb_func_start HBlank_Scanline_080778C8
+HBlank_Scanline_080778C8: @ 0x080778C8
     push {r7, lr}
     sub sp, #4
     mov r7, sp
@@ -2265,7 +2265,7 @@ func_080778C8: @ 0x080778C8
 .L08077904: .4byte 0x04000006
 .L08077908: .4byte 0x0400001A
 .L0807790C: .4byte 0x0203E668
-    func_end func_080778C8
+    func_end HBlank_Scanline_080778C8
 
     thumb_func_start func_08077910
 func_08077910: @ 0x08077910

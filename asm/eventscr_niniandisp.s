@@ -137,7 +137,7 @@ func_080115A0: @ 0x080115A0
     cmp r0, r1
     bne .L080115BE
     movs r0, #0
-    bl func_080AA76C
+    bl BmBgfxSetLoopEN
     adds r0, r4, #0
     bl Proc_Break
 .L080115BE:
@@ -380,7 +380,7 @@ func_0801175C: @ 0x0801175C
     str r4, [sp, #0xc]
     str r5, [sp, #0x10]
     movs r1, #2
-    bl func_080AA78C
+    bl StartBmBgfx
     str r4, [r5, #0x30]
     add sp, #0x14
     pop {r4, r5, r6}
@@ -418,7 +418,7 @@ func_080117B0: @ 0x080117B0
     bne .L080117EC
     str r5, [r4, #0x30]
     movs r0, #0
-    bl func_080AA76C
+    bl BmBgfxSetLoopEN
     adds r0, r4, #0
     bl Proc_Break
 .L080117EC:

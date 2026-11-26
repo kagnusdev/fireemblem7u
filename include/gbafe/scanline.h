@@ -38,8 +38,8 @@ u16 * GetScanlineBuf(int buf_id, int scanline);
 // sub_8077E50
 // sub_8077FB4
 // sub_8078030
-void HBlank_Scanline_8078098(void);
-void sub_80780E0(int a, int b);
+void HBlank_Scanline_080778C8(void);
+void func_08077910(int a, int b);
 void CandleFlameFx_OnHBlank(void);
 void ScanlineRotation(u16 *, s16, s16, s16, s16, s16, s16);
 void HBlank_Scanline_80782AC(void);

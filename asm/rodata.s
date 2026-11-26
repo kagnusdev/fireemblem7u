@@ -61,7 +61,31 @@ Tsa_Unk_08195680:
 
     .global Tsa_Unk_08195738
 Tsa_Unk_08195738:
-    .incbin "baserom.gba", 0x195738, 0x1BB310 - 0x195738
+    .incbin "baserom.gba", 0x195738, 0x197CC8 - 0x195738
+
+    .global Img_DragonFlameSmallFire
+Img_DragonFlameSmallFire:
+    .incbin "baserom.gba", 0x197CC8, 0x198164 - 0x197CC8
+
+    .global Pal_DragonFlameSmallFire
+Pal_DragonFlameSmallFire:
+    .incbin "baserom.gba", 0x198164, 0x198838 - 0x198164
+
+    .global SpriteConf_DragonFlameSmallFire
+SpriteConf_DragonFlameSmallFire:
+    .incbin "baserom.gba", 0x198838, 0x1B93C8 - 0x198838
+
+    .global Img_DragonGateFlame
+Img_DragonGateFlame:
+    .incbin "baserom.gba", 0x1B93C8, 0x1B9790 - 0x1B93C8
+
+    .global Pal_DragonGateFlame
+Pal_DragonGateFlame:
+    .incbin "baserom.gba", 0x1B9790, 0x1B97B0 - 0x1B9790
+
+    .global Tsa_DragonGateFlame
+Tsa_DragonGateFlame:
+    .incbin "baserom.gba", 0x1B97B0, 0x1BB310 - 0x1B97B0
 
     .global Img_DragonGateLight
 Img_DragonGateLight:
