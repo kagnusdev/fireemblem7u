@@ -299,8 +299,8 @@ struct ProcEventQuakefx {
 
 void EventQuakefxHorizon_ViolentLoop(struct Proc * procfx);
 void EventQuakefxHorizon_SlightLoop(struct Proc * procfx);
-void EventQuakefxVeritical_Loop(struct Proc * procfx);
-void StartEventVeriticalQuakefx(ProcPtr parent);
+void EventQuakefxVertical_Loop(struct Proc * procfx);
+void StartEventVerticalQuakefx(ProcPtr parent);
 void StartEventHorizontalQuakefxViolently(ProcPtr parent);
 void StartEventHorizontalQuakefxSlightly(ProcPtr parent);
 void StartEventHorizontalQuakefxViolentlyNoSound(ProcPtr parent);

@@ -1,437 +1,5 @@
     .include "asm_prelude.inc"
 
-    thumb_func_start func_0807AB04
-func_0807AB04: @ 0x0807AB04
-    push {lr}
-    ldr r0, [r0, #0x14]
-    adds r0, #0x4c
-    movs r1, #0
-    ldrsb r1, [r0, r1]
-    movs r0, #1
-    rsbs r0, r0, #0
-    cmp r1, r0
-    bne .L0807AB34
-    bl GetGameTime
-    movs r1, #1
-    ands r1, r0
-    cmp r1, #0
-    beq .L0807AB56
-    ldr r1, .L0807AB30 @ =gBmSt
-    movs r0, #2
-    ldrh r2, [r1, #0xc]
-    eors r0, r2
-    strh r0, [r1, #0xc]
-    b .L0807AB56
-    .align 2, 0
-.L0807AB30: .4byte gBmSt
-.L0807AB34:
-    bl GetGameTime
-    movs r1, #1
-    ands r1, r0
-    cmp r1, #0
-    beq .L0807AB56
-    bl GetGameTime
-    adds r1, r0, #0
-    movs r0, #2
-    ands r1, r0
-    lsls r1, r1, #0x10
-    lsrs r1, r1, #0x10
-    movs r0, #3
-    movs r2, #0
-    bl SetBgOffset
-.L0807AB56:
-    pop {r0}
-    bx r0
-    func_end func_0807AB04
-
-    thumb_func_start func_0807AB5C
-func_0807AB5C: @ 0x0807AB5C
-    push {lr}
-    ldr r0, [r0, #0x14]
-    adds r0, #0x4c
-    movs r1, #0
-    ldrsb r1, [r0, r1]
-    movs r0, #1
-    rsbs r0, r0, #0
-    cmp r1, r0
-    bne .L0807AB94
-    bl GetGameTime
-    movs r1, #1
-    ands r1, r0
-    cmp r1, #0
-    beq .L0807ABB8
-    ldr r0, .L0807AB8C @ =gBmSt
-    ldr r1, .L0807AB90 @ =0x0000FFFD
-    ldrh r2, [r0, #0xc]
-    ands r1, r2
-    movs r2, #1
-    eors r1, r2
-    strh r1, [r0, #0xc]
-    b .L0807ABB8
-    .align 2, 0
-.L0807AB8C: .4byte gBmSt
-.L0807AB90: .4byte 0x0000FFFD
-.L0807AB94:
-    bl GetGameTime
-    movs r1, #1
-    ands r1, r0
-    cmp r1, #0
-    beq .L0807ABB8
-    movs r0, #3
-    bl func_080AA9EC
-    adds r1, r0, #0
-    movs r0, #1
-    eors r1, r0
-    lsls r1, r1, #0x10
-    lsrs r1, r1, #0x10
-    movs r0, #3
-    movs r2, #0
-    bl SetBgOffset
-.L0807ABB8:
-    pop {r0}
-    bx r0
-    func_end func_0807AB5C
-
-    thumb_func_start func_0807ABBC
-func_0807ABBC: @ 0x0807ABBC
-    push {lr}
-    ldr r0, [r0, #0x14]
-    adds r0, #0x4c
-    ldrb r0, [r0]
-    cmp r0, #0x61
-    bne .L0807ABE8
-    bl GetGameTime
-    movs r1, #1
-    ands r1, r0
-    cmp r1, #0
-    beq .L0807AC02
-    bl GetGameTime
-    adds r1, r0, #0
-    movs r0, #1
-    ands r1, r0
-    movs r0, #3
-    movs r2, #0
-    bl SetBgOffset
-    b .L0807AC02
-.L0807ABE8:
-    bl GetGameTime
-    movs r1, #1
-    ands r1, r0
-    cmp r1, #0
-    beq .L0807AC02
-    ldr r0, .L0807AC08 @ =gBmSt
-    ldr r1, .L0807AC0C @ =0x0000FFFD
-    ldrh r2, [r0, #0xe]
-    ands r1, r2
-    movs r2, #1
-    eors r1, r2
-    strh r1, [r0, #0xe]
-.L0807AC02:
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807AC08: .4byte gBmSt
-.L0807AC0C: .4byte 0x0000FFFD
-    func_end func_0807ABBC
-
-    thumb_func_start func_0807AC10
-func_0807AC10: @ 0x0807AC10
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    ldr r5, .L0807AC48 @ =0x08CA759C
-    adds r0, r5, #0
-    bl Proc_Find
-    cmp r0, #0
-    bne .L0807AC28
-    adds r0, r5, #0
-    adds r1, r4, #0
-    bl Proc_Start
-.L0807AC28:
-    movs r1, #0
-    bl Proc_Goto
-    ldr r0, .L0807AC4C @ =gPlaySt
-    adds r0, #0x41
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1e
-    cmp r0, #0
-    blt .L0807AC40
-    ldr r0, .L0807AC50 @ =0x0000026A
-    bl m4aSongNumStart
-.L0807AC40:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807AC48: .4byte 0x08CA759C
-.L0807AC4C: .4byte gPlaySt
-.L0807AC50: .4byte 0x0000026A
-    func_end func_0807AC10
-
-    thumb_func_start func_0807AC54
-func_0807AC54: @ 0x0807AC54
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    ldr r5, .L0807AC8C @ =0x08CA756C
-    adds r0, r5, #0
-    bl Proc_Find
-    cmp r0, #0
-    bne .L0807AC7E
-    ldr r0, .L0807AC90 @ =gPlaySt
-    adds r0, #0x41
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1e
-    cmp r0, #0
-    blt .L0807AC76
-    ldr r0, .L0807AC94 @ =0x0000026A
-    bl m4aSongNumStart
-.L0807AC76:
-    adds r0, r5, #0
-    adds r1, r4, #0
-    bl Proc_Start
-.L0807AC7E:
-    movs r1, #0
-    bl Proc_Goto
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807AC8C: .4byte 0x08CA756C
-.L0807AC90: .4byte gPlaySt
-.L0807AC94: .4byte 0x0000026A
-    func_end func_0807AC54
-
-    thumb_func_start func_0807AC98
-func_0807AC98: @ 0x0807AC98
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    ldr r5, .L0807ACD0 @ =0x08CA756C
-    adds r0, r5, #0
-    bl Proc_Find
-    cmp r0, #0
-    bne .L0807ACC2
-    ldr r0, .L0807ACD4 @ =gPlaySt
-    adds r0, #0x41
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1e
-    cmp r0, #0
-    blt .L0807ACBA
-    ldr r0, .L0807ACD8 @ =0x0000026A
-    bl m4aSongNumStart
-.L0807ACBA:
-    adds r0, r5, #0
-    adds r1, r4, #0
-    bl Proc_Start
-.L0807ACC2:
-    movs r1, #1
-    bl Proc_Goto
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807ACD0: .4byte 0x08CA756C
-.L0807ACD4: .4byte gPlaySt
-.L0807ACD8: .4byte 0x0000026A
-    func_end func_0807AC98
-
-    thumb_func_start func_0807ACDC
-func_0807ACDC: @ 0x0807ACDC
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    ldr r5, .L0807AD00 @ =0x08CA756C
-    adds r0, r5, #0
-    bl Proc_Find
-    cmp r0, #0
-    bne .L0807ACF4
-    adds r0, r5, #0
-    adds r1, r4, #0
-    bl Proc_Start
-.L0807ACF4:
-    movs r1, #0
-    bl Proc_Goto
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807AD00: .4byte 0x08CA756C
-    func_end func_0807ACDC
-
-    thumb_func_start func_0807AD04
-func_0807AD04: @ 0x0807AD04
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    ldr r5, .L0807AD28 @ =0x08CA756C
-    adds r0, r5, #0
-    bl Proc_Find
-    cmp r0, #0
-    bne .L0807AD1C
-    adds r0, r5, #0
-    adds r1, r4, #0
-    bl Proc_Start
-.L0807AD1C:
-    movs r1, #1
-    bl Proc_Goto
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807AD28: .4byte 0x08CA756C
-    func_end func_0807AD04
-
-    thumb_func_start func_0807AD2C
-func_0807AD2C: @ 0x0807AD2C
-    push {lr}
-    ldr r0, .L0807AD48 @ =gBmSt
-    ldr r1, .L0807AD4C @ =0x0000FFFC
-    ldrh r2, [r0, #0xc]
-    ands r1, r2
-    strh r1, [r0, #0xc]
-    ldr r0, .L0807AD50 @ =0x08CA756C
-    bl Proc_EndEach
-    movs r0, #4
-    bl Sound_FadeOutSE
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807AD48: .4byte gBmSt
-.L0807AD4C: .4byte 0x0000FFFC
-.L0807AD50: .4byte 0x08CA756C
-    func_end func_0807AD2C
-
-    thumb_func_start func_0807AD54
-func_0807AD54: @ 0x0807AD54
-    push {lr}
-    ldr r0, .L0807AD70 @ =gBmSt
-    ldr r1, .L0807AD74 @ =0x0000FFFC
-    ldrh r2, [r0, #0xe]
-    ands r1, r2
-    strh r1, [r0, #0xe]
-    ldr r0, .L0807AD78 @ =0x08CA759C
-    bl Proc_EndEach
-    movs r0, #4
-    bl Sound_FadeOutSE
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807AD70: .4byte gBmSt
-.L0807AD74: .4byte 0x0000FFFC
-.L0807AD78: .4byte 0x08CA759C
-    func_end func_0807AD54
-
-    thumb_func_start func_0807AD7C
-func_0807AD7C: @ 0x0807AD7C
-    adds r0, #0x4c
-    movs r1, #0
-    strh r1, [r0]
-    bx lr
-    func_end func_0807AD7C
-
-    thumb_func_start func_0807AD84
-func_0807AD84: @ 0x0807AD84
-    push {r4, lr}
-    adds r4, r0, #0
-    ldr r0, [r4, #0x14]
-    adds r0, #0x4c
-    movs r1, #0
-    ldrsb r1, [r0, r1]
-    movs r0, #1
-    rsbs r0, r0, #0
-    cmp r1, r0
-    bne .L0807ADBC
-    bl GetGameTime
-    movs r1, #1
-    ands r1, r0
-    cmp r1, #0
-    beq .L0807ADE0
-    ldr r0, .L0807ADB4 @ =gBmSt
-    ldr r1, .L0807ADB8 @ =0x0000FFFD
-    ldrh r2, [r0, #0xc]
-    ands r1, r2
-    movs r2, #1
-    eors r1, r2
-    strh r1, [r0, #0xc]
-    b .L0807ADE0
-    .align 2, 0
-.L0807ADB4: .4byte gBmSt
-.L0807ADB8: .4byte 0x0000FFFD
-.L0807ADBC:
-    bl GetGameTime
-    movs r1, #1
-    ands r1, r0
-    cmp r1, #0
-    beq .L0807ADE0
-    movs r0, #3
-    bl func_080AA9EC
-    adds r1, r0, #0
-    movs r0, #1
-    eors r1, r0
-    lsls r1, r1, #0x10
-    lsrs r1, r1, #0x10
-    movs r0, #3
-    movs r2, #0
-    bl SetBgOffset
-.L0807ADE0:
-    adds r1, r4, #0
-    adds r1, #0x4c
-    ldrh r0, [r1]
-    adds r0, #1
-    strh r0, [r1]
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    cmp r0, #0x10
-    bne .L0807ADFE
-    adds r0, r4, #0
-    bl Proc_Break
-    movs r0, #4
-    bl Sound_FadeOutSE
-.L0807ADFE:
-    pop {r4}
-    pop {r0}
-    bx r0
-    func_end func_0807AD84
-
-    thumb_func_start func_0807AE04
-func_0807AE04: @ 0x0807AE04
-    push {lr}
-    adds r1, r0, #0
-    ldr r0, .L0807AE24 @ =0x08CA75B4
-    bl Proc_Start
-    ldr r0, .L0807AE28 @ =gPlaySt
-    adds r0, #0x41
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1e
-    cmp r0, #0
-    blt .L0807AE20
-    ldr r0, .L0807AE2C @ =0x0000026A
-    bl m4aSongNumStart
-.L0807AE20:
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807AE24: .4byte 0x08CA75B4
-.L0807AE28: .4byte gPlaySt
-.L0807AE2C: .4byte 0x0000026A
-    func_end func_0807AE04
-
-    thumb_func_start func_0807AE30
-func_0807AE30: @ 0x0807AE30
-    push {lr}
-    ldr r0, .L0807AE4C @ =gBmSt
-    ldr r1, .L0807AE50 @ =0x0000FFFC
-    ldrh r2, [r0, #0xe]
-    ands r1, r2
-    strh r1, [r0, #0xe]
-    movs r0, #4
-    bl Sound_FadeOutSE
-    ldr r0, .L0807AE54 @ =0x08CA75B4
-    bl Proc_EndEach
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807AE4C: .4byte gBmSt
-.L0807AE50: .4byte 0x0000FFFC
-.L0807AE54: .4byte 0x08CA75B4
-    func_end func_0807AE30
-
     thumb_func_start SetFlag_145
 SetFlag_145: @ 0x0807AE58
     push {lr}
@@ -472,7 +40,7 @@ func_0807AE70: @ 0x0807AE70
     bl func_0807751C
     adds r5, r0, #0
     movs r0, #3
-    bl func_080AA9EC
+    bl GetBgXOffset
     ldr r1, [r4, #0x58]
     lsls r1, r1, #0x10
     asrs r1, r1, #0x10
@@ -485,7 +53,7 @@ func_0807AE70: @ 0x0807AE70
     adds r4, #0x64
     ldrh r4, [r4]
     movs r0, #3
-    bl func_080AA9EC
+    bl GetBgXOffset
     adds r1, r0, #0
     lsls r1, r1, #0x10
     lsrs r1, r1, #0x10
@@ -3156,7 +2724,7 @@ func_0807C3A0: @ 0x0807C3A0
     bl func_0807751C
     adds r5, r0, #0
     movs r0, #0
-    bl func_080AA9EC
+    bl GetBgXOffset
     lsls r0, r0, #0x10
     asrs r0, r0, #0x10
     movs r2, #0
@@ -3644,7 +3212,7 @@ func_0807C7B4: @ 0x0807C7B4
     strh r0, [r1]
     bl func_080136AC
     adds r0, r4, #0
-    bl func_0807ACDC
+    bl StartEventHorizontalQuakefxViolentlyNoSound
     pop {r4}
     pop {r0}
     bx r0
@@ -3671,7 +3239,7 @@ func_0807C7D4: @ 0x0807C7D4
     cmp r1, r0
     bne .L0807C80A
     adds r0, r5, #0
-    bl func_0807AD04
+    bl StartEventHorizontalQuakefxSlightlyNoSound
     movs r0, #0
     strh r0, [r4]
     adds r0, r5, #0
@@ -8458,7 +8026,7 @@ func_0807EB9C: @ 0x0807EB9C
     movs r3, #0
     bl func_0807E68C
     adds r0, r6, #0
-    bl func_0807AE04
+    bl StartEventQuakefx
     add sp, #8
     pop {r4, r5, r6}
     pop {r0}
@@ -98079,8 +97647,8 @@ func_080AA978: @ 0x080AA978
 .L080AA9E8: .4byte 0x06010000
     func_end func_080AA978
 
-    thumb_func_start func_080AA9EC
-func_080AA9EC: @ 0x080AA9EC
+    thumb_func_start GetBgXOffset
+GetBgXOffset: @ 0x080AA9EC
     cmp r0, #1
     beq .L080AAA10
     cmp r0, #1
@@ -98119,7 +97687,7 @@ func_080AA9EC: @ 0x080AA9EC
     bx lr
     .align 2, 0
 .L080AAA30: .4byte gDispIo
-    func_end func_080AA9EC
+    func_end GetBgXOffset
 
     thumb_func_start func_080AAA34
 func_080AAA34: @ 0x080AAA34

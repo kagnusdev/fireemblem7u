@@ -306,7 +306,12 @@ MoveTable_Ballista:
 
     .global FaceInfoTable
 FaceInfoTable:
-    .incbin "baserom.gba", 0xC96584, 0xCC1B1C - 0xC96584
+    .incbin "baserom.gba", 0xC96584, 0xCA756C - 0xC96584
+
+
+    .section ".data_1_5", "a"
+
+    .incbin "baserom.gba", 0xCA75D4, 0xCC1B1C - 0xCA75D4
 
     .global gUnk_08CC1B1C
 gUnk_08CC1B1C:

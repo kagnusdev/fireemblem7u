@@ -118,6 +118,7 @@ SECTIONS
         asm/mapanim.o(.text);
         asm/scanline.o(.text);
         asm/eventcall.o(.text);
+        src/eventcall_quakefx.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -229,6 +230,8 @@ SECTIONS
         . = ALIGN(4); src/banim-ekrdragon.o(.data);
         . = ALIGN(4); src/banim-ekrdragonfx.o(.data);
         . = ALIGN(4); asm/data.o(.data_1_4);
+        . = ALIGN(4); src/eventcall_quakefx.o(.data);
+        . = ALIGN(4); asm/data.o(.data_1_5);
         . = ALIGN(4); src/sio_link_loader.o(.data);
 
         /* libc */
