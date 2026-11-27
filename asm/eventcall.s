@@ -6085,7 +6085,7 @@ func_0807AA24: @ 0x0807AA24
     movs r1, #2
     movs r2, #0x20
     movs r3, #4
-    bl func_08011998
+    bl StartScreenFlashing
     add sp, #0x10
     pop {r0}
     bx r0
@@ -6108,7 +6108,7 @@ func_0807AA4C: @ 0x0807AA4C
     movs r1, #2
     movs r2, #0x20
     movs r3, #4
-    bl func_08011998
+    bl StartScreenFlashing
     add sp, #0x10
     pop {r0}
     bx r0
