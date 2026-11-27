@@ -973,34 +973,34 @@ func_08013650: @ 0x08013650
     bx r0
     func_end func_08013650
 
-    thumb_func_start func_08013664
-func_08013664: @ 0x08013664
+    thumb_func_start GetPalFadeStClkEnd1
+GetPalFadeStClkEnd1: @ 0x08013664
     push {lr}
     bl func_08013624
     ldrh r0, [r0, #0x2a]
     pop {r1}
     bx r1
-    func_end func_08013664
+    func_end GetPalFadeStClkEnd1
 
-    thumb_func_start func_08013670
-func_08013670: @ 0x08013670
+    thumb_func_start GetPalFadeStClkEnd2
+GetPalFadeStClkEnd2: @ 0x08013670
     push {lr}
     bl func_08013624
     adds r0, #0x5a
     ldrh r0, [r0]
     pop {r1}
     bx r1
-    func_end func_08013670
+    func_end GetPalFadeStClkEnd2
 
-    thumb_func_start func_08013680
-func_08013680: @ 0x08013680
+    thumb_func_start GetPalFadeStClkEnd3
+GetPalFadeStClkEnd3: @ 0x08013680
     push {lr}
     bl func_08013624
     adds r0, #0x8a
     ldrh r0, [r0]
     pop {r1}
     bx r1
-    func_end func_08013680
+    func_end GetPalFadeStClkEnd3
 
     thumb_func_start func_08013690
 func_08013690: @ 0x08013690

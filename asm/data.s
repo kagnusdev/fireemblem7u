@@ -125,8 +125,6 @@ gUnk_08B90DE8:
 
     .section ".data_0_2_1", "a"
 
-    .incbin "baserom.gba", 0xB923CC, 0xB923EC - 0xB923CC
-
     .global ProcScr_EventSpriteAnim
 ProcScr_EventSpriteAnim:
     .incbin "baserom.gba", 0xB923EC, 0xB92474 - 0xB923EC
