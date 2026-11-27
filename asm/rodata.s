@@ -85,7 +85,71 @@ Pal_EventSnowStormfx:
 
     .global Tsa_EventSnowStormfx
 Tsa_EventSnowStormfx:
-    .incbin "baserom.gba", 0x19D724, 0x1B93C8 - 0x19D724
+    .incbin "baserom.gba", 0x19D724, 0x1A755C - 0x19D724
+
+    .global Pal_EventThunderfx
+Pal_EventThunderfx:
+    .incbin "baserom.gba", 0x1A755C, 0x1A757C - 0x1A755C
+
+    .global Img_EventThunderfx1
+Img_EventThunderfx1:
+    .incbin "baserom.gba", 0x1A757C, 0x1A80E0 - 0x1A757C
+
+    .global Img_EventThunderfx2
+Img_EventThunderfx2:
+    .incbin "baserom.gba", 0x1A80E0, 0x1A8A40 - 0x1A80E0
+
+    .global Tsa_EventThunderfx1
+Tsa_EventThunderfx1:
+    .incbin "baserom.gba", 0x1A8A40, 0x1A8A80 - 0x1A8A40
+
+    .global Tsa_EventThunderfx2
+Tsa_EventThunderfx2:
+    .incbin "baserom.gba", 0x1A8A80, 0x1A8B08 - 0x1A8A80
+
+    .global Tsa_EventThunderfx3
+Tsa_EventThunderfx3:
+    .incbin "baserom.gba", 0x1A8B08, 0x1A8B90 - 0x1A8B08
+
+    .global Tsa_EventThunderfx4
+Tsa_EventThunderfx4:
+    .incbin "baserom.gba", 0x1A8B90, 0x1A8BEC - 0x1A8B90
+
+    .global Tsa_EventThunderfx5
+Tsa_EventThunderfx5:
+    .incbin "baserom.gba", 0x1A8BEC, 0x1A8CE4 - 0x1A8BEC
+
+    .global Tsa_EventThunderfx6
+Tsa_EventThunderfx6:
+    .incbin "baserom.gba", 0x1A8CE4, 0x1A8DEC - 0x1A8CE4
+
+    .global Tsa_EventThunderfx7
+Tsa_EventThunderfx7:
+    .incbin "baserom.gba", 0x1A8DEC, 0x1A8E7C - 0x1A8DEC
+
+    .global Img_EventThunderfx3
+Img_EventThunderfx3:
+    .incbin "baserom.gba", 0x1A8E7C, 0x1A99CC - 0x1A8E7C
+
+    .global Img_EventThunderfx4
+Img_EventThunderfx4:
+    .incbin "baserom.gba", 0x1A99CC, 0x1AA294 - 0x1A99CC
+
+    .global Tsa_EventThunderfx8
+Tsa_EventThunderfx8:
+    .incbin "baserom.gba", 0x1AA294, 0x1AA3AC - 0x1AA294
+
+    .global Tsa_EventThunderfx9
+Tsa_EventThunderfx9:
+    .incbin "baserom.gba", 0x1AA3AC, 0x1AA4C4 - 0x1AA3AC
+
+    .global Tsa_EventThunderfx10
+Tsa_EventThunderfx10:
+    .incbin "baserom.gba", 0x1AA4C4, 0x1AA5E0 - 0x1AA4C4
+
+    .global Tsa_EventThunderfx11
+Tsa_EventThunderfx11:
+    .incbin "baserom.gba", 0x1AA5E0, 0x1B93C8 - 0x1AA5E0
 
     .global Img_DragonGateFlame
 Img_DragonGateFlame:
