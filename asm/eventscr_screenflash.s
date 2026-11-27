@@ -79,7 +79,7 @@ func_08011888: @ 0x08011888
     asrs r2, r0, #8
     ldr r3, [r4, #0x30]
     adds r0, r5, #0
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
     ldr r1, [r4, #0x3c]
     movs r0, #0x80
     lsls r0, r0, #1
@@ -149,7 +149,7 @@ func_0801193C: @ 0x0801193C
     ldr r3, [r4, #0x30]
     adds r0, r6, #0
     adds r1, r5, #0
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
     ldr r0, [r4, #0x3c]
     cmp r0, r7
     bne .L08011990

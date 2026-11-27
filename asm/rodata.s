@@ -149,7 +149,147 @@ Tsa_EventThunderfx10:
 
     .global Tsa_EventThunderfx11
 Tsa_EventThunderfx11:
-    .incbin "baserom.gba", 0x1AA5E0, 0x1B93C8 - 0x1AA5E0
+    .incbin "baserom.gba", 0x1AA5E0, 0x1AA680 - 0x1AA5E0
+
+    .global Img_NinianDispfx
+Img_NinianDispfx:
+    .incbin "baserom.gba", 0x1AA680, 0x1AA898 - 0x1AA680
+
+    .global Pal_NinianDispfx
+Pal_NinianDispfx:
+    .incbin "baserom.gba", 0x1AA898, 0x1AA8B8 - 0x1AA898
+
+    .global SpritAnim_NinianDispfx
+SpritAnim_NinianDispfx:
+    .incbin "baserom.gba", 0x1AA8B8, 0x1AB504 - 0x1AA8B8
+
+    .global Pal_NinianDisp_081AB504
+Pal_NinianDisp_081AB504:
+    .incbin "baserom.gba", 0x1AB504, 0x1AB524 - 0x1AB504
+
+    .global Img_NinianDisp_081AB524
+Img_NinianDisp_081AB524:
+    .incbin "baserom.gba", 0x1AB524, 0x1ABCD8 - 0x1AB524
+
+    .global Img_NinianDisp_081ABCD8
+Img_NinianDisp_081ABCD8:
+    .incbin "baserom.gba", 0x1ABCD8, 0x1AC3A0 - 0x1ABCD8
+
+    .global Tsa_NinianDisp_081AC3A0
+Tsa_NinianDisp_081AC3A0:
+    .incbin "baserom.gba", 0x1AC3A0, 0x1AC3D8 - 0x1AC3A0
+
+    .global Tsa_NinianDisp_081AC3D8
+Tsa_NinianDisp_081AC3D8:
+    .incbin "baserom.gba", 0x1AC3D8, 0x1AC420 - 0x1AC3D8
+
+    .global Tsa_NinianDisp_081AC420
+Tsa_NinianDisp_081AC420:
+    .incbin "baserom.gba", 0x1AC420, 0x1AC494 - 0x1AC420
+
+    .global Tsa_NinianDisp_081AC494
+Tsa_NinianDisp_081AC494:
+    .incbin "baserom.gba", 0x1AC494, 0x1AC52C - 0x1AC494
+
+    .global Tsa_NinianDisp_081AC52C
+Tsa_NinianDisp_081AC52C:
+    .incbin "baserom.gba", 0x1AC52C, 0x1AC5BC - 0x1AC52C
+
+    .global Tsa_NinianDisp_081AC5BC
+Tsa_NinianDisp_081AC5BC:
+    .incbin "baserom.gba", 0x1AC5BC, 0x1AC63C - 0x1AC5BC
+
+    .global Tsa_NinianDisp_081AC63C
+Tsa_NinianDisp_081AC63C:
+    .incbin "baserom.gba", 0x1AC63C, 0x1AC6B0 - 0x1AC63C
+
+    .global Img_NinianDisp_081AC6B0
+Img_NinianDisp_081AC6B0:
+    .incbin "baserom.gba", 0x1AC6B0, 0x1AD0A4 - 0x1AC6B0
+
+    .global Img_NinianDisp_081AD0A4
+Img_NinianDisp_081AD0A4:
+    .incbin "baserom.gba", 0x1AD0A4, 0x1AD9D0 - 0x1AD0A4
+
+    .global Tsa_NinianDisp_081AD9D0
+Tsa_NinianDisp_081AD9D0:
+    .incbin "baserom.gba", 0x1AD9D0, 0x1ADA48 - 0x1AD9D0
+
+    .global Tsa_NinianDisp_081ADA48
+Tsa_NinianDisp_081ADA48:
+    .incbin "baserom.gba", 0x1ADA48, 0x1ADAC8 - 0x1ADA48
+
+    .global Tsa_NinianDisp_081ADAC8
+Tsa_NinianDisp_081ADAC8:
+    .incbin "baserom.gba", 0x1ADAC8, 0x1ADB54 - 0x1ADAC8
+
+    .global Tsa_NinianDisp_081ADB54
+Tsa_NinianDisp_081ADB54:
+    .incbin "baserom.gba", 0x1ADB54, 0x1ADBF0 - 0x1ADB54
+
+    .global Tsa_NinianDisp_081ADBF0
+Tsa_NinianDisp_081ADBF0:
+    .incbin "baserom.gba", 0x1ADBF0, 0x1ADCA0 - 0x1ADBF0
+
+    .global Img_NinianDisp_081ADCA0
+Img_NinianDisp_081ADCA0:
+    .incbin "baserom.gba", 0x1ADCA0, 0x1AE774 - 0x1ADCA0
+
+    .global Img_NinianDisp_081AE774
+Img_NinianDisp_081AE774:
+    .incbin "baserom.gba", 0x1AE774, 0x1AED08 - 0x1AE774
+
+    .global Tsa_NinianDisp_081AED08
+Tsa_NinianDisp_081AED08:
+    .incbin "baserom.gba", 0x1AED08, 0x1AEDC8 - 0x1AED08
+
+    .global Tsa_NinianDisp_081AEDC8
+Tsa_NinianDisp_081AEDC8:
+    .incbin "baserom.gba", 0x1AEDC8, 0x1AEE9C - 0x1AEDC8
+
+    .global Tsa_NinianDisp_081AEE9C
+Tsa_NinianDisp_081AEE9C:
+    .incbin "baserom.gba", 0x1AEE9C, 0x1AEF38 - 0x1AEE9C
+
+    .global Img_NinianDisp_081AEF38
+Img_NinianDisp_081AEF38:
+    .incbin "baserom.gba", 0x1AEF38, 0x1AF934 - 0x1AEF38
+
+    .global Img_NinianDisp_081AF934
+Img_NinianDisp_081AF934:
+    .incbin "baserom.gba", 0x1AF934, 0x1B0044 - 0x1AF934
+
+    .global Tsa_NinianDisp_081B0044
+Tsa_NinianDisp_081B0044:
+    .incbin "baserom.gba", 0x1B0044, 0x1B00FC - 0x1B0044
+
+    .global Tsa_NinianDisp_081B00FC
+Tsa_NinianDisp_081B00FC:
+    .incbin "baserom.gba", 0x1B00FC, 0x1B01C4 - 0x1B00FC
+
+    .global Tsa_NinianDisp_081B01C4
+Tsa_NinianDisp_081B01C4:
+    .incbin "baserom.gba", 0x1B01C4, 0x1B02A4 - 0x1B01C4
+
+    .global Img_NinianDisp_081B02A4
+Img_NinianDisp_081B02A4:
+    .incbin "baserom.gba", 0x1B02A4, 0x1B0B38 - 0x1B02A4
+
+    .global Img_NinianDisp_081B0B38
+Img_NinianDisp_081B0B38:
+    .incbin "baserom.gba", 0x1B0B38, 0x1B0EE8 - 0x1B0B38
+
+    .global Tsa_NinianDisp_081B0EE8
+Tsa_NinianDisp_081B0EE8:
+    .incbin "baserom.gba", 0x1B0EE8, 0x1B0F78 - 0x1B0EE8
+
+    .global Tsa_NinianDisp_081B0F78
+Tsa_NinianDisp_081B0F78:
+    .incbin "baserom.gba", 0x1B0F78, 0x1B1038 - 0x1B0F78
+
+    .global Tsa_NinianDisp_081B1038
+Tsa_NinianDisp_081B1038:
+    .incbin "baserom.gba", 0x1B1038, 0x1B93C8 - 0x1B1038
 
     .global Img_DragonGateFlame
 Img_DragonGateFlame:

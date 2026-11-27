@@ -1084,8 +1084,8 @@ ArchivePalette: @ 0x080136F8
 .L08013724: .4byte gPal
     func_end ArchivePalette
 
-    thumb_func_start func_08013728
-func_08013728: @ 0x08013728
+    thumb_func_start WriteFadedPaletteFromArchive
+WriteFadedPaletteFromArchive: @ 0x08013728
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -1387,7 +1387,7 @@ func_08013728: @ 0x08013728
     bx r0
     .align 2, 0
 .L08013960: .4byte gPal
-    func_end func_08013728
+    func_end WriteFadedPaletteFromArchive
 
     thumb_func_start func_08013964
 func_08013964: @ 0x08013964
@@ -1443,7 +1443,7 @@ func_0801396C: @ 0x0801396C
     ldr r3, [r4, #0x4c]
     adds r0, r6, #0
     adds r1, r5, #0
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
     ldr r0, [r4, #0x44]
     cmp r0, r7
     bne .L080139D0

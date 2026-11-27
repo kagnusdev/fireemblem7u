@@ -1511,7 +1511,7 @@ func_0807C7D4: @ 0x0807C7D4
     adds r0, r2, #0
     adds r1, r2, #0
     movs r3, #1
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
     movs r0, #0x80
     lsls r0, r0, #2
     ldrh r1, [r4]
@@ -1780,7 +1780,7 @@ func_0807C9B0: @ 0x0807C9B0
     movs r0, #0xc0
     movs r1, #0xc0
     movs r2, #0xc0
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
     pop {r0}
     bx r0
     .align 2, 0
@@ -4581,7 +4581,7 @@ func_0807DE1C: @ 0x0807DE1C
     str r1, [sp, #0xc]
     adds r0, r4, #0
     movs r1, #0
-    bl func_08011D34
+    bl EventLoadUnit
     adds r5, #4
     adds r7, #1
     cmp r7, #6
@@ -4657,7 +4657,7 @@ func_0807DEA8: @ 0x0807DEA8
     movs r1, #0
     str r1, [sp, #8]
     str r6, [sp, #0xc]
-    bl func_08011D34
+    bl EventLoadUnit
     adds r4, #4
     subs r5, #1
     cmp r5, #0
@@ -4705,7 +4705,7 @@ func_0807DF24: @ 0x0807DF24
     str r5, [sp, #0xc]
     movs r0, #0x27
     movs r1, #0
-    bl func_08011D34
+    bl EventLoadUnit
     add r0, sp, #0x10
     movs r2, #4
     ldrsb r2, [r0, r2]
@@ -4724,7 +4724,7 @@ func_0807DF24: @ 0x0807DF24
     str r5, [sp, #0xc]
     movs r0, #0x26
     movs r1, #0
-    bl func_08011D34
+    bl EventLoadUnit
     ldr r1, .L0807DFD8 @ =gPlaySt
     adds r1, #0x2b
     movs r4, #1
@@ -4751,7 +4751,7 @@ func_0807DF24: @ 0x0807DF24
     str r5, [sp, #0xc]
     movs r0, #0xcd
     movs r1, #0x51
-    bl func_08011D34
+    bl EventLoadUnit
 .L0807DFCC:
     add sp, #0x1c
     pop {r4, r5}
@@ -4825,7 +4825,7 @@ func_0807DFDC: @ 0x0807DFDC
     str r7, [sp, #0xc]
     adds r0, r4, #0
     movs r1, #0
-    bl func_08011D34
+    bl EventLoadUnit
     adds r5, #4
     movs r0, #1
     add r8, r0
@@ -4913,7 +4913,7 @@ func_0807E084: @ 0x0807E084
     str r0, [sp, #0xc]
     adds r0, r4, #0
     movs r1, #0
-    bl func_08011D34
+    bl EventLoadUnit
 .L0807E102:
     adds r5, #4
     adds r7, #1
@@ -4993,7 +4993,7 @@ func_0807E128: @ 0x0807E128
     movs r1, #0
     str r1, [sp, #8]
     str r6, [sp, #0xc]
-    bl func_08011D34
+    bl EventLoadUnit
     adds r4, #4
     subs r5, #1
     cmp r5, #0
@@ -5264,7 +5264,7 @@ func_0807E3FC: @ 0x0807E3FC
     movs r1, #0
     movs r2, #0xe
     movs r3, #0x12
-    bl func_08011D34
+    bl EventLoadUnit
     add sp, #0x10
     pop {r0}
     bx r0
@@ -94770,7 +94770,7 @@ PaletteFadeOutOfBlank_Lop: @ 0x080AA18C
     ldr r3, [r4, #0x34]
     adds r0, r2, #0
     adds r1, r2, #0
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
     ldr r0, [r4, #0x2c]
     cmp r0, #0x80
     bne .L080AA1C8
@@ -94811,7 +94811,7 @@ PaletteFadeIntoBlank_Lop: @ 0x080AA1D0
     ldr r3, [r4, #0x34]
     adds r0, r2, #0
     adds r1, r2, #0
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
     ldr r0, [r4, #0x2c]
     cmp r0, #0x80
     bne .L080AA212
@@ -99824,7 +99824,7 @@ func_080AC7B0: @ 0x080AC7B0
     adds r0, r4, #0
     adds r1, r4, #0
     adds r2, r4, #0
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
     cmp r4, #0
     bne .L080AC7E0
     adds r0, r5, #0
@@ -99854,7 +99854,7 @@ func_080AC7E8: @ 0x080AC7E8
     movs r0, #0
     movs r1, #0
     movs r2, #0
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
     movs r0, #8
     bl EnableBgSync
     adds r4, #0x4c
@@ -99884,7 +99884,7 @@ func_080AC82C: @ 0x080AC82C
     adds r0, r4, #0
     adds r1, r4, #0
     adds r2, r4, #0
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
     movs r0, #0x80
     lsls r0, r0, #1
     cmp r4, r0
@@ -124740,7 +124740,7 @@ func_080B8654: @ 0x080B8654
     movs r0, #0xc0
     movs r1, #0xc0
     movs r2, #0xc0
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
 .L080B8828:
     movs r2, #0
     mov r0, r8
@@ -131792,7 +131792,7 @@ func_080BC0C4: @ 0x080BC0C4
     adds r1, r4, #0
     adds r2, r4, #0
     movs r3, #1
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
     movs r0, #0x80
     lsls r0, r0, #2
     cmp r4, r0

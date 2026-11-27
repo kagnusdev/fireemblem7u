@@ -4985,7 +4985,7 @@ func_08030528: @ 0x08030528
     movs r0, #0xc0
     movs r1, #0xc0
     movs r2, #0xc0
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
     pop {r0}
     bx r0
     .align 2, 0

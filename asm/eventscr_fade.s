@@ -64,7 +64,7 @@ func_08011A48: @ 0x08011A48
     ldr r3, [r4, #0x30]
     adds r0, r6, #0
     adds r1, r5, #0
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
     pop {r4, r5, r6}
     pop {r0}
     bx r0
@@ -172,7 +172,7 @@ func_08011B64: @ 0x08011B64
     rsbs r3, r3, #0
     adds r0, r2, #0
     adds r1, r2, #0
-    bl func_08013728
+    bl WriteFadedPaletteFromArchive
     movs r0, #2
     pop {r1}
     bx r1

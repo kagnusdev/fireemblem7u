@@ -252,8 +252,8 @@ EvtCmd_08011D30: @ 0x08011D30
     bx lr
     func_end EvtCmd_08011D30
 
-    thumb_func_start func_08011D34
-func_08011D34: @ 0x08011D34
+    thumb_func_start EventLoadUnit
+EventLoadUnit: @ 0x08011D34
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -311,7 +311,7 @@ func_08011D34: @ 0x08011D34
     .align 2, 0
 .L08011DA4: .4byte gMutableUnitInfo
 .L08011DA8: .4byte 0x01000004
-    func_end func_08011D34
+    func_end EventLoadUnit
 
     thumb_func_start func_08011DAC
 func_08011DAC: @ 0x08011DAC
