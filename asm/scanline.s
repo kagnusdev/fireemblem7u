@@ -2313,8 +2313,8 @@ func_08077910: @ 0x08077910
     bx r0
     func_end func_08077910
 
-    thumb_func_start func_08077960
-func_08077960: @ 0x08077960
+    thumb_func_start CandleFlameFx_OnHBlank
+CandleFlameFx_OnHBlank: @ 0x08077960
     push {r7, lr}
     sub sp, #4
     mov r7, sp
@@ -2389,10 +2389,10 @@ func_08077960: @ 0x08077960
 .L080779EC: .4byte 0x04000014
 .L080779F0: .4byte 0x0203E668
 .L080779F4: .4byte 0x04000016
-    func_end func_08077960
+    func_end CandleFlameFx_OnHBlank
 
-    thumb_func_start func_080779F8
-func_080779F8: @ 0x080779F8
+    thumb_func_start ScanlineRotation
+ScanlineRotation: @ 0x080779F8
     push {r4, r5, r6, r7, lr}
     sub sp, #0x18
     mov r7, sp
@@ -2511,7 +2511,7 @@ func_080779F8: @ 0x080779F8
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    func_end func_080779F8
+    func_end ScanlineRotation
 
     thumb_func_start func_08077ADC
 func_08077ADC: @ 0x08077ADC

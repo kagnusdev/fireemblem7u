@@ -615,7 +615,35 @@ Img_ChapterIntroFog:
 
     .global Pal_ChapterIntroFog
 Pal_ChapterIntroFog:
-    .incbin "baserom.gba", 0x401404, 0x677370 - 0x401404
+    .incbin "baserom.gba", 0x401404, 0x425478 - 0x401404
+
+    .global Img_CandleFlame
+Img_CandleFlame:
+    .incbin "baserom.gba", 0x425478, 0x425558 - 0x425478
+
+    .global Pal_CandleFlame
+Pal_CandleFlame:
+    .incbin "baserom.gba", 0x425558, 0x425578 - 0x425558
+
+    .global Tsa_CandleFlame
+Tsa_CandleFlame:
+    .incbin "baserom.gba", 0x425578, 0x425B20 - 0x425578
+
+    .global Pal_CandleFlameMix_08425B20
+Pal_CandleFlameMix_08425B20:
+    .incbin "baserom.gba", 0x425B20, 0x425C20 - 0x425B20
+
+    .global Pal_ZephielEpilogue_08425C20
+Pal_ZephielEpilogue_08425C20:
+    .incbin "baserom.gba", 0x425C20, 0x5499B4 - 0x425C20
+
+    .global Pal_CandleFlameMix_085499B4
+Pal_CandleFlameMix_085499B4:
+    .incbin "baserom.gba", 0x5499B4, 0x54F180 - 0x5499B4
+
+    .global Pal_ZephielEpilogue_0854F180
+Pal_ZephielEpilogue_0854F180:
+    .incbin "baserom.gba", 0x54F180, 0x677370 - 0x54F180
 
     .section ".rodata_2", "a"
 

@@ -351,7 +351,7 @@ void EndDragonGatefx(ProcPtr);
 // func_0807BB18
 // func_0807BB30
 // StartDeadDragonFlamefx
-void sub_807C66C(const char *);
+void func_0807BBF8(const char *);
 // CandleFlameFx_ScanlineEffect
 // StartCandleFlameFx
 // EndCandleFlamePaletteFx

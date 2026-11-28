@@ -1099,7 +1099,7 @@ int sub_80B10D4(int, int);
 void ComputeChapterRankings(void);
 // sub_80B7968
 // nullsub_91
-void sub_80B7980(u16 *, int, int, int, int);
+void PutCgBackground(u16 *, int, int, int, int);
 // sub_80B79FC
 // sub_80B7A74
 // sub_80B7B30

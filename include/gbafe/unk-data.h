@@ -354,10 +354,10 @@ extern u16 Pal_MuralBackground[];
 extern u8 Img_CandleFlame[]; // img
 extern u16 Pal_CandleFlame[]; // pal
 extern u8 Tsa_CandleFlame[]; // tsa
-extern u16 gUnk_08453438[]; // pal
-extern u16 gUnk_08453538[]; // pal
-extern u16 gUnk_0857E570[]; // pal
-extern u16 gUnk_08583EE4[]; // pal
+extern u16 Pal_CandleFlameMix_08425B20[]; // pal
+extern u16 Pal_ZephielEpilogue_08425C20[]; // pal
+extern u16 Pal_CandleFlameMix_085499B4[]; // pal
+extern u16 Pal_ZephielEpilogue_0854F180[]; // pal
 // ??? gUnk_085AE7BC
 // ??? gUnk_0860A86C
 // ??? gUnk_0860A8EC
