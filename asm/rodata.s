@@ -301,7 +301,15 @@ Pal_DragonGateFlame:
 
     .global Tsa_DragonGateFlame
 Tsa_DragonGateFlame:
-    .incbin "baserom.gba", 0x1B97B0, 0x1BB310 - 0x1B97B0
+    .incbin "baserom.gba", 0x1B97B0, 0x1B98C8 - 0x1B97B0
+
+    .global Pal_QuintessenceFx
+Pal_QuintessenceFx:
+    .incbin "baserom.gba", 0x1B98C8, 0x1B98E8 - 0x1B98C8
+
+    .global Tsa_QuintessenceFx
+Tsa_QuintessenceFx:
+    .incbin "baserom.gba", 0x1B98E8, 0x1BB310 - 0x1B98E8
 
     .global Img_DragonGateLight
 Img_DragonGateLight:

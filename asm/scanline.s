@@ -2825,8 +2825,8 @@ func_08077CA4: @ 0x08077CA4
 .L08077D38: .4byte 0x0400001E
     func_end func_08077CA4
 
-    thumb_func_start func_08077D3C
-func_08077D3C: @ 0x08077D3C
+    thumb_func_start QuintessenceFx_OnHBlank
+QuintessenceFx_OnHBlank: @ 0x08077D3C
     push {r7, lr}
     sub sp, #4
     mov r7, sp
@@ -2910,7 +2910,7 @@ func_08077D3C: @ 0x08077D3C
 .L08077DDC: .4byte 0x0203E668
 .L08077DE0: .4byte gDispIo
 .L08077DE4: .4byte 0x0400001A
-    func_end func_08077D3C
+    func_end QuintessenceFx_OnHBlank
 
     thumb_func_start DragonGatefx_DragonHBlank
 DragonGatefx_DragonHBlank: @ 0x08077DE8

@@ -122,6 +122,7 @@ SECTIONS
         src/eventcall_dragongate.o(.text);
         src/eventcall_dragonflamefx.o(.text);
         src/eventcall_zephielepilogue.o(.text);
+        src/quintessence-fx.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -243,6 +244,7 @@ SECTIONS
         . = ALIGN(4); src/eventcall_dragongate.o(.data);
         . = ALIGN(4); src/eventcall_dragonflamefx.o(.data);
         . = ALIGN(4); src/eventcall_zephielepilogue.o(.data);
+        . = ALIGN(4); src/quintessence-fx.o(.data);
         . = ALIGN(4); asm/data.o(.data_1_5);
         . = ALIGN(4); src/sio_link_loader.o(.data);
 
