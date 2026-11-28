@@ -96,6 +96,7 @@ SECTIONS
         asm/trap.o(.text);
         asm/item-action.o(.text);
         asm/bmio.o(.text);
+
         asm/code1.o(.text);
         asm/code-ai.o(.text);
         asm/code-sio.o(.text);
@@ -124,6 +125,7 @@ SECTIONS
         src/eventcall_zephielepilogue.o(.text);
         src/quintessence-fx.o(.text);
         src/eventcall_unittornout.o(.text);
+        src/eventcall_flamebreath.o(.text);
         asm/code.o(.text);
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -198,6 +200,8 @@ SECTIONS
         . = ALIGN(4); src/banim-mainutils.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_1_3);
         . = ALIGN(4); src/banim-efxdrsmmoya.o(.rodata);
+        . = ALIGN(4); src/eventcall_flamebreath.o(.rodata);
+        . = ALIGN(4); asm/rodata.o(.rodata_1_4);
         . = ALIGN(4); src/m4a.o(.rodata);
         . = ALIGN(4); asm/rodata.o(.rodata_2);
         . = ALIGN(4); *libc.a:vfprintf.o(.rodata);
@@ -247,6 +251,7 @@ SECTIONS
         . = ALIGN(4); src/eventcall_zephielepilogue.o(.data);
         . = ALIGN(4); src/quintessence-fx.o(.data);
         . = ALIGN(4); src/eventcall_unittornout.o(.data);
+        . = ALIGN(4); src/eventcall_flamebreath.o(.data);
         . = ALIGN(4); asm/data.o(.data_1_5);
         . = ALIGN(4); src/sio_link_loader.o(.data);
 

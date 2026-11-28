@@ -42,7 +42,7 @@ void HBlank_Scanline_080778C8(void);
 void func_08077910(int a, int b);
 void CandleFlameFx_OnHBlank(void);
 void ScanlineRotation(u16 *, s16, s16, s16, s16, s16, s16);
-void HBlank_Scanline_80782AC(void);
+void HBlank_Scanline_08077ADC(void);
 // sub_8078344
 void DragonGatefx_LightHBlank(void);
 // sub_8078474

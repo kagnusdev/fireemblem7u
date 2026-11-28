@@ -85,7 +85,23 @@ Pal_EventSnowStormfx:
 
     .global Tsa_EventSnowStormfx
 Tsa_EventSnowStormfx:
-    .incbin "baserom.gba", 0x19D724, 0x1A755C - 0x19D724
+    .incbin "baserom.gba", 0x19D724, 0x1A68FC - 0x19D724
+
+    .global Img_FlameBreathfx
+Img_FlameBreathfx:
+    .incbin "baserom.gba", 0x1A68FC, 0x1A71C8 - 0x1A68FC
+
+    .global Pal_FlameBreathfx
+Pal_FlameBreathfx:
+    .incbin "baserom.gba", 0x1A71C8, 0x1A71E8 - 0x1A71C8
+
+    .global Tsa_FlameBreathfxR
+Tsa_FlameBreathfxR:
+    .incbin "baserom.gba", 0x1A71E8, 0x1A73A8 - 0x1A71E8
+
+    .global Tsa_FlameBreathfxL
+Tsa_FlameBreathfxL:
+    .incbin "baserom.gba", 0x1A73A8, 0x1A755C - 0x1A73A8
 
     .global Pal_EventThunderfx
 Pal_EventThunderfx:
@@ -583,7 +599,12 @@ gUnk_083FBF80:
 
     .global gUnk_083FBFD0
 gUnk_083FBFD0:
-    .incbin "baserom.gba", 0x3FBFD0, 0x3FDA1C - 0x3FBFD0
+    .incbin "baserom.gba", 0x3FBFD0, 0x3FC91C - 0x3FBFD0
+
+
+    .section ".rodata_1_4", "a"
+
+    .incbin "baserom.gba", 0x3FC924, 0x3FDA1C - 0x3FC924
 
     .global Img_LimitViewSquares
 Img_LimitViewSquares:
@@ -652,6 +673,7 @@ Pal_CandleFlameMix_085499B4:
     .global Pal_ZephielEpilogue_0854F180
 Pal_ZephielEpilogue_0854F180:
     .incbin "baserom.gba", 0x54F180, 0x677370 - 0x54F180
+
 
     .section ".rodata_2", "a"
 

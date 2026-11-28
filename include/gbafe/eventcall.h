@@ -423,13 +423,13 @@ struct ProcFlameBreathfx {
 
 // func_0807C378
 // func_0807C38C
-// sub_807CE14
+// func_0807C3A0
 
-void sub_807CE90(struct ProcFlameBreathfx * proc);
-void sub_807CF94(struct ProcFlameBreathfx * proc);
-void sub_807CFEC(struct ProcFlameBreathfx * proc);
-void sub_807D088(struct ProcFlameBreathfx * proc);
-void sub_807D0E0(struct ProcFlameBreathfx * proc);
+void func_0807C41C(struct ProcFlameBreathfx * proc);
+void func_0807C520(struct ProcFlameBreathfx * proc);
+void func_0807C578(struct ProcFlameBreathfx * proc);
+void func_0807C614(struct ProcFlameBreathfx * proc);
+void func_0807C66C(struct ProcFlameBreathfx * proc);
 void StartFlameBreathfx(int type, int x, int y, ProcPtr parent);
 
 struct ProcIceCrystal {

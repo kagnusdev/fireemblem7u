@@ -2513,8 +2513,8 @@ ScanlineRotation: @ 0x080779F8
     bx r0
     func_end ScanlineRotation
 
-    thumb_func_start func_08077ADC
-func_08077ADC: @ 0x08077ADC
+    thumb_func_start HBlank_Scanline_08077ADC
+HBlank_Scanline_08077ADC: @ 0x08077ADC
     push {r7, lr}
     sub sp, #4
     mov r7, sp
@@ -2589,7 +2589,7 @@ func_08077ADC: @ 0x08077ADC
 .L08077B68: .4byte 0x04000010
 .L08077B6C: .4byte 0x0203E668
 .L08077B70: .4byte 0x04000012
-    func_end func_08077ADC
+    func_end HBlank_Scanline_08077ADC
 
     thumb_func_start func_08077B74
 func_08077B74: @ 0x08077B74
