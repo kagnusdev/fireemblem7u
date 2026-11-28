@@ -421,8 +421,8 @@ struct ProcFlameBreathfx {
     /* 64 */ s16 bg_offset;
 };
 
-// sub_807CDEC
-// sub_807CE00
+// func_0807C378
+// func_0807C38C
 // sub_807CE14
 
 void sub_807CE90(struct ProcFlameBreathfx * proc);

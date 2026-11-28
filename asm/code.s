@@ -1,89 +1,5 @@
     .include "asm_prelude.inc"
 
-    thumb_func_start func_0807C318
-func_0807C318: @ 0x0807C318
-    adds r0, #0x4c
-    movs r1, #0
-    strh r1, [r0]
-    bx lr
-    func_end func_0807C318
-
-    thumb_func_start func_0807C320
-func_0807C320: @ 0x0807C320
-    push {r4, r5, r6, lr}
-    adds r6, r0, #0
-    ldr r5, [r6, #0x54]
-    adds r4, r6, #0
-    adds r4, #0x4c
-    movs r0, #0
-    ldrsh r1, [r4, r0]
-    adds r0, r5, #0
-    bl func_0802520C
-    ldrh r0, [r4]
-    adds r0, #1
-    strh r0, [r4]
-    lsls r0, r0, #0x10
-    asrs r0, r0, #0x10
-    cmp r0, #0x40
-    bne .L0807C358
-    ldr r0, [r5, #0xc]
-    movs r1, #9
-    orrs r0, r1
-    str r0, [r5, #0xc]
-    bl RefreshEntityMaps
-    bl RefreshUnitSprites
-    adds r0, r6, #0
-    bl Proc_Break
-.L0807C358:
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    func_end func_0807C320
-
-    thumb_func_start StartUnitTornOut
-StartUnitTornOut: @ 0x0807C360
-    push {r4, lr}
-    adds r4, r0, #0
-    ldr r0, .L0807C374 @ =0x08CA7844
-    bl Proc_Start
-    str r4, [r0, #0x54]
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0807C374: .4byte 0x08CA7844
-    func_end StartUnitTornOut
-
-    thumb_func_start func_0807C378
-func_0807C378: @ 0x0807C378
-    push {lr}
-    bl func_0809EFBC
-    cmp r0, #0
-    bgt .L0807C386
-    movs r0, #0
-    b .L0807C388
-.L0807C386:
-    movs r0, #1
-.L0807C388:
-    pop {r1}
-    bx r1
-    func_end func_0807C378
-
-    thumb_func_start func_0807C38C
-func_0807C38C: @ 0x0807C38C
-    push {lr}
-    bl func_0809EFBC
-    cmp r0, #1
-    bgt .L0807C39A
-    movs r0, #0
-    b .L0807C39C
-.L0807C39A:
-    movs r0, #1
-.L0807C39C:
-    pop {r1}
-    bx r1
-    func_end func_0807C38C
-
     thumb_func_start func_0807C3A0
 func_0807C3A0: @ 0x0807C3A0
     push {r4, r5, r6, lr}
@@ -69783,7 +69699,7 @@ func_0809E9FC: @ 0x0809E9FC
     mov r0, sp
     bl MetaSave_CountCompletedPlaythroughs
     adds r5, r0, #0
-    bl func_0809EFBC
+    bl CheckLinkedToFE6
     rsbs r1, r0, #0
     orrs r1, r0
     asrs r4, r1, #0x1f
@@ -70624,8 +70540,8 @@ WasGameBeatenAtLeastOnce: @ 0x0809EF94
     bx r1
     func_end WasGameBeatenAtLeastOnce
 
-    thumb_func_start func_0809EFBC
-func_0809EFBC: @ 0x0809EFBC
+    thumb_func_start CheckLinkedToFE6
+CheckLinkedToFE6: @ 0x0809EFBC
     push {r4, lr}
     sub sp, #0x88
     add r4, sp, #0x24
@@ -70661,7 +70577,7 @@ func_0809EFBC: @ 0x0809EFBC
     pop {r4}
     pop {r1}
     bx r1
-    func_end func_0809EFBC
+    func_end CheckLinkedToFE6
 
     thumb_func_start func_0809F000
 func_0809F000: @ 0x0809F000

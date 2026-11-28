@@ -312,7 +312,7 @@ FaceInfoTable:
 
     .section ".data_1_5", "a"
 
-    .incbin "baserom.gba", 0xCA7844, 0xCC1B1C - 0xCA7844
+    .incbin "baserom.gba", 0xCA7864, 0xCC1B1C - 0xCA7864
 
     .global gUnk_08CC1B1C
 gUnk_08CC1B1C:

@@ -717,8 +717,8 @@ func_08025118: @ 0x08025118
 .L08025208: .4byte 0x02033F14
     func_end func_08025118
 
-    thumb_func_start func_0802520C
-func_0802520C: @ 0x0802520C
+    thumb_func_start TornOutUnitSprite
+TornOutUnitSprite: @ 0x0802520C
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -1100,7 +1100,7 @@ func_0802520C: @ 0x0802520C
 .L0802550C: .4byte 0x06011800
 .L08025510: .4byte 0x06011C00
 .L08025514: .4byte 0x02033E44
-    func_end func_0802520C
+    func_end TornOutUnitSprite
 
     thumb_func_start func_08025518
 func_08025518: @ 0x08025518

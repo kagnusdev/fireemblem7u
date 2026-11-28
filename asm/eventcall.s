@@ -5216,7 +5216,7 @@ IsTutorialDisabled: @ 0x0807A3E8
     thumb_func_start func_0807A3F8
 func_0807A3F8: @ 0x0807A3F8
     push {lr}
-    bl func_0809EFBC
+    bl CheckLinkedToFE6
     cmp r0, #0
     beq .L0807A404
     movs r0, #1
