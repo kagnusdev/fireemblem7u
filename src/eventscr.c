@@ -164,7 +164,7 @@ void EventLoadUnitsAsParty(struct EventProc * proc);
 
 void ForceSyncUnitSpriteSheet(void);
 void EventMovementWait(struct EventProc * proc);
-void LoadUnitWrapper(struct UnitInfo const * unit_info, Proc * parent);
+void LoadUnitCore(struct UnitInfo const * unit_info, Proc * parent);
 void FakeLoadUnit(struct UnitInfo const * info, struct Unit * unit);
 
 extern struct UnitInfo gMutableUnitInfo;
@@ -1868,7 +1868,7 @@ void EventUnitLoadWait(struct EventProc * proc)
         {
             while (info->pid != 0)
             {
-                LoadUnitWrapper(info, NULL);
+                LoadUnitCore(info, NULL);
                 info++;
             }
 
@@ -1881,7 +1881,7 @@ void EventUnitLoadWait(struct EventProc * proc)
             if (!CanDisplayUnitMovement(proc, info->x_load, info->y_load))
                 break;
 
-            LoadUnitWrapper(info, proc);
+            LoadUnitCore(info, proc);
         }
 
         info++;
@@ -1908,7 +1908,7 @@ void EventUnitLoadAliveWait(struct EventProc * proc)
             while (info->pid != 0)
             {
                 if ((GetUnitFromCharId(info->pid)->flags & UNIT_FLAG_DEAD) == 0)
-                    LoadUnitWrapper(info, NULL);
+                    LoadUnitCore(info, NULL);
 
                 info++;
             }
@@ -1924,7 +1924,7 @@ void EventUnitLoadAliveWait(struct EventProc * proc)
                 if (!CanDisplayUnitMovement(proc, info->x_load, info->y_load))
                     break;
 
-                LoadUnitWrapper(info, proc);
+                LoadUnitCore(info, proc);
             }
         }
 
@@ -2032,7 +2032,7 @@ int EvtCmd_LoadUnit(struct EventProc * proc)
     gMutableUnitInfo.x_move = x;
     gMutableUnitInfo.y_move = y;
 
-    LoadUnitWrapper(&gMutableUnitInfo, NULL);
+    LoadUnitCore(&gMutableUnitInfo, NULL);
 
     return EVENT_CMDRET_YIELD;
 }

@@ -1134,8 +1134,8 @@ WarpEffect_Finish: @ 0x080209C4
 .L080209F0: .4byte gBg0Tm
     func_end WarpEffect_Finish
 
-    thumb_func_start StartWarpEffect_080209F4
-StartWarpEffect_080209F4: @ 0x080209F4
+    thumb_func_start StartEventWarpAnim
+StartEventWarpAnim: @ 0x080209F4
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
@@ -1189,7 +1189,7 @@ StartWarpEffect_080209F4: @ 0x080209F4
     .align 2, 0
 .L08020A5C: .4byte 0x08B93C54
 .L08020A60: .4byte gBmSt
-    func_end StartWarpEffect_080209F4
+    func_end StartEventWarpAnim
 
     thumb_func_start StartWarpEffect_08020A64
 StartWarpEffect_08020A64: @ 0x08020A64

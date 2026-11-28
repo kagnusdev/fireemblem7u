@@ -1,7 +1,7 @@
     .include "asm_prelude.inc"
 
-    thumb_func_start LoadUnitWrapper
-LoadUnitWrapper: @ 0x0800A618
+    thumb_func_start LoadUnitCore
+LoadUnitCore: @ 0x0800A618
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
     adds r7, r1, #0
@@ -117,7 +117,7 @@ LoadUnitWrapper: @ 0x0800A618
     .align 2, 0
 .L0800A700: .4byte 0xFFFEFFFF
 .L0800A704: .4byte gPlaySt
-    func_end LoadUnitWrapper
+    func_end LoadUnitCore
 
     thumb_func_start FakeLoadUnit
 FakeLoadUnit: @ 0x0800A708

@@ -66,7 +66,7 @@ SECTIONS
         src/eventscr_niniandisp.o(.text);
         src/eventscr_screenflashfx.o(.text);
         src/eventscr_fadefx.o(.text);
-        asm/eventscr_spriteanim.o(.text);
+        src/eventscr_spriteanim.o(.text);
         src/sprite-anim.o(.text);
         src/game-ctrl.o(.text);
         src/msg.o(.text);
@@ -220,7 +220,7 @@ SECTIONS
         . = ALIGN(4); src/eventscr_niniandisp.o(.data);
         . = ALIGN(4); src/eventscr_screenflashfx.o(.data);
         . = ALIGN(4); src/eventscr_fadefx.o(.data);
-        . = ALIGN(4); asm/data.o(.data_0_2_1);
+        . = ALIGN(4); src/eventscr_spriteanim.o(.data);
         . = ALIGN(4); src/sprite-anim.o(.data);
         . = ALIGN(4); src/game-ctrl.o(.data);
         . = ALIGN(4); src/msg.o(.data);
@@ -289,7 +289,7 @@ SECTIONS
         . = 0x004150; MapFloodCoreStepRamFunc = .;
         . = 0x004190; gSpriteAllocIt = .;
         . = 0x0041C0; gFaces = .;
-        . = 0x0041D0; gMutableUnitInfo = .;
+        . = 0x0041D0; gMutableUnitInfo = .; sEventLoadUnitBuf = .;
         . = 0x0041E0; gWorkingMap = .;
         . = 0x0041F0; gMapFloodSquareBufB = .;
         . = 0x0043F0; gWorkingMovTable = .;

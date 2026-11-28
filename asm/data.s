@@ -123,16 +123,6 @@ gUnk_08B90DE8:
     .incbin "baserom.gba", 0xB90DE8, 0xB92034 - 0xB90DE8
 
 
-    .section ".data_0_2_1", "a"
-
-    .global ProcScr_EventSpriteAnim
-ProcScr_EventSpriteAnim:
-    .incbin "baserom.gba", 0xB923EC, 0xB92474 - 0xB923EC
-
-    .global data_0_2End
-data_0_2End:
-
-
     .section ".data_0_3", "a"
 
     @ B928BC ... B92AF8
@@ -301,7 +291,11 @@ gCharacterData:
 
     .global gClassData
 gClassData:
-    .incbin "baserom.gba", 0xBE01B0, 0xBE3C16 - 0xBE01B0
+    .incbin "baserom.gba", 0xBE01B0, 0xBE3888 - 0xBE01B0
+
+    .global gUnk_08BE3888
+gUnk_08BE3888:
+    .incbin "baserom.gba", 0xBE3888, 0xBE3C16 - 0xBE3888
 
     .global MoveTable_Flying
 MoveTable_Flying:

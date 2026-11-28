@@ -617,10 +617,10 @@ struct ProcEventWarpLoad {
 int EventEA_StartMixPalette(struct EventProc * proc);
 int EventEB_EndMixPalette(struct EventProc * proc);
 void EventLoadUnit(int pid, int jid, int x_load, int y_load, int x_move, int y_move, int faction_id, void * unk);
-void sub_8012440(struct UnitDefinition const * def, int flag);
-void sub_80124BC(ProcPtr proc);
-void sub_80125A4(ProcPtr proc);
-int sub_80125EC(struct EventProc * proc);
+void func_08011DAC(struct UnitDefinition const * def, int flag);
+void func_08011E28(ProcPtr proc);
+void func_08011F10(ProcPtr proc);
+int EvtCmd_WarpLoadUnits(struct EventProc * proc);
 
 extern struct UnitDefinition sEventLoadUnitBuf;
 
@@ -694,4 +694,4 @@ extern struct ProcCmd CONST_DATA ProcScr_NinianAppearfx[];
 extern struct ProcCmd CONST_DATA ProcScr_ScreenFlashing[];
 extern struct ProcCmd CONST_DATA ProcScr_EventFadefx[];
 extern struct ProcCmd CONST_DATA ProcScr_EventSpriteAnim[];
-extern struct ProcCmd CONST_DATA ProcScr_Event_08C0169C[];
+extern struct ProcCmd CONST_DATA ProcScr_Event_08B92414[];

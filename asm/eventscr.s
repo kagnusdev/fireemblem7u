@@ -4219,7 +4219,7 @@ func_0800FD90: @ 0x0800FD90
     adds r0, r4, #0
     adds r1, r5, #0
     adds r2, r6, #0
-    bl StartWarpEffect_080209F4
+    bl StartEventWarpAnim
     b .L0800FE0E
 .L0800FDFC:
     lsls r3, r3, #0x18
@@ -4229,7 +4229,7 @@ func_0800FD90: @ 0x0800FD90
     adds r0, r4, #0
     adds r1, r5, #0
     adds r2, r6, #0
-    bl StartWarpEffect_080209F4
+    bl StartEventWarpAnim
 .L0800FE0E:
     movs r0, #2
 .L0800FE10:
@@ -4276,7 +4276,7 @@ func_0800FE18: @ 0x0800FE18
     str r1, [sp]
     adds r0, r4, #0
     adds r1, r5, #0
-    bl StartWarpEffect_080209F4
+    bl StartEventWarpAnim
     b .L0800FE74
 .L0800FE64:
     lsls r3, r6, #0x18
@@ -4285,7 +4285,7 @@ func_0800FE18: @ 0x0800FE18
     str r0, [sp]
     adds r0, r4, #0
     adds r1, r5, #0
-    bl StartWarpEffect_080209F4
+    bl StartEventWarpAnim
 .L0800FE74:
     movs r0, #2
 .L0800FE76:
